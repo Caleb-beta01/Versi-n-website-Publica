@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Inflación</title>
-    <script>
-        // Redirigir al archivo principal
-        window.location.href = './v0.1.0-Alpha.html';
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de Inflación — v0.2.0-Alpha</title>
+  <meta http-equiv="refresh" content="0; url=./v0.2.0-Alpha.html">
+  <script>
+    const destino = new URL('./v0.2.0-Alpha.html', window.location.href);
+    destino.search = window.location.search;
+    destino.hash = window.location.hash;
+    window.location.replace(destino.href);
+  </script>
 </head>
 <body>
-    <p>Redirigiendo a la calculadora de inflación...</p>
+  <p>Abriendo la <a href="./v0.2.0-Alpha.html">Calculadora de Inflación v0.2.0-Alpha</a>…</p>
 </body>
 </html>
