@@ -891,7 +891,7 @@
     }
     .cost-editor-wrap{position:relative}
     .cost-editor-table{overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
-    .cost-editor-table table{min-width:1120px}
+    .cost-editor-table table{min-width:1080px}
     .cost-editor-table th{position:sticky;top:0;z-index:1;background:#0b1a2d}
     .cost-editor-table td{vertical-align:top}
     .cost-editor-table td:nth-child(1){min-width:170px}
@@ -4406,7 +4406,7 @@
       const relativeLabel = isFiniteNumber(comparison.relativeDifference) ? ' La diferencia relativa es ' + formatPercent(comparison.relativeDifference) + '.' : ' La diferencia relativa no se calcula porque la referencia es 0 %.';
       $('personalComparisonText').textContent =
         'Inflación personal: ' + formatPercent(metrics.inflation) + '. Referencia equivalente: ' + formatPercent(bundle.reference.normalizedRate) +
-        ' (' + bundle.reference.sourceLabel + '). Diferencia: ' + formatSigned(comparison.differencePp*100,' p.p.') + '.' + relativeLabel +
+        ' (' + bundle.reference.sourceLabel + '). Diferencia: ' + formatSigned(comparison.differencePp*100,' p.p') + '.' + relativeLabel +
         ' Costo esperado: ' + formatCurrency(comparison.expectedCost,currency) + '; costo real: ' + formatCurrency(comparison.actualCost,currency) +
         '; diferencia monetaria: ' + formatCurrency(comparison.monetaryDifference,currency) + '.' + normalizedLabel;
 
