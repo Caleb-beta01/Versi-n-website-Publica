@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#ffd400">
-  <meta name="color-scheme" content="light dark">
+  <meta name="color-scheme" content="light">
   <meta name="description" content="Calcula inflación, poder adquisitivo, reajuste salarial e índice personal de costo de vida con referencias manuales, IPCA y cestas personalizadas.">
   <title>Calculadora de Inflación · v0.7.0-Alpha</title>
   <style>
@@ -738,7 +738,7 @@
       gap:14px;
       margin-bottom:12px;
     }
-    .history-head h3{margin:0}
+    .history-head h2,.history-head h3{margin:0}
     .fx-hero{
       display:grid;
       grid-template-columns:minmax(260px,.72fr) minmax(0,1.28fr);
@@ -1579,6 +1579,319 @@
       .home-title{font-size:clamp(2.25rem,12.5vw,2.8rem)}
       .home-cta{margin-inline:14px}
     }
+
+    /* v0.7.0-Alpha: el lenguaje visual de la portada se extiende a toda la aplicación. */
+    :root{
+      --bg:var(--nb-paper);
+      --bg-soft:#fff4bd;
+      --surface:var(--nb-white);
+      --surface-2:#fff8dc;
+      --surface-3:#ffe883;
+      --line:var(--nb-ink);
+      --line-soft:var(--nb-ink);
+      --text:var(--nb-ink);
+      --muted:#3d3d3d;
+      --faint:#5c5134;
+      --primary:var(--nb-orange);
+      --primary-strong:var(--nb-orange-dark);
+      --blue:var(--nb-orange);
+      --violet:var(--nb-yellow);
+      --gold:var(--nb-yellow);
+      --success:#006b3c;
+      --danger:#a50021;
+      --warning:#7a3e00;
+      --shadow:8px 8px 0 var(--nb-ink);
+      --radius:0;
+      --radius-sm:0;
+    }
+    body{
+      color-scheme:light;
+      color:var(--nb-ink);
+      background:var(--nb-paper);
+    }
+    ::selection{color:var(--nb-ink);background:var(--nb-yellow)}
+    a{color:#7a2f00;font-weight:800;text-decoration-thickness:2px;text-underline-offset:3px}
+    :focus-visible{
+      outline:4px solid var(--nb-white);
+      outline-offset:2px;
+      box-shadow:0 0 0 7px var(--nb-ink);
+    }
+    .skip-link{
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      color:var(--nb-ink);
+      background:var(--nb-yellow);
+      box-shadow:5px 5px 0 var(--nb-ink);
+      font-weight:950;
+    }
+    .view:not(.home-view){padding-block:48px 82px}
+    .view:not(.home-view)>.view-head{
+      max-width:900px;
+      margin-bottom:38px;
+      padding:clamp(22px,4vw,38px);
+      border:var(--nb-border);
+      background:var(--nb-yellow);
+      box-shadow:var(--nb-shadow);
+    }
+    .view:not(.home-view)>.view-head h1{
+      margin-bottom:16px;
+      color:var(--nb-ink);
+      font-size:clamp(2.35rem,5.8vw,5rem);
+      font-style:italic;
+      font-weight:950;
+      letter-spacing:-.055em;
+      text-transform:uppercase;
+    }
+    .view:not(.home-view)>.view-head .lede{margin-bottom:0;color:var(--nb-ink);font-weight:720;line-height:1.65}
+    .eyebrow{
+      width:max-content;
+      max-width:100%;
+      padding:5px 9px;
+      border:3px solid var(--nb-ink);
+      color:var(--nb-ink);
+      background:var(--nb-orange);
+      font-weight:950;
+      letter-spacing:.08em;
+    }
+    h1,h2,h3,h4,h5{color:var(--nb-ink)}
+    h2,h3,h4,h5{font-weight:900}
+    .card h2{margin-bottom:9px;font-size:1.25rem;letter-spacing:-.03em}
+    .lede,.card-head p,.tool-card p,.analysis-output p,.results-summary,.explanation,.quote-summary-list{color:var(--muted)}
+    .card-head .eyebrow{color:var(--nb-ink)}
+
+    .card{
+      padding:24px;
+      border:var(--nb-border);
+      border-radius:0;
+      color:var(--nb-ink);
+      background:var(--nb-white);
+      box-shadow:var(--nb-shadow);
+    }
+    .card+.card{margin-top:28px}
+    .tool-card:nth-child(2n){background:#fff4bd}
+    .tool-card:nth-child(3n){background:#ffe0c7}
+    .section-number,.tool-icon,.empty-state-mark{
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      color:var(--nb-ink);
+      background:var(--nb-yellow);
+      box-shadow:4px 4px 0 var(--nb-ink);
+    }
+    .tool-icon{background:var(--nb-orange)}
+    label,legend{color:var(--nb-ink);font-weight:850}
+    input,select,textarea{
+      min-height:48px;
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      color:var(--nb-ink);
+      background:var(--nb-white);
+      box-shadow:none;
+    }
+    input::placeholder,textarea::placeholder{color:#6a6048;opacity:1}
+    input:hover,select:hover,textarea:hover{border-color:var(--nb-orange)}
+    input:focus-visible,select:focus-visible,textarea:focus-visible{
+      outline:4px solid var(--nb-yellow);
+      outline-offset:1px;
+      box-shadow:0 0 0 7px var(--nb-ink);
+    }
+    input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--danger);background:#fff0f2}
+    input:disabled,select:disabled,textarea:disabled{color:#5e5e5e;background:#e9e5dc}
+    .field-help{color:var(--faint)}
+    .equivalent-help{color:#7a2f00;font-weight:750}
+    .field-error,.row-field-error{color:var(--danger);font-weight:800}
+
+    .button{
+      min-height:48px;
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      color:var(--nb-ink);
+      background:var(--nb-white);
+      box-shadow:5px 5px 0 var(--nb-ink);
+      font-weight:950;
+      letter-spacing:.01em;
+      transition:transform .14s ease,box-shadow .14s ease,background .14s ease;
+    }
+    .button:hover:not(:disabled){transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--nb-ink)}
+    .button:active:not(:disabled){transform:none;box-shadow:2px 2px 0 var(--nb-ink)}
+    .button.primary{color:var(--nb-ink);background:var(--nb-orange);box-shadow:5px 5px 0 var(--nb-ink)}
+    .button.primary:hover:not(:disabled){background:#ff7c1f;box-shadow:7px 7px 0 var(--nb-ink)}
+    .button.secondary{color:var(--nb-ink);border-color:var(--nb-ink);background:var(--nb-white)}
+    .button.ghost{color:var(--nb-ink);border-color:var(--nb-ink);background:#fff4bd}
+    .button.danger{color:var(--danger);border-color:var(--nb-ink);background:#ffe2e6}
+    .button:disabled{color:#5c5c5c;background:#d9d5cc;box-shadow:none}
+
+    details.fold{
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      background:#fff9df;
+    }
+    details.fold>summary{color:var(--nb-ink);font-weight:900}
+    details.fold>summary::after{color:var(--nb-ink)}
+    details.fold[open]>summary{border-bottom:3px solid var(--nb-ink);background:var(--nb-yellow)}
+    .form-notice,.inline-notice{
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      color:var(--nb-ink);
+      background:#fff4bd;
+    }
+    .form-notice.error,.inline-notice.error{color:var(--danger);border-color:var(--nb-ink);background:#ffe2e6}
+    .form-notice.success,.inline-notice.success{color:#004c2a;border-color:var(--nb-ink);background:#dff8e8}
+    .form-notice.warning,.inline-notice.warning{color:#5c2d00;border-color:var(--nb-ink);background:#fff0b8}
+
+    .empty-state{color:var(--muted)}
+    .stat{
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      background:var(--nb-white);
+    }
+    .stat.primary-stat{
+      border-color:var(--nb-ink);
+      background:var(--nb-yellow);
+      box-shadow:4px 4px 0 var(--nb-ink);
+    }
+    .stat-label{color:var(--muted);font-weight:800}
+    .stat-value,.primary-stat .stat-value{color:var(--nb-ink)}
+    .scenario-b{
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      color:var(--nb-ink);
+      background:#ffe0c7;
+    }
+    .warning,.period-warning{
+      border:3px solid var(--nb-ink);
+      border-left:10px solid var(--nb-orange);
+      border-radius:0;
+      color:var(--nb-ink);
+      background:#fff4bd;
+    }
+    .chart-wrap{
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      background:var(--nb-white);
+    }
+    .explanation code{border:2px solid var(--nb-ink);border-radius:0;color:var(--nb-ink);background:var(--nb-yellow)}
+
+    .salary-status{
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      background:var(--nb-white);
+    }
+    .salary-status[data-outcome="gain"]{border-color:var(--nb-ink);background:#dff8e8}
+    .salary-status[data-outcome="even"]{border-color:var(--nb-ink);background:var(--nb-yellow)}
+    .salary-status[data-outcome="loss"]{border-color:var(--nb-ink);background:#ffe2e6}
+    .salary-status-icon{border:3px solid currentColor;border-radius:0;background:var(--nb-white)}
+    .salary-status span:last-child{color:var(--muted)}
+    .salary-interpretation{
+      border:3px solid var(--nb-ink);
+      border-left:10px solid var(--nb-orange);
+      border-radius:0;
+      color:var(--nb-ink);
+      background:#ffe9d7;
+    }
+    .source-box,.analysis-output,.list-item,.cost-reference-card,.cost-results,.cost-insight,.cost-chart-card,.cost-saved-panel{
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      color:var(--nb-ink);
+      background:var(--nb-white);
+    }
+    .analysis-output{background:#fff4bd}
+    .analysis-output .big,.rate-display .rate{color:var(--nb-ink)}
+    dt{color:var(--faint);font-weight:750}
+    dd{color:var(--nb-ink)}
+    .list-item-main span{color:var(--muted)}
+    .empty-list{border:3px dashed var(--nb-ink);border-radius:0;color:var(--muted);background:#fff9df}
+    .rate-display{
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      background:var(--nb-yellow);
+      box-shadow:5px 5px 0 var(--nb-ink);
+    }
+    .rate-display .rate-unit{color:var(--muted)}
+
+    .source-state{
+      border:2px solid var(--nb-ink);
+      border-radius:0;
+      color:var(--nb-ink);
+      background:var(--nb-white);
+      font-weight:900;
+    }
+    .source-state[data-mode="online"]{color:#004c2a;border-color:var(--nb-ink);background:#dff8e8}
+    .source-state[data-mode="cache"]{color:#5c2d00;border-color:var(--nb-ink);background:#fff0b8}
+    .source-state[data-mode="stale"],.source-state[data-mode="expired"]{color:#6b2b00;border-color:var(--nb-ink);background:#ffe0c7}
+    .source-state[data-mode="error"],.source-state[data-mode="unavailable"]{color:var(--danger);border-color:var(--nb-ink);background:#ffe2e6}
+    .source-state[data-mode="fallback"],.source-state[data-mode="shared"]{color:var(--nb-ink);border-color:var(--nb-ink);background:var(--nb-yellow)}
+    .source-state[data-mode="manual"],.source-state[data-mode="local"]{color:var(--nb-ink);border-color:var(--nb-ink);background:#ffe0c7}
+    .source-state[data-mode="fallback"]::before,.source-state[data-mode="shared"]::before{background:var(--nb-ink)}
+    .source-state[data-mode="manual"]::before,.source-state[data-mode="local"]::before{background:var(--nb-orange)}
+
+    dialog{
+      border:4px solid var(--nb-ink);
+      border-radius:0;
+      color:var(--nb-ink);
+      background:var(--nb-white);
+      box-shadow:10px 10px 0 var(--nb-ink);
+    }
+    dialog::backdrop{background:rgba(8,8,8,.72);backdrop-filter:none}
+    .dialog-head{
+      border-bottom:4px solid var(--nb-ink);
+      color:var(--nb-ink);
+      background:var(--nb-yellow);
+    }
+    .icon-button{
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      color:var(--nb-ink);
+      background:var(--nb-white);
+      box-shadow:3px 3px 0 var(--nb-ink);
+    }
+    .table-wrap{border:3px solid var(--nb-ink);border-radius:0;background:var(--nb-white)}
+    th,td{border-bottom:2px solid var(--nb-ink);color:var(--nb-ink)}
+    th{color:var(--nb-ink);background:var(--nb-yellow);font-weight:950;text-transform:uppercase}
+    tbody tr:nth-child(even) td{background:#fff9df}
+    .basket-summary{
+      border:3px solid var(--nb-ink);
+      border-radius:0;
+      background:#fff4bd;
+    }
+    .mode-tabs{border:3px solid var(--nb-ink);border-radius:0;background:var(--nb-white);padding:0;gap:0}
+    .mode-tab{border:0;border-right:3px solid var(--nb-ink);border-radius:0;color:var(--nb-ink);background:var(--nb-white)}
+    .mode-tab:last-child{border-right:0}
+    .mode-tab[aria-selected="true"]{border-color:var(--nb-ink);color:var(--nb-ink);background:var(--nb-orange)}
+    .cost-editor-table th{background:var(--nb-yellow)}
+    .cost-editor-table tr[data-invalid="true"]{background:#ffe2e6}
+    .cost-insight,.cost-chart-card,.cost-saved-panel{background:#fff9df}
+    .contribution-positive{color:#006b3c;font-weight:850}
+    .contribution-negative{color:var(--danger);font-weight:850}
+    .toast{
+      border:4px solid var(--nb-ink);
+      border-radius:0;
+      color:var(--nb-white);
+      background:var(--nb-ink);
+      box-shadow:7px 7px 0 var(--nb-orange);
+      font-weight:800;
+    }
+    .debug-panel{border:4px solid var(--nb-ink);border-radius:0;color:var(--nb-ink);background:var(--nb-yellow);box-shadow:6px 6px 0 var(--nb-ink)}
+
+    @media (max-width:800px){
+      .home-actions{flex-direction:column}
+      .home-button{width:100%;min-width:0}
+    }
+    @media (max-width:620px){
+      .view:not(.home-view){padding-block:34px 60px}
+      .view:not(.home-view)>.view-head{padding:20px 17px;border-width:3px;box-shadow:7px 7px 0 var(--nb-ink)}
+      .view:not(.home-view)>.view-head h1{font-size:clamp(2rem,11vw,3.15rem)}
+      .card{padding:18px;border-width:3px;box-shadow:6px 6px 0 var(--nb-ink)}
+      .quotes-table tr{border:3px solid var(--nb-ink);border-radius:0;background:var(--nb-white)}
+      .quotes-table td:first-child{border-bottom:2px solid var(--nb-ink)}
+      dialog,#basketDialog{border-radius:0}
+      .mode-tab{flex-basis:100%;border-right:0;border-bottom:3px solid var(--nb-ink)}
+      .mode-tab:last-child{border-bottom:0}
+    }
+    @media (max-width:360px){
+      main{width:calc(100% - 18px)}
+      .card{padding:14px}
+      .view:not(.home-view)>.view-head{padding:17px 14px}
+    }
     @media (prefers-reduced-motion:reduce){
       html{scroll-behavior:auto}
       *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
@@ -1676,7 +1989,7 @@
     <section class="view" id="view-calculadora" data-view="calculadora" aria-labelledby="calculatorTitle" hidden>
       <div class="view-head">
         <p class="eyebrow">Cálculo principal</p>
-        <h2 id="calculatorTitle">Calculadora de inflación</h2>
+        <h1 id="calculatorTitle">Calculadora de inflación</h1>
         <p class="lede">Introduce el precio inicial, el precio final y el tiempo transcurrido. Los valores se conservan con precisión completa y solo se redondean al mostrarlos.</p>
       </div>
 
@@ -1684,7 +1997,7 @@
         <form class="card form-card" id="calculatorForm" novalidate>
           <div class="card-head">
             <div>
-              <h3>Escenario A</h3>
+              <h2>Escenario A</h2>
               <p>Los datos esenciales para comparar el cambio de precio.</p>
             </div>
             <span class="section-number" aria-hidden="true">01</span>
@@ -1816,7 +2129,7 @@
           <div id="resultsEmpty" class="empty-state">
             <div>
               <div class="empty-state-mark" aria-hidden="true">%</div>
-              <h3>Tu resultado aparecerá aquí</h3>
+              <h2>Tu resultado aparecerá aquí</h2>
               <p>Completa los tres datos esenciales y pulsa “Calcular inflación”.</p>
             </div>
           </div>
@@ -1825,7 +2138,7 @@
             <div class="card-head">
               <div>
                 <p class="eyebrow">Resultado</p>
-                <h3 id="resultsTitle">Evolución del precio</h3>
+                <h2 id="resultsTitle">Evolución del precio</h2>
               </div>
               <span class="source-state" id="resultDirection" data-mode="online">Inflación</span>
             </div>
@@ -1881,32 +2194,32 @@
     <section class="view" id="view-herramientas" data-view="herramientas" aria-labelledby="toolsTitle" hidden>
       <div class="view-head">
         <p class="eyebrow">Herramientas funcionales</p>
-        <h2 id="toolsTitle">Analiza más que un porcentaje</h2>
+        <h1 id="toolsTitle">Analiza más que un porcentaje</h1>
         <p class="lede">Todas las herramientas mostradas funcionan dentro de la aplicación y conservan sus datos únicamente en este dispositivo.</p>
       </div>
 
       <div class="tool-grid">
         <article class="card tool-card">
           <div class="tool-icon" aria-hidden="true">A/B</div>
-          <h3>Comparador de escenarios</h3>
+          <h2>Comparador de escenarios</h2>
           <p>Contrasta dos variaciones de precio usando el mismo período y observa la diferencia entre sus tasas.</p>
           <button class="button secondary small" id="openComparisonTool" type="button">Abrir comparador</button>
         </article>
         <article class="card tool-card">
           <div class="tool-icon" aria-hidden="true">🛒</div>
-          <h3>Costo de vida</h3>
+          <h2>Costo de vida</h2>
           <p>Mide tu inflación con precios reales o conserva la cesta ponderada por categorías.</p>
           <button class="button secondary small" id="openBasketTool" type="button">Abrir costo de vida</button>
         </article>
         <article class="card tool-card">
           <div class="tool-icon" aria-hidden="true">FX</div>
-          <h3>Cotizaciones</h3>
+          <h2>Cotizaciones</h2>
           <p>Consulta el valor en BRL de cada moneda extranjera disponible, con fuente, fecha y estado individual.</p>
           <button class="button secondary small" type="button" data-route="tipo-cambio">Ver cotizaciones</button>
         </article>
         <article class="card tool-card">
           <div class="tool-icon" aria-hidden="true">R$</div>
-          <h3>Reajuste salarial</h3>
+          <h2>Reajuste salarial</h2>
           <p>Comprueba si un aumento supera la inflación y cuánto poder adquisitivo ganas o pierdes.</p>
           <button class="button secondary small" id="openSalaryTool" type="button" data-route="salario">Analizar salario</button>
         </article>
@@ -1916,7 +2229,7 @@
         <div class="card-head">
           <div>
             <p class="eyebrow">Modo análisis</p>
-            <h3 id="analysisTitle">Compara tu resultado con una referencia</h3>
+            <h2 id="analysisTitle">Compara tu resultado con una referencia</h2>
             <p>Usa una tasa manual o carga el IPCA acumulado en 12 meses desde el Banco Central de Brasil.</p>
           </div>
           <span class="section-number" aria-hidden="true">02</span>
@@ -1962,7 +2275,7 @@
     <section class="view" id="view-salario" data-view="salario" aria-labelledby="salaryTitle" hidden>
       <div class="view-head">
         <p class="eyebrow">Reajuste salarial y salario real</p>
-        <h2 id="salaryTitle">¿Tu aumento venció a la inflación?</h2>
+        <h1 id="salaryTitle">¿Tu aumento venció a la inflación?</h1>
         <p class="lede">Compara hasta tres salarios con una inflación acumulada. La herramienta separa el aumento nominal del crecimiento real del poder adquisitivo mediante una relación compuesta.</p>
       </div>
 
@@ -1970,7 +2283,7 @@
         <form class="card salary-form-card" id="salaryForm" novalidate>
           <div class="card-head">
             <div>
-              <h3>Datos del análisis</h3>
+              <h2>Datos del análisis</h2>
               <p>Los salarios se consideran mensuales y deben usar la misma moneda.</p>
             </div>
             <span class="section-number" aria-hidden="true">01</span>
@@ -2069,11 +2382,11 @@
         </form>
 
         <section class="card salary-results-card" id="salaryResultsCard" aria-labelledby="salaryResultsTitle">
-          <h3 id="salaryResultsTitle">Resultado del reajuste salarial</h3>
+          <h2 id="salaryResultsTitle">Resultado del reajuste salarial</h2>
           <div class="empty-state" id="salaryResultsEmpty">
             <div>
               <div class="empty-state-mark" aria-hidden="true">R$</div>
-              <h3 id="salaryResultsEmptyTitle">Tu análisis aparecerá aquí</h3>
+              <h2 id="salaryResultsEmptyTitle">Tu análisis aparecerá aquí</h2>
               <p>Introduce el salario anterior, el actual y la inflación acumulada.</p>
             </div>
           </div>
@@ -2165,13 +2478,13 @@
     <section class="view" id="view-historial" data-view="historial" aria-labelledby="historyTitle" hidden>
       <div class="view-head">
         <p class="eyebrow">Datos guardados en este dispositivo</p>
-        <h2 id="historyTitle">Historial y escenarios</h2>
+        <h1 id="historyTitle">Historial y escenarios</h1>
         <p class="lede">Los datos permanecen únicamente en el almacenamiento local del navegador. Si el almacenamiento está corrupto, la aplicación lo limpia y continúa funcionando.</p>
       </div>
 
       <section class="card history-section" aria-labelledby="calculationsHistoryTitle">
         <div class="history-head">
-          <h3 id="calculationsHistoryTitle">Cálculos recientes</h3>
+          <h2 id="calculationsHistoryTitle">Cálculos recientes</h2>
           <button class="button danger small" id="clearHistoryButton" type="button">Vaciar historial</button>
         </div>
         <div class="list-stack" id="historyList"></div>
@@ -2179,7 +2492,7 @@
 
       <section class="card history-section" aria-labelledby="savedScenariosTitle">
         <div class="history-head">
-          <h3 id="savedScenariosTitle">Escenarios guardados</h3>
+          <h2 id="savedScenariosTitle">Escenarios guardados</h2>
           <button class="button danger small" id="clearScenariosButton" type="button">Vaciar escenarios</button>
         </div>
         <div class="list-stack" id="scenarioList"></div>
@@ -2187,7 +2500,7 @@
 
       <section class="card history-section" aria-labelledby="salaryHistoryTitle">
         <div class="history-head">
-          <h3 id="salaryHistoryTitle">Análisis salariales</h3>
+          <h2 id="salaryHistoryTitle">Análisis salariales</h2>
           <button class="button danger small" id="clearSalaryHistoryButton" type="button">Vaciar análisis</button>
         </div>
         <div class="list-stack" id="salaryHistoryList"></div>
@@ -2197,7 +2510,7 @@
     <section class="view" id="view-tipo-cambio" data-view="tipo-cambio" aria-labelledby="fxTitle" hidden>
       <div class="view-head">
         <p class="eyebrow">BRL como moneda de referencia</p>
-        <h2 id="fxTitle">Cotizaciones multimoneda verificables</h2>
+        <h1 id="fxTitle">Cotizaciones multimoneda verificables</h1>
         <p class="lede">Cada tasa expresa cuánto vale una unidad de la moneda en reales brasileños. La aplicación identifica fuente, fecha oficial, consulta y estado; nunca inventa valores cuando una moneda no está disponible.</p>
       </div>
 
@@ -2222,7 +2535,7 @@
         </section>
 
         <section class="card">
-          <h3>Valor equivalente en BRL</h3>
+          <h2>Valor equivalente en BRL</h2>
           <div class="table-wrap quotes-table" tabindex="0" role="region" aria-label="Cotizaciones por moneda con fuente, fecha y estado">
             <table>
               <caption style="padding:12px;text-align:left;color:var(--muted)">Una unidad de cada moneda expresada en BRL</caption>
@@ -3553,28 +3866,28 @@
       const grid = [0,.25,.5,.75,1].map(function(frac){
         const yy = pad.top + frac*(height-pad.top-pad.bottom);
         const value = max - frac*(max-min);
-        return '<line x1="' + pad.left + '" y1="' + yy + '" x2="' + (width-pad.right) + '" y2="' + yy + '" stroke="#1e3854"/>' +
-          '<text x="' + (pad.left-8) + '" y="' + (yy+4) + '" text-anchor="end" fill="#8296b0" font-size="10">' +
+        return '<line x1="' + pad.left + '" y1="' + yy + '" x2="' + (width-pad.right) + '" y2="' + yy + '" stroke="#b9a95f"/>' +
+          '<text x="' + (pad.left-8) + '" y="' + (yy+4) + '" text-anchor="end" fill="#3d3d3d" font-size="10">' +
           escapeXml(indexMode ? formatNumber(value,1,2) : formatCompactCurrency(value,normalizedA.currency)) + '</text>';
       }).join('');
       const labelA = 'Escenario A — ' + normalizedA.label;
       const labelB = resultB && normalizedB ? 'Escenario B — ' + normalizedB.label : '';
-      const bMarkup = resultB ? '<path d="' + pathFor(pointsB) + '" fill="none" stroke="#9b6cff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>' +
-        '<circle cx="' + x(pointsB.length-1,pointsB.length) + '" cy="' + y(pointsB.at(-1)) + '" r="6" fill="#9b6cff"><title>' + escapeXml(labelB + ': ' + (indexMode ? 'índice ' + formatNumber(pointsB.at(-1),2,2) : formatCurrency(pointsB.at(-1),normalizedB.currency))) + '</title></circle>' : '';
-      const legendB = resultB ? '<circle cx="70" cy="38" r="5" fill="#9b6cff"/><text x="82" y="42" fill="#b0bfd3" font-size="12">' + escapeXml(labelB) + '</text>' : '';
+      const bMarkup = resultB ? '<path d="' + pathFor(pointsB) + '" fill="none" stroke="#080808" stroke-width="4" stroke-dasharray="10 7" stroke-linecap="square" stroke-linejoin="miter"/>' +
+        '<circle cx="' + x(pointsB.length-1,pointsB.length) + '" cy="' + y(pointsB.at(-1)) + '" r="6" fill="#080808"><title>' + escapeXml(labelB + ': ' + (indexMode ? 'índice ' + formatNumber(pointsB.at(-1),2,2) : formatCurrency(pointsB.at(-1),normalizedB.currency))) + '</title></circle>' : '';
+      const legendB = resultB ? '<circle cx="70" cy="38" r="5" fill="#080808"/><text x="82" y="42" fill="#3d3d3d" font-size="12">' + escapeXml(labelB) + '</text>' : '';
       wrap.innerHTML =
         '<svg viewBox="0 0 ' + width + ' ' + height + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="chartTitle chartDesc">' +
           '<title id="chartTitle">Evolución estimada del precio</title>' +
           '<desc id="chartDesc">' + escapeXml(indexMode ? 'Comparación mediante índice base 100 porque los escenarios usan monedas diferentes.' : 'Trayectoria compuesta con valores en ' + normalizedA.currency + '.') + '</desc>' +
           grid +
-          '<path d="' + pathFor(pointsA) + '" fill="none" stroke="#32d1c5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>' +
-          '<circle cx="' + x(pointsA.length-1,pointsA.length) + '" cy="' + y(pointsA.at(-1)) + '" r="6" fill="#32d1c5"><title>' + escapeXml(labelA + ': ' + (indexMode ? 'índice ' + formatNumber(pointsA.at(-1),2,2) : formatCurrency(pointsA.at(-1),normalizedA.currency))) + '</title></circle>' +
+          '<path d="' + pathFor(pointsA) + '" fill="none" stroke="#ff6900" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter"/>' +
+          '<circle cx="' + x(pointsA.length-1,pointsA.length) + '" cy="' + y(pointsA.at(-1)) + '" r="6" fill="#ff6900" stroke="#080808" stroke-width="2"><title>' + escapeXml(labelA + ': ' + (indexMode ? 'índice ' + formatNumber(pointsA.at(-1),2,2) : formatCurrency(pointsA.at(-1),normalizedA.currency))) + '</title></circle>' +
           bMarkup +
-          '<circle cx="70" cy="16" r="5" fill="#32d1c5"/><text x="82" y="20" fill="#b0bfd3" font-size="12">' + escapeXml(labelA) + '</text>' +
+          '<circle cx="70" cy="16" r="5" fill="#ff6900" stroke="#080808" stroke-width="1.5"/><text x="82" y="20" fill="#3d3d3d" font-size="12">' + escapeXml(labelA) + '</text>' +
           legendB +
-          (indexMode ? '<text x="' + (width-pad.right) + '" y="20" text-anchor="end" fill="#f5b941" font-size="11">Índice base 100</text>' : '') +
-          '<text x="' + pad.left + '" y="' + (height-12) + '" fill="#8296b0" font-size="11">Inicio</text>' +
-          '<text x="' + (width-pad.right) + '" y="' + (height-12) + '" text-anchor="end" fill="#8296b0" font-size="11">Final</text>' +
+          (indexMode ? '<text x="' + (width-pad.right) + '" y="20" text-anchor="end" fill="#7a2f00" font-size="11" font-weight="800">Índice base 100</text>' : '') +
+          '<text x="' + pad.left + '" y="' + (height-12) + '" fill="#3d3d3d" font-size="11">Inicio</text>' +
+          '<text x="' + (width-pad.right) + '" y="' + (height-12) + '" text-anchor="end" fill="#3d3d3d" font-size="11">Final</text>' +
         '</svg>';
     }
 
@@ -4446,13 +4759,13 @@
       });
       const series = [{
         label:'Necesario por inflación — ' + bundle.inputs.currency,
-        color:'#ff7182',
+        color:'#080808',
         points:adjusted
       }].concat(bundle.results.map(function(result,index){
         const ratio = result.offered / previous;
         return {
           label:result.label + ' — ' + bundle.inputs.currency,
-          color:['#32d1c5','#9b6cff','#f5b941'][index],
+          color:['#ff6900','#c14800','#7a3e00'][index],
           points:Array.from({length:steps + 1},function(_,pointIndex){
             return previous * Math.pow(ratio,pointIndex/steps);
           })
@@ -4480,8 +4793,8 @@
       const grid = [0,.25,.5,.75,1].map(function(frac){
         const yy = pad.top + frac*(height-pad.top-pad.bottom);
         const value = max - frac*(max-min);
-        return '<line x1="' + pad.left + '" y1="' + yy + '" x2="' + (width-pad.right) + '" y2="' + yy + '" stroke="#1e3854"/>' +
-          '<text x="' + (pad.left-8) + '" y="' + (yy+4) + '" text-anchor="end" fill="#8296b0" font-size="10">' + escapeXml(formatCompactCurrency(value,bundle.inputs.currency)) + '</text>';
+        return '<line x1="' + pad.left + '" y1="' + yy + '" x2="' + (width-pad.right) + '" y2="' + yy + '" stroke="#b9a95f"/>' +
+          '<text x="' + (pad.left-8) + '" y="' + (yy+4) + '" text-anchor="end" fill="#3d3d3d" font-size="10">' + escapeXml(formatCompactCurrency(value,bundle.inputs.currency)) + '</text>';
       }).join('');
       const paths = series.map(function(item){
         return '<path d="' + pathFor(item.points) + '" fill="none" stroke="' + item.color + '" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>';
@@ -4492,7 +4805,7 @@
         const xx = 70 + col*310;
         const yy = 17 + row*22;
         return '<circle cx="' + xx + '" cy="' + yy + '" r="5" fill="' + item.color + '"/>' +
-          '<text x="' + (xx+12) + '" y="' + (yy+4) + '" fill="#b0bfd3" font-size="12">' + item.label + '</text>';
+          '<text x="' + (xx+12) + '" y="' + (yy+4) + '" fill="#3d3d3d" font-size="12">' + item.label + '</text>';
       }).join('');
       const periodLabel = formatNumber(bundle.inputs.periodValue,0,4) + ' ' + unitLabel(bundle.inputs.periodUnit,bundle.inputs.periodValue);
       wrap.innerHTML =
@@ -4500,8 +4813,8 @@
           '<title id="salaryChartTitle">Evolución del salario y del poder adquisitivo</title>' +
           '<desc id="salaryChartDesc">Compara cada salario en ' + bundle.inputs.currency + ' con el salario necesario por inflación durante ' + periodLabel + '.</desc>' +
           grid + paths + legends +
-          '<text x="' + pad.left + '" y="' + (height-12) + '" fill="#8296b0" font-size="11">Inicio</text>' +
-          '<text x="' + (width-pad.right) + '" y="' + (height-12) + '" text-anchor="end" fill="#8296b0" font-size="11">Final · ' + periodLabel + '</text>' +
+          '<text x="' + pad.left + '" y="' + (height-12) + '" fill="#3d3d3d" font-size="11">Inicio</text>' +
+          '<text x="' + (width-pad.right) + '" y="' + (height-12) + '" text-anchor="end" fill="#3d3d3d" font-size="11">Final · ' + periodLabel + '</text>' +
         '</svg>';
     }
 
@@ -4694,7 +5007,7 @@
         canvas.width = 1520;
         canvas.height = 640;
         const context = canvas.getContext('2d');
-        context.fillStyle = '#081729';
+        context.fillStyle = '#ffffff';
         context.fillRect(0,0,canvas.width,canvas.height);
         context.drawImage(image,0,0,canvas.width,canvas.height);
         URL.revokeObjectURL(url);
@@ -5440,22 +5753,22 @@
 
     function renderPersonalCostChart(bundle){
       const values = [
-        {label:'Anterior',code:'ANT',value:bundle.metrics.previousTotal,color:'#3887ff'},
-        {label:'Actual',code:'ACT',value:bundle.metrics.currentTotal,color:'#32d1c5'},
-        {label:'Referencia',code:'REF',value:bundle.comparison.expectedCost,color:'#f5b941'}
+        {label:'Anterior',code:'ANT',value:bundle.metrics.previousTotal,color:'#080808'},
+        {label:'Actual',code:'ACT',value:bundle.metrics.currentTotal,color:'#ff6900'},
+        {label:'Referencia',code:'REF',value:bundle.comparison.expectedCost,color:'#ffd400'}
       ];
       const max = Math.max.apply(null,values.map(function(item){ return item.value; }).concat([1]));
       const baseY = 236;
       const bars = values.map(function(item,index){
         const height = Math.max(2,item.value/max*150);
         const x = 60+index*155;
-        return '<g><rect x="' + x + '" y="' + (baseY-height) + '" width="94" height="' + height + '" rx="8" fill="' + item.color + '" opacity=".82"/>' +
-          '<text x="' + (x+47) + '" y="' + (baseY-height-10) + '" text-anchor="middle" fill="#f4f8ff" font-size="12" font-weight="800">' + escapeXml(formatCurrency(item.value,bundle.meta.currency)) + '</text>' +
-          '<text x="' + (x+47) + '" y="258" text-anchor="middle" fill="#b0bfd3" font-size="12">' + item.code + ' · ' + item.label + '</text></g>';
+        return '<g><rect x="' + x + '" y="' + (baseY-height) + '" width="94" height="' + height + '" fill="' + item.color + '" stroke="#080808" stroke-width="3"/>' +
+          '<text x="' + (x+47) + '" y="' + (baseY-height-10) + '" text-anchor="middle" fill="#080808" font-size="12" font-weight="900">' + escapeXml(formatCurrency(item.value,bundle.meta.currency)) + '</text>' +
+          '<text x="' + (x+47) + '" y="258" text-anchor="middle" fill="#3d3d3d" font-size="12">' + item.code + ' · ' + item.label + '</text></g>';
       }).join('');
       $('personalCostChart').innerHTML = '<svg viewBox="0 0 520 285" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="personalCostTitle personalCostDesc">' +
         '<title id="personalCostTitle">Comparación de costo total</title><desc id="personalCostDesc">Costo anterior, actual y esperado según la referencia, con valores exactos.</desc>' +
-        '<line x1="36" y1="236" x2="500" y2="236" stroke="#29425f"/>' + bars + '</svg>';
+        '<line x1="36" y1="236" x2="500" y2="236" stroke="#080808" stroke-width="2"/>' + bars + '</svg>';
     }
 
     function horizontalBarChart(items,options){
@@ -5469,15 +5782,15 @@
         const y = 36+index*rowHeight;
         const barWidth = Math.max(item.value === 0 ? 1 : 3,Math.abs(item.value)/maxAbs*maxWidth);
         const x = item.value >= 0 ? baseX : baseX-barWidth;
-        const color = item.value < 0 ? '#ff7182' : item.value > 0 ? '#4ade80' : '#8296b0';
+        const color = item.value < 0 ? '#080808' : item.value > 0 ? '#ff6900' : '#ffd400';
         const marker = item.value < 0 ? '▼' : item.value > 0 ? '▲' : '•';
-        return '<g><text x="12" y="' + (y+5) + '" fill="#dfe9f6" font-size="12">' + escapeXml(item.label.slice(0,30)) + '</text>' +
-          '<rect x="' + x + '" y="' + (y-12) + '" width="' + barWidth + '" height="22" rx="5" fill="' + color + '" opacity=".78"/>' +
-          '<text x="' + (item.value >= 0 ? baseX+barWidth+8 : baseX-barWidth-8) + '" y="' + (y+5) + '" text-anchor="' + (item.value >= 0 ? 'start' : 'end') + '" fill="#f4f8ff" font-size="11" font-weight="800">' + marker + ' ' + escapeXml(item.exact) + '</text></g>';
+        return '<g><text x="12" y="' + (y+5) + '" fill="#080808" font-size="12">' + escapeXml(item.label.slice(0,30)) + '</text>' +
+          '<rect x="' + x + '" y="' + (y-12) + '" width="' + barWidth + '" height="22" fill="' + color + '" stroke="#080808" stroke-width="2"/>' +
+          '<text x="' + (item.value >= 0 ? baseX+barWidth+8 : baseX-barWidth-8) + '" y="' + (y+5) + '" text-anchor="' + (item.value >= 0 ? 'start' : 'end') + '" fill="#080808" font-size="11" font-weight="900">' + marker + ' ' + escapeXml(item.exact) + '</text></g>';
       }).join('');
       return '<svg viewBox="0 0 ' + width + ' ' + height + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="' + options.titleId + ' ' + options.descId + '">' +
         '<title id="' + options.titleId + '">' + escapeXml(options.title) + '</title><desc id="' + options.descId + '">' + escapeXml(options.desc) + '</desc>' +
-        '<line x1="' + baseX + '" y1="16" x2="' + baseX + '" y2="' + (height-16) + '" stroke="#8296b0" stroke-dasharray="4 4"/>' + rows + '</svg>';
+        '<line x1="' + baseX + '" y1="16" x2="' + baseX + '" y2="' + (height-16) + '" stroke="#080808" stroke-width="2" stroke-dasharray="4 4"/>' + rows + '</svg>';
     }
 
     function renderPersonalCategoryChart(bundle){
@@ -5513,7 +5826,7 @@
         canvas.width = 1240;
         canvas.height = Math.max(560,Math.round(1240*(svg.viewBox.baseVal.height/svg.viewBox.baseVal.width)));
         const context = canvas.getContext('2d');
-        context.fillStyle = '#081729';
+        context.fillStyle = '#ffffff';
         context.fillRect(0,0,canvas.width,canvas.height);
         context.drawImage(image,0,0,canvas.width,canvas.height);
         canvas.toBlob(function(png){
