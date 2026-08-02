@@ -5508,6 +5508,14 @@
       }};
       const eurToMxn = normalizeScenario(10,20,'EUR','MXN');
       const gbpToUsd = normalizeScenario(10,20,'GBP','USD');
+      const staleRecord = quoteRecord('USD',5,'Prueba antigua','Hace dos días',new Date(Date.now()-2*24*60*60*1000).toISOString());
+      const expiredRecord = quoteRecord('USD',5,'Prueba vencida','Hace ocho días',new Date(Date.now()-8*24*60*60*1000).toISOString());
+      state.quotes = {schemaVersion:1,base:'BRL',errors:{},updatedAt:null,records:{USD:staleRecord}};
+      const staleConversion = normalizeScenario(100,100,'BRL','USD');
+      state.quotes = {schemaVersion:1,base:'BRL',errors:{},updatedAt:null,records:{USD:expiredRecord}};
+      let expiredQuoteRejected = false;
+      try{ normalizeScenario(100,100,'BRL','USD'); }
+      catch(error){ expiredQuoteRejected = error && error.message === 'QUOTE_REQUIRED'; }
       state.quotes = previousQuotes;
       const corruptKey = 'inflation.v060.debug.corrupt';
       let corruptStorageRecovered = false;
@@ -5527,6 +5535,9 @@
       check('BRL↔USD exige cotización USD',mixedRequiresQuotes);
       check('EUR→MXN usa BRL como referencia',Math.abs(eurToMxn.initial-60) < 1e-12 && Math.abs(eurToMxn.final-6) < 1e-12 && eurToMxn.mixed);
       check('GBP→USD usa ambas cotizaciones',Math.abs(gbpToUsd.initial-70) < 1e-12 && Math.abs(gbpToUsd.final-100) < 1e-12);
+      check('Caché de 2 días se identifica como antigua',quoteMode(staleRecord) === 'stale');
+      check('Cotización antigua funciona solo como respaldo identificado',staleConversion.mixed && staleConversion.quotesUsed.USD.mode === 'stale');
+      check('Cotización de 8 días está vencida y no se usa',quoteMode(expiredRecord) === 'expired' && expiredQuoteRejected);
       check('Formato multimoneda conserva ISO',CURRENCY_CODES.every(function(code){ return formatCurrency(1250,code).includes(code); }));
       check('Salario 3.000→3.240 = 8 % nominal',Math.abs(salaryExample.nominal-.08) < 1e-12);
       check('Reajuste real compuesto ≈ 1,8868 %',Math.abs(salaryExample.real-(1.08/1.06-1)) < 1e-12);
@@ -5544,6 +5555,9 @@
       check('Precio anterior 0 se trata como gasto nuevo',personalNewExpense.products[1].variation === null && Math.abs(personalNewExpense.products[1].contribution-.10) < 1e-12);
       check('Formato 1.234,56',Math.abs(parseLocalized('1.234,56')-1234.56) < 1e-12);
       check('Formato 1,234.56',Math.abs(parseLocalized('1,234.56')-1234.56) < 1e-12);
+      check('URL acepta números localizados',Math.abs(parseUrlNumber('1.234,56')-1234.56) < 1e-12);
+      check('URL rechaza texto mezclado con números',Number.isNaN(parseUrlNumber('<scr'+'ipt>alert(1)</scr'+'ipt>')));
+      check('Claves de datos anteriores conservadas',Object.values(KEYS).every(function(key){ return key.startsWith('inflation.v060.'); }));
       check('Gráficos adaptan puntos al período',calculateInflation(100,110,6).points.length !== calculateInflation(100,110,120).points.length);
       check('Cesta ponderada schema v2 compatible',normalizeBasket({type:'weighted-basket',items:[{name:'A',weight:100,inflation:5}]}).length === 1);
       check('LocalStorage corrupto se recupera',corruptStorageRecovered);
