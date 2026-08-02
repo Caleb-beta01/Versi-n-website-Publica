@@ -2231,6 +2231,12 @@
       return Number(text);
     }
 
+    function parseUrlNumber(value){
+      const text = String(value == null ? '' : value).trim().replace(/\s+/g,'');
+      if(!/^[+-]?(?:\d+(?:[.,]\d+)*|[.,]\d+)$/.test(text)) return NaN;
+      return parseLocalized(text);
+    }
+
     function formatNumber(value, minDigits, maxDigits){
       if(!isFiniteNumber(value)) return '—';
       return new Intl.NumberFormat('pt-BR',{
@@ -3491,7 +3497,7 @@
       numberFields.forEach(function(pair){
         if(!params.has(pair[0])) return;
         const raw = params.get(pair[0]);
-        const value = parseLocalized(raw);
+        const value = parseUrlNumber(raw);
         const max = pair[0] === 't' ? 1e7 : pair[0] === 'ref' ? 1000 : MAX_PRICE;
         if(isFiniteNumber(value) && value > (pair[0] === 'ref' ? -100 : 0) && value <= max) $(pair[1]).value = String(value);
         else rejected.push(pair[0]);
@@ -3548,17 +3554,17 @@
           ['spa','proposalA',false],['spb','proposalB',false]
         ].forEach(function(item){
           if(!params.has(item[0])) return;
-          const value = parseLocalized(params.get(item[0]));
+          const value = parseUrlNumber(params.get(item[0]));
           if(isFiniteNumber(value) && value > 0 && value <= MAX_PRICE) salaryData[item[1]] = value;
           else rejected.push(item[0]);
         });
         if(params.has('si')){
-          const value = parseLocalized(params.get('si'));
+          const value = parseUrlNumber(params.get('si'));
           if(isFiniteNumber(value) && value > -100 && value <= 1000) salaryData.inflationPct = value;
           else rejected.push('si');
         }
         if(params.has('st')){
-          const value = parseLocalized(params.get('st'));
+          const value = parseUrlNumber(params.get('st'));
           if(isFiniteNumber(value) && value > 0 && value <= 1200) salaryData.periodValue = value;
           else rejected.push('st');
         }
