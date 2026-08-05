@@ -3286,6 +3286,7 @@
     // La raíz es estable entre parches; index.html conserva el hash de Auth y abre la versión vigente.
     const AUTH_REDIRECT_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/';
     const AUTH_EMAIL_COOLDOWN_MS = 60 * 1000;
+    const AUTH_EMAIL_RATE_LIMIT_COOLDOWN_MS = 60 * 60 * 1000;
     const SYNC_SCHEMA_VERSION = 2;
     const BACKEND_TIMEOUT_MS = 12000;
     const SYNC_BATCH_SIZE = 20;
@@ -3688,8 +3689,9 @@
       if(message.includes('email not confirmed') || message.includes('email_not_confirmed')) return 'La cuenta todavía no está confirmada. Abre el correo de confirmación o solicita uno nuevo.';
       if(message.includes('invalid login') || message.includes('invalid_credentials')) return 'Correo o contraseña incorrectos, o la cuenta todavía no está confirmada.';
       if(message.includes('already registered') || message.includes('user_already_exists')) return 'Ese correo ya tiene una cuenta. Inicia sesión.';
-      if(message.includes('email address') && message.includes('invalid') || message.includes('email_address_invalid')) return 'Supabase rechazó ese correo. Revisa que esté bien escrito y que pueda recibir mensajes.';
+      if((message.includes('email address') && message.includes('invalid')) || message.includes('email_address_invalid')) return 'Supabase rechazó ese correo. Revisa que esté bien escrito y que pueda recibir mensajes.';
       if(message.includes('weak password') || message.includes('weak_password')) return 'La contraseña no cumple los requisitos de seguridad. Usa al menos 8 caracteres.';
+      if(message.includes('over_email_send_rate_limit') || message.includes('email rate limit exceeded')) return 'Supabase alcanzó el límite horario de su correo de prueba. Espera hasta una hora antes de solicitar otro mensaje.';
       if(message.includes('rate limit') || message.includes('security purposes') || Number(error && error.status) === 429) return 'Se solicitaron demasiados correos seguidos. Espera 60 segundos antes de intentarlo otra vez.';
       if(message.includes('failed to fetch') || message.includes('network')) return 'No se pudo conectar. Puedes continuar usando la calculadora localmente.';
       if(Number(error && error.status) === 401 || Number(error && error.status) === 403) return 'La sesión expiró o no tiene permiso. Vuelve a iniciar sesión.';
@@ -3700,6 +3702,13 @@
       return Math.max(0,Math.ceil((state.backend.authEmailCooldownUntil - Date.now()) / 1000));
     }
 
+    function authCooldownForError(error){
+      const message = String(error && (error.message || error.code) || '').toLowerCase();
+      if(message.includes('over_email_send_rate_limit') || message.includes('email rate limit exceeded')) return AUTH_EMAIL_RATE_LIMIT_COOLDOWN_MS;
+      if(message.includes('rate limit') || message.includes('security purposes') || Number(error && error.status) === 429) return AUTH_EMAIL_COOLDOWN_MS;
+      return 0;
+    }
+
     function updateAuthActionState(){
       const busy = Boolean(state.backend.authBusy);
       const remaining = authEmailCooldownSeconds();
@@ -3708,7 +3717,7 @@
         $(id).disabled = busy || remaining > 0;
       });
       $('authCooldownNotice').hidden = remaining <= 0;
-      $('authCooldownNotice').textContent = remaining > 0 ? 'Podrás solicitar otro correo en ' + remaining + ' s.' : '';
+      $('authCooldownNotice').textContent = remaining > 0 ? 'Podrás solicitar otro correo en ' + (remaining >= 120 ? Math.ceil(remaining / 60) + ' min.' : remaining + ' s.') : '';
       if(remaining > 0 && !state.backend.authCooldownTimer){
         state.backend.authCooldownTimer = window.setTimeout(function(){
           state.backend.authCooldownTimer = null;
@@ -3731,8 +3740,8 @@
       updateAuthActionState();
     }
 
-    function startAuthEmailCooldown(){
-      state.backend.authEmailCooldownUntil = Date.now() + AUTH_EMAIL_COOLDOWN_MS;
+    function startAuthEmailCooldown(durationMs){
+      state.backend.authEmailCooldownUntil = Math.max(state.backend.authEmailCooldownUntil,Date.now() + (durationMs || AUTH_EMAIL_COOLDOWN_MS));
       updateAuthActionState();
     }
 
@@ -3931,7 +3940,8 @@
       }catch(error){
         const message = String(error && (error.message || error.code) || '').toLowerCase();
         if(!createAccount && (message.includes('invalid login') || message.includes('invalid_credentials') || message.includes('email not confirmed') || message.includes('email_not_confirmed'))) showConfirmationRecovery();
-        if(Number(error && error.status) === 429 || message.includes('rate limit') || message.includes('security purposes')) startAuthEmailCooldown();
+        const cooldownMs = authCooldownForError(error);
+        if(cooldownMs) startAuthEmailCooldown(cooldownMs);
         setNotice($('authNotice'),translateBackendError(error),'error');
       }
       finally{ setAuthBusy(primary,false); }
@@ -3953,8 +3963,8 @@
         startAuthEmailCooldown();
         setNotice($('authNotice'),'Si existe una cuenta con ese correo, recibirás las instrucciones de recuperación.','success');
       }catch(error){
-        const message = String(error && (error.message || error.code) || '').toLowerCase();
-        if(Number(error && error.status) === 429 || message.includes('rate limit') || message.includes('security purposes')) startAuthEmailCooldown();
+        const cooldownMs = authCooldownForError(error);
+        if(cooldownMs) startAuthEmailCooldown(cooldownMs);
         setNotice($('authNotice'),translateBackendError(error),'error');
       }
       finally{ setAuthBusy($('authResetButton'),false); }
@@ -3976,8 +3986,8 @@
         startAuthEmailCooldown();
         setNotice($('authNotice'),'Si existe una cuenta pendiente, recibirás un nuevo enlace de confirmación.','success');
       }catch(error){
-        const message = String(error && (error.message || error.code) || '').toLowerCase();
-        if(Number(error && error.status) === 429 || message.includes('rate limit') || message.includes('security purposes')) startAuthEmailCooldown();
+        const cooldownMs = authCooldownForError(error);
+        if(cooldownMs) startAuthEmailCooldown(cooldownMs);
         setNotice($('authNotice'),translateBackendError(error),'error');
       }
       finally{ setAuthBusy($('authResendButton'),false); }
