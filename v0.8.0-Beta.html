@@ -4105,8 +4105,11 @@
       if(!state.backend.user) return;
       setButtonBusy(button,true,'Borrando…');
       try{
+        await updateRemoteProfile({sync_enabled:false});
+        state.backend.syncEnabled=false;
         const result=await withTimeout(state.backend.client.from(table).delete().eq('user_id',state.backend.user.id));
         if(result.error) throw result.error;
+        setSyncStatus('local','○ Sincronización desactivada');
         setNotice($('accountNotice'),successMessage,'success');
         await refreshRemoteCounts();
       }catch(error){ setNotice($('accountNotice'),translateBackendError(error),'error'); }
@@ -7809,11 +7812,11 @@
       $('exportAllDataButton').addEventListener('click',exportAllData);
       $('clearRemoteHistoryButton').addEventListener('click',function(){
         const button=this;
-        armRemoteAction(button,'borrar historial',function(){ clearRemoteTable('calculations',button,'Historial remoto eliminado. Los registros locales permanecen.'); });
+        armRemoteAction(button,'borrar historial',function(){ clearRemoteTable('calculations',button,'Historial remoto eliminado. Los registros locales permanecen y la sincronización quedó desactivada para impedir que vuelvan a subirse.'); });
       });
       $('clearRemoteBasketsButton').addEventListener('click',function(){
         const button=this;
-        armRemoteAction(button,'borrar cestas',function(){ clearRemoteTable('baskets',button,'Cestas remotas eliminadas. Las copias locales permanecen.'); });
+        armRemoteAction(button,'borrar cestas',function(){ clearRemoteTable('baskets',button,'Cestas remotas eliminadas. Las copias locales permanecen y la sincronización quedó desactivada para impedir que vuelvan a subirse.'); });
       });
       $('closeAllSessionsButton').addEventListener('click',closeAllSessions);
       $('openDeleteAccountButton').addEventListener('click',function(){
