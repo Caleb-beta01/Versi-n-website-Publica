@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Inflation Insights</title>
+  <desc id="desc">Cuatro barras ascendentes y una flecha de tendencia.</desc>
+  <rect width="512" height="512" rx="96" fill="#ffd400"/>
+  <rect x="22" y="22" width="468" height="468" rx="74" fill="none" stroke="#080808" stroke-width="32"/>
+  <path d="M112 379V296M197 379V251M283 379V200M368 379V136" fill="none" stroke="#080808" stroke-width="38" stroke-linecap="square"/>
+  <path d="M99 235 203 141l80 48 115-104M336 85h62v62" fill="none" stroke="#080808" stroke-width="32" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>

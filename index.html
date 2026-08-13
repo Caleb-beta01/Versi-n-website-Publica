@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Calculadora de Inflación — v0.8.3-Beta-Patch</title>
-  <meta http-equiv="refresh" content="0; url=./v0.8.3-Beta-Patch.html">
-  <script>
-    const destino = new URL('./v0.8.3-Beta-Patch.html', window.location.href);
-    destino.search = window.location.search;
-    destino.hash = window.location.hash;
-    window.location.replace(destino.href);
-  </script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ff6900">
+  <title>Inflation Insights · v0.9.0-Beta</title>
+  <meta http-equiv="refresh" content="0; url=./v0.9.0-Beta.html">
+  <link rel="canonical" href="./v0.9.0-Beta.html">
 </head>
 <body>
-  <p>Abriendo la <a href="./v0.8.3-Beta-Patch.html">Calculadora de Inflación v0.8.3-Beta-Patch</a>…</p>
+  <p>Abriendo <a id="releaseLink" href="./v0.9.0-Beta.html">Inflation Insights v0.9.0-Beta</a>…</p>
+  <script>
+    (function(){
+      var target=new URL('./v0.9.0-Beta.html',window.location.href);
+      target.search=window.location.search;
+      target.hash=window.location.hash;
+      document.getElementById('releaseLink').href=target.href;
+      window.location.replace(target.href);
+    })();
+  </script>
 </body>
 </html>
