@@ -2177,6 +2177,9 @@
     .tracker-toolbar{display:grid;grid-template-columns:minmax(180px,1fr) auto auto;gap:10px;align-items:end}
     .tracker-toolbar .field{margin:0}
     .tracker-summary{display:grid;gap:16px}
+    .tracker-range-grid{display:grid;grid-template-columns:minmax(150px,.8fr) minmax(150px,.8fr) minmax(210px,1.15fr);gap:12px;align-items:stretch}
+    .tracker-range-grid .field{margin:0}
+    .tracker-range-grid .metric-tile{min-height:100%;align-content:center}
     .tracker-record-actions{display:flex;flex-wrap:wrap;gap:7px}
     .tracker-chart{min-height:260px}
     .tracker-chart svg{width:100%;height:auto;min-height:230px}
@@ -2254,7 +2257,7 @@
       .comparison-picker{grid-template-columns:1fr 1fr}
       .period-row{grid-template-columns:1fr minmax(92px,.75fr) auto}
       .market-output .metric-grid{grid-template-columns:1fr}
-      .tracker-toolbar{grid-template-columns:1fr}
+      .tracker-toolbar,.tracker-range-grid{grid-template-columns:1fr}
       .file-meta{grid-template-columns:1fr}
     }
     @media (max-width:360px){
@@ -2800,6 +2803,11 @@
             <div class="tracker-empty" id="trackerEmpty">Guarda dos o más observaciones para ver variación, reduflación y evolución del precio unitario.</div>
             <div id="trackerResults" hidden>
               <div class="module-toolbar"><h2 id="trackerHistoryTitle">Historial del producto</h2><span class="inline-badge" id="trackerRecordCount">0 registros</span></div>
+              <div class="tracker-range-grid" aria-label="Comparación entre dos fechas del producto">
+                <div class="field"><label for="trackerCompareStart">Comparar desde</label><select id="trackerCompareStart"></select></div>
+                <div class="field"><label for="trackerCompareEnd">Comparar hasta</label><select id="trackerCompareEnd"></select></div>
+                <div class="metric-tile"><span>Variación entre fechas</span><strong id="trackerRangeChange">—</strong><small id="trackerRangeDetail">Elige dos observaciones.</small></div>
+              </div>
               <div class="metric-grid"><div class="metric-tile"><span>Desde el primer registro</span><strong id="trackerTotalChange">—</strong></div><div class="metric-tile"><span>Precio unitario</span><strong id="trackerUnitChange">—</strong></div><div class="metric-tile"><span>Contenido</span><strong id="trackerQuantityChange">—</strong></div><div class="metric-tile"><span>Referencia IPCA</span><strong id="trackerIpcaComparison">—</strong><small id="trackerIpcaDetail"></small></div></div>
               <div class="chart-panel tracker-chart"><h3>Evolución del precio unitario</h3><div id="trackerChart" role="img" aria-label="Gráfico histórico del precio por unidad"></div></div>
               <div class="table-wrap" tabindex="0"><table><caption class="table-caption">Observaciones ordenadas por fecha; el precio unitario usa una base compatible.</caption><thead><tr><th>Fecha</th><th>Precio</th><th>Contenido</th><th>Precio unitario</th><th>Establecimiento</th><th>Acción</th></tr></thead><tbody id="trackerTableBody"></tbody></table></div>
@@ -9654,6 +9662,35 @@
       }
     }
 
+    function renderTrackerRange(records){
+      const startSelect=$('trackerCompareStart'),endSelect=$('trackerCompareEnd');
+      if(!records.length){
+        startSelect.innerHTML=''; endSelect.innerHTML='';
+        $('trackerRangeChange').textContent='—'; $('trackerRangeDetail').textContent='Elige dos observaciones.';
+        return;
+      }
+      const previousStart=startSelect.value,previousEnd=endSelect.value;
+      const options=records.map(function(record){ return '<option value="'+escapeXml(record.id)+'">'+escapeXml(record.date+' · '+formatCurrency(record.price,'BRL')+' · '+formatQuantity(record.quantity,record.unit))+'</option>'; }).join('');
+      startSelect.innerHTML=options; endSelect.innerHTML=options;
+      startSelect.value=records.some(function(record){ return record.id === previousStart; }) ? previousStart : records[0].id;
+      endSelect.value=records.some(function(record){ return record.id === previousEnd; }) ? previousEnd : records.at(-1).id;
+      let startIndex=records.findIndex(function(record){ return record.id === startSelect.value; });
+      let endIndex=records.findIndex(function(record){ return record.id === endSelect.value; });
+      if(startIndex > endIndex){
+        const startId=startSelect.value; startSelect.value=endSelect.value; endSelect.value=startId;
+        startIndex=records.findIndex(function(record){ return record.id === startSelect.value; });
+        endIndex=records.findIndex(function(record){ return record.id === endSelect.value; });
+      }
+      const analysis=productAnalysis([records[startIndex],records[endIndex]]);
+      if(!analysis){ $('trackerRangeChange').textContent='—'; $('trackerRangeDetail').textContent='Sin observaciones comparables.'; return; }
+      $('trackerRangeChange').textContent=signedPercent(analysis.last.price/analysis.first.price-1);
+      if(!analysis.compatible){
+        $('trackerRangeDetail').textContent=analysis.first.date+' → '+analysis.last.date+' · unidades incompatibles para precio unitario.';
+        return;
+      }
+      $('trackerRangeDetail').textContent=analysis.first.date+' → '+analysis.last.date+' · unitario '+signedPercent(analysis.unitChange)+' · contenido '+signedPercent(analysis.quantityChange)+'.';
+    }
+
     function renderProductTracker(){
       renderProductSelectors();
       const records=recordsForProduct(state.selectedProductKey);
@@ -9663,7 +9700,8 @@
       $('deleteSelectedProductButton').disabled=!hasRecords;
       $('trackerEmpty').hidden=hasRecords;
       $('trackerResults').hidden=!hasRecords;
-      if(!hasRecords) return;
+      if(!hasRecords){ renderTrackerRange([]); return; }
+      renderTrackerRange(records);
       $('trackerRecordCount').textContent=records.length+' '+(records.length === 1 ? 'registro' : 'registros');
       if(!analysis.compatible){
         $('trackerTotalChange').textContent=signedPercent(analysis.last.price/analysis.first.price-1);
@@ -10507,6 +10545,8 @@
       $('productRecordForm').addEventListener('submit',function(event){ event.preventDefault(); saveProductRecordFromForm(); });
       $('loadTrackerExampleButton').addEventListener('click',loadTrackerExample);
       $('trackedProductSelect').addEventListener('change',function(){ state.selectedProductKey=this.value; renderProductTracker(); });
+      $('trackerCompareStart').addEventListener('change',function(){ renderTrackerRange(recordsForProduct(state.selectedProductKey)); });
+      $('trackerCompareEnd').addEventListener('change',function(){ renderTrackerRange(recordsForProduct(state.selectedProductKey)); });
       $('exportSelectedProductButton').addEventListener('click',exportSelectedProduct);
       $('deleteSelectedProductButton').addEventListener('click',function(){
         const button=this,key=state.selectedProductKey;
