@@ -2141,15 +2141,34 @@
     .scenario-result-table td:first-child,.scenario-result-table th:first-child{font-weight:900}
     .report-preview{
       min-height:520px;
-      padding:clamp(18px,3vw,34px);
+      padding:0;
+      overflow:hidden;
       border:4px solid var(--nb-ink);
       color:#111;
-      background:#fff;
+      background:#f3ede2;
       box-shadow:var(--nb-shadow);
     }
+    .report-preview-cover{min-height:280px;padding:34px;background:#101827;color:#fff;position:relative;isolation:isolate}
+    .report-preview-cover::before{content:"";position:absolute;inset:0 68% 0 0;background:#ffd400;z-index:-1}
+    .report-preview-cover::after{content:"";position:absolute;right:0;bottom:0;width:34%;height:18px;background:#ff6900}
+    .report-preview-cover .eyebrow{display:inline-block;margin-left:34%;padding:7px 10px;background:#ffd400;color:#111;border:2px solid #111}
+    .report-preview-cover h2{max-width:720px;margin:54px 0 10px;font-size:clamp(2.1rem,5vw,4rem);line-height:.95;color:#fff}
+    .report-preview-cover p{max-width:680px;color:#dfe6ef}
+    .report-preview-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+    .report-preview-meta span{padding:8px 10px;border:2px solid #fff;background:#202c3d;font-size:.8rem;font-weight:900}
+    .report-preview-body{padding:clamp(18px,3vw,34px)}
     .report-preview h2{font-size:clamp(1.7rem,3vw,2.65rem);line-height:1.05}
-    .report-preview-section{margin-top:22px;padding-top:16px;border-top:3px solid #111}
+    .report-preview-section{margin-top:18px;padding:18px;border:3px solid #111;background:#fffaf0;box-shadow:6px 6px 0 #111}
     .report-preview-section h3{margin:0 0 10px}
+    .report-preview-section:nth-child(3n+2){border-top:12px solid #ff6900}
+    .report-preview-section:nth-child(3n+3){background:#fff0ad}
+    .report-preview[data-pdf-style="executive"]{background:#eaf0f2}
+    .report-preview[data-pdf-style="executive"] .report-preview-cover{background:#071521}
+    .report-preview[data-pdf-style="executive"] .report-preview-cover::before{background:#bdecd7}
+    .report-preview[data-pdf-style="executive"] .report-preview-cover::after{background:#007a5e}
+    .report-preview[data-pdf-style="executive"] .report-preview-section:nth-child(3n+2){border-top-color:#007a5e}
+    .report-preview[data-pdf-style="contrast"]{background:#fff4c2}
+    .report-preview[data-pdf-style="contrast"] .report-preview-cover{background:#050505}
     .report-preview dl{display:grid;gap:6px;margin:0}
     .report-preview dl div{display:grid;grid-template-columns:minmax(120px,.7fr) 1fr;gap:12px;padding:7px 0;border-bottom:1px solid #bbb}
     .report-preview dt{font-weight:850}.report-preview dd{margin:0}
@@ -2582,7 +2601,7 @@
               <button class="button secondary small" id="copyResultButton" type="button">Copiar resultado</button>
               <button class="button secondary small" id="exportCsvButton" type="button">Exportar CSV</button>
               <button class="button secondary small" id="exportJsonButton" type="button">Exportar JSON</button>
-              <button class="button secondary small" type="button" onclick="window.print()">Imprimir / PDF</button>
+              <button class="button secondary small" id="exportCalculatorPdfButton" type="button">PDF profesional</button>
             </div>
           </div>
         </section>
@@ -3082,7 +3101,7 @@
               <button class="button secondary small" id="salaryExportCsvButton" type="button">Exportar CSV</button>
               <button class="button secondary small" id="salaryExportJsonButton" type="button">Exportar JSON</button>
               <button class="button secondary small" id="salaryExportPngButton" type="button">Gráfico PNG</button>
-              <button class="button secondary small" type="button" onclick="window.print()">Imprimir / PDF</button>
+              <button class="button secondary small" id="salaryExportPdfButton" type="button">PDF profesional</button>
             </div>
           </div>
         </section>
@@ -3495,7 +3514,7 @@
             <div class="metric-tile"><span>Nuevo valor</span><strong id="contractResultFinal">—</strong></div>
           </div>
           <dl class="storage-facts mt-18" id="contractReceipt"><div><dt>Estado</dt><dd>Completa el formulario para generar un comprobante.</dd></div></dl>
-          <div class="action-row mt-18"><button class="button secondary small" id="copyContractReceiptButton" type="button" disabled>Copiar comprobante</button><button class="button secondary small" id="exportContractJsonButton" type="button" disabled>Exportar JSON</button><button class="button secondary small" type="button" onclick="window.print()">Imprimir / PDF</button></div>
+          <div class="action-row mt-18"><button class="button secondary small" id="copyContractReceiptButton" type="button" disabled>Copiar comprobante</button><button class="button secondary small" id="exportContractJsonButton" type="button" disabled>Exportar JSON</button><button class="button secondary small" id="exportContractPdfButton" type="button" disabled>PDF profesional</button></div>
         </section>
       </div>
       <section class="card history-section mt-18" id="contractComparisonSection" aria-labelledby="contractComparisonTitle" hidden><div class="history-head"><h2 id="contractComparisonTitle">Comparación entre índices</h2><button class="button secondary small" id="exportContractComparisonCsvButton" type="button">Exportar CSV</button></div><div class="table-wrap" tabindex="0"><table><caption class="table-caption">Mismo valor y período aplicados a IPCA, INPC e IGP-M</caption><thead><tr><th>Índice</th><th>Variación acumulada</th><th>Aumento</th><th>Valor reajustado</th><th>Último dato</th></tr></thead><tbody id="contractComparisonBody"></tbody></table></div></section>
@@ -3536,12 +3555,18 @@
       <div class="report-layout">
         <form class="card module-form" id="reportForm" novalidate>
           <div class="report-source-grid"><div class="field full"><label for="reportTitleInput">Título</label><input id="reportTitleInput" type="text" maxlength="100" value="Informe de inflación"></div></div>
+          <fieldset class="salary-fieldset"><legend class="salary-legend">Diseño del PDF</legend><div class="report-source-grid">
+            <div class="field"><label for="reportVisualStyle">Estilo visual</label><select id="reportVisualStyle"><option value="editorial" selected>Editorial cálido</option><option value="executive">Ejecutivo oscuro</option><option value="contrast">Contraste amarillo</option></select></div>
+            <div class="field"><label for="reportDensity">Densidad</label><select id="reportDensity"><option value="comfortable" selected>Espaciosa</option><option value="compact">Compacta</option></select></div>
+            <label class="report-source-option"><input id="reportIncludeCover" type="checkbox" checked>Portada profesional</label>
+            <label class="report-source-option"><input id="reportIncludeSummary" type="checkbox" checked>Resumen visual</label>
+          </div></fieldset>
           <fieldset class="salary-fieldset"><legend class="salary-legend">Información incluida</legend><div class="report-source-grid">
             <label class="report-source-option"><input type="checkbox" value="calculator" checked>Calculadora principal</label><label class="report-source-option"><input type="checkbox" value="history">Historial local</label><label class="report-source-option"><input type="checkbox" value="products">Seguimiento de productos</label><label class="report-source-option"><input type="checkbox" value="international">Datos históricos</label><label class="report-source-option"><input type="checkbox" value="comparison">Comparación internacional</label><label class="report-source-option"><input type="checkbox" value="contract">Reajuste o contrato</label><label class="report-source-option"><input type="checkbox" value="lab">Laboratorio de escenarios</label><label class="report-source-option"><input type="checkbox" value="advanced">Períodos avanzados</label><label class="report-source-option"><input type="checkbox" value="basket">Cestas guardadas</label><label class="report-source-option"><input id="reportIncludeCharts" type="checkbox" value="charts" checked>Gráficos disponibles</label>
           </div></fieldset>
           <div class="field"><label for="reportMethodology">Metodología</label><textarea id="reportMethodology" rows="4" maxlength="1200">Las tasas se aplican de forma compuesta. Los datos externos se identifican con su fuente y fecha de consulta.</textarea></div>
           <div class="field"><label for="reportAssumptions">Supuestos y notas</label><textarea id="reportAssumptions" rows="4" maxlength="1200" placeholder="Ej.: se mantuvo una tasa constante en la simulación..."></textarea></div>
-          <div class="action-row"><button class="button primary" type="submit">Generar vista previa</button><button class="button secondary" id="exportReportPdfButton" type="button" disabled>Exportar PDF</button><button class="button secondary" id="exportReportCsvButton" type="button" disabled>Exportar CSV</button><button class="button secondary" id="exportReportJsonButton" type="button" disabled>Exportar JSON</button></div>
+          <div class="action-row"><button class="button primary" type="submit">Generar vista previa</button><button class="button secondary" id="exportReportPdfButton" type="button" disabled>Exportar PDF profesional</button><button class="button secondary" id="exportReportCsvButton" type="button" disabled>Exportar CSV</button><button class="button secondary" id="exportReportJsonButton" type="button" disabled>Exportar JSON</button></div>
           <div class="inline-notice" id="reportNotice" role="status" aria-live="polite"></div>
         </form>
         <article class="report-preview" id="reportPreview" aria-live="polite"><p class="eyebrow">Vista previa</p><h2>Informe de inflación</h2><p>Configura el contenido y pulsa “Generar vista previa”.</p></article>
@@ -7442,23 +7467,52 @@
       const image = new Image();
       image.onload = function(){
         const canvas = document.createElement('canvas');
-        canvas.width = 1520;
-        canvas.height = 640;
+        canvas.width = 1600;
+        canvas.height = 1100;
         const context = canvas.getContext('2d');
-        context.fillStyle = '#ffffff';
+        const bundle=state.salaryResult,result=bundle && bundle.primary,input=bundle && bundle.inputs;
+        context.fillStyle = '#f3ede2';
         context.fillRect(0,0,canvas.width,canvas.height);
-        context.drawImage(image,0,0,canvas.width,canvas.height);
+        context.fillStyle='#101827';
+        context.fillRect(0,0,canvas.width,230);
+        context.fillStyle='#ffd400';
+        context.fillRect(0,0,34,230);
+        context.fillStyle='#ff6900';
+        context.fillRect(0,214,canvas.width,16);
+        context.fillStyle='#ffd400';
+        context.font='900 22px system-ui, sans-serif';
+        context.fillText('INFLATION INSIGHTS · '+APP_VERSION,80,62);
+        context.fillStyle='#ffffff';
+        context.font='900 54px system-ui, sans-serif';
+        context.fillText('Informe de reajuste salarial',80,126);
+        context.fillStyle='#dfe6ef';
+        context.font='500 22px system-ui, sans-serif';
+        context.fillText('Comparación del salario ofrecido frente al ajuste necesario por inflación',80,170);
+        const cards=[
+          {label:'VARIACIÓN REAL',value:result ? formatPercent(result.real) : '—',fill:'#ffd400'},
+          {label:'SALARIO NECESARIO',value:result && input ? formatCurrency(result.required,input.currency) : '—',fill:'#fff8e8'},
+          {label:'DIFERENCIA MENSUAL',value:result && input ? signedCurrency(result.difference,input.currency) : '—',fill:'#ffe3c2'}
+        ];
+        cards.forEach(function(card,index){
+          const x=80+index*500;
+          context.fillStyle='#101827'; context.fillRect(x+8,270,452,112);
+          context.fillStyle=card.fill; context.fillRect(x,262,452,112);
+          context.strokeStyle='#101827'; context.lineWidth=4; context.strokeRect(x,262,452,112);
+          context.fillStyle='#52606d'; context.font='900 16px system-ui, sans-serif'; context.fillText(card.label,x+22,296);
+          context.fillStyle='#101827'; context.font='900 32px system-ui, sans-serif'; context.fillText(card.value,x+22,348);
+        });
+        context.fillStyle='#101827'; context.fillRect(88,414,1424,604);
+        context.fillStyle='#fff8e8'; context.fillRect(80,406,1424,604);
+        context.strokeStyle='#101827'; context.lineWidth=4; context.strokeRect(80,406,1424,604);
+        context.drawImage(image,110,438,1364,574);
+        context.fillStyle='#52606d'; context.font='700 16px system-ui, sans-serif';
+        context.fillText('Generado localmente · '+formatDateTime(nowIso())+' · fuente: '+(input ? input.source.source : 'datos del usuario'),80,1060);
         URL.revokeObjectURL(url);
         canvas.toBlob(function(png){
           if(!png){ showToast('El navegador no pudo generar la imagen.'); return; }
-          const pngUrl = URL.createObjectURL(png);
-          const link = document.createElement('a');
-          link.href = pngUrl;
-          link.download = 'grafico-reajuste-salarial-v0100.png';
-          document.body.appendChild(link);
-          link.click();
-          link.remove();
-          window.setTimeout(function(){ URL.revokeObjectURL(pngUrl); },1000);
+          downloadBlob('informe-reajuste-salarial-v0100.png',png,'image/png');
+          trackEvent('report_exported',{tool:'salary',format:'png',design:'professional'});
+          showToast('PNG profesional exportado en 1600 × 1100 px.');
         },'image/png');
       };
       image.onerror = function(){
@@ -9180,6 +9234,7 @@
       $('contractReceipt').innerHTML='<div><dt>Tipo</dt><dd>'+escapeXml(result.type)+'</dd></div><div><dt>Período</dt><dd>'+escapeXml(formatMonthLabel(result.start)+' — '+formatMonthLabel(result.end))+'</dd></div><div><dt>Índice</dt><dd>'+escapeXml(result.indexName)+'</dd></div><div><dt>Metodología</dt><dd>'+escapeXml(result.mode === 'manual' ? 'Tasa total introducida por el usuario.' : 'Variaciones mensuales oficiales compuestas entre los niveles inicial y final.')+'</dd></div><div><dt>Fuente</dt><dd>'+escapeXml(result.source)+'</dd></div>';
       $('copyContractReceiptButton').disabled=false;
       $('exportContractJsonButton').disabled=false;
+      $('exportContractPdfButton').disabled=false;
       setNotice($('contractNotice'),'Reajuste calculado sin redondear los valores intermedios.','success');
     }
 
@@ -10381,17 +10436,38 @@
           sections.push(reportSection('Cestas personalizadas',['Cesta ponderada local: '+(weighted ? 'sí' : 'no'),'Cestas personales guardadas: '+readPersonalBaskets().length,'Historial de costo de vida: '+readPersonalHistory().length]));
         }
       });
-      return {schemaVersion:FILE_SCHEMA_VERSION,appVersion:APP_VERSION,title:String($('reportTitleInput').value || 'Informe de inflación').trim().slice(0,100),createdAt:nowIso(),methodology:String($('reportMethodology').value || '').trim().slice(0,1200),assumptions:String($('reportAssumptions').value || '').trim().slice(0,1200),sections:sections,charts:collectReportCharts(selected)};
+      return {
+        schemaVersion:FILE_SCHEMA_VERSION,
+        appVersion:APP_VERSION,
+        title:String($('reportTitleInput').value || 'Informe de inflación').trim().slice(0,100),
+        createdAt:nowIso(),
+        methodology:String($('reportMethodology').value || '').trim().slice(0,1200),
+        assumptions:String($('reportAssumptions').value || '').trim().slice(0,1200),
+        sections:sections,
+        charts:collectReportCharts(selected),
+        design:{
+          style:$('reportVisualStyle').value,
+          density:$('reportDensity').value,
+          cover:$('reportIncludeCover').checked,
+          summary:$('reportIncludeSummary').checked
+        }
+      };
     }
 
     function renderReportPreview(report){
       state.reportResult=report;
-      let html='<p class="eyebrow">Inflation Insights · '+escapeXml(APP_VERSION)+'</p><h2>'+escapeXml(report.title)+'</h2><p><strong>Fecha:</strong> '+escapeXml(formatDateTime(report.createdAt))+'</p>';
+      const design=report.design || {style:'editorial',cover:true,summary:true};
+      const cover=design.cover === false ? '' : '<header class="report-preview-cover"><p class="eyebrow">Inflation Insights · '+escapeXml(APP_VERSION)+'</p><h2>'+escapeXml(report.title)+'</h2><p>Informe diseñado y generado localmente, con una estructura preparada para lectura, archivo y presentación.</p><div class="report-preview-meta"><span>'+escapeXml(formatDateTime(report.createdAt))+'</span><span>'+report.sections.length+' secciones</span><span>'+(report.charts || []).length+' gráficos</span></div></header>';
+      let html=cover+'<div class="report-preview-body">';
+      if(design.cover === false) html+='<p class="eyebrow">Inflation Insights · '+escapeXml(APP_VERSION)+'</p><h2>'+escapeXml(report.title)+'</h2><p><strong>Fecha:</strong> '+escapeXml(formatDateTime(report.createdAt))+'</p>';
+      if(design.summary !== false) html+='<section class="report-preview-section"><h3>Resumen del documento</h3><dl><div><dt>Secciones</dt><dd>'+report.sections.length+'</dd></div><div><dt>Visualizaciones</dt><dd>'+(report.charts || []).length+'</dd></div><div><dt>Generación</dt><dd>Local y privada</dd></div></dl></section>';
       report.sections.forEach(function(section){ html+='<section class="report-preview-section"><h3>'+escapeXml(section.title)+'</h3><ul>'+section.lines.map(function(line){ return '<li>'+escapeXml(line)+'</li>'; }).join('')+'</ul></section>'; });
       (report.charts || []).forEach(function(chart){ html+='<section class="report-preview-section"><h3>'+escapeXml(chart.title)+'</h3>'+lineChartSvg(chart.series.map(function(series){ return {name:series.name,color:series.color,values:series.values.map(function(point){ return {labelText:point.label,value:point.value}; })}; }),{title:chart.title,description:'Gráfico incluido en el informe generado localmente',valueSuffix:chart.suffix,height:260})+'<ul class="chart-legend">'+chart.series.map(function(series){ return '<li><span style="background:'+escapeXml(series.color)+'"></span>'+escapeXml(series.name)+'</li>'; }).join('')+'</ul></section>'; });
       if(report.methodology) html+='<section class="report-preview-section"><h3>Metodología</h3><p>'+escapeXml(report.methodology)+'</p></section>';
       if(report.assumptions) html+='<section class="report-preview-section"><h3>Supuestos y notas</h3><p>'+escapeXml(report.assumptions)+'</p></section>';
       html+='<section class="report-preview-section"><h3>Transparencia</h3><p>Los datos oficiales, las copias almacenadas, los datos introducidos y las simulaciones se identifican en cada sección.</p></section>';
+      html+='</div>';
+      $('reportPreview').dataset.pdfStyle=design.style || 'editorial';
       $('reportPreview').innerHTML=html;
       ['exportReportPdfButton','exportReportCsvButton','exportReportJsonButton'].forEach(function(id){ $(id).disabled=false; });
       setNotice($('reportNotice'),'Vista previa generada localmente. Ningún dato del informe fue enviado al servidor.','success');
@@ -10408,7 +10484,7 @@
 
     function wrapPdfLines(lines,width){
       const output=[];
-      lines.forEach(function(line){
+      (lines || []).forEach(function(line){
         const words=String(line).split(/\s+/); let current='';
         if(!String(line).trim()){ output.push(''); return; }
         words.forEach(function(word){
@@ -10421,74 +10497,452 @@
       return output;
     }
 
-    function pdfSafeText(value){ return String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\x20-\x7E]/g,'-'); }
+    function pdfSafeText(value){
+      return String(value == null ? '' : value)
+        .normalize('NFC')
+        .replace(/[\r\n\t]+/g,' ')
+        .replace(/[“”„]/g,'"')
+        .replace(/[‘’]/g,"'")
+        .replace(/[–—]/g,'-')
+        .replace(/…/g,'...')
+        .replace(/€/g,'EUR')
+        .replace(/[^\x20-\x7E\xA0-\xFF]/g,'-');
+    }
     function pdfEscapeText(value){ return pdfSafeText(value).replace(/([\\()])/g,'\\$1'); }
     function pdfRgb(hex){
       const match=/^#?([0-9a-f]{6})$/i.exec(String(hex || ''));
       if(!match) return [0.1,0.1,0.1];
       return [parseInt(match[1].slice(0,2),16)/255,parseInt(match[1].slice(2,4),16)/255,parseInt(match[1].slice(4,6),16)/255];
     }
-
-    function pdfChartStream(chart){
-      const series=(chart.series || []).filter(function(item){ return item.values && item.values.length; });
-      const values=series.flatMap(function(item){ return item.values.map(function(point){ return Number(point.value); }).filter(Number.isFinite); });
-      if(!values.length) return '';
-      let min=Math.min.apply(null,values),max=Math.max.apply(null,values);
-      if(min === max){ min-=1; max+=1; }
-      const margin=(max-min)*0.08; min-=margin; max+=margin;
-      const x0=58,y0=145,width=480,height=500;
-      const commands=['BT','/F1 16 Tf','48 795 Td','('+pdfEscapeText(chart.title)+') Tj','ET'];
-      for(let tick=0;tick<5;tick += 1){
-        const y=y0+height*tick/4,value=min+(max-min)*tick/4;
-        commands.push('0.83 0.83 0.81 RG','0.7 w',x0+' '+y.toFixed(2)+' m '+(x0+width)+' '+y.toFixed(2)+' l S','BT','/F1 9 Tf','12 '+(y-3).toFixed(2)+' Td','('+pdfEscapeText(formatNumber(value,0,2)+(chart.suffix || ''))+') Tj','ET');
-      }
-      commands.push('0.05 0.05 0.05 RG','1.2 w',x0+' '+y0+' m '+x0+' '+(y0+height)+' l '+(x0+width)+' '+(y0+height)+' l S');
-      series.forEach(function(item,index){
-        const color=pdfRgb(item.color),points=item.values;
-        const path=points.map(function(point,pointIndex){
-          const x=x0+(points.length === 1 ? width/2 : pointIndex/(points.length-1)*width),y=y0+(point.value-min)/(max-min)*height;
-          return x.toFixed(2)+' '+y.toFixed(2)+' '+(pointIndex ? 'l' : 'm');
-        }).join(' ');
-        commands.push(color.map(function(value){ return value.toFixed(3); }).join(' ')+' RG','2.2 w',path+' S');
-        const legendY=754-index*16;
-        commands.push(color.map(function(value){ return value.toFixed(3); }).join(' ')+' RG','2.5 w','48 '+legendY+' m 64 '+legendY+' l S','0 0 0 RG','BT','/F1 9 Tf','70 '+(legendY-3)+' Td','('+pdfEscapeText(item.name)+') Tj','ET');
-      });
-      const labels=series[0].values;
-      if(labels.length){
-        commands.push('0 0 0 RG','BT','/F1 9 Tf','48 116 Td','('+pdfEscapeText(labels[0].label)+') Tj','ET','BT','/F1 9 Tf','430 116 Td','('+pdfEscapeText(labels.at(-1).label)+') Tj','ET');
-      }
-      commands.push('BT','/F1 8 Tf','48 86 Td','('+pdfEscapeText('Gráfico generado localmente · '+APP_VERSION)+') Tj','ET');
-      return commands.join('\n');
+    function pdfColorCommand(hex,stroke){
+      return pdfRgb(hex).map(function(value){ return value.toFixed(3); }).join(' ')+(stroke ? ' RG' : ' rg');
     }
-
-    function createSimplePdf(lines,charts){
-      const ascii=wrapPdfLines(lines,92).map(function(line){ return String(line).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\x20-\x7E]/g,'-'); });
-      const pages=[]; for(let index=0;index<ascii.length;index += 46) pages.push({kind:'text',lines:ascii.slice(index,index+46)});
-      if(!pages.length) pages.push({kind:'text',lines:['Informe vacío']});
-      (charts || []).forEach(function(chart){ pages.push({kind:'chart',chart:chart}); });
-      const objects=[]; const fontId=3;
-      objects[1]='<< /Type /Catalog /Pages 2 0 R >>';
-      objects[2]='<< /Type /Pages /Count '+pages.length+' /Kids ['+pages.map(function(_,index){ return (4+index*2)+' 0 R'; }).join(' ')+'] >>';
-      objects[3]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>';
-      pages.forEach(function(page,index){
-        const pageId=4+index*2,contentId=pageId+1;
-        let stream;
-        if(page.kind === 'chart') stream=pdfChartStream(page.chart);
-        else{
-          const commands=['BT','/F1 10 Tf','48 794 Td','14 TL'];
-          page.lines.forEach(function(line){ commands.push('('+line.replace(/([\\()])/g,'\\$1')+') Tj','T*'); }); commands.push('ET');
-          stream=commands.join('\n');
+    function pdfNumber(value){ return Number(value).toFixed(2).replace(/\.00$/,''); }
+    function pdfRect(commands,x,y,width,height,fill,stroke,lineWidth){
+      const parts=['q'];
+      if(fill) parts.push(pdfColorCommand(fill,false));
+      if(stroke){ parts.push(pdfColorCommand(stroke,true)); parts.push(pdfNumber(lineWidth || 1)+' w'); }
+      parts.push([pdfNumber(x),pdfNumber(y),pdfNumber(width),pdfNumber(height),'re',fill && stroke ? 'B' : fill ? 'f' : 'S'].join(' '),'Q');
+      commands.push(parts.join('\n'));
+    }
+    function pdfLine(commands,x1,y1,x2,y2,color,width){
+      commands.push(['q',pdfColorCommand(color,true),pdfNumber(width || 1)+' w',pdfNumber(x1)+' '+pdfNumber(y1)+' m '+pdfNumber(x2)+' '+pdfNumber(y2)+' l S','Q'].join('\n'));
+    }
+    function pdfText(commands,value,x,y,options){
+      const settings=Object.assign({size:10,font:'F1',color:'#101827'},options || {});
+      commands.push(['BT','/'+settings.font+' '+pdfNumber(settings.size)+' Tf',pdfColorCommand(settings.color,false),'1 0 0 1 '+pdfNumber(x)+' '+pdfNumber(y)+' Tm','('+pdfEscapeText(value)+') Tj','ET'].join('\n'));
+    }
+    function pdfApproxWidth(value,size,font){
+      const factor=font === 'F2' ? .56 : font === 'F3' ? .51 : .52;
+      return pdfSafeText(value).length*Number(size || 10)*factor;
+    }
+    function pdfWrapText(value,maxWidth,size,font){
+      const safe=pdfSafeText(value).trim();
+      if(!safe) return [''];
+      const lines=[];
+      safe.split(/\s+/).forEach(function(originalWord){
+        let word=originalWord;
+        if(pdfApproxWidth(word,size,font) > maxWidth){
+          const maxChars=Math.max(4,Math.floor(maxWidth/(Number(size || 10)*(font === 'F2' ? .56 : .52))));
+          const chunks=[];
+          while(word.length > maxChars){ chunks.push(word.slice(0,maxChars-1)+'-'); word=word.slice(maxChars-1); }
+          if(word) chunks.push(word);
+          chunks.forEach(function(chunk){
+            if(!lines.length || lines.at(-1).locked) lines.push({text:chunk,locked:false});
+            else{
+              const candidate=lines.at(-1).text+' '+chunk;
+              if(pdfApproxWidth(candidate,size,font) <= maxWidth) lines.at(-1).text=candidate;
+              else lines.push({text:chunk,locked:false});
+            }
+          });
+          return;
         }
-        stream+='\nBT\n/F1 8 Tf\n48 28 Td\n('+pdfEscapeText('Inflation Insights · '+APP_VERSION)+') Tj\nET\nBT\n/F1 8 Tf\n500 28 Td\n('+pdfEscapeText('Página '+(index+1)+' / '+pages.length)+') Tj\nET';
-        objects[pageId]='<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 '+fontId+' 0 R >> >> /Contents '+contentId+' 0 R >>';
+        if(!lines.length) lines.push({text:word,locked:false});
+        else{
+          const candidate=lines.at(-1).text+' '+word;
+          if(pdfApproxWidth(candidate,size,font) <= maxWidth) lines.at(-1).text=candidate;
+          else lines.push({text:word,locked:false});
+        }
+      });
+      return lines.map(function(line){ return line.text; });
+    }
+    function pdfParagraph(commands,value,x,y,maxWidth,options){
+      const settings=Object.assign({size:10,font:'F1',color:'#101827',leading:13,maxLines:99},options || {});
+      let lines=pdfWrapText(value,maxWidth,settings.size,settings.font);
+      if(lines.length > settings.maxLines){
+        lines=lines.slice(0,settings.maxLines);
+        lines[lines.length-1]=lines[lines.length-1].replace(/[.\s]+$/,'')+'...';
+      }
+      lines.forEach(function(line,index){ pdfText(commands,line,x,y-index*settings.leading,settings); });
+      return {y:y-lines.length*settings.leading,lines:lines};
+    }
+    function pdfPalette(style){
+      const palettes={
+        editorial:{paper:'#f3ede2',surface:'#fff8e8',ink:'#101827',accent:'#ff6900',highlight:'#ffd400',soft:'#ffe3c2',muted:'#52606d',grid:'#d2c7b8',white:'#ffffff'},
+        executive:{paper:'#e8f0f2',surface:'#f8fbfc',ink:'#071521',accent:'#007a5e',highlight:'#bdecd7',soft:'#d8ece6',muted:'#425466',grid:'#c5d3d8',white:'#ffffff'},
+        contrast:{paper:'#fff1a8',surface:'#fffbea',ink:'#050505',accent:'#ff5a00',highlight:'#ffd400',soft:'#ffe1c4',muted:'#3d3d3d',grid:'#c9b85d',white:'#ffffff'}
+      };
+      return palettes[style] || palettes.editorial;
+    }
+    function pdfPage(kind,palette){ return {kind:kind,palette:palette,commands:[]}; }
+    function pdfPageScaffold(page,title,kicker){
+      const commands=page.commands,palette=page.palette;
+      pdfRect(commands,0,0,595,842,palette.paper);
+      pdfRect(commands,0,770,595,72,palette.ink);
+      pdfRect(commands,0,770,18,72,palette.accent);
+      pdfText(commands,String(kicker || 'INFORME').toLocaleUpperCase('es'),48,814,{size:7.5,font:'F2',color:palette.highlight});
+      const titleLine=pdfWrapText(title,455,15,'F2')[0] || 'Informe';
+      pdfText(commands,titleLine,48,790,{size:15,font:'F2',color:palette.white});
+      pdfRect(commands,520,790,28,28,palette.highlight,palette.white,1);
+      pdfText(commands,'II',528,799,{size:10,font:'F2',color:palette.ink});
+    }
+    function pdfDrawCover(report,palette){
+      const page=pdfPage('cover',palette),commands=page.commands;
+      pdfRect(commands,0,0,595,842,palette.ink);
+      pdfRect(commands,0,0,156,842,palette.highlight);
+      pdfRect(commands,0,0,595,24,palette.accent);
+      pdfRect(commands,28,688,100,100,palette.accent,palette.ink,3);
+      pdfText(commands,'II',48,718,{size:48,font:'F2',color:palette.ink});
+      pdfText(commands,'INFLATION',28,178,{size:12,font:'F2',color:palette.ink});
+      pdfText(commands,'INSIGHTS',28,158,{size:12,font:'F2',color:palette.ink});
+      pdfParagraph(commands,'DATOS · MÉTODO · CONTEXTO',28,122,104,{size:8,font:'F2',color:palette.ink,leading:12});
+      pdfRect(commands,188,744,180,30,palette.highlight);
+      pdfText(commands,'INFORME PROFESIONAL',202,754,{size:8.5,font:'F2',color:palette.ink});
+      const titleLines=pdfWrapText(report.title,350,30,'F2').slice(0,4);
+      let titleY=680;
+      titleLines.forEach(function(line,index){ pdfText(commands,line,188,titleY-index*35,{size:30,font:'F2',color:palette.white}); });
+      const subtitleY=titleY-titleLines.length*35-10;
+      pdfParagraph(commands,'Análisis claro, trazable y listo para compartir.',188,subtitleY,340,{size:12,font:'F3',color:palette.paper,leading:16,maxLines:2});
+      pdfLine(commands,188,subtitleY-48,548,subtitleY-48,palette.accent,4);
+      pdfRect(commands,188,166,171,98,palette.surface,palette.white,1);
+      pdfText(commands,'FECHA DE GENERACIÓN',204,236,{size:7.5,font:'F2',color:palette.muted});
+      pdfParagraph(commands,formatDateTime(report.createdAt),204,211,140,{size:11,font:'F2',color:palette.ink,leading:14,maxLines:2});
+      pdfRect(commands,377,166,171,98,palette.soft,palette.white,1);
+      pdfText(commands,'CONTENIDO',393,236,{size:7.5,font:'F2',color:palette.muted});
+      pdfText(commands,report.sections.length+' secciones',393,210,{size:14,font:'F2',color:palette.ink});
+      pdfText(commands,(report.charts || []).length+' gráficos',393,190,{size:10,font:'F1',color:palette.ink});
+      pdfText(commands,'Generado localmente · '+report.appVersion,188,92,{size:8.5,font:'F2',color:palette.paper});
+      pdfParagraph(commands,'El documento distingue datos oficiales, copias almacenadas, entradas del usuario y simulaciones.',188,70,350,{size:7.5,font:'F1',color:palette.paper,leading:10,maxLines:2});
+      return page;
+    }
+    function pdfDrawSummary(report,palette){
+      const page=pdfPage('summary',palette),commands=page.commands;
+      pdfPageScaffold(page,'Resumen ejecutivo','LECTURA RÁPIDA');
+      const metrics=[
+        {value:String(report.sections.length),label:'SECCIONES',fill:palette.highlight},
+        {value:String((report.charts || []).length),label:'GRÁFICOS',fill:palette.soft},
+        {value:'LOCAL',label:'GENERACIÓN PRIVADA',fill:palette.accent,color:palette.white}
+      ];
+      metrics.forEach(function(metric,index){
+        const x=48+index*167;
+        pdfRect(commands,x,610,151,104,metric.fill,palette.ink,1.5);
+        pdfText(commands,metric.value,x+14,657,{size:24,font:'F2',color:metric.color || palette.ink});
+        pdfText(commands,metric.label,x+14,629,{size:7.5,font:'F2',color:metric.color || palette.ink});
+      });
+      pdfText(commands,'CONTENIDO DEL DOCUMENTO',48,574,{size:8,font:'F2',color:palette.muted});
+      const modules=report.sections.length > 6 ? report.sections.slice(0,5).concat([{title:'+'+(report.sections.length-5)+' secciones adicionales'}]) : report.sections.slice(0,6);
+      let moduleY=536;
+      modules.forEach(function(section,index){
+        const column=index%2,row=Math.floor(index/2),x=48+column*255,y=moduleY-row*50;
+        pdfRect(commands,x,y,238,37,index%3 === 2 ? palette.soft : palette.surface,palette.grid,1);
+        pdfRect(commands,x,y,7,37,index%2 ? palette.accent : palette.highlight);
+        const line=pdfWrapText(section.title,201,9.5,'F2')[0] || 'Sección';
+        pdfText(commands,line,x+18,y+13,{size:9.5,font:'F2',color:palette.ink});
+      });
+      const rows=Math.max(1,Math.ceil(modules.length/2));
+      let insightY=moduleY-rows*50-94;
+      if(insightY < 92) insightY=92;
+      pdfRect(commands,48,insightY,499,76,palette.ink);
+      pdfRect(commands,48,insightY,10,76,palette.accent);
+      pdfText(commands,'CRITERIO DE LECTURA',70,insightY+51,{size:8,font:'F2',color:palette.highlight});
+      pdfParagraph(commands,report.methodology || 'Las cifras se presentan con su contexto, origen y alcance para facilitar una lectura responsable.',70,insightY+31,450,{size:9,font:'F1',color:palette.white,leading:12,maxLines:2});
+      pdfRect(commands,48,112,499,166,palette.surface,palette.ink,1.5);
+      pdfText(commands,'CICLO DEL INFORME',68,249,{size:8,font:'F2',color:palette.muted});
+      const steps=[
+        {number:'01',title:'ENTRADA',detail:'datos y período'},
+        {number:'02',title:'CÁLCULO',detail:'método trazable'},
+        {number:'03',title:'LECTURA',detail:'resultado y contexto'},
+        {number:'04',title:'SALIDA',detail:'PDF listo para usar'}
+      ];
+      steps.forEach(function(step,index){
+        const x=68+index*116;
+        pdfRect(commands,x,137,101,82,index%2 ? palette.soft : palette.paper,palette.grid,1);
+        pdfRect(commands,x,205,101,14,index === steps.length-1 ? palette.accent : palette.highlight);
+        pdfText(commands,step.number,x+12,181,{size:17,font:'F2',color:palette.ink});
+        pdfText(commands,step.title,x+12,161,{size:7,font:'F2',color:palette.ink});
+        pdfText(commands,step.detail,x+12,147,{size:6.5,font:'F1',color:palette.muted});
+      });
+      return page;
+    }
+    function pdfCardLayout(line,density){
+      const text=pdfSafeText(line || 'Sin datos disponibles.');
+      const colon=text.indexOf(':');
+      const hasLabel=colon > 0 && colon < 52;
+      const label=hasLabel ? text.slice(0,colon).trim() : '';
+      const value=hasLabel ? text.slice(colon+1).trim() : text;
+      const size=density === 'compact' ? 9 : 10;
+      const leading=density === 'compact' ? 11.5 : 13;
+      const lines=pdfWrapText(value || '-',459,size,'F1');
+      const height=hasLabel ? 31+lines.length*leading : 20+lines.length*leading;
+      return {label:label,valueLines:lines,size:size,leading:leading,height:Math.max(density === 'compact' ? 38 : 43,height)};
+    }
+    function pdfDrawSectionPages(report,palette,pages){
+      const density=report.design.density === 'compact' ? 'compact' : 'comfortable';
+      const sections=report.sections.slice();
+      if(report.methodology) sections.push(reportSection('Metodología',[report.methodology]));
+      if(report.assumptions) sections.push(reportSection('Supuestos y notas',[report.assumptions]));
+      sections.push(reportSection('Transparencia',['Datos oficiales: se identifican junto con la fuente y la fecha de consulta.','Datos almacenados: se distinguen cuando proceden de una copia local.','Datos introducidos: permanecen bajo control del usuario.','Simulaciones: se presentan como escenarios y no como predicciones.']));
+      let page=null,y=0;
+      function startPage(){
+        page=pdfPage('content',palette);
+        pdfPageScaffold(page,'Detalle del informe','CONTENIDO ESTRUCTURADO');
+        pages.push(page);
+        y=730;
+      }
+      function drawHeading(title,continuation){
+        const display=title+(continuation ? ' · continuación' : '');
+        const lines=pdfWrapText(display,455,14,'F2').slice(0,2),height=30+lines.length*16;
+        pdfRect(page.commands,48,y-height,499,height,palette.ink);
+        pdfRect(page.commands,48,y-height,10,height,palette.accent);
+        lines.forEach(function(line,index){ pdfText(page.commands,line,70,y-22-index*16,{size:14,font:'F2',color:palette.white}); });
+        y-=height+12;
+      }
+      startPage();
+      sections.forEach(function(section){
+        const cards=(section.lines && section.lines.length ? section.lines : ['Sin datos disponibles.']).map(function(line){ return pdfCardLayout(line,density); });
+        const headingEstimate=46;
+        if(y-headingEstimate-cards[0].height < 73) startPage();
+        drawHeading(section.title,false);
+        cards.forEach(function(card){
+          if(y-card.height < 72){ startPage(); drawHeading(section.title,true); }
+          const cardY=y-card.height;
+          pdfRect(page.commands,48,cardY,499,card.height,palette.surface,palette.grid,1);
+          pdfRect(page.commands,48,cardY,7,card.height,palette.accent);
+          if(card.label){
+            pdfText(page.commands,card.label.toLocaleUpperCase('es'),68,y-17,{size:7.5,font:'F2',color:palette.muted});
+            card.valueLines.forEach(function(line,index){ pdfText(page.commands,line,68,y-32-index*card.leading,{size:card.size,font:'F1',color:palette.ink}); });
+          }else card.valueLines.forEach(function(line,index){ pdfText(page.commands,line,68,y-22-index*card.leading,{size:card.size,font:'F1',color:palette.ink}); });
+          y=cardY-9;
+        });
+        y-=12;
+      });
+      if(y > 270){
+        const panelHeight=Math.min(240,y-130),panelY=104,panelTop=panelY+panelHeight;
+        pdfRect(page.commands,48,panelY,499,panelHeight,palette.ink);
+        pdfRect(page.commands,405,panelY,142,panelHeight,palette.highlight);
+        pdfRect(page.commands,48,panelY,10,panelHeight,palette.accent);
+        pdfText(page.commands,'CIERRE Y ALCANCE',72,panelTop-34,{size:8,font:'F2',color:palette.highlight});
+        pdfParagraph(page.commands,'Información clara, bajo tu control.',72,panelTop-66,300,{size:19,font:'F2',color:palette.white,leading:22,maxLines:2});
+        pdfParagraph(page.commands,'El archivo se genera en el dispositivo y conserva las notas de método, fuente y alcance necesarias para interpretar los resultados.',72,panelTop-122,300,{size:9,font:'F1',color:palette.paper,leading:13,maxLines:5});
+        pdfText(page.commands,'100%',426,panelTop-76,{size:28,font:'F2',color:palette.ink});
+        pdfText(page.commands,'LOCAL',426,panelTop-102,{size:11,font:'F2',color:palette.ink});
+        pdfParagraph(page.commands,'Sin enviar el contenido del informe a un servidor.',426,panelTop-132,97,{size:7.5,font:'F1',color:palette.ink,leading:11,maxLines:5});
+      }
+    }
+    function pdfDrawChartPage(chart,index,palette){
+      const page=pdfPage('chart',palette),commands=page.commands;
+      pdfPageScaffold(page,'Visualización '+String(index+1).padStart(2,'0'),'GRÁFICO DEL INFORME');
+      pdfRect(commands,48,96,499,626,palette.surface,palette.grid,1.5);
+      const titleLines=pdfWrapText(chart.title || 'Visualización',450,17,'F2').slice(0,2);
+      titleLines.forEach(function(line,lineIndex){ pdfText(commands,line,70,684-lineIndex*20,{size:17,font:'F2',color:palette.ink}); });
+      const series=(chart.series || []).filter(function(item){ return item.values && item.values.length; }).slice(0,8);
+      const allValues=series.flatMap(function(item){ return item.values.map(function(point){ return Number(point.value); }).filter(Number.isFinite); });
+      const legendStart=638-titleLines.length*8;
+      series.forEach(function(item,seriesIndex){
+        const column=seriesIndex%2,row=Math.floor(seriesIndex/2),x=70+column*232,y=legendStart-row*21;
+        pdfLine(commands,x,y+3,x+22,y+3,item.color || palette.accent,3);
+        const name=pdfWrapText(item.name || 'Serie '+(seriesIndex+1),190,8.5,'F1')[0];
+        pdfText(commands,name,x+30,y,{size:8.5,font:'F1',color:palette.ink});
+      });
+      const legendRows=Math.max(1,Math.ceil(series.length/2)),x0=112,y0=166,width=382,top=legendStart-legendRows*21-22,height=Math.max(270,top-y0);
+      if(allValues.length){
+        let min=Math.min.apply(null,allValues),max=Math.max.apply(null,allValues);
+        if(min === max){ min-=1; max+=1; }
+        const padding=(max-min)*.09; min-=padding; max+=padding;
+        for(let tick=0;tick<5;tick+=1){
+          const y=y0+height*tick/4,value=min+(max-min)*tick/4;
+          pdfLine(commands,x0,y,x0+width,y,palette.grid,tick === 0 ? 1.4 : .7);
+          const label=formatNumber(value,0,2)+(chart.suffix || '');
+          const labelWidth=pdfApproxWidth(label,7.5,'F1');
+          pdfText(commands,label,x0-labelWidth-10,y-3,{size:7.5,font:'F1',color:palette.muted});
+        }
+        pdfLine(commands,x0,y0,x0,y0+height,palette.ink,1.2);
+        series.forEach(function(item,seriesIndex){
+          const points=item.values.filter(function(point){ return Number.isFinite(Number(point.value)); });
+          if(!points.length) return;
+          const path=points.map(function(point,pointIndex){
+            const x=x0+(points.length === 1 ? width/2 : pointIndex/(points.length-1)*width),pointY=y0+(Number(point.value)-min)/(max-min)*height;
+            return pdfNumber(x)+' '+pdfNumber(pointY)+' '+(pointIndex ? 'l' : 'm');
+          }).join(' ');
+          commands.push(['q',pdfColorCommand(item.color || (seriesIndex ? palette.highlight : palette.accent),true),'2.5 w',path+' S','Q'].join('\n'));
+          const last=points.at(-1),lastX=x0+(points.length === 1 ? width/2 : width),lastY=y0+(Number(last.value)-min)/(max-min)*height;
+          pdfRect(commands,lastX-3,lastY-3,6,6,item.color || palette.accent,palette.surface,1);
+        });
+        const labels=series[0] && series[0].values || [];
+        if(labels.length){
+          const first=pdfSafeText(labels[0].label),last=pdfSafeText(labels.at(-1).label);
+          pdfText(commands,first,x0,y0-24,{size:7.5,font:'F1',color:palette.muted});
+          pdfText(commands,last,x0+width-pdfApproxWidth(last,7.5,'F1'),y0-24,{size:7.5,font:'F1',color:palette.muted});
+        }
+      }else pdfParagraph(commands,'No había puntos numéricos disponibles para esta visualización.',70,470,450,{size:12,font:'F2',color:palette.muted,leading:16});
+      pdfRect(commands,70,104,455,30,palette.soft);
+      pdfText(commands,'Visualización generada localmente · valores sin redondeo intermedio',84,115,{size:7.5,font:'F2',color:palette.ink});
+      return page;
+    }
+    function pdfFinalizePages(pages,report){
+      pages.forEach(function(page,index){
+        const palette=page.palette,commands=page.commands;
+        if(page.kind === 'cover'){
+          pdfText(commands,'PÁGINA '+(index+1)+' DE '+pages.length,455,48,{size:7.5,font:'F2',color:palette.highlight});
+          return;
+        }
+        pdfLine(commands,48,57,547,57,palette.grid,.8);
+        pdfText(commands,'Inflation Insights · '+report.appVersion,48,37,{size:7.5,font:'F2',color:palette.muted});
+        pdfRect(commands,459,24,88,25,palette.highlight,palette.ink,1);
+        pdfText(commands,'PÁGINA '+(index+1)+' / '+pages.length,472,33,{size:7,font:'F2',color:palette.ink});
+      });
+    }
+    function pdfCreationDate(value){
+      const date=new Date(value || Date.now());
+      if(Number.isNaN(date.getTime())) return 'D:20000101000000Z';
+      const pad=function(number){ return String(number).padStart(2,'0'); };
+      return 'D:'+date.getUTCFullYear()+pad(date.getUTCMonth()+1)+pad(date.getUTCDate())+pad(date.getUTCHours())+pad(date.getUTCMinutes())+pad(date.getUTCSeconds())+'Z';
+    }
+    function pdfBuildDocument(pages,report){
+      pdfFinalizePages(pages,report);
+      const objects=[];
+      objects[1]='<< /Type /Catalog /Pages 2 0 R /PageLayout /OneColumn >>';
+      objects[2]='<< /Type /Pages /Count '+pages.length+' /Kids ['+pages.map(function(_,index){ return (6+index*2)+' 0 R'; }).join(' ')+'] >>';
+      objects[3]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>';
+      objects[4]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>';
+      objects[5]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding >>';
+      pages.forEach(function(page,index){
+        const pageId=6+index*2,contentId=pageId+1,stream=page.commands.join('\n');
+        objects[pageId]='<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents '+contentId+' 0 R >>';
         objects[contentId]='<< /Length '+stream.length+' >>\nstream\n'+stream+'\nendstream';
       });
-      let pdf='%PDF-1.4\n%InflationInsights\n'; const offsets=[0];
-      for(let id=1;id<objects.length;id += 1){ offsets[id]=pdf.length; pdf+=id+' 0 obj\n'+objects[id]+'\nendobj\n'; }
-      const xref=pdf.length; pdf+='xref\n0 '+objects.length+'\n0000000000 65535 f \n';
-      for(let id=1;id<objects.length;id += 1) pdf+=String(offsets[id]).padStart(10,'0')+' 00000 n \n';
-      pdf+='trailer\n<< /Size '+objects.length+' /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF';
-      return new TextEncoder().encode(pdf);
+      const infoId=6+pages.length*2;
+      objects[infoId]='<< /Title ('+pdfEscapeText(report.title)+') /Author (Inflation Insights) /Subject (Informe profesional de inflación) /Creator ('+pdfEscapeText(report.appVersion)+') /Producer (Inflation Insights PDF Engine) /CreationDate ('+pdfCreationDate(report.createdAt)+') >>';
+      let pdf='%PDF-1.4\n%\xE2\xE3\xCF\xD3\n',offsets=[0];
+      for(let id=1;id<objects.length;id+=1){ offsets[id]=pdf.length; pdf+=id+' 0 obj\n'+objects[id]+'\nendobj\n'; }
+      const xref=pdf.length;
+      pdf+='xref\n0 '+objects.length+'\n0000000000 65535 f \n';
+      for(let id=1;id<objects.length;id+=1) pdf+=String(offsets[id]).padStart(10,'0')+' 00000 n \n';
+      pdf+='trailer\n<< /Size '+objects.length+' /Root 1 0 R /Info '+infoId+' 0 R >>\nstartxref\n'+xref+'\n%%EOF';
+      return Uint8Array.from(pdf,function(character){ return character.charCodeAt(0)&255; });
+    }
+    function createProfessionalPdf(source){
+      const input=source && typeof source === 'object' ? source : {};
+      const design=Object.assign({style:'editorial',density:'comfortable',cover:true,summary:true},input.design || {});
+      if(!['editorial','executive','contrast'].includes(design.style)) design.style='editorial';
+      if(!['comfortable','compact'].includes(design.density)) design.density='comfortable';
+      const report={
+        appVersion:pdfSafeText(input.appVersion || APP_VERSION),
+        title:pdfSafeText(input.title || 'Informe de inflación').slice(0,100),
+        createdAt:input.createdAt || nowIso(),
+        methodology:pdfSafeText(input.methodology || '').slice(0,1200),
+        assumptions:pdfSafeText(input.assumptions || '').slice(0,1200),
+        design:design,
+        sections:(input.sections || []).map(function(section){ return reportSection(pdfSafeText(section.title || 'Sección'),(section.lines || []).map(pdfSafeText)); }),
+        charts:(input.charts || []).filter(Boolean)
+      };
+      if(!report.sections.length) report.sections.push(reportSection('Resumen',['No se incluyeron resultados adicionales en este documento.']));
+      const palette=pdfPalette(design.style),pages=[];
+      if(design.cover !== false) pages.push(pdfDrawCover(report,palette));
+      if(design.summary !== false) pages.push(pdfDrawSummary(report,palette));
+      pdfDrawSectionPages(report,palette,pages);
+      report.charts.forEach(function(chart,index){ pages.push(pdfDrawChartPage(chart,index,palette)); });
+      return pdfBuildDocument(pages,report);
+    }
+    function createSimplePdf(lines,charts){
+      const values=(lines || []).map(function(line){ return String(line); }),title=values.find(function(line){ return line.trim(); }) || 'Informe de inflación';
+      const body=values.slice(Math.max(0,values.indexOf(title)+1)).filter(function(line){ return line.trim(); });
+      return createProfessionalPdf({
+        appVersion:APP_VERSION,
+        title:title,
+        createdAt:nowIso(),
+        methodology:'Documento generado localmente. Las cifras conservan el método de cálculo de la aplicación.',
+        assumptions:'',
+        sections:[reportSection('Contenido',body.length ? body : ['Informe sin contenido adicional.'])],
+        charts:charts || [],
+        design:{style:'editorial',density:'compact',cover:false,summary:false}
+      });
+    }
+
+    function calculatorProfessionalReport(){
+      if(!state.result) return null;
+      const bundle=state.result,input=bundle.inputs;
+      const lines=resultPlainText().split('\n').slice(1);
+      const chartSeries=[{
+        name:'Escenario A · '+input.c1a,
+        color:'#ff6900',
+        values:bundle.resultA.points.map(function(value,index,points){ return {label:index === 0 ? 'Inicio' : index === points.length-1 ? 'Final' : String(index),value:value}; })
+      }];
+      if(bundle.resultB) chartSeries.push({
+        name:'Escenario B · '+input.c1b,
+        color:'#101827',
+        values:bundle.resultB.points.map(function(value,index,points){ return {label:index === 0 ? 'Inicio' : index === points.length-1 ? 'Final' : String(index),value:value}; })
+      });
+      return {
+        appVersion:APP_VERSION,
+        title:'Informe de inflación · Calculadora',
+        createdAt:bundle.createdAt || nowIso(),
+        methodology:'La variación total se calcula como precio final dividido por precio inicial menos uno. Las equivalencias mensuales y anuales utilizan composición geométrica.',
+        assumptions:conversionDisclosure(bundle).mixed ? conversionDisclosure(bundle).warning : 'Los importes se compararon en la misma moneda; no fue necesaria una conversión cambiaria.',
+        sections:[reportSection('Resultado principal',lines)],
+        charts:[reportChart('Evolución estimada del valor',chartSeries,' '+input.c1a)].filter(Boolean),
+        design:{style:'editorial',density:'comfortable',cover:true,summary:false}
+      };
+    }
+
+    function salaryProfessionalReport(){
+      if(!state.salaryResult) return null;
+      const bundle=state.salaryResult,input=bundle.inputs,steps=adaptivePointCount(input.months),inflationRatio=1+input.inflationRate;
+      const chartSeries=[{
+        name:'Necesario por inflación',
+        color:'#101827',
+        values:Array.from({length:steps+1},function(_,index){ return {label:index === 0 ? 'Inicio' : index === steps ? 'Final' : String(index),value:input.previous*Math.pow(inflationRatio,index/steps)}; })
+      }].concat(bundle.results.map(function(result,index){
+        const ratio=result.offered/input.previous;
+        return {name:result.label,color:['#ff6900','#c14800','#7a3e00'][index] || '#ff6900',values:Array.from({length:steps+1},function(_,pointIndex){ return {label:pointIndex === 0 ? 'Inicio' : pointIndex === steps ? 'Final' : String(pointIndex),value:input.previous*Math.pow(ratio,pointIndex/steps)}; })};
+      }));
+      return {
+        appVersion:APP_VERSION,
+        title:'Informe de reajuste salarial'+(input.name ? ' · '+input.name : ''),
+        createdAt:bundle.createdAt || nowIso(),
+        methodology:'El salario necesario se obtiene aplicando la inflación acumulada al salario anterior. La variación real relaciona el aumento nominal con la inflación mediante composición.',
+        assumptions:'La comparación cubre '+formatNumber(input.periodValue,0,4)+' '+unitLabel(input.periodUnit,input.periodValue)+'. Fuente de inflación: '+input.source.source+'.',
+        sections:[reportSection('Resultado del reajuste',salaryPlainText().split('\n').slice(1))],
+        charts:[reportChart('Salario ofrecido frente al ajuste por inflación',chartSeries,' '+input.currency)].filter(Boolean),
+        design:{style:'executive',density:'comfortable',cover:true,summary:false}
+      };
+    }
+
+    function contractProfessionalReport(){
+      if(!state.contractResult) return null;
+      const result=state.contractResult,sections=[reportSection('Comprobante de reajuste',contractReceiptText(result).split('\n').slice(1))],charts=[];
+      if(state.contractComparison && state.contractComparison.rows && state.contractComparison.rows.length){
+        sections.push(reportSection('Comparación de índices',state.contractComparison.rows.map(function(row){ return row.name+': '+formatPercent(row.rate,4)+' · '+formatCurrency(row.finalValue,state.contractComparison.currency); })));
+        charts.push(reportChart('Valor final por índice',state.contractComparison.rows.map(function(row,index){ return {name:row.name,color:CHART_COLORS[index],values:[{label:'Original',value:state.contractComparison.original},{label:'Final',value:row.finalValue}]}; }),' '+state.contractComparison.currency));
+      }else charts.push(reportChart('Valor original y valor reajustado',[{name:result.indexName,color:'#ff6900',values:[{label:'Original',value:result.original},{label:'Reajustado',value:result.finalValue}]}],' '+result.currency));
+      return {
+        appVersion:APP_VERSION,
+        title:'Comprobante profesional de reajuste',
+        createdAt:result.fetchedAt || nowIso(),
+        methodology:result.mode === 'manual' ? 'El valor final se calculó aplicando la tasa total introducida por el usuario sobre el importe original.' : 'Las variaciones oficiales del índice se compusieron para el período completo sin redondear los valores intermedios.',
+        assumptions:'Período analizado: '+formatMonthLabel(result.start)+' a '+formatMonthLabel(result.end)+'. Fuente: '+result.source+'.',
+        sections:sections,
+        charts:charts.filter(Boolean),
+        design:{style:'contrast',density:'comfortable',cover:true,summary:false}
+      };
+    }
+
+    function downloadProfessionalReport(report,filename,tool){
+      if(!report){ showToast('Realiza primero el cálculo que deseas exportar.'); return false; }
+      downloadBlob(filename,createProfessionalPdf(report),'application/pdf');
+      trackEvent('report_exported',{tool:tool || 'report-center',format:'pdf',design:'professional'});
+      showToast('PDF profesional generado localmente.');
+      return true;
     }
 
     function exportReportCsv(){
@@ -10603,6 +11057,7 @@
       $('compareContractIndicesButton').addEventListener('click',compareContractIndices);
       $('copyContractReceiptButton').addEventListener('click',function(){ if(state.contractResult) copyText(contractReceiptText(state.contractResult),'Comprobante copiado.'); });
       $('exportContractJsonButton').addEventListener('click',function(){ if(state.contractResult) downloadBlob('reajuste-contrato-v0100.json',JSON.stringify(state.contractResult,null,2),'application/json;charset=utf-8'); });
+      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0100.pdf','contract'); });
       $('exportContractComparisonCsvButton').addEventListener('click',exportContractComparisonCsv);
       $('labForm').addEventListener('submit',function(event){ event.preventDefault(); calculateLab(); });
       $('saveLabButton').addEventListener('click',saveLabConfig);
@@ -10624,7 +11079,7 @@
       $('exportAdvancedCsvButton').addEventListener('click',exportAdvancedCsv);
       $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadBlob('inflacion-por-periodos-v0100.json',JSON.stringify(state.advancedResult,null,2),'application/json;charset=utf-8'); });
       $('reportForm').addEventListener('submit',function(event){ event.preventDefault(); try{ renderReportPreview(buildReportData()); }catch(error){ setNotice($('reportNotice'),'Selecciona al menos una sección.','error'); } });
-      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult) downloadBlob('informe-inflacion-v0100.pdf',createSimplePdf(reportPlainLines(state.reportResult),state.reportResult.charts),'application/pdf'); });
+      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0100.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
       $('exportReportCsvButton').addEventListener('click',exportReportCsv);
       $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadBlob('informe-inflacion-v0100.json',JSON.stringify(state.reportResult,null,2),'application/json;charset=utf-8'); });
       $('installAppButton').addEventListener('click',promptPwaInstall);
@@ -10717,6 +11172,7 @@
       });
       $('copyLinkButton').addEventListener('click',function(){ copyText(buildShareUrl(),'Enlace del escenario copiado.'); });
       $('copyResultButton').addEventListener('click',function(){ copyText(resultPlainText(),'Resultado copiado.'); });
+      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0100.pdf','calculator'); });
       $('exportJsonButton').addEventListener('click',exportResultJson);
       $('exportCsvButton').addEventListener('click',exportResultCsv);
       $('refreshQuotesButton').addEventListener('click',function(){ refreshQuotes(); });
@@ -10750,6 +11206,7 @@
       $('salaryShareButton').addEventListener('click',function(){ copyText(buildSalaryShareUrl(),'Enlace del análisis salarial copiado.'); });
       $('salaryExportCsvButton').addEventListener('click',exportSalaryCsv);
       $('salaryExportJsonButton').addEventListener('click',exportSalaryJson);
+      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0100.pdf','salary'); });
       $('salaryExportPngButton').addEventListener('click',exportSalaryChartPng);
 
       $('saveScenarioButton').addEventListener('click',function(){
