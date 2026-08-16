@@ -1082,7 +1082,7 @@
       .hero-visual{min-height:390px}
       .hero-source-card{right:8%}
     }
-    @media (max-width:800px){
+    @media (max-width:900px){
       .menu-button{display:grid}
       .main-nav{
         position:fixed;
@@ -1519,7 +1519,7 @@
         border:0;
       }
     }
-    @media (max-width:800px){
+    @media (max-width:900px){
       .header-inner{width:100%;min-height:72px;padding:0 12px}
       .brand{min-height:72px;padding:8px 4px;border-right:0}
       .brand-mark{width:44px;height:44px}
@@ -2246,7 +2246,7 @@
       .market-tabs{position:static}
     }
 
-    @media (max-width:800px){
+    @media (max-width:900px){
       .home-actions{flex-direction:column}
       .home-button{width:100%;min-width:0}
       .account-grid{grid-template-columns:1fr}
@@ -5629,7 +5629,7 @@
     }
 
     function setMenuOpen(open){
-      const shouldOpen = Boolean(open && window.matchMedia('(max-width:800px)').matches);
+      const shouldOpen = Boolean(open && window.matchMedia('(max-width:900px)').matches);
       $('mainNav').dataset.open = String(shouldOpen);
       $('menuButton').setAttribute('aria-expanded',String(shouldOpen));
       $('menuButton').setAttribute('aria-label',shouldOpen ? 'Cerrar menú' : 'Abrir menú');
