@@ -10,10 +10,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Inflation Insights">
-  <link rel="manifest" href="./manifest-v0.10.0-beta.webmanifest">
+  <link rel="manifest" href="./manifest-v0.10.1-beta-patch.webmanifest">
   <link rel="icon" href="./icons/inflation-insights-192.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/inflation-insights-192.png">
-  <title>Calculadora de Inflación · v0.10.0-Beta</title>
+  <title>Calculadora de Inflación · v0.10.1-Beta-Patch</title>
   <style>
     :root{
       --bg:#07111f;
@@ -1082,7 +1082,7 @@
       .hero-visual{min-height:390px}
       .hero-source-card{right:8%}
     }
-    @media (max-width:800px){
+    @media (max-width:900px){
       .menu-button{display:grid}
       .main-nav{
         position:fixed;
@@ -1189,7 +1189,7 @@
       .hero-source-card{position:static;width:100%;margin-top:-8px}
     }
 
-    /* v0.10.0-Beta: identidad neo-brutalista para portada, navegación y footer. */
+    /* v0.10.1-Beta-Patch: identidad neo-brutalista para portada, navegación y footer. */
     :root{
       --nb-paper:#f7f5ef;
       --nb-white:#ffffff;
@@ -1519,7 +1519,7 @@
         border:0;
       }
     }
-    @media (max-width:800px){
+    @media (max-width:900px){
       .header-inner{width:100%;min-height:72px;padding:0 12px}
       .brand{min-height:72px;padding:8px 4px;border-right:0}
       .brand-mark{width:44px;height:44px}
@@ -1587,7 +1587,7 @@
       .home-cta{margin-inline:14px}
     }
 
-    /* v0.10.0-Beta: el lenguaje visual de la portada se extiende a toda la aplicación. */
+    /* v0.10.1-Beta-Patch: el lenguaje visual de la portada se extiende a toda la aplicación. */
     :root{
       --bg:var(--nb-paper);
       --bg-soft:#fff4bd;
@@ -1879,7 +1879,7 @@
     }
     .debug-panel{border:4px solid var(--nb-ink);border-radius:0;color:var(--nb-ink);background:var(--nb-yellow);box-shadow:6px 6px 0 var(--nb-ink)}
 
-    /* v0.10.0-Beta: cuenta opcional, sincronización y privacidad. */
+    /* v0.10.1-Beta-Patch: cuenta opcional, sincronización y privacidad. */
     .version-chip{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
     .beta-mini{
       display:inline-grid;
@@ -2030,7 +2030,7 @@
     .table-caption.strong{font-weight:800}
     .weighted-currency-field{max-width:360px;margin-bottom:14px}
 
-    /* v0.10.0-Beta: módulos de datos, simulación, reajustes e informes. */
+    /* v0.10.1-Beta-Patch: módulos de datos, simulación, reajustes e informes. */
     .route-shortcuts,.feature-jump-grid,.metric-grid,.scenario-editor,.report-source-grid{
       display:grid;
       gap:14px;
@@ -2179,7 +2179,7 @@
     .method-note{margin-top:14px;padding:12px 14px;border-left:6px solid var(--nb-orange);background:#fff5eb}
     .sr-update{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-    /* v0.10.0-Beta: análisis de precios reales, archivos y exportación. */
+    /* v0.10.1-Beta-Patch: análisis de precios reales, archivos y exportación. */
     .market-tabs{position:sticky;top:78px;z-index:6;margin-bottom:20px}
     .market-panel{display:grid;gap:20px}
     .market-panel[hidden]{display:none!important}
@@ -2246,7 +2246,7 @@
       .market-tabs{position:static}
     }
 
-    @media (max-width:800px){
+    @media (max-width:900px){
       .home-actions{flex-direction:column}
       .home-button{width:100%;min-width:0}
       .account-grid{grid-template-columns:1fr}
@@ -2333,7 +2333,7 @@
         <button class="nav-link" type="button" data-route="informes">Informes</button>
         <button class="nav-link" type="button" data-route="historial">Historial</button>
         <button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button>
-        <span class="version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.10.0-Beta</span>
+        <span class="version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.10.1-Beta-Patch</span>
       </nav>
 
       <span class="status-chip header-status" id="connectionChip" data-status="online" aria-live="polite">
@@ -2709,7 +2709,7 @@
 
     <section class="view" id="view-precios" data-view="precios" aria-labelledby="marketTitle" hidden>
       <div class="view-head">
-        <p class="eyebrow">Precios reales · v0.10</p>
+        <p class="eyebrow">Precios reales · v0.10.1</p>
         <h1 id="marketTitle">Productos, reduflación y archivos</h1>
         <p class="lede">Normaliza gramos, kilogramos, mililitros, litros y presentaciones; guarda el historial en este dispositivo e importa datos únicamente después de revisarlos.</p>
       </div>
@@ -3562,7 +3562,7 @@
             <label class="report-source-option"><input id="reportIncludeSummary" type="checkbox" checked>Resumen visual</label>
           </div></fieldset>
           <fieldset class="salary-fieldset"><legend class="salary-legend">Información incluida</legend><div class="report-source-grid">
-            <label class="report-source-option"><input type="checkbox" value="calculator" checked>Calculadora principal</label><label class="report-source-option"><input type="checkbox" value="history">Historial local</label><label class="report-source-option"><input type="checkbox" value="products">Seguimiento de productos</label><label class="report-source-option"><input type="checkbox" value="international">Datos históricos</label><label class="report-source-option"><input type="checkbox" value="comparison">Comparación internacional</label><label class="report-source-option"><input type="checkbox" value="contract">Reajuste o contrato</label><label class="report-source-option"><input type="checkbox" value="lab">Laboratorio de escenarios</label><label class="report-source-option"><input type="checkbox" value="advanced">Períodos avanzados</label><label class="report-source-option"><input type="checkbox" value="basket">Cestas guardadas</label><label class="report-source-option"><input id="reportIncludeCharts" type="checkbox" value="charts" checked>Gráficos disponibles</label>
+            <label class="report-source-option"><input type="checkbox" value="calculator" checked>Calculadora principal</label><label class="report-source-option"><input type="checkbox" value="salary">Reajuste salarial</label><label class="report-source-option"><input type="checkbox" value="shrink">Reduflación</label><label class="report-source-option"><input type="checkbox" value="unit">Precio unitario</label><label class="report-source-option"><input type="checkbox" value="goals">Metas protegidas</label><label class="report-source-option"><input type="checkbox" value="personal">Índice personal</label><label class="report-source-option"><input type="checkbox" value="history">Historial local</label><label class="report-source-option"><input type="checkbox" value="products">Seguimiento de productos</label><label class="report-source-option"><input type="checkbox" value="international">Datos históricos</label><label class="report-source-option"><input type="checkbox" value="comparison">Comparación internacional</label><label class="report-source-option"><input type="checkbox" value="contract">Reajuste o contrato</label><label class="report-source-option"><input type="checkbox" value="lab">Laboratorio de escenarios</label><label class="report-source-option"><input type="checkbox" value="advanced">Períodos avanzados</label><label class="report-source-option"><input type="checkbox" value="basket">Cestas guardadas</label><label class="report-source-option"><input id="reportIncludeCharts" type="checkbox" value="charts" checked>Gráficos disponibles</label>
           </div></fieldset>
           <div class="field"><label for="reportMethodology">Metodología</label><textarea id="reportMethodology" rows="4" maxlength="1200">Las tasas se aplican de forma compuesta. Los datos externos se identifican con su fuente y fecha de consulta.</textarea></div>
           <div class="field"><label for="reportAssumptions">Supuestos y notas</label><textarea id="reportAssumptions" rows="4" maxlength="1200" placeholder="Ej.: se mantuvo una tasa constante en la simulación..."></textarea></div>
@@ -3584,7 +3584,7 @@
       <a href="#cuenta" data-route="cuenta">Privacidad</a>
       <a href="#informes" data-route="informes">Informes</a>
     </nav>
-    <span class="footer-version version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.10.0-Beta</span>
+    <span class="footer-version version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.10.1-Beta-Patch</span>
   </footer>
 
   <dialog id="basketDialog" aria-labelledby="basketTitle">
@@ -3866,8 +3866,10 @@
     <div class="dialog-body dialog-stack">
       <p>Esta versión está preparada para pruebas públicas. La calculadora y tus datos locales siguen funcionando aunque la sincronización no esté disponible.</p>
       <div class="dialog-callout">
-        <strong>Qué cambia en v0.10.0-Beta</strong>
+        <strong>Qué cambia en v0.10.1-Beta-Patch</strong>
         <ul>
+          <li>todos los PDF usan maquetación A4 profesional con portada, jerarquía, gráficos, fuentes, metodología y paginación segura;</li>
+          <li>todas las salidas PNG, CSV y JSON comparten diseño o estructura consistente, metadatos de versión y nombres de archivo del Patch;</li>
           <li>detector de reduflación y comparador normalizado de precio unitario;</li>
           <li>seguimiento histórico de productos con gráfico y comparación orientativa con IPCA;</li>
           <li>metas protegidas contra inflación en escenarios bajo, central y alto;</li>
@@ -3968,9 +3970,9 @@
   (function(){
     'use strict';
 
-    const APP_VERSION = 'v0.10.0-Beta';
+    const APP_VERSION = 'v0.10.1-Beta-Patch';
     const VERSION = APP_VERSION;
-    // El contrato de create-account/delete-account no cambió en este parche de sincronización.
+    // El contrato de create-account/delete-account no cambió en este parche de exportaciones.
     const ACCOUNT_API_VERSION = 'v0.8.2-Beta-Patch';
     const SUPABASE_URL = 'https://yyfwxxcvnesyonekpdpb.supabase.co';
     const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_L2Rd4ZFMxxdUr_CQ3eUrUg_ZIbWRffe';
@@ -4361,7 +4363,7 @@
         weightedBasketId:createUuid(),
         syncDecisions:{}
       },source);
-      if(!meta.lastWelcomeVersion && source.betaWelcomeSeen) meta.lastWelcomeVersion = 'legacy-before-v0.10.0-Beta';
+      if(!meta.lastWelcomeVersion && source.betaWelcomeSeen) meta.lastWelcomeVersion = 'legacy-before-v0.10.1-Beta-Patch';
       if(!isUuid(meta.deviceId)) meta.deviceId = createUuid();
       if(!isUuid(meta.weightedBasketId)) meta.weightedBasketId = createUuid();
       if(!meta.syncDecisions || typeof meta.syncDecisions !== 'object' || Array.isArray(meta.syncDecisions)) meta.syncDecisions = {};
@@ -4631,7 +4633,7 @@
       try{
         state.backend.client = window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
           auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'implicit',storageKey:'inflation.v080.auth'},
-          global:{headers:{'x-application-name':'inflation-insights-v0100-beta'}}
+          global:{headers:{'x-application-name':'inflation-insights-v0101-beta'}}
         });
         state.backend.available = true;
         const sessionResult = await withTimeout(state.backend.client.auth.getSession());
@@ -4920,7 +4922,7 @@
         try{ const raw=localStorage.getItem(KEYS[name]); if(raw != null) local[name]=JSON.parse(raw); }
         catch(error){ local[name]={unreadable:true}; }
       });
-      const payload={schemaVersion:SYNC_SCHEMA_VERSION,appVersion:APP_VERSION,exportedAt:nowIso(),local:local,remote:null};
+      const payload={schemaVersion:SYNC_SCHEMA_VERSION,appVersion:APP_VERSION,type:'complete-data-export',exportedAt:nowIso(),local:local,remote:null};
       try{
         if(state.backend.user){
           const [profiles,calculations,baskets,feedback,events]=await Promise.all([
@@ -4928,10 +4930,10 @@
           ]);
           payload.remote={user:{id:state.backend.user.id,email:state.backend.user.email || null},profiles:profiles,calculations:calculations,baskets:baskets,feedback:feedback,usageEvents:events};
         }
-        downloadBlob('mis-datos-inflation-insights-v0100-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(payload,null,2),'application/json;charset=utf-8');
+        downloadJsonFile('mis-datos-inflation-insights-v0101-'+new Date().toISOString().slice(0,10)+'.json',payload);
         setNotice($('accountNotice'),'Exportación preparada. El archivo incluye datos locales y, si había sesión, los remotos accesibles.','success');
       }catch(error){
-        downloadBlob('mis-datos-locales-inflation-insights-v0100.json',JSON.stringify(payload,null,2),'application/json;charset=utf-8');
+        downloadJsonFile('mis-datos-locales-inflation-insights-v0101.json',payload);
         setNotice($('accountNotice'),'Se exportaron los datos locales, pero no fue posible recuperar los remotos.','warning');
       }finally{ setButtonBusy($('exportAllDataButton'),false); }
     }
@@ -4990,7 +4992,7 @@
         if($('pwaOfflineState')) $('pwaOfflineState').textContent='Este navegador no admite Service Worker';
         return;
       }
-      navigator.serviceWorker.register('./sw-v0.10.0-beta.js').then(function(registration){
+      navigator.serviceWorker.register('./sw-v0.10.1-beta-patch.js').then(function(registration){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent=navigator.onLine === false ? 'Modo offline activo' : 'Caché local preparada';
         registration.update().catch(function(){ return null; });
         registration.addEventListener('updatefound',function(){
@@ -5622,8 +5624,12 @@
       window.setTimeout(function(){ URL.revokeObjectURL(url); },1000);
     }
 
+    function downloadJsonFile(filename,payload){
+      downloadBlob(filename,JSON.stringify(payload,null,2),'application/json;charset=utf-8');
+    }
+
     function setMenuOpen(open){
-      const shouldOpen = Boolean(open && window.matchMedia('(max-width:800px)').matches);
+      const shouldOpen = Boolean(open && window.matchMedia('(max-width:900px)').matches);
       $('mainNav').dataset.open = String(shouldOpen);
       $('menuButton').setAttribute('aria-expanded',String(shouldOpen));
       $('menuButton').setAttribute('aria-label',shouldOpen ? 'Cerrar menú' : 'Abrir menú');
@@ -6846,7 +6852,9 @@
     function exportResultJson(){
       if(!state.result){ showToast('Realiza un cálculo antes de exportar.'); return; }
       const data = {
+        schemaVersion:FILE_SCHEMA_VERSION,
         appVersion:VERSION,
+        type:'calculator-result',
         generatedAt:nowIso(),
         inputs:serializeInput(state.result.inputs),
         results:{
@@ -6863,13 +6871,22 @@
           ipca:Object.assign({},state.ipca)
         }
       };
-      downloadBlob('resultado-inflacion-v0100.json',JSON.stringify(data,null,2),'application/json;charset=utf-8');
+      downloadJsonFile('resultado-inflacion-v0101.json',data);
       trackEvent('report_exported',{tool:'calculator',format:'json'});
     }
 
     function csvCell(value){
-      const text = String(value == null ? '' : value);
-      return /[",\n]/.test(text) ? '"' + text.replace(/"/g,'""') + '"' : text;
+      let text = String(value == null ? '' : value);
+      if(typeof value === 'string' && /^[\s]*[=+@-]/.test(text)) text="'"+text;
+      return /[",\r\n]/.test(text) ? '"' + text.replace(/"/g,'""') + '"' : text;
+    }
+
+    function csvContent(rows){
+      return '\ufeff' + (rows || []).map(function(row){ return row.map(csvCell).join(','); }).join('\r\n');
+    }
+
+    function downloadCsvFile(filename,rows){
+      downloadBlob(filename,csvContent(rows),'text/csv;charset=utf-8');
     }
 
     function exportResultCsv(){
@@ -6896,8 +6913,7 @@
         rows.push(['fecha_oficial_' + code,quote.officialDate || '']);
         rows.push(['consultado_' + code,quote.fetchedAt || '']);
       });
-      const csv = '\ufeff' + rows.map(function(row){ return row.map(csvCell).join(','); }).join('\n');
-      downloadBlob('resultado-inflacion-v0100.csv',csv,'text/csv;charset=utf-8');
+      downloadCsvFile('resultado-inflacion-v0101.csv',rows);
       trackEvent('report_exported',{tool:'calculator',format:'csv'});
     }
 
@@ -7413,9 +7429,10 @@
     function exportSalaryJson(){
       if(!state.salaryResult){ showToast('Realiza un análisis salarial antes de exportar.'); return; }
       const data = {
+        schemaVersion:FILE_SCHEMA_VERSION,
         appVersion:VERSION,
+        type:'salary-adjustment',
         generatedAt:nowIso(),
-        module:'salary-adjustment',
         inputs:serializeSalaryInput(state.salaryResult.inputs),
         source:Object.assign({},state.salaryResult.inputs.source),
         results:state.salaryResult.results.map(function(result){
@@ -7431,7 +7448,7 @@
           };
         })
       };
-      downloadBlob('reajuste-salarial-v0100.json',JSON.stringify(data,null,2),'application/json;charset=utf-8');
+      downloadJsonFile('reajuste-salarial-v0101.json',data);
       trackEvent('report_exported',{tool:'salary',format:'json'});
     }
 
@@ -7453,8 +7470,7 @@
       rows.push(['fecha_o_periodo_fuente',bundle.inputs.source.officialDate || '']);
       rows.push(['estado_fuente',salarySourceStateLabel(bundle.inputs.source.mode)]);
       rows.push(['periodo_analizado_meses',bundle.inputs.months]);
-      const csv = '\ufeff' + rows.map(function(row){ return row.map(csvCell).join(','); }).join('\n');
-      downloadBlob('reajuste-salarial-v0100.csv',csv,'text/csv;charset=utf-8');
+      downloadCsvFile('reajuste-salarial-v0101.csv',rows);
       trackEvent('report_exported',{tool:'salary',format:'csv'});
     }
 
@@ -7510,7 +7526,7 @@
         URL.revokeObjectURL(url);
         canvas.toBlob(function(png){
           if(!png){ showToast('El navegador no pudo generar la imagen.'); return; }
-          downloadBlob('informe-reajuste-salarial-v0100.png',png,'image/png');
+          downloadBlob('informe-reajuste-salarial-v0101.png',png,'image/png');
           trackEvent('report_exported',{tool:'salary',format:'png',design:'professional'});
           showToast('PNG profesional exportado en 1600 × 1100 px.');
         },'image/png');
@@ -8318,22 +8334,49 @@
       const image = new Image();
       image.onload = function(){
         const canvas = document.createElement('canvas');
-        canvas.width = 1240;
-        canvas.height = Math.max(560,Math.round(1240*(svg.viewBox.baseVal.height/svg.viewBox.baseVal.width)));
+        canvas.width = 1600;
+        canvas.height = 1100;
         const context = canvas.getContext('2d');
-        context.fillStyle = '#ffffff';
+        const bundle=state.personalResult,titleNode=svg.querySelector('title');
+        const title=titleNode ? titleNode.textContent : 'Índice personal de costo de vida';
+        context.fillStyle = '#f3ede2';
         context.fillRect(0,0,canvas.width,canvas.height);
-        context.drawImage(image,0,0,canvas.width,canvas.height);
+        context.fillStyle='#101827'; context.fillRect(0,0,canvas.width,230);
+        context.fillStyle='#ffd400'; context.fillRect(0,0,34,230);
+        context.fillStyle='#ff6900'; context.fillRect(0,214,canvas.width,16);
+        context.fillStyle='#ffd400'; context.font='900 22px system-ui, sans-serif';
+        context.fillText('INFLATION INSIGHTS · '+APP_VERSION,80,62);
+        context.fillStyle='#ffffff'; context.font='900 52px system-ui, sans-serif';
+        context.fillText(title,80,128);
+        context.fillStyle='#dfe6ef'; context.font='500 22px system-ui, sans-serif';
+        context.fillText(bundle ? bundle.meta.name+' · '+bundle.meta.startDate+' a '+bundle.meta.endDate : 'Análisis generado localmente',80,172);
+        const cards=[
+          {label:'INFLACIÓN PERSONAL',value:bundle ? formatPercent(bundle.metrics.inflation) : '—',fill:'#ffd400'},
+          {label:'REFERENCIA EQUIVALENTE',value:bundle ? formatPercent(bundle.reference.normalizedRate) : '—',fill:'#fff8e8'},
+          {label:'DIFERENCIA',value:bundle ? formatSigned(bundle.comparison.differencePp*100,' p.p.') : '—',fill:'#ffe3c2'}
+        ];
+        cards.forEach(function(card,index){
+          const x=80+index*500;
+          context.fillStyle='#101827'; context.fillRect(x+8,270,452,112);
+          context.fillStyle=card.fill; context.fillRect(x,262,452,112);
+          context.strokeStyle='#101827'; context.lineWidth=4; context.strokeRect(x,262,452,112);
+          context.fillStyle='#52606d'; context.font='900 16px system-ui, sans-serif'; context.fillText(card.label,x+22,296);
+          context.fillStyle='#101827'; context.font='900 30px system-ui, sans-serif'; context.fillText(card.value,x+22,348);
+        });
+        context.fillStyle='#101827'; context.fillRect(88,424,1424,570);
+        context.fillStyle='#fffdf2'; context.fillRect(80,416,1424,570);
+        context.strokeStyle='#101827'; context.lineWidth=4; context.strokeRect(80,416,1424,570);
+        const sourceWidth=svg.viewBox.baseVal.width || 620,sourceHeight=svg.viewBox.baseVal.height || 300;
+        const maxWidth=1340,maxHeight=500,scale=Math.min(maxWidth/sourceWidth,maxHeight/sourceHeight);
+        const drawWidth=sourceWidth*scale,drawHeight=sourceHeight*scale;
+        context.drawImage(image,120+(maxWidth-drawWidth)/2,450+(maxHeight-drawHeight)/2,drawWidth,drawHeight);
+        context.fillStyle='#52606d'; context.font='700 16px system-ui, sans-serif';
+        context.fillText('Generado localmente · '+formatDateTime(nowIso())+' · datos bajo control del usuario',80,1050);
         canvas.toBlob(function(png){
           if(!png){ showToast('No se pudo crear el PNG.'); return; }
-          const pngUrl = URL.createObjectURL(png);
-          const link = document.createElement('a');
-          link.href = pngUrl;
-          link.download = filename;
-          document.body.appendChild(link);
-          link.click();
-          link.remove();
-          window.setTimeout(function(){ URL.revokeObjectURL(pngUrl); },1000);
+          downloadBlob(filename,png,'image/png');
+          trackEvent('report_exported',{tool:'personal-cost',format:'png',design:'professional'});
+          showToast('PNG profesional exportado en 1600 × 1100 px.');
         },'image/png');
         URL.revokeObjectURL(url);
       };
@@ -8466,7 +8509,7 @@
     function exportPersonalJson(){
       const bundle = ensurePersonalResult();
       if(!bundle) return;
-      downloadBlob('costo-de-vida-v0100.json',JSON.stringify(personalExportPayload(bundle),null,2),'application/json;charset=utf-8');
+      downloadJsonFile('costo-de-vida-v0101.json',personalExportPayload(bundle));
     }
 
     function exportPersonalProductsCsv(){
@@ -8476,7 +8519,7 @@
       bundle.metrics.products.forEach(function(item){
         rows.push([item.name,item.category,bundle.meta.currency,item.quantity,item.previousPrice,item.currentPrice,item.previousCost,item.currentCost,isFiniteNumber(item.variation) ? item.variation*100 : '',item.monetaryChange,item.contribution*100,item.notes]);
       });
-      downloadBlob('productos-costo-de-vida-v0100.csv','\ufeff'+rows.map(function(row){ return row.map(csvCell).join(','); }).join('\n'),'text/csv;charset=utf-8');
+      downloadCsvFile('productos-costo-de-vida-v0101.csv',rows);
     }
 
     function exportPersonalAnalysisCsv(){
@@ -8493,7 +8536,7 @@
         ['categoria','impacto_monetario','contribucion_pp']
       ];
       bundle.metrics.categories.forEach(function(item){ rows.push([item.name,item.monetaryChange,item.contribution*100]); });
-      downloadBlob('analisis-costo-de-vida-v0100.csv','\ufeff'+rows.map(function(row){ return row.map(csvCell).join(','); }).join('\n'),'text/csv;charset=utf-8');
+      downloadCsvFile('analisis-costo-de-vida-v0101.csv',rows);
     }
 
     function buildPersonalShareUrl(){
@@ -8626,7 +8669,7 @@
       try{
         const payload = normalizePersonalPayload(record.payload);
         const filename = (payload.name || 'cesta').toLocaleLowerCase('es').replace(/[^a-z0-9áéíóúüñ]+/gi,'-').replace(/^-|-$/g,'').slice(0,50) || 'cesta';
-        downloadBlob(filename+'-v0100.json',JSON.stringify(record.payload,null,2),'application/json;charset=utf-8');
+        downloadJsonFile(filename+'-v0101.json',record.payload);
       }catch(error){
         setNotice($('personalNotice'),'No se pudo exportar este registro: ' + error.message,'error');
       }
@@ -9130,7 +9173,7 @@
       if(!result || !result.analysis) return;
       const rows=[['economía','índice','período','tasa_mensual_pct','acumulada_pct','indice_base_100','fuente','consultado']];
       result.analysis.points.forEach(function(point){ rows.push([result.economy,result.indexName,point.period,point.rate,point.accumulated*100,point.base100,result.source+' · '+result.provider,result.fetchedAt]); });
-      downloadBlob('inflacion-historica-'+result.country.toLowerCase()+'-v0100.csv','\ufeff'+rows.map(function(row){ return row.map(csvCell).join(','); }).join('\n'),'text/csv;charset=utf-8');
+      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0101.csv',rows);
     }
 
     function setDataTab(name){
@@ -9189,7 +9232,7 @@
       const lowest=Math.min.apply(null,result.series.map(function(item){ return item.analysis.accumulated; }));
       const rows=[['economía','índice','inicio','fin','inflación_acumulada_pct','diferencia_pp','fuente','consultado']];
       result.series.forEach(function(item){ rows.push([item.economy,item.indexName,result.start,result.end,item.analysis.accumulated*100,(item.analysis.accumulated-lowest)*100,item.source+' · '+item.provider,item.fetchedAt]); });
-      downloadBlob('comparacion-internacional-v0100.csv','\ufeff'+rows.map(function(row){ return row.map(csvCell).join(','); }).join('\n'),'text/csv;charset=utf-8');
+      downloadCsvFile('comparacion-internacional-v0101.csv',rows);
     }
 
     function contractRange(){
@@ -9289,7 +9332,7 @@
       const result=state.contractComparison; if(!result) return;
       const rows=[['índice','inicio','fin','variación_pct','aumento','valor_final','moneda','fuente','último_dato']];
       result.rows.forEach(function(row){ rows.push([row.name,result.start,result.end,row.rate*100,row.difference,row.finalValue,result.currency,row.source,row.latestPeriod]); });
-      downloadBlob('comparacion-reajustes-v0100.csv','\ufeff'+rows.map(function(row){ return row.map(csvCell).join(','); }).join('\n'),'text/csv;charset=utf-8');
+      downloadCsvFile('comparacion-reajustes-v0101.csv',rows);
     }
 
     function parseLabRates(text,years,fallback){
@@ -9366,7 +9409,7 @@
       const result=state.labResult; if(!result) return;
       const rows=[['escenario','año','inflación_periodo_pct','valor_necesario','ingreso_nominal','ingreso_real','poder_adquisitivo_pct','pérdida_ganancia']];
       result.scenarios.forEach(function(item){ item.timeline.forEach(function(point){ rows.push([item.name,point.year,point.year ? item.rates[point.year-1] : 0,point.priceNeeded,point.nominalIncome,point.realIncome,point.purchasingPower,point.loss]); }); });
-      downloadBlob('laboratorio-escenarios-v0100.csv','\ufeff'+rows.map(function(row){ return row.map(csvCell).join(','); }).join('\n'),'text/csv;charset=utf-8');
+      downloadCsvFile('laboratorio-escenarios-v0101.csv',rows);
     }
 
     function advancedRowTemplate(item,index){
@@ -9431,7 +9474,7 @@
       const result=state.advancedResult; if(!result) return;
       const rows=[['período','tasa_pct','acumulada_pct','valor','indice_base_100','moneda']];
       result.rows.forEach(function(row){ rows.push([row.label,row.rate,row.accumulated*100,row.value,row.base100,result.currency]); });
-      downloadBlob('inflacion-por-periodos-v0100.csv','\ufeff'+rows.map(function(row){ return row.map(csvCell).join(','); }).join('\n'),'text/csv;charset=utf-8');
+      downloadCsvFile('inflacion-por-periodos-v0101.csv',rows);
     }
 
     function setMarketTab(tab,focus){
@@ -9824,7 +9867,7 @@
       const records=recordsForProduct(state.selectedProductKey);
       if(!records.length) return;
       const payload={schemaVersion:FILE_SCHEMA_VERSION,appVersion:APP_VERSION,type:'product-price-history',createdAt:nowIso(),data:{product:records[0].name,records:records}};
-      downloadBlob('historial-'+safeFilePart(records[0].name)+'-v0100.json',JSON.stringify(payload,null,2),'application/json;charset=utf-8');
+      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-v0101.json',payload);
     }
 
     function calculateInflationGoal(){
@@ -10216,14 +10259,14 @@
 
     function exportUnifiedCsv(){
       if(!state.productRecords.length){ setNotice($('exportStudioNotice'),'No hay seguimientos de productos para exportar en CSV.','warning'); return; }
-      downloadBlob('seguimiento-productos-v0100-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
+      downloadBlob('seguimiento-productos-v0101-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
       setNotice($('exportStudioNotice'),'CSV UTF-8 exportado con fechas ISO y números decimales consistentes.','success');
     }
 
     function exportUnifiedJson(){
       const all=$('exportDataScope').value === 'all';
       const payload=all ? buildLocalExchangePayload() : structuredProductPayload();
-      downloadBlob((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0100-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(payload,null,2),'application/json;charset=utf-8');
+      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0101-'+new Date().toISOString().slice(0,10)+'.json',payload);
       setNotice($('exportStudioNotice'),'JSON exportado con versión de esquema, versión de la aplicación, tipo y fecha de creación.','success');
     }
 
@@ -10364,7 +10407,7 @@
           canvas.toBlob(function(output){
             URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false);
             if(!output){ setNotice($('exportStudioNotice'),'El navegador no pudo crear el PNG.','error'); return; }
-            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0100.png',output,'image/png');
+            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0101.png',output,'image/png');
             setNotice($('exportStudioNotice'),'PNG exportado a '+pixels.width+' × '+pixels.height+' píxeles.','success');
           },'image/png',1);
         }catch(error){ URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false); setNotice($('exportStudioNotice'),'No se pudo renderizar el PNG.','error'); }
@@ -10385,6 +10428,31 @@
     function collectReportCharts(selected){
       if(!$('reportIncludeCharts').checked) return [];
       const charts=[];
+      if(selected.includes('calculator') && state.result && state.result.resultA){
+        const input=state.result.inputs,series=[{name:'Escenario A',color:'#ff6900',values:state.result.resultA.points.map(function(value,index,points){ return {label:index === 0 ? 'Inicio' : index === points.length-1 ? 'Final' : String(index),value:value}; })}];
+        if(state.result.resultB) series.push({name:'Escenario B',color:'#101827',values:state.result.resultB.points.map(function(value,index,points){ return {label:index === 0 ? 'Inicio' : index === points.length-1 ? 'Final' : String(index),value:value}; })});
+        charts.push(reportChart('Evolución del valor calculado',series,' '+input.c1a));
+      }
+      if(selected.includes('salary') && state.salaryResult){
+        const salaryReport=salaryProfessionalReport();
+        (salaryReport && salaryReport.charts || []).forEach(function(chart){ charts.push(chart); });
+      }
+      if(selected.includes('shrink') && state.shrinkResult){
+        const item=state.shrinkResult;
+        charts.push(reportChart('Precio real por '+item.base,[{name:'Precio unitario',color:'#ff6900',values:[{label:'Anterior',value:item.oldUnitPrice},{label:'Actual',value:item.newUnitPrice}]}],' BRL'));
+      }
+      if(selected.includes('unit') && state.unitCompareResult){
+        const item=state.unitCompareResult;
+        charts.push(reportChart('Comparación de precio por '+item.base,[{name:'Precio unitario',color:'#ff6900',values:[{label:item.a.name,value:item.a.unitPrice},{label:item.b.name,value:item.b.unitPrice}]}],' BRL'));
+      }
+      if(selected.includes('goals') && state.goalResult){
+        const item=state.goalResult;
+        charts.push(reportChart('Meta protegida por escenario',item.rates.map(function(rate,index){ return {name:['Baja','Central','Alta'][index]+' · '+formatNumber(rate,0,2)+' %',color:CHART_COLORS[index],values:[{label:'Hoy',value:item.current},{label:'Horizonte',value:item.values[index]}]}; }),' BRL'));
+      }
+      if(selected.includes('personal') && state.personalResult){
+        const item=state.personalResult;
+        charts.push(reportChart('Costo de vida personal',[{name:'Costo',color:'#ff6900',values:[{label:'Anterior',value:item.metrics.previousTotal},{label:'Referencia',value:item.comparison.expectedCost},{label:'Actual',value:item.metrics.currentTotal}]}],' '+item.meta.currency));
+      }
       if(selected.includes('international') && state.internationalResult && state.internationalResult.analysis){
         const points=state.internationalResult.analysis.points;
         charts.push(reportChart('Inflación acumulada · '+state.internationalResult.economy,[{name:state.internationalResult.indexName,color:'#ff6900',values:points.map(function(point){ return {label:formatMonthLabel(point.period),value:point.accumulated*100}; })}],'%'));
@@ -10402,6 +10470,10 @@
         const records=recordsForProduct(state.selectedProductKey),analysis=productAnalysis(records);
         if(analysis && analysis.compatible) charts.push(reportChart('Precio unitario · '+records[0].name,[{name:'BRL por '+analysis.base,color:'#ff6900',values:records.map(function(record){ return {label:record.date,value:unitPrice(record.price,record.quantity,record.unit)}; })}],' BRL'));
       }
+      if(selected.includes('contract') && state.contractResult){
+        const contractReport=contractProfessionalReport();
+        (contractReport && contractReport.charts || []).forEach(function(chart){ charts.push(chart); });
+      }
       return charts.filter(Boolean);
     }
 
@@ -10412,6 +10484,38 @@
       selected.forEach(function(key){
         if(key === 'calculator'){
           sections.push(reportSection('Calculadora principal',state.result ? resultPlainText().split('\n') : ['No había un resultado activo al generar el informe.']));
+        }else if(key === 'salary'){
+          sections.push(reportSection('Reajuste salarial',state.salaryResult ? salaryPlainText().split('\n') : ['No había un análisis salarial activo.']));
+        }else if(key === 'shrink'){
+          const item=state.shrinkResult;
+          sections.push(reportSection('Detector de reduflación',item ? [
+            'Precio anterior: '+formatCurrency(item.oldPrice,'BRL')+' · '+formatQuantity(item.oldQty,item.oldUnit),
+            'Precio actual: '+formatCurrency(item.newPrice,'BRL')+' · '+formatQuantity(item.newQty,item.newUnit),
+            'Variación visible: '+signedPercent(item.priceChange),
+            'Cambio de contenido: '+signedPercent(item.quantityChange),
+            'Inflación real por '+item.base+': '+signedPercent(item.realInflation),
+            'Diferencia oculta: '+formatSigned(item.hiddenDifference*100,' p.p.')
+          ] : ['No había un análisis de reduflación activo.']));
+        }else if(key === 'unit'){
+          const item=state.unitCompareResult;
+          sections.push(reportSection('Comparador de precio unitario',item ? [
+            item.a.name+': '+formatUnitPrice(item.a.unitPrice,item.a.unit),
+            item.b.name+': '+formatUnitPrice(item.b.unitPrice,item.b.unit),
+            'Base normalizada: '+item.base,
+            'Opción más económica: '+(item.winner ? item.winner.name : 'Empate'),
+            'Diferencia: '+formatNumber(item.difference*100,2,2)+' % · ahorro equivalente '+formatCurrency(item.saving,'BRL')
+          ] : ['No había una comparación de precio unitario activa.']));
+        }else if(key === 'goals'){
+          const item=state.goalResult;
+          sections.push(reportSection('Metas protegidas contra inflación',item ? [
+            'Valor actual: '+formatCurrency(item.current,'BRL'),
+            'Horizonte: '+formatNumber(item.time,0,4)+' '+(item.timeUnit === 'months' ? 'meses' : 'años'),
+            'Escenario bajo ('+formatNumber(item.rates[0],0,2)+' %): '+formatCurrency(item.values[0],'BRL'),
+            'Escenario central ('+formatNumber(item.rates[1],0,2)+' %): '+formatCurrency(item.values[1],'BRL'),
+            'Escenario alto ('+formatNumber(item.rates[2],0,2)+' %): '+formatCurrency(item.values[2],'BRL')
+          ] : ['No había una meta protegida activa.']));
+        }else if(key === 'personal'){
+          sections.push(reportSection('Índice personal de costo de vida',state.personalResult ? personalPlainText().split('\n') : ['No había un índice personal calculado.']));
         }else if(key === 'history'){
           sections.push(reportSection('Historial local',['Cálculos: '+readHistory().length,'Escenarios guardados: '+readScenarios().length,'Análisis salariales: '+readSalaryHistory().length,'Cestas personales: '+readPersonalBaskets().length,'Registros de productos: '+readProductRecords().length]));
         }else if(key === 'products'){
@@ -10439,6 +10543,7 @@
       return {
         schemaVersion:FILE_SCHEMA_VERSION,
         appVersion:APP_VERSION,
+        type:'professional-report',
         title:String($('reportTitleInput').value || 'Informe de inflación').trim().slice(0,100),
         createdAt:nowIso(),
         methodology:String($('reportMethodology').value || '').trim().slice(0,1200),
@@ -10949,7 +11054,7 @@
       const report=state.reportResult; if(!report) return;
       const rows=[['sección','contenido']]; report.sections.forEach(function(section){ section.lines.forEach(function(line){ rows.push([section.title,line]); }); });
       rows.push(['Metodología',report.methodology],['Supuestos',report.assumptions]);
-      downloadBlob('informe-inflacion-v0100.csv','\ufeff'+rows.map(function(row){ return row.map(csvCell).join(','); }).join('\n'),'text/csv;charset=utf-8');
+      downloadCsvFile('informe-inflacion-v0101.csv',rows);
     }
 
     function setupPwaInstall(){
@@ -11056,8 +11161,17 @@
       $('contractForm').addEventListener('submit',function(event){ event.preventDefault(); calculateContract(); });
       $('compareContractIndicesButton').addEventListener('click',compareContractIndices);
       $('copyContractReceiptButton').addEventListener('click',function(){ if(state.contractResult) copyText(contractReceiptText(state.contractResult),'Comprobante copiado.'); });
-      $('exportContractJsonButton').addEventListener('click',function(){ if(state.contractResult) downloadBlob('reajuste-contrato-v0100.json',JSON.stringify(state.contractResult,null,2),'application/json;charset=utf-8'); });
-      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0100.pdf','contract'); });
+      $('exportContractJsonButton').addEventListener('click',function(){
+        if(!state.contractResult) return;
+        downloadJsonFile('reajuste-contrato-v0101.json',Object.assign({},state.contractResult,{
+          schemaVersion:FILE_SCHEMA_VERSION,
+          appVersion:APP_VERSION,
+          type:'contract-adjustment',
+          contractType:state.contractResult.type,
+          createdAt:state.contractResult.fetchedAt || nowIso()
+        }));
+      });
+      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0101.pdf','contract'); });
       $('exportContractComparisonCsvButton').addEventListener('click',exportContractComparisonCsv);
       $('labForm').addEventListener('submit',function(event){ event.preventDefault(); calculateLab(); });
       $('saveLabButton').addEventListener('click',saveLabConfig);
@@ -11077,11 +11191,11 @@
       });
       $('loadAdvancedExampleButton').addEventListener('click',loadAdvancedExample);
       $('exportAdvancedCsvButton').addEventListener('click',exportAdvancedCsv);
-      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadBlob('inflacion-por-periodos-v0100.json',JSON.stringify(state.advancedResult,null,2),'application/json;charset=utf-8'); });
+      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0101.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
       $('reportForm').addEventListener('submit',function(event){ event.preventDefault(); try{ renderReportPreview(buildReportData()); }catch(error){ setNotice($('reportNotice'),'Selecciona al menos una sección.','error'); } });
-      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0100.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
+      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0101.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
       $('exportReportCsvButton').addEventListener('click',exportReportCsv);
-      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadBlob('informe-inflacion-v0100.json',JSON.stringify(state.reportResult,null,2),'application/json;charset=utf-8'); });
+      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0101.json',state.reportResult); });
       $('installAppButton').addEventListener('click',promptPwaInstall);
       $('menuButton').addEventListener('click',function(){
         const opening = $('mainNav').dataset.open !== 'true';
@@ -11172,7 +11286,7 @@
       });
       $('copyLinkButton').addEventListener('click',function(){ copyText(buildShareUrl(),'Enlace del escenario copiado.'); });
       $('copyResultButton').addEventListener('click',function(){ copyText(resultPlainText(),'Resultado copiado.'); });
-      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0100.pdf','calculator'); });
+      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0101.pdf','calculator'); });
       $('exportJsonButton').addEventListener('click',exportResultJson);
       $('exportCsvButton').addEventListener('click',exportResultCsv);
       $('refreshQuotesButton').addEventListener('click',function(){ refreshQuotes(); });
@@ -11206,7 +11320,7 @@
       $('salaryShareButton').addEventListener('click',function(){ copyText(buildSalaryShareUrl(),'Enlace del análisis salarial copiado.'); });
       $('salaryExportCsvButton').addEventListener('click',exportSalaryCsv);
       $('salaryExportJsonButton').addEventListener('click',exportSalaryJson);
-      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0100.pdf','salary'); });
+      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0101.pdf','salary'); });
       $('salaryExportPngButton').addEventListener('click',exportSalaryChartPng);
 
       $('saveScenarioButton').addEventListener('click',function(){
@@ -11336,7 +11450,7 @@
       $('saveBasketButton').addEventListener('click',saveBasket);
       $('weightedCurrency').addEventListener('change',function(){ state.basketCurrency = normalizeCurrencyCode(this.value,'BRL'); });
       $('exportBasketButton').addEventListener('click',function(){
-        downloadBlob('cesta-ponderada-v0100.json',JSON.stringify(weightedBasketPayload(),null,2),'application/json;charset=utf-8');
+        downloadJsonFile('cesta-ponderada-v0101.json',weightedBasketPayload());
       });
       $('importBasketButton').addEventListener('click',function(){ $('basketFileInput').click(); });
       $('basketFileInput').addEventListener('change',function(event){
@@ -11472,7 +11586,7 @@
       });
       $$('[data-download-personal-chart]').forEach(function(button){
         button.addEventListener('click',function(){
-          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0100.png');
+          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0101.png');
         });
       });
 
