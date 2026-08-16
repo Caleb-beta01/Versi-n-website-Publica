@@ -2709,7 +2709,7 @@
 
     <section class="view" id="view-precios" data-view="precios" aria-labelledby="marketTitle" hidden>
       <div class="view-head">
-        <p class="eyebrow">Precios reales · v0.10</p>
+        <p class="eyebrow">Precios reales · v0.10.1</p>
         <h1 id="marketTitle">Productos, reduflación y archivos</h1>
         <p class="lede">Normaliza gramos, kilogramos, mililitros, litros y presentaciones; guarda el historial en este dispositivo e importa datos únicamente después de revisarlos.</p>
       </div>
@@ -11161,7 +11161,16 @@
       $('contractForm').addEventListener('submit',function(event){ event.preventDefault(); calculateContract(); });
       $('compareContractIndicesButton').addEventListener('click',compareContractIndices);
       $('copyContractReceiptButton').addEventListener('click',function(){ if(state.contractResult) copyText(contractReceiptText(state.contractResult),'Comprobante copiado.'); });
-      $('exportContractJsonButton').addEventListener('click',function(){ if(state.contractResult) downloadJsonFile('reajuste-contrato-v0101.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'contract-adjustment'},state.contractResult)); });
+      $('exportContractJsonButton').addEventListener('click',function(){
+        if(!state.contractResult) return;
+        downloadJsonFile('reajuste-contrato-v0101.json',Object.assign({},state.contractResult,{
+          schemaVersion:FILE_SCHEMA_VERSION,
+          appVersion:APP_VERSION,
+          type:'contract-adjustment',
+          contractType:state.contractResult.type,
+          createdAt:state.contractResult.fetchedAt || nowIso()
+        }));
+      });
       $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0101.pdf','contract'); });
       $('exportContractComparisonCsvButton').addEventListener('click',exportContractComparisonCsv);
       $('labForm').addEventListener('submit',function(event){ event.preventDefault(); calculateLab(); });
