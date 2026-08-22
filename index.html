@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#ffd400">
-  <meta name="color-scheme" content="light">
+  <meta name="color-scheme" content="dark">
   <meta name="description" content="Calculadora de inflación 3D preparada para 4K, con 16 monedas, poder adquisitivo, precios reales, salarios, datos oficiales e informes profesionales.">
   <meta name="application-name" content="Inflation Insights">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Inflation Insights">
-  <link rel="manifest" href="./manifest-v0.11.1-beta-patch.webmanifest">
+  <link rel="manifest" href="./manifest-v0.11.2-beta-patch.webmanifest">
   <link rel="icon" href="./icons/inflation-insights-192.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/inflation-insights-192.png">
-  <title>Calculadora de Inflación · v0.11.1-Beta-Patch</title>
+  <title>Calculadora de Inflación · v0.11.2-Beta-Patch</title>
   <style>
     :root{
       --bg:#07111f;
@@ -1189,7 +1189,7 @@
       .hero-source-card{position:static;width:100%;margin-top:-8px}
     }
 
-    /* v0.11.1-Beta-Patch: identidad neo-brutalista para portada, navegación y footer. */
+    /* v0.11.2-Beta-Patch: identidad neo-brutalista para portada, navegación y footer. */
     :root{
       --nb-paper:#f7f5ef;
       --nb-white:#ffffff;
@@ -1587,7 +1587,7 @@
       .home-cta{margin-inline:14px}
     }
 
-    /* v0.11.1-Beta-Patch: el lenguaje visual de la portada se extiende a toda la aplicación. */
+    /* v0.11.2-Beta-Patch: el lenguaje visual de la portada se extiende a toda la aplicación. */
     :root{
       --bg:var(--nb-paper);
       --bg-soft:#fff4bd;
@@ -1879,7 +1879,7 @@
     }
     .debug-panel{border:4px solid var(--nb-ink);border-radius:0;color:var(--nb-ink);background:var(--nb-yellow);box-shadow:6px 6px 0 var(--nb-ink)}
 
-    /* v0.11.1-Beta-Patch: cuenta opcional, sincronización y privacidad. */
+    /* v0.11.2-Beta-Patch: cuenta opcional, sincronización y privacidad. */
     .version-chip{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
     .beta-mini{
       display:inline-grid;
@@ -2030,7 +2030,7 @@
     .table-caption.strong{font-weight:800}
     .weighted-currency-field{max-width:360px;margin-bottom:14px}
 
-    /* v0.11.1-Beta-Patch: módulos de datos, simulación, reajustes e informes. */
+    /* v0.11.2-Beta-Patch: módulos de datos, simulación, reajustes e informes. */
     .route-shortcuts,.feature-jump-grid,.metric-grid,.scenario-editor,.report-source-grid{
       display:grid;
       gap:14px;
@@ -2179,7 +2179,7 @@
     .method-note{margin-top:14px;padding:12px 14px;border-left:6px solid var(--nb-orange);background:#fff5eb}
     .sr-update{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-    /* v0.11.1-Beta-Patch: análisis de precios reales, archivos y exportación. */
+    /* v0.11.2-Beta-Patch: análisis de precios reales, archivos y exportación. */
     .market-tabs{position:sticky;top:78px;z-index:6;margin-bottom:20px}
     .market-panel{display:grid;gap:20px}
     .market-panel[hidden]{display:none!important}
@@ -2238,7 +2238,7 @@
     .goal-scenario strong{font-size:1.5rem}
     .source-disclosure{margin-top:12px;color:var(--muted);font-size:.82rem}
 
-    /* v0.11.1-Beta-Patch · 3D Experience Update */
+    /* v0.11.2-Beta-Patch · 3D Experience Update */
     body[data-route="inicio"]{background:#050507}
     body[data-route="inicio"] .app-header{
       border-bottom-color:#ffd400;
@@ -2584,227 +2584,6 @@
       .landing-transition{transition:none;clip-path:none}
     }
 
-    /* v0.11.1-Beta-Patch · landing fusionada con menú y herramientas */
-    body[data-route="inicio"]{color:var(--nb-ink);background:var(--nb-paper)}
-    body[data-route="inicio"] .app-header{
-      border-bottom:4px solid var(--nb-ink);
-      color:var(--nb-ink);
-      background:var(--nb-white);
-      box-shadow:none;
-      backdrop-filter:none;
-    }
-    body[data-route="inicio"] .brand{color:var(--nb-ink);background:var(--nb-white)}
-    body[data-route="inicio"] .brand:hover{background:#fff7c9}
-    body[data-route="inicio"] .brand-copy strong{color:var(--nb-ink)}
-    body[data-route="inicio"] .brand-copy span{color:#3d3d3d}
-    body[data-route="inicio"] .brand-mark{color:var(--nb-ink);background:var(--nb-yellow)}
-    body[data-route="inicio"] .version-chip{color:var(--nb-white);background:var(--nb-ink)}
-    body[data-route="inicio"] .header-status{color:var(--nb-ink);background:var(--nb-white);border-color:var(--nb-ink)}
-    body[data-route="inicio"] .menu-button{color:var(--nb-ink);background:var(--nb-yellow)}
-    body[data-route="inicio"] .main-nav{background:var(--nb-white)}
-    body[data-route="inicio"] .nav-link{color:var(--nb-ink);background:var(--nb-white);border-color:var(--nb-ink)}
-    body[data-route="inicio"] .nav-link:hover{color:var(--nb-ink);background:#fff3a3}
-    body[data-route="inicio"] .nav-link[aria-current="page"]{color:var(--nb-ink);background:var(--nb-yellow)}
-    .brand{flex:0 1 220px;padding-inline:14px}
-    .main-nav{flex:1 1 auto;justify-content:flex-end}
-    .nav-link{padding-inline:clamp(7px,.9vw,13px);font-size:clamp(.69rem,.82vw,.82rem)}
-    .version-chip{margin-inline:6px;padding-inline:7px}
-    .header-status{margin-right:8px}
-
-    #view-inicio.home-view{color:var(--nb-ink);background:var(--nb-paper)}
-    .landing3d{
-      --landing-cyan:#16978f;
-      min-height:100vh;
-      color:var(--nb-ink);
-      background:
-        radial-gradient(circle at 82% 14%,rgba(255,105,0,.18),transparent 30rem),
-        radial-gradient(circle at 14% 54%,rgba(255,212,0,.24),transparent 34rem),
-        var(--nb-paper);
-    }
-    .landing-canvas{inset:84px 0 0;height:calc(100svh - 84px);opacity:.58;mix-blend-mode:multiply}
-    .landing3d::before{
-      inset:84px 0 0;
-      opacity:.5;
-      background-image:
-        linear-gradient(rgba(17,17,17,.055) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(17,17,17,.055) 1px,transparent 1px);
-    }
-    .landing-toolbar{top:96px}
-    .landing-control{
-      border:3px solid var(--nb-ink);
-      color:var(--nb-ink);
-      background:var(--nb-white);
-      box-shadow:5px 5px 0 var(--nb-ink);
-      backdrop-filter:none;
-    }
-    .landing-control select{border:2px solid var(--nb-ink);color:var(--nb-ink);background:var(--nb-paper)}
-    .landing-control-state{color:#373737}
-    .landing-motion-button{
-      border:3px solid var(--nb-ink);
-      color:var(--nb-ink);
-      background:var(--nb-yellow);
-      box-shadow:5px 5px 0 var(--nb-ink);
-    }
-    .landing-motion-button:hover{color:var(--nb-white);background:var(--nb-ink);border-color:var(--nb-ink)}
-    .landing-scene{
-      min-height:78svh;
-      padding-top:clamp(112px,9vw,154px);
-      padding-bottom:clamp(68px,7vw,116px);
-      opacity:.82;
-    }
-    .landing-hero{min-height:calc(100svh - 84px)}
-    .landing-copy{
-      max-width:880px;
-      padding:clamp(24px,3.5vw,50px);
-      border:4px solid var(--nb-ink);
-      background:rgba(255,255,255,.94);
-      box-shadow:12px 12px 0 var(--nb-ink);
-    }
-    .landing-eyebrow{
-      margin-bottom:20px;
-      border:3px solid var(--nb-ink);
-      color:var(--nb-ink);
-      background:var(--nb-orange);
-    }
-    .landing-title{max-width:860px;color:var(--nb-ink);font-size:clamp(3rem,6.4vw,7rem);line-height:.88}
-    .landing-title span{
-      width:max-content;
-      max-width:100%;
-      margin-top:.12em;
-      padding:.05em .12em .09em;
-      color:var(--nb-ink);
-      background:var(--nb-yellow);
-      -webkit-background-clip:border-box;
-      background-clip:border-box;
-      box-shadow:7px 7px 0 var(--nb-orange);
-    }
-    .landing-lede{max-width:660px;margin-top:25px;color:#222;line-height:1.5}
-    .landing-primary{color:var(--nb-ink);background:var(--nb-yellow);border-color:var(--nb-ink);box-shadow:7px 7px 0 var(--nb-orange)}
-    .landing-secondary{color:var(--nb-ink);background:var(--nb-white);border-color:var(--nb-ink);box-shadow:7px 7px 0 var(--nb-ink)}
-    .landing-metrics{margin-top:30px}
-    .landing-metric{border:3px solid var(--nb-ink);background:var(--nb-white)}
-    .landing-metric:nth-child(2){background:#fff0b8}
-    .landing-metric:nth-child(3){background:#ffe0c7}
-    .landing-metric strong{color:var(--nb-ink)}
-    .landing-metric span{color:#3b3b3b}
-    .landing-orbit{width:min(34vw,470px);filter:drop-shadow(16px 20px 0 rgba(17,17,17,.18))}
-    .landing-orbit-ring{border-color:rgba(22,151,143,.75)}
-    .landing-orbit-node{border:3px solid var(--nb-ink);box-shadow:5px 5px 0 var(--nb-ink)}
-    .landing-panel{
-      max-width:1080px;
-      padding:clamp(24px,3.5vw,48px);
-      border:4px solid var(--nb-ink);
-      color:var(--nb-ink);
-      background:rgba(255,255,255,.96);
-      box-shadow:12px 12px 0 var(--nb-ink);
-      backdrop-filter:none;
-    }
-    .landing-scene:nth-of-type(odd) .landing-panel{background:#fff0b8}
-    .landing-section-number{
-      width:max-content;
-      padding:6px 9px;
-      border:2px solid var(--nb-ink);
-      color:var(--nb-ink);
-      background:var(--nb-orange);
-    }
-    .landing-heading{color:var(--nb-ink);font-size:clamp(2.3rem,4.8vw,5.2rem)}
-    .landing-heading em{display:inline;color:var(--nb-ink);background:var(--nb-yellow);box-shadow:4px 4px 0 var(--nb-orange)}
-    .landing-text{color:#292929;line-height:1.55}
-    .landing-facts{gap:14px}
-    .landing-fact{
-      min-height:104px;
-      border:3px solid var(--nb-ink);
-      color:var(--nb-ink);
-      background:var(--nb-white);
-      box-shadow:5px 5px 0 var(--nb-ink);
-    }
-    .landing-fact:nth-child(2){background:var(--nb-yellow)}
-    .landing-fact:nth-child(3){background:#ffe0c7}
-    .landing-fact strong,.landing-fact span{color:var(--nb-ink)}
-    .landing-chart-shell{border:3px solid var(--nb-ink);background:var(--nb-white);box-shadow:6px 6px 0 var(--nb-ink)}
-    .landing-chart-line{stroke:var(--nb-orange);filter:none}
-    .landing-currency-grid{grid-template-columns:repeat(8,minmax(0,1fr));gap:9px}
-    .landing-currency{
-      min-height:82px;
-      border:3px solid var(--nb-ink);
-      background:var(--nb-white);
-      box-shadow:4px 4px 0 var(--nb-ink);
-    }
-    .landing-currency:hover{border-color:var(--nb-ink);background:var(--nb-yellow);transform:translate(-2px,-4px)}
-    .landing-currency strong,.landing-currency:nth-child(3n+1) strong,.landing-currency:nth-child(3n+2) strong,.landing-currency:nth-child(3n) strong{color:var(--nb-ink)}
-    .landing-currency span{color:#373737}
-    .landing-feature-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-    .landing-feature{
-      min-height:132px;
-      padding:20px;
-      border:3px solid var(--nb-ink);
-      color:var(--nb-ink);
-      background:var(--nb-white);
-      box-shadow:6px 6px 0 var(--nb-ink);
-      cursor:pointer;
-      text-align:left;
-    }
-    .landing-feature:nth-child(2n){background:var(--nb-yellow)}
-    .landing-feature:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--nb-orange)}
-    .landing-feature b{color:var(--nb-ink);font-size:1.05rem}
-    .landing-feature span{display:block;margin-top:9px;color:#333;line-height:1.4}
-    .landing-final .landing-panel{background:var(--nb-yellow)}
-    .landing-pwa{color:var(--nb-ink)}
-    .landing-pwa span{border:2px solid var(--nb-ink);color:var(--nb-ink);background:var(--nb-white)}
-    .landing-fallback{border-block:3px solid var(--nb-ink)}
-
-    @media (max-width:1180px){
-      .header-inner{width:100%;min-height:72px;padding:0 12px}
-      .brand{min-height:72px;padding:8px 4px;border-right:0}
-      .brand-mark{width:44px;height:44px}
-      .brand-mark svg{width:31px;height:31px}
-      .brand-copy strong{font-size:.86rem}
-      .menu-button{width:46px;height:46px;margin-left:auto;display:grid}
-      .main-nav{
-        position:fixed;
-        z-index:90;
-        top:78px;
-        right:12px;
-        left:12px;
-        max-height:calc(100dvh - 90px);
-        margin:0;
-        display:none;
-        overflow-y:auto;
-        border:var(--nb-border);
-        color:var(--nb-ink);
-        background:var(--nb-white);
-        box-shadow:8px 8px 0 var(--nb-ink);
-      }
-      .main-nav[data-open="true"]{display:flex;flex-direction:column}
-      .nav-link{width:100%;min-height:54px;padding:12px 16px;border:0;border-bottom:3px solid var(--nb-ink);text-align:left}
-      .version-chip{margin:10px;justify-content:center}
-      .header-status{display:none}
-      .nav-backdrop{inset:72px 0 0}
-      .landing-canvas,.landing3d::before{inset:72px 0 0;height:calc(100svh - 72px)}
-      .landing-hero{min-height:calc(100svh - 72px)}
-    }
-    @media (max-width:900px){
-      .landing-feature-grid{grid-template-columns:1fr 1fr}
-      .landing-copy{box-shadow:8px 8px 0 var(--nb-ink)}
-    }
-    @media (max-width:620px){
-      .landing-toolbar{top:78px}
-      .landing-scene{min-height:auto;padding-block:116px 72px}
-      .landing-hero{min-height:calc(100svh - 72px)}
-      .landing-title{font-size:clamp(2.65rem,14vw,4.35rem)}
-      .landing-title span{width:100%;box-shadow:5px 5px 0 var(--nb-orange)}
-      .landing-copy,.landing-panel{padding:22px 16px;border-width:3px;box-shadow:7px 7px 0 var(--nb-ink)}
-      .landing-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
-      .landing-metric{padding:10px 7px}
-      .landing-metric strong{font-size:1.05rem}
-      .landing-metric span{font-size:.62rem}
-      .landing-orbit{width:min(78vw,340px)}
-      .landing-facts,.landing-feature-grid{grid-template-columns:1fr}
-      .landing-currency-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-      .landing-currency{min-height:70px;padding:9px 7px}
-      .landing-currency span{display:none}
-    }
-
     @media (max-width:980px){
       .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .data-layout,.adjustment-layout,.advanced-layout,.report-layout,.market-layout,.file-workspace{grid-template-columns:1fr}
@@ -2871,6 +2650,540 @@
       body[data-route="informes"] #view-informes .report-layout>.card{display:none!important}
       .report-preview{min-height:0;padding:0;border:0;box-shadow:none}
     }
+
+    /* v0.11.2-Beta-Patch · geometría corregida y continuidad visual 3D */
+    :root{
+      --bg:#050507;
+      --bg-soft:#0a0b10;
+      --surface:#11131a;
+      --surface-2:#171a24;
+      --surface-3:#202432;
+      --line:#3b4050;
+      --line-soft:#292d39;
+      --text:#f7f7fa;
+      --muted:#c0c2cb;
+      --faint:#90939f;
+      --primary:#ffd400;
+      --primary-strong:#f1b900;
+      --blue:#55f5e6;
+      --violet:#aa91ff;
+      --gold:#ffd400;
+      --success:#57e389;
+      --danger:#ff7d8d;
+      --warning:#ffd166;
+      --shadow:0 28px 72px rgba(0,0,0,.36);
+      --radius:0;
+      --radius-sm:0;
+      --content:1240px;
+    }
+    body{
+      color-scheme:dark;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 82% 7%,rgba(255,105,0,.12),transparent 32rem),
+        radial-gradient(circle at 9% 64%,rgba(85,245,230,.08),transparent 34rem),
+        #050507;
+    }
+    ::selection{color:#111;background:#ffd400}
+    a{color:#7ff7ec}
+    :focus-visible{outline:3px solid #ffd400;outline-offset:3px;box-shadow:0 0 0 2px #050507}
+    main{width:min(var(--content),calc(100% - 40px))}
+    .app-header,
+    body[data-route="inicio"] .app-header{
+      min-height:78px;
+      border:0;
+      border-bottom:2px solid #ffd400;
+      color:#fff;
+      background:rgba(5,5,7,.92);
+      box-shadow:0 12px 42px rgba(0,0,0,.3);
+      backdrop-filter:blur(18px);
+    }
+    .header-inner{width:100%;min-height:78px;gap:0}
+    .brand,
+    body[data-route="inicio"] .brand{
+      min-height:78px;
+      align-self:stretch;
+      flex:0 1 224px;
+      gap:11px;
+      padding:10px 18px;
+      border:0;
+      border-right:1px solid rgba(255,255,255,.18);
+      color:#fff;
+      background:transparent;
+    }
+    .brand:hover,
+    body[data-route="inicio"] .brand:hover{background:rgba(255,212,0,.08)}
+    .brand-mark,
+    body[data-route="inicio"] .brand-mark{
+      width:46px;
+      height:46px;
+      border:2px solid #111;
+      border-radius:0;
+      color:#111;
+      background:#ffd400;
+      box-shadow:5px 5px 0 #ff6900;
+    }
+    .brand-copy strong,
+    body[data-route="inicio"] .brand-copy strong{color:#fff;font-size:.91rem;letter-spacing:.02em}
+    .brand-copy span,
+    body[data-route="inicio"] .brand-copy span{color:#aeb0ba}
+    .main-nav,
+    body[data-route="inicio"] .main-nav{
+      min-width:0;
+      align-self:stretch;
+      flex:1 1 auto;
+      margin-left:0;
+      display:flex;
+      align-items:stretch;
+      justify-content:flex-end;
+      gap:0;
+      background:transparent;
+    }
+    .nav-link,
+    body[data-route="inicio"] .nav-link{
+      min-width:78px;
+      min-height:78px;
+      flex:1 1 0;
+      padding:10px clamp(8px,1vw,15px);
+      border:0;
+      border-right:1px solid rgba(255,255,255,.14);
+      border-radius:0;
+      color:#f4f4f6;
+      background:transparent;
+      font-size:clamp(.68rem,.8vw,.78rem);
+      font-weight:900;
+      letter-spacing:.035em;
+      text-transform:uppercase;
+    }
+    .nav-link:hover,
+    .nav-link[aria-current="page"],
+    body[data-route="inicio"] .nav-link:hover,
+    body[data-route="inicio"] .nav-link[aria-current="page"]{color:#111;background:#ffd400}
+    .version-chip,
+    body[data-route="inicio"] .version-chip{
+      min-height:38px;
+      align-self:center;
+      flex:0 0 auto;
+      margin:0 10px;
+      padding:7px 10px;
+      border:2px solid #ffd400;
+      border-radius:0;
+      color:#ffd400;
+      background:#101016;
+      font-size:.67rem;
+    }
+    .header-status,
+    body[data-route="inicio"] .header-status{
+      min-height:40px;
+      flex:0 0 auto;
+      margin:0 10px 0 0;
+      padding:7px 10px;
+      border:1px solid rgba(255,255,255,.35);
+      border-radius:0;
+      color:#fff;
+      background:#101016;
+    }
+    .menu-button,
+    body[data-route="inicio"] .menu-button{
+      width:48px;
+      height:48px;
+      margin-right:12px;
+      border:2px solid #111;
+      border-radius:0;
+      color:#111;
+      background:#ffd400;
+    }
+    .nav-backdrop{background:rgba(0,0,0,.76)}
+    .view:not(.home-view){
+      position:relative;
+      padding-block:62px 94px;
+    }
+    .view:not(.home-view)::before{
+      position:fixed;
+      z-index:-1;
+      inset:78px 0 0;
+      pointer-events:none;
+      opacity:.24;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+      background-size:52px 52px;
+      mask-image:linear-gradient(to bottom,#000,transparent 86%);
+      content:"";
+    }
+    .view:not(.home-view)>.view-head{
+      max-width:none;
+      min-height:230px;
+      margin-bottom:30px;
+      padding:clamp(28px,4vw,48px);
+      display:grid;
+      align-content:end;
+      border:1px solid rgba(255,255,255,.24);
+      border-left:7px solid #ffd400;
+      color:#fff;
+      background:
+        radial-gradient(circle at 84% 24%,rgba(255,105,0,.18),transparent 24rem),
+        linear-gradient(135deg,rgba(24,24,32,.96),rgba(7,7,11,.92));
+      box-shadow:0 28px 72px rgba(0,0,0,.38);
+    }
+    .view:not(.home-view)>.view-head h1{
+      max-width:980px;
+      margin-bottom:14px;
+      color:#fff;
+      font-size:clamp(2.5rem,5.4vw,5.3rem);
+      font-style:normal;
+      font-weight:950;
+      line-height:.92;
+      letter-spacing:-.055em;
+      text-transform:uppercase;
+    }
+    .view:not(.home-view)>.view-head .lede{max-width:840px;margin:0;color:#c8cad3;line-height:1.62}
+    .eyebrow{color:#ffd400}
+    .card,
+    .scenario-config,
+    .report-preview,
+    .source-box,
+    .analysis-output,
+    .list-item,
+    .cost-reference-card,
+    .cost-results,
+    .cost-insight,
+    .cost-chart-card,
+    .cost-saved-panel,
+    .metric-tile,
+    .feature-jump,
+    .route-shortcut,
+    .report-source-option{
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:0;
+      color:var(--text);
+      background:linear-gradient(145deg,rgba(22,24,33,.96),rgba(9,10,15,.94));
+      box-shadow:0 22px 54px rgba(0,0,0,.3);
+    }
+    .card{padding:clamp(20px,2.4vw,30px);border-top:3px solid rgba(255,212,0,.78)}
+    .layout-2,.market-layout,.data-layout,.adjustment-layout,.advanced-layout,.report-layout{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      align-items:stretch;
+      gap:20px;
+    }
+    .layout-2>.card,.market-layout>.card,.data-layout>.card,.adjustment-layout>.card,.advanced-layout>.card,.report-layout>*{height:100%;margin-top:0}
+    .card h2,.card h3,.module-toolbar h2,.history-head h2,.report-preview h2{color:#fff}
+    .card p,.tool-card p,.module-toolbar p,.list-item p,.storage-facts dd{color:#bfc1ca}
+    .section-number,.tool-icon,.inline-badge,.data-state-badge{
+      border:2px solid #ffd400;
+      border-radius:0;
+      color:#111;
+      background:#ffd400;
+      box-shadow:4px 4px 0 #ff6900;
+    }
+    .button{
+      min-height:50px;
+      border:2px solid transparent;
+      border-radius:0;
+      font-weight:900;
+      letter-spacing:.015em;
+    }
+    .button.primary{color:#111;background:#ffd400;border-color:#111;box-shadow:6px 6px 0 #ff6900}
+    .button.secondary{color:#fff;background:#151720;border-color:rgba(255,255,255,.52);box-shadow:none}
+    .button.ghost{color:#c8cad3;background:transparent;border-color:rgba(255,255,255,.16)}
+    .button.danger{color:#fff;background:#8f1730;border-color:#ff7d8d}
+    .button:hover{transform:translate(-2px,-2px)}
+    .button.primary:hover{background:#ffe13d;box-shadow:8px 8px 0 #ff6900}
+    input,select,textarea{
+      min-height:50px;
+      border:1px solid #4b5060;
+      border-radius:0;
+      color:#fff;
+      background:#090a0f;
+    }
+    input::placeholder,textarea::placeholder{color:#737784}
+    input:hover,select:hover,textarea:hover{border-color:#ffd400}
+    label,.salary-legend{color:#f0f0f3}
+    .field-help{color:#9599a5}
+    details.fold,.salary-fieldset{
+      border:1px solid #363a47;
+      border-radius:0;
+      color:#fff;
+      background:rgba(6,7,11,.65);
+    }
+    details.fold>summary{color:#f3f3f5}
+    .route-shortcuts,.tool-grid,.feature-jump-grid,.metric-grid,.scenario-editor,.report-source-grid{
+      align-items:stretch;
+      grid-auto-rows:1fr;
+      gap:16px;
+    }
+    .route-shortcuts{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:22px}
+    .route-shortcut{
+      min-height:86px;
+      height:100%;
+      padding:18px;
+      border-left:4px solid #ffd400;
+      cursor:pointer;
+      text-align:left;
+    }
+    .route-shortcut:hover{border-color:#ffd400;background:rgba(255,212,0,.12);transform:translateY(-3px)}
+    .tool-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .tool-card{
+      height:100%;
+      min-height:330px;
+      display:grid;
+      grid-template-rows:auto auto 1fr auto;
+      align-items:start;
+    }
+    .tool-card:nth-child(n){
+      color:#fff;
+      background:linear-gradient(145deg,rgba(22,24,33,.98),rgba(9,10,15,.96));
+    }
+    .tool-card:nth-child(3n+1){border-top-color:#ffd400}
+    .tool-card:nth-child(3n+2){border-top-color:#55f5e6}
+    .tool-card:nth-child(3n){border-top-color:#ff6900}
+    .tool-card h2,.tool-card h3{color:#fff}
+    .tool-card .button{width:100%;align-self:end}
+    .tool-icon{width:62px;height:62px;display:grid;place-items:center;font-weight:950}
+    .data-tabs{
+      width:100%;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(132px,1fr));
+      gap:0;
+      border:1px solid rgba(255,255,255,.28);
+      background:#0d0e14;
+    }
+    .data-tab{
+      min-height:56px;
+      border:0;
+      border-right:1px solid rgba(255,255,255,.18);
+      border-radius:0;
+      color:#d5d6dc;
+      background:#0d0e14;
+      font-weight:900;
+    }
+    .data-tab:last-child{border-right:0}
+    .data-tab:hover,.data-tab[aria-selected="true"]{color:#111;background:#ffd400}
+    .metric-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .metric-tile{
+      min-height:128px;
+      height:100%;
+      display:grid;
+      align-content:space-between;
+      border-left:3px solid #55f5e6;
+    }
+    .metric-tile span,.metric-tile small{color:#aeb1bb}
+    .metric-tile strong{color:#fff}
+    .stats-grid{align-items:stretch;grid-auto-rows:1fr}
+    .stat{
+      height:100%;
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:0;
+      background:#10121a;
+    }
+    .stat.primary-stat{border-color:#ffd400;background:rgba(255,212,0,.1)}
+    .stat-label{color:#aeb1bb}
+    .stat-value{color:#fff}
+    .table-wrap{
+      border:1px solid rgba(255,255,255,.24);
+      border-radius:0;
+      background:#0b0c12;
+    }
+    table{color:#eee}
+    th{color:#111;background:#ffd400;border-color:#111}
+    td{border-color:#2f3340}
+    tbody tr:nth-child(even){background:rgba(255,255,255,.025)}
+    .source-box dl div,.metadata-list div,.storage-facts div{
+      border-color:#343846;
+      color:#fff;
+      background:#10121a;
+    }
+    .source-box dt,.metadata-list dt,.storage-facts dt{color:#ffd400}
+    .inline-notice,.form-notice,.warning,.market-alert{
+      border-radius:0;
+      color:#e4e5e9;
+      background:#171923;
+    }
+    .tracker-empty{
+      border-color:#4a4e5c;
+      color:#bfc1ca;
+      background:#0d0f16;
+    }
+    .account-identity,.setting-row{
+      border-color:#3b4050;
+      color:#fff;
+      background:#10121a;
+    }
+    .account-copy span,.setting-copy span,.account-metric span{color:#aeb1bb}
+    .sync-pill[data-state]{
+      border-color:#4a4e5c;
+      color:#f3f3f5;
+      background:#10121a;
+    }
+    .account-metric{
+      border-color:#343846;
+      color:#fff;
+      background:#10121a;
+    }
+    .privacy-explainer{
+      border-left-color:#ffd400;
+      color:#ececf0;
+      background:#151720;
+    }
+    .danger-zone{
+      border-color:#ff7d8d;
+      color:#fff;
+      background:rgba(143,23,48,.2);
+    }
+    .source-state{
+      border:1px solid currentColor;
+      border-radius:0;
+      background:#10121a;
+    }
+    .source-state[data-mode="online"]{color:#77eca0;background:rgba(28,107,59,.18)}
+    .source-state[data-mode="cache"]{color:#ffd166;background:rgba(122,62,0,.2)}
+    .source-state[data-mode="stale"],.source-state[data-mode="expired"]{color:#ffad73;background:rgba(122,62,0,.2)}
+    .source-state[data-mode="error"],.source-state[data-mode="unavailable"],
+    .source-state[data-mode="offline"],.source-state[data-mode="provider"],.source-state[data-mode="currency"]{color:#ff9cab;background:rgba(143,23,48,.18)}
+    .source-state[data-mode="fallback"],.source-state[data-mode="shared"]{color:#c7b8ff;background:rgba(110,82,180,.18)}
+    .source-state[data-mode="manual"],.source-state[data-mode="local"]{color:#82f4e9;background:rgba(40,115,109,.18)}
+    dialog{
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:0;
+      color:#fff;
+      background:#0d0f16;
+      box-shadow:0 30px 100px rgba(0,0,0,.7);
+    }
+    dialog::backdrop{background:rgba(0,0,0,.78)}
+    .dialog-head{border-color:#ffd400;background:#141620}
+    .dialog-body{background:#0d0f16}
+    .dialog-callout,.beta-consent-box{border-color:#3b4050;color:#fff;background:#151720}
+    .icon-button{border-radius:0;color:#111;background:#ffd400}
+    .app-footer{
+      width:100%;
+      border-top:2px solid #ffd400;
+      color:#fff;
+      background:#08090d;
+    }
+    .footer-links a{color:#d8d9df}
+    .footer-version{color:#ffd400;background:#101016;border-color:#ffd400}
+
+    /* La landing de v0.11.0 conserva su aspecto; solo se corrige la geometría. */
+    body[data-route="inicio"]{background:#050507}
+    #view-inicio.home-view{color:#fff;background:#050507}
+    .landing-toolbar{
+      width:min(calc(100% - 40px),1440px);
+      min-height:54px;
+      display:grid;
+      grid-template-columns:minmax(350px,520px) minmax(190px,auto);
+      align-items:stretch;
+      justify-content:end;
+      gap:12px;
+    }
+    .landing-control,.landing-motion-button{min-height:54px;height:100%;margin:0}
+    .landing-control{display:grid;grid-template-columns:auto minmax(145px,1fr) minmax(110px,150px);align-items:center}
+    .landing-control select{width:100%}
+    .landing-motion-button{min-width:190px}
+    .landing-scene{width:min(100%,1520px);padding-inline:clamp(24px,6vw,96px)}
+    .landing-hero{grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);gap:clamp(42px,6vw,96px)}
+    .landing-copy{width:100%;max-width:920px}
+    .landing-title{font-size:clamp(3.45rem,6.7vw,8.4rem)}
+    .landing-orbit{width:min(42vw,560px)}
+    .landing-panel{width:min(100%,1080px);max-width:1080px}
+    .landing-actions{align-items:stretch}
+    .landing-primary,.landing-secondary{min-width:236px;min-height:64px}
+    .landing-metrics,.landing-facts,.landing-currency-grid,.landing-feature-grid{align-items:stretch;grid-auto-rows:1fr}
+    .landing-metric,.landing-fact,.landing-currency,.landing-feature{height:100%}
+    .landing-fact{display:grid;grid-template-rows:auto 1fr}
+    .landing-currency{grid-template-rows:auto 1fr}
+    .landing-feature{
+      min-height:190px;
+      display:grid;
+      grid-template-rows:auto 1fr;
+      align-content:start;
+      color:#fff;
+      font:inherit;
+      text-align:left;
+      cursor:pointer;
+    }
+    .landing-feature:hover,.landing-feature:focus-visible{border-color:#ffd400;background:rgba(255,212,0,.12);transform:translateY(-5px)}
+    .landing-feature p{align-self:start}
+    .landing-pwa{
+      width:min(100%,780px);
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      align-items:stretch;
+    }
+    .landing-pwa span{min-height:44px;display:grid;place-items:center;text-align:center}
+
+    @media (max-width:1180px){
+      .header-inner{min-height:72px;padding-inline:12px}
+      .brand{min-height:72px;flex:1 1 auto;padding-inline:4px;border-right:0}
+      .brand-mark{width:44px;height:44px}
+      .menu-button{margin-left:auto;display:grid}
+      .main-nav,
+      body[data-route="inicio"] .main-nav{
+        position:fixed;
+        z-index:90;
+        top:78px;
+        right:12px;
+        left:12px;
+        max-height:calc(100dvh - 92px);
+        display:none;
+        overflow-y:auto;
+        border:1px solid #ffd400;
+        background:#090a0f;
+        box-shadow:0 26px 70px rgba(0,0,0,.56);
+      }
+      .main-nav[data-open="true"]{display:flex;flex-direction:column;align-items:stretch}
+      .nav-link,
+      body[data-route="inicio"] .nav-link{
+        width:100%;
+        min-height:54px;
+        flex:0 0 auto;
+        padding:12px 16px;
+        border:0;
+        border-bottom:1px solid rgba(255,255,255,.18);
+        color:#fff;
+        background:#090a0f;
+        text-align:left;
+      }
+      .nav-link:hover,.nav-link[aria-current="page"],
+      body[data-route="inicio"] .nav-link:hover,
+      body[data-route="inicio"] .nav-link[aria-current="page"]{color:#111;background:#ffd400}
+      .version-chip{margin:10px;justify-content:center}
+      .header-status{display:none}
+      .nav-backdrop{inset:72px 0 0}
+      .landing-canvas,.landing3d::before{inset:72px 0 0;height:calc(100svh - 72px)}
+    }
+    @media (max-width:1050px){
+      .layout-2,.market-layout,.data-layout,.adjustment-layout,.advanced-layout,.report-layout{grid-template-columns:1fr}
+      .tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .landing-hero{grid-template-columns:1fr}
+      .landing-orbit{width:min(68vw,540px)}
+    }
+    @media (max-width:760px){
+      main{width:calc(100% - 24px)}
+      .view:not(.home-view){padding-block:34px 64px}
+      .view:not(.home-view)>.view-head{min-height:0;padding:26px 20px}
+      .tool-grid,.metric-grid,.route-shortcuts{grid-template-columns:1fr}
+      .tool-card{min-height:280px}
+      .data-tabs{grid-template-columns:1fr 1fr}
+      .landing-toolbar{grid-template-columns:minmax(0,1fr) auto}
+      .landing-control{grid-template-columns:auto minmax(120px,1fr)}
+      .landing-control-state{display:none}
+      .landing-motion-button{min-width:0}
+      .landing-pwa{grid-template-columns:1fr}
+    }
+    @media (max-width:620px){
+      .landing-toolbar{width:calc(100% - 20px);gap:8px}
+      .landing-control{padding-inline:7px}
+      .landing-control label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+      .landing-control select{max-width:none}
+      .landing-motion-button{padding-inline:10px;font-size:.72rem}
+      .landing-scene{padding-inline:18px}
+      .landing-primary,.landing-secondary{min-width:0;width:100%}
+      .landing-currency-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .landing-feature-grid,.landing-facts,.landing-metrics{grid-template-columns:1fr}
+      .input-group{grid-template-columns:1fr}
+      .app-footer{grid-template-columns:1fr}
+    }
+
   </style>
 </head>
 <body>
@@ -2900,7 +3213,7 @@
         <button class="nav-link" type="button" data-route="informes">Informes</button>
         <button class="nav-link" type="button" data-route="historial">Historial</button>
         <button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button>
-        <span class="version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.11.1-Beta-Patch</span>
+        <span class="version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.11.2-Beta-Patch</span>
       </nav>
 
       <span class="status-chip header-status" id="connectionChip" data-status="online" aria-live="polite">
@@ -2939,17 +3252,17 @@
 
         <section class="landing-scene landing-hero" data-landing-scene="0" data-active="true" aria-describedby="homeSummary">
           <div class="landing-copy">
-            <p class="landing-eyebrow">v0.11.1‑Beta‑Patch · Precisión y diseño</p>
-            <h1 class="landing-title" id="homeTitle">Inflación clara. <span>Decisiones reales.</span></h1>
-            <p class="landing-lede" id="homeSummary">Compara precios, monedas y poder adquisitivo sin perder precisión.</p>
+            <p class="landing-eyebrow">v0.11.2‑Beta‑Patch · 3D Experience Update</p>
+            <h1 class="landing-title" id="homeTitle">Mide el cambio. <span>Entiende el impacto.</span></h1>
+            <p class="landing-lede" id="homeSummary">Calcula inflación, deflación y poder adquisitivo con precisión compuesta, fuentes identificadas y una experiencia preparada para móvil, escritorio y 4K.</p>
             <div class="landing-actions" role="group" aria-label="Acciones principales">
               <button class="landing-primary" id="openCalculator3dButton" type="button"><span>Abrir calculadora</span><span aria-hidden="true">→</span></button>
-              <button class="landing-secondary" type="button" data-route="herramientas">Ver herramientas</button>
+              <button class="landing-secondary" type="button" data-route="herramientas">Explorar herramientas</button>
             </div>
             <div class="landing-metrics" aria-label="Capacidades principales">
-              <div class="landing-metric"><strong>16</strong><span>monedas</span></div>
-              <div class="landing-metric"><strong>En vivo</strong><span>tipo de cambio</span></div>
-              <div class="landing-metric"><strong>Local</strong><span>tus datos</span></div>
+              <div class="landing-metric"><strong>16</strong><span>monedas compatibles</span></div>
+              <div class="landing-metric"><strong>4K</strong><span>interfaz y exportación</span></div>
+              <div class="landing-metric"><strong>100 %</strong><span>cálculo local y auditable</span></div>
             </div>
           </div>
           <div class="landing-orbit" aria-hidden="true">
@@ -2961,27 +3274,27 @@
 
         <section class="landing-scene" data-landing-scene="1" aria-labelledby="landingMethodTitle">
           <div class="landing-panel">
-            <span class="landing-section-number">01 · Cálculo</span>
-            <h2 class="landing-heading" id="landingMethodTitle">Compara. Calcula. <em>Decide.</em></h2>
-            <p class="landing-text">Del precio inicial al resultado, con composición matemática y sin redondeos ocultos.</p>
+            <span class="landing-section-number">01 · La variación real</span>
+            <h2 class="landing-heading" id="landingMethodTitle">De un precio a una <em>decisión clara.</em></h2>
+            <p class="landing-text">Comparamos el valor inicial con el final sin redondear los pasos intermedios. El tiempo se normaliza y las tasas equivalentes se calculan mediante composición geométrica, no con aproximaciones lineales.</p>
             <div class="landing-facts">
-              <div class="landing-fact"><strong>Inflación</strong><span>Cambio acumulado.</span></div>
-              <div class="landing-fact"><strong>CAGR</strong><span>Tasa anual equivalente.</span></div>
-              <div class="landing-fact"><strong>Poder real</strong><span>Lo que conserva tu dinero.</span></div>
+              <div class="landing-fact"><strong>Inflación total</strong><span>Variación porcentual acumulada entre ambos valores.</span></div>
+              <div class="landing-fact"><strong>CAGR</strong><span>Tasa anual equivalente para períodos cortos o largos.</span></div>
+              <div class="landing-fact"><strong>Poder adquisitivo</strong><span>Cuánto compra hoy el mismo importe inicial.</span></div>
             </div>
           </div>
         </section>
 
         <section class="landing-scene" data-landing-scene="2" aria-labelledby="landingChartTitle">
           <div class="landing-panel" data-side="right">
-            <span class="landing-section-number">02 · Lectura visual</span>
-            <h2 class="landing-heading" id="landingChartTitle">La curva, <em>sin ruido.</em></h2>
-            <p class="landing-text">Gráficos claros; los datos oficiales siempre muestran fuente, fecha y estado.</p>
+            <span class="landing-section-number">02 · Profundidad de datos</span>
+            <h2 class="landing-heading" id="landingChartTitle">Una trayectoria visible, <em>no datos inventados.</em></h2>
+            <p class="landing-text">Los gráficos de la calculadora muestran interpolaciones matemáticas claramente etiquetadas. Los datos históricos oficiales se mantienen separados y siempre indican fuente, fecha y estado.</p>
             <div class="landing-chart-shell" aria-label="Ejemplo ilustrativo de una trayectoria matemática">
               <svg viewBox="0 0 900 300" role="img" aria-labelledby="landingChartSvgTitle landingChartSvgDesc">
                 <title id="landingChartSvgTitle">Trayectoria ilustrativa de precios</title>
-                <desc id="landingChartSvgDesc">Línea conceptual ascendente. No representa una serie histórica.</desc>
-                <defs><linearGradient id="landingChartGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6900" stop-opacity=".3"/><stop offset="1" stop-color="#ff6900" stop-opacity="0"/></linearGradient></defs>
+                <desc id="landingChartSvgDesc">Una línea ascendente con variaciones intermedias. Es una visualización conceptual, no una serie histórica.</desc>
+                <defs><linearGradient id="landingChartGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd400" stop-opacity=".34"/><stop offset="1" stop-color="#ffd400" stop-opacity="0"/></linearGradient></defs>
                 <path class="landing-chart-area" d="M30 258 C145 232 190 250 278 192 S438 212 520 142 S690 154 870 44 L870 280 L30 280 Z"/>
                 <path class="landing-chart-line" d="M30 258 C145 232 190 250 278 192 S438 212 520 142 S690 154 870 44"/>
               </svg>
@@ -2991,45 +3304,47 @@
 
         <section class="landing-scene" data-landing-scene="3" aria-labelledby="landingCurrenciesTitle">
           <div class="landing-panel">
-            <span class="landing-section-number">03 · Monedas</span>
-            <h2 class="landing-heading" id="landingCurrenciesTitle"><em>16 monedas.</em> Una referencia.</h2>
-            <p class="landing-text">Cotización de mercado, respaldo diario y estado visible.</p>
+            <span class="landing-section-number">03 · Cobertura internacional</span>
+            <h2 class="landing-heading" id="landingCurrenciesTitle"><em>16 monedas.</em> Una misma metodología.</h2>
+            <p class="landing-text">Conversión con proveedor principal, respaldo alternativo y última cotización válida almacenada. Nunca sustituimos una tasa real por un valor inventado.</p>
             <div class="landing-currency-grid" aria-label="Monedas compatibles">
-              <div class="landing-currency"><strong>BRL</strong><span>Real</span></div><div class="landing-currency"><strong>USD</strong><span>Dólar</span></div>
-              <div class="landing-currency"><strong>EUR</strong><span>Euro</span></div><div class="landing-currency"><strong>GBP</strong><span>Libra</span></div>
+              <div class="landing-currency"><strong>BRL</strong><span>Real brasileño</span></div><div class="landing-currency"><strong>USD</strong><span>Dólar estadounidense</span></div>
+              <div class="landing-currency"><strong>EUR</strong><span>Euro</span></div><div class="landing-currency"><strong>GBP</strong><span>Libra esterlina</span></div>
               <div class="landing-currency"><strong>CAD</strong><span>Dólar canadiense</span></div><div class="landing-currency"><strong>MXN</strong><span>Peso mexicano</span></div>
-              <div class="landing-currency"><strong>ARS</strong><span>Peso argentino</span></div><div class="landing-currency"><strong>JPY</strong><span>Yen</span></div>
-              <div class="landing-currency"><strong>CNY</strong><span>Yuan</span></div><div class="landing-currency"><strong>CHF</strong><span>Franco</span></div>
+              <div class="landing-currency"><strong>ARS</strong><span>Peso argentino</span></div><div class="landing-currency"><strong>JPY</strong><span>Yen japonés</span></div>
+              <div class="landing-currency"><strong>CNY</strong><span>Yuan chino</span></div><div class="landing-currency"><strong>CHF</strong><span>Franco suizo</span></div>
               <div class="landing-currency"><strong>AUD</strong><span>Dólar australiano</span></div><div class="landing-currency"><strong>NZD</strong><span>Dólar neozelandés</span></div>
               <div class="landing-currency"><strong>CLP</strong><span>Peso chileno</span></div><div class="landing-currency"><strong>COP</strong><span>Peso colombiano</span></div>
-              <div class="landing-currency"><strong>PEN</strong><span>Sol</span></div><div class="landing-currency"><strong>UYU</strong><span>Peso uruguayo</span></div>
+              <div class="landing-currency"><strong>PEN</strong><span>Sol peruano</span></div><div class="landing-currency"><strong>UYU</strong><span>Peso uruguayo</span></div>
             </div>
           </div>
         </section>
 
         <section class="landing-scene" data-landing-scene="4" aria-labelledby="landingToolsTitle">
           <div class="landing-panel" data-side="right">
-            <span class="landing-section-number">04 · Herramientas</span>
-            <h2 class="landing-heading" id="landingToolsTitle">Todo está <em>conectado.</em></h2>
+            <span class="landing-section-number">04 · Más que una calculadora</span>
+            <h2 class="landing-heading" id="landingToolsTitle">Herramientas para <em>precios reales.</em></h2>
             <div class="landing-feature-grid">
-              <button class="landing-feature" type="button" data-route="precios"><b>Precios</b><span>Productos y reduflación</span></button>
-              <button class="landing-feature" type="button" data-route="datos"><b>Datos</b><span>IPCA, países y cotizaciones</span></button>
-              <button class="landing-feature" type="button" data-route="informes"><b>Informes</b><span>PDF, PNG, CSV y JSON</span></button>
-              <button class="landing-feature" type="button" data-route="historial"><b>Historial</b><span>Escenarios guardados</span></button>
+              <button class="landing-feature" type="button" data-route="precios"><b>Reduflación</b><p>Compara precio y contenido para detectar aumentos ocultos por menor cantidad.</p></button>
+              <button class="landing-feature" type="button" data-route="salario"><b>Salarios y contratos</b><p>Mide aumentos nominales, poder real y reajustes compuestos.</p></button>
+              <button class="landing-feature" type="button" data-route="herramientas"><b>Cestas personales</b><p>Calcula tu propio índice de costo de vida con cantidades y ponderaciones.</p></button>
+              <button class="landing-feature" type="button" data-route="precios"><b>Importación revisable</b><p>Previsualiza JSON, CSV, PDF e imágenes antes de incorporar cualquier dato.</p></button>
+              <button class="landing-feature" type="button" data-route="informes"><b>Informes profesionales</b><p>Exporta PDF, PNG, CSV y JSON con versión, metodología y fuentes.</p></button>
+              <button class="landing-feature" type="button" data-route="cuenta"><b>Offline y privacidad</b><p>Conserva datos locales compatibles y sigue calculando sin conexión.</p></button>
             </div>
           </div>
         </section>
 
         <section class="landing-scene landing-final" data-landing-scene="5" aria-labelledby="homeCtaTitle">
           <div class="landing-panel">
-            <span class="landing-section-number">05 · Empieza</span>
-            <h2 class="landing-heading" id="homeCtaTitle"><span id="pwaTitle">Tu cálculo, <em>ahora.</em></span></h2>
-            <p class="landing-text">Abre la calculadora. Tus datos siguen en este dispositivo.</p>
+            <span class="landing-section-number">05 · Todo listo</span>
+            <h2 class="landing-heading" id="homeCtaTitle"><span id="pwaTitle">Convierte cambios de precio en <em>respuestas.</em></span></h2>
+            <p class="landing-text">La experiencia 3D nunca es necesaria para usar la herramienta. Puedes abrir la calculadora inmediatamente, reducir el movimiento o usarla sin conexión con los datos ya almacenados.</p>
             <div class="landing-actions">
               <button class="landing-primary" id="openCalculatorFinalButton" type="button">Abrir calculadora <span aria-hidden="true">→</span></button>
               <button class="landing-secondary" id="installAppButton" type="button" hidden>Instalar aplicación</button>
             </div>
-            <div class="landing-pwa"><span id="pwaInstallState">Comprobando instalación</span><span id="pwaOfflineState">Caché preparada al abrir</span></div>
+            <div class="landing-pwa"><span id="pwaInstallState">Comprobando instalación</span><span id="pwaOfflineState">Caché preparada al abrir</span><span>Datos locales preservados</span></div>
           </div>
         </section>
 
@@ -3353,7 +3668,7 @@
 
     <section class="view" id="view-precios" data-view="precios" aria-labelledby="marketTitle" hidden>
       <div class="view-head">
-        <p class="eyebrow">Precios reales · v0.11.1</p>
+        <p class="eyebrow">Precios reales · v0.11.2</p>
         <h1 id="marketTitle">Productos, reduflación y archivos</h1>
         <p class="lede">Normaliza gramos, kilogramos, mililitros, litros y presentaciones; guarda el historial en este dispositivo e importa datos únicamente después de revisarlos.</p>
       </div>
@@ -4224,7 +4539,7 @@
       <a href="#cuenta" data-route="cuenta">Privacidad</a>
       <a href="#informes" data-route="informes">Informes</a>
     </nav>
-    <span class="footer-version version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.11.1-Beta-Patch</span>
+    <span class="footer-version version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.11.2-Beta-Patch</span>
   </footer>
 
   <dialog id="basketDialog" aria-labelledby="basketTitle">
@@ -4506,12 +4821,13 @@
     <div class="dialog-body dialog-stack">
       <p>Esta versión está preparada para pruebas públicas. La calculadora y tus datos locales siguen funcionando aunque la sincronización no esté disponible.</p>
       <div class="dialog-callout">
-        <strong>Qué corrige v0.11.1-Beta-Patch</strong>
+        <strong>Qué corrige v0.11.2-Beta-Patch</strong>
         <ul>
-          <li>cotizaciones de mercado prioritarias, respaldo diario y precisión para valores inferiores a un centavo;</li>
-          <li>landing, menú y herramientas comparten la misma identidad visual;</li>
-          <li>portada más corta, clara y con accesos directos;</li>
-          <li>compatibilidad completa con cálculos, historial, exportaciones y datos locales.</li>
+          <li>conserva la landing 3D original de v0.11.0-Beta, sin reemplazar su concepto ni sus escenas;</li>
+          <li>corrige simetría, proporciones, alturas y alineación en controles, tarjetas, pestañas y rejillas;</li>
+          <li>fusiona menú, calculadora y herramientas con el mismo lenguaje oscuro, amarillo y cinematográfico de la landing;</li>
+          <li>prioriza cotizaciones de mercado, mantiene respaldo diario y muestra valores pequeños sin redondearlos a cero;</li>
+          <li>preserva cálculos, historial, exportaciones, datos locales, PWA y cuenta opcional.</li>
         </ul>
       </div>
       <section class="beta-consent-box" aria-labelledby="betaConsentTitle">
@@ -4607,7 +4923,7 @@
   (function(){
     'use strict';
 
-    const APP_VERSION = 'v0.11.1-Beta-Patch';
+    const APP_VERSION = 'v0.11.2-Beta-Patch';
     const VERSION = APP_VERSION;
     // El contrato de create-account/delete-account no cambió en este parche de exportaciones.
     const ACCOUNT_API_VERSION = 'v0.8.2-Beta-Patch';
@@ -5320,7 +5636,7 @@
       try{
         state.backend.client = window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
           auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'implicit',storageKey:'inflation.v080.auth'},
-          global:{headers:{'x-application-name':'inflation-insights-v0111-beta'}}
+          global:{headers:{'x-application-name':'inflation-insights-v0112-beta'}}
         });
         state.backend.available = true;
         const sessionResult = await withTimeout(state.backend.client.auth.getSession());
@@ -5617,10 +5933,10 @@
           ]);
           payload.remote={user:{id:state.backend.user.id,email:state.backend.user.email || null},profiles:profiles,calculations:calculations,baskets:baskets,feedback:feedback,usageEvents:events};
         }
-        downloadJsonFile('mis-datos-inflation-insights-v0111-'+new Date().toISOString().slice(0,10)+'.json',payload);
+        downloadJsonFile('mis-datos-inflation-insights-v0112-'+new Date().toISOString().slice(0,10)+'.json',payload);
         setNotice($('accountNotice'),'Exportación preparada. El archivo incluye datos locales y, si había sesión, los remotos accesibles.','success');
       }catch(error){
-        downloadJsonFile('mis-datos-locales-inflation-insights-v0111.json',payload);
+        downloadJsonFile('mis-datos-locales-inflation-insights-v0112.json',payload);
         setNotice($('accountNotice'),'Se exportaron los datos locales, pero no fue posible recuperar los remotos.','warning');
       }finally{ setButtonBusy($('exportAllDataButton'),false); }
     }
@@ -5679,7 +5995,7 @@
         if($('pwaOfflineState')) $('pwaOfflineState').textContent='Este navegador no admite Service Worker';
         return;
       }
-      navigator.serviceWorker.register('./sw-v0.11.1-beta-patch.js').then(function(registration){
+      navigator.serviceWorker.register('./sw-v0.11.2-beta-patch.js').then(function(registration){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent=navigator.onLine === false ? 'Modo offline activo' : 'Caché local preparada';
         registration.update().catch(function(){ return null; });
         registration.addEventListener('updatefound',function(){
@@ -7586,7 +7902,7 @@
           ipca:Object.assign({},state.ipca)
         }
       };
-      downloadJsonFile('resultado-inflacion-v0111.json',data);
+      downloadJsonFile('resultado-inflacion-v0112.json',data);
       trackEvent('report_exported',{tool:'calculator',format:'json'});
     }
 
@@ -7628,7 +7944,7 @@
         rows.push(['fecha_oficial_' + code,quote.officialDate || '']);
         rows.push(['consultado_' + code,quote.fetchedAt || '']);
       });
-      downloadCsvFile('resultado-inflacion-v0111.csv',rows);
+      downloadCsvFile('resultado-inflacion-v0112.csv',rows);
       trackEvent('report_exported',{tool:'calculator',format:'csv'});
     }
 
@@ -8163,7 +8479,7 @@
           };
         })
       };
-      downloadJsonFile('reajuste-salarial-v0111.json',data);
+      downloadJsonFile('reajuste-salarial-v0112.json',data);
       trackEvent('report_exported',{tool:'salary',format:'json'});
     }
 
@@ -8185,7 +8501,7 @@
       rows.push(['fecha_o_periodo_fuente',bundle.inputs.source.officialDate || '']);
       rows.push(['estado_fuente',salarySourceStateLabel(bundle.inputs.source.mode)]);
       rows.push(['periodo_analizado_meses',bundle.inputs.months]);
-      downloadCsvFile('reajuste-salarial-v0111.csv',rows);
+      downloadCsvFile('reajuste-salarial-v0112.csv',rows);
       trackEvent('report_exported',{tool:'salary',format:'csv'});
     }
 
@@ -8241,7 +8557,7 @@
         URL.revokeObjectURL(url);
         canvas.toBlob(function(png){
           if(!png){ showToast('El navegador no pudo generar la imagen.'); return; }
-          downloadBlob('informe-reajuste-salarial-v0111.png',png,'image/png');
+          downloadBlob('informe-reajuste-salarial-v0112.png',png,'image/png');
           trackEvent('report_exported',{tool:'salary',format:'png',design:'professional'});
           showToast('PNG profesional exportado en 1600 × 1100 px.');
         },'image/png');
@@ -9224,7 +9540,7 @@
     function exportPersonalJson(){
       const bundle = ensurePersonalResult();
       if(!bundle) return;
-      downloadJsonFile('costo-de-vida-v0111.json',personalExportPayload(bundle));
+      downloadJsonFile('costo-de-vida-v0112.json',personalExportPayload(bundle));
     }
 
     function exportPersonalProductsCsv(){
@@ -9234,7 +9550,7 @@
       bundle.metrics.products.forEach(function(item){
         rows.push([item.name,item.category,bundle.meta.currency,item.quantity,item.previousPrice,item.currentPrice,item.previousCost,item.currentCost,isFiniteNumber(item.variation) ? item.variation*100 : '',item.monetaryChange,item.contribution*100,item.notes]);
       });
-      downloadCsvFile('productos-costo-de-vida-v0111.csv',rows);
+      downloadCsvFile('productos-costo-de-vida-v0112.csv',rows);
     }
 
     function exportPersonalAnalysisCsv(){
@@ -9251,7 +9567,7 @@
         ['categoria','impacto_monetario','contribucion_pp']
       ];
       bundle.metrics.categories.forEach(function(item){ rows.push([item.name,item.monetaryChange,item.contribution*100]); });
-      downloadCsvFile('analisis-costo-de-vida-v0111.csv',rows);
+      downloadCsvFile('analisis-costo-de-vida-v0112.csv',rows);
     }
 
     function buildPersonalShareUrl(){
@@ -9384,7 +9700,7 @@
       try{
         const payload = normalizePersonalPayload(record.payload);
         const filename = (payload.name || 'cesta').toLocaleLowerCase('es').replace(/[^a-z0-9áéíóúüñ]+/gi,'-').replace(/^-|-$/g,'').slice(0,50) || 'cesta';
-        downloadJsonFile(filename+'-v0111.json',record.payload);
+        downloadJsonFile(filename+'-v0112.json',record.payload);
       }catch(error){
         setNotice($('personalNotice'),'No se pudo exportar este registro: ' + error.message,'error');
       }
@@ -9914,7 +10230,7 @@
       if(!result || !result.analysis) return;
       const rows=[['economía','índice','período','tasa_mensual_pct','acumulada_pct','indice_base_100','fuente','consultado']];
       result.analysis.points.forEach(function(point){ rows.push([result.economy,result.indexName,point.period,point.rate,point.accumulated*100,point.base100,result.source+' · '+result.provider,result.fetchedAt]); });
-      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0111.csv',rows);
+      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0112.csv',rows);
     }
 
     function setDataTab(name){
@@ -9973,7 +10289,7 @@
       const lowest=Math.min.apply(null,result.series.map(function(item){ return item.analysis.accumulated; }));
       const rows=[['economía','índice','inicio','fin','inflación_acumulada_pct','diferencia_pp','fuente','consultado']];
       result.series.forEach(function(item){ rows.push([item.economy,item.indexName,result.start,result.end,item.analysis.accumulated*100,(item.analysis.accumulated-lowest)*100,item.source+' · '+item.provider,item.fetchedAt]); });
-      downloadCsvFile('comparacion-internacional-v0111.csv',rows);
+      downloadCsvFile('comparacion-internacional-v0112.csv',rows);
     }
 
     function contractRange(){
@@ -10073,7 +10389,7 @@
       const result=state.contractComparison; if(!result) return;
       const rows=[['índice','inicio','fin','variación_pct','aumento','valor_final','moneda','fuente','último_dato']];
       result.rows.forEach(function(row){ rows.push([row.name,result.start,result.end,row.rate*100,row.difference,row.finalValue,result.currency,row.source,row.latestPeriod]); });
-      downloadCsvFile('comparacion-reajustes-v0111.csv',rows);
+      downloadCsvFile('comparacion-reajustes-v0112.csv',rows);
     }
 
     function parseLabRates(text,years,fallback){
@@ -10150,7 +10466,7 @@
       const result=state.labResult; if(!result) return;
       const rows=[['escenario','año','inflación_periodo_pct','valor_necesario','ingreso_nominal','ingreso_real','poder_adquisitivo_pct','pérdida_ganancia']];
       result.scenarios.forEach(function(item){ item.timeline.forEach(function(point){ rows.push([item.name,point.year,point.year ? item.rates[point.year-1] : 0,point.priceNeeded,point.nominalIncome,point.realIncome,point.purchasingPower,point.loss]); }); });
-      downloadCsvFile('laboratorio-escenarios-v0111.csv',rows);
+      downloadCsvFile('laboratorio-escenarios-v0112.csv',rows);
     }
 
     function advancedRowTemplate(item,index){
@@ -10215,7 +10531,7 @@
       const result=state.advancedResult; if(!result) return;
       const rows=[['período','tasa_pct','acumulada_pct','valor','indice_base_100','moneda']];
       result.rows.forEach(function(row){ rows.push([row.label,row.rate,row.accumulated*100,row.value,row.base100,result.currency]); });
-      downloadCsvFile('inflacion-por-periodos-v0111.csv',rows);
+      downloadCsvFile('inflacion-por-periodos-v0112.csv',rows);
     }
 
     function setMarketTab(tab,focus){
@@ -10633,7 +10949,7 @@
       const records=recordsForProduct(state.selectedProductKey);
       if(!records.length) return;
       const payload={schemaVersion:FILE_SCHEMA_VERSION,appVersion:APP_VERSION,type:'product-price-history',createdAt:nowIso(),data:{product:records[0].name,records:records}};
-      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0111.json',payload);
+      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0112.json',payload);
     }
 
     function calculateInflationGoal(){
@@ -11041,14 +11357,14 @@
 
     function exportUnifiedCsv(){
       if(!state.productRecords.length){ setNotice($('exportStudioNotice'),'No hay seguimientos de productos para exportar en CSV.','warning'); return; }
-      downloadBlob('seguimiento-productos-v0111-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
+      downloadBlob('seguimiento-productos-v0112-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
       setNotice($('exportStudioNotice'),'CSV UTF-8 exportado con fechas ISO y números decimales consistentes.','success');
     }
 
     function exportUnifiedJson(){
       const all=$('exportDataScope').value === 'all';
       const payload=all ? buildLocalExchangePayload() : structuredProductPayload();
-      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0111-'+new Date().toISOString().slice(0,10)+'.json',payload);
+      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0112-'+new Date().toISOString().slice(0,10)+'.json',payload);
       setNotice($('exportStudioNotice'),'JSON exportado con versión de esquema, versión de la aplicación, tipo y fecha de creación.','success');
     }
 
@@ -11189,7 +11505,7 @@
           canvas.toBlob(function(output){
             URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false);
             if(!output){ setNotice($('exportStudioNotice'),'El navegador no pudo crear el PNG.','error'); return; }
-            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0111.png',output,'image/png');
+            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0112.png',output,'image/png');
             setNotice($('exportStudioNotice'),'PNG exportado a '+pixels.width+' × '+pixels.height+' píxeles.','success');
           },'image/png',1);
         }catch(error){ URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false); setNotice($('exportStudioNotice'),'No se pudo renderizar el PNG.','error'); }
@@ -11836,7 +12152,7 @@
       const report=state.reportResult; if(!report) return;
       const rows=[['sección','contenido']]; report.sections.forEach(function(section){ section.lines.forEach(function(line){ rows.push([section.title,line]); }); });
       rows.push(['Metodología',report.methodology],['Supuestos',report.assumptions]);
-      downloadCsvFile('informe-inflacion-v0111.csv',rows);
+      downloadCsvFile('informe-inflacion-v0112.csv',rows);
     }
 
     const LANDING_QUALITY_PROFILES=Object.freeze({
@@ -11949,7 +12265,7 @@
 
       function drawFloor(time){
         context.save();
-        context.strokeStyle='rgba(17,17,17,.10)';
+        context.strokeStyle='rgba(255,212,0,.11)';
         context.lineWidth=1;
         const horizon=height*.58;
         for(let line=0;line<11;line += 1){
@@ -11966,14 +12282,14 @@
 
       function drawParticles(time){
         context.save();
-        context.globalCompositeOperation='source-over';
+        context.globalCompositeOperation='lighter';
         particles.forEach(function(item,index){
           const travel=manualReduced ? 0 : (time*.035+progress*720+index*2.7);
           const z=((item.z-travel)%1580+1580)%1580+70;
           const point=project(item.x,item.y,z);
           if(point.x < -30 || point.x > width+30 || point.y < -30 || point.y > height+30) return;
           const alpha=Math.max(.04,Math.min(.72,(1-z/1700)*.74));
-          const color=item.hue === 'orange' ? '255,105,0' : item.hue === 'cyan' ? '22,151,143' : '17,17,17';
+          const color=item.hue === 'orange' ? '255,105,0' : item.hue === 'cyan' ? '85,245,230' : '255,255,255';
           context.fillStyle='rgba('+color+','+alpha+')';
           context.beginPath();context.arc(point.x,point.y,Math.max(.45,item.size*point.scale),0,Math.PI*2);context.fill();
         });
@@ -12029,7 +12345,7 @@
         pointer.x+=(pointer.targetX-pointer.x)*.055;
         pointer.y+=(pointer.targetY-pointer.y)*.055;
         const gradient=context.createRadialGradient(width*(.66+pointer.x*.03),height*(.22+pointer.y*.03),10,width*.55,height*.44,Math.max(width,height)*.78);
-        gradient.addColorStop(0,'#fff0b8');gradient.addColorStop(.38,'#f7f5ef');gradient.addColorStop(1,'#eee8dc');
+        gradient.addColorStop(0,'#1a1010');gradient.addColorStop(.32,'#090a10');gradient.addColorStop(1,'#030305');
         context.fillStyle=gradient;context.fillRect(0,0,width,height);
         drawFloor(time);drawParticles(time);drawDataRibbon(time);drawCoins(time);
       }
@@ -12227,7 +12543,7 @@
       $('copyContractReceiptButton').addEventListener('click',function(){ if(state.contractResult) copyText(contractReceiptText(state.contractResult),'Comprobante copiado.'); });
       $('exportContractJsonButton').addEventListener('click',function(){
         if(!state.contractResult) return;
-        downloadJsonFile('reajuste-contrato-v0111.json',Object.assign({},state.contractResult,{
+        downloadJsonFile('reajuste-contrato-v0112.json',Object.assign({},state.contractResult,{
           schemaVersion:FILE_SCHEMA_VERSION,
           appVersion:APP_VERSION,
           type:'contract-adjustment',
@@ -12235,7 +12551,7 @@
           createdAt:state.contractResult.fetchedAt || nowIso()
         }));
       });
-      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0111.pdf','contract'); });
+      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0112.pdf','contract'); });
       $('exportContractComparisonCsvButton').addEventListener('click',exportContractComparisonCsv);
       $('labForm').addEventListener('submit',function(event){ event.preventDefault(); calculateLab(); });
       $('saveLabButton').addEventListener('click',saveLabConfig);
@@ -12255,11 +12571,11 @@
       });
       $('loadAdvancedExampleButton').addEventListener('click',loadAdvancedExample);
       $('exportAdvancedCsvButton').addEventListener('click',exportAdvancedCsv);
-      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0111.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
+      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0112.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
       $('reportForm').addEventListener('submit',function(event){ event.preventDefault(); try{ renderReportPreview(buildReportData()); }catch(error){ setNotice($('reportNotice'),'Selecciona al menos una sección.','error'); } });
-      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0111.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
+      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0112.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
       $('exportReportCsvButton').addEventListener('click',exportReportCsv);
-      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0111.json',state.reportResult); });
+      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0112.json',state.reportResult); });
       $('installAppButton').addEventListener('click',promptPwaInstall);
       $('menuButton').addEventListener('click',function(){
         const opening = $('mainNav').dataset.open !== 'true';
@@ -12350,7 +12666,7 @@
       });
       $('copyLinkButton').addEventListener('click',function(){ copyText(buildShareUrl(),'Enlace del escenario copiado.'); });
       $('copyResultButton').addEventListener('click',function(){ copyText(resultPlainText(),'Resultado copiado.'); });
-      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0111.pdf','calculator'); });
+      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0112.pdf','calculator'); });
       $('exportJsonButton').addEventListener('click',exportResultJson);
       $('exportCsvButton').addEventListener('click',exportResultCsv);
       $('refreshQuotesButton').addEventListener('click',function(){ refreshQuotes(); });
@@ -12384,7 +12700,7 @@
       $('salaryShareButton').addEventListener('click',function(){ copyText(buildSalaryShareUrl(),'Enlace del análisis salarial copiado.'); });
       $('salaryExportCsvButton').addEventListener('click',exportSalaryCsv);
       $('salaryExportJsonButton').addEventListener('click',exportSalaryJson);
-      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0111.pdf','salary'); });
+      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0112.pdf','salary'); });
       $('salaryExportPngButton').addEventListener('click',exportSalaryChartPng);
 
       $('saveScenarioButton').addEventListener('click',function(){
@@ -12514,7 +12830,7 @@
       $('saveBasketButton').addEventListener('click',saveBasket);
       $('weightedCurrency').addEventListener('change',function(){ state.basketCurrency = normalizeCurrencyCode(this.value,'BRL'); });
       $('exportBasketButton').addEventListener('click',function(){
-        downloadJsonFile('cesta-ponderada-v0111.json',weightedBasketPayload());
+        downloadJsonFile('cesta-ponderada-v0112.json',weightedBasketPayload());
       });
       $('importBasketButton').addEventListener('click',function(){ $('basketFileInput').click(); });
       $('basketFileInput').addEventListener('change',function(event){
@@ -12650,7 +12966,7 @@
       });
       $$('[data-download-personal-chart]').forEach(function(button){
         button.addEventListener('click',function(){
-          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0111.png');
+          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0112.png');
         });
       });
 
@@ -12749,5 +13065,3 @@
   </script>
 </body>
 </html>
-
-
