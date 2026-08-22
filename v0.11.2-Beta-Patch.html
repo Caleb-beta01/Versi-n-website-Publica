@@ -2930,6 +2930,14 @@
       grid-template-rows:auto auto 1fr auto;
       align-items:start;
     }
+    .tool-card:nth-child(n){
+      color:#fff;
+      background:linear-gradient(145deg,rgba(22,24,33,.98),rgba(9,10,15,.96));
+    }
+    .tool-card:nth-child(3n+1){border-top-color:#ffd400}
+    .tool-card:nth-child(3n+2){border-top-color:#55f5e6}
+    .tool-card:nth-child(3n){border-top-color:#ff6900}
+    .tool-card h2,.tool-card h3{color:#fff}
     .tool-card .button{width:100%;align-self:end}
     .tool-icon{width:62px;height:62px;display:grid;place-items:center;font-weight:950}
     .data-tabs{
@@ -2991,6 +2999,37 @@
       color:#e4e5e9;
       background:#171923;
     }
+    .tracker-empty{
+      border-color:#4a4e5c;
+      color:#bfc1ca;
+      background:#0d0f16;
+    }
+    .account-identity,.setting-row{
+      border-color:#3b4050;
+      color:#fff;
+      background:#10121a;
+    }
+    .account-copy span,.setting-copy span,.account-metric span{color:#aeb1bb}
+    .sync-pill[data-state]{
+      border-color:#4a4e5c;
+      color:#f3f3f5;
+      background:#10121a;
+    }
+    .account-metric{
+      border-color:#343846;
+      color:#fff;
+      background:#10121a;
+    }
+    .privacy-explainer{
+      border-left-color:#ffd400;
+      color:#ececf0;
+      background:#151720;
+    }
+    .danger-zone{
+      border-color:#ff7d8d;
+      color:#fff;
+      background:rgba(143,23,48,.2);
+    }
     .source-state{
       border:1px solid currentColor;
       border-radius:0;
@@ -3041,8 +3080,9 @@
     .landing-control select{width:100%}
     .landing-motion-button{min-width:190px}
     .landing-scene{width:min(100%,1520px);padding-inline:clamp(24px,6vw,96px)}
-    .landing-hero{grid-template-columns:minmax(0,1fr) minmax(360px,1fr);gap:clamp(46px,7vw,112px)}
+    .landing-hero{grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);gap:clamp(42px,6vw,96px)}
     .landing-copy{width:100%;max-width:920px}
+    .landing-title{font-size:clamp(3.45rem,6.7vw,8.4rem)}
     .landing-orbit{width:min(42vw,560px)}
     .landing-panel{width:min(100%,1080px);max-width:1080px}
     .landing-actions{align-items:stretch}
@@ -13025,4 +13065,3 @@
   </script>
 </body>
 </html>
-
