@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#ffd400">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="Calcula inflación, poder adquisitivo, reajuste salarial e índice personal de costo de vida con referencias manuales, IPCA y cestas personalizadas.">
+  <meta name="description" content="Calculadora de inflación 3D preparada para 4K, con 16 monedas, poder adquisitivo, precios reales, salarios, datos oficiales e informes profesionales.">
   <meta name="application-name" content="Inflation Insights">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Inflation Insights">
-  <link rel="manifest" href="./manifest-v0.10.1-beta-patch.webmanifest">
+  <link rel="manifest" href="./manifest-v0.11.0-beta.webmanifest">
   <link rel="icon" href="./icons/inflation-insights-192.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/inflation-insights-192.png">
-  <title>Calculadora de Inflación · v0.10.1-Beta-Patch</title>
+  <title>Calculadora de Inflación · v0.11.0-Beta</title>
   <style>
     :root{
       --bg:#07111f;
@@ -1189,7 +1189,7 @@
       .hero-source-card{position:static;width:100%;margin-top:-8px}
     }
 
-    /* v0.10.1-Beta-Patch: identidad neo-brutalista para portada, navegación y footer. */
+    /* v0.11.0-Beta: identidad neo-brutalista para portada, navegación y footer. */
     :root{
       --nb-paper:#f7f5ef;
       --nb-white:#ffffff;
@@ -1587,7 +1587,7 @@
       .home-cta{margin-inline:14px}
     }
 
-    /* v0.10.1-Beta-Patch: el lenguaje visual de la portada se extiende a toda la aplicación. */
+    /* v0.11.0-Beta: el lenguaje visual de la portada se extiende a toda la aplicación. */
     :root{
       --bg:var(--nb-paper);
       --bg-soft:#fff4bd;
@@ -1879,7 +1879,7 @@
     }
     .debug-panel{border:4px solid var(--nb-ink);border-radius:0;color:var(--nb-ink);background:var(--nb-yellow);box-shadow:6px 6px 0 var(--nb-ink)}
 
-    /* v0.10.1-Beta-Patch: cuenta opcional, sincronización y privacidad. */
+    /* v0.11.0-Beta: cuenta opcional, sincronización y privacidad. */
     .version-chip{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
     .beta-mini{
       display:inline-grid;
@@ -2030,7 +2030,7 @@
     .table-caption.strong{font-weight:800}
     .weighted-currency-field{max-width:360px;margin-bottom:14px}
 
-    /* v0.10.1-Beta-Patch: módulos de datos, simulación, reajustes e informes. */
+    /* v0.11.0-Beta: módulos de datos, simulación, reajustes e informes. */
     .route-shortcuts,.feature-jump-grid,.metric-grid,.scenario-editor,.report-source-grid{
       display:grid;
       gap:14px;
@@ -2179,7 +2179,7 @@
     .method-note{margin-top:14px;padding:12px 14px;border-left:6px solid var(--nb-orange);background:#fff5eb}
     .sr-update{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-    /* v0.10.1-Beta-Patch: análisis de precios reales, archivos y exportación. */
+    /* v0.11.0-Beta: análisis de precios reales, archivos y exportación. */
     .market-tabs{position:sticky;top:78px;z-index:6;margin-bottom:20px}
     .market-panel{display:grid;gap:20px}
     .market-panel[hidden]{display:none!important}
@@ -2237,6 +2237,352 @@
     .goal-scenario[data-scenario="high"]{border-top:10px solid #ff5d6c}
     .goal-scenario strong{font-size:1.5rem}
     .source-disclosure{margin-top:12px;color:var(--muted);font-size:.82rem}
+
+    /* v0.11.0-Beta · 3D Experience Update */
+    body[data-route="inicio"]{background:#050507}
+    body[data-route="inicio"] .app-header{
+      border-bottom-color:#ffd400;
+      color:#fff;
+      background:rgba(5,5,7,.9);
+      box-shadow:0 12px 42px rgba(0,0,0,.3);
+      backdrop-filter:blur(18px);
+    }
+    body[data-route="inicio"] .brand{color:#fff;background:transparent}
+    body[data-route="inicio"] .brand-mark{color:#111;background:#ffd400}
+    body[data-route="inicio"] .version-chip{color:#111;background:#ffd400}
+    body[data-route="inicio"] .header-status{color:#fff;background:#16161b;border-color:#ffd400}
+    body[data-route="inicio"] .menu-button{color:#111;background:#ffd400}
+    body[data-route="inicio"] .main-nav{background:rgba(5,5,7,.86)}
+    body[data-route="inicio"] .nav-link{color:#fff;background:transparent;border-color:#ffd400}
+    body[data-route="inicio"] .nav-link:hover,
+    body[data-route="inicio"] .nav-link[aria-current="page"]{color:#111;background:#ffd400}
+    #view-inicio.home-view{
+      position:relative;
+      width:100vw;
+      max-width:none;
+      margin-left:calc(50% - 50vw);
+      padding:0;
+      overflow:clip;
+      color:#fff;
+      background:#050507;
+      isolation:isolate;
+    }
+    .landing3d{
+      --landing-yellow:#ffd400;
+      --landing-orange:#ff6900;
+      --landing-cyan:#55f5e6;
+      --landing-paper:#f7f5ef;
+      position:relative;
+      min-height:100vh;
+      overflow:clip;
+      color:#fff;
+      background:
+        radial-gradient(circle at 74% 8%,rgba(255,105,0,.16),transparent 34rem),
+        radial-gradient(circle at 12% 52%,rgba(85,245,230,.1),transparent 36rem),
+        #050507;
+    }
+    .landing-canvas{
+      position:fixed;
+      z-index:0;
+      inset:74px 0 0;
+      width:100vw;
+      height:calc(100svh - 74px);
+      pointer-events:none;
+    }
+    .landing3d::before{
+      content:"";
+      position:fixed;
+      z-index:0;
+      inset:74px 0 0;
+      pointer-events:none;
+      opacity:.28;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+      background-size:clamp(34px,3vw,66px) clamp(34px,3vw,66px);
+      mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 80%,transparent);
+    }
+    .landing-toolbar{
+      position:sticky;
+      z-index:8;
+      top:86px;
+      width:min(calc(100% - 32px),1380px);
+      min-height:52px;
+      margin:16px auto -68px;
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      pointer-events:none;
+    }
+    .landing-control{
+      min-height:48px;
+      display:flex;
+      align-items:center;
+      gap:9px;
+      padding:7px 10px;
+      border:2px solid rgba(255,212,0,.68);
+      color:#fff;
+      background:rgba(8,8,11,.78);
+      box-shadow:0 12px 34px rgba(0,0,0,.28);
+      backdrop-filter:blur(16px);
+      pointer-events:auto;
+    }
+    .landing-control label{font-size:.72rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+    .landing-control select{
+      min-height:34px;
+      padding:4px 28px 4px 8px;
+      border:1px solid #fff;
+      color:#fff;
+      background:#17171d;
+      font-weight:800;
+    }
+    .landing-control-state{max-width:150px;color:#d9d9df;font-size:.68rem;font-weight:750}
+    .landing-motion-button{
+      min-height:48px;
+      padding:8px 13px;
+      border:2px solid rgba(255,255,255,.5);
+      color:#fff;
+      background:rgba(8,8,11,.78);
+      cursor:pointer;
+      font-weight:900;
+      pointer-events:auto;
+    }
+    .landing-motion-button:hover{color:#111;background:var(--landing-yellow);border-color:#111}
+    .landing-scene{
+      position:relative;
+      z-index:2;
+      width:min(100%,1600px);
+      min-height:100svh;
+      margin:auto;
+      padding:clamp(108px,11vw,190px) clamp(22px,6vw,104px) clamp(84px,10vw,160px);
+      display:grid;
+      align-items:center;
+      opacity:.72;
+      transform:translateY(34px) scale(.985);
+      transition:opacity .7s ease,transform .9s cubic-bezier(.2,.75,.15,1);
+    }
+    .landing-scene[data-active="true"]{opacity:1;transform:none}
+    .landing-hero{grid-template-columns:minmax(0,1.12fr) minmax(330px,.88fr);gap:clamp(38px,7vw,120px)}
+    .landing-copy{max-width:980px}
+    .landing-eyebrow{
+      width:max-content;
+      max-width:100%;
+      margin:0 0 26px;
+      padding:8px 12px;
+      border:2px solid var(--landing-yellow);
+      color:var(--landing-yellow);
+      background:rgba(0,0,0,.56);
+      font-size:clamp(.7rem,.9vw,.9rem);
+      font-weight:950;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+    }
+    .landing-title{
+      max-width:1000px;
+      margin:0;
+      color:#fff;
+      font-size:clamp(3.6rem,8.1vw,9.2rem);
+      font-weight:950;
+      line-height:.84;
+      letter-spacing:-.072em;
+      text-transform:uppercase;
+      text-wrap:balance;
+    }
+    .landing-title span{
+      display:block;
+      color:transparent;
+      background:linear-gradient(110deg,#fff 4%,var(--landing-yellow) 42%,var(--landing-orange) 88%);
+      -webkit-background-clip:text;
+      background-clip:text;
+    }
+    .landing-lede{
+      max-width:760px;
+      margin:30px 0 0;
+      color:#d6d7df;
+      font-size:clamp(1rem,1.55vw,1.35rem);
+      font-weight:650;
+      line-height:1.65;
+    }
+    .landing-actions{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px}
+    .landing-primary,.landing-secondary{
+      min-height:64px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      padding:15px 23px;
+      border:3px solid #111;
+      cursor:pointer;
+      font-weight:950;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+    }
+    .landing-primary{color:#111;background:var(--landing-yellow);box-shadow:8px 8px 0 var(--landing-orange)}
+    .landing-secondary{color:#fff;background:#121218;border-color:#fff;box-shadow:7px 7px 0 rgba(255,255,255,.18)}
+    .landing-primary:hover,.landing-secondary:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--landing-orange)}
+    .landing-metrics{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .landing-metric{padding:14px;border-top:2px solid rgba(255,255,255,.32);background:linear-gradient(180deg,rgba(255,255,255,.055),transparent)}
+    .landing-metric strong{display:block;color:var(--landing-yellow);font-size:clamp(1.3rem,2.3vw,2rem)}
+    .landing-metric span{display:block;margin-top:3px;color:#b9bbc5;font-size:.78rem;font-weight:800;text-transform:uppercase}
+    .landing-orbit{
+      position:relative;
+      width:min(39vw,540px);
+      aspect-ratio:1;
+      margin:auto;
+      display:grid;
+      place-items:center;
+      perspective:1000px;
+      transform-style:preserve-3d;
+      filter:drop-shadow(0 30px 70px rgba(0,0,0,.55));
+    }
+    .landing-orbit-core{
+      position:relative;
+      z-index:2;
+      width:42%;
+      aspect-ratio:1;
+      display:grid;
+      place-items:center;
+      border:4px solid #111;
+      border-radius:50%;
+      color:#111;
+      background:radial-gradient(circle at 34% 26%,#fff8ad,var(--landing-yellow) 42%,#f18a00 100%);
+      box-shadow:0 0 0 10px rgba(255,212,0,.12),0 0 80px rgba(255,105,0,.4);
+      font-size:clamp(2.3rem,6vw,5.8rem);
+      font-weight:950;
+      animation:landing-core-float 5s ease-in-out infinite;
+    }
+    .landing-orbit-ring{position:absolute;width:88%;height:36%;border:2px solid rgba(85,245,230,.65);border-radius:50%;transform:rotateX(67deg) rotateZ(-12deg)}
+    .landing-orbit-ring:nth-child(2){width:68%;height:92%;border-color:rgba(255,212,0,.52);transform:rotateY(69deg) rotateZ(18deg)}
+    .landing-orbit-ring:nth-child(3){width:94%;height:65%;border-color:rgba(255,105,0,.58);transform:rotateX(58deg) rotateY(28deg)}
+    .landing-orbit-node{position:absolute;width:15%;aspect-ratio:1;display:grid;place-items:center;border:2px solid #fff;border-radius:50%;color:#111;background:#fff;font-size:clamp(.58rem,1.25vw,.92rem);font-weight:950;box-shadow:0 12px 30px rgba(0,0,0,.34)}
+    .landing-orbit-node:nth-of-type(1){left:3%;top:28%;background:var(--landing-cyan);animation:landing-node-a 8s ease-in-out infinite}
+    .landing-orbit-node:nth-of-type(2){right:5%;top:16%;background:var(--landing-orange);animation:landing-node-b 9s ease-in-out infinite}
+    .landing-orbit-node:nth-of-type(3){right:10%;bottom:8%;background:var(--landing-yellow);animation:landing-node-a 7s ease-in-out infinite reverse}
+    @keyframes landing-core-float{50%{transform:translateY(-14px) rotateY(10deg)}}
+    @keyframes landing-node-a{50%{transform:translate3d(18px,-18px,70px) rotate(8deg)}}
+    @keyframes landing-node-b{50%{transform:translate3d(-22px,16px,90px) rotate(-9deg)}}
+    .landing-panel{
+      max-width:1060px;
+      padding:clamp(26px,4vw,58px);
+      border:1px solid rgba(255,255,255,.24);
+      background:linear-gradient(145deg,rgba(18,18,25,.88),rgba(8,8,12,.62));
+      box-shadow:0 32px 90px rgba(0,0,0,.46),inset 0 1px 0 rgba(255,255,255,.09);
+      backdrop-filter:blur(20px);
+    }
+    .landing-panel[data-side="right"]{margin-left:auto}
+    .landing-section-number{color:var(--landing-orange);font-size:.78rem;font-weight:950;letter-spacing:.18em;text-transform:uppercase}
+    .landing-heading{max-width:900px;margin:12px 0 18px;color:#fff;font-size:clamp(2.4rem,5.7vw,6.2rem);font-weight:950;line-height:.94;letter-spacing:-.055em;text-wrap:balance}
+    .landing-heading em{color:var(--landing-yellow);font-style:normal}
+    .landing-text{max-width:760px;margin:0;color:#c8cad4;font-size:clamp(1rem,1.35vw,1.22rem);line-height:1.7}
+    .landing-facts{margin-top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .landing-fact{min-height:132px;padding:18px;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.045)}
+    .landing-fact strong{display:block;color:var(--landing-cyan);font-size:1.06rem}
+    .landing-fact span{display:block;margin-top:8px;color:#b7b9c3;font-size:.86rem;line-height:1.5}
+    .landing-chart-shell{margin-top:30px;padding:18px;border:2px solid rgba(255,212,0,.5);background:rgba(0,0,0,.34)}
+    .landing-chart-shell svg{width:100%;height:auto;overflow:visible}
+    .landing-chart-line{fill:none;stroke:var(--landing-yellow);stroke-width:7;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 12px rgba(255,212,0,.55));stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 1.8s ease}
+    .landing-scene[data-active="true"] .landing-chart-line{stroke-dashoffset:0}
+    .landing-chart-area{fill:url(#landingChartGradient)}
+    .landing-currency-grid{margin-top:30px;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:10px}
+    .landing-currency{
+      min-height:104px;
+      padding:14px 10px;
+      display:grid;
+      align-content:space-between;
+      border:2px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.055);
+      transform-style:preserve-3d;
+      transition:transform .25s ease,border-color .25s ease,background .25s ease;
+    }
+    .landing-currency:hover{border-color:var(--landing-yellow);background:rgba(255,212,0,.12);transform:translateY(-7px) rotateX(4deg)}
+    .landing-currency strong{color:#fff;font-size:1.15rem;letter-spacing:.06em}
+    .landing-currency span{color:#aeb0ba;font-size:.67rem;font-weight:760;line-height:1.3}
+    .landing-currency:nth-child(3n+1) strong{color:var(--landing-yellow)}
+    .landing-currency:nth-child(3n+2) strong{color:var(--landing-cyan)}
+    .landing-currency:nth-child(3n) strong{color:#ff9b62}
+    .landing-feature-grid{margin-top:30px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .landing-feature{min-height:190px;padding:22px;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05)}
+    .landing-feature b{display:block;color:var(--landing-yellow);font-size:1.05rem;text-transform:uppercase}
+    .landing-feature p{margin:10px 0 0;color:#bec0ca;line-height:1.58}
+    .landing-final{text-align:center}
+    .landing-final .landing-panel{margin-inline:auto}
+    .landing-final .landing-heading{margin-inline:auto}
+    .landing-final .landing-text{margin-inline:auto}
+    .landing-final .landing-actions{justify-content:center}
+    .landing-pwa{margin:28px auto 0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;color:#bfc1ca;font-size:.8rem;font-weight:800}
+    .landing-pwa span{padding:7px 10px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.05)}
+    .landing-fallback{position:relative;z-index:5;margin:0;padding:14px 20px;color:#111;background:var(--landing-yellow);font-weight:850;text-align:center}
+    .landing-transition{
+      position:fixed;
+      z-index:1200;
+      inset:0;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      color:#111;
+      background:var(--landing-yellow);
+      clip-path:circle(0 at 50% 50%);
+      transition:clip-path .72s cubic-bezier(.68,0,.18,1);
+    }
+    .landing-transition.is-active{clip-path:circle(145vmax at 50% 50%)}
+    .landing-transition-core{display:grid;place-items:center;gap:14px;text-align:center;transform:scale(.8);opacity:0;transition:transform .5s ease .18s,opacity .4s ease .18s}
+    .landing-transition.is-active .landing-transition-core{transform:scale(1);opacity:1}
+    .landing-transition-mark{width:100px;aspect-ratio:1;display:grid;place-items:center;border:5px solid #111;border-radius:50%;background:#fff;font-size:3.3rem;font-weight:950;box-shadow:10px 10px 0 var(--landing-orange)}
+    .landing-transition-core strong{font-size:clamp(1.4rem,4vw,3rem);font-weight:950;text-transform:uppercase}
+    .landing-transition-core button{padding:9px 13px;border:2px solid #111;color:#fff;background:#111;cursor:pointer;font-weight:900}
+    .source-state[data-mode="offline"]::before,.source-state[data-mode="provider"]::before,.source-state[data-mode="currency"]::before{background:var(--danger)}
+    .source-state[data-mode="offline"],.source-state[data-mode="provider"],.source-state[data-mode="currency"]{color:var(--danger);border-color:var(--nb-ink);background:#ffe2e6}
+
+    @media (min-width:2100px){
+      .landing-scene{width:min(100%,1900px)}
+      .landing-panel{max-width:1260px}
+      .landing-copy{max-width:1140px}
+      .landing-currency{min-height:130px;padding:20px 16px}
+      .landing-currency strong{font-size:1.45rem}
+      .landing-currency span{font-size:.78rem}
+    }
+    @media (max-width:1100px){
+      .landing-hero{grid-template-columns:1fr}
+      .landing-orbit{width:min(66vw,520px)}
+      .landing-currency-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+    }
+    @media (max-width:900px){
+      body[data-route="inicio"] .main-nav{background:#fff}
+      body[data-route="inicio"] .nav-link{color:#111;background:#fff}
+      body[data-route="inicio"] .nav-link:hover,
+      body[data-route="inicio"] .nav-link[aria-current="page"]{background:#ffd400}
+      .landing-toolbar{top:78px;width:calc(100% - 20px);margin-top:10px}
+      .landing-control-state{display:none}
+      .landing-scene{padding-top:130px}
+      .landing-feature-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:620px){
+      .landing-canvas,.landing3d::before{inset:72px 0 0;height:calc(100svh - 72px)}
+      .landing-toolbar{justify-content:space-between;margin-bottom:-82px}
+      .landing-control{min-width:0;gap:5px;padding:5px 7px}
+      .landing-control label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+      .landing-control select{max-width:126px}
+      .landing-motion-button{min-height:46px;padding:7px 10px;font-size:.74rem}
+      .landing-scene{min-height:100svh;padding:124px 18px 84px}
+      .landing-title{font-size:clamp(3rem,16vw,5.1rem);line-height:.87}
+      .landing-lede{font-size:1rem}
+      .landing-actions{flex-direction:column}
+      .landing-primary,.landing-secondary{width:100%;min-height:58px}
+      .landing-metrics{grid-template-columns:1fr}
+      .landing-orbit{width:min(86vw,420px)}
+      .landing-panel{padding:25px 18px}
+      .landing-heading{font-size:clamp(2.25rem,12vw,4rem)}
+      .landing-facts,.landing-feature-grid{grid-template-columns:1fr}
+      .landing-currency-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+      .landing-currency{min-height:90px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .landing-scene{opacity:1;transform:none}
+      .landing-orbit-core,.landing-orbit-node{animation:none!important}
+      .landing-chart-line{stroke-dashoffset:0}
+      .landing-transition{transition:none;clip-path:none}
+    }
 
     @media (max-width:980px){
       .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -2333,7 +2679,7 @@
         <button class="nav-link" type="button" data-route="informes">Informes</button>
         <button class="nav-link" type="button" data-route="historial">Historial</button>
         <button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button>
-        <span class="version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.10.1-Beta-Patch</span>
+        <span class="version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.11.0-Beta</span>
       </nav>
 
       <span class="status-chip header-status" id="connectionChip" data-status="online" aria-live="polite">
@@ -2352,48 +2698,127 @@
 
   <main id="mainContent" tabindex="-1">
     <section class="view home-view" id="view-inicio" data-view="inicio" aria-labelledby="homeTitle">
-      <div class="home-frame">
-        <section class="home-hero" aria-describedby="homeSummary">
-          <p class="home-kicker">BETA · Inflación sin fórmulas ocultas</p>
-          <h1 class="home-title" id="homeTitle">
-            <span>Entiende cuánto</span>
-            <span class="home-title-highlight">cambió tu dinero.</span>
-          </h1>
-          <div class="home-summary" id="homeSummary">
-            <span class="home-summary-accent" aria-hidden="true"></span>
-            <p>Compara un precio inicial y uno final, ajusta el tiempo y obtén inflación acumulada, tasa mensual equivalente, tasa anualizada y variación del poder adquisitivo. Directo y sin vueltas.</p>
+      <div class="landing3d" id="landing3d" data-quality="auto">
+        <canvas class="landing-canvas" id="landingCanvas" aria-hidden="true"></canvas>
+
+        <div class="landing-toolbar" aria-label="Controles de la experiencia gráfica">
+          <div class="landing-control">
+            <label for="graphicsQuality">Calidad</label>
+            <select id="graphicsQuality" aria-describedby="graphicsQualityState">
+              <option value="auto">Automática</option>
+              <option value="ultra">Ultra</option>
+              <option value="high">Alta</option>
+              <option value="medium">Media</option>
+              <option value="low">Baja / móvil</option>
+            </select>
+            <span class="landing-control-state" id="graphicsQualityState">Detectando dispositivo</span>
           </div>
-          <div class="home-actions" role="group" aria-label="Acciones principales">
-            <button class="home-button home-button-primary" type="button" data-route="calculadora">
-              <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-                <path d="M8 35V26M18 35V21M28 35V16M38 35V9"></path>
-                <path d="m7 21 10-9 9 5 13-12"></path>
-                <path d="M31 5h8v8"></path>
+          <button class="landing-motion-button" id="landingMotionButton" type="button" aria-pressed="false">Reducir movimiento</button>
+        </div>
+
+        <section class="landing-scene landing-hero" data-landing-scene="0" data-active="true" aria-describedby="homeSummary">
+          <div class="landing-copy">
+            <p class="landing-eyebrow">v0.11.0‑Beta · 3D Experience Update</p>
+            <h1 class="landing-title" id="homeTitle">Mide el cambio. <span>Entiende el impacto.</span></h1>
+            <p class="landing-lede" id="homeSummary">Calcula inflación, deflación y poder adquisitivo con precisión compuesta, fuentes identificadas y una experiencia preparada para móvil, escritorio y 4K.</p>
+            <div class="landing-actions" role="group" aria-label="Acciones principales">
+              <button class="landing-primary" id="openCalculator3dButton" type="button"><span>Abrir calculadora</span><span aria-hidden="true">→</span></button>
+              <button class="landing-secondary" type="button" data-route="herramientas">Explorar herramientas</button>
+            </div>
+            <div class="landing-metrics" aria-label="Capacidades principales">
+              <div class="landing-metric"><strong>16</strong><span>monedas compatibles</span></div>
+              <div class="landing-metric"><strong>4K</strong><span>interfaz y exportación</span></div>
+              <div class="landing-metric"><strong>100 %</strong><span>cálculo local y auditable</span></div>
+            </div>
+          </div>
+          <div class="landing-orbit" aria-hidden="true">
+            <span class="landing-orbit-ring"></span><span class="landing-orbit-ring"></span><span class="landing-orbit-ring"></span>
+            <span class="landing-orbit-core">%</span>
+            <span class="landing-orbit-node">BRL</span><span class="landing-orbit-node">USD</span><span class="landing-orbit-node">JPY</span>
+          </div>
+        </section>
+
+        <section class="landing-scene" data-landing-scene="1" aria-labelledby="landingMethodTitle">
+          <div class="landing-panel">
+            <span class="landing-section-number">01 · La variación real</span>
+            <h2 class="landing-heading" id="landingMethodTitle">De un precio a una <em>decisión clara.</em></h2>
+            <p class="landing-text">Comparamos el valor inicial con el final sin redondear los pasos intermedios. El tiempo se normaliza y las tasas equivalentes se calculan mediante composición geométrica, no con aproximaciones lineales.</p>
+            <div class="landing-facts">
+              <div class="landing-fact"><strong>Inflación total</strong><span>Variación porcentual acumulada entre ambos valores.</span></div>
+              <div class="landing-fact"><strong>CAGR</strong><span>Tasa anual equivalente para períodos cortos o largos.</span></div>
+              <div class="landing-fact"><strong>Poder adquisitivo</strong><span>Cuánto compra hoy el mismo importe inicial.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-scene" data-landing-scene="2" aria-labelledby="landingChartTitle">
+          <div class="landing-panel" data-side="right">
+            <span class="landing-section-number">02 · Profundidad de datos</span>
+            <h2 class="landing-heading" id="landingChartTitle">Una trayectoria visible, <em>no datos inventados.</em></h2>
+            <p class="landing-text">Los gráficos de la calculadora muestran interpolaciones matemáticas claramente etiquetadas. Los datos históricos oficiales se mantienen separados y siempre indican fuente, fecha y estado.</p>
+            <div class="landing-chart-shell" aria-label="Ejemplo ilustrativo de una trayectoria matemática">
+              <svg viewBox="0 0 900 300" role="img" aria-labelledby="landingChartSvgTitle landingChartSvgDesc">
+                <title id="landingChartSvgTitle">Trayectoria ilustrativa de precios</title>
+                <desc id="landingChartSvgDesc">Una línea ascendente con variaciones intermedias. Es una visualización conceptual, no una serie histórica.</desc>
+                <defs><linearGradient id="landingChartGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd400" stop-opacity=".34"/><stop offset="1" stop-color="#ffd400" stop-opacity="0"/></linearGradient></defs>
+                <path class="landing-chart-area" d="M30 258 C145 232 190 250 278 192 S438 212 520 142 S690 154 870 44 L870 280 L30 280 Z"/>
+                <path class="landing-chart-line" d="M30 258 C145 232 190 250 278 192 S438 212 520 142 S690 154 870 44"/>
               </svg>
-              <span>Ir a la calculadora</span>
-            </button>
-            <button class="home-button home-button-secondary" type="button" data-route="herramientas">
-              <span>Herramientas</span>
-              <span aria-hidden="true">→</span>
-            </button>
+            </div>
           </div>
         </section>
 
-        <section class="home-cta" aria-labelledby="homeCtaTitle">
-          <h2 id="homeCtaTitle">¿Listo para dominar?</h2>
-          <p>Toma decisiones financieras basadas en cálculos claros y fuentes identificadas.</p>
-          <button class="home-cta-button" type="button" data-route="calculadora">Empezar ahora — Gratis</button>
+        <section class="landing-scene" data-landing-scene="3" aria-labelledby="landingCurrenciesTitle">
+          <div class="landing-panel">
+            <span class="landing-section-number">03 · Cobertura internacional</span>
+            <h2 class="landing-heading" id="landingCurrenciesTitle"><em>16 monedas.</em> Una misma metodología.</h2>
+            <p class="landing-text">Conversión con proveedor principal, respaldo alternativo y última cotización válida almacenada. Nunca sustituimos una tasa real por un valor inventado.</p>
+            <div class="landing-currency-grid" aria-label="Monedas compatibles">
+              <div class="landing-currency"><strong>BRL</strong><span>Real brasileño</span></div><div class="landing-currency"><strong>USD</strong><span>Dólar estadounidense</span></div>
+              <div class="landing-currency"><strong>EUR</strong><span>Euro</span></div><div class="landing-currency"><strong>GBP</strong><span>Libra esterlina</span></div>
+              <div class="landing-currency"><strong>CAD</strong><span>Dólar canadiense</span></div><div class="landing-currency"><strong>MXN</strong><span>Peso mexicano</span></div>
+              <div class="landing-currency"><strong>ARS</strong><span>Peso argentino</span></div><div class="landing-currency"><strong>JPY</strong><span>Yen japonés</span></div>
+              <div class="landing-currency"><strong>CNY</strong><span>Yuan chino</span></div><div class="landing-currency"><strong>CHF</strong><span>Franco suizo</span></div>
+              <div class="landing-currency"><strong>AUD</strong><span>Dólar australiano</span></div><div class="landing-currency"><strong>NZD</strong><span>Dólar neozelandés</span></div>
+              <div class="landing-currency"><strong>CLP</strong><span>Peso chileno</span></div><div class="landing-currency"><strong>COP</strong><span>Peso colombiano</span></div>
+              <div class="landing-currency"><strong>PEN</strong><span>Sol peruano</span></div><div class="landing-currency"><strong>UYU</strong><span>Peso uruguayo</span></div>
+            </div>
+          </div>
         </section>
 
-        <section class="card pwa-card" aria-labelledby="pwaTitle">
-          <div>
-            <p class="eyebrow">PWA · uso rápido y sin conexión</p>
-            <h2 id="pwaTitle">Instala Inflation Insights</h2>
-            <p>Los cálculos, simulaciones y datos ya guardados pueden seguir funcionando offline. Los datos económicos en tiempo real informarán cuando necesiten conexión.</p>
-            <div class="pwa-status-list"><span class="inline-badge" id="pwaInstallState">Comprobando instalación</span><span class="inline-badge" id="pwaOfflineState">Caché preparada al abrir</span></div>
+        <section class="landing-scene" data-landing-scene="4" aria-labelledby="landingToolsTitle">
+          <div class="landing-panel" data-side="right">
+            <span class="landing-section-number">04 · Más que una calculadora</span>
+            <h2 class="landing-heading" id="landingToolsTitle">Herramientas para <em>precios reales.</em></h2>
+            <div class="landing-feature-grid">
+              <article class="landing-feature"><b>Reduflación</b><p>Compara precio y contenido para detectar aumentos ocultos por menor cantidad.</p></article>
+              <article class="landing-feature"><b>Salarios y contratos</b><p>Mide aumentos nominales, poder real y reajustes compuestos.</p></article>
+              <article class="landing-feature"><b>Cestas personales</b><p>Calcula tu propio índice de costo de vida con cantidades y ponderaciones.</p></article>
+              <article class="landing-feature"><b>Importación revisable</b><p>Previsualiza JSON, CSV, PDF e imágenes antes de incorporar cualquier dato.</p></article>
+              <article class="landing-feature"><b>Informes profesionales</b><p>Exporta PDF, PNG, CSV y JSON con versión, metodología y fuentes.</p></article>
+              <article class="landing-feature"><b>Offline y privacidad</b><p>Conserva datos locales compatibles y sigue calculando sin conexión.</p></article>
+            </div>
           </div>
-          <button class="button primary" id="installAppButton" type="button" hidden>Instalar aplicación</button>
         </section>
+
+        <section class="landing-scene landing-final" data-landing-scene="5" aria-labelledby="homeCtaTitle">
+          <div class="landing-panel">
+            <span class="landing-section-number">05 · Todo listo</span>
+            <h2 class="landing-heading" id="homeCtaTitle"><span id="pwaTitle">Convierte cambios de precio en <em>respuestas.</em></span></h2>
+            <p class="landing-text">La experiencia 3D nunca es necesaria para usar la herramienta. Puedes abrir la calculadora inmediatamente, reducir el movimiento o usarla sin conexión con los datos ya almacenados.</p>
+            <div class="landing-actions">
+              <button class="landing-primary" id="openCalculatorFinalButton" type="button">Abrir calculadora <span aria-hidden="true">→</span></button>
+              <button class="landing-secondary" id="installAppButton" type="button" hidden>Instalar aplicación</button>
+            </div>
+            <div class="landing-pwa"><span id="pwaInstallState">Comprobando instalación</span><span id="pwaOfflineState">Caché preparada al abrir</span><span>Datos locales preservados</span></div>
+          </div>
+        </section>
+
+        <noscript><p class="landing-fallback">La animación 3D necesita JavaScript, pero puedes usar la calculadora desde el enlace “Calculadora” del menú.</p></noscript>
+        <p class="sr-update" id="landingMotionStatus" role="status" aria-live="polite"></p>
+        <div class="landing-transition" id="landingTransition" role="status" aria-live="polite" hidden>
+          <div class="landing-transition-core"><span class="landing-transition-mark" aria-hidden="true">%</span><strong>Abriendo calculadora</strong><button id="landingSkipTransitionButton" type="button">Saltar animación</button></div>
+        </div>
       </div>
     </section>
 
@@ -2709,7 +3134,7 @@
 
     <section class="view" id="view-precios" data-view="precios" aria-labelledby="marketTitle" hidden>
       <div class="view-head">
-        <p class="eyebrow">Precios reales · v0.10.1</p>
+        <p class="eyebrow">Precios reales · v0.11.0</p>
         <h1 id="marketTitle">Productos, reduflación y archivos</h1>
         <p class="lede">Normaliza gramos, kilogramos, mililitros, litros y presentaciones; guarda el historial en este dispositivo e importa datos únicamente después de revisarlos.</p>
       </div>
@@ -2802,6 +3227,7 @@
             <div class="market-form-grid">
               <div class="field full"><label for="trackerProductName">Producto</label><input id="trackerProductName" list="trackedProductNames" maxlength="80" placeholder="Ej.: Leche integral" autocomplete="off"><datalist id="trackedProductNames"></datalist></div>
               <div class="field"><label for="trackerPrice">Precio</label><input id="trackerPrice" type="text" inputmode="decimal" placeholder="5,49"></div>
+              <div class="field"><label for="trackerCurrency">Moneda</label><select id="trackerCurrency"><option value="BRL">BRL — Real brasileño</option></select></div>
               <div class="field"><label for="trackerQuantity">Cantidad</label><input id="trackerQuantity" type="text" inputmode="decimal" placeholder="1"></div>
               <div class="field"><label for="trackerUnit">Unidad</label><select id="trackerUnit"><option value="L">L</option><option value="ml">ml</option><option value="kg">kg</option><option value="g">g</option><option value="unit">unidades</option><option value="pack">paquetes</option></select></div>
               <div class="field"><label for="trackerDate">Fecha</label><input id="trackerDate" type="date"></div>
@@ -2829,7 +3255,7 @@
               </div>
               <div class="metric-grid"><div class="metric-tile"><span>Desde el primer registro</span><strong id="trackerTotalChange">—</strong></div><div class="metric-tile"><span>Precio unitario</span><strong id="trackerUnitChange">—</strong></div><div class="metric-tile"><span>Contenido</span><strong id="trackerQuantityChange">—</strong></div><div class="metric-tile"><span>Referencia IPCA</span><strong id="trackerIpcaComparison">—</strong><small id="trackerIpcaDetail"></small></div></div>
               <div class="chart-panel tracker-chart"><h3>Evolución del precio unitario</h3><div id="trackerChart" role="img" aria-label="Gráfico histórico del precio por unidad"></div></div>
-              <div class="table-wrap" tabindex="0"><table><caption class="table-caption">Observaciones ordenadas por fecha; el precio unitario usa una base compatible.</caption><thead><tr><th>Fecha</th><th>Precio</th><th>Contenido</th><th>Precio unitario</th><th>Establecimiento</th><th>Acción</th></tr></thead><tbody id="trackerTableBody"></tbody></table></div>
+              <div class="table-wrap" tabindex="0"><table><caption class="table-caption">Observaciones ordenadas por fecha y moneda; el precio unitario usa una base compatible.</caption><thead><tr><th>Fecha</th><th>Precio</th><th>Moneda</th><th>Contenido</th><th>Precio unitario</th><th>Establecimiento</th><th>Acción</th></tr></thead><tbody id="trackerTableBody"></tbody></table></div>
             </div>
           </section>
         </div>
@@ -2881,7 +3307,7 @@
             <div id="unifiedPreviewContent" hidden>
               <img class="file-preview-image" id="unifiedImagePreview" alt="Vista previa del archivo de imagen seleccionado" hidden>
               <div class="import-summary"><span id="importValidCount">0 válidos</span><span id="importInvalidCount">0 con errores</span><span id="importExtraCount">0 secciones adicionales</span></div>
-              <div class="table-wrap" tabindex="0"><table class="import-preview-table"><caption class="table-caption">Corrige las filas detectadas antes de importarlas.</caption><thead><tr><th>Producto</th><th>Fecha</th><th>Precio</th><th>Cantidad</th><th>Unidad</th><th>Estado</th></tr></thead><tbody id="importPreviewBody"></tbody></table></div>
+              <div class="table-wrap" tabindex="0"><table class="import-preview-table"><caption class="table-caption">Corrige las filas detectadas antes de importarlas.</caption><thead><tr><th>Producto</th><th>Fecha</th><th>Precio</th><th>Moneda</th><th>Cantidad</th><th>Unidad</th><th>Estado</th></tr></thead><tbody id="importPreviewBody"></tbody></table></div>
               <label class="setting-row"><span><strong>Importar solo filas válidas</strong><small>Las filas con error permanecerán fuera del almacenamiento.</small></span><input id="importOnlyValid" type="checkbox" checked></label>
               <div class="action-row"><button class="button primary" id="confirmUnifiedImportButton" type="button">Confirmar importación</button><button class="button secondary" id="cancelUnifiedImportButton" type="button">Cancelar</button></div>
             </div>
@@ -3584,7 +4010,7 @@
       <a href="#cuenta" data-route="cuenta">Privacidad</a>
       <a href="#informes" data-route="informes">Informes</a>
     </nav>
-    <span class="footer-version version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.10.1-Beta-Patch</span>
+    <span class="footer-version version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.11.0-Beta</span>
   </footer>
 
   <dialog id="basketDialog" aria-labelledby="basketTitle">
@@ -3866,15 +4292,15 @@
     <div class="dialog-body dialog-stack">
       <p>Esta versión está preparada para pruebas públicas. La calculadora y tus datos locales siguen funcionando aunque la sincronización no esté disponible.</p>
       <div class="dialog-callout">
-        <strong>Qué cambia en v0.10.1-Beta-Patch</strong>
+        <strong>Qué cambia en v0.11.0-Beta</strong>
         <ul>
-          <li>todos los PDF usan maquetación A4 profesional con portada, jerarquía, gráficos, fuentes, metodología y paginación segura;</li>
-          <li>todas las salidas PNG, CSV y JSON comparten diseño o estructura consistente, metadatos de versión y nombres de archivo del Patch;</li>
-          <li>detector de reduflación y comparador normalizado de precio unitario;</li>
-          <li>seguimiento histórico de productos con gráfico y comparación orientativa con IPCA;</li>
-          <li>metas protegidas contra inflación en escenarios bajo, central y alto;</li>
-          <li>importador unificado con vista previa para JSON, CSV, PDF e imágenes;</li>
-          <li>PNG en varias proporciones y resoluciones, CSV UTF-8 y JSON con esquema versionado.</li>
+          <li>landing 3D cinematográfica preparada para 4K, con calidad automática y controles de movimiento;</li>
+          <li>nueve monedas nuevas: JPY, CNY, CHF, AUD, NZD, CLP, COP, PEN y UYU; 16 en total;</li>
+          <li>estados FX explícitos y cadena de respaldo: proveedor principal, alternativo y última cotización válida;</li>
+          <li>carga gráfica adaptativa, pausa al ocultar la pestaña y modo ligero para móviles;</li>
+          <li>mejoras de accesibilidad, foco, teclado, contraste y compatibilidad con movimiento reducido;</li>
+          <li>revisión de cálculos, importaciones, exportaciones, historial, gráficos y almacenamiento local;</li>
+          <li>caché renovada para evitar mezclar recursos de v0.10.1‑Beta‑Patch con esta versión.</li>
         </ul>
       </div>
       <section class="beta-consent-box" aria-labelledby="betaConsentTitle">
@@ -3970,7 +4396,7 @@
   (function(){
     'use strict';
 
-    const APP_VERSION = 'v0.10.1-Beta-Patch';
+    const APP_VERSION = 'v0.11.0-Beta';
     const VERSION = APP_VERSION;
     // El contrato de create-account/delete-account no cambió en este parche de exportaciones.
     const ACCOUNT_API_VERSION = 'v0.8.2-Beta-Patch';
@@ -3991,8 +4417,8 @@
     const MAX_PERSONAL_ITEMS = 50;
     const MAX_SAVED_PERSONAL_BASKETS = 20;
     const MAX_PERSONAL_HISTORY = 30;
-    const PRODUCT_SCHEMA_VERSION = 3;
-    const FILE_SCHEMA_VERSION = 3;
+    const PRODUCT_SCHEMA_VERSION = 4;
+    const FILE_SCHEMA_VERSION = 4;
     const MAX_PRODUCT_RECORDS = 2000;
     const MAX_IMPORT_ROWS = 5000;
     const MAX_IMPORT_BYTES = 8 * 1024 * 1024;
@@ -4006,7 +4432,16 @@
       GBP:Object.freeze({name:'Libra esterlina',locale:'en-GB'}),
       CAD:Object.freeze({name:'Dólar canadiense',locale:'en-CA'}),
       MXN:Object.freeze({name:'Peso mexicano',locale:'es-MX'}),
-      ARS:Object.freeze({name:'Peso argentino',locale:'es-AR'})
+      ARS:Object.freeze({name:'Peso argentino',locale:'es-AR'}),
+      JPY:Object.freeze({name:'Yen japonés',locale:'ja-JP',digits:0}),
+      CNY:Object.freeze({name:'Yuan chino',locale:'zh-CN'}),
+      CHF:Object.freeze({name:'Franco suizo',locale:'de-CH'}),
+      AUD:Object.freeze({name:'Dólar australiano',locale:'en-AU'}),
+      NZD:Object.freeze({name:'Dólar neozelandés',locale:'en-NZ'}),
+      CLP:Object.freeze({name:'Peso chileno',locale:'es-CL',digits:0}),
+      COP:Object.freeze({name:'Peso colombiano',locale:'es-CO'}),
+      PEN:Object.freeze({name:'Sol peruano',locale:'es-PE'}),
+      UYU:Object.freeze({name:'Peso uruguayo',locale:'es-UY'})
     });
     const CURRENCY_CODES = Object.freeze(Object.keys(CURRENCIES));
     const FOREIGN_CURRENCY_CODES = Object.freeze(CURRENCY_CODES.filter(function(code){ return code !== 'BRL'; }));
@@ -4029,6 +4464,7 @@
       ,labConfig: 'inflation.v090.lab-config'
       ,advancedDraft: 'inflation.v090.advanced-draft'
       ,productRecords: 'inflation.v100.product-records'
+      ,graphicsQuality: 'inflation.v110.graphics-quality'
     });
     const LEGACY_KEYS = Object.freeze({
       quotes: 'inflation.v050.fx',
@@ -4080,6 +4516,7 @@
       '189':Object.freeze({name:'IGP-M',source:'FGV · Banco Central do Brasil',series:'189'})
     });
     let featureChartSequence=0;
+    let landingExperience=null;
     const FALLBACK_IPCA = Object.freeze({
       annual12mPct: 4.64,
       source: 'Respaldo local fechado: BCB SGS 13522; IPCA/IBGE',
@@ -4158,6 +4595,22 @@
       return isSupportedCurrency(code) ? code : (fallback === undefined ? 'BRL' : fallback);
     };
 
+    function hydrateCurrencySelects(){
+      const ids=['c0a','c1a','c0b','c1b','salaryCurrency','contractCurrency','advancedCurrency','weightedCurrency','personalCurrency','trackerCurrency'];
+      ids.forEach(function(id){
+        const select=$(id);
+        if(!select) return;
+        const selected=normalizeCurrencyCode(select.value,'BRL');
+        select.replaceChildren.apply(select,CURRENCY_CODES.map(function(code){
+          const option=document.createElement('option');
+          option.value=code;
+          option.textContent=code+' — '+CURRENCIES[code].name;
+          return option;
+        }));
+        select.value=selected;
+      });
+    }
+
     function parseLocalized(value){
       if(typeof value === 'number') return Number.isFinite(value) ? value : NaN;
       let text = String(value == null ? '' : value).trim().replace(/\s+/g,'');
@@ -4209,8 +4662,8 @@
           style:'currency',
           currency:code,
           currencyDisplay:'narrowSymbol',
-          minimumFractionDigits:2,
-          maximumFractionDigits:2
+          minimumFractionDigits:info.digits == null ? 2 : info.digits,
+          maximumFractionDigits:info.digits == null ? 2 : info.digits
         }).format(value) + ' · ' + code;
       }catch(error){
         return formatNumber(value,2,2) + ' ' + code;
@@ -4358,12 +4811,15 @@
         consentAnsweredAt:null,
         migratedAt:null,
         migratedFrom:null,
+        lastDataMigrationVersion:null,
+        upgradedFrom:null,
+        upgradedAt:null,
         lastRoute:'inicio',
         lastSyncAt:null,
         weightedBasketId:createUuid(),
         syncDecisions:{}
       },source);
-      if(!meta.lastWelcomeVersion && source.betaWelcomeSeen) meta.lastWelcomeVersion = 'legacy-before-v0.10.1-Beta-Patch';
+      if(!meta.lastWelcomeVersion && source.betaWelcomeSeen) meta.lastWelcomeVersion = 'legacy-before-v0.11.0-Beta';
       if(!isUuid(meta.deviceId)) meta.deviceId = createUuid();
       if(!isUuid(meta.weightedBasketId)) meta.weightedBasketId = createUuid();
       if(!meta.syncDecisions || typeof meta.syncDecisions !== 'object' || Array.isArray(meta.syncDecisions)) meta.syncDecisions = {};
@@ -4401,10 +4857,17 @@
 
     function migrateBetaStorage(){
       migrateLegacyStorage();
-      const meta = loadBetaMeta();
+      let meta = loadBetaMeta();
       if(!meta.migratedAt){
         createMigrationBackup();
         saveBetaMeta({migratedAt:nowIso(),migratedFrom:'v0.7.0-Alpha'});
+      }
+      if(meta.lastDataMigrationVersion !== APP_VERSION){
+        meta=saveBetaMeta({
+          lastDataMigrationVersion:APP_VERSION,
+          upgradedFrom:meta.lastDataMigrationVersion || 'v0.10.1-Beta-Patch',
+          upgradedAt:nowIso()
+        });
       }
       return loadBetaMeta();
     }
@@ -4633,7 +5096,7 @@
       try{
         state.backend.client = window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
           auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'implicit',storageKey:'inflation.v080.auth'},
-          global:{headers:{'x-application-name':'inflation-insights-v0101-beta'}}
+          global:{headers:{'x-application-name':'inflation-insights-v0110-beta'}}
         });
         state.backend.available = true;
         const sessionResult = await withTimeout(state.backend.client.auth.getSession());
@@ -4930,10 +5393,10 @@
           ]);
           payload.remote={user:{id:state.backend.user.id,email:state.backend.user.email || null},profiles:profiles,calculations:calculations,baskets:baskets,feedback:feedback,usageEvents:events};
         }
-        downloadJsonFile('mis-datos-inflation-insights-v0101-'+new Date().toISOString().slice(0,10)+'.json',payload);
+        downloadJsonFile('mis-datos-inflation-insights-v0110-'+new Date().toISOString().slice(0,10)+'.json',payload);
         setNotice($('accountNotice'),'Exportación preparada. El archivo incluye datos locales y, si había sesión, los remotos accesibles.','success');
       }catch(error){
-        downloadJsonFile('mis-datos-locales-inflation-insights-v0101.json',payload);
+        downloadJsonFile('mis-datos-locales-inflation-insights-v0110.json',payload);
         setNotice($('accountNotice'),'Se exportaron los datos locales, pero no fue posible recuperar los remotos.','warning');
       }finally{ setButtonBusy($('exportAllDataButton'),false); }
     }
@@ -4992,7 +5455,7 @@
         if($('pwaOfflineState')) $('pwaOfflineState').textContent='Este navegador no admite Service Worker';
         return;
       }
-      navigator.serviceWorker.register('./sw-v0.10.1-beta-patch.js').then(function(registration){
+      navigator.serviceWorker.register('./sw-v0.11.0-beta.js').then(function(registration){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent=navigator.onLine === false ? 'Modo offline activo' : 'Caché local preparada';
         registration.update().catch(function(){ return null; });
         registration.addEventListener('updatefound',function(){
@@ -5660,6 +6123,7 @@
       $$('[data-view]').forEach(function(view){
         view.hidden = view.dataset.view !== safeRoute;
       });
+      if(landingExperience) landingExperience.setActive(safeRoute === 'inicio');
       $$('[data-route]').forEach(function(button){
         if(button.dataset.route === safeRoute) button.setAttribute('aria-current','page');
         else button.removeAttribute('aria-current');
@@ -5676,7 +6140,8 @@
       if(safeRoute === 'cuenta') updateAccountUi();
       if(safeRoute === 'precios') setMarketTab(state.marketTab || 'shrink');
       if(opts.focus){
-        window.scrollTo({top:0,behavior:'smooth'});
+        const reduceMotion=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({top:0,behavior:reduceMotion ? 'auto' : 'smooth'});
         window.setTimeout(function(){ $('mainContent').focus({preventScroll:true}); },100);
       }
     }
@@ -5754,7 +6219,13 @@
           fetchedAt:value.fetchedAt,mode:'cache',migratedFrom:'single-usd-brl'
         };
       }
-      return {schemaVersion:1,base:'BRL',records:records,errors:{},updatedAt:value && value.updatedAt || null};
+      const errors={};
+      if(value && value.errors && typeof value.errors === 'object'){
+        FOREIGN_CURRENCY_CODES.forEach(function(code){
+          if(['offline','provider','currency','unavailable'].includes(value.errors[code])) errors[code]=value.errors[code];
+        });
+      }
+      return {schemaVersion:1,base:'BRL',records:records,errors:errors,updatedAt:value && value.updatedAt || null,lastAttemptAt:value && value.lastAttemptAt || null};
     }
 
     function quoteFor(code,options){
@@ -5803,9 +6274,12 @@
 
     function quoteModeLabel(mode){
       return mode === 'online' ? 'Actualizada' :
-        mode === 'cache' ? 'En caché' :
-        mode === 'stale' ? 'Antigua' :
-        mode === 'expired' ? 'Vencida' :
+        mode === 'cache' ? 'Cotización almacenada' :
+        mode === 'stale' ? 'Cotización antigua' :
+        mode === 'expired' ? 'Vencida · no se usa' :
+        mode === 'offline' ? 'Sin conexión' :
+        mode === 'provider' ? 'Proveedor no disponible' :
+        mode === 'currency' ? 'Moneda temporalmente no disponible' :
         mode === 'local' ? 'Disponible' :
         'No disponible';
     }
@@ -5817,11 +6291,12 @@
     function renderQuotes(){
       const body = $('quotesTableBody');
       body.replaceChildren();
-      const counts = {online:0,cache:0,stale:0,expired:0,unavailable:0};
+      const counts = {online:0,cache:0,stale:0,expired:0,offline:0,provider:0,currency:0,unavailable:0};
       CURRENCY_CODES.forEach(function(code){
         const info = CURRENCIES[code];
         const stored = quoteFor(code,{allowExpired:true});
-        const mode = code === 'BRL' ? 'local' : stored ? quoteMode(stored) : 'unavailable';
+        const recordedError=state.quotes && state.quotes.errors && state.quotes.errors[code];
+        const mode = code === 'BRL' ? 'local' : stored ? quoteMode(stored) : recordedError || (navigator.onLine === false ? 'offline' : 'currency');
         if(code !== 'BRL') counts[Object.prototype.hasOwnProperty.call(counts,mode) ? mode : 'unavailable'] += 1;
         const row = document.createElement('tr');
         const currencyCell = document.createElement('td');
@@ -5862,9 +6337,12 @@
         quoteSummaryPart(counts.cache,'en caché','en caché'),
         quoteSummaryPart(counts.stale,'antigua','antiguas'),
         quoteSummaryPart(counts.expired,'vencida','vencidas'),
+        quoteSummaryPart(counts.offline,'sin conexión','sin conexión'),
+        quoteSummaryPart(counts.provider,'con proveedor no disponible','con proveedor no disponible'),
+        quoteSummaryPart(counts.currency,'temporalmente no disponible','temporalmente no disponibles'),
         quoteSummaryPart(counts.unavailable,'no disponible','no disponibles')
       ].filter(Boolean);
-      const summaryMode = counts.unavailable ? 'unavailable' : counts.expired ? 'expired' : counts.stale ? 'stale' : counts.cache ? 'cache' : available ? 'online' : 'unavailable';
+      const summaryMode = counts.offline ? 'offline' : counts.provider ? 'provider' : counts.currency || counts.unavailable ? 'unavailable' : counts.expired ? 'expired' : counts.stale ? 'stale' : counts.cache ? 'cache' : available ? 'online' : 'unavailable';
       $('fxSummaryDisplay').textContent = available + ' / ' + total;
       $('fxState').dataset.mode = summaryMode;
       $('fxState').textContent = summaryParts.join(' · ') || 'No disponibles';
@@ -6008,7 +6486,7 @@
     }
 
     function quoteRefreshNotice(fresh,sourceErrors,stored){
-      const groups = {fresh:[],cache:[],stale:[],expired:[],missing:[]};
+      const groups = {fresh:[],cache:[],stale:[],expired:[],offline:[],provider:[],currency:[],missing:[]};
       FOREIGN_CURRENCY_CODES.forEach(function(code){
         if(fresh[code]){ groups.fresh.push(code); return; }
         const record = state.quotes.records[code];
@@ -6016,13 +6494,22 @@
         if(mode === 'cache') groups.cache.push(code);
         else if(mode === 'stale') groups.stale.push(code);
         else if(mode === 'expired') groups.expired.push(code);
-        else groups.missing.push(code);
+        else{
+          const reason=state.quotes.errors && state.quotes.errors[code];
+          if(reason === 'offline') groups.offline.push(code);
+          else if(reason === 'provider') groups.provider.push(code);
+          else if(reason === 'currency') groups.currency.push(code);
+          else groups.missing.push(code);
+        }
       });
       const details = [];
       if(groups.fresh.length) details.push(groups.fresh.length + ' en línea (' + groups.fresh.join(', ') + ')');
       if(groups.cache.length) details.push(groups.cache.length + ' en caché reciente (' + groups.cache.join(', ') + ')');
       if(groups.stale.length) details.push(groups.stale.length + ' antiguas de respaldo (' + groups.stale.join(', ') + ')');
       if(groups.expired.length) details.push(groups.expired.length + ' vencidas, no usadas (' + groups.expired.join(', ') + ')');
+      if(groups.offline.length) details.push(groups.offline.length + ' sin conexión (' + groups.offline.join(', ') + ')');
+      if(groups.provider.length) details.push(groups.provider.length + ' con proveedor no disponible (' + groups.provider.join(', ') + ')');
+      if(groups.currency.length) details.push(groups.currency.length + ' temporalmente no disponibles (' + groups.currency.join(', ') + ')');
       if(groups.missing.length) details.push(groups.missing.length + ' no disponibles (' + groups.missing.join(', ') + ')');
       const failures = [];
       if(sourceErrors.primary) failures.push('ExchangeRate-API falló');
@@ -6080,7 +6567,8 @@
               const ageState = quoteAgeState(cached);
               nextRecords[code] = Object.assign({},cached,{mode:ageState === 'recent' ? 'cache' : ageState});
             }else{
-              errors[code] = 'unavailable';
+              errors[code] = navigator.onLine === false ? 'offline' :
+                sourceErrors.primary && sourceErrors.secondary ? 'provider' : 'currency';
             }
           });
           const attemptAt = nowIso();
@@ -6871,7 +7359,7 @@
           ipca:Object.assign({},state.ipca)
         }
       };
-      downloadJsonFile('resultado-inflacion-v0101.json',data);
+      downloadJsonFile('resultado-inflacion-v0110.json',data);
       trackEvent('report_exported',{tool:'calculator',format:'json'});
     }
 
@@ -6913,7 +7401,7 @@
         rows.push(['fecha_oficial_' + code,quote.officialDate || '']);
         rows.push(['consultado_' + code,quote.fetchedAt || '']);
       });
-      downloadCsvFile('resultado-inflacion-v0101.csv',rows);
+      downloadCsvFile('resultado-inflacion-v0110.csv',rows);
       trackEvent('report_exported',{tool:'calculator',format:'csv'});
     }
 
@@ -7448,7 +7936,7 @@
           };
         })
       };
-      downloadJsonFile('reajuste-salarial-v0101.json',data);
+      downloadJsonFile('reajuste-salarial-v0110.json',data);
       trackEvent('report_exported',{tool:'salary',format:'json'});
     }
 
@@ -7470,7 +7958,7 @@
       rows.push(['fecha_o_periodo_fuente',bundle.inputs.source.officialDate || '']);
       rows.push(['estado_fuente',salarySourceStateLabel(bundle.inputs.source.mode)]);
       rows.push(['periodo_analizado_meses',bundle.inputs.months]);
-      downloadCsvFile('reajuste-salarial-v0101.csv',rows);
+      downloadCsvFile('reajuste-salarial-v0110.csv',rows);
       trackEvent('report_exported',{tool:'salary',format:'csv'});
     }
 
@@ -7526,7 +8014,7 @@
         URL.revokeObjectURL(url);
         canvas.toBlob(function(png){
           if(!png){ showToast('El navegador no pudo generar la imagen.'); return; }
-          downloadBlob('informe-reajuste-salarial-v0101.png',png,'image/png');
+          downloadBlob('informe-reajuste-salarial-v0110.png',png,'image/png');
           trackEvent('report_exported',{tool:'salary',format:'png',design:'professional'});
           showToast('PNG profesional exportado en 1600 × 1100 px.');
         },'image/png');
@@ -8509,7 +8997,7 @@
     function exportPersonalJson(){
       const bundle = ensurePersonalResult();
       if(!bundle) return;
-      downloadJsonFile('costo-de-vida-v0101.json',personalExportPayload(bundle));
+      downloadJsonFile('costo-de-vida-v0110.json',personalExportPayload(bundle));
     }
 
     function exportPersonalProductsCsv(){
@@ -8519,7 +9007,7 @@
       bundle.metrics.products.forEach(function(item){
         rows.push([item.name,item.category,bundle.meta.currency,item.quantity,item.previousPrice,item.currentPrice,item.previousCost,item.currentCost,isFiniteNumber(item.variation) ? item.variation*100 : '',item.monetaryChange,item.contribution*100,item.notes]);
       });
-      downloadCsvFile('productos-costo-de-vida-v0101.csv',rows);
+      downloadCsvFile('productos-costo-de-vida-v0110.csv',rows);
     }
 
     function exportPersonalAnalysisCsv(){
@@ -8536,7 +9024,7 @@
         ['categoria','impacto_monetario','contribucion_pp']
       ];
       bundle.metrics.categories.forEach(function(item){ rows.push([item.name,item.monetaryChange,item.contribution*100]); });
-      downloadCsvFile('analisis-costo-de-vida-v0101.csv',rows);
+      downloadCsvFile('analisis-costo-de-vida-v0110.csv',rows);
     }
 
     function buildPersonalShareUrl(){
@@ -8669,7 +9157,7 @@
       try{
         const payload = normalizePersonalPayload(record.payload);
         const filename = (payload.name || 'cesta').toLocaleLowerCase('es').replace(/[^a-z0-9áéíóúüñ]+/gi,'-').replace(/^-|-$/g,'').slice(0,50) || 'cesta';
-        downloadJsonFile(filename+'-v0101.json',record.payload);
+        downloadJsonFile(filename+'-v0110.json',record.payload);
       }catch(error){
         setNotice($('personalNotice'),'No se pudo exportar este registro: ' + error.message,'error');
       }
@@ -8757,6 +9245,12 @@
       const zero = calculateInflation(100,100,12);
       const twoYears = calculateInflation(100,121,24);
       const deflation = calculateInflation(100,80,12);
+      const oneDay = calculateInflation(100,101,monthsFromTime(1,'dias'));
+      const oneMonth = calculateInflation(100,101,1);
+      const oneYear = calculateInflation(100,110,12);
+      const fiftyYears = calculateInflation(100,1000,600);
+      const decimalPeriod = calculateInflation(100,105,2.5);
+      const extremeValues = calculateInflation(.000001,1e12,600);
       const sameBrl = normalizeScenario(100,121,'BRL','BRL');
       const previousQuotes = state.quotes;
       state.quotes = {schemaVersion:1,base:'BRL',records:{},errors:{},updatedAt:null};
@@ -8788,10 +9282,20 @@
         GBP:quoteRecord('GBP',7,'Prueba','Hoy',testFetchedAt),
         CAD:quoteRecord('CAD',4,'Prueba','Hoy',testFetchedAt),
         MXN:quoteRecord('MXN',.3,'Prueba','Hoy',testFetchedAt),
-        ARS:quoteRecord('ARS',.004,'Prueba','Hoy',testFetchedAt)
+        ARS:quoteRecord('ARS',.004,'Prueba','Hoy',testFetchedAt),
+        JPY:quoteRecord('JPY',.035,'Prueba','Hoy',testFetchedAt),
+        CNY:quoteRecord('CNY',.77,'Prueba','Hoy',testFetchedAt),
+        CHF:quoteRecord('CHF',6.8,'Prueba','Hoy',testFetchedAt),
+        AUD:quoteRecord('AUD',3.6,'Prueba','Hoy',testFetchedAt),
+        NZD:quoteRecord('NZD',3.1,'Prueba','Hoy',testFetchedAt),
+        CLP:quoteRecord('CLP',.006,'Prueba','Hoy',testFetchedAt),
+        COP:quoteRecord('COP',.0014,'Prueba','Hoy',testFetchedAt),
+        PEN:quoteRecord('PEN',1.55,'Prueba','Hoy',testFetchedAt),
+        UYU:quoteRecord('UYU',.14,'Prueba','Hoy',testFetchedAt)
       }};
       const eurToMxn = normalizeScenario(10,20,'EUR','MXN');
       const gbpToUsd = normalizeScenario(10,20,'GBP','USD');
+      const jpyToPen = normalizeScenario(1000,20,'JPY','PEN');
       const staleRecord = quoteRecord('USD',5,'Prueba antigua','Hace dos días',new Date(Date.now()-2*24*60*60*1000).toISOString());
       const expiredRecord = quoteRecord('USD',5,'Prueba vencida','Hace ocho días',new Date(Date.now()-8*24*60*60*1000).toISOString());
       state.quotes = {schemaVersion:1,base:'BRL',errors:{},updatedAt:null,records:{USD:staleRecord}};
@@ -8814,11 +9318,18 @@
       check('100→121 / 24 meses = 21 %',Math.abs(twoYears.total-.21) < 1e-12);
       check('100→121 / 24 meses ≈ 10 % anual',Math.abs(twoYears.annual-.10) < 1e-12);
       check('100→80 = −20 %',Math.abs(deflation.total+.20) < 1e-12);
+      check('Un día conserva resultados finitos',Number.isFinite(oneDay.total) && Number.isFinite(oneDay.annual));
+      check('Un mes conserva la tasa mensual',Math.abs(oneMonth.monthly-.01) < 1e-12);
+      check('Un año anualiza 100→110 al 10 %',Math.abs(oneYear.annual-.10) < 1e-12);
+      check('Cincuenta años usa composición estable',Number.isFinite(fiftyYears.annual) && Math.abs(fiftyYears.total-9) < 1e-12);
+      check('Períodos decimales usan composición geométrica',Number.isFinite(decimalPeriod.monthly) && decimalPeriod.months === 2.5);
+      check('Valores extremos siguen siendo finitos',Number.isFinite(extremeValues.total) && Number.isFinite(extremeValues.annual));
       check('BRL→BRL sin cotización',sameBrl.initial === 100 && sameBrl.final === 121);
       check('Las ' + CURRENCY_CODES.length + ' monedas iguales funcionan sin cotización',sameCurrencyResults.every(function(result){ return result.initial === 100 && result.final === 121 && !result.mixed; }));
       check('BRL↔USD exige cotización USD',mixedRequiresQuotes);
       check('EUR→MXN usa BRL como referencia',Math.abs(eurToMxn.initial-60) < 1e-12 && Math.abs(eurToMxn.final-6) < 1e-12 && eurToMxn.mixed);
       check('GBP→USD usa ambas cotizaciones',Math.abs(gbpToUsd.initial-70) < 1e-12 && Math.abs(gbpToUsd.final-100) < 1e-12);
+      check('JPY→PEN integra las monedas nuevas',Math.abs(jpyToPen.initial-35) < 1e-12 && Math.abs(jpyToPen.final-31) < 1e-12 && jpyToPen.mixed);
       check('Caché de 2 días se identifica como antigua',quoteMode(staleRecord) === 'stale');
       check('Cotización antigua funciona solo como respaldo identificado',staleConversion.mixed && staleConversion.quotesUsed.USD.mode === 'stale');
       check('Cotización de 8 días está vencida y no se usa',quoteMode(expiredRecord) === 'expired' && expiredQuoteRejected);
@@ -8847,9 +9358,12 @@
       check('Inflación unitaria del ejemplo ≈ 16,6667 %',Math.abs((unitPrice(10.5,450,'g')/unitPrice(10,500,'g')-1)-1/6) < 1e-12);
       check('Meta 10.000 a 5 % durante 5 años',Math.abs(10000*Math.pow(1.05,5)-12762.815625) < 1e-8);
       check('Registro de producto válido',inspectProductRecord({name:'Leche',price:'5,49',quantity:'1',unit:'L',date:'2026-01-10'}).valid);
+      check('Registro de producto conserva JPY',inspectProductRecord({name:'Té',price:'500',currency:'JPY',quantity:'1',unit:'pack',date:'2026-01-10'}).record.currency === 'JPY');
+      check('Fecha mensual importada se normaliza',normalizeImportedDate('08/2026') === '2026-08-01');
       check('División por cero rechazada en precio unitario',Number.isNaN(unitPrice(10,0,'g')));
       check('CSV con punto decimal y encabezados comunes',productRowsFromCsv('Producto,Fecha,Precio,Cantidad,Unidad\nLeche,2026-01-10,5.49,1,L').length === 1);
-      check('Claves históricas conservadas y datos v0.10 separados',Object.values(KEYS).every(function(key){ return /^inflation\.v(?:060|080|090|100)\./.test(key); }));
+      check('CSV reconoce moneda nueva',productRowsFromCsv('Producto,Fecha,Precio,Moneda,Cantidad,Unidad\nTé,2026-01-10,500,JPY,1,paquete')[0].currency === 'JPY');
+      check('Claves históricas conservadas y preferencias v0.11 separadas',Object.values(KEYS).every(function(key){ return /^inflation\.v(?:060|080|090|100|110)\./.test(key); }));
       check('Gráficos adaptan puntos al período',calculateInflation(100,110,6).points.length !== calculateInflation(100,110,120).points.length);
       check('Cesta ponderada schema v2 compatible',normalizeBasket({type:'weighted-basket',items:[{name:'A',weight:100,inflation:5}]}).length === 1);
       check('La cesta ponderada tiene identidad canónica por cuenta',isUuid(canonicalWeightedId) && canonicalWeightedId !== syncUserId && canonicalWeightedId === weightedBasketClientId(syncUserId));
@@ -9173,7 +9687,7 @@
       if(!result || !result.analysis) return;
       const rows=[['economía','índice','período','tasa_mensual_pct','acumulada_pct','indice_base_100','fuente','consultado']];
       result.analysis.points.forEach(function(point){ rows.push([result.economy,result.indexName,point.period,point.rate,point.accumulated*100,point.base100,result.source+' · '+result.provider,result.fetchedAt]); });
-      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0101.csv',rows);
+      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0110.csv',rows);
     }
 
     function setDataTab(name){
@@ -9232,7 +9746,7 @@
       const lowest=Math.min.apply(null,result.series.map(function(item){ return item.analysis.accumulated; }));
       const rows=[['economía','índice','inicio','fin','inflación_acumulada_pct','diferencia_pp','fuente','consultado']];
       result.series.forEach(function(item){ rows.push([item.economy,item.indexName,result.start,result.end,item.analysis.accumulated*100,(item.analysis.accumulated-lowest)*100,item.source+' · '+item.provider,item.fetchedAt]); });
-      downloadCsvFile('comparacion-internacional-v0101.csv',rows);
+      downloadCsvFile('comparacion-internacional-v0110.csv',rows);
     }
 
     function contractRange(){
@@ -9332,7 +9846,7 @@
       const result=state.contractComparison; if(!result) return;
       const rows=[['índice','inicio','fin','variación_pct','aumento','valor_final','moneda','fuente','último_dato']];
       result.rows.forEach(function(row){ rows.push([row.name,result.start,result.end,row.rate*100,row.difference,row.finalValue,result.currency,row.source,row.latestPeriod]); });
-      downloadCsvFile('comparacion-reajustes-v0101.csv',rows);
+      downloadCsvFile('comparacion-reajustes-v0110.csv',rows);
     }
 
     function parseLabRates(text,years,fallback){
@@ -9409,7 +9923,7 @@
       const result=state.labResult; if(!result) return;
       const rows=[['escenario','año','inflación_periodo_pct','valor_necesario','ingreso_nominal','ingreso_real','poder_adquisitivo_pct','pérdida_ganancia']];
       result.scenarios.forEach(function(item){ item.timeline.forEach(function(point){ rows.push([item.name,point.year,point.year ? item.rates[point.year-1] : 0,point.priceNeeded,point.nominalIncome,point.realIncome,point.purchasingPower,point.loss]); }); });
-      downloadCsvFile('laboratorio-escenarios-v0101.csv',rows);
+      downloadCsvFile('laboratorio-escenarios-v0110.csv',rows);
     }
 
     function advancedRowTemplate(item,index){
@@ -9474,7 +9988,7 @@
       const result=state.advancedResult; if(!result) return;
       const rows=[['período','tasa_pct','acumulada_pct','valor','indice_base_100','moneda']];
       result.rows.forEach(function(row){ rows.push([row.label,row.rate,row.accumulated*100,row.value,row.base100,result.currency]); });
-      downloadCsvFile('inflacion-por-periodos-v0101.csv',rows);
+      downloadCsvFile('inflacion-por-periodos-v0110.csv',rows);
     }
 
     function setMarketTab(tab,focus){
@@ -9522,8 +10036,8 @@
       return normalized ? UNIT_DEFS[normalized].base : 'base';
     }
 
-    function formatUnitPrice(value,unit){
-      return Number.isFinite(value) ? formatCurrency(value,'BRL')+' / '+unitBaseLabel(unit) : '—';
+    function formatUnitPrice(value,unit,currency){
+      return Number.isFinite(value) ? formatCurrency(value,normalizeCurrencyCode(currency,'BRL'))+' / '+unitBaseLabel(unit) : '—';
     }
 
     function formatQuantity(value,unit){
@@ -9654,8 +10168,9 @@
       return String(value == null ? '' : value).replace(/[\u0000-\u001f\u007f]/g,' ').replace(/\s+/g,' ').trim().slice(0,80);
     }
 
-    function productKey(value){
-      return normalizeProductName(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es');
+    function productKey(value,currency){
+      const name=normalizeProductName(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es');
+      return currency ? name+'::'+normalizeCurrencyCode(currency,'BRL') : name;
     }
 
     function validIsoDate(value){
@@ -9665,13 +10180,35 @@
       return !Number.isNaN(date.getTime()) && date.toISOString().slice(0,10) === text;
     }
 
+    function normalizeImportedDate(value){
+      const text=String(value || '').trim();
+      if(validIsoDate(text)) return text;
+      let match=text.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+      if(match){
+        const candidate=match[3]+'-'+match[2]+'-'+match[1];
+        return validIsoDate(candidate) ? candidate : text;
+      }
+      match=text.match(/^(\d{2})\/(\d{4})$/);
+      if(match){
+        const candidate=match[2]+'-'+match[1]+'-01';
+        return validIsoDate(candidate) ? candidate : text;
+      }
+      match=text.match(/^(\d{4})-(\d{2})$/);
+      if(match){
+        const candidate=text+'-01';
+        return validIsoDate(candidate) ? candidate : text;
+      }
+      return text;
+    }
+
     function inspectProductRecord(value){
       const source=value && typeof value === 'object' ? value : {};
       const name=normalizeProductName(source.name || source.product || source.producto);
       const price=parseLocalized(source.price == null ? source.precio : source.price);
       const quantity=parseLocalized(source.quantity == null ? source.cantidad : source.quantity);
       const unit=normalizeUnit(source.unit == null ? source.unidad : source.unit);
-      const date=String(source.date == null ? source.fecha || '' : source.date).trim();
+      const currency=normalizeCurrencyCode(source.currency == null ? source.moneda : source.currency,'BRL');
+      const date=normalizeImportedDate(source.date == null ? source.fecha || '' : source.date);
       const reasons=[];
       if(!name) reasons.push('falta producto');
       if(!Number.isFinite(price) || price <= 0 || price > MAX_PRICE) reasons.push('precio inválido');
@@ -9683,7 +10220,7 @@
         reason:reasons.join(', '),
         record:{
           id:isUuid(source.id) ? source.id : createUuid(),
-          name:name,price:price,quantity:quantity,unit:unit,date:date,
+          name:name,price:price,currency:currency,quantity:quantity,unit:unit,date:date,
           store:String(source.store == null ? source.establishment || source.establecimiento || '' : source.store).replace(/[\u0000-\u001f\u007f]/g,' ').trim().slice(0,100),
           notes:String(source.notes == null ? source.notas || '' : source.notes).replace(/[\u0000-\u001f\u007f]/g,' ').trim().slice(0,500),
           createdAt:source.createdAt && !Number.isNaN(new Date(source.createdAt).getTime()) ? source.createdAt : nowIso(),
@@ -9693,7 +10230,7 @@
     }
 
     function productRecordSignature(record){
-      return [productKey(record.name),record.date,Number(record.price).toFixed(8),Number(record.quantity).toFixed(8),record.unit,String(record.store || '').toLocaleLowerCase('es')].join('|');
+      return [productKey(record.name,record.currency),record.date,Number(record.price).toFixed(8),Number(record.quantity).toFixed(8),record.unit,String(record.store || '').toLocaleLowerCase('es')].join('|');
     }
 
     function readProductRecords(){
@@ -9722,7 +10259,7 @@
     }
 
     function recordsForProduct(key){
-      return state.productRecords.filter(function(record){ return productKey(record.name) === key; }).sort(function(a,b){ return a.date.localeCompare(b.date) || a.createdAt.localeCompare(b.createdAt); });
+      return state.productRecords.filter(function(record){ return productKey(record.name,record.currency) === key; }).sort(function(a,b){ return a.date.localeCompare(b.date) || a.createdAt.localeCompare(b.createdAt); });
     }
 
     function productAnalysis(records){
@@ -9747,15 +10284,16 @@
 
     function renderProductSelectors(){
       const map=new Map();
-      state.productRecords.forEach(function(record){ const key=productKey(record.name); if(!map.has(key)) map.set(key,record.name); });
-      const entries=Array.from(map.entries()).sort(function(a,b){ return a[1].localeCompare(b[1],'es'); });
-      $('trackedProductNames').innerHTML=entries.map(function(item){ return '<option value="'+escapeXml(item[1])+'"></option>'; }).join('');
+      state.productRecords.forEach(function(record){ const key=productKey(record.name,record.currency); if(!map.has(key)) map.set(key,{name:record.name,currency:record.currency}); });
+      const entries=Array.from(map.entries()).sort(function(a,b){ return a[1].name.localeCompare(b[1].name,'es') || a[1].currency.localeCompare(b[1].currency); });
+      const names=Array.from(new Set(entries.map(function(item){ return item[1].name; })));
+      $('trackedProductNames').innerHTML=names.map(function(name){ return '<option value="'+escapeXml(name)+'"></option>'; }).join('');
       if(!entries.length){
         $('trackedProductSelect').innerHTML='<option value="">Todavía no hay productos</option>';
         state.selectedProductKey='';
       }else{
         if(!entries.some(function(item){ return item[0] === state.selectedProductKey; })) state.selectedProductKey=entries[0][0];
-        $('trackedProductSelect').innerHTML=entries.map(function(item){ return '<option value="'+escapeXml(item[0])+'">'+escapeXml(item[1])+'</option>'; }).join('');
+        $('trackedProductSelect').innerHTML=entries.map(function(item){ return '<option value="'+escapeXml(item[0])+'">'+escapeXml(item[1].name+' · '+item[1].currency)+'</option>'; }).join('');
         $('trackedProductSelect').value=state.selectedProductKey;
       }
     }
@@ -9768,7 +10306,7 @@
         return;
       }
       const previousStart=startSelect.value,previousEnd=endSelect.value;
-      const options=records.map(function(record){ return '<option value="'+escapeXml(record.id)+'">'+escapeXml(record.date+' · '+formatCurrency(record.price,'BRL')+' · '+formatQuantity(record.quantity,record.unit))+'</option>'; }).join('');
+      const options=records.map(function(record){ return '<option value="'+escapeXml(record.id)+'">'+escapeXml(record.date+' · '+formatCurrency(record.price,record.currency)+' · '+formatQuantity(record.quantity,record.unit))+'</option>'; }).join('');
       startSelect.innerHTML=options; endSelect.innerHTML=options;
       startSelect.value=records.some(function(record){ return record.id === previousStart; }) ? previousStart : records[0].id;
       endSelect.value=records.some(function(record){ return record.id === previousEnd; }) ? previousEnd : records.at(-1).id;
@@ -9815,10 +10353,10 @@
         $('trackerIpcaComparison').textContent=analysis.ipca == null ? 'Sin intervalo' : formatSigned((analysis.unitChange-analysis.ipca)*100,' p.p.');
         $('trackerIpcaDetail').textContent=analysis.ipca == null ? 'Añade otra fecha para comparar.' : 'Precio unitario '+signedPercent(analysis.unitChange)+' frente a IPCA actual normalizado '+signedPercent(analysis.ipca)+'. Referencia orientativa, no serie histórica.';
         const values=records.map(function(record){ return {labelText:record.date,value:unitPrice(record.price,record.quantity,record.unit)}; });
-        $('trackerChart').innerHTML=lineChartSvg([{name:'Precio por '+analysis.base,color:'#ff6900',values:values}],{title:'Precio unitario histórico',description:'Evolución por '+analysis.base+' de '+records[0].name,valueSuffix:' BRL',height:260});
+        $('trackerChart').innerHTML=lineChartSvg([{name:'Precio por '+analysis.base,color:'#ff6900',values:values}],{title:'Precio unitario histórico',description:'Evolución por '+analysis.base+' de '+records[0].name+' en '+records[0].currency,valueSuffix:' '+records[0].currency,height:260});
       }
       $('trackerTableBody').innerHTML=records.map(function(record){
-        return '<tr><td>'+escapeXml(record.date)+'</td><td>'+escapeXml(formatCurrency(record.price,'BRL'))+'</td><td>'+escapeXml(formatQuantity(record.quantity,record.unit))+'</td><td>'+escapeXml(formatUnitPrice(unitPrice(record.price,record.quantity,record.unit),record.unit))+'</td><td>'+escapeXml(record.store || '—')+'</td><td><button class="button danger small" type="button" data-delete-product-record="'+escapeXml(record.id)+'">Eliminar</button></td></tr>';
+        return '<tr><td>'+escapeXml(record.date)+'</td><td>'+escapeXml(formatCurrency(record.price,record.currency))+'</td><td>'+escapeXml(record.currency)+'</td><td>'+escapeXml(formatQuantity(record.quantity,record.unit))+'</td><td>'+escapeXml(formatUnitPrice(unitPrice(record.price,record.quantity,record.unit),record.unit,record.currency))+'</td><td>'+escapeXml(record.store || '—')+'</td><td><button class="button danger small" type="button" data-delete-product-record="'+escapeXml(record.id)+'">Eliminar</button></td></tr>';
       }).join('');
       if(analysis.compatible && analysis.shrinkDetected) setNotice($('trackerNotice'),'Se detectó que el contenido más reciente es menor que el primero. Compara el precio unitario para medir la reduflación.','warning');
     }
@@ -9826,31 +10364,32 @@
     function saveProductRecordFromForm(){
       const inspected=inspectProductRecord({
         name:$('trackerProductName').value,price:$('trackerPrice').value,quantity:$('trackerQuantity').value,
-        unit:$('trackerUnit').value,date:$('trackerDate').value,store:$('trackerStore').value,notes:$('trackerNotes').value
+        currency:$('trackerCurrency').value,unit:$('trackerUnit').value,date:$('trackerDate').value,store:$('trackerStore').value,notes:$('trackerNotes').value
       });
       if(!inspected.valid){ setNotice($('trackerNotice'),'No se guardó: '+inspected.reason+'.','error'); return; }
       if(state.productRecords.length >= MAX_PRODUCT_RECORDS){ setNotice($('trackerNotice'),'Se alcanzó el máximo de '+MAX_PRODUCT_RECORDS+' registros. Exporta y elimina datos antes de continuar.','error'); return; }
       const signature=productRecordSignature(inspected.record);
       if(state.productRecords.some(function(record){ return productRecordSignature(record) === signature; })){ setNotice($('trackerNotice'),'Ese registro ya existe; no se creó un duplicado.','warning'); return; }
       if(!saveProductRecords(state.productRecords.concat(inspected.record))) return;
-      state.selectedProductKey=productKey(inspected.record.name);
+      state.selectedProductKey=productKey(inspected.record.name,inspected.record.currency);
       renderProductTracker();
       $('productRecordForm').reset();
       $('trackerDate').value=new Date().toISOString().slice(0,10);
       $('trackerUnit').value=inspected.record.unit;
+      $('trackerCurrency').value=inspected.record.currency;
       setNotice($('trackerNotice'),'Registro guardado localmente.','success');
     }
 
     function loadTrackerExample(){
       const example=[
-        {name:'Leche integral',price:5.49,quantity:1,unit:'L',date:'2026-01-10',store:'Mercado ejemplo',notes:'Envase de 1 L'},
-        {name:'Leche integral',price:5.89,quantity:1,unit:'L',date:'2026-04-15',store:'Mercado ejemplo',notes:'Mismo formato'},
-        {name:'Leche integral',price:6.29,quantity:900,unit:'ml',date:'2026-08-10',store:'Mercado ejemplo',notes:'Contenido reducido'}
+        {name:'Leche integral',price:5.49,currency:'BRL',quantity:1,unit:'L',date:'2026-01-10',store:'Mercado ejemplo',notes:'Envase de 1 L'},
+        {name:'Leche integral',price:5.89,currency:'BRL',quantity:1,unit:'L',date:'2026-04-15',store:'Mercado ejemplo',notes:'Mismo formato'},
+        {name:'Leche integral',price:6.29,currency:'BRL',quantity:900,unit:'ml',date:'2026-08-10',store:'Mercado ejemplo',notes:'Contenido reducido'}
       ];
       const existing=new Set(state.productRecords.map(productRecordSignature));
       const additions=example.map(inspectProductRecord).filter(function(item){ return item.valid && !existing.has(productRecordSignature(item.record)); }).map(function(item){ return item.record; });
       saveProductRecords(state.productRecords.concat(additions));
-      state.selectedProductKey=productKey('Leche integral');
+      state.selectedProductKey=productKey('Leche integral','BRL');
       renderProductTracker();
       setNotice($('trackerNotice'),additions.length ? 'Ejemplo añadido: tres fechas y un cambio de 1 L a 900 ml.' : 'El ejemplo ya estaba guardado.','success');
     }
@@ -9867,7 +10406,7 @@
       const records=recordsForProduct(state.selectedProductKey);
       if(!records.length) return;
       const payload={schemaVersion:FILE_SCHEMA_VERSION,appVersion:APP_VERSION,type:'product-price-history',createdAt:nowIso(),data:{product:records[0].name,records:records}};
-      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-v0101.json',payload);
+      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0110.json',payload);
     }
 
     function calculateInflationGoal(){
@@ -9970,6 +10509,7 @@
         name:headerIndex(headers,['Producto','Nombre','Product','Name','Produto']),
         date:headerIndex(headers,['Fecha','Date','Data']),
         price:headerIndex(headers,['Precio','Price','Valor','Preco']),
+        currency:headerIndex(headers,['Moneda','Currency','Moeda','Codigo moneda','Currency code']),
         quantity:headerIndex(headers,['Cantidad','Quantity','Quantidade','Qtd']),
         unit:headerIndex(headers,['Unidad','Unit','Unidade']),
         store:headerIndex(headers,['Establecimiento','Tienda','Store','Loja']),
@@ -9979,7 +10519,7 @@
       if(table.length-1 > MAX_IMPORT_ROWS) throw new Error('El CSV supera el máximo de '+MAX_IMPORT_ROWS+' filas.');
       return table.slice(1).map(function(row){
         return {
-          name:row[indexes.name],date:row[indexes.date],price:row[indexes.price],quantity:row[indexes.quantity],unit:row[indexes.unit],
+          name:row[indexes.name],date:row[indexes.date],price:row[indexes.price],currency:indexes.currency >= 0 ? row[indexes.currency] : 'BRL',quantity:row[indexes.quantity],unit:row[indexes.unit],
           store:indexes.store >= 0 ? row[indexes.store] : '',notes:indexes.notes >= 0 ? row[indexes.notes] : ''
         };
       });
@@ -9990,12 +10530,13 @@
       if(!items.length) return [];
       const start=String(payload.startDate || payload.data && payload.data.startDate || '').slice(0,10);
       const end=String(payload.endDate || payload.data && payload.data.endDate || '').slice(0,10);
+      const currency=normalizeCurrencyCode(payload.currency || payload.data && payload.data.currency,'BRL');
       const rows=[];
       items.forEach(function(item){
         const name=item && (item.name || item.product);
         const quantity=item && (item.quantity || 1);
-        if(validIsoDate(start) && Number(item && item.previousPrice) > 0) rows.push({name:name,date:start,price:item.previousPrice,quantity:quantity,unit:item.unit || 'unit',notes:'Importado de una cesta personal'});
-        if(validIsoDate(end) && Number(item && item.currentPrice) > 0) rows.push({name:name,date:end,price:item.currentPrice,quantity:quantity,unit:item.unit || 'unit',notes:'Importado de una cesta personal'});
+        if(validIsoDate(start) && Number(item && item.previousPrice) > 0) rows.push({name:name,date:start,price:item.previousPrice,currency:currency,quantity:quantity,unit:item.unit || 'unit',notes:'Importado de una cesta personal'});
+        if(validIsoDate(end) && Number(item && item.currentPrice) > 0) rows.push({name:name,date:end,price:item.currentPrice,currency:currency,quantity:quantity,unit:item.unit || 'unit',notes:'Importado de una cesta personal'});
       });
       return rows;
     }
@@ -10037,17 +10578,30 @@
       return parts.join('\n');
     }
 
+    function currencyFromRecognizedText(value){
+      const text=String(value || '');
+      const upper=text.toUpperCase();
+      const byCode=CURRENCY_CODES.find(function(code){ return new RegExp('(?:^|[^A-Z])'+code+'(?:$|[^A-Z])').test(upper); });
+      if(byCode) return byCode;
+      if(/R\$/.test(text)) return 'BRL';
+      if(/US\$/.test(text)) return 'USD';
+      if(/€/.test(text)) return 'EUR';
+      if(/£/.test(text)) return 'GBP';
+      if(/¥/.test(text)) return 'JPY';
+      return 'BRL';
+    }
+
     function productRowsFromRecognizedText(text){
       const rows=[];
       String(text || '').split(/\r?\n/).forEach(function(line){
         const parts=line.split(/\s+(?:\||—|;)\s+/);
         if(parts.length < 4) return;
-        const dateIndex=parts.findIndex(function(part){ return validIsoDate(part.trim()); });
+        const dateIndex=parts.findIndex(function(part){ return validIsoDate(normalizeImportedDate(part.trim())); });
         if(dateIndex <= 0 || parts.length <= dateIndex+2) return;
         const unitMatch=String(parts[dateIndex+2] || parts[dateIndex+3] || '').match(/([0-9.,]+)\s*(kg|g|L|l|ml|unidades?|unidad|paquetes?|paquete)\b/i);
         const price=parseLocalized(parts[dateIndex+1]);
         if(!unitMatch || !Number.isFinite(price)) return;
-        rows.push({name:parts.slice(0,dateIndex).join(' ').replace(/^[-*\s]+/,'').trim(),date:parts[dateIndex].trim(),price:price,quantity:unitMatch[1],unit:unitMatch[2]});
+        rows.push({name:parts.slice(0,dateIndex).join(' ').replace(/^[-*\s]+/,'').trim(),date:normalizeImportedDate(parts[dateIndex].trim()),price:price,currency:currencyFromRecognizedText(line),quantity:unitMatch[1],unit:unitMatch[2]});
       });
       return rows.slice(0,MAX_IMPORT_ROWS);
     }
@@ -10105,6 +10659,7 @@
           '<td><input aria-label="Producto fila '+(index+1)+'" data-import-field="name" maxlength="80" value="'+escapeXml(record.name)+'"></td>'+
           '<td><input aria-label="Fecha fila '+(index+1)+'" data-import-field="date" type="date" value="'+escapeXml(record.date)+'"></td>'+
           '<td><input aria-label="Precio fila '+(index+1)+'" data-import-field="price" inputmode="decimal" value="'+escapeXml(Number.isFinite(record.price) ? String(record.price) : String(row.price || ''))+'"></td>'+
+          '<td><select aria-label="Moneda fila '+(index+1)+'" data-import-field="currency">'+CURRENCY_CODES.map(function(code){ return '<option value="'+code+'"'+(record.currency === code ? ' selected' : '')+'>'+code+'</option>'; }).join('')+'</select></td>'+
           '<td><input aria-label="Cantidad fila '+(index+1)+'" data-import-field="quantity" inputmode="decimal" value="'+escapeXml(Number.isFinite(record.quantity) ? String(record.quantity) : String(row.quantity || ''))+'"></td>'+
           '<td><select aria-label="Unidad fila '+(index+1)+'" data-import-field="unit">'+Object.keys(UNIT_DEFS).map(function(unit){ return '<option value="'+unit+'"'+(record.unit === unit ? ' selected' : '')+'>'+escapeXml(UNIT_DEFS[unit].label)+'</option>'; }).join('')+'</select></td>'+
           '<td class="import-row-status">'+escapeXml(inspected.valid ? 'Lista para importar' : inspected.reason)+'</td></tr>';
@@ -10169,10 +10724,10 @@
           rows=productRowsFromCsv(new TextDecoder('utf-8').decode(buffer));
         }else if(format === 'PDF'){
           rows=productRowsFromRecognizedText(extractPdfText(buffer));
-          if(!rows.length){ rows=[{name:'',date:new Date().toISOString().slice(0,10),price:'',quantity:'',unit:'unit'}]; warning='El PDF es válido, pero no se reconoció una tabla compatible. Completa o descarta la fila de revisión.'; }
+          if(!rows.length){ rows=[{name:'',date:new Date().toISOString().slice(0,10),price:'',currency:'BRL',quantity:'',unit:'unit'}]; warning='El PDF es válido, pero no se reconoció una tabla compatible. Completa o descarta la fila de revisión.'; }
         }else{
           state.importObjectUrl=URL.createObjectURL(file); imageUrl=state.importObjectUrl;
-          rows=[{name:'',date:new Date().toISOString().slice(0,10),price:'',quantity:'',unit:'unit'}];
+          rows=[{name:'',date:new Date().toISOString().slice(0,10),price:'',currency:'BRL',quantity:'',unit:'unit'}];
           warning='La imagen se cargó como fuente visual. Este navegador no ofreció OCR local fiable; completa los campos antes de confirmar.';
         }
         state.importPreview={format:format,fileName:file.name,rows:rows.slice(0,MAX_IMPORT_ROWS),extras:extras,warning:warning,imageUrl:imageUrl};
@@ -10201,7 +10756,7 @@
       const additions=valid.filter(function(record){ const signature=productRecordSignature(record); if(existing.has(signature)) return false; existing.add(signature); return true; });
       if(state.productRecords.length+additions.length > MAX_PRODUCT_RECORDS){ setNotice($('unifiedImportNotice'),'La importación superaría el máximo de '+MAX_PRODUCT_RECORDS+' registros. Divide el archivo.','error'); return; }
       if(additions.length && !saveProductRecords(state.productRecords.concat(additions))) return;
-      if(additions.length) state.selectedProductKey=productKey(additions[0].name);
+      if(additions.length) state.selectedProductKey=productKey(additions[0].name,additions[0].currency);
       renderProductTracker();
       const duplicates=valid.length-additions.length;
       setNotice($('trackerNotice'),additions.length+' registros importados'+(duplicates ? '; '+duplicates+' duplicados omitidos' : '')+'.','success');
@@ -10216,19 +10771,19 @@
         appVersion:APP_VERSION,
         type:'product-price-history',
         createdAt:nowIso(),
-        data:{currency:'BRL',records:(records || state.productRecords).map(function(record){ return Object.assign({},record,{unitPrice:unitPrice(record.price,record.quantity,record.unit),baseUnit:unitBaseLabel(record.unit)}); })}
+        data:{currencies:Array.from(new Set((records || state.productRecords).map(function(record){ return normalizeCurrencyCode(record.currency,'BRL'); }))),records:(records || state.productRecords).map(function(record){ return Object.assign({},record,{unitPrice:unitPrice(record.price,record.quantity,record.unit),baseUnit:unitBaseLabel(record.unit)}); })}
       };
     }
 
     function productCsvContent(includeMetrics){
-      const headers=['Producto','Fecha','Precio','Cantidad','Unidad','Establecimiento','Notas'];
-      if(includeMetrics) headers.push('Precio_unitario_BRL','Unidad_base','Variacion_precio_pct','Variacion_cantidad_pct','Inflacion_unitaria_pct','Reduflacion_detectada');
+      const headers=['Producto','Fecha','Precio','Moneda','Cantidad','Unidad','Establecimiento','Notas'];
+      if(includeMetrics) headers.push('Precio_unitario','Unidad_base','Variacion_precio_pct','Variacion_cantidad_pct','Inflacion_unitaria_pct','Reduflacion_detectada');
       const rows=[headers];
       const previousByProduct=new Map();
-      state.productRecords.slice().sort(function(a,b){ return productKey(a.name).localeCompare(productKey(b.name)) || a.date.localeCompare(b.date); }).forEach(function(record){
-        const row=[record.name,record.date,Number(record.price),Number(record.quantity),record.unit,record.store || '',record.notes || ''];
+      state.productRecords.slice().sort(function(a,b){ return productKey(a.name,a.currency).localeCompare(productKey(b.name,b.currency)) || a.date.localeCompare(b.date); }).forEach(function(record){
+        const row=[record.name,record.date,Number(record.price),record.currency,Number(record.quantity),record.unit,record.store || '',record.notes || ''];
         if(includeMetrics){
-          const key=productKey(record.name),previous=previousByProduct.get(key);
+          const key=productKey(record.name,record.currency),previous=previousByProduct.get(key);
           let visible='',quantity='',real='',shrink='';
           if(previous && UNIT_DEFS[previous.unit].group === UNIT_DEFS[record.unit].group){
             const oldBase=baseQuantity(previous.quantity,previous.unit),newBase=baseQuantity(record.quantity,record.unit);
@@ -10259,14 +10814,14 @@
 
     function exportUnifiedCsv(){
       if(!state.productRecords.length){ setNotice($('exportStudioNotice'),'No hay seguimientos de productos para exportar en CSV.','warning'); return; }
-      downloadBlob('seguimiento-productos-v0101-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
+      downloadBlob('seguimiento-productos-v0110-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
       setNotice($('exportStudioNotice'),'CSV UTF-8 exportado con fechas ISO y números decimales consistentes.','success');
     }
 
     function exportUnifiedJson(){
       const all=$('exportDataScope').value === 'all';
       const payload=all ? buildLocalExchangePayload() : structuredProductPayload();
-      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0101-'+new Date().toISOString().slice(0,10)+'.json',payload);
+      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0110-'+new Date().toISOString().slice(0,10)+'.json',payload);
       setNotice($('exportStudioNotice'),'JSON exportado con versión de esquema, versión de la aplicación, tipo y fecha de creación.','success');
     }
 
@@ -10407,7 +10962,7 @@
           canvas.toBlob(function(output){
             URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false);
             if(!output){ setNotice($('exportStudioNotice'),'El navegador no pudo crear el PNG.','error'); return; }
-            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0101.png',output,'image/png');
+            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0110.png',output,'image/png');
             setNotice($('exportStudioNotice'),'PNG exportado a '+pixels.width+' × '+pixels.height+' píxeles.','success');
           },'image/png',1);
         }catch(error){ URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false); setNotice($('exportStudioNotice'),'No se pudo renderizar el PNG.','error'); }
@@ -11054,7 +11609,289 @@
       const report=state.reportResult; if(!report) return;
       const rows=[['sección','contenido']]; report.sections.forEach(function(section){ section.lines.forEach(function(line){ rows.push([section.title,line]); }); });
       rows.push(['Metodología',report.methodology],['Supuestos',report.assumptions]);
-      downloadCsvFile('informe-inflacion-v0101.csv',rows);
+      downloadCsvFile('informe-inflacion-v0110.csv',rows);
+    }
+
+    const LANDING_QUALITY_PROFILES=Object.freeze({
+      ultra:Object.freeze({particles:180,coins:16,fps:60,dpr:2,pixelBudget:9200000,glow:true,label:'Ultra'}),
+      high:Object.freeze({particles:118,coins:16,fps:60,dpr:1.65,pixelBudget:7200000,glow:true,label:'Alta'}),
+      medium:Object.freeze({particles:70,coins:12,fps:45,dpr:1.3,pixelBudget:4700000,glow:false,label:'Media'}),
+      low:Object.freeze({particles:30,coins:8,fps:30,dpr:1,pixelBudget:2300000,glow:false,label:'Baja / móvil'})
+    });
+
+    function automaticLandingQuality(){
+      const width=Math.max(window.innerWidth || 0,window.screen && window.screen.width || 0);
+      const cores=Number(navigator.hardwareConcurrency || 2);
+      const memory=Number(navigator.deviceMemory || 0);
+      const saveData=Boolean(navigator.connection && navigator.connection.saveData);
+      const coarse=window.matchMedia && window.matchMedia('(pointer:coarse)').matches;
+      if(saveData || width < 720 || coarse && (cores <= 4 || memory && memory <= 4)) return 'low';
+      if(width >= 2560 && cores >= 8 && (!memory || memory >= 8)) return 'ultra';
+      if(width >= 1280 && cores >= 6 && (!memory || memory >= 6)) return 'high';
+      return 'medium';
+    }
+
+    function setupLandingExperience(){
+      const root=$('landing3d'),canvas=$('landingCanvas');
+      if(!root || !canvas) return null;
+      const qualitySelect=$('graphicsQuality');
+      const qualityState=$('graphicsQualityState');
+      const motionButton=$('landingMotionButton');
+      const motionStatus=$('landingMotionStatus');
+      const orbit=root.querySelector('.landing-orbit');
+      const scenes=$$('[data-landing-scene]',root);
+      const transition=$('landingTransition');
+      const skipTransition=$('landingSkipTransitionButton');
+      const prefersReduced=window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : {matches:false,addEventListener:function(){}};
+      const context=canvas.getContext && canvas.getContext('2d',{alpha:false,desynchronized:true});
+      const currencyCodes=['BRL','USD','EUR','GBP','CAD','MXN','ARS','JPY','CNY','CHF','AUD','NZD','CLP','COP','PEN','UYU'];
+      let requested=safeStorageGet(KEYS.graphicsQuality,'auto');
+      if(!['auto','ultra','high','medium','low'].includes(requested)) requested='auto';
+      let resolved=requested === 'auto' ? automaticLandingQuality() : requested;
+      let profile=LANDING_QUALITY_PROFILES[resolved];
+      let systemReduced=Boolean(prefersReduced.matches);
+      let manualReduced=systemReduced;
+      let routeActive=state.route === 'inicio';
+      let documentActive=!document.hidden;
+      let raf=0,lastFrame=0,scrollRaf=0,transitionTimer=0;
+      let width=0,height=0,dpr=1,progress=0,activeScene=0;
+      let pointer={x:0,y:0,targetX:0,targetY:0};
+      let particles=[];
+
+      function pseudoRandom(seed){
+        let value=seed >>> 0;
+        return function(){ value=(value*1664525+1013904223)>>>0; return value/4294967296; };
+      }
+
+      function rebuildWorld(){
+        const random=pseudoRandom(1102026+profile.particles);
+        particles=Array.from({length:profile.particles},function(){
+          return {x:(random()-.5)*1800,y:(random()-.5)*1100,z:90+random()*1500,size:.7+random()*2.3,hue:random()>.74 ? 'orange' : random()>.48 ? 'cyan' : 'white'};
+        });
+      }
+
+      function updateQualityLabel(){
+        const prefix=requested === 'auto' ? 'Auto → ' : '';
+        qualityState.textContent=prefix+profile.label+' · '+profile.fps+' FPS máx.';
+        root.dataset.quality=resolved;
+      }
+
+      function setQuality(value,announce){
+        requested=['auto','ultra','high','medium','low'].includes(value) ? value : 'auto';
+        resolved=requested === 'auto' ? automaticLandingQuality() : requested;
+        profile=LANDING_QUALITY_PROFILES[resolved];
+        qualitySelect.value=requested;
+        safeStorageSet(KEYS.graphicsQuality,requested,{silent:true});
+        rebuildWorld();
+        resizeCanvas();
+        updateQualityLabel();
+        draw(performance.now(),true);
+        if(announce) motionStatus.textContent='Calidad gráfica: '+profile.label+'.';
+      }
+
+      function setReduced(value,announce){
+        manualReduced=Boolean(value) || systemReduced;
+        motionButton.setAttribute('aria-pressed',String(manualReduced));
+        motionButton.textContent=manualReduced ? 'Reactivar movimiento' : 'Reducir movimiento';
+        root.dataset.reducedMotion=String(manualReduced);
+        if(orbit) orbit.style.transform='';
+        if(announce) motionStatus.textContent=manualReduced ? 'Movimiento reducido. La calculadora mantiene todas sus funciones.' : 'Movimiento ambiental reactivado.';
+        updateAnimationState();
+        draw(performance.now(),true);
+      }
+
+      function resizeCanvas(){
+        if(!context) return;
+        width=Math.max(1,window.innerWidth);
+        height=Math.max(1,window.innerHeight-72);
+        const desired=Math.min(window.devicePixelRatio || 1,profile.dpr);
+        const budgetScale=Math.sqrt(profile.pixelBudget/Math.max(1,width*height));
+        dpr=Math.max(.75,Math.min(desired,budgetScale));
+        canvas.width=Math.max(1,Math.round(width*dpr));
+        canvas.height=Math.max(1,Math.round(height*dpr));
+        canvas.style.width=width+'px';
+        canvas.style.height=height+'px';
+        context.setTransform(dpr,0,0,dpr,0,0);
+      }
+
+      function project(x,y,z){
+        const depth=Math.max(70,z);
+        const scale=Math.min(3.4,620/depth);
+        return {x:width*.5+(x+pointer.x*115)*scale,y:height*.5+(y+pointer.y*72)*scale,scale:scale,depth:depth};
+      }
+
+      function drawFloor(time){
+        context.save();
+        context.strokeStyle='rgba(255,212,0,.11)';
+        context.lineWidth=1;
+        const horizon=height*.58;
+        for(let line=0;line<11;line += 1){
+          const t=line/10;
+          const y=horizon+Math.pow(t,1.8)*height*.5;
+          context.beginPath();context.moveTo(0,y);context.lineTo(width,y);context.stroke();
+        }
+        for(let column=-8;column<=8;column += 1){
+          const bottom=width*.5+column*width*.12+pointer.x*35;
+          context.beginPath();context.moveTo(width*.5+pointer.x*25,horizon);context.lineTo(bottom,height);context.stroke();
+        }
+        context.restore();
+      }
+
+      function drawParticles(time){
+        context.save();
+        context.globalCompositeOperation='lighter';
+        particles.forEach(function(item,index){
+          const travel=manualReduced ? 0 : (time*.035+progress*720+index*2.7);
+          const z=((item.z-travel)%1580+1580)%1580+70;
+          const point=project(item.x,item.y,z);
+          if(point.x < -30 || point.x > width+30 || point.y < -30 || point.y > height+30) return;
+          const alpha=Math.max(.04,Math.min(.72,(1-z/1700)*.74));
+          const color=item.hue === 'orange' ? '255,105,0' : item.hue === 'cyan' ? '85,245,230' : '255,255,255';
+          context.fillStyle='rgba('+color+','+alpha+')';
+          context.beginPath();context.arc(point.x,point.y,Math.max(.45,item.size*point.scale),0,Math.PI*2);context.fill();
+        });
+        context.restore();
+      }
+
+      function drawCoins(time){
+        const count=Math.min(profile.coins,currencyCodes.length);
+        const motion=manualReduced ? 0 : time*.00012;
+        const radius=Math.min(width*.38,560);
+        const visible=[];
+        for(let index=0;index<count;index += 1){
+          const angle=motion+index/count*Math.PI*2+progress*Math.PI*.62;
+          const x=Math.cos(angle)*radius;
+          const y=Math.sin(angle*.94)*Math.min(height*.31,260);
+          const z=480+Math.sin(angle*1.7)*300;
+          visible.push({code:currencyCodes[index],point:project(x,y,z),z:z,index:index});
+        }
+        visible.sort(function(a,b){ return b.z-a.z; }).forEach(function(item){
+          const size=Math.max(14,Math.min(46,23*item.point.scale));
+          const alpha=Math.max(.18,Math.min(.82,1-item.z/1250));
+          context.save();
+          if(profile.glow){ context.shadowBlur=18; context.shadowColor=item.index%3 === 0 ? 'rgba(255,212,0,.55)' : 'rgba(85,245,230,.35)'; }
+          context.fillStyle=item.index%3 === 0 ? 'rgba(255,212,0,'+alpha+')' : item.index%3 === 1 ? 'rgba(85,245,230,'+alpha+')' : 'rgba(255,255,255,'+alpha+')';
+          context.strokeStyle='rgba(5,5,7,.85)';context.lineWidth=Math.max(1,size*.08);
+          context.beginPath();context.arc(item.point.x,item.point.y,size,0,Math.PI*2);context.fill();context.stroke();
+          context.shadowBlur=0;context.fillStyle='#08080b';context.font='900 '+Math.max(8,size*.34)+'px system-ui';context.textAlign='center';context.textBaseline='middle';context.fillText(item.code,item.point.x,item.point.y);
+          context.restore();
+        });
+      }
+
+      function drawDataRibbon(time){
+        const strength=Math.max(0,1-Math.abs(progress-.42)*4.3);
+        if(strength <= .01) return;
+        context.save();
+        context.translate(pointer.x*24,pointer.y*15);
+        context.strokeStyle='rgba(255,212,0,'+(.18+.5*strength)+')';
+        context.lineWidth=2+strength*4;
+        context.beginPath();
+        for(let step=0;step<=44;step += 1){
+          const x=width*(.06+.88*step/44);
+          const wave=Math.sin(step*.46+(manualReduced ? 0 : time*.001))*height*.035;
+          const y=height*(.73-.43*Math.pow(step/44,1.3))+wave;
+          if(step === 0) context.moveTo(x,y); else context.lineTo(x,y);
+        }
+        context.stroke();context.restore();
+      }
+
+      function draw(time,force){
+        if(!context || !width || !height) return;
+        if(!force && time-lastFrame < 1000/profile.fps) return;
+        lastFrame=time;
+        pointer.x+=(pointer.targetX-pointer.x)*.055;
+        pointer.y+=(pointer.targetY-pointer.y)*.055;
+        const gradient=context.createRadialGradient(width*(.66+pointer.x*.03),height*(.22+pointer.y*.03),10,width*.55,height*.44,Math.max(width,height)*.78);
+        gradient.addColorStop(0,'#1a1010');gradient.addColorStop(.32,'#090a10');gradient.addColorStop(1,'#030305');
+        context.fillStyle=gradient;context.fillRect(0,0,width,height);
+        drawFloor(time);drawParticles(time);drawDataRibbon(time);drawCoins(time);
+      }
+
+      function frame(time){
+        raf=0;
+        if(!routeActive || !documentActive || manualReduced) return;
+        draw(time,false);
+        raf=requestAnimationFrame(frame);
+      }
+
+      function updateAnimationState(){
+        const shouldRun=Boolean(context && routeActive && documentActive && !manualReduced);
+        if(shouldRun && !raf) raf=requestAnimationFrame(frame);
+        if(!shouldRun && raf){ cancelAnimationFrame(raf); raf=0; }
+      }
+
+      function updateScrollState(){
+        scrollRaf=0;
+        const rect=root.getBoundingClientRect();
+        const travel=Math.max(1,root.offsetHeight-window.innerHeight);
+        progress=Math.max(0,Math.min(1,-rect.top/travel));
+        let nearest=0,distance=Infinity;
+        const center=window.innerHeight*.52;
+        scenes.forEach(function(scene,index){
+          const sceneRect=scene.getBoundingClientRect();
+          const current=Math.abs(sceneRect.top+sceneRect.height*.5-center);
+          if(current < distance){ distance=current; nearest=index; }
+        });
+        activeScene=nearest;
+        scenes.forEach(function(scene,index){ scene.dataset.active=String(index === activeScene); });
+        draw(performance.now(),true);
+      }
+
+      function requestScrollUpdate(){
+        if(!scrollRaf) scrollRaf=requestAnimationFrame(updateScrollState);
+      }
+
+      function setActive(value){
+        routeActive=Boolean(value);
+        if(routeActive){ resizeCanvas();requestScrollUpdate(); }
+        updateAnimationState();
+      }
+
+      function finishTransition(){
+        if(transitionTimer){ window.clearTimeout(transitionTimer);transitionTimer=0; }
+        showRoute('calculadora');
+        window.setTimeout(function(){ transition.classList.remove('is-active');transition.hidden=true; },120);
+      }
+
+      function openCalculator(){
+        if(manualReduced || prefersReduced.matches){ showRoute('calculadora');return; }
+        transition.hidden=false;
+        requestAnimationFrame(function(){ transition.classList.add('is-active'); });
+        transitionTimer=window.setTimeout(finishTransition,760);
+      }
+
+      if(!context){
+        canvas.hidden=true;
+        root.dataset.canvas='unavailable';
+        qualityState.textContent='Canvas no disponible · modo ligero';
+      }else{
+        root.dataset.canvas='ready';
+        rebuildWorld();resizeCanvas();
+      }
+      qualitySelect.value=requested;
+      updateQualityLabel();
+      setReduced(manualReduced,false);
+      qualitySelect.addEventListener('change',function(){ setQuality(this.value,true); });
+      motionButton.addEventListener('click',function(){ setReduced(!manualReduced,true); });
+      $('openCalculator3dButton').addEventListener('click',openCalculator);
+      $('openCalculatorFinalButton').addEventListener('click',openCalculator);
+      skipTransition.addEventListener('click',finishTransition);
+      root.addEventListener('pointermove',function(event){
+        if(manualReduced) return;
+        pointer.targetX=(event.clientX/window.innerWidth-.5)*2;
+        pointer.targetY=(event.clientY/window.innerHeight-.5)*2;
+        if(orbit) orbit.style.transform='rotateX('+(-pointer.targetY*4)+'deg) rotateY('+(pointer.targetX*6)+'deg)';
+      },{passive:true});
+      root.addEventListener('pointerleave',function(){ pointer.targetX=0;pointer.targetY=0;if(orbit) orbit.style.transform=''; },{passive:true});
+      window.addEventListener('scroll',requestScrollUpdate,{passive:true});
+      window.addEventListener('resize',function(){
+        if(requested === 'auto') setQuality('auto',false); else resizeCanvas();
+        requestScrollUpdate();
+      },{passive:true});
+      document.addEventListener('visibilitychange',function(){ documentActive=!document.hidden;updateAnimationState(); });
+      if(prefersReduced.addEventListener) prefersReduced.addEventListener('change',function(event){ systemReduced=Boolean(event.matches);setReduced(systemReduced,true); });
+      requestScrollUpdate();updateAnimationState();
+      return {setActive:setActive,setQuality:setQuality,setReduced:setReduced,render:function(){ draw(performance.now(),true); }};
     }
 
     function setupPwaInstall(){
@@ -11110,7 +11947,7 @@
       $('deleteSelectedProductButton').addEventListener('click',function(){
         const button=this,key=state.selectedProductKey;
         armRemoteAction(button,'eliminar producto',function(){
-          saveProductRecords(state.productRecords.filter(function(record){ return productKey(record.name) !== key; }));
+          saveProductRecords(state.productRecords.filter(function(record){ return productKey(record.name,record.currency) !== key; }));
           state.selectedProductKey=''; renderProductTracker(); setNotice($('trackerNotice'),'Producto y sus observaciones eliminados del dispositivo.','success');
         });
       });
@@ -11163,7 +12000,7 @@
       $('copyContractReceiptButton').addEventListener('click',function(){ if(state.contractResult) copyText(contractReceiptText(state.contractResult),'Comprobante copiado.'); });
       $('exportContractJsonButton').addEventListener('click',function(){
         if(!state.contractResult) return;
-        downloadJsonFile('reajuste-contrato-v0101.json',Object.assign({},state.contractResult,{
+        downloadJsonFile('reajuste-contrato-v0110.json',Object.assign({},state.contractResult,{
           schemaVersion:FILE_SCHEMA_VERSION,
           appVersion:APP_VERSION,
           type:'contract-adjustment',
@@ -11171,7 +12008,7 @@
           createdAt:state.contractResult.fetchedAt || nowIso()
         }));
       });
-      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0101.pdf','contract'); });
+      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0110.pdf','contract'); });
       $('exportContractComparisonCsvButton').addEventListener('click',exportContractComparisonCsv);
       $('labForm').addEventListener('submit',function(event){ event.preventDefault(); calculateLab(); });
       $('saveLabButton').addEventListener('click',saveLabConfig);
@@ -11191,11 +12028,11 @@
       });
       $('loadAdvancedExampleButton').addEventListener('click',loadAdvancedExample);
       $('exportAdvancedCsvButton').addEventListener('click',exportAdvancedCsv);
-      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0101.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
+      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0110.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
       $('reportForm').addEventListener('submit',function(event){ event.preventDefault(); try{ renderReportPreview(buildReportData()); }catch(error){ setNotice($('reportNotice'),'Selecciona al menos una sección.','error'); } });
-      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0101.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
+      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0110.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
       $('exportReportCsvButton').addEventListener('click',exportReportCsv);
-      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0101.json',state.reportResult); });
+      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0110.json',state.reportResult); });
       $('installAppButton').addEventListener('click',promptPwaInstall);
       $('menuButton').addEventListener('click',function(){
         const opening = $('mainNav').dataset.open !== 'true';
@@ -11286,7 +12123,7 @@
       });
       $('copyLinkButton').addEventListener('click',function(){ copyText(buildShareUrl(),'Enlace del escenario copiado.'); });
       $('copyResultButton').addEventListener('click',function(){ copyText(resultPlainText(),'Resultado copiado.'); });
-      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0101.pdf','calculator'); });
+      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0110.pdf','calculator'); });
       $('exportJsonButton').addEventListener('click',exportResultJson);
       $('exportCsvButton').addEventListener('click',exportResultCsv);
       $('refreshQuotesButton').addEventListener('click',function(){ refreshQuotes(); });
@@ -11320,7 +12157,7 @@
       $('salaryShareButton').addEventListener('click',function(){ copyText(buildSalaryShareUrl(),'Enlace del análisis salarial copiado.'); });
       $('salaryExportCsvButton').addEventListener('click',exportSalaryCsv);
       $('salaryExportJsonButton').addEventListener('click',exportSalaryJson);
-      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0101.pdf','salary'); });
+      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0110.pdf','salary'); });
       $('salaryExportPngButton').addEventListener('click',exportSalaryChartPng);
 
       $('saveScenarioButton').addEventListener('click',function(){
@@ -11450,7 +12287,7 @@
       $('saveBasketButton').addEventListener('click',saveBasket);
       $('weightedCurrency').addEventListener('change',function(){ state.basketCurrency = normalizeCurrencyCode(this.value,'BRL'); });
       $('exportBasketButton').addEventListener('click',function(){
-        downloadJsonFile('cesta-ponderada-v0101.json',weightedBasketPayload());
+        downloadJsonFile('cesta-ponderada-v0110.json',weightedBasketPayload());
       });
       $('importBasketButton').addEventListener('click',function(){ $('basketFileInput').click(); });
       $('basketFileInput').addEventListener('change',function(event){
@@ -11586,7 +12423,7 @@
       });
       $$('[data-download-personal-chart]').forEach(function(button){
         button.addEventListener('click',function(){
-          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0101.png');
+          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0110.png');
         });
       });
 
@@ -11628,6 +12465,7 @@
 
     function init(){
       const betaMeta=migrateBetaStorage();
+      hydrateCurrencySelects();
       state.backend.analyticsConsent=Boolean(betaMeta.analyticsConsent);
       state.backend.lastSyncAt=betaMeta.lastSyncAt || null;
       const currentMonth=new Date().getFullYear()+'-'+String(new Date().getMonth()+1).padStart(2,'0');
@@ -11662,6 +12500,10 @@
       renderSavedLists();
       renderPersonalSavedLists();
       routeFromLocation(true);
+      window.requestAnimationFrame(function(){
+        landingExperience=setupLandingExperience();
+        if(landingExperience) landingExperience.setActive(state.route === 'inicio');
+      });
       applyQueryParameters();
       updateAccountUi();
       registerOfflineWorker();
