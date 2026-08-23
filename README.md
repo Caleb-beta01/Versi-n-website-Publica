@@ -1,34 +1,43 @@
 # Calculadora de Inflación
 
-Versión pública y desplegable de la Calculadora de Inflación.
+Repositorio público y desplegable de la Calculadora de Inflación.
 
 - Versión activa: **v0.11.2-Beta-Patch**
 - Canal: **Beta**
 - Despliegue: **GitHub Pages**
-- Aplicación: [abrir la Calculadora de Inflación](https://caleb-beta01.github.io/Versi-n-website-Publica/)
+- Desarrollo y QA: repositorio privado `Caleb-beta01/Calculadora-de-Inflaci-n-app`
 
-## Qué incluye
+## Raíz de producción
 
-- Calculadora de inflación.
-- Herramientas financieras integradas.
-- Conversión y consulta de tasas.
-- Experiencia PWA instalable.
-- Interfaz adaptada a móvil y escritorio.
+La raíz se mantiene deliberadamente pequeña porque GitHub Pages y la PWA usan rutas relativas. Los archivos activos son:
 
-## Archivos principales
+- `index.html`: entrada del sitio.
+- `v0.11.2-Beta-Patch.html`: snapshot requerido por el service worker activo.
+- `manifest-v0.11.2-beta-patch.webmanifest`: manifiesto PWA activo.
+- `sw-v0.11.2-beta-patch.js`: service worker activo.
+- `icons/`: iconos requeridos por la PWA.
+- `.nojekyll`, `README.md` y `LICENSE`.
+- `docs/`: documentación de publicación.
 
-- `index.html`: entrada activa del sitio.
-- `manifest-*.webmanifest`: configuración PWA.
-- `sw-*.js`: service worker.
-- `icons/`: iconos de la aplicación.
-- `backups/`: copias recuperables de versiones sustituidas.
+## Archivo histórico
 
-Consulta [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) para el flujo de publicación.
+Los artefactos sustituidos se conservan fuera de la raíz en `archive/`:
 
-## Desarrollo
+```text
+archive/
+├── backups/
+└── releases/
+    ├── alpha/
+    └── beta/
+        ├── html/
+        ├── manifests/
+        └── service-workers/
+```
 
-El desarrollo, los informes y las pruebas se gestionan en el repositorio privado. Este repositorio público debe mantenerse pequeño y contener solo los archivos necesarios para la versión desplegada.
+No se deben restaurar archivos individuales de versiones diferentes como una combinación. Una reversión debe usar un conjunto coherente de HTML, manifiesto, service worker e iconos.
+
+Consulta `docs/DEPLOYMENT.md` antes de publicar o revertir una versión.
 
 ## Licencia
 
-Consulta [LICENSE](LICENSE).
+Consulta `LICENSE`.

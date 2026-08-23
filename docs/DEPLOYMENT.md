@@ -2,30 +2,39 @@
 
 ## Fuente de verdad
 
-El repositorio privado contiene el desarrollo y la validación. Este repositorio contiene la versión pública activa.
+El repositorio privado contiene desarrollo, backend, pruebas y QA. Este repositorio contiene exclusivamente la versión pública activa y su archivo histórico.
 
 ## Flujo de publicación
 
 1. Validar la candidata en el repositorio privado.
-2. Confirmar que la versión, el manifiesto y el service worker usan el mismo identificador.
-3. Copiar los archivos aprobados a una rama de publicación.
-4. Abrir y revisar un pull request.
-5. Fusionar en `main`.
-6. Verificar GitHub Pages, la instalación PWA y el modo sin conexión.
-7. Conservar un respaldo recuperable de la versión sustituida.
+2. Confirmar que HTML, versión visible, manifiesto y service worker pertenecen a la misma release.
+3. Crear una rama `release/*` en este repositorio.
+4. Copiar los artefactos aprobados manteniendo las rutas relativas requeridas.
+5. Mover el conjunto sustituido a `archive/releases/` cuando deje de estar referenciado por el runtime activo.
+6. Abrir y revisar un pull request.
+7. Fusionar en `main`.
+8. Verificar GitHub Pages, instalación PWA y modo offline.
 
-## Reglas de la raíz
+## Regla de la raíz
 
-Deben permanecer en la raíz únicamente:
+La raíz es producción. Deben permanecer allí solamente los archivos que usa GitHub Pages, los recursos activos y la documentación esencial.
+
+Antes de mover un archivo fuera de la raíz, comprobar referencias desde:
 
 - `index.html`.
-- El manifiesto activo.
-- El service worker activo.
-- `.nojekyll`, `README.md`, `LICENSE`.
-- Directorios de recursos necesarios.
+- manifiesto activo.
+- service worker activo.
 
-Los artefactos históricos deben pasar a `backups/` únicamente después de comprobar que no estén referenciados por `index.html`, el manifiesto o el service worker activo.
+## Estructura histórica
+
+- `archive/backups/`: copias recuperables antiguas.
+- `archive/releases/alpha/`: HTML históricos Alpha.
+- `archive/releases/beta/html/`: HTML Beta sustituidos.
+- `archive/releases/beta/manifests/`: manifiestos PWA sustituidos.
+- `archive/releases/beta/service-workers/`: service workers sustituidos.
 
 ## Reversión
 
-Si una publicación falla, restaurar la última combinación validada de `index.html`, manifiesto, service worker e iconos. No mezclar archivos de versiones distintas.
+Restaurar siempre un conjunto validado de la misma versión. No mezclar un `index.html` de una versión con un manifiesto o service worker de otra.
+
+Después de revertir, comprobar navegación, caché offline, instalación PWA, iconos y versión visible.
