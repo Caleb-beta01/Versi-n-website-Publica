@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#ffd400">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="Calculadora de inflación 3D preparada para 4K, con 16 monedas, poder adquisitivo, precios reales, salarios, datos oficiales e informes profesionales.">
+  <meta name="description" content="Plataforma de inflación con presupuesto familiar, poder adquisitivo histórico, rendimiento real, suscripciones, auditoría, educación, widgets, 16 monedas y datos oficiales.">
   <meta name="application-name" content="Inflation Insights">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Inflation Insights">
-  <link rel="manifest" href="./manifest-v0.11.2-beta-patch.webmanifest">
+  <link rel="manifest" href="./manifest-v0.12.0-beta.webmanifest">
   <link rel="icon" href="./icons/inflation-insights-192.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/inflation-insights-192.png">
-  <title>Calculadora de Inflación · v0.11.2-Beta-Patch</title>
+  <title>Calculadora de Inflación · v0.12.0-Beta</title>
   <style>
     :root{
       --bg:#07111f;
@@ -1189,7 +1189,7 @@
       .hero-source-card{position:static;width:100%;margin-top:-8px}
     }
 
-    /* v0.11.2-Beta-Patch: identidad neo-brutalista para portada, navegación y footer. */
+    /* v0.12.0-Beta: identidad neo-brutalista para portada, navegación y footer. */
     :root{
       --nb-paper:#f7f5ef;
       --nb-white:#ffffff;
@@ -1587,7 +1587,7 @@
       .home-cta{margin-inline:14px}
     }
 
-    /* v0.11.2-Beta-Patch: el lenguaje visual de la portada se extiende a toda la aplicación. */
+    /* v0.12.0-Beta: el lenguaje visual de la portada se extiende a toda la aplicación. */
     :root{
       --bg:var(--nb-paper);
       --bg-soft:#fff4bd;
@@ -1879,7 +1879,7 @@
     }
     .debug-panel{border:4px solid var(--nb-ink);border-radius:0;color:var(--nb-ink);background:var(--nb-yellow);box-shadow:6px 6px 0 var(--nb-ink)}
 
-    /* v0.11.2-Beta-Patch: cuenta opcional, sincronización y privacidad. */
+    /* v0.12.0-Beta: cuenta opcional, sincronización y privacidad. */
     .version-chip{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
     .beta-mini{
       display:inline-grid;
@@ -2030,7 +2030,7 @@
     .table-caption.strong{font-weight:800}
     .weighted-currency-field{max-width:360px;margin-bottom:14px}
 
-    /* v0.11.2-Beta-Patch: módulos de datos, simulación, reajustes e informes. */
+    /* v0.12.0-Beta: módulos de datos, simulación, reajustes e informes. */
     .route-shortcuts,.feature-jump-grid,.metric-grid,.scenario-editor,.report-source-grid{
       display:grid;
       gap:14px;
@@ -2179,7 +2179,7 @@
     .method-note{margin-top:14px;padding:12px 14px;border-left:6px solid var(--nb-orange);background:#fff5eb}
     .sr-update{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-    /* v0.11.2-Beta-Patch: análisis de precios reales, archivos y exportación. */
+    /* v0.12.0-Beta: análisis de precios reales, archivos y exportación. */
     .market-tabs{position:sticky;top:78px;z-index:6;margin-bottom:20px}
     .market-panel{display:grid;gap:20px}
     .market-panel[hidden]{display:none!important}
@@ -2238,7 +2238,7 @@
     .goal-scenario strong{font-size:1.5rem}
     .source-disclosure{margin-top:12px;color:var(--muted);font-size:.82rem}
 
-    /* v0.11.2-Beta-Patch · 3D Experience Update */
+    /* v0.12.0-Beta · 3D Experience Update */
     body[data-route="inicio"]{background:#050507}
     body[data-route="inicio"] .app-header{
       border-bottom-color:#ffd400;
@@ -2651,7 +2651,7 @@
       .report-preview{min-height:0;padding:0;border:0;box-shadow:none}
     }
 
-    /* v0.11.2-Beta-Patch · geometría corregida y continuidad visual 3D */
+    /* v0.12.0-Beta · geometría corregida y continuidad visual 3D */
     :root{
       --bg:#050507;
       --bg-soft:#0a0b10;
@@ -3184,6 +3184,111 @@
       .app-footer{grid-template-columns:1fr}
     }
 
+    /* v0.12.0-Beta · módulos de finanzas personales, auditoría, educación y widgets. */
+    .feature-layout{display:grid;grid-template-columns:minmax(330px,.86fr) minmax(0,1.14fr);gap:18px;align-items:start}
+    .feature-stack{display:grid;gap:18px}
+    .feature-card{display:grid;gap:18px;min-width:0}
+    .feature-card>.module-toolbar{align-items:flex-start}
+    .feature-card h2,.feature-card h3{margin:0}
+    .feature-card p{margin:0;color:var(--muted)}
+    .feature-help{padding:12px 14px;border-left:4px solid #55f5e6;background:#10121a;color:#c9cbd4;font-size:.9rem}
+    .feature-status{min-height:48px;padding:12px 14px;border:2px solid #3b3e49;background:#0d0f16;color:#d7d9e2}
+    .feature-status[data-state="success"]{border-color:#4ade80;color:#baf7ce}
+    .feature-status[data-state="warning"]{border-color:#ffd400;color:#fff0a3}
+    .feature-status[data-state="error"]{border-color:#ff7182;color:#ffc0c8}
+    .feature-table{width:100%;border-collapse:collapse}
+    .feature-table th,.feature-table td{padding:11px 10px;border-bottom:1px solid #343741;text-align:left;vertical-align:top}
+    .feature-table th{color:#fff;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
+    .feature-table td{color:#d4d6df}
+    .feature-table input,.feature-table select{min-width:92px}
+    .feature-table .button{min-height:38px;padding:7px 10px}
+    .dynamic-row{display:grid;grid-template-columns:minmax(150px,1.3fr) minmax(110px,.8fr) minmax(110px,.75fr) auto;gap:10px;align-items:end;padding:12px;border:1px solid #343741;background:#0d0f16}
+    .dynamic-row .field{margin:0}
+    .dynamic-row .icon-button{margin-bottom:2px}
+    .projection-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+    .projection-list li{display:grid;grid-template-columns:minmax(90px,.7fr) repeat(3,minmax(120px,1fr));gap:10px;padding:10px 12px;border:1px solid #343741;background:#0d0f16}
+    .projection-list span{color:var(--muted)}
+    .projection-list strong{text-align:right}
+    .timeline-panel{display:grid;gap:14px;padding:16px;border:2px solid #343741;background:#0d0f16}
+    .timeline-labels{display:flex;justify-content:space-between;gap:14px;color:#fff;font-weight:800}
+    .timeline-slider{width:100%;accent-color:#ffd400}
+    .source-strip{display:flex;flex-wrap:wrap;gap:8px}
+    .source-strip span{padding:7px 9px;border:1px solid #3b3e49;background:#11131b;color:#c9cbd4;font-size:.78rem}
+    .classification{display:grid;gap:12px;padding:18px;border:3px solid #777;background:#0d0f16}
+    .classification[data-level="normal"]{border-color:#4ade80}
+    .classification[data-level="elevated"]{border-color:#ffd400}
+    .classification[data-level="very-high"]{border-color:#ff9d44}
+    .classification[data-level="anomaly"]{border-color:#ff7182}
+    .classification[data-level="insufficient"]{border-color:#8296b0}
+    .classification strong{font-size:clamp(1.25rem,3vw,2rem)}
+    .history-chips{display:flex;flex-wrap:wrap;gap:7px}
+    .history-chip{padding:7px 9px;border:1px solid #4a4d59;background:#151720;color:#fff;font-size:.78rem}
+    .expense-list{display:grid;gap:12px}
+    .expense-item{display:grid;grid-template-columns:minmax(170px,1.25fr) repeat(3,minmax(120px,.7fr)) auto;gap:12px;align-items:center;padding:14px;border:2px solid #343741;background:#0d0f16}
+    .expense-item h3{font-size:1rem}
+    .expense-item small{display:block;color:var(--muted)}
+    .audit-trigger{display:inline-flex;align-items:center;gap:7px}
+    .audit-content{display:grid;gap:16px}
+    .audit-step{padding:15px;border-left:5px solid #ffd400;background:#10121a}
+    .audit-step h4{margin:0 0 7px;color:#fff}
+    .audit-step p{margin:4px 0;color:#d4d6df}
+    .audit-step code{display:block;margin-top:8px;padding:10px;overflow-wrap:anywhere;border:1px solid #454955;background:#050507;color:#fff0a3;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+    .education-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .education-topic{min-width:0;border:2px solid #343741;background:#0d0f16}
+    .education-topic[open]{border-color:#ffd400}
+    .education-topic summary{min-height:66px;padding:14px;display:flex;align-items:center;gap:10px;color:#fff;font-weight:900;cursor:pointer;list-style:none}
+    .education-topic summary::-webkit-details-marker{display:none}
+    .education-topic summary::after{content:'+';margin-left:auto;color:#ffd400;font-size:1.35rem}
+    .education-topic[open] summary::after{content:'−'}
+    .education-topic-body{display:grid;gap:10px;padding:0 14px 14px;color:#c9cbd4}
+    .education-topic-body code{padding:8px;border:1px solid #454955;background:#050507;color:#fff0a3}
+    .education-complete{display:flex;align-items:center;gap:8px;color:#fff;font-weight:800}
+    .education-bars{display:grid;gap:12px}
+    .education-bar{display:grid;grid-template-columns:130px minmax(0,1fr) 120px;gap:10px;align-items:center}
+    .education-bar-track{height:20px;border:1px solid #4a4d59;background:#08090d;overflow:hidden}
+    .education-bar-fill{height:100%;width:0;background:#ffd400;transition:width .2s ease}
+    .education-bar[data-kind="power"] .education-bar-fill{background:#55f5e6}
+    .widget-generator-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.9fr);gap:18px;align-items:start}
+    .widget-code{width:100%;min-height:190px;resize:vertical;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+    .widget-preview{min-height:360px;padding:18px;border:3px solid #ffd400;background:#08090d}
+    .widget-preview[data-theme="light"]{background:#fff;color:#111}
+    .widget-preview[data-theme="light"] p{color:#414141}
+    .widget-preview-card{display:grid;gap:14px;max-width:620px;margin:auto}
+    .widget-preview-card h2{margin:0;font-size:1.3rem}
+    .widget-mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .widget-mini-result{padding:14px;border:2px solid currentColor;background:rgba(255,212,0,.1)}
+    .widget-mini-result strong{display:block;font-size:1.4rem}
+    body[data-widget="true"]{min-width:280px;background:#08090d}
+    body[data-widget="true"] .app-header,body[data-widget="true"] .nav-backdrop,body[data-widget="true"] .beta-service-notice,body[data-widget="true"] .app-footer{display:none!important}
+    body[data-widget="true"] main{width:100%;max-width:none}
+    body[data-widget="true"] .view{padding:0!important}
+    body[data-widget="true"] #view-widget-runtime{display:block!important;min-height:100vh}
+    .widget-runtime-shell{min-height:100vh;padding:18px;display:grid;place-items:center;background:#08090d;color:#fff}
+    .widget-runtime-shell[data-theme="light"]{background:#fff;color:#111}
+    .widget-runtime-card{width:min(100%,680px);display:grid;gap:14px;padding:18px;border:3px solid #ffd400;background:#11131b}
+    .widget-runtime-shell[data-theme="light"] .widget-runtime-card{background:#f8f8f4}
+    .widget-runtime-brand{display:flex;justify-content:space-between;gap:12px;color:inherit;font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+    .widget-runtime-card label{color:inherit}
+    .widget-runtime-card input,.widget-runtime-card select{color:#111;background:#fff}
+    .widget-runtime-result{padding:15px;border:2px solid #ffd400;background:rgba(255,212,0,.12)}
+    .widget-runtime-result strong{display:block;font-size:clamp(1.25rem,5vw,2rem)}
+    .feature-empty{padding:22px;border:2px dashed #555;background:#0d0f16;color:var(--muted);text-align:center}
+    .visually-muted{color:var(--muted);font-size:.85rem}
+
+    @media (max-width:1050px){
+      .feature-layout,.widget-generator-grid{grid-template-columns:1fr}
+      .education-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .expense-item{grid-template-columns:minmax(160px,1fr) repeat(2,minmax(110px,.7fr))}
+    }
+    @media (max-width:760px){
+      .dynamic-row,.expense-item,.projection-list li{grid-template-columns:1fr}
+      .projection-list strong{text-align:left}
+      .education-grid{grid-template-columns:1fr}
+      .education-bar{grid-template-columns:1fr}
+      .widget-mini-grid{grid-template-columns:1fr}
+      .feature-table{min-width:680px}
+    }
+
   </style>
 </head>
 <body>
@@ -3213,7 +3318,7 @@
         <button class="nav-link" type="button" data-route="informes">Informes</button>
         <button class="nav-link" type="button" data-route="historial">Historial</button>
         <button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button>
-        <span class="version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.11.2-Beta-Patch</span>
+        <span class="version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.12.0-Beta</span>
       </nav>
 
       <span class="status-chip header-status" id="connectionChip" data-status="online" aria-live="polite">
@@ -3252,7 +3357,7 @@
 
         <section class="landing-scene landing-hero" data-landing-scene="0" data-active="true" aria-describedby="homeSummary">
           <div class="landing-copy">
-            <p class="landing-eyebrow">v0.11.2‑Beta‑Patch · 3D Experience Update</p>
+            <p class="landing-eyebrow">v0.12.0‑Beta · 3D Experience Update</p>
             <h1 class="landing-title" id="homeTitle">Mide el cambio. <span>Entiende el impacto.</span></h1>
             <p class="landing-lede" id="homeSummary">Calcula inflación, deflación y poder adquisitivo con precisión compuesta, fuentes identificadas y una experiencia preparada para móvil, escritorio y 4K.</p>
             <div class="landing-actions" role="group" aria-label="Acciones principales">
@@ -3556,6 +3661,7 @@
             </details>
 
             <div class="result-actions">
+              <button class="button secondary small audit-trigger" id="openCalculatorAuditButton" type="button">🛡️ Ver cálculo</button>
               <button class="button primary small" id="modifyButton" type="button">Modificar cálculo</button>
               <button class="button secondary small" id="copyResultButton" type="button">Copiar resultado</button>
               <button class="button secondary small" id="exportCsvButton" type="button">Exportar CSV</button>
@@ -3617,6 +3723,54 @@
           <p>Compara inflación, ingresos y poder adquisitivo en escenarios moderado, adverso, extremo y personalizado.</p>
           <button class="button secondary small" type="button" data-route="laboratorio">Simular escenarios</button>
         </article>
+        <article class="card tool-card">
+          <div class="tool-icon" aria-hidden="true">💸</div>
+          <h2>Presupuesto familiar</h2>
+          <p>Proyecta cada categoría con su propia inflación y descubre el salario necesario para conservar tu nivel de vida.</p>
+          <button class="button secondary small" type="button" data-route="presupuesto">Simular presupuesto</button>
+        </article>
+        <article class="card tool-card">
+          <div class="tool-icon" aria-hidden="true">🕰️</div>
+          <h2>Máquina del tiempo</h2>
+          <p>Compara el poder adquisitivo entre dos meses con índices oficiales, fuente, fecha y copia local identificada.</p>
+          <button class="button secondary small" type="button" data-route="tiempo-dinero">Comparar épocas</button>
+        </article>
+        <article class="card tool-card">
+          <div class="tool-icon" aria-hidden="true">📉</div>
+          <h2>Rendimiento real</h2>
+          <p>Separa rentabilidad nominal y real mediante la relación compuesta correcta, no con una simple resta.</p>
+          <button class="button secondary small" type="button" data-route="rendimiento-real">Evaluar inversión</button>
+        </article>
+        <article class="card tool-card">
+          <div class="tool-icon" aria-hidden="true">🧾</div>
+          <h2>Gastos y suscripciones</h2>
+          <p>Conserva precios recurrentes, calcula su coste mensual y anual e identifica cuáles suben más deprisa.</p>
+          <button class="button secondary small" type="button" data-route="suscripciones">Gestionar gastos</button>
+        </article>
+        <article class="card tool-card">
+          <div class="tool-icon" aria-hidden="true">🚨</div>
+          <h2>Aumentos anormales</h2>
+          <p>Analiza magnitud, tiempo, historial y frecuencia sin confundir un aumento de precio con reduflación.</p>
+          <button class="button secondary small" type="button" data-route="anomalias">Analizar historial</button>
+        </article>
+        <article class="card tool-card">
+          <div class="tool-icon" aria-hidden="true">🛡️</div>
+          <h2>Auditoría de cálculo</h2>
+          <p>Abre cualquier resultado compatible para revisar datos, conversiones, fórmula, pasos y redondeo.</p>
+          <button class="button secondary small" type="button" data-route="calculadora">Calcular y auditar</button>
+        </article>
+        <article class="card tool-card">
+          <div class="tool-icon" aria-hidden="true">🎓</div>
+          <h2>Aprende inflación</h2>
+          <p>Experimenta con inflación compuesta, poder adquisitivo, índices, CAGR, deflación y rendimiento real.</p>
+          <button class="button secondary small" type="button" data-route="educacion">Abrir modo educativo</button>
+        </article>
+        <article class="card tool-card">
+          <div class="tool-icon" aria-hidden="true">&lt;/&gt;</div>
+          <h2>Widgets embebibles</h2>
+          <p>Configura una calculadora reducida, previsualízala y copia un iframe listo para otra página web.</p>
+          <button class="button secondary small" type="button" data-route="widgets">Crear widget</button>
+        </article>
       </div>
 
       <section class="card analysis-panel" aria-labelledby="analysisTitle">
@@ -3652,7 +3806,7 @@
             <div class="source-box mt-14">
               <dl>
                 <div><dt>Origen</dt><dd id="ipcaSource">Respaldo local</dd></div>
-                <div><dt>Fecha oficial</dt><dd id="ipcaOfficialDate">Junio de 2026 · acumulado en 12 meses</dd></div>
+                <div><dt>Fecha oficial</dt><dd id="ipcaOfficialDate">Julio de 2026 · acumulado en 12 meses</dd></div>
                 <div><dt>Consultado</dt><dd id="ipcaFetchedAt">No aplica al respaldo local</dd></div>
                 <div><dt>Estado</dt><dd><span class="source-state" id="ipcaState" data-mode="fallback">Respaldo local</span></dd></div>
               </dl>
@@ -3666,9 +3820,315 @@
       </section>
     </section>
 
+    <section class="view" id="view-presupuesto" data-view="presupuesto" aria-labelledby="budgetTitle" hidden>
+      <div class="view-head">
+        <p class="eyebrow">Finanzas personales · nueva función</p>
+        <h1 id="budgetTitle">Simulador de presupuesto familiar</h1>
+        <p class="lede">Proyecta vivienda, alimentación, transporte y cualquier gasto con su propia tasa. Los datos permanecen en este dispositivo y puedes borrarlos cuando quieras.</p>
+      </div>
+      <div class="feature-layout">
+        <form class="card feature-card" id="budgetForm" novalidate>
+          <div class="module-toolbar"><div><p class="eyebrow">Datos mensuales</p><h2>Ingresos y categorías</h2></div><span class="inline-badge">Local</span></div>
+          <div class="form-grid">
+            <div class="field"><label for="budgetIncome">Ingresos mensuales</label><input id="budgetIncome" type="text" inputmode="decimal" placeholder="5.000,00" aria-describedby="budgetIncomeError"><p class="field-error" id="budgetIncomeError" aria-live="polite"></p></div>
+            <div class="field"><label for="budgetCurrency">Moneda</label><select id="budgetCurrency"><option value="BRL">BRL — Real brasileño</option></select></div>
+            <div class="field"><label for="budgetHorizon">Horizonte</label><input id="budgetHorizon" type="text" inputmode="decimal" value="5" aria-describedby="budgetHorizonError"><p class="field-error" id="budgetHorizonError" aria-live="polite"></p></div>
+            <div class="field"><label for="budgetHorizonUnit">Unidad</label><select id="budgetHorizonUnit"><option value="years">Años</option><option value="months">Meses</option></select></div>
+          </div>
+          <div class="module-toolbar"><div><h3>Inflación por categoría</h3><p>El importe es mensual y la tasa es anual compuesta.</p></div><button class="button secondary small" id="budgetAddCategoryButton" type="button">Añadir gasto</button></div>
+          <div class="feature-stack" id="budgetRows" aria-live="polite"></div>
+          <div class="action-row">
+            <button class="button primary" type="submit">Proyectar presupuesto</button>
+            <button class="button secondary" id="budgetExampleButton" type="button">Cargar ejemplo</button>
+            <button class="button danger" id="budgetClearButton" type="button">Borrar presupuesto local</button>
+          </div>
+          <div class="feature-status" id="budgetNotice" role="status" aria-live="polite">Completa los ingresos y al menos una categoría.</div>
+        </form>
+        <section class="card feature-card" aria-labelledby="budgetResultsTitle">
+          <div class="module-toolbar"><div><p class="eyebrow">Proyección</p><h2 id="budgetResultsTitle">Impacto en tu presupuesto</h2></div><button class="button secondary small audit-trigger" id="budgetAuditButton" type="button" disabled>🛡️ Ver cálculo</button></div>
+          <div class="feature-empty" id="budgetEmpty">Aquí verás el gasto actual y futuro, la capacidad de ahorro y el salario requerido.</div>
+          <div class="feature-stack" id="budgetResults" hidden>
+            <div class="metric-grid">
+              <div class="metric-tile"><span>Gasto mensual actual</span><strong id="budgetCurrentTotal">—</strong></div>
+              <div class="metric-tile"><span>Gasto mensual futuro</span><strong id="budgetFutureTotal">—</strong></div>
+              <div class="metric-tile"><span>Ahorro actual</span><strong id="budgetCurrentSaving">—</strong></div>
+              <div class="metric-tile"><span>Ahorro futuro</span><strong id="budgetFutureSaving">—</strong></div>
+              <div class="metric-tile"><span>Pérdida de ahorro</span><strong id="budgetSavingLoss">—</strong></div>
+              <div class="metric-tile"><span>Salario necesario</span><strong id="budgetRequiredIncome">—</strong></div>
+            </div>
+            <div class="warning" id="budgetWarning" hidden></div>
+            <div class="table-wrap" tabindex="0"><table class="feature-table"><caption class="table-caption">Peso actual y proyección compuesta de cada categoría.</caption><thead><tr><th>Categoría</th><th>Actual</th><th>Peso</th><th>Inflación anual</th><th>Futuro</th><th>Aumento</th></tr></thead><tbody id="budgetResultBody"></tbody></table></div>
+            <div><h3>Trayectoria del presupuesto</h3><ul class="projection-list" id="budgetProjectionList"></ul></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="view" id="view-tiempo-dinero" data-view="tiempo-dinero" aria-labelledby="timeMoneyTitle" hidden>
+      <div class="view-head">
+        <p class="eyebrow">Poder adquisitivo · nueva función</p>
+        <h1 id="timeMoneyTitle">Máquina del tiempo del dinero</h1>
+        <p class="lede">Consulta índices oficiales entre dos meses. La fuente, el período realmente disponible y el estado de caché siempre permanecen visibles.</p>
+      </div>
+      <div class="feature-layout">
+        <form class="card feature-card" id="timeMoneyForm" novalidate>
+          <div class="module-toolbar"><div><p class="eyebrow">Consulta histórica</p><h2>Cantidad y período</h2></div><span class="inline-badge" id="timeMoneySourceBadge">Datos oficiales</span></div>
+          <div class="form-grid">
+            <div class="field"><label for="timeMoneyAmount">Cantidad</label><input id="timeMoneyAmount" type="text" inputmode="decimal" value="1.000,00" aria-describedby="timeMoneyAmountError"><p class="field-error" id="timeMoneyAmountError" aria-live="polite"></p></div>
+            <div class="field"><label for="timeMoneyCurrency">Moneda de presentación</label><select id="timeMoneyCurrency"><option value="BRL">BRL — Real brasileño</option></select></div>
+            <div class="field"><label for="timeMoneyEconomy">Índice oficial</label><select id="timeMoneyEconomy"><option value="BR">Brasil · IPCA</option><option value="US">Estados Unidos · CPI</option><option value="EU">Zona euro · HICP</option><option value="MX">México · INPC</option><option value="AR">Argentina · IPC</option><option value="CA">Canadá · CPI</option><option value="GB">Reino Unido · CPI</option></select></div>
+            <div class="field"><label for="timeMoneyDirection">Pregunta</label><select id="timeMoneyDirection"><option value="forward">¿Cuánto equivale al final?</option><option value="backward">¿Qué poder tenía al inicio?</option></select></div>
+            <div class="field"><label for="timeMoneyStart">Mes inicial</label><input id="timeMoneyStart" type="month" min="1995-01"></div>
+            <div class="field"><label for="timeMoneyEnd">Mes final</label><input id="timeMoneyEnd" type="month" min="1995-02"></div>
+          </div>
+          <button class="button primary" type="submit">Consultar y comparar</button>
+          <div class="feature-status" id="timeMoneyNotice" role="status" aria-live="polite">La primera consulta necesita internet; después puede utilizar una copia fechada.</div>
+        </form>
+        <section class="card feature-card" aria-labelledby="timeMoneyResultsTitle">
+          <div class="module-toolbar"><div><p class="eyebrow">Equivalencia</p><h2 id="timeMoneyResultsTitle">Valor del dinero entre épocas</h2></div><button class="button secondary small audit-trigger" id="timeMoneyAuditButton" type="button" disabled>🛡️ Ver cálculo</button></div>
+          <div class="feature-empty" id="timeMoneyEmpty">Selecciona dos meses para calcular la equivalencia con el índice oficial.</div>
+          <div class="feature-stack" id="timeMoneyResults" hidden>
+            <div class="metric-grid">
+              <div class="metric-tile"><span>Valor original</span><strong id="timeMoneyOriginal">—</strong></div>
+              <div class="metric-tile"><span>Valor equivalente</span><strong id="timeMoneyEquivalent">—</strong></div>
+              <div class="metric-tile"><span>Inflación acumulada</span><strong id="timeMoneyInflation">—</strong></div>
+              <div class="metric-tile"><span>Diferencia monetaria</span><strong id="timeMoneyDifference">—</strong></div>
+              <div class="metric-tile"><span>Poder adquisitivo</span><strong id="timeMoneyPower">—</strong></div>
+              <div class="metric-tile"><span>Índice base 100</span><strong id="timeMoneyBase100">—</strong></div>
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-labels"><span id="timeMoneyTimelineStartLabel">Inicio</span><span id="timeMoneyTimelineEndLabel">Final</span></div>
+              <label for="timeMoneyStartRange">Mover fecha inicial</label><input class="timeline-slider" id="timeMoneyStartRange" type="range" min="0" max="1" value="0">
+              <label for="timeMoneyEndRange">Mover fecha final</label><input class="timeline-slider" id="timeMoneyEndRange" type="range" min="0" max="1" value="1">
+            </div>
+            <div class="chart-panel"><h3>Índice y poder adquisitivo</h3><div id="timeMoneyChart" role="img" aria-label="Evolución del índice oficial en el período"></div></div>
+            <div class="source-strip" id="timeMoneySourceStrip"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="view" id="view-rendimiento-real" data-view="rendimiento-real" aria-labelledby="realReturnTitle" hidden>
+      <div class="view-head">
+        <p class="eyebrow">Inversiones y ahorro · nueva función</p>
+        <h1 id="realReturnTitle">Calculadora de rendimiento real</h1>
+        <p class="lede">Compara la rentabilidad nominal con la inflación mediante una división compuesta. La resta entre porcentajes se muestra solo como diferencia, nunca como rendimiento real.</p>
+      </div>
+      <div class="feature-layout">
+        <form class="card feature-card" id="realReturnForm" novalidate>
+          <div class="form-grid">
+            <div class="field"><label for="realInitialCapital">Capital inicial</label><input id="realInitialCapital" type="text" inputmode="decimal" value="1.000,00"></div>
+            <div class="field"><label for="realCurrency">Moneda</label><select id="realCurrency"><option value="BRL">BRL — Real brasileño</option></select></div>
+            <div class="field"><label for="realInputMode">Dato de rentabilidad</label><select id="realInputMode"><option value="final">Capital final</option><option value="rate">Rentabilidad porcentual</option></select></div>
+            <div class="field" id="realFinalField"><label for="realFinalCapital">Capital final</label><input id="realFinalCapital" type="text" inputmode="decimal" value="1.100,00"></div>
+            <div class="field" id="realRateField" hidden><label for="realNominalRate">Rentabilidad nominal total</label><input id="realNominalRate" type="text" inputmode="decimal" value="10"><p class="field-help">Porcentaje durante todo el período.</p></div>
+            <div class="field"><label for="realInflationRate">Inflación total del período</label><input id="realInflationRate" type="text" inputmode="decimal" value="6"></div>
+            <div class="field"><label for="realDuration">Duración</label><input id="realDuration" type="text" inputmode="decimal" value="12"></div>
+            <div class="field"><label for="realDurationUnit">Unidad</label><select id="realDurationUnit"><option value="months">Meses</option><option value="years">Años</option></select></div>
+          </div>
+          <div class="action-row"><button class="button primary" type="submit">Calcular rendimiento real</button><button class="button secondary" id="realReturnResetButton" type="button">Restablecer</button></div>
+          <div class="feature-status" id="realReturnNotice" role="status" aria-live="polite">Ejemplo: 10 % nominal y 6 % de inflación producen aproximadamente 3,77 % real.</div>
+        </form>
+        <section class="card feature-card" aria-labelledby="realReturnResultsTitle">
+          <div class="module-toolbar"><div><p class="eyebrow">Resultado compuesto</p><h2 id="realReturnResultsTitle">Rentabilidad nominal ≠ real</h2></div><button class="button secondary small audit-trigger" id="realReturnAuditButton" type="button" disabled>🛡️ Ver cálculo</button></div>
+          <div class="feature-empty" id="realReturnEmpty">Completa el capital, la inflación y la duración.</div>
+          <div class="feature-stack" id="realReturnResults" hidden>
+            <div class="metric-grid">
+              <div class="metric-tile"><span>Rendimiento nominal</span><strong id="realNominalResult">—</strong></div>
+              <div class="metric-tile"><span>Rendimiento real</span><strong id="realRealResult">—</strong></div>
+              <div class="metric-tile"><span>Ganancia nominal</span><strong id="realNominalGain">—</strong></div>
+              <div class="metric-tile"><span>Ganancia real</span><strong id="realRealGain">—</strong></div>
+              <div class="metric-tile"><span>Valor ajustado</span><strong id="realAdjustedValue">—</strong></div>
+              <div class="metric-tile"><span>Diferencia nominal − inflación</span><strong id="realSimpleDifference">—</strong></div>
+              <div class="metric-tile"><span>Rendimiento real anualizado</span><strong id="realAnnualized">—</strong></div>
+              <div class="metric-tile"><span>Poder adquisitivo final</span><strong id="realPurchasingPower">—</strong></div>
+            </div>
+            <div class="feature-help" id="realReturnInterpretation"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="view" id="view-suscripciones" data-view="suscripciones" aria-labelledby="expensesTitle" hidden>
+      <div class="view-head">
+        <p class="eyebrow">Pagos recurrentes · nueva función</p>
+        <h1 id="expensesTitle">Gestor de gastos y suscripciones</h1>
+        <p class="lede">Registra cada servicio una vez y añade observaciones de precio con fecha. Los totales nunca mezclan monedas distintas.</p>
+      </div>
+      <div class="feature-layout">
+        <div class="feature-stack">
+          <form class="card feature-card" id="expenseServiceForm" novalidate>
+            <div class="module-toolbar"><div><p class="eyebrow">Paso 1</p><h2>Crear gasto recurrente</h2></div><span class="section-number">01</span></div>
+            <div class="form-grid">
+              <div class="field full"><label for="expenseName">Servicio o gasto</label><input id="expenseName" maxlength="80" placeholder="Ej.: Internet"></div>
+              <div class="field"><label for="expenseCategory">Categoría</label><select id="expenseCategory"><option>Vivienda</option><option>Internet</option><option>Telefonía</option><option>Streaming</option><option>Seguros</option><option>Gimnasio</option><option>Universidad</option><option>Software</option><option>Servicios domésticos</option><option>Otros</option></select></div>
+              <div class="field"><label for="expenseCurrency">Moneda</label><select id="expenseCurrency"><option value="BRL">BRL — Real brasileño</option></select></div>
+              <div class="field"><label for="expenseFrequency">Frecuencia</label><select id="expenseFrequency"><option value="monthly">Mensual</option><option value="annual">Anual</option></select></div>
+            </div>
+            <button class="button primary" type="submit">Crear gasto</button>
+            <div class="feature-status" id="expenseServiceNotice" role="status" aria-live="polite">Después podrás añadir todos sus cambios de precio.</div>
+          </form>
+          <form class="card feature-card" id="expenseObservationForm" novalidate>
+            <div class="module-toolbar"><div><p class="eyebrow">Paso 2</p><h2>Añadir precio al historial</h2></div><span class="section-number">02</span></div>
+            <div class="form-grid">
+              <div class="field full"><label for="expenseServiceSelect">Gasto</label><select id="expenseServiceSelect"><option value="">Crea un gasto primero</option></select></div>
+              <div class="field"><label for="expenseObservationDate">Fecha</label><input id="expenseObservationDate" type="date"></div>
+              <div class="field"><label for="expenseObservationPrice">Precio</label><input id="expenseObservationPrice" type="text" inputmode="decimal" placeholder="49,90"></div>
+            </div>
+            <button class="button primary" type="submit">Guardar observación</button>
+            <div class="feature-status" id="expenseObservationNotice" role="status" aria-live="polite">Dos observaciones permiten calcular el primer aumento.</div>
+          </form>
+        </div>
+        <section class="card feature-card" aria-labelledby="expenseSummaryTitle">
+          <div class="module-toolbar"><div><p class="eyebrow">Resumen local</p><h2 id="expenseSummaryTitle">Costes y evolución</h2></div><button class="button danger small" id="expenseClearAllButton" type="button">Borrar todo</button></div>
+          <div class="field"><label for="expenseSummaryCurrency">Resumir moneda</label><select id="expenseSummaryCurrency"><option value="BRL">BRL — Real brasileño</option></select></div>
+          <div class="metric-grid">
+            <div class="metric-tile"><span>Coste mensual</span><strong id="expenseMonthlyTotal">—</strong></div>
+            <div class="metric-tile"><span>Coste anual</span><strong id="expenseAnnualTotal">—</strong></div>
+            <div class="metric-tile"><span>Aumenta más rápido</span><strong id="expenseFastest">—</strong><small id="expenseFastestDetail"></small></div>
+            <div class="metric-tile"><span>Servicios activos</span><strong id="expenseCount">0</strong></div>
+          </div>
+          <div class="feature-empty" id="expenseEmpty">Todavía no hay gastos recurrentes guardados.</div>
+          <div class="expense-list" id="expenseList" aria-live="polite"></div>
+          <div class="chart-panel" id="expenseChartPanel" hidden><h3 id="expenseChartTitle">Evolución histórica</h3><div id="expenseChart"></div></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="view" id="view-anomalias" data-view="anomalias" aria-labelledby="anomalyTitle" hidden>
+      <div class="view-head">
+        <p class="eyebrow">Detección estadística · nueva función</p>
+        <h1 id="anomalyTitle">Detector de aumentos anormales</h1>
+        <p class="lede">Compara el último cambio con el comportamiento anterior y ajusta la magnitud por el tiempo transcurrido. Con poco historial responde “datos insuficientes” en lugar de inventar certeza.</p>
+      </div>
+      <div class="feature-layout">
+        <form class="card feature-card" id="anomalyForm" novalidate>
+          <div class="form-grid">
+            <div class="field"><label for="anomalySource">Origen del historial</label><select id="anomalySource"><option value="manual">Introducir manualmente</option><option value="expense">Gastos y suscripciones</option><option value="product">Seguimiento de productos</option></select></div>
+            <div class="field"><label for="anomalyStoredSeries">Serie guardada</label><select id="anomalyStoredSeries" disabled><option value="">Selecciona un origen guardado</option></select></div>
+          </div>
+          <div class="module-toolbar"><div><h2>Observaciones</h2><p>Ordenamos por fecha antes de analizar.</p></div><button class="button secondary small" id="anomalyAddRowButton" type="button">Añadir fecha</button></div>
+          <div class="feature-stack" id="anomalyRows"></div>
+          <div class="action-row"><button class="button primary" type="submit">Analizar último aumento</button><button class="button secondary" id="anomalyExampleButton" type="button">Cargar ejemplo</button><button class="button danger" id="anomalyClearButton" type="button">Limpiar</button></div>
+          <div class="feature-status" id="anomalyNotice" role="status" aria-live="polite">Se recomiendan al menos cinco observaciones para comparar el último cambio con tres cambios anteriores.</div>
+        </form>
+        <section class="card feature-card" aria-labelledby="anomalyResultTitle">
+          <div class="module-toolbar"><div><p class="eyebrow">Clasificación</p><h2 id="anomalyResultTitle">Comportamiento del último cambio</h2></div><button class="button secondary small audit-trigger" id="anomalyAuditButton" type="button" disabled>🛡️ Ver análisis</button></div>
+          <div class="classification" id="anomalyClassification" data-level="insufficient">
+            <span id="anomalyLabel">Datos insuficientes</span>
+            <strong id="anomalyHeadline">Añade un historial comparable</strong>
+            <p id="anomalyExplanation">La herramienta considera magnitud, días transcurridos, mediana histórica, dispersión y frecuencia.</p>
+          </div>
+          <div class="metric-grid">
+            <div class="metric-tile"><span>Último cambio</span><strong id="anomalyLatestChange">—</strong></div>
+            <div class="metric-tile"><span>Días transcurridos</span><strong id="anomalyDays">—</strong></div>
+            <div class="metric-tile"><span>Equivalente a 30 días</span><strong id="anomalyMonthlyEquivalent">—</strong></div>
+            <div class="metric-tile"><span>Mediana histórica</span><strong id="anomalyMedian">—</strong></div>
+            <div class="metric-tile"><span>Puntuación robusta</span><strong id="anomalyScore">—</strong></div>
+            <div class="metric-tile"><span>Cambios comparables</span><strong id="anomalyComparableCount">0</strong></div>
+          </div>
+          <div class="history-chips" id="anomalyHistoryChips"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="view" id="view-educacion" data-view="educacion" aria-labelledby="educationTitle" hidden>
+      <div class="view-head">
+        <p class="eyebrow">Aprendizaje interactivo · nueva función</p>
+        <h1 id="educationTitle">Modo educativo</h1>
+        <p class="lede">Mueve los controles, observa la composición y marca los conceptos que ya comprendiste. El progreso se guarda solo en este dispositivo.</p>
+      </div>
+      <div class="feature-layout">
+        <section class="card feature-card" aria-labelledby="educationExperimentTitle">
+          <div class="module-toolbar"><div><p class="eyebrow">Experimento</p><h2 id="educationExperimentTitle">¿Qué ocurre con R$100?</h2></div><span class="inline-badge" id="educationProgressBadge">0/11</span></div>
+          <div class="field"><label for="educationRate">Inflación anual: <strong id="educationRateLabel">5 %</strong></label><input class="timeline-slider" id="educationRate" type="range" min="-20" max="200" step=".1" value="5"></div>
+          <div class="field"><label for="educationYears">Período: <strong id="educationYearsLabel">10 años</strong></label><input class="timeline-slider" id="educationYears" type="range" min=".25" max="50" step=".25" value="10"></div>
+          <div class="field"><label for="educationAmount">Cantidad inicial</label><input id="educationAmount" type="text" inputmode="decimal" value="100,00"></div>
+          <div class="metric-grid">
+            <div class="metric-tile"><span>Coste equivalente futuro</span><strong id="educationFutureCost">—</strong></div>
+            <div class="metric-tile"><span>Poder adquisitivo conservado</span><strong id="educationPowerPct">—</strong></div>
+            <div class="metric-tile"><span>Compra equivalente</span><strong id="educationPowerMoney">—</strong></div>
+            <div class="metric-tile"><span>Inflación acumulada</span><strong id="educationAccumulated">—</strong></div>
+          </div>
+          <div class="education-bars">
+            <div class="education-bar"><span>Coste futuro</span><div class="education-bar-track"><div class="education-bar-fill" id="educationCostBar"></div></div><strong id="educationCostBarLabel">—</strong></div>
+            <div class="education-bar" data-kind="power"><span>Poder restante</span><div class="education-bar-track"><div class="education-bar-fill" id="educationPowerBar"></div></div><strong id="educationPowerBarLabel">—</strong></div>
+          </div>
+          <div class="feature-help" id="educationExplanation"></div>
+          <button class="button danger small" id="educationResetButton" type="button">Borrar progreso educativo</button>
+        </section>
+        <section class="card feature-card" aria-labelledby="educationTopicsTitle">
+          <div class="module-toolbar"><div><p class="eyebrow">11 conceptos</p><h2 id="educationTopicsTitle">Explora y comprueba</h2></div></div>
+          <div class="education-grid">
+            <details class="education-topic" data-topic="inflation"><summary>¿Qué es la inflación?</summary><div class="education-topic-body"><p>Aumento sostenido del nivel general de precios; un producto aislado no define por sí solo la inflación.</p><code>(final ÷ inicial) − 1</code><label class="education-complete"><input type="checkbox" data-education-complete="inflation"> Comprendido</label></div></details>
+            <details class="education-topic" data-topic="accumulated"><summary>Inflación acumulada</summary><div class="education-topic-body"><p>Combina cambios sucesivos multiplicando factores. 10 % y 10 % producen 21 %, no 20 %.</p><code>(1 + r₁) × (1 + r₂) − 1</code><label class="education-complete"><input type="checkbox" data-education-complete="accumulated"> Comprendido</label></div></details>
+            <details class="education-topic" data-topic="monthly-annual"><summary>Mensual y anual</summary><div class="education-topic-body"><p>Una tasa mensual no se multiplica por doce: se compone durante doce períodos.</p><code>(1 + mensual)¹² − 1</code><label class="education-complete"><input type="checkbox" data-education-complete="monthly-annual"> Comprendido</label></div></details>
+            <details class="education-topic" data-topic="purchasing-power"><summary>Poder adquisitivo</summary><div class="education-topic-body"><p>Con inflación, la misma cantidad compra menos. El poder restante es el recíproco del factor de precios.</p><code>1 ÷ (1 + inflación)</code><label class="education-complete"><input type="checkbox" data-education-complete="purchasing-power"> Comprendido</label></div></details>
+            <details class="education-topic" data-topic="compound"><summary>Inflación compuesta</summary><div class="education-topic-body"><p>Cada período actúa sobre el nivel de precios ya aumentado o reducido.</p><code>valor × (1 + tasa)ⁿ</code><label class="education-complete"><input type="checkbox" data-education-complete="compound"> Comprendido</label></div></details>
+            <details class="education-topic" data-topic="index"><summary>IPC e índices</summary><div class="education-topic-body"><p>Un índice resume la evolución de una cesta representativa. Base 100 permite comparar épocas.</p><code>índice final ÷ índice inicial</code><label class="education-complete"><input type="checkbox" data-education-complete="index"> Comprendido</label></div></details>
+            <details class="education-topic" data-topic="cagr"><summary>CAGR</summary><div class="education-topic-body"><p>Es la tasa anual equivalente que conecta exactamente un valor inicial con uno final.</p><code>(final ÷ inicial)^(1 ÷ años) − 1</code><label class="education-complete"><input type="checkbox" data-education-complete="cagr"> Comprendido</label></div></details>
+            <details class="education-topic" data-topic="deflation"><summary>Deflación</summary><div class="education-topic-body"><p>Descenso del nivel general de precios. Una tasa inferior a −100 % no es válida para un índice positivo.</p><code>factor entre 0 y 1</code><label class="education-complete"><input type="checkbox" data-education-complete="deflation"> Comprendido</label></div></details>
+            <details class="education-topic" data-topic="nominal-real"><summary>Nominal y real</summary><div class="education-topic-body"><p>Nominal describe unidades monetarias; real descuenta el cambio del poder de compra.</p><code>(1 + nominal) ÷ (1 + inflación) − 1</code><label class="education-complete"><input type="checkbox" data-education-complete="nominal-real"> Comprendido</label></div></details>
+            <details class="education-topic" data-topic="real-return"><summary>Rendimiento real</summary><div class="education-topic-body"><p>Una inversión gana poder adquisitivo solo si su factor supera el factor de inflación.</p><code>factor inversión ÷ factor precios</code><label class="education-complete"><input type="checkbox" data-education-complete="real-return"> Comprendido</label></div></details>
+            <details class="education-topic" data-topic="shrinkflation"><summary>Reduflación</summary><div class="education-topic-body"><p>El precio por envase puede parecer estable mientras disminuye la cantidad. Por eso se compara el precio unitario.</p><code>precio ÷ cantidad normalizada</code><label class="education-complete"><input type="checkbox" data-education-complete="shrinkflation"> Comprendido</label></div></details>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="view" id="view-widgets" data-view="widgets" aria-labelledby="widgetsTitle" hidden>
+      <div class="view-head">
+        <p class="eyebrow">Integración web · nueva función</p>
+        <h1 id="widgetsTitle">Generador de calculadoras embebibles</h1>
+        <p class="lede">Configura una versión reducida, revisa la vista previa y copia un iframe. Los parámetros se validan antes de generar el widget.</p>
+      </div>
+      <div class="widget-generator-grid">
+        <form class="card feature-card" id="widgetForm" novalidate>
+          <div class="form-grid">
+            <div class="field"><label for="widgetType">Calculadora</label><select id="widgetType"><option value="inflation">Inflación</option><option value="purchasing">Poder adquisitivo</option><option value="real-return">Rendimiento real</option><option value="time-money">Equivalencia histórica</option></select></div>
+            <div class="field"><label for="widgetCurrency">Moneda</label><select id="widgetCurrency"><option value="BRL">BRL — Real brasileño</option></select></div>
+            <div class="field"><label for="widgetTheme">Tema</label><select id="widgetTheme"><option value="dark">Oscuro</option><option value="light">Claro</option></select></div>
+            <div class="field"><label for="widgetHeight">Altura del iframe</label><input id="widgetHeight" type="number" min="320" max="900" step="10" value="500"></div>
+            <div class="field"><label for="widgetDefaultA">Valor A</label><input id="widgetDefaultA" type="text" inputmode="decimal" value="100"></div>
+            <div class="field"><label for="widgetDefaultB">Valor B</label><input id="widgetDefaultB" type="text" inputmode="decimal" value="121"></div>
+            <div class="field"><label for="widgetDefaultC">Valor C</label><input id="widgetDefaultC" type="text" inputmode="decimal" value="10"><p class="field-help" id="widgetDefaultHelp">En inflación solo se usan A y B.</p></div>
+            <label class="toggle-control full"><input id="widgetShowCurrency" type="checkbox" checked><span>Mostrar selector de moneda</span></label>
+            <label class="toggle-control full"><input id="widgetShowFormula" type="checkbox" checked><span>Mostrar fórmula y metodología</span></label>
+            <label class="toggle-control full"><input id="widgetShowBrand" type="checkbox" checked><span>Mostrar marca y enlace de origen</span></label>
+          </div>
+          <div class="action-row"><button class="button primary" type="submit">Generar código</button><button class="button secondary" id="widgetCopyButton" type="button">Copiar iframe</button><button class="button danger" id="widgetResetButton" type="button">Restablecer</button></div>
+          <div class="feature-status" id="widgetNotice" role="status" aria-live="polite">El código usa la URL pública versionada para no cambiar silenciosamente de calculadora.</div>
+          <div class="field"><label for="widgetCode">HTML generado</label><textarea class="widget-code" id="widgetCode" readonly spellcheck="false"></textarea></div>
+        </form>
+        <section class="card feature-card" aria-labelledby="widgetPreviewTitle">
+          <div class="module-toolbar"><div><p class="eyebrow">Vista previa</p><h2 id="widgetPreviewTitle">Así se verá</h2></div><span class="inline-badge">iframe seguro</span></div>
+          <div class="widget-preview" id="widgetPreview" data-theme="dark"></div>
+          <p class="visually-muted">La equivalencia histórica embebida usa una inflación acumulada introducida por el visitante; la herramienta completa ofrece índices oficiales y caché fechada.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="view" id="view-widget-runtime" data-view="widget-runtime" aria-label="Calculadora embebida" hidden>
+      <div class="widget-runtime-shell" id="widgetRuntimeShell" data-theme="dark">
+        <section class="widget-runtime-card" id="widgetRuntimeCard">
+          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.12.0-Beta.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>v0.12.0-Beta</span></div>
+          <h1 id="widgetRuntimeTitle">Calculadora embebida</h1>
+          <div class="widget-mini-grid">
+            <div class="field"><label id="widgetRuntimeALabel" for="widgetRuntimeA">Valor A</label><input id="widgetRuntimeA" type="text" inputmode="decimal" value="100"></div>
+            <div class="field"><label id="widgetRuntimeBLabel" for="widgetRuntimeB">Valor B</label><input id="widgetRuntimeB" type="text" inputmode="decimal" value="121"></div>
+            <div class="field" id="widgetRuntimeCField"><label id="widgetRuntimeCLabel" for="widgetRuntimeC">Valor C</label><input id="widgetRuntimeC" type="text" inputmode="decimal" value="10"></div>
+            <div class="field" id="widgetRuntimeCurrencyField"><label for="widgetRuntimeCurrency">Moneda</label><select id="widgetRuntimeCurrency"><option value="BRL">BRL — Real brasileño</option></select></div>
+          </div>
+          <button class="button primary" id="widgetRuntimeCalculate" type="button">Calcular</button>
+          <div class="widget-runtime-result" id="widgetRuntimeResult" role="status" aria-live="polite"></div>
+          <div class="feature-help" id="widgetRuntimeFormula"></div>
+        </section>
+      </div>
+    </section>
+
     <section class="view" id="view-precios" data-view="precios" aria-labelledby="marketTitle" hidden>
       <div class="view-head">
-        <p class="eyebrow">Precios reales · v0.11.2</p>
+        <p class="eyebrow">Precios reales · v0.12.0</p>
         <h1 id="marketTitle">Productos, reduflación y archivos</h1>
         <p class="lede">Normaliza gramos, kilogramos, mililitros, litros y presentaciones; guarda el historial en este dispositivo e importa datos únicamente después de revisarlos.</p>
       </div>
@@ -4263,7 +4723,7 @@
             <h2 id="storedDataTitle">Qué información se guarda</h2>
           </div>
           <dl class="storage-facts">
-            <div><dt>En este dispositivo</dt><dd>Historial, escenarios, análisis salariales, cestas, seguimiento de productos, preferencias, última ruta, caché de cotizaciones e IPCA y cola pendiente.</dd></div>
+            <div><dt>En este dispositivo</dt><dd>Historial, escenarios, análisis salariales, cestas, presupuesto, gastos y suscripciones, borrador de anomalías, progreso educativo, widgets, seguimiento de productos, preferencias, última ruta, caché de cotizaciones e IPCA y cola pendiente.</dd></div>
             <div><dt>En tu cuenta</dt><dd>Solo si activas sincronización: cálculos guardados, cestas, preferencias y fechas de actualización.</dd></div>
             <div><dt>Comentarios</dt><dd>Tipo, descripción, valoración, contexto, versión y únicamente los datos técnicos o financieros que marques de forma explícita.</dd></div>
             <div><dt>Nunca en el código</dt><dd>Contraseñas, claves administrativas o secretos del backend. La página contiene únicamente una clave pública limitada por RLS.</dd></div>
@@ -4539,7 +4999,7 @@
       <a href="#cuenta" data-route="cuenta">Privacidad</a>
       <a href="#informes" data-route="informes">Informes</a>
     </nav>
-    <span class="footer-version version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.11.2-Beta-Patch</span>
+    <span class="footer-version version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.12.0-Beta</span>
   </footer>
 
   <dialog id="basketDialog" aria-labelledby="basketTitle">
@@ -4821,13 +5281,14 @@
     <div class="dialog-body dialog-stack">
       <p>Esta versión está preparada para pruebas públicas. La calculadora y tus datos locales siguen funcionando aunque la sincronización no esté disponible.</p>
       <div class="dialog-callout">
-        <strong>Qué corrige v0.11.2-Beta-Patch</strong>
+        <strong>Qué incorpora v0.12.0-Beta</strong>
         <ul>
-          <li>conserva la landing 3D original de v0.11.0-Beta, sin reemplazar su concepto ni sus escenas;</li>
-          <li>corrige simetría, proporciones, alturas y alineación en controles, tarjetas, pestañas y rejillas;</li>
-          <li>fusiona menú, calculadora y herramientas con el mismo lenguaje oscuro, amarillo y cinematográfico de la landing;</li>
-          <li>prioriza cotizaciones de mercado, mantiene respaldo diario y muestra valores pequeños sin redondearlos a cero;</li>
-          <li>preserva cálculos, historial, exportaciones, datos locales, PWA y cuenta opcional.</li>
+          <li>presupuesto familiar con inflación propia por categoría y proyección del ahorro;</li>
+          <li>máquina del tiempo con índices oficiales, línea temporal y fuente fechada;</li>
+          <li>rendimiento real compuesto, gastos y suscripciones y detección de aumentos anormales;</li>
+          <li>auditoría de datos, conversiones, fórmulas, operaciones y redondeos;</li>
+          <li>modo educativo interactivo y cuatro calculadoras embebibles;</li>
+          <li>la landing 3D, cálculos, historial, exportaciones, datos locales, PWA y cuenta opcional permanecen intactos.</li>
         </ul>
       </div>
       <section class="beta-consent-box" aria-labelledby="betaConsentTitle">
@@ -4915,6 +5376,19 @@
     </form>
   </dialog>
 
+  <dialog id="auditDialog" aria-labelledby="auditDialogTitle">
+    <div class="dialog-head">
+      <div><p class="eyebrow">Modo auditoría</p><h3 id="auditDialogTitle">Ver cálculo</h3></div>
+      <button class="icon-button" type="button" data-close-dialog="auditDialog" aria-label="Cerrar auditoría">×</button>
+    </div>
+    <div class="dialog-body audit-content">
+      <div class="source-strip" id="auditMeta"></div>
+      <div id="auditContent"></div>
+      <div class="feature-help">Los cálculos conservan precisión completa internamente. Los valores mostrados en esta auditoría se redondean solo para facilitar la lectura.</div>
+      <button class="button secondary" id="copyAuditButton" type="button">Copiar auditoría</button>
+    </div>
+  </dialog>
+
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
   <div class="debug-panel" id="debugPanel" hidden></div>
 
@@ -4923,7 +5397,7 @@
   (function(){
     'use strict';
 
-    const APP_VERSION = 'v0.11.2-Beta-Patch';
+    const APP_VERSION = 'v0.12.0-Beta';
     const VERSION = APP_VERSION;
     // El contrato de create-account/delete-account no cambió en este parche de exportaciones.
     const ACCOUNT_API_VERSION = 'v0.8.2-Beta-Patch';
@@ -4949,6 +5423,10 @@
     const MAX_PRODUCT_RECORDS = 2000;
     const MAX_IMPORT_ROWS = 5000;
     const MAX_IMPORT_BYTES = 8 * 1024 * 1024;
+    const MAX_BUDGET_ROWS = 24;
+    const MAX_EXPENSE_SERVICES = 100;
+    const MAX_EXPENSE_OBSERVATIONS = 300;
+    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.12.0-Beta.html';
     const FX_CACHE_MAX_AGE = 15 * 60 * 1000;
     const FX_CACHE_STALE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
     const IPCA_CACHE_MAX_AGE = 90 * 24 * 60 * 60 * 1000;
@@ -4992,6 +5470,11 @@
       ,advancedDraft: 'inflation.v090.advanced-draft'
       ,productRecords: 'inflation.v100.product-records'
       ,graphicsQuality: 'inflation.v110.graphics-quality'
+      ,budgetDraft: 'inflation.v120.budget-draft'
+      ,expenses: 'inflation.v120.expenses'
+      ,anomalyDraft: 'inflation.v120.anomaly-draft'
+      ,educationProgress: 'inflation.v120.education-progress'
+      ,widgetPreferences: 'inflation.v120.widget-preferences'
     });
     const LEGACY_KEYS = Object.freeze({
       quotes: 'inflation.v050.fx',
@@ -5013,12 +5496,21 @@
       salaryHistory: 'inflation.v040.salary-history'
     });
     const PERSONAL_CATEGORIES = Object.freeze(['Alimentos','Vivienda','Transporte','Salud','Educación','Servicios','Otros']);
+    const BUDGET_DEFAULTS = Object.freeze([
+      Object.freeze({name:'Vivienda',amount:1500,rate:5}),
+      Object.freeze({name:'Alimentación',amount:900,rate:6}),
+      Object.freeze({name:'Transporte',amount:450,rate:5}),
+      Object.freeze({name:'Servicios',amount:350,rate:4}),
+      Object.freeze({name:'Educación',amount:250,rate:6}),
+      Object.freeze({name:'Salud',amount:200,rate:7}),
+      Object.freeze({name:'Entretenimiento',amount:150,rate:4})
+    ]);
     const START_PARAMS = new URLSearchParams(location.search);
     const DEBUG_MODE = START_PARAMS.get('debug') === '1';
     const DEBUG_NO_FX = DEBUG_MODE && START_PARAMS.get('noFx') === '1';
     const DEBUG_NO_CLIPBOARD = DEBUG_MODE && START_PARAMS.get('noClipboard') === '1';
     const DEBUG_NO_IMAGE = DEBUG_MODE && START_PARAMS.get('noImage') === '1';
-    const ROUTES = new Set(['inicio','calculadora','herramientas','precios','salario','historial','cuenta','tipo-cambio','datos','reajustes','laboratorio','avanzada','informes']);
+    const ROUTES = new Set(['inicio','calculadora','herramientas','presupuesto','tiempo-dinero','rendimiento-real','suscripciones','anomalias','educacion','widgets','widget-runtime','precios','salario','historial','cuenta','tipo-cambio','datos','reajustes','laboratorio','avanzada','informes']);
     const UNIT_DEFS = Object.freeze({
       g:Object.freeze({group:'mass',factor:.001,base:'kg',label:'g'}),
       kg:Object.freeze({group:'mass',factor:1,base:'kg',label:'kg'}),
@@ -5042,12 +5534,146 @@
       '188':Object.freeze({name:'INPC',source:'IBGE · Banco Central do Brasil',series:'188'}),
       '189':Object.freeze({name:'IGP-M',source:'FGV · Banco Central do Brasil',series:'189'})
     });
+    const inflationEngine = Object.freeze({
+      factorFromRate:function(rate,periods){
+        if(!Number.isFinite(rate) || rate <= -1 || !Number.isFinite(periods) || periods < 0) return NaN;
+        return Math.pow(1+rate,periods);
+      },
+      totalFromValues:function(initial,final){
+        return Number.isFinite(initial) && initial > 0 && Number.isFinite(final) && final >= 0 ? final/initial-1 : NaN;
+      },
+      fromValues:function(initial,final,months){
+        const ratio=final/initial;
+        const total=ratio-1;
+        return {
+          ratio:ratio,
+          total:total,
+          monthly:Math.pow(ratio,1/months)-1,
+          annual:Math.pow(ratio,12/months)-1,
+          power:1/ratio
+        };
+      },
+      realReturn:function(nominal,inflation){
+        return inflation > -1 ? (1+nominal)/(1+inflation)-1 : NaN;
+      }
+    });
+    const budgetEngine = Object.freeze({
+      project:function(input){
+        const years=input.months/12;
+        const rows=input.rows.map(function(row){
+          const factor=inflationEngine.factorFromRate(row.rate/100,years);
+          const future=row.amount*factor;
+          return Object.assign({},row,{factor:factor,future:future,increase:future-row.amount});
+        });
+        const currentTotal=rows.reduce(function(sum,row){ return sum+row.amount; },0);
+        const futureTotal=rows.reduce(function(sum,row){ return sum+row.future; },0);
+        const currentSaving=input.income-currentTotal;
+        const futureSaving=input.income-futureTotal;
+        const requiredIncome=futureTotal+currentSaving;
+        const steps=Math.min(12,Math.max(1,Math.ceil(input.months/12)));
+        const projection=Array.from({length:steps+1},function(_,index){
+          const elapsedMonths=input.months*index/steps;
+          const total=rows.reduce(function(sum,row){
+            return sum+row.amount*inflationEngine.factorFromRate(row.rate/100,elapsedMonths/12);
+          },0);
+          return {months:elapsedMonths,total:total,saving:input.income-total};
+        });
+        return {input:input,years:years,rows:rows,currentTotal:currentTotal,futureTotal:futureTotal,currentSaving:currentSaving,futureSaving:futureSaving,savingLoss:currentSaving-futureSaving,requiredIncome:requiredIncome,projection:projection};
+      }
+    });
+    const realReturnEngine = Object.freeze({
+      calculate:function(input){
+        const nominal=input.final/input.initial-1;
+        const real=inflationEngine.realReturn(nominal,input.inflation);
+        const adjusted=input.final/(1+input.inflation);
+        const years=input.months/12;
+        const annualized=years > 0 && 1+real >= 0 ? Math.pow(1+real,1/years)-1 : NaN;
+        return Object.assign({},input,{nominal:nominal,real:real,adjusted:adjusted,nominalGain:input.final-input.initial,realGain:adjusted-input.initial,simpleDifference:nominal-input.inflation,annualized:annualized});
+      }
+    });
+    const expenseTracker = Object.freeze({
+      sortedHistory:function(item){
+        return (item && Array.isArray(item.history) ? item.history : []).slice().filter(function(point){ return point && /^\d{4}-\d{2}-\d{2}$/.test(point.date) && Number.isFinite(Number(point.price)) && Number(point.price) > 0; }).sort(function(a,b){ return a.date.localeCompare(b.date); });
+      },
+      monthlyCost:function(item){
+        const history=this.sortedHistory(item);
+        if(!history.length) return 0;
+        return Number(history.at(-1).price)/(item.frequency === 'annual' ? 12 : 1);
+      },
+      metrics:function(item){
+        const history=this.sortedHistory(item);
+        const first=history[0],last=history.at(-1);
+        const monthly=this.monthlyCost(item);
+        const totalChange=first && last && history.length > 1 ? last.price/first.price-1 : null;
+        const changes=history.slice(1).map(function(point,index){
+          const previous=history[index];
+          const days=Math.max(1,(new Date(point.date+'T00:00:00Z')-new Date(previous.date+'T00:00:00Z'))/86400000);
+          return {from:previous,to:point,change:point.price/previous.price-1,days:days};
+        });
+        return {history:history,first:first,last:last,monthly:monthly,annual:monthly*12,totalChange:totalChange,changes:changes};
+      }
+    });
+    const anomalyDetector = Object.freeze({
+      median:function(values){
+        const sorted=values.slice().filter(Number.isFinite).sort(function(a,b){ return a-b; });
+        if(!sorted.length) return NaN;
+        const middle=Math.floor(sorted.length/2);
+        return sorted.length%2 ? sorted[middle] : (sorted[middle-1]+sorted[middle])/2;
+      },
+      analyze:function(points){
+        const history=points.slice().filter(function(point){ return point && /^\d{4}-\d{2}-\d{2}$/.test(point.date) && Number.isFinite(point.price) && point.price > 0; }).sort(function(a,b){ return a.date.localeCompare(b.date); });
+        const changes=history.slice(1).map(function(point,index){
+          const previous=history[index];
+          const days=Math.max(1,(new Date(point.date+'T00:00:00Z')-new Date(previous.date+'T00:00:00Z'))/86400000);
+          const change=point.price/previous.price-1;
+          const monthly=change > -1 ? Math.pow(1+change,30/days)-1 : NaN;
+          return {from:previous,to:point,days:days,change:change,monthly:monthly};
+        }).filter(function(item){ return Number.isFinite(item.monthly); });
+        const latest=changes.at(-1);
+        const baseline=changes.slice(0,-1).map(function(item){ return item.monthly; });
+        if(!latest || baseline.length < 3) return {level:'insufficient',history:history,changes:changes,latest:latest,baseline:baseline,score:null,median:null,mad:null};
+        const median=this.median(baseline);
+        const mad=this.median(baseline.map(function(value){ return Math.abs(value-median); }));
+        const scale=Math.max(mad*1.4826,.005);
+        const score=(latest.monthly-median)/scale;
+        const magnitude=latest.monthly;
+        let level='normal';
+        if(score >= 6 || magnitude >= .20) level='anomaly';
+        else if(score >= 4 || magnitude >= .10) level='very-high';
+        else if(score >= 2 || magnitude >= .05) level='elevated';
+        return {level:level,history:history,changes:changes,latest:latest,baseline:baseline,score:score,median:median,mad:mad};
+      }
+    });
+    const auditEngine = Object.freeze({
+      step:function(title,body,formula){ return {title:String(title || ''),body:String(body || ''),formula:formula == null ? '' : String(formula)}; }
+    });
+    const educationEngine = Object.freeze({
+      simulate:function(amount,annualRate,years){
+        const factor=inflationEngine.factorFromRate(annualRate,years);
+        return {amount:amount,annualRate:annualRate,years:years,factor:factor,futureCost:amount*factor,power:1/factor,purchasingAmount:amount/factor,accumulated:factor-1};
+      }
+    });
+    const widgetEngine = Object.freeze({
+      types:Object.freeze(['inflation','purchasing','real-return','time-money']),
+      sanitize:function(source){
+        const raw=source || {};
+        const type=this.types.includes(raw.type) ? raw.type : 'inflation';
+        const currency=normalizeCurrencyCode(raw.currency,'BRL');
+        const theme=raw.theme === 'light' ? 'light' : 'dark';
+        const rawA=Number(raw.a),rawB=Number(raw.b),rawC=Number(raw.c);
+        const a=Math.min(1e12,Math.max(.000001,Number.isFinite(rawA) ? rawA : 100));
+        const b=Math.min(1e12,Math.max(-99.99,Number.isFinite(rawB) ? rawB : (type === 'inflation' ? 121 : 5)));
+        const c=Math.min(1000,Math.max(.01,Number.isFinite(rawC) ? rawC : 10));
+        const height=Math.min(900,Math.max(320,Math.round(Number(raw.height) || 500)));
+        return {type:type,currency:currency,theme:theme,a:a,b:b,c:c,height:height,showCurrency:raw.showCurrency !== false,showFormula:raw.showFormula !== false,showBrand:raw.showBrand !== false};
+      }
+    });
     let featureChartSequence=0;
     let landingExperience=null;
     const FALLBACK_IPCA = Object.freeze({
-      annual12mPct: 4.64,
+      annual12mPct: 4.44,
       source: 'Respaldo local fechado: BCB SGS 13522; IPCA/IBGE',
-      officialDate: 'Junio de 2026 · acumulado en 12 meses',
+      officialDate: 'Julio de 2026 · acumulado en 12 meses',
       fetchedAt: null,
       mode: 'fallback',
       sourceType: 'official-fallback'
@@ -5092,6 +5718,15 @@
       importPreview:null,
       importObjectUrl:null,
       exportSvgMarkup:'',
+      budgetRows:[],
+      budgetResult:null,
+      timeMoneyResult:null,
+      realReturnResult:null,
+      expenses:[],
+      anomalyRows:[],
+      anomalyResult:null,
+      widgetConfig:null,
+      auditText:'',
       deferredInstallPrompt:null,
       backend: {
         client:null,
@@ -5123,7 +5758,7 @@
     };
 
     function hydrateCurrencySelects(){
-      const ids=['c0a','c1a','c0b','c1b','salaryCurrency','contractCurrency','advancedCurrency','weightedCurrency','personalCurrency','trackerCurrency'];
+      const ids=['c0a','c1a','c0b','c1b','salaryCurrency','contractCurrency','advancedCurrency','weightedCurrency','personalCurrency','trackerCurrency','budgetCurrency','timeMoneyCurrency','realCurrency','expenseCurrency','expenseSummaryCurrency','widgetCurrency'];
       ids.forEach(function(id){
         const select=$(id);
         if(!select) return;
@@ -5414,7 +6049,9 @@
 
     function localRecordCount(){
       return readHistory().length + readScenarios().length + readSalaryHistory().length +
-        readPersonalBaskets().length + readPersonalHistory().length + readProductRecords().length + (safeStorageGet(KEYS.basket,null) ? 1 : 0);
+        readPersonalBaskets().length + readPersonalHistory().length + readProductRecords().length +
+        readExpenses().reduce(function(sum,item){ return sum+1+item.history.length; },0) +
+        (safeStorageGet(KEYS.basket,null) ? 1 : 0) + (safeStorageGet(KEYS.budgetDraft,null) ? 1 : 0);
     }
 
     function hasMigratableLocalData(){ return localRecordCount() > 0; }
@@ -5636,7 +6273,7 @@
       try{
         state.backend.client = window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
           auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'implicit',storageKey:'inflation.v080.auth'},
-          global:{headers:{'x-application-name':'inflation-insights-v0112-beta'}}
+          global:{headers:{'x-application-name':'inflation-insights-v0120-beta'}}
         });
         state.backend.available = true;
         const sessionResult = await withTimeout(state.backend.client.auth.getSession());
@@ -5933,10 +6570,10 @@
           ]);
           payload.remote={user:{id:state.backend.user.id,email:state.backend.user.email || null},profiles:profiles,calculations:calculations,baskets:baskets,feedback:feedback,usageEvents:events};
         }
-        downloadJsonFile('mis-datos-inflation-insights-v0112-'+new Date().toISOString().slice(0,10)+'.json',payload);
+        downloadJsonFile('mis-datos-inflation-insights-v0120-'+new Date().toISOString().slice(0,10)+'.json',payload);
         setNotice($('accountNotice'),'Exportación preparada. El archivo incluye datos locales y, si había sesión, los remotos accesibles.','success');
       }catch(error){
-        downloadJsonFile('mis-datos-locales-inflation-insights-v0112.json',payload);
+        downloadJsonFile('mis-datos-locales-inflation-insights-v0120.json',payload);
         setNotice($('accountNotice'),'Se exportaron los datos locales, pero no fue posible recuperar los remotos.','warning');
       }finally{ setButtonBusy($('exportAllDataButton'),false); }
     }
@@ -5995,7 +6632,7 @@
         if($('pwaOfflineState')) $('pwaOfflineState').textContent='Este navegador no admite Service Worker';
         return;
       }
-      navigator.serviceWorker.register('./sw-v0.11.2-beta-patch.js').then(function(registration){
+      navigator.serviceWorker.register('./sw-v0.12.0-beta.js').then(function(registration){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent=navigator.onLine === false ? 'Modo offline activo' : 'Caché local preparada';
         registration.update().catch(function(){ return null; });
         registration.addEventListener('updatefound',function(){
@@ -6658,7 +7295,7 @@
       const opts = Object.assign({updateHash:true,focus:true},options || {});
       const safeRoute = ROUTES.has(route) ? route : 'inicio';
       state.route = safeRoute;
-      saveBetaMeta({lastRoute:safeRoute});
+      if(safeRoute !== 'widget-runtime') saveBetaMeta({lastRoute:safeRoute});
       document.body.dataset.route = safeRoute;
       $$('[data-view]').forEach(function(view){
         view.hidden = view.dataset.view !== safeRoute;
@@ -6679,6 +7316,10 @@
       if(safeRoute === 'historial') renderSavedLists();
       if(safeRoute === 'cuenta') updateAccountUi();
       if(safeRoute === 'precios') setMarketTab(state.marketTab || 'shrink');
+      if(safeRoute === 'suscripciones') renderExpenses();
+      if(safeRoute === 'anomalias') renderAnomalyStoredOptions();
+      if(safeRoute === 'educacion') renderEducationExperiment();
+      if(safeRoute === 'widgets') renderWidgetGenerator(false);
       if(opts.focus){
         const reduceMotion=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         window.scrollTo({top:0,behavior:reduceMotion ? 'auto' : 'smooth'});
@@ -6689,7 +7330,8 @@
     function routeFromLocation(initial){
       const route = location.hash.replace(/^#/,'').toLowerCase();
       const remembered=loadBetaMeta().lastRoute;
-      showRoute(ROUTES.has(route) ? route : (ROUTES.has(remembered) ? remembered : 'inicio'),{updateHash:false,focus:!initial});
+      const rememberedRoute=remembered === 'widget-runtime' ? 'inicio' : remembered;
+      showRoute(ROUTES.has(route) && route !== 'widget-runtime' ? route : (ROUTES.has(rememberedRoute) ? rememberedRoute : 'inicio'),{updateHash:false,focus:!initial});
     }
 
     function updateConnectionState(){
@@ -7188,7 +7830,7 @@
           state.ipca = Object.assign({},FALLBACK_IPCA);
           state.analysisReference = {valuePct:Number(state.ipca.annual12mPct),period:'anual',sourceType:'ipca-fallback',sourceLabel:state.ipca.source};
           renderIpca();
-          setNotice($('analysisNotice'),'No se pudo consultar el IPCA. Se muestra el respaldo local fechado de junio de 2026.','error');
+          setNotice($('analysisNotice'),'No se pudo consultar el IPCA. Se muestra el respaldo local fechado de julio de 2026.','error');
           if($('salaryReference').value === 'ipca') setNotice($('salaryNotice'),'No se pudo consultar el IPCA. Se muestra un respaldo fijo identificado; puedes elegir una tasa manual.','error');
         }
       }
@@ -7271,11 +7913,12 @@
     }
 
     function calculateInflation(p0,p1,months){
-      const ratio = p1 / p0;
-      const total = ratio - 1;
-      const monthly = Math.pow(ratio,1/months) - 1;
-      const annual = Math.pow(ratio,12/months) - 1;
-      const power = 1 / ratio;
+      const core = inflationEngine.fromValues(p0,p1,months);
+      const ratio = core.ratio;
+      const total = core.total;
+      const monthly = core.monthly;
+      const annual = core.annual;
+      const power = core.power;
       const doublingMonths = monthly > 0 ? Math.log(2) / Math.log(1 + monthly) : null;
       const steps = adaptivePointCount(months);
       const points = Array.from({length:steps + 1},function(_,index){
@@ -7902,7 +8545,7 @@
           ipca:Object.assign({},state.ipca)
         }
       };
-      downloadJsonFile('resultado-inflacion-v0112.json',data);
+      downloadJsonFile('resultado-inflacion-v0120.json',data);
       trackEvent('report_exported',{tool:'calculator',format:'json'});
     }
 
@@ -7944,7 +8587,7 @@
         rows.push(['fecha_oficial_' + code,quote.officialDate || '']);
         rows.push(['consultado_' + code,quote.fetchedAt || '']);
       });
-      downloadCsvFile('resultado-inflacion-v0112.csv',rows);
+      downloadCsvFile('resultado-inflacion-v0120.csv',rows);
       trackEvent('report_exported',{tool:'calculator',format:'csv'});
     }
 
@@ -8479,7 +9122,7 @@
           };
         })
       };
-      downloadJsonFile('reajuste-salarial-v0112.json',data);
+      downloadJsonFile('reajuste-salarial-v0120.json',data);
       trackEvent('report_exported',{tool:'salary',format:'json'});
     }
 
@@ -8501,7 +9144,7 @@
       rows.push(['fecha_o_periodo_fuente',bundle.inputs.source.officialDate || '']);
       rows.push(['estado_fuente',salarySourceStateLabel(bundle.inputs.source.mode)]);
       rows.push(['periodo_analizado_meses',bundle.inputs.months]);
-      downloadCsvFile('reajuste-salarial-v0112.csv',rows);
+      downloadCsvFile('reajuste-salarial-v0120.csv',rows);
       trackEvent('report_exported',{tool:'salary',format:'csv'});
     }
 
@@ -8557,7 +9200,7 @@
         URL.revokeObjectURL(url);
         canvas.toBlob(function(png){
           if(!png){ showToast('El navegador no pudo generar la imagen.'); return; }
-          downloadBlob('informe-reajuste-salarial-v0112.png',png,'image/png');
+          downloadBlob('informe-reajuste-salarial-v0120.png',png,'image/png');
           trackEvent('report_exported',{tool:'salary',format:'png',design:'professional'});
           showToast('PNG profesional exportado en 1600 × 1100 px.');
         },'image/png');
@@ -9540,7 +10183,7 @@
     function exportPersonalJson(){
       const bundle = ensurePersonalResult();
       if(!bundle) return;
-      downloadJsonFile('costo-de-vida-v0112.json',personalExportPayload(bundle));
+      downloadJsonFile('costo-de-vida-v0120.json',personalExportPayload(bundle));
     }
 
     function exportPersonalProductsCsv(){
@@ -9550,7 +10193,7 @@
       bundle.metrics.products.forEach(function(item){
         rows.push([item.name,item.category,bundle.meta.currency,item.quantity,item.previousPrice,item.currentPrice,item.previousCost,item.currentCost,isFiniteNumber(item.variation) ? item.variation*100 : '',item.monetaryChange,item.contribution*100,item.notes]);
       });
-      downloadCsvFile('productos-costo-de-vida-v0112.csv',rows);
+      downloadCsvFile('productos-costo-de-vida-v0120.csv',rows);
     }
 
     function exportPersonalAnalysisCsv(){
@@ -9567,7 +10210,7 @@
         ['categoria','impacto_monetario','contribucion_pp']
       ];
       bundle.metrics.categories.forEach(function(item){ rows.push([item.name,item.monetaryChange,item.contribution*100]); });
-      downloadCsvFile('analisis-costo-de-vida-v0112.csv',rows);
+      downloadCsvFile('analisis-costo-de-vida-v0120.csv',rows);
     }
 
     function buildPersonalShareUrl(){
@@ -9700,7 +10343,7 @@
       try{
         const payload = normalizePersonalPayload(record.payload);
         const filename = (payload.name || 'cesta').toLocaleLowerCase('es').replace(/[^a-z0-9áéíóúüñ]+/gi,'-').replace(/^-|-$/g,'').slice(0,50) || 'cesta';
-        downloadJsonFile(filename+'-v0112.json',record.payload);
+        downloadJsonFile(filename+'-v0120.json',record.payload);
       }catch(error){
         setNotice($('personalNotice'),'No se pudo exportar este registro: ' + error.message,'error');
       }
@@ -9906,7 +10549,18 @@
       check('División por cero rechazada en precio unitario',Number.isNaN(unitPrice(10,0,'g')));
       check('CSV con punto decimal y encabezados comunes',productRowsFromCsv('Producto,Fecha,Precio,Cantidad,Unidad\nLeche,2026-01-10,5.49,1,L').length === 1);
       check('CSV reconoce moneda nueva',productRowsFromCsv('Producto,Fecha,Precio,Moneda,Cantidad,Unidad\nTé,2026-01-10,500,JPY,1,paquete')[0].currency === 'JPY');
-      check('Claves históricas conservadas y preferencias v0.11 separadas',Object.values(KEYS).every(function(key){ return /^inflation\.v(?:060|080|090|100|110)\./.test(key); }));
+      check('Claves históricas conservadas y preferencias v0.12 separadas',Object.values(KEYS).every(function(key){ return /^inflation\.v(?:060|080|090|100|110|120)\./.test(key); }));
+      const realReturnExample=realReturnEngine.calculate({initial:1000,final:1100,inflation:.06,months:12,currency:'BRL'});
+      check('Rendimiento real 10 % frente a 6 % ≈ 3,7736 %',Math.abs(realReturnExample.real-(1.10/1.06-1)) < 1e-12);
+      const budgetExample=budgetEngine.project({income:5000,currency:'BRL',months:60,rows:[{name:'Vivienda',amount:1500,rate:5},{name:'Alimentos',amount:900,rate:6}]});
+      check('Presupuesto suma categorías sin redondeo intermedio',Math.abs(budgetExample.currentTotal-2400) < 1e-12 && budgetExample.futureTotal > budgetExample.currentTotal);
+      const anomalyInsufficient=anomalyDetector.analyze([{date:'2026-01-01',price:100},{date:'2026-02-01',price:120}]);
+      check('Detector no inventa certeza con historial insuficiente',anomalyInsufficient.level === 'insufficient');
+      const anomalyExample=anomalyDetector.analyze([{date:'2026-01-01',price:100},{date:'2026-02-01',price:101},{date:'2026-03-01',price:102},{date:'2026-04-01',price:103},{date:'2026-05-01',price:130}]);
+      check('Detector clasifica un salto extremo como anómalo',anomalyExample.level === 'anomaly');
+      const educationExample=educationEngine.simulate(100,.05,10);
+      check('Educación compone 5 % durante 10 años',Math.abs(educationExample.factor-Math.pow(1.05,10)) < 1e-12);
+      check('Widgets admiten cuatro calculadoras',widgetEngine.types.length === 4 && widgetEngine.types.includes('time-money'));
       check('Gráficos adaptan puntos al período',calculateInflation(100,110,6).points.length !== calculateInflation(100,110,120).points.length);
       check('Cesta ponderada schema v2 compatible',normalizeBasket({type:'weighted-basket',items:[{name:'A',weight:100,inflation:5}]}).length === 1);
       check('La cesta ponderada tiene identidad canónica por cuenta',isUuid(canonicalWeightedId) && canonicalWeightedId !== syncUserId && canonicalWeightedId === weightedBasketClientId(syncUserId));
@@ -10230,7 +10884,7 @@
       if(!result || !result.analysis) return;
       const rows=[['economía','índice','período','tasa_mensual_pct','acumulada_pct','indice_base_100','fuente','consultado']];
       result.analysis.points.forEach(function(point){ rows.push([result.economy,result.indexName,point.period,point.rate,point.accumulated*100,point.base100,result.source+' · '+result.provider,result.fetchedAt]); });
-      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0112.csv',rows);
+      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0120.csv',rows);
     }
 
     function setDataTab(name){
@@ -10289,7 +10943,7 @@
       const lowest=Math.min.apply(null,result.series.map(function(item){ return item.analysis.accumulated; }));
       const rows=[['economía','índice','inicio','fin','inflación_acumulada_pct','diferencia_pp','fuente','consultado']];
       result.series.forEach(function(item){ rows.push([item.economy,item.indexName,result.start,result.end,item.analysis.accumulated*100,(item.analysis.accumulated-lowest)*100,item.source+' · '+item.provider,item.fetchedAt]); });
-      downloadCsvFile('comparacion-internacional-v0112.csv',rows);
+      downloadCsvFile('comparacion-internacional-v0120.csv',rows);
     }
 
     function contractRange(){
@@ -10389,7 +11043,7 @@
       const result=state.contractComparison; if(!result) return;
       const rows=[['índice','inicio','fin','variación_pct','aumento','valor_final','moneda','fuente','último_dato']];
       result.rows.forEach(function(row){ rows.push([row.name,result.start,result.end,row.rate*100,row.difference,row.finalValue,result.currency,row.source,row.latestPeriod]); });
-      downloadCsvFile('comparacion-reajustes-v0112.csv',rows);
+      downloadCsvFile('comparacion-reajustes-v0120.csv',rows);
     }
 
     function parseLabRates(text,years,fallback){
@@ -10466,7 +11120,7 @@
       const result=state.labResult; if(!result) return;
       const rows=[['escenario','año','inflación_periodo_pct','valor_necesario','ingreso_nominal','ingreso_real','poder_adquisitivo_pct','pérdida_ganancia']];
       result.scenarios.forEach(function(item){ item.timeline.forEach(function(point){ rows.push([item.name,point.year,point.year ? item.rates[point.year-1] : 0,point.priceNeeded,point.nominalIncome,point.realIncome,point.purchasingPower,point.loss]); }); });
-      downloadCsvFile('laboratorio-escenarios-v0112.csv',rows);
+      downloadCsvFile('laboratorio-escenarios-v0120.csv',rows);
     }
 
     function advancedRowTemplate(item,index){
@@ -10531,7 +11185,7 @@
       const result=state.advancedResult; if(!result) return;
       const rows=[['período','tasa_pct','acumulada_pct','valor','indice_base_100','moneda']];
       result.rows.forEach(function(row){ rows.push([row.label,row.rate,row.accumulated*100,row.value,row.base100,result.currency]); });
-      downloadCsvFile('inflacion-por-periodos-v0112.csv',rows);
+      downloadCsvFile('inflacion-por-periodos-v0120.csv',rows);
     }
 
     function setMarketTab(tab,focus){
@@ -10797,7 +11451,10 @@
         return true;
       }).sort(function(a,b){ return a.date.localeCompare(b.date) || a.name.localeCompare(b.name,'es'); }).slice(-MAX_PRODUCT_RECORDS);
       const saved=safeStorageSet(KEYS.productRecords,{schemaVersion:PRODUCT_SCHEMA_VERSION,appVersion:APP_VERSION,updatedAt:nowIso(),records:normalized});
-      if(saved) state.productRecords=normalized;
+      if(saved){
+        state.productRecords=normalized;
+        renderAnomalyStoredOptions();
+      }
       return saved;
     }
 
@@ -10949,7 +11606,7 @@
       const records=recordsForProduct(state.selectedProductKey);
       if(!records.length) return;
       const payload={schemaVersion:FILE_SCHEMA_VERSION,appVersion:APP_VERSION,type:'product-price-history',createdAt:nowIso(),data:{product:records[0].name,records:records}};
-      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0112.json',payload);
+      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0120.json',payload);
     }
 
     function calculateInflationGoal(){
@@ -11357,14 +12014,14 @@
 
     function exportUnifiedCsv(){
       if(!state.productRecords.length){ setNotice($('exportStudioNotice'),'No hay seguimientos de productos para exportar en CSV.','warning'); return; }
-      downloadBlob('seguimiento-productos-v0112-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
+      downloadBlob('seguimiento-productos-v0120-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
       setNotice($('exportStudioNotice'),'CSV UTF-8 exportado con fechas ISO y números decimales consistentes.','success');
     }
 
     function exportUnifiedJson(){
       const all=$('exportDataScope').value === 'all';
       const payload=all ? buildLocalExchangePayload() : structuredProductPayload();
-      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0112-'+new Date().toISOString().slice(0,10)+'.json',payload);
+      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0120-'+new Date().toISOString().slice(0,10)+'.json',payload);
       setNotice($('exportStudioNotice'),'JSON exportado con versión de esquema, versión de la aplicación, tipo y fecha de creación.','success');
     }
 
@@ -11505,7 +12162,7 @@
           canvas.toBlob(function(output){
             URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false);
             if(!output){ setNotice($('exportStudioNotice'),'El navegador no pudo crear el PNG.','error'); return; }
-            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0112.png',output,'image/png');
+            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0120.png',output,'image/png');
             setNotice($('exportStudioNotice'),'PNG exportado a '+pixels.width+' × '+pixels.height+' píxeles.','success');
           },'image/png',1);
         }catch(error){ URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false); setNotice($('exportStudioNotice'),'No se pudo renderizar el PNG.','error'); }
@@ -12152,7 +12809,7 @@
       const report=state.reportResult; if(!report) return;
       const rows=[['sección','contenido']]; report.sections.forEach(function(section){ section.lines.forEach(function(line){ rows.push([section.title,line]); }); });
       rows.push(['Metodología',report.methodology],['Supuestos',report.assumptions]);
-      downloadCsvFile('informe-inflacion-v0112.csv',rows);
+      downloadCsvFile('informe-inflacion-v0120.csv',rows);
     }
 
     const LANDING_QUALITY_PROFILES=Object.freeze({
@@ -12455,12 +13112,1119 @@
       $('installAppButton').hidden=true;
     }
 
+    function setFeatureStatus(id,message,stateName){
+      const node=$(id);
+      if(!node) return;
+      node.textContent=message || '';
+      if(stateName) node.dataset.state=stateName;
+      else delete node.dataset.state;
+    }
+
+    function armLocalAction(button,confirmation,action){
+      if(button.dataset.armed !== 'true'){
+        button.dataset.armed='true';
+        button.dataset.original=button.textContent;
+        button.textContent=confirmation || 'Confirmar borrado';
+        showToast('Pulsa de nuevo para confirmar.');
+        window.setTimeout(function(){
+          if(button.dataset.armed === 'true'){
+            button.dataset.armed='false';
+            button.textContent=button.dataset.original;
+          }
+        },5000);
+        return false;
+      }
+      button.dataset.armed='false';
+      button.textContent=button.dataset.original || button.textContent;
+      action();
+      return true;
+    }
+
+    function openAudit(title,steps,meta){
+      const safeSteps=Array.isArray(steps) ? steps : [];
+      $('auditDialogTitle').textContent=title || 'Ver cálculo';
+      $('auditContent').innerHTML=safeSteps.map(function(step,index){
+        return '<section class="audit-step"><h4>'+(index+1)+'. '+escapeXml(step.title)+'</h4><p>'+escapeXml(step.body)+'</p>'+(step.formula ? '<code>'+escapeXml(step.formula)+'</code>' : '')+'</section>';
+      }).join('');
+      const safeMeta=Array.isArray(meta) ? meta : [];
+      $('auditMeta').innerHTML=safeMeta.map(function(item){ return '<span>'+escapeXml(item)+'</span>'; }).join('');
+      state.auditText=(title || 'Auditoría')+'\n\n'+safeSteps.map(function(step,index){
+        return (index+1)+'. '+step.title+'\n'+step.body+(step.formula ? '\n'+step.formula : '');
+      }).join('\n\n')+(safeMeta.length ? '\n\n'+safeMeta.join(' · ') : '');
+      $('auditDialog').showModal();
+    }
+
+    function openCalculatorAudit(){
+      const bundle=state.result;
+      if(!bundle || !bundle.resultA){ showToast('Realiza un cálculo antes de abrir la auditoría.'); return; }
+      const input=bundle.inputs,a=bundle.resultA,normalized=bundle.normalizedA;
+      const conversion=conversionPlainLines(bundle).join(' ');
+      openAudit('Auditoría de la calculadora de inflación',[
+        auditEngine.step('Datos utilizados',formatMoney(input.p0a,input.c0a)+' → '+formatMoney(input.p1a,input.c1a)+' durante '+formatNumber(input.time,0,6)+' '+unitLabel(input.unit,input.time)+'.','Meses normalizados = '+formatNumber(input.months,6,8)),
+        auditEngine.step('Conversión de moneda',conversion,normalized.mixed ? 'Inicial normalizado = '+formatNumber(normalized.initial,6,8)+' BRL; final normalizado = '+formatNumber(normalized.final,6,8)+' BRL' : 'No se necesitó conversión'),
+        auditEngine.step('Factor de variación','El precio final normalizado se divide entre el inicial.',''+formatNumber(normalized.final,6,8)+' ÷ '+formatNumber(normalized.initial,6,8)+' = '+formatNumber(a.ratio,6,10)),
+        auditEngine.step('Inflación total','Al factor se le resta uno y después se presenta como porcentaje.','('+formatNumber(a.ratio,6,10)+' − 1) × 100 = '+formatNumber(a.total*100,6,8)+' %'),
+        auditEngine.step('Tasas equivalentes','La mensual y la anualizada conservan la composición geométrica.','Mensual = factor^(1 ÷ '+formatNumber(a.months,6,8)+') − 1 = '+formatNumber(a.monthly*100,6,8)+' %; anual = factor^(12 ÷ meses) − 1 = '+formatNumber(a.annual*100,6,8)+' %'),
+        auditEngine.step('Poder adquisitivo','Es el recíproco del factor de precios.','1 ÷ '+formatNumber(a.ratio,6,10)+' = '+formatNumber(a.power*100,6,8)+' %'),
+        auditEngine.step('Redondeo','Los valores anteriores se conservaron como números de doble precisión; la interfaz presenta normalmente dos decimales.','Resultado visible: '+formatPercent(a.total,2))
+      ],[APP_VERSION,'Cálculo local',formatDateTime(bundle.createdAt)]);
+    }
+
+    function createBudgetRow(source){
+      const row=source || {};
+      return {
+        id:String(row.id || createUuid()),
+        name:String(row.name || 'Otro gasto').slice(0,60),
+        amount:Number.isFinite(Number(row.amount)) ? Number(row.amount) : 0,
+        rate:Number.isFinite(Number(row.rate)) ? Number(row.rate) : 0
+      };
+    }
+
+    function defaultBudgetRows(){
+      return BUDGET_DEFAULTS.map(function(row){ return createBudgetRow(row); });
+    }
+
+    function readBudgetDraft(){
+      const draft=safeStorageGet(KEYS.budgetDraft,null);
+      if(!draft || draft.schemaVersion !== 1 || !Array.isArray(draft.rows)) return null;
+      const rows=draft.rows.slice(0,MAX_BUDGET_ROWS).map(createBudgetRow);
+      if(!rows.length) return null;
+      return {
+        income:Number(draft.income) || 0,
+        currency:normalizeCurrencyCode(draft.currency,'BRL'),
+        horizon:Number(draft.horizon) || 5,
+        unit:draft.unit === 'months' ? 'months' : 'years',
+        rows:rows
+      };
+    }
+
+    function saveBudgetDraft(){
+      const income=parseLocalized($('budgetIncome').value);
+      const horizon=parseLocalized($('budgetHorizon').value);
+      safeStorageSet(KEYS.budgetDraft,{
+        schemaVersion:1,
+        appVersion:APP_VERSION,
+        updatedAt:nowIso(),
+        income:Number.isFinite(income) ? income : 0,
+        currency:normalizeCurrencyCode($('budgetCurrency').value,'BRL'),
+        horizon:Number.isFinite(horizon) ? horizon : 5,
+        unit:$('budgetHorizonUnit').value === 'months' ? 'months' : 'years',
+        rows:state.budgetRows.map(function(row){ return {id:row.id,name:row.name,amount:Number(row.amount) || 0,rate:Number(row.rate) || 0}; })
+      },{silent:true});
+    }
+
+    function renderBudgetRows(){
+      $('budgetRows').innerHTML=state.budgetRows.map(function(row,index){
+        return '<div class="dynamic-row" data-budget-row="'+escapeXml(row.id)+'">'+
+          '<div class="field"><label for="budgetName'+index+'">Categoría</label><input id="budgetName'+index+'" data-budget-field="name" maxlength="60" value="'+escapeXml(row.name)+'"></div>'+
+          '<div class="field"><label for="budgetAmount'+index+'">Gasto mensual</label><input id="budgetAmount'+index+'" data-budget-field="amount" type="text" inputmode="decimal" value="'+escapeXml(formatNumber(Number(row.amount) || 0,2,2))+'"></div>'+
+          '<div class="field"><label for="budgetRate'+index+'">Inflación anual %</label><input id="budgetRate'+index+'" data-budget-field="rate" type="text" inputmode="decimal" value="'+escapeXml(formatNumber(Number(row.rate) || 0,2,4))+'" title="Admite deflación superior a −100 % y tasas superiores a 100 %."></div>'+
+          '<button class="icon-button" type="button" data-remove-budget="'+escapeXml(row.id)+'" aria-label="Eliminar '+escapeXml(row.name)+'">×</button>'+
+        '</div>';
+      }).join('');
+    }
+
+    function loadBudgetExample(){
+      state.budgetRows=defaultBudgetRows();
+      $('budgetIncome').value='5.000,00';
+      $('budgetCurrency').value='BRL';
+      $('budgetHorizon').value='5';
+      $('budgetHorizonUnit').value='years';
+      renderBudgetRows();
+      saveBudgetDraft();
+      calculateBudget();
+    }
+
+    function budgetInput(){
+      $('budgetIncome').removeAttribute('aria-invalid');
+      $('budgetHorizon').removeAttribute('aria-invalid');
+      $('budgetIncomeError').textContent='';
+      $('budgetHorizonError').textContent='';
+      const income=parseLocalized($('budgetIncome').value);
+      const horizon=parseLocalized($('budgetHorizon').value);
+      let invalid=false;
+      if(!Number.isFinite(income) || income <= 0 || income > MAX_PRICE){
+        $('budgetIncome').setAttribute('aria-invalid','true');
+        $('budgetIncomeError').textContent='Introduce ingresos mayores que cero y dentro del límite.';
+        invalid=true;
+      }
+      const months=$('budgetHorizonUnit').value === 'months' ? horizon : horizon*12;
+      if(!Number.isFinite(months) || months <= 0 || months > MAX_MONTHS){
+        $('budgetHorizon').setAttribute('aria-invalid','true');
+        $('budgetHorizonError').textContent='El horizonte debe estar entre un mes y 1.000 años.';
+        invalid=true;
+      }
+      const rows=state.budgetRows.map(function(row){
+        return {id:row.id,name:String(row.name || '').trim().slice(0,60),amount:Number(row.amount),rate:Number(row.rate)};
+      }).filter(function(row){ return row.name || row.amount > 0; });
+      if(!rows.length || rows.some(function(row){ return !row.name || !Number.isFinite(row.amount) || row.amount < 0 || row.amount > MAX_PRICE || !Number.isFinite(row.rate) || row.rate <= -100 || row.rate > 100000; })){
+        setFeatureStatus('budgetNotice','Revisa las categorías: importe desde cero y tasa anual superior a −100 %.','error');
+        invalid=true;
+      }
+      if(invalid) return null;
+      return {income:income,currency:normalizeCurrencyCode($('budgetCurrency').value,'BRL'),months:months,rows:rows};
+    }
+
+    function renderBudgetResult(result){
+      const currency=result.input.currency;
+      $('budgetEmpty').hidden=true;
+      $('budgetResults').hidden=false;
+      $('budgetCurrentTotal').textContent=formatCurrency(result.currentTotal,currency);
+      $('budgetFutureTotal').textContent=formatCurrency(result.futureTotal,currency);
+      $('budgetCurrentSaving').textContent=formatCurrency(result.currentSaving,currency);
+      $('budgetFutureSaving').textContent=formatCurrency(result.futureSaving,currency);
+      $('budgetSavingLoss').textContent=formatCurrency(result.savingLoss,currency);
+      $('budgetRequiredIncome').textContent=formatCurrency(result.requiredIncome,currency);
+      $('budgetWarning').hidden=result.futureTotal <= result.input.income;
+      $('budgetWarning').textContent=result.futureTotal > result.input.income ? 'Los gastos proyectados superan los ingresos por '+formatCurrency(result.futureTotal-result.input.income,currency)+' al mes.' : '';
+      $('budgetResultBody').innerHTML=result.rows.map(function(row){
+        const weight=result.currentTotal > 0 ? row.amount/result.currentTotal : 0;
+        return '<tr><td>'+escapeXml(row.name)+'</td><td>'+escapeXml(formatCurrency(row.amount,currency))+'</td><td>'+escapeXml(formatPercent(weight,2))+'</td><td>'+escapeXml(formatNumber(row.rate,2,4)+' %')+'</td><td>'+escapeXml(formatCurrency(row.future,currency))+'</td><td>'+escapeXml(formatCurrency(row.increase,currency))+'</td></tr>';
+      }).join('');
+      $('budgetProjectionList').innerHTML=result.projection.map(function(point){
+        const label=point.months < 12 ? formatNumber(point.months,1,2)+' meses' : formatNumber(point.months/12,1,2)+' años';
+        return '<li><span>'+escapeXml(label)+'</span><strong>'+escapeXml(formatCurrency(point.total,currency))+'</strong><span>Disponible</span><strong>'+escapeXml(formatCurrency(point.saving,currency))+'</strong></li>';
+      }).join('');
+      $('budgetAuditButton').disabled=false;
+      setFeatureStatus('budgetNotice','Presupuesto proyectado con composición por categoría. El borrador quedó guardado localmente.','success');
+    }
+
+    function calculateBudget(){
+      const input=budgetInput();
+      if(!input) return null;
+      const result=budgetEngine.project(input);
+      state.budgetResult=result;
+      renderBudgetResult(result);
+      saveBudgetDraft();
+      trackEvent('budget_completed',{tool:'budget',categories:input.rows.length,offline:navigator.onLine === false});
+      return result;
+    }
+
+    function openBudgetAudit(){
+      const result=state.budgetResult;
+      if(!result) return;
+      const rows=result.rows.map(function(row){
+        return row.name+': '+formatNumber(row.amount,2,2)+' × (1 + '+formatNumber(row.rate/100,6,8)+')^'+formatNumber(result.years,4,6)+' = '+formatNumber(row.future,2,6);
+      }).join('; ');
+      openAudit('Auditoría del presupuesto familiar',[
+        auditEngine.step('Datos utilizados','Ingresos '+formatCurrency(result.input.income,result.input.currency)+', '+result.rows.length+' categorías y '+formatNumber(result.input.months,2,4)+' meses.','Horizonte en años = meses ÷ 12 = '+formatNumber(result.years,4,6)),
+        auditEngine.step('Proyección por categoría','Cada gasto utiliza su propia tasa anual compuesta.',rows),
+        auditEngine.step('Totales','Se suman importes actuales y futuros sin redondear los pasos.','Actual = '+formatNumber(result.currentTotal,4,8)+'; futuro = '+formatNumber(result.futureTotal,4,8)),
+        auditEngine.step('Capacidad de ahorro','Se restan los gastos mensuales de los ingresos constantes.','Actual = '+formatNumber(result.input.income,4,8)+' − '+formatNumber(result.currentTotal,4,8)+' = '+formatNumber(result.currentSaving,4,8)+'; futura = '+formatNumber(result.futureSaving,4,8)),
+        auditEngine.step('Salario necesario','Mantiene exactamente el mismo ahorro mensual actual.','Gasto futuro + ahorro actual = '+formatNumber(result.futureTotal,4,8)+' + '+formatNumber(result.currentSaving,4,8)+' = '+formatNumber(result.requiredIncome,4,8))
+      ],[APP_VERSION,'Datos locales','Tasas anuales compuestas']);
+    }
+
+    function realReturnInput(){
+      const initial=parseLocalized($('realInitialCapital').value);
+      const inflationPct=parseLocalized($('realInflationRate').value);
+      const duration=parseLocalized($('realDuration').value);
+      const months=$('realDurationUnit').value === 'years' ? duration*12 : duration;
+      const mode=$('realInputMode').value;
+      let final=mode === 'final' ? parseLocalized($('realFinalCapital').value) : NaN;
+      const ratePct=mode === 'rate' ? parseLocalized($('realNominalRate').value) : NaN;
+      if(mode === 'rate' && Number.isFinite(initial) && Number.isFinite(ratePct)) final=initial*(1+ratePct/100);
+      if(!Number.isFinite(initial) || initial <= 0 || initial > MAX_PRICE || !Number.isFinite(final) || final < 0 || final > MAX_PRICE || !Number.isFinite(inflationPct) || inflationPct <= -100 || inflationPct > 100000 || !Number.isFinite(months) || months <= 0 || months > MAX_MONTHS){
+        setFeatureStatus('realReturnNotice','Revisa los valores: capital inicial positivo, capital final no negativo, inflación superior a −100 % y duración válida.','error');
+        return null;
+      }
+      return {initial:initial,final:final,inflation:inflationPct/100,months:months,currency:normalizeCurrencyCode($('realCurrency').value,'BRL'),inputMode:mode};
+    }
+
+    function calculateRealReturn(){
+      const input=realReturnInput();
+      if(!input) return null;
+      const result=realReturnEngine.calculate(input);
+      if(![result.nominal,result.real,result.adjusted,result.annualized].every(Number.isFinite)){
+        setFeatureStatus('realReturnNotice','La combinación produce un resultado no finito. Reduce los valores extremos.','error');
+        return null;
+      }
+      state.realReturnResult=result;
+      $('realReturnEmpty').hidden=true;
+      $('realReturnResults').hidden=false;
+      $('realNominalResult').textContent=signedPercent(result.nominal);
+      $('realRealResult').textContent=signedPercent(result.real);
+      $('realNominalGain').textContent=formatCurrency(result.nominalGain,result.currency);
+      $('realRealGain').textContent=formatCurrency(result.realGain,result.currency);
+      $('realAdjustedValue').textContent=formatCurrency(result.adjusted,result.currency);
+      $('realSimpleDifference').textContent=signedPercent(result.simpleDifference);
+      $('realAnnualized').textContent=signedPercent(result.annualized);
+      $('realPurchasingPower').textContent=formatCurrency(result.adjusted,result.currency);
+      $('realReturnInterpretation').textContent=result.real > 1e-12 ? 'La inversión aumentó el poder adquisitivo.' : result.real < -1e-12 ? 'La inversión creció menos que los precios y perdió poder adquisitivo.' : 'La inversión conservó aproximadamente el poder adquisitivo.';
+      $('realReturnAuditButton').disabled=false;
+      setFeatureStatus('realReturnNotice','Resultado compuesto calculado sin restar porcentajes como aproximación.','success');
+      trackEvent('real_return_completed',{tool:'real-return',offline:navigator.onLine === false});
+      return result;
+    }
+
+    function openRealReturnAudit(){
+      const result=state.realReturnResult;
+      if(!result) return;
+      openAudit('Auditoría del rendimiento real',[
+        auditEngine.step('Datos utilizados','Capital inicial '+formatCurrency(result.initial,result.currency)+', capital final '+formatCurrency(result.final,result.currency)+' e inflación '+formatPercent(result.inflation,4)+'.','Duración = '+formatNumber(result.months,4,6)+' meses'),
+        auditEngine.step('Rendimiento nominal','Compara capital final e inicial.','('+formatNumber(result.final,6,8)+' ÷ '+formatNumber(result.initial,6,8)+') − 1 = '+formatNumber(result.nominal*100,6,8)+' %'),
+        auditEngine.step('Rendimiento real','Divide el factor nominal entre el factor de inflación.','((1 + '+formatNumber(result.nominal,8,10)+') ÷ (1 + '+formatNumber(result.inflation,8,10)+')) − 1 = '+formatNumber(result.real*100,6,8)+' %'),
+        auditEngine.step('Valor ajustado','Expresa el capital final en poder adquisitivo del inicio.',''+formatNumber(result.final,6,8)+' ÷ (1 + '+formatNumber(result.inflation,8,10)+') = '+formatNumber(result.adjusted,6,8)),
+        auditEngine.step('Anualización real','Convierte el factor real al equivalente de un año.','(1 + real)^(12 ÷ '+formatNumber(result.months,4,6)+') − 1 = '+formatNumber(result.annualized*100,6,8)+' %'),
+        auditEngine.step('Diferencia simple','Se informa como comparación, pero no sustituye al rendimiento real.','Nominal − inflación = '+formatNumber(result.simpleDifference*100,6,8)+' %')
+      ],[APP_VERSION,'Fórmula Fisher exacta','Sin conversión de moneda']);
+    }
+
+    function economyCurrency(code){
+      return {BR:'BRL',US:'USD',EU:'EUR',MX:'MXN',AR:'ARS',CA:'CAD',GB:'GBP'}[code] || 'BRL';
+    }
+
+    function timeMoneyErrorMessage(error){
+      const code=String(error && error.message || error || '');
+      if(code.includes('OFFLINE_NO_DATA') || code.includes('NO_CACHED_DATA')) return 'No hay una copia local para ese período. Conéctate y vuelve a consultar.';
+      if(code.includes('INVALID_MONTH_RANGE')) return 'El mes final debe ser posterior al inicial y el período no puede superar 100 años.';
+      if(code.includes('NO_DATA')) return 'La fuente oficial no devolvió observaciones para ese período.';
+      if(code.includes('TIMEOUT') || code.includes('Abort')) return 'La fuente oficial tardó demasiado. Si existe una copia local, se conservará para otra consulta.';
+      return 'No se pudo completar la consulta oficial. Revisa las fechas o inténtalo más tarde.';
+    }
+
+    function timeMoneyInput(){
+      const amount=parseLocalized($('timeMoneyAmount').value);
+      const start=$('timeMoneyStart').value;
+      const end=$('timeMoneyEnd').value;
+      $('timeMoneyAmount').removeAttribute('aria-invalid');
+      $('timeMoneyAmountError').textContent='';
+      if(!Number.isFinite(amount) || amount <= 0 || amount > MAX_PRICE){
+        $('timeMoneyAmount').setAttribute('aria-invalid','true');
+        $('timeMoneyAmountError').textContent='Introduce una cantidad mayor que cero.';
+        return null;
+      }
+      if(!isMonthKey(start) || !isMonthKey(end) || start >= end || !monthDistanceInclusive(start,end)){
+        setFeatureStatus('timeMoneyNotice','El mes final debe ser posterior al inicial y el intervalo máximo es de 100 años.','error');
+        return null;
+      }
+      return {
+        amount:amount,
+        currency:normalizeCurrencyCode($('timeMoneyCurrency').value,economyCurrency($('timeMoneyEconomy').value)),
+        economy:$('timeMoneyEconomy').value,
+        direction:$('timeMoneyDirection').value === 'backward' ? 'backward' : 'forward',
+        start:start,
+        end:end
+      };
+    }
+
+    async function calculateTimeMoney(){
+      const input=timeMoneyInput();
+      if(!input) return null;
+      const button=$('timeMoneyForm').querySelector('button[type="submit"]');
+      setButtonBusy(button,true,'Consultando…');
+      setFeatureStatus('timeMoneyNotice','Consultando el índice oficial y comprobando la caché local…');
+      try{
+        const series=await getEconomySeries(input.economy,input.start,input.end);
+        const points=(series.points || []).filter(function(point){ return Number.isFinite(point.index) && point.index > 0; });
+        if(points.length < 2) throw new Error('NO_DATA_IN_PERIOD');
+        state.timeMoneyResult={input:input,series:series,points:points,startIndex:0,endIndex:points.length-1,createdAt:nowIso()};
+        $('timeMoneyStartRange').min='0';
+        $('timeMoneyStartRange').max=String(points.length-1);
+        $('timeMoneyStartRange').value='0';
+        $('timeMoneyEndRange').min='0';
+        $('timeMoneyEndRange').max=String(points.length-1);
+        $('timeMoneyEndRange').value=String(points.length-1);
+        renderTimeMoneySelection();
+        setFeatureStatus('timeMoneyNotice',/cache/.test(series.mode) ? 'Se muestra una copia local fechada porque la fuente no respondió.' : 'Consulta oficial completada sin interpolar meses ausentes.','success');
+        trackEvent('time_money_completed',{tool:'time-money',economy:input.economy,mode:series.mode});
+        return state.timeMoneyResult;
+      }catch(error){
+        console.warn('Falló la máquina del tiempo del dinero.',error);
+        setFeatureStatus('timeMoneyNotice',timeMoneyErrorMessage(error),'error');
+        return null;
+      }finally{
+        setButtonBusy(button,false,'');
+      }
+    }
+
+    function renderTimeMoneySelection(){
+      const result=state.timeMoneyResult;
+      if(!result) return;
+      const points=result.points;
+      let startIndex=Math.max(0,Math.min(points.length-2,Number($('timeMoneyStartRange').value) || 0));
+      let endIndex=Math.max(1,Math.min(points.length-1,Number($('timeMoneyEndRange').value) || points.length-1));
+      if(startIndex >= endIndex){
+        if(document.activeElement === $('timeMoneyStartRange')) startIndex=Math.max(0,endIndex-1);
+        else endIndex=Math.min(points.length-1,startIndex+1);
+      }
+      $('timeMoneyStartRange').value=String(startIndex);
+      $('timeMoneyEndRange').value=String(endIndex);
+      result.startIndex=startIndex;
+      result.endIndex=endIndex;
+      const selected=points.slice(startIndex,endIndex+1);
+      const first=selected[0],last=selected.at(-1);
+      const factor=last.index/first.index;
+      const accumulated=factor-1;
+      const power=1/factor;
+      const equivalent=result.input.direction === 'forward' ? result.input.amount*factor : result.input.amount/factor;
+      const difference=equivalent-result.input.amount;
+      result.selection={first:first,last:last,factor:factor,accumulated:accumulated,power:power,equivalent:equivalent,difference:difference,points:selected};
+      $('timeMoneyEmpty').hidden=true;
+      $('timeMoneyResults').hidden=false;
+      $('timeMoneyOriginal').textContent=formatCurrency(result.input.amount,result.input.currency);
+      $('timeMoneyEquivalent').textContent=formatCurrency(equivalent,result.input.currency);
+      $('timeMoneyInflation').textContent=signedPercent(accumulated);
+      $('timeMoneyDifference').textContent=formatCurrency(difference,result.input.currency);
+      $('timeMoneyPower').textContent=formatPercent(power,2);
+      $('timeMoneyBase100').textContent=formatNumber(factor*100,2,4);
+      $('timeMoneyTimelineStartLabel').textContent=formatMonthLabel(first.period);
+      $('timeMoneyTimelineEndLabel').textContent=formatMonthLabel(last.period);
+      $('timeMoneyStart').value=first.period;
+      $('timeMoneyEnd').value=last.period;
+      const baseIndex=first.index;
+      const indexValues=selected.map(function(point){ return {label:point.period,value:point.index/baseIndex*100}; });
+      const powerValues=selected.map(function(point){ return {label:point.period,value:baseIndex/point.index*100}; });
+      $('timeMoneyChart').innerHTML=lineChartSvg([
+        {name:'Índice base 100',color:'#ffd400',values:indexValues},
+        {name:'Poder adquisitivo',color:'#55f5e6',values:powerValues}
+      ],{title:'Índice y poder adquisitivo',description:'Índice oficial base cien y poder adquisitivo recíproco durante el intervalo',valueSuffix:'',zeroLine:false,height:250});
+      const economy=ECONOMIES[result.input.economy];
+      $('timeMoneySourceBadge').textContent=/cache/.test(result.series.mode) ? 'Copia local' : 'Datos oficiales';
+      $('timeMoneySourceStrip').innerHTML=[
+        economy.index+' · '+economy.source,
+        economy.provider,
+        formatMonthLabel(first.period)+' — '+formatMonthLabel(last.period),
+        'Consultado '+formatDateTime(result.series.cachedAt || result.series.fetchedAt),
+        'Estado: '+result.series.mode
+      ].map(function(item){ return '<span>'+escapeXml(item)+'</span>'; }).join('');
+      $('timeMoneyAuditButton').disabled=false;
+    }
+
+    function openTimeMoneyAudit(){
+      const result=state.timeMoneyResult,selection=result && result.selection;
+      if(!result || !selection) return;
+      const economy=ECONOMIES[result.input.economy];
+      openAudit('Auditoría de la máquina del tiempo',[
+        auditEngine.step('Datos utilizados',formatCurrency(result.input.amount,result.input.currency)+' entre '+formatMonthLabel(selection.first.period)+' y '+formatMonthLabel(selection.last.period)+'.',economy.index+' · '+economy.source),
+        auditEngine.step('Niveles del índice','Se usan los niveles oficiales disponibles; no se interpolan meses ausentes.','Inicial = '+formatNumber(selection.first.index,6,10)+'; final = '+formatNumber(selection.last.index,6,10)),
+        auditEngine.step('Factor acumulado','Divide el índice final entre el inicial.',''+formatNumber(selection.last.index,8,10)+' ÷ '+formatNumber(selection.first.index,8,10)+' = '+formatNumber(selection.factor,8,10)),
+        auditEngine.step('Inflación acumulada','Al factor se le resta uno.','('+formatNumber(selection.factor,8,10)+' − 1) × 100 = '+formatNumber(selection.accumulated*100,6,8)+' %'),
+        auditEngine.step('Equivalencia monetaria',result.input.direction === 'forward' ? 'Actualiza el valor inicial al nivel de precios final.' : 'Convierte el valor final a poder adquisitivo del inicio.',result.input.direction === 'forward' ? formatNumber(result.input.amount,6,8)+' × '+formatNumber(selection.factor,8,10)+' = '+formatNumber(selection.equivalent,6,8) : formatNumber(result.input.amount,6,8)+' ÷ '+formatNumber(selection.factor,8,10)+' = '+formatNumber(selection.equivalent,6,8)),
+        auditEngine.step('Poder adquisitivo','Es el recíproco del factor de precios.','1 ÷ '+formatNumber(selection.factor,8,10)+' = '+formatNumber(selection.power*100,6,8)+' %')
+      ],[APP_VERSION,result.series.mode,formatDateTime(result.series.cachedAt || result.series.fetchedAt)]);
+    }
+
+    function normalizeExpenseItem(source){
+      const item=source || {};
+      const history=(Array.isArray(item.history) ? item.history : []).slice(0,MAX_EXPENSE_OBSERVATIONS).map(function(point){
+        return {date:String(point && point.date || ''),price:Number(point && point.price)};
+      }).filter(function(point){ return /^\d{4}-\d{2}-\d{2}$/.test(point.date) && Number.isFinite(point.price) && point.price > 0; });
+      return {
+        id:String(item.id || createUuid()),
+        name:String(item.name || '').replace(/[\u0000-\u001f\u007f]/g,' ').trim().slice(0,80),
+        category:String(item.category || 'Otros').replace(/[\u0000-\u001f\u007f]/g,' ').trim().slice(0,60),
+        currency:normalizeCurrencyCode(item.currency,'BRL'),
+        frequency:item.frequency === 'annual' ? 'annual' : 'monthly',
+        history:history
+      };
+    }
+
+    function readExpenses(){
+      const stored=safeStorageGet(KEYS.expenses,{schemaVersion:1,items:[]});
+      if(!stored || stored.schemaVersion !== 1 || !Array.isArray(stored.items)) return [];
+      return stored.items.slice(0,MAX_EXPENSE_SERVICES).map(normalizeExpenseItem).filter(function(item){ return item.name; });
+    }
+
+    function saveExpenses(items){
+      state.expenses=(items || state.expenses).slice(0,MAX_EXPENSE_SERVICES).map(normalizeExpenseItem);
+      const saved=safeStorageSet(KEYS.expenses,{schemaVersion:1,appVersion:APP_VERSION,updatedAt:nowIso(),items:state.expenses});
+      renderExpenses();
+      renderAnomalyStoredOptions();
+      return saved;
+    }
+
+    function renderExpenseSelectors(){
+      const select=$('expenseServiceSelect');
+      const current=select.value;
+      select.innerHTML=state.expenses.length ? '<option value="">Selecciona un gasto</option>'+state.expenses.map(function(item){
+        return '<option value="'+escapeXml(item.id)+'">'+escapeXml(item.name)+' · '+escapeXml(item.currency)+'</option>';
+      }).join('') : '<option value="">Crea un gasto primero</option>';
+      if(state.expenses.some(function(item){ return item.id === current; })) select.value=current;
+    }
+
+    function latestExpenseMonthlyRate(item){
+      const metrics=expenseTracker.metrics(item);
+      const change=metrics.changes.at(-1);
+      if(!change || change.change <= -1) return null;
+      return Math.pow(1+change.change,30/change.days)-1;
+    }
+
+    function renderExpenseChart(item){
+      const metrics=expenseTracker.metrics(item);
+      if(!item || metrics.history.length < 2){
+        $('expenseChartPanel').hidden=true;
+        $('expenseChart').innerHTML='';
+        return;
+      }
+      $('expenseChartPanel').hidden=false;
+      $('expenseChartTitle').textContent='Evolución de '+item.name;
+      $('expenseChart').innerHTML=lineChartSvg([{name:item.name,color:'#ffd400',values:metrics.history.map(function(point){ return {label:point.date.slice(0,7),labelText:new Date(point.date+'T00:00:00').toLocaleDateString('es'),value:Number(point.price)}; })}],{title:'Historial de '+item.name,description:'Precios guardados por fecha en '+item.currency,valueSuffix:'',height:240});
+    }
+
+    function renderExpenses(){
+      renderExpenseSelectors();
+      const currency=normalizeCurrencyCode($('expenseSummaryCurrency').value,'BRL');
+      const items=state.expenses.filter(function(item){ return item.currency === currency; });
+      const monthlyTotal=items.reduce(function(sum,item){ return sum+expenseTracker.monthlyCost(item); },0);
+      const ranked=items.map(function(item){ return {item:item,rate:latestExpenseMonthlyRate(item)}; }).filter(function(entry){ return Number.isFinite(entry.rate); }).sort(function(a,b){ return b.rate-a.rate; });
+      $('expenseMonthlyTotal').textContent=formatCurrency(monthlyTotal,currency);
+      $('expenseAnnualTotal').textContent=formatCurrency(monthlyTotal*12,currency);
+      $('expenseFastest').textContent=ranked.length ? ranked[0].item.name : 'Sin comparación';
+      $('expenseFastestDetail').textContent=ranked.length ? signedPercent(ranked[0].rate)+' equivalente a 30 días' : 'Añade dos precios a un gasto.';
+      $('expenseCount').textContent=String(items.length);
+      $('expenseEmpty').hidden=state.expenses.length > 0;
+      $('expenseList').innerHTML=state.expenses.map(function(item){
+        const metrics=expenseTracker.metrics(item);
+        const weight=item.currency === currency && monthlyTotal > 0 ? metrics.monthly/monthlyTotal : null;
+        const history=metrics.history.map(function(point){
+          return '<span class="history-chip">'+escapeXml(point.date)+' · '+escapeXml(formatCurrency(point.price,item.currency))+' <button class="icon-button" type="button" data-expense-point="'+escapeXml(item.id)+'" data-expense-point-date="'+escapeXml(point.date)+'" aria-label="Eliminar precio del '+escapeXml(point.date)+'">×</button></span>';
+        }).join('');
+        return '<article class="expense-item" data-expense-id="'+escapeXml(item.id)+'">'+
+          '<div><h3>'+escapeXml(item.name)+'</h3><small>'+escapeXml(item.category)+' · '+(item.frequency === 'annual' ? 'pago anual' : 'pago mensual')+' · '+escapeXml(item.currency)+'</small><div class="history-chips">'+history+'</div></div>'+
+          '<div><small>Último precio</small><strong>'+escapeXml(metrics.last ? formatCurrency(metrics.last.price,item.currency) : 'Sin precios')+'</strong></div>'+
+          '<div><small>Aumento acumulado</small><strong>'+escapeXml(metrics.totalChange == null ? 'Sin historial' : signedPercent(metrics.totalChange))+'</strong></div>'+
+          '<div><small>Peso en '+escapeXml(currency)+'</small><strong>'+escapeXml(weight == null ? 'No se mezcla' : formatPercent(weight,2))+'</strong></div>'+
+          '<div class="tracker-record-actions"><button class="button secondary small" type="button" data-expense-action="chart" data-expense-id="'+escapeXml(item.id)+'">Ver evolución</button><button class="button danger small" type="button" data-expense-action="delete" data-expense-id="'+escapeXml(item.id)+'">Eliminar</button></div>'+
+        '</article>';
+      }).join('');
+      if(!state.expenses.length) renderExpenseChart(null);
+    }
+
+    function addExpenseService(){
+      const name=$('expenseName').value.replace(/[\u0000-\u001f\u007f]/g,' ').trim().slice(0,80);
+      const currency=normalizeCurrencyCode($('expenseCurrency').value,'BRL');
+      if(!name){
+        setFeatureStatus('expenseServiceNotice','Escribe el nombre del servicio o gasto.','error');
+        $('expenseName').focus();
+        return null;
+      }
+      if(state.expenses.length >= MAX_EXPENSE_SERVICES){
+        setFeatureStatus('expenseServiceNotice','Alcanzaste el máximo de '+MAX_EXPENSE_SERVICES+' gastos. Exporta o elimina alguno antes de continuar.','error');
+        return null;
+      }
+      if(state.expenses.some(function(item){ return item.name.toLocaleLowerCase('es') === name.toLocaleLowerCase('es') && item.currency === currency; })){
+        setFeatureStatus('expenseServiceNotice','Ya existe un gasto con ese nombre y moneda. Selecciónalo para añadir otro precio.','warning');
+        return null;
+      }
+      const item=normalizeExpenseItem({name:name,category:$('expenseCategory').value,currency:currency,frequency:$('expenseFrequency').value,history:[]});
+      state.expenses.push(item);
+      saveExpenses();
+      $('expenseServiceSelect').value=item.id;
+      $('expenseName').value='';
+      setFeatureStatus('expenseServiceNotice','Gasto creado. Añade su primer precio en el paso 2.','success');
+      $('expenseObservationPrice').focus();
+      return item;
+    }
+
+    function addExpenseObservation(){
+      const id=$('expenseServiceSelect').value;
+      const item=state.expenses.find(function(entry){ return entry.id === id; });
+      const date=$('expenseObservationDate').value;
+      const price=parseLocalized($('expenseObservationPrice').value);
+      if(!item){
+        setFeatureStatus('expenseObservationNotice','Selecciona un gasto existente.','error');
+        return null;
+      }
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(price) || price <= 0 || price > MAX_PRICE){
+        setFeatureStatus('expenseObservationNotice','Introduce una fecha válida y un precio mayor que cero.','error');
+        return null;
+      }
+      const existing=item.history.find(function(point){ return point.date === date; });
+      if(existing) existing.price=price;
+      else{
+        if(item.history.length >= MAX_EXPENSE_OBSERVATIONS){
+          setFeatureStatus('expenseObservationNotice','Ese gasto alcanzó el máximo de observaciones.','error');
+          return null;
+        }
+        item.history.push({date:date,price:price});
+      }
+      saveExpenses();
+      $('expenseObservationPrice').value='';
+      setFeatureStatus('expenseObservationNotice',existing ? 'El precio de esa fecha fue actualizado.' : 'Precio guardado localmente.','success');
+      renderExpenseChart(item);
+      return item;
+    }
+
+    function handleExpenseListClick(event){
+      const pointButton=event.target.closest('[data-expense-point]');
+      if(pointButton){
+        const item=state.expenses.find(function(entry){ return entry.id === pointButton.dataset.expensePoint; });
+        const date=pointButton.dataset.expensePointDate;
+        if(item && item.history.some(function(point){ return point.date === date; })){
+          item.history=item.history.filter(function(point){ return point.date !== date; });
+          saveExpenses();
+          setFeatureStatus('expenseObservationNotice','Observación eliminada del dispositivo.','success');
+        }
+        return;
+      }
+      const button=event.target.closest('[data-expense-action]');
+      if(!button) return;
+      const item=state.expenses.find(function(entry){ return entry.id === button.dataset.expenseId; });
+      if(!item) return;
+      if(button.dataset.expenseAction === 'chart') renderExpenseChart(item);
+      if(button.dataset.expenseAction === 'delete'){
+        armLocalAction(button,'Confirmar',function(){
+          state.expenses=state.expenses.filter(function(entry){ return entry.id !== item.id; });
+          saveExpenses();
+          setFeatureStatus('expenseServiceNotice','Gasto e historial eliminados del dispositivo.','success');
+        });
+      }
+    }
+
+    function createAnomalyRow(source){
+      const row=source || {};
+      return {id:String(row.id || createUuid()),date:String(row.date || ''),price:Number.isFinite(Number(row.price)) ? Number(row.price) : 0};
+    }
+
+    function defaultAnomalyRows(){
+      return [
+        {date:'2026-01-01',price:39.9},
+        {date:'2026-03-01',price:40.9},
+        {date:'2026-05-01',price:41.9},
+        {date:'2026-07-01',price:42.9},
+        {date:'2026-08-02',price:50.8}
+      ].map(createAnomalyRow);
+    }
+
+    function readAnomalyDraft(){
+      const stored=safeStorageGet(KEYS.anomalyDraft,null);
+      if(!stored || stored.schemaVersion !== 1 || !Array.isArray(stored.rows)) return null;
+      const rows=stored.rows.slice(0,100).map(createAnomalyRow);
+      return rows.length ? rows : null;
+    }
+
+    function saveAnomalyDraft(){
+      if($('anomalySource').value !== 'manual') return;
+      safeStorageSet(KEYS.anomalyDraft,{schemaVersion:1,appVersion:APP_VERSION,updatedAt:nowIso(),rows:state.anomalyRows.map(function(row){ return {date:row.date,price:Number(row.price) || 0}; })},{silent:true});
+    }
+
+    function renderAnomalyRows(){
+      $('anomalyRows').innerHTML=state.anomalyRows.map(function(row,index){
+        return '<div class="dynamic-row" data-anomaly-row="'+escapeXml(row.id)+'">'+
+          '<div class="field"><label for="anomalyDate'+index+'">Fecha</label><input id="anomalyDate'+index+'" type="date" data-anomaly-field="date" value="'+escapeXml(row.date)+'"></div>'+
+          '<div class="field"><label for="anomalyPrice'+index+'">Precio</label><input id="anomalyPrice'+index+'" type="text" inputmode="decimal" data-anomaly-field="price" value="'+escapeXml(row.price ? formatNumber(Number(row.price),2,6) : '')+'" placeholder="0,00"></div>'+
+          '<div class="field"><span class="field-help">Observación '+(index+1)+'</span></div>'+
+          '<button class="icon-button" type="button" data-remove-anomaly="'+escapeXml(row.id)+'" aria-label="Eliminar observación '+(index+1)+'">×</button>'+
+        '</div>';
+      }).join('');
+    }
+
+    function renderAnomalyStoredOptions(){
+      const source=$('anomalySource').value;
+      const select=$('anomalyStoredSeries');
+      select.disabled=source === 'manual';
+      if(source === 'expense'){
+        select.innerHTML='<option value="">Selecciona un gasto</option>'+state.expenses.filter(function(item){ return item.history.length; }).map(function(item){
+          return '<option value="'+escapeXml(item.id)+'">'+escapeXml(item.name)+' · '+escapeXml(item.currency)+'</option>';
+        }).join('');
+      }else if(source === 'product'){
+        const keys=Array.from(new Set(state.productRecords.map(function(record){ return productKey(record.name,record.currency); })));
+        select.innerHTML='<option value="">Selecciona un producto</option>'+keys.map(function(key){
+          const records=recordsForProduct(key);
+          return records.length ? '<option value="'+escapeXml(key)+'">'+escapeXml(records[0].name)+' · '+escapeXml(records[0].currency)+'</option>' : '';
+        }).join('');
+      }else{
+        select.innerHTML='<option value="">Historial manual</option>';
+      }
+    }
+
+    function loadStoredAnomalySeries(){
+      const source=$('anomalySource').value,value=$('anomalyStoredSeries').value;
+      if(!value) return;
+      if(source === 'expense'){
+        const item=state.expenses.find(function(entry){ return entry.id === value; });
+        if(item) state.anomalyRows=expenseTracker.sortedHistory(item).map(function(point){ return createAnomalyRow(point); });
+      }else if(source === 'product'){
+        state.anomalyRows=recordsForProduct(value).map(function(record){ return createAnomalyRow({date:record.date,price:unitPrice(record.price,record.quantity,record.unit)}); });
+      }
+      renderAnomalyRows();
+      setFeatureStatus('anomalyNotice','Historial cargado. En productos se analiza el precio por unidad normalizada.','success');
+    }
+
+    function anomalyPoints(){
+      return state.anomalyRows.map(function(row){ return {date:String(row.date || ''),price:Number(row.price)}; }).filter(function(row){ return /^\d{4}-\d{2}-\d{2}$/.test(row.date) && Number.isFinite(row.price) && row.price > 0; });
+    }
+
+    function anomalyLevelCopy(level){
+      return {
+        normal:{label:'🟢 Normal',headline:'El último cambio está dentro del comportamiento habitual.'},
+        elevated:{label:'🟡 Elevado',headline:'El último cambio supera moderadamente el historial.'},
+        'very-high':{label:'🟠 Muy elevado',headline:'El último cambio se aparta claramente del historial.'},
+        anomaly:{label:'🔴 Anómalo',headline:'Aumento anormal detectado.'},
+        insufficient:{label:'Datos insuficientes',headline:'Añade más historial antes de clasificar.'}
+      }[level] || {label:'Datos insuficientes',headline:'No se pudo clasificar.'};
+    }
+
+    function analyzeAnomaly(){
+      const points=anomalyPoints();
+      if(points.length < 2){
+        setFeatureStatus('anomalyNotice','Añade al menos dos fechas con precios positivos.','error');
+        return null;
+      }
+      const result=anomalyDetector.analyze(points);
+      state.anomalyResult=result;
+      const copy=anomalyLevelCopy(result.level);
+      $('anomalyClassification').dataset.level=result.level;
+      $('anomalyLabel').textContent=copy.label;
+      $('anomalyHeadline').textContent=copy.headline;
+      const latest=result.latest;
+      const explanation=result.level === 'insufficient' ?
+        'Hay '+result.baseline.length+' cambio(s) anterior(es); se necesitan al menos tres para estimar una mediana y dispersión robustas.' :
+        'El equivalente a 30 días se comparó con la mediana histórica mediante la desviación absoluta mediana (MAD).';
+      $('anomalyExplanation').textContent=explanation;
+      $('anomalyLatestChange').textContent=latest ? signedPercent(latest.change) : '—';
+      $('anomalyDays').textContent=latest ? formatNumber(latest.days,0,0)+' días' : '—';
+      $('anomalyMonthlyEquivalent').textContent=latest ? signedPercent(latest.monthly) : '—';
+      $('anomalyMedian').textContent=Number.isFinite(result.median) ? signedPercent(result.median) : '—';
+      $('anomalyScore').textContent=Number.isFinite(result.score) ? formatNumber(result.score,2,3)+' MAD' : '—';
+      $('anomalyComparableCount').textContent=String(result.baseline.length);
+      $('anomalyHistoryChips').innerHTML=result.changes.map(function(change){
+        return '<span class="history-chip">'+escapeXml(change.from.date)+' → '+escapeXml(change.to.date)+' · '+escapeXml(signedPercent(change.change))+' · '+escapeXml(formatNumber(change.days,0,0))+' días</span>';
+      }).join('');
+      $('anomalyAuditButton').disabled=false;
+      setFeatureStatus('anomalyNotice',result.level === 'insufficient' ? 'Análisis parcial: no se emitió una clasificación definitiva.' : 'Análisis completado. La clasificación es orientativa y conserva todos los pasos auditables.',result.level === 'insufficient' ? 'warning' : 'success');
+      saveAnomalyDraft();
+      trackEvent('anomaly_completed',{tool:'anomaly',level:result.level,observations:result.history.length});
+      return result;
+    }
+
+    function openAnomalyAudit(){
+      const result=state.anomalyResult;
+      if(!result) return;
+      const latest=result.latest;
+      const steps=[
+        auditEngine.step('Datos utilizados',result.history.length+' observaciones válidas ordenadas por fecha.',result.history.map(function(point){ return point.date+' = '+formatNumber(point.price,4,8); }).join('; ')),
+        auditEngine.step('Cambios entre observaciones','Cada variación divide el precio nuevo entre el anterior.','Cambio = precio nuevo ÷ precio anterior − 1'),
+        auditEngine.step('Normalización temporal',latest ? 'El último cambio ocurrió durante '+formatNumber(latest.days,0,0)+' días.' : 'No hay un último cambio válido.',latest ? '(1 + '+formatNumber(latest.change,8,10)+')^(30 ÷ '+formatNumber(latest.days,0,0)+') − 1 = '+formatNumber(latest.monthly*100,6,8)+' % en 30 días' : ''),
+        auditEngine.step('Referencia histórica',Number.isFinite(result.median) ? 'Mediana '+formatPercent(result.median,4)+'; MAD '+formatPercent(result.mad,4)+'.' : 'Se requieren tres cambios anteriores para calcular una referencia robusta.','Escala = máximo(MAD × 1,4826; 0,5 puntos porcentuales)'),
+        auditEngine.step('Puntuación',Number.isFinite(result.score) ? 'Desviaciones robustas sobre la mediana: '+formatNumber(result.score,4,6)+'.' : 'Sin puntuación por historial insuficiente.','(último equivalente mensual − mediana) ÷ escala'),
+        auditEngine.step('Clasificación',anomalyLevelCopy(result.level).label+' · '+anomalyLevelCopy(result.level).headline,'Normal < 2; elevado ≥ 2; muy elevado ≥ 4; anómalo ≥ 6, con umbrales absolutos de 5 %, 10 % y 20 % a 30 días')
+      ];
+      openAudit('Auditoría del detector de aumentos',steps,[APP_VERSION,'Análisis local','Independiente de reduflación']);
+    }
+
+    function readEducationProgress(){
+      const stored=safeStorageGet(KEYS.educationProgress,{schemaVersion:1,completed:[]});
+      return {
+        completed:Array.isArray(stored && stored.completed) ? stored.completed.map(String).slice(0,20) : [],
+        rate:Number.isFinite(Number(stored && stored.rate)) ? Number(stored.rate) : 5,
+        years:Number.isFinite(Number(stored && stored.years)) ? Number(stored.years) : 10,
+        amount:Number.isFinite(Number(stored && stored.amount)) ? Number(stored.amount) : 100
+      };
+    }
+
+    function saveEducationProgress(){
+      const completed=$$('[data-education-complete]:checked').map(function(input){ return input.dataset.educationComplete; });
+      const amount=parseLocalized($('educationAmount').value);
+      safeStorageSet(KEYS.educationProgress,{
+        schemaVersion:1,
+        appVersion:APP_VERSION,
+        updatedAt:nowIso(),
+        completed:completed,
+        rate:Number($('educationRate').value),
+        years:Number($('educationYears').value),
+        amount:Number.isFinite(amount) ? amount : 100
+      },{silent:true});
+      $('educationProgressBadge').textContent=completed.length+'/11';
+    }
+
+    function loadEducationProgress(){
+      const progress=readEducationProgress();
+      $('educationRate').value=String(Math.max(-20,Math.min(200,progress.rate)));
+      $('educationYears').value=String(Math.max(.25,Math.min(50,progress.years)));
+      $('educationAmount').value=formatNumber(progress.amount,2,2);
+      $$('[data-education-complete]').forEach(function(input){ input.checked=progress.completed.includes(input.dataset.educationComplete); });
+      renderEducationExperiment();
+      saveEducationProgress();
+    }
+
+    function renderEducationExperiment(){
+      const rate=Number($('educationRate').value)/100;
+      const years=Number($('educationYears').value);
+      const amount=parseLocalized($('educationAmount').value);
+      $('educationRateLabel').textContent=formatNumber(rate*100,1,1)+' %';
+      $('educationYearsLabel').textContent=formatNumber(years,2,2)+' '+(years === 1 ? 'año' : 'años');
+      if(!Number.isFinite(amount) || amount <= 0 || amount > MAX_PRICE){
+        $('educationExplanation').textContent='Introduce una cantidad positiva para ejecutar el experimento.';
+        return null;
+      }
+      const result=educationEngine.simulate(amount,rate,years);
+      $('educationFutureCost').textContent=formatCurrency(result.futureCost,'BRL');
+      $('educationPowerPct').textContent=formatPercent(result.power,2);
+      $('educationPowerMoney').textContent=formatCurrency(result.purchasingAmount,'BRL');
+      $('educationAccumulated').textContent=signedPercent(result.accumulated);
+      const costWidth=Math.min(100,Math.max(2,50+Math.log(Math.max(result.factor,.01))*18));
+      const powerWidth=Math.min(100,Math.max(1,result.power*100));
+      $('educationCostBar').style.width=costWidth+'%';
+      $('educationPowerBar').style.width=powerWidth+'%';
+      $('educationCostBarLabel').textContent='× '+formatNumber(result.factor,2,4);
+      $('educationPowerBarLabel').textContent=formatPercent(result.power,1);
+      $('educationExplanation').textContent=rate >= 0 ?
+        'Con '+formatNumber(rate*100,1,1)+' % anual durante '+formatNumber(years,2,2)+' años, el nivel de precios se multiplica por '+formatNumber(result.factor,3,5)+' y la cantidad inicial conserva '+formatPercent(result.power,2)+' de su poder.' :
+        'La tasa negativa representa deflación: el nivel de precios baja y la misma cantidad gana poder adquisitivo.';
+      saveEducationProgress();
+      return result;
+    }
+
+    function widgetTypeCopy(type){
+      return {
+        inflation:{title:'Calculadora de inflación',a:'Precio inicial',b:'Precio final',c:'No se utiliza',formula:'(final ÷ inicial) − 1'},
+        purchasing:{title:'Poder adquisitivo',a:'Cantidad',b:'Inflación anual %',c:'Años',formula:'cantidad ÷ (1 + inflación)^años'},
+        'real-return':{title:'Rendimiento real',a:'Rendimiento nominal %',b:'Inflación total %',c:'No se utiliza',formula:'(1 + nominal) ÷ (1 + inflación) − 1'},
+        'time-money':{title:'Equivalencia histórica',a:'Cantidad',b:'Inflación acumulada %',c:'No se utiliza',formula:'cantidad × (1 + inflación acumulada)'}
+      }[type] || {title:'Calculadora',a:'Valor A',b:'Valor B',c:'Valor C',formula:''};
+    }
+
+    function widgetCalculation(config,aValue,bValue,cValue){
+      const a=Number(aValue),b=Number(bValue),c=Number(cValue);
+      if(!Number.isFinite(a) || !Number.isFinite(b) || a <= 0 || a > MAX_PRICE || b <= -100 || b > 100000) return {valid:false,message:'Revisa los valores introducidos.'};
+      if(config.type === 'inflation'){
+        if(b <= 0) return {valid:false,message:'El precio final debe ser mayor que cero.'};
+        const total=b/a-1;
+        return {valid:true,headline:signedPercent(total),detail:'Variación total',formula:'('+formatNumber(b,6,8)+' ÷ '+formatNumber(a,6,8)+') − 1'};
+      }
+      if(config.type === 'purchasing'){
+        if(!Number.isFinite(c) || c <= 0 || c > 1000) return {valid:false,message:'Introduce un período válido.'};
+        const factor=inflationEngine.factorFromRate(b/100,c);
+        const remaining=a/factor;
+        return {valid:Number.isFinite(remaining),headline:formatCurrency(remaining,config.currency),detail:'Poder adquisitivo después de '+formatNumber(c,2,4)+' años',formula:formatNumber(a,6,8)+' ÷ (1 + '+formatNumber(b/100,6,8)+')^'+formatNumber(c,4,6)};
+      }
+      if(config.type === 'real-return'){
+        const real=inflationEngine.realReturn(a/100,b/100);
+        return {valid:Number.isFinite(real),headline:signedPercent(real),detail:'Rendimiento real',formula:'(1 + '+formatNumber(a/100,6,8)+') ÷ (1 + '+formatNumber(b/100,6,8)+') − 1'};
+      }
+      const equivalent=a*(1+b/100);
+      return {valid:Number.isFinite(equivalent),headline:formatCurrency(equivalent,config.currency),detail:'Valor equivalente con '+formatNumber(b,2,4)+' % acumulado',formula:formatNumber(a,6,8)+' × (1 + '+formatNumber(b/100,6,8)+')'};
+    }
+
+    function widgetConfigFromForm(){
+      return widgetEngine.sanitize({
+        type:$('widgetType').value,
+        currency:$('widgetCurrency').value,
+        theme:$('widgetTheme').value,
+        a:parseLocalized($('widgetDefaultA').value),
+        b:parseLocalized($('widgetDefaultB').value),
+        c:parseLocalized($('widgetDefaultC').value),
+        height:Number($('widgetHeight').value),
+        showCurrency:$('widgetShowCurrency').checked,
+        showFormula:$('widgetShowFormula').checked,
+        showBrand:$('widgetShowBrand').checked
+      });
+    }
+
+    function widgetPreviewMarkup(config){
+      const copy=widgetTypeCopy(config.type);
+      const result=widgetCalculation(config,config.a,config.b,config.c);
+      return '<div class="widget-preview-card">'+
+        (config.showBrand ? '<div class="widget-runtime-brand"><span>Inflation Insights</span><span>'+escapeXml(APP_VERSION)+'</span></div>' : '')+
+        '<h2>'+escapeXml(copy.title)+'</h2>'+
+        '<div class="widget-mini-grid"><div class="field"><label>'+escapeXml(copy.a)+'</label><input value="'+escapeXml(formatNumber(config.a,0,6))+'" disabled></div><div class="field"><label>'+escapeXml(copy.b)+'</label><input value="'+escapeXml(formatNumber(config.b,0,6))+'" disabled></div>'+(config.type === 'purchasing' ? '<div class="field"><label>'+escapeXml(copy.c)+'</label><input value="'+escapeXml(formatNumber(config.c,0,6))+'" disabled></div>' : '')+'</div>'+
+        (config.showCurrency ? '<span class="inline-badge">'+escapeXml(config.currency)+'</span>' : '')+
+        '<div class="widget-mini-result"><span>'+escapeXml(result.detail || 'Resultado')+'</span><strong>'+escapeXml(result.valid ? result.headline : result.message)+'</strong></div>'+
+        (config.showFormula && result.formula ? '<code>'+escapeXml(copy.formula)+'<br>'+escapeXml(result.formula)+'</code>' : '')+
+      '</div>';
+    }
+
+    function renderWidgetGenerator(save){
+      const config=widgetConfigFromForm();
+      state.widgetConfig=config;
+      const copy=widgetTypeCopy(config.type);
+      const labels=$('widgetForm').querySelectorAll('label[for="widgetDefaultA"],label[for="widgetDefaultB"],label[for="widgetDefaultC"]');
+      if(labels[0]) labels[0].textContent=copy.a;
+      if(labels[1]) labels[1].textContent=copy.b;
+      if(labels[2]) labels[2].textContent=copy.c;
+      $('widgetDefaultHelp').textContent=config.type === 'purchasing' ? 'C define los años del experimento.' : 'C no se utiliza en este widget.';
+      $('widgetPreview').dataset.theme=config.theme;
+      $('widgetPreview').innerHTML=widgetPreviewMarkup(config);
+      const params=new URLSearchParams({
+        widget:config.type,
+        currency:config.currency,
+        theme:config.theme,
+        a:String(config.a),
+        b:String(config.b),
+        c:String(config.c),
+        showCurrency:config.showCurrency ? '1' : '0',
+        showFormula:config.showFormula ? '1' : '0',
+        showBrand:config.showBrand ? '1' : '0'
+      });
+      const src=WIDGET_PUBLIC_URL+'?'+params.toString();
+      const code='<iframe\n  src="'+src+'"\n  title="'+copy.title+' — Inflation Insights"\n  width="100%"\n  height="'+config.height+'"\n  loading="lazy"\n  referrerpolicy="strict-origin-when-cross-origin"\n  style="border:0">\n</iframe>';
+      $('widgetCode').value=code;
+      if(save !== false) safeStorageSet(KEYS.widgetPreferences,{schemaVersion:1,appVersion:APP_VERSION,updatedAt:nowIso(),config:config},{silent:true});
+      setFeatureStatus('widgetNotice','Widget generado con parámetros validados y URL pública versionada.','success');
+      return config;
+    }
+
+    function loadWidgetPreferences(){
+      const stored=safeStorageGet(KEYS.widgetPreferences,null);
+      const config=widgetEngine.sanitize(stored && stored.schemaVersion === 1 ? stored.config : {});
+      $('widgetType').value=config.type;
+      $('widgetCurrency').value=config.currency;
+      $('widgetTheme').value=config.theme;
+      $('widgetHeight').value=String(config.height);
+      $('widgetDefaultA').value=formatNumber(config.a,0,6);
+      $('widgetDefaultB').value=formatNumber(config.b,0,6);
+      $('widgetDefaultC').value=formatNumber(config.c,0,6);
+      $('widgetShowCurrency').checked=config.showCurrency;
+      $('widgetShowFormula').checked=config.showFormula;
+      $('widgetShowBrand').checked=config.showBrand;
+      renderWidgetGenerator(false);
+    }
+
+    function runtimeCurrencyOptions(selected){
+      return CURRENCY_CODES.map(function(code){ return '<option value="'+code+'"'+(code === selected ? ' selected' : '')+'>'+code+' — '+escapeXml(CURRENCIES[code].name)+'</option>'; }).join('');
+    }
+
+    function renderWidgetRuntime(config){
+      const copy=widgetTypeCopy(config.type);
+      $('widgetRuntimeShell').dataset.theme=config.theme;
+      $('widgetRuntimeBrand').hidden=!config.showBrand;
+      $('widgetRuntimeTitle').textContent=copy.title;
+      $('widgetRuntimeALabel').textContent=copy.a;
+      $('widgetRuntimeBLabel').textContent=copy.b;
+      $('widgetRuntimeCLabel').textContent=copy.c;
+      $('widgetRuntimeA').value=formatNumber(config.a,0,6);
+      $('widgetRuntimeB').value=formatNumber(config.b,0,6);
+      $('widgetRuntimeC').value=formatNumber(config.c,0,6);
+      $('widgetRuntimeCField').hidden=config.type !== 'purchasing';
+      $('widgetRuntimeCurrencyField').hidden=!config.showCurrency;
+      $('widgetRuntimeCurrency').innerHTML=runtimeCurrencyOptions(config.currency);
+      $('widgetRuntimeFormula').hidden=!config.showFormula;
+      $('widgetRuntimeFormula').textContent=copy.formula;
+      function calculate(){
+        const active=Object.assign({},config,{currency:config.showCurrency ? normalizeCurrencyCode($('widgetRuntimeCurrency').value,config.currency) : config.currency});
+        const result=widgetCalculation(active,parseLocalized($('widgetRuntimeA').value),parseLocalized($('widgetRuntimeB').value),$('widgetRuntimeC') ? parseLocalized($('widgetRuntimeC').value) : config.c);
+        $('widgetRuntimeResult').innerHTML=result.valid ? '<span>'+escapeXml(result.detail)+'</span><strong>'+escapeXml(result.headline)+'</strong>' : '<strong>'+escapeXml(result.message)+'</strong>';
+        if(config.showFormula && $('widgetRuntimeFormula')) $('widgetRuntimeFormula').textContent=copy.formula+(result.formula ? ' · '+result.formula : '');
+      }
+      $('widgetRuntimeCalculate').addEventListener('click',calculate);
+      ['widgetRuntimeA','widgetRuntimeB','widgetRuntimeC'].forEach(function(id){ if($(id)) $(id).addEventListener('input',calculate); });
+      if($('widgetRuntimeCurrency')) $('widgetRuntimeCurrency').addEventListener('change',calculate);
+      calculate();
+    }
+
+    function initWidgetRuntime(){
+      const type=START_PARAMS.get('widget');
+      if(!widgetEngine.types.includes(type)) return false;
+      const config=widgetEngine.sanitize({
+        type:type,
+        currency:START_PARAMS.get('currency'),
+        theme:START_PARAMS.get('theme'),
+        a:parseUrlNumber(START_PARAMS.get('a')),
+        b:parseUrlNumber(START_PARAMS.get('b')),
+        c:parseUrlNumber(START_PARAMS.get('c')),
+        showCurrency:START_PARAMS.get('showCurrency') !== '0',
+        showFormula:START_PARAMS.get('showFormula') !== '0',
+        showBrand:START_PARAMS.get('showBrand') !== '0'
+      });
+      document.body.dataset.widget='true';
+      document.title=widgetTypeCopy(config.type).title+' · Inflation Insights';
+      showRoute('widget-runtime',{updateHash:false,focus:false});
+      renderWidgetRuntime(config);
+      return true;
+    }
+
     function bindEvents(){
       $$('[data-route]').forEach(function(button){
         button.addEventListener('click',function(event){
           if(button.tagName === 'A') event.preventDefault();
           showRoute(button.dataset.route);
         });
+      });
+      $('openCalculatorAuditButton').addEventListener('click',openCalculatorAudit);
+      $('copyAuditButton').addEventListener('click',function(){ copyText(state.auditText,'Auditoría copiada.'); });
+
+      $('budgetForm').addEventListener('submit',function(event){ event.preventDefault(); calculateBudget(); });
+      $('budgetAddCategoryButton').addEventListener('click',function(){
+        if(state.budgetRows.length >= MAX_BUDGET_ROWS){ setFeatureStatus('budgetNotice','El presupuesto admite un máximo de '+MAX_BUDGET_ROWS+' categorías.','error'); return; }
+        state.budgetRows.push(createBudgetRow({name:'Otro gasto',amount:0,rate:0}));
+        renderBudgetRows();
+        saveBudgetDraft();
+        window.setTimeout(function(){ const inputs=$$('#budgetRows [data-budget-field="name"]'); if(inputs.length) inputs.at(-1).focus(); },30);
+      });
+      $('budgetRows').addEventListener('input',function(event){
+        const input=event.target.closest('[data-budget-field]');
+        const rowNode=event.target.closest('[data-budget-row]');
+        if(!input || !rowNode) return;
+        const row=state.budgetRows.find(function(item){ return item.id === rowNode.dataset.budgetRow; });
+        if(!row) return;
+        if(input.dataset.budgetField === 'name') row.name=input.value;
+        else{
+          const value=parseLocalized(input.value);
+          row[input.dataset.budgetField]=Number.isFinite(value) ? value : NaN;
+        }
+        saveBudgetDraft();
+      });
+      $('budgetRows').addEventListener('click',function(event){
+        const button=event.target.closest('[data-remove-budget]');
+        if(!button) return;
+        if(state.budgetRows.length <= 1){ setFeatureStatus('budgetNotice','El presupuesto necesita al menos una categoría.','warning'); return; }
+        state.budgetRows=state.budgetRows.filter(function(row){ return row.id !== button.dataset.removeBudget; });
+        renderBudgetRows();
+        saveBudgetDraft();
+      });
+      ['budgetIncome','budgetHorizon'].forEach(function(id){ $(id).addEventListener('input',saveBudgetDraft); });
+      ['budgetCurrency','budgetHorizonUnit'].forEach(function(id){ $(id).addEventListener('change',saveBudgetDraft); });
+      $('budgetExampleButton').addEventListener('click',loadBudgetExample);
+      $('budgetClearButton').addEventListener('click',function(){
+        const button=this;
+        armLocalAction(button,'Confirmar borrado',function(){
+          safeStorageRemove(KEYS.budgetDraft);
+          state.budgetRows=[createBudgetRow({name:'Vivienda',amount:0,rate:0})];
+          state.budgetResult=null;
+          $('budgetForm').reset();
+          $('budgetCurrency').value='BRL';
+          $('budgetHorizon').value='5';
+          renderBudgetRows();
+          $('budgetEmpty').hidden=false;
+          $('budgetResults').hidden=true;
+          $('budgetAuditButton').disabled=true;
+          setFeatureStatus('budgetNotice','Presupuesto local eliminado.','success');
+        });
+      });
+      $('budgetAuditButton').addEventListener('click',openBudgetAudit);
+
+      $('timeMoneyForm').addEventListener('submit',function(event){ event.preventDefault(); calculateTimeMoney(); });
+      $('timeMoneyEconomy').addEventListener('change',function(){ $('timeMoneyCurrency').value=economyCurrency(this.value); });
+      ['timeMoneyStartRange','timeMoneyEndRange'].forEach(function(id){ $(id).addEventListener('input',renderTimeMoneySelection); });
+      $('timeMoneyAuditButton').addEventListener('click',openTimeMoneyAudit);
+
+      $('realReturnForm').addEventListener('submit',function(event){ event.preventDefault(); calculateRealReturn(); });
+      $('realInputMode').addEventListener('change',function(){
+        const rate=this.value === 'rate';
+        $('realFinalField').hidden=rate;
+        $('realRateField').hidden=!rate;
+      });
+      $('realReturnResetButton').addEventListener('click',function(){
+        $('realReturnForm').reset();
+        $('realCurrency').value='BRL';
+        $('realInputMode').value='final';
+        $('realFinalField').hidden=false;
+        $('realRateField').hidden=true;
+        state.realReturnResult=null;
+        $('realReturnEmpty').hidden=false;
+        $('realReturnResults').hidden=true;
+        $('realReturnAuditButton').disabled=true;
+        setFeatureStatus('realReturnNotice','Ejemplo: 10 % nominal y 6 % de inflación producen aproximadamente 3,77 % real.');
+      });
+      $('realReturnAuditButton').addEventListener('click',openRealReturnAudit);
+
+      $('expenseServiceForm').addEventListener('submit',function(event){ event.preventDefault(); addExpenseService(); });
+      $('expenseObservationForm').addEventListener('submit',function(event){ event.preventDefault(); addExpenseObservation(); });
+      $('expenseSummaryCurrency').addEventListener('change',renderExpenses);
+      $('expenseList').addEventListener('click',handleExpenseListClick);
+      $('expenseClearAllButton').addEventListener('click',function(){
+        const button=this;
+        armLocalAction(button,'Confirmar borrado',function(){
+          state.expenses=[];
+          safeStorageRemove(KEYS.expenses);
+          renderExpenses();
+          renderAnomalyStoredOptions();
+          setFeatureStatus('expenseServiceNotice','Todos los gastos y sus historiales fueron eliminados del dispositivo.','success');
+        });
+      });
+
+      $('anomalyForm').addEventListener('submit',function(event){ event.preventDefault(); analyzeAnomaly(); });
+      $('anomalySource').addEventListener('change',function(){
+        renderAnomalyStoredOptions();
+        if(this.value === 'manual'){
+          state.anomalyRows=readAnomalyDraft() || [createAnomalyRow(),createAnomalyRow()];
+          renderAnomalyRows();
+        }
+      });
+      $('anomalyStoredSeries').addEventListener('change',loadStoredAnomalySeries);
+      $('anomalyAddRowButton').addEventListener('click',function(){
+        if(state.anomalyRows.length >= 100){ setFeatureStatus('anomalyNotice','El análisis admite hasta 100 observaciones.','error'); return; }
+        state.anomalyRows.push(createAnomalyRow());
+        renderAnomalyRows();
+        saveAnomalyDraft();
+      });
+      $('anomalyRows').addEventListener('input',function(event){
+        const input=event.target.closest('[data-anomaly-field]'),node=event.target.closest('[data-anomaly-row]');
+        if(!input || !node) return;
+        const row=state.anomalyRows.find(function(item){ return item.id === node.dataset.anomalyRow; });
+        if(!row) return;
+        if(input.dataset.anomalyField === 'date') row.date=input.value;
+        else{
+          const price=parseLocalized(input.value);
+          row.price=Number.isFinite(price) ? price : NaN;
+        }
+        saveAnomalyDraft();
+      });
+      $('anomalyRows').addEventListener('click',function(event){
+        const button=event.target.closest('[data-remove-anomaly]');
+        if(!button) return;
+        state.anomalyRows=state.anomalyRows.filter(function(row){ return row.id !== button.dataset.removeAnomaly; });
+        if(!state.anomalyRows.length) state.anomalyRows.push(createAnomalyRow());
+        renderAnomalyRows();
+        saveAnomalyDraft();
+      });
+      $('anomalyExampleButton').addEventListener('click',function(){
+        $('anomalySource').value='manual';
+        renderAnomalyStoredOptions();
+        state.anomalyRows=defaultAnomalyRows();
+        renderAnomalyRows();
+        saveAnomalyDraft();
+        analyzeAnomaly();
+      });
+      $('anomalyClearButton').addEventListener('click',function(){
+        safeStorageRemove(KEYS.anomalyDraft);
+        state.anomalyRows=[createAnomalyRow(),createAnomalyRow()];
+        state.anomalyResult=null;
+        renderAnomalyRows();
+        $('anomalyClassification').dataset.level='insufficient';
+        $('anomalyLabel').textContent='Datos insuficientes';
+        $('anomalyHeadline').textContent='Añade un historial comparable';
+        $('anomalyAuditButton').disabled=true;
+        setFeatureStatus('anomalyNotice','Historial manual eliminado del dispositivo.','success');
+      });
+      $('anomalyAuditButton').addEventListener('click',openAnomalyAudit);
+
+      ['educationRate','educationYears'].forEach(function(id){ $(id).addEventListener('input',renderEducationExperiment); });
+      $('educationAmount').addEventListener('input',renderEducationExperiment);
+      $$('[data-education-complete]').forEach(function(input){ input.addEventListener('change',saveEducationProgress); });
+      $('educationResetButton').addEventListener('click',function(){
+        const button=this;
+        armLocalAction(button,'Confirmar borrado',function(){
+          safeStorageRemove(KEYS.educationProgress);
+          $$('[data-education-complete]').forEach(function(input){ input.checked=false; });
+          $('educationRate').value='5';
+          $('educationYears').value='10';
+          $('educationAmount').value='100,00';
+          renderEducationExperiment();
+          showToast('Progreso educativo eliminado.');
+        });
+      });
+
+      $('widgetForm').addEventListener('submit',function(event){ event.preventDefault(); renderWidgetGenerator(true); });
+      ['widgetCurrency','widgetTheme','widgetHeight','widgetDefaultA','widgetDefaultB','widgetDefaultC','widgetShowCurrency','widgetShowFormula','widgetShowBrand'].forEach(function(id){ $(id).addEventListener(id.startsWith('widgetShow') ? 'change' : 'input',function(){ renderWidgetGenerator(true); }); });
+      $('widgetType').addEventListener('change',function(){
+        const defaults={
+          inflation:[100,121,10],
+          purchasing:[100,5,10],
+          'real-return':[10,6,10],
+          'time-money':[1000,25,10]
+        }[this.value] || [100,121,10];
+        $('widgetDefaultA').value=String(defaults[0]);
+        $('widgetDefaultB').value=String(defaults[1]);
+        $('widgetDefaultC').value=String(defaults[2]);
+        renderWidgetGenerator(true);
+      });
+      $('widgetCopyButton').addEventListener('click',function(){ copyText($('widgetCode').value,'Código iframe copiado.'); });
+      $('widgetResetButton').addEventListener('click',function(){
+        safeStorageRemove(KEYS.widgetPreferences);
+        $('widgetType').value='inflation';
+        $('widgetCurrency').value='BRL';
+        $('widgetTheme').value='dark';
+        $('widgetHeight').value='500';
+        $('widgetDefaultA').value='100';
+        $('widgetDefaultB').value='121';
+        $('widgetDefaultC').value='10';
+        $('widgetShowCurrency').checked=true;
+        $('widgetShowFormula').checked=true;
+        $('widgetShowBrand').checked=true;
+        renderWidgetGenerator(false);
       });
       $('openBasketShortcut').addEventListener('click',function(){ openBasket('prices'); });
       $('openComparisonShortcut').addEventListener('click',function(){ showRoute('calculadora'); $('scenarioBDetails').open=true; window.setTimeout(function(){ $('p0b').focus(); },150); });
@@ -12543,7 +14307,7 @@
       $('copyContractReceiptButton').addEventListener('click',function(){ if(state.contractResult) copyText(contractReceiptText(state.contractResult),'Comprobante copiado.'); });
       $('exportContractJsonButton').addEventListener('click',function(){
         if(!state.contractResult) return;
-        downloadJsonFile('reajuste-contrato-v0112.json',Object.assign({},state.contractResult,{
+        downloadJsonFile('reajuste-contrato-v0120.json',Object.assign({},state.contractResult,{
           schemaVersion:FILE_SCHEMA_VERSION,
           appVersion:APP_VERSION,
           type:'contract-adjustment',
@@ -12551,7 +14315,7 @@
           createdAt:state.contractResult.fetchedAt || nowIso()
         }));
       });
-      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0112.pdf','contract'); });
+      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0120.pdf','contract'); });
       $('exportContractComparisonCsvButton').addEventListener('click',exportContractComparisonCsv);
       $('labForm').addEventListener('submit',function(event){ event.preventDefault(); calculateLab(); });
       $('saveLabButton').addEventListener('click',saveLabConfig);
@@ -12571,11 +14335,11 @@
       });
       $('loadAdvancedExampleButton').addEventListener('click',loadAdvancedExample);
       $('exportAdvancedCsvButton').addEventListener('click',exportAdvancedCsv);
-      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0112.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
+      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0120.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
       $('reportForm').addEventListener('submit',function(event){ event.preventDefault(); try{ renderReportPreview(buildReportData()); }catch(error){ setNotice($('reportNotice'),'Selecciona al menos una sección.','error'); } });
-      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0112.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
+      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0120.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
       $('exportReportCsvButton').addEventListener('click',exportReportCsv);
-      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0112.json',state.reportResult); });
+      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0120.json',state.reportResult); });
       $('installAppButton').addEventListener('click',promptPwaInstall);
       $('menuButton').addEventListener('click',function(){
         const opening = $('mainNav').dataset.open !== 'true';
@@ -12666,7 +14430,7 @@
       });
       $('copyLinkButton').addEventListener('click',function(){ copyText(buildShareUrl(),'Enlace del escenario copiado.'); });
       $('copyResultButton').addEventListener('click',function(){ copyText(resultPlainText(),'Resultado copiado.'); });
-      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0112.pdf','calculator'); });
+      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0120.pdf','calculator'); });
       $('exportJsonButton').addEventListener('click',exportResultJson);
       $('exportCsvButton').addEventListener('click',exportResultCsv);
       $('refreshQuotesButton').addEventListener('click',function(){ refreshQuotes(); });
@@ -12700,7 +14464,7 @@
       $('salaryShareButton').addEventListener('click',function(){ copyText(buildSalaryShareUrl(),'Enlace del análisis salarial copiado.'); });
       $('salaryExportCsvButton').addEventListener('click',exportSalaryCsv);
       $('salaryExportJsonButton').addEventListener('click',exportSalaryJson);
-      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0112.pdf','salary'); });
+      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0120.pdf','salary'); });
       $('salaryExportPngButton').addEventListener('click',exportSalaryChartPng);
 
       $('saveScenarioButton').addEventListener('click',function(){
@@ -12830,7 +14594,7 @@
       $('saveBasketButton').addEventListener('click',saveBasket);
       $('weightedCurrency').addEventListener('change',function(){ state.basketCurrency = normalizeCurrencyCode(this.value,'BRL'); });
       $('exportBasketButton').addEventListener('click',function(){
-        downloadJsonFile('cesta-ponderada-v0112.json',weightedBasketPayload());
+        downloadJsonFile('cesta-ponderada-v0120.json',weightedBasketPayload());
       });
       $('importBasketButton').addEventListener('click',function(){ $('basketFileInput').click(); });
       $('basketFileInput').addEventListener('change',function(event){
@@ -12966,7 +14730,7 @@
       });
       $$('[data-download-personal-chart]').forEach(function(button){
         button.addEventListener('click',function(){
-          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0112.png');
+          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0120.png');
         });
       });
 
@@ -13024,6 +14788,25 @@
         $('advancedPeriodType').value=['month','year','custom'].includes(advancedDraft.periodType) ? advancedDraft.periodType : 'month';
         renderAdvancedRows(advancedDraft.rows);
       }else renderAdvancedRows([{label:'Enero',rate:'0,40'},{label:'Febrero',rate:'0,70'},{label:'Marzo',rate:'-0,10'},{label:'Abril',rate:'0,50'}]);
+      const budgetDraft=readBudgetDraft();
+      state.budgetRows=budgetDraft ? budgetDraft.rows : defaultBudgetRows();
+      $('budgetIncome').value=budgetDraft && budgetDraft.income ? formatNumber(budgetDraft.income,2,2) : '5.000,00';
+      $('budgetCurrency').value=budgetDraft ? budgetDraft.currency : 'BRL';
+      $('budgetHorizon').value=String(budgetDraft ? budgetDraft.horizon : 5);
+      $('budgetHorizonUnit').value=budgetDraft ? budgetDraft.unit : 'years';
+      renderBudgetRows();
+      $('timeMoneyStart').value=shiftMonthKey(defaultEnd,-120);
+      $('timeMoneyEnd').value=defaultEnd;
+      $('timeMoneyCurrency').value='BRL';
+      state.expenses=readExpenses();
+      state.productRecords=readProductRecords();
+      state.anomalyRows=readAnomalyDraft() || [createAnomalyRow(),createAnomalyRow()];
+      $('expenseObservationDate').value=new Date().toISOString().slice(0,10);
+      renderExpenses();
+      renderAnomalyRows();
+      renderAnomalyStoredOptions();
+      loadEducationProgress();
+      loadWidgetPreferences();
       $('footerYear').textContent = String(new Date().getFullYear());
       setupPwaInstall();
       bindEvents();
@@ -13035,7 +14818,6 @@
       }
       loadBasket();
       loadPersonalDraft();
-      state.productRecords=readProductRecords();
       $('trackerDate').value=new Date().toISOString().slice(0,10);
       renderProductTracker();
       setMarketTab('shrink');
@@ -13043,19 +14825,22 @@
       renderSavedLists();
       renderPersonalSavedLists();
       routeFromLocation(true);
+      applyQueryParameters();
+      const widgetMode=initWidgetRuntime();
       window.requestAnimationFrame(function(){
         landingExperience=setupLandingExperience();
         if(landingExperience) landingExperience.setActive(state.route === 'inicio');
       });
-      applyQueryParameters();
       updateAccountUi();
-      registerOfflineWorker();
-      initBackend();
-      if(betaMeta.lastWelcomeVersion !== WELCOME_STORAGE_VERSION){
+      if(!widgetMode){
+        registerOfflineWorker();
+        initBackend();
+      }
+      if(!widgetMode && betaMeta.lastWelcomeVersion !== WELCOME_STORAGE_VERSION){
         window.setTimeout(function(){ if(!$('betaWelcomeDialog').open) $('betaWelcomeDialog').showModal(); },180);
       }
       if(DEBUG_MODE) runSelfTests();
-      if(!DEBUG_NO_FX && navigator.onLine !== false && quotesNeedRefresh()){
+      if(!widgetMode && !DEBUG_NO_FX && navigator.onLine !== false && quotesNeedRefresh()){
         window.setTimeout(function(){ refreshQuotes({silent:true,automatic:true,reason:'initial'}); },350);
       }
     }
