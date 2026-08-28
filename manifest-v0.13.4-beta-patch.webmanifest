@@ -1,11 +1,11 @@
 {
-  "id": "./v0.13.3-Beta-Patch.html",
+  "id": "./v0.13.4-Beta-Patch.html",
   "name": "Inflation Insights — Inflación e inversiones de negocios",
   "short_name": "Inflation Insights",
   "description": "Inflación e inversiones configurables por tipo de negocio, con uno o varios productos, costos separados y métricas avanzadas opcionales.",
   "lang": "es",
   "dir": "ltr",
-  "start_url": "./index.html?source=pwa&version=0.13.3",
+  "start_url": "./index.html?source=pwa&version=0.13.4",
   "scope": "./",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
