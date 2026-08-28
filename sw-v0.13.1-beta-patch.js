@@ -1,13 +1,13 @@
 'use strict';
 
-const STATIC_CACHE = 'inflation-insights-static-v0.13.0-beta-1';
+const STATIC_CACHE = 'inflation-insights-static-v0.13.1-beta-patch-1';
 const CACHE_PREFIX = 'inflation-insights-';
-const RELEASE_URL = './v0.13.0-Beta.html';
+const RELEASE_URL = './v0.13.1-Beta-Patch.html';
 const APP_SHELL = [
   './',
   './index.html',
   RELEASE_URL,
-  './manifest-v0.13.0-beta.webmanifest',
+  './manifest-v0.13.1-beta-patch.webmanifest',
   './icons/inflation-insights-192.svg',
   './icons/inflation-insights-192.png',
   './icons/inflation-insights-512.png'
@@ -90,6 +90,6 @@ self.addEventListener('fetch',function(event){
 self.addEventListener('message',function(event){
   if(event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting();
   if(event.data && event.data.type === 'GET_VERSION' && event.source){
-    event.source.postMessage({type:'VERSION',version:'v0.13.0-Beta',cache:STATIC_CACHE});
+    event.source.postMessage({type:'VERSION',version:'v0.13.1-Beta-Patch',cache:STATIC_CACHE});
   }
 });
