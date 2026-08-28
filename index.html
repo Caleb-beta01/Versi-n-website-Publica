@@ -15002,7 +15002,7 @@
       const result=state.investmentResult; if(!result) return;
       state.investmentPointDetails={};
       const rows=visibleInvestmentRows(result),points=function(field,detail){ return rows.map(function(row){ return {label:'Mes '+row.month,value:row[field],detail:detail ? detail(row) : ''}; }); };
-      const operationDetail=function(row){ return 'Ingresos '+formatInvestmentMoney(row.revenue,result.input.currencyMeta)+', gastos '+formatInvestmentMoney(row.totalExpenses,result.input.currencyMeta)+', beneficio '+formatInvestmentMoney(row.netProfit,result.input.currencyMeta)+', ROI '+(row.roiAccumulated == null ? 'no aplica' : formatPercent(row.roiAccumulated,2)); };
+      const operationDetail=function(row){ return 'Ingresos '+formatInvestmentMoney(row.revenue,result.input.currencyMeta)+', gastos '+formatInvestmentMoney(row.totalExpenses,result.input.currencyMeta)+', beneficio '+formatInvestmentMoney(row.netProfit,result.input.currencyMeta); };
       renderInvestmentLineChart('investmentCapitalChart','capital',[
         {key:'business',name:'Capital empresarial',color:'#55f5e6',values:points('businessCapital',operationDetail)},
         {key:'profit',name:'Beneficio acumulado',color:'#ffd400',values:points('cumulativeNet',operationDetail)},
