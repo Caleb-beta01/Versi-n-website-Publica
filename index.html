@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#ffd400">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="Plataforma de inflación e inversiones de negocios con proyecciones, ROI, payback, VAN, TIR, escenarios, sensibilidad, 16 monedas y datos oficiales.">
+  <meta name="description" content="Calcula inflación y analiza negocios con resultados claros: dinero invertido, ingresos, gastos, ganancias, pérdidas y recuperación.">
   <meta name="application-name" content="Inflation Insights">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Inflation Insights">
-  <link rel="manifest" href="./manifest-v0.13.0-beta.webmanifest">
+  <link rel="manifest" href="./manifest-v0.13.1-beta-patch.webmanifest">
   <link rel="icon" href="./icons/inflation-insights-192.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/inflation-insights-192.png">
-  <title>Calculadora de Inflación · v0.13.0-Beta</title>
+  <title>Calculadora de Inflación · v0.13.1-Beta-Patch</title>
   <style>
     :root{
       --bg:#07111f;
@@ -3289,19 +3289,21 @@
       .feature-table{min-width:680px}
     }
 
-    /* v0.13.0-Beta · Business Investment Update. */
+    /* Investment module · simple by default, technical detail on demand. */
     .investment-shell{display:grid;gap:18px;min-width:0}
     .investment-command-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px;border:3px solid #ffd400;background:#0d0f16;box-shadow:7px 7px 0 #050507}
     .investment-command-copy{display:grid;gap:5px;min-width:min(100%,280px)}
     .investment-command-copy strong{font-size:1.06rem;color:#fff}
     .investment-command-copy span{color:#bfc1ca;font-size:.86rem}
     .investment-actions{display:flex;flex-wrap:wrap;gap:9px}
-    .investment-tabs{display:grid;grid-template-columns:repeat(7,minmax(110px,1fr));gap:8px;padding:9px;border:2px solid #343741;background:#08090d;overflow-x:auto;scrollbar-width:thin}
+    .investment-tabs{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:8px;padding:9px;border:2px solid #343741;background:#08090d;overflow-x:auto;scrollbar-width:thin}
     .investment-tab{min-height:48px;padding:9px 12px;border:2px solid transparent;background:#151720;color:#d4d6df;font:inherit;font-size:.78rem;font-weight:900;cursor:pointer;white-space:nowrap}
     .investment-tab:hover{border-color:#55f5e6;color:#fff}
     .investment-tab[aria-selected="true"]{border-color:#111;background:#ffd400;color:#111;box-shadow:4px 4px 0 #55f5e6}
     .investment-panel{display:grid;gap:18px;min-width:0}
     .investment-panel[hidden]{display:none!important}
+    .investment-advanced-block{display:grid;gap:18px;min-width:0}
+    .investment-advanced-block[hidden]{display:none!important}
     .investment-section{display:grid;gap:16px;padding:clamp(16px,2.4vw,24px);border:3px solid #343741;background:#11131b;box-shadow:7px 7px 0 #050507;min-width:0}
     .investment-section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
     .investment-section-head h2,.investment-section-head h3{margin:0;color:#fff}
@@ -3394,9 +3396,22 @@
     .investment-formula code{overflow-wrap:anywhere;color:#fff0a3;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
     .investment-note{padding:12px 14px;border-left:5px solid #55f5e6;background:#10121a;color:#c9cbd4;line-height:1.55}
     .investment-advanced-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .investment-getting-started{display:grid;gap:10px;padding:16px;border:2px solid #55f5e6;background:#0d171b;color:#dffdf9}
+    .investment-getting-started strong{font-size:1.03rem;color:#fff}
+    .investment-getting-started ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none;counter-reset:investment-step}
+    .investment-getting-started li{display:grid;grid-template-columns:auto 1fr;gap:9px;align-items:start;padding:10px;border:1px solid #33565b;background:#081115;line-height:1.45;counter-increment:investment-step}
+    .investment-getting-started li::before{content:counter(investment-step);display:grid;place-items:center;width:26px;height:26px;background:#ffd400;color:#111;font-weight:950}
+    .investment-disclosure{border:2px solid #3b3e49;background:#0d0f16}
+    .investment-disclosure>summary{padding:14px 16px;color:#fff;font-weight:900;cursor:pointer;list-style-position:inside}
+    .investment-disclosure[open]>summary{border-bottom:1px solid #3b3e49;background:#151720}
+    .investment-disclosure-body{display:grid;gap:14px;padding:16px}
+    .investment-plain-glossary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .investment-plain-glossary>div{padding:13px;border:1px solid #3b3e49;background:#08090d}
+    .investment-plain-glossary strong{display:block;margin-bottom:5px;color:#fff}
+    .investment-plain-glossary span{color:#bfc1ca;font-size:.86rem;line-height:1.45}
 
     @media (max-width:1180px){
-      .investment-tabs{grid-template-columns:repeat(7,minmax(130px,1fr))}
+      .investment-tabs{grid-template-columns:repeat(4,minmax(150px,1fr))}
       .investment-input-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
       .investment-metric-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
       .investment-scenario-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -3408,6 +3423,7 @@
       .investment-chart-card.full{grid-column:auto}
       .investment-scenario-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .investment-advanced-grid{grid-template-columns:1fr}
+      .investment-getting-started ol,.investment-plain-glossary{grid-template-columns:1fr}
     }
     @media (max-width:620px){
       .investment-command-bar,.investment-section-head{align-items:stretch;flex-direction:column}
@@ -3451,7 +3467,7 @@
         <button class="nav-link" type="button" data-route="informes">Informes</button>
         <button class="nav-link" type="button" data-route="historial">Historial</button>
         <button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button>
-        <span class="version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.13.0-Beta</span>
+        <span class="version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.13.1-Beta-Patch</span>
       </nav>
 
       <span class="status-chip header-status" id="connectionChip" data-status="online" aria-live="polite">
@@ -3490,7 +3506,7 @@
 
         <section class="landing-scene landing-hero" data-landing-scene="0" data-active="true" aria-describedby="homeSummary">
           <div class="landing-copy">
-            <p class="landing-eyebrow">v0.13.0‑Beta · Business Investment Update</p>
+            <p class="landing-eyebrow">v0.13.1‑Beta‑Patch · Resultados más claros</p>
             <h1 class="landing-title" id="homeTitle">Mide el cambio. <span>Entiende el impacto.</span></h1>
             <p class="landing-lede" id="homeSummary">Calcula inflación, deflación y poder adquisitivo con precisión compuesta, fuentes identificadas y una experiencia preparada para móvil, escritorio y 4K.</p>
             <div class="landing-actions" role="group" aria-label="Acciones principales">
@@ -3565,7 +3581,7 @@
             <div class="landing-feature-grid">
               <button class="landing-feature" type="button" data-route="precios"><b>Reduflación</b><p>Compara precio y contenido para detectar aumentos ocultos por menor cantidad.</p></button>
               <button class="landing-feature" type="button" data-route="salario"><b>Salarios y contratos</b><p>Mide aumentos nominales, poder real y reajustes compuestos.</p></button>
-              <button class="landing-feature" type="button" data-route="inversiones"><b>Inversiones de negocios</b><p>Analiza beneficio, ROI, payback, flujo de caja, VAN, TIR, escenarios y riesgo.</p></button>
+              <button class="landing-feature" type="button" data-route="inversiones"><b>Inversiones de negocios</b><p>Descubre cuánto ganas, cuánto gastas y cuándo recuperas lo invertido.</p></button>
               <button class="landing-feature" type="button" data-route="precios"><b>Importación revisable</b><p>Previsualiza JSON, CSV, PDF e imágenes antes de incorporar cualquier dato.</p></button>
               <button class="landing-feature" type="button" data-route="informes"><b>Informes profesionales</b><p>Exporta PDF, PNG, CSV y JSON con versión, metodología y fuentes.</p></button>
               <button class="landing-feature" type="button" data-route="cuenta"><b>Offline y privacidad</b><p>Conserva datos locales compatibles y sigue calculando sin conexión.</p></button>
@@ -3815,9 +3831,9 @@
 
       <div class="tool-grid">
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true">ROI</div>
+          <div class="tool-icon" aria-hidden="true">↗</div>
           <h2>Inversiones de negocios</h2>
-          <p>Proyecta ventas, costos, flujo de caja e inflación; calcula ROI, payback, punto de equilibrio, VAN, TIR, riesgo y escenarios.</p>
+          <p>Configura ventas y gastos, entiende la ganancia con palabras claras y abre las métricas técnicas solo cuando las necesites.</p>
           <button class="button primary small" type="button" data-route="inversiones">Analizar un negocio</button>
         </article>
         <article class="card tool-card">
@@ -3961,9 +3977,9 @@
 
     <section class="view" id="view-inversiones" data-view="inversiones" aria-labelledby="investmentTitle" hidden>
       <div class="view-head">
-        <p class="eyebrow">Business Investment Update · v0.13.0-Beta</p>
+        <p class="eyebrow">Inversión de negocios · v0.13.1-Beta-Patch</p>
         <h1 id="investmentTitle">Inversiones de negocios</h1>
-        <p class="lede">Analiza rentabilidad, liquidez, riesgo e inflación para cualquier negocio. El motor conserva precisión completa, trabaja sin cuenta y guarda el borrador únicamente en este dispositivo.</p>
+        <p class="lede">Descubre cuánto dinero entra, cuánto sale, si ganas o pierdes y cuándo recuperas lo invertido. Los cálculos se actualizan solos y el borrador permanece en este dispositivo.</p>
       </div>
 
       <div class="investment-shell" id="investmentShell">
@@ -3984,31 +4000,26 @@
 
         <div class="investment-tabs" role="tablist" aria-label="Secciones del análisis de inversión">
           <button class="investment-tab" id="investmentTabSummary" type="button" role="tab" aria-selected="true" aria-controls="investmentPanelSummary" data-investment-tab="summary">Resumen</button>
-          <button class="investment-tab" id="investmentTabOperation" type="button" role="tab" aria-selected="false" aria-controls="investmentPanelOperation" data-investment-tab="operation" tabindex="-1">Operación</button>
-          <button class="investment-tab" id="investmentTabProfitability" type="button" role="tab" aria-selected="false" aria-controls="investmentPanelProfitability" data-investment-tab="profitability" tabindex="-1">Rentabilidad</button>
+          <button class="investment-tab" id="investmentTabOperation" type="button" role="tab" aria-selected="false" aria-controls="investmentPanelOperation" data-investment-tab="operation" tabindex="-1">Configura tu negocio</button>
           <button class="investment-tab" id="investmentTabProjection" type="button" role="tab" aria-selected="false" aria-controls="investmentPanelProjection" data-investment-tab="projection" tabindex="-1">Proyección</button>
-          <button class="investment-tab" id="investmentTabRisk" type="button" role="tab" aria-selected="false" aria-controls="investmentPanelRisk" data-investment-tab="risk" tabindex="-1">Riesgo</button>
-          <button class="investment-tab" id="investmentTabCompare" type="button" role="tab" aria-selected="false" aria-controls="investmentPanelCompare" data-investment-tab="compare" tabindex="-1">Comparar</button>
-          <button class="investment-tab" id="investmentTabAdvanced" type="button" role="tab" aria-selected="false" aria-controls="investmentPanelAdvanced" data-investment-tab="advanced" tabindex="-1">Análisis avanzado</button>
+          <button class="investment-tab" id="investmentTabAdvanced" type="button" role="tab" aria-selected="false" aria-controls="investmentPanelAdvanced" data-investment-tab="advanced" tabindex="-1">Avanzado</button>
         </div>
 
         <section class="investment-panel" id="investmentPanelSummary" role="tabpanel" aria-labelledby="investmentTabSummary" data-investment-panel="summary">
           <div class="investment-section">
             <div class="investment-section-head">
-              <div><p class="eyebrow">Dashboard financiero</p><h2>Resultados principales</h2><p>Los importes pertenecen a la moneda elegida; no se mezclan ni convierten monedas en este módulo.</p></div>
+              <div><p class="eyebrow">Decide con números claros</p><h2>Lo principal de tu negocio</h2><p>Primero mira si ganas o pierdes. Las fórmulas y métricas técnicas están separadas en «Avanzado».</p></div>
               <span class="inline-badge">Actualización instantánea</span>
             </div>
             <div class="investment-metric-grid">
-              <article class="investment-metric"><span>Inversión inicial</span><strong id="investmentMetricInitial">—</strong><small>Capital comprometido al inicio</small></article>
-              <article class="investment-metric"><span>Capital actual</span><strong id="investmentMetricCapital">—</strong><small id="investmentMetricCapitalDetail">Al final del horizonte</small></article>
-              <article class="investment-metric"><span>Ingresos mensuales</span><strong id="investmentMetricRevenue">—</strong><small>Primer mes proyectado</small></article>
-              <article class="investment-metric"><span>Gastos mensuales</span><strong id="investmentMetricExpenses">—</strong><small>Incluye impuestos y pagos</small></article>
-              <article class="investment-metric"><span>Ganancia neta</span><strong id="investmentMetricNet">—</strong><small>Primer mes proyectado</small></article>
-              <article class="investment-metric"><span>Ganancia anual</span><strong id="investmentMetricAnnual">—</strong><small>Estimación equivalente de 12 meses</small></article>
-              <article class="investment-metric"><span>Margen neto</span><strong id="investmentMetricMargin">—</strong><small>Ganancia neta ÷ ingresos</small></article>
-              <article class="investment-metric"><span>ROI anual</span><strong id="investmentMetricRoi">—</strong><small>Beneficio anual ÷ inversión</small></article>
-              <article class="investment-metric"><span>Recuperación</span><strong id="investmentMetricPayback">—</strong><small>Primer mes con beneficio acumulado suficiente</small></article>
-              <article class="investment-metric"><span>Punto de equilibrio</span><strong id="investmentMetricBreakEven">—</strong><small>Volumen e ingresos mínimos mensuales</small></article>
+              <article class="investment-metric"><span>Dinero invertido</span><strong id="investmentMetricInitial">—</strong><small>Lo que necesitas para comenzar</small></article>
+              <article class="investment-metric"><span>Saldo proyectado</span><strong id="investmentMetricCapital">—</strong><small id="investmentMetricCapitalDetail">Dinero estimado al final</small></article>
+              <article class="investment-metric"><span>Dinero que entra al mes</span><strong id="investmentMetricRevenue">—</strong><small>Ventas del primer mes</small></article>
+              <article class="investment-metric"><span>Dinero que sale al mes</span><strong id="investmentMetricExpenses">—</strong><small>Todos los gastos del primer mes</small></article>
+              <article class="investment-metric"><span>Ganancia o pérdida mensual</span><strong id="investmentMetricNet">—</strong><small>Lo que queda después de pagar todo</small></article>
+              <article class="investment-metric"><span>Ganancia estimada en 12 meses</span><strong id="investmentMetricAnnual">—</strong><small>Equivalente anual con tus datos</small></article>
+              <article class="investment-metric"><span>Cuándo recuperas lo invertido</span><strong id="investmentMetricPayback">—</strong><small>Tiempo estimado de recuperación</small></article>
+              <article class="investment-metric"><span>Ventas mínimas para no perder</span><strong id="investmentMetricBreakEven">—</strong><small>Cantidad mínima cada mes</small></article>
             </div>
             <div class="investment-summary">
               <div class="investment-summary-copy" id="investmentSummaryText" aria-live="polite">Completa los parámetros para generar el resumen automático.</div>
@@ -4028,7 +4039,6 @@
               <article class="investment-chart-card"><h3>Capital acumulado</h3><p>Capital del negocio, beneficio acumulado y caja disponible.</p><div class="investment-chart" id="investmentCapitalChart" data-investment-chart="capital"></div></article>
               <article class="investment-chart-card"><h3>Ingresos, gastos y beneficio</h3><p>Comparación mensual de la operación.</p><div class="investment-chart" id="investmentOperationChart" data-investment-chart="operation"></div></article>
               <article class="investment-chart-card"><h3>Flujo de caja</h3><p>Flujo operativo, reinversión y flujo neto.</p><div class="investment-chart" id="investmentCashChart" data-investment-chart="cash"></div></article>
-              <article class="investment-chart-card"><h3>ROI acumulado</h3><p>Retorno acumulado y punto estimado de recuperación.</p><div class="investment-chart" id="investmentRoiChart" data-investment-chart="roi"></div></article>
               <article class="investment-chart-card"><h3>Distribución de gastos</h3><p>Composición del primer mes por categorías.</p><div class="investment-chart" id="investmentExpenseChart" data-investment-chart="expenses"></div></article>
               <article class="investment-chart-card"><h3>Beneficio y pérdidas</h3><p>Identifica cuándo la operación entra o sale de rentabilidad.</p><div class="investment-chart" id="investmentProfitChart" data-investment-chart="profit"></div></article>
             </div>
@@ -4041,45 +4051,55 @@
               <button class="button secondary small" id="investmentExportSummaryButton" type="button">Resumen TXT</button>
               <button class="button primary small" id="investmentExportReportButton" type="button">Reporte financiero PDF</button>
               <button class="button secondary small" id="investmentExportChartsButton" type="button">Gráficos HTML</button>
-              <button class="button secondary small" id="investmentExportScenariosButton" type="button">Escenarios CSV</button>
-              <button class="button secondary small" id="investmentExportSensitivityButton" type="button">Sensibilidad CSV</button>
             </div>
           </div>
         </section>
 
         <section class="investment-panel" id="investmentPanelOperation" role="tabpanel" aria-labelledby="investmentTabOperation" data-investment-panel="operation" hidden>
           <div class="investment-section">
-            <div class="investment-section-head"><div><p class="eyebrow">Configuración</p><h2>Negocio, ventas y capital</h2><p>Las ventas no realizadas reducen los ingresos; las pérdidas o mermas elevan el consumo de costos variables.</p></div><span class="inline-badge">Datos locales</span></div>
-            <div class="investment-input-grid">
-              <div class="field span-2"><label for="investmentBusinessName">Nombre del negocio</label><input id="investmentBusinessName" type="text" maxlength="60" value="Cafetería Centro" autocomplete="organization"><p class="field-help">Restaurante, tienda, servicio, producción, negocio digital u otro modelo.</p></div>
-              <div class="field"><label for="investmentCurrency">Moneda</label><select id="investmentCurrency"><option value="BRL">BRL — Real brasileño</option><option value="Custom">Custom — Personalizada</option></select></div>
-              <div class="field"><label for="investmentInitialInvestment">Inversión inicial</label><input id="investmentInitialInvestment" type="text" inputmode="decimal" value="25000"></div>
-              <div class="field"><label for="investmentCapitalAvailable">Capital disponible</label><input id="investmentCapitalAvailable" type="text" inputmode="decimal" value="30000"></div>
-              <div class="field"><label for="investmentSalePrice">Precio medio de venta</label><input id="investmentSalePrice" type="text" inputmode="decimal" value="18"></div>
-              <div class="field"><label for="investmentUnits">Unidades o servicios/mes</label><input id="investmentUnits" type="text" inputmode="decimal" value="850"></div>
-              <div class="field"><label for="investmentVariableCost">Costo variable por unidad</label><input id="investmentVariableCost" type="text" inputmode="decimal" value="6,50"></div>
-              <div class="field"><label for="investmentFixedCosts">Costos fijos mensuales</label><input id="investmentFixedCosts" type="text" inputmode="decimal" value="4200"></div>
-              <div class="field"><label for="investmentOperatingExpenses">Gastos operativos mensuales</label><input id="investmentOperatingExpenses" type="text" inputmode="decimal" value="1300"></div>
-              <div class="field"><label for="investmentTaxRate">Impuestos sobre beneficio (%)</label><input id="investmentTaxRate" type="text" inputmode="decimal" value="12"></div>
-              <div class="field"><label for="investmentWasteRate">Pérdidas o desperdicios (%)</label><input id="investmentWasteRate" type="text" inputmode="decimal" value="4"></div>
-              <div class="field"><label for="investmentMissedSalesRate">Ventas no realizadas (%)</label><input id="investmentMissedSalesRate" type="text" inputmode="decimal" value="3"></div>
+            <div class="investment-section-head"><div><p class="eyebrow">Paso 1</p><h2>Configura el negocio</h2><p>Escribe lo que vendes y lo que gastas. Puedes empezar solo con los datos básicos y abrir los ajustes opcionales después.</p></div><span class="inline-badge">Datos locales</span></div>
+            <div class="investment-getting-started">
+              <strong>Solo necesitas seis datos para comenzar</strong>
+              <ol><li>Dinero para empezar y moneda.</li><li>Precio, ventas esperadas y costo por venta.</li><li>Gastos fijos del mes.</li></ol>
             </div>
+            <div class="investment-input-grid">
+              <div class="field span-2"><label for="investmentBusinessName">Nombre del negocio</label><input id="investmentBusinessName" type="text" maxlength="60" value="Cafetería Centro" autocomplete="organization"><p class="field-help">Por ejemplo: Cafetería, venta de arroz con leche o servicio digital.</p></div>
+              <div class="field"><label for="investmentCurrency">Moneda</label><select id="investmentCurrency"><option value="BRL">BRL — Real brasileño</option><option value="Custom">Custom — Personalizada</option></select></div>
+              <div class="field"><label for="investmentInitialInvestment">Dinero para empezar</label><input id="investmentInitialInvestment" type="text" inputmode="decimal" value="25000"><p class="field-help">Compra inicial de equipos, mercancía y preparación.</p></div>
+              <div class="field"><label for="investmentSalePrice">Precio de cada venta</label><input id="investmentSalePrice" type="text" inputmode="decimal" value="18"><p class="field-help">Precio medio de una unidad o servicio.</p></div>
+              <div class="field"><label for="investmentUnits">Ventas esperadas al mes</label><input id="investmentUnits" type="text" inputmode="decimal" value="850"><p class="field-help">Cantidad de unidades o servicios que esperas vender.</p></div>
+              <div class="field"><label for="investmentVariableCost">Costo de cada venta</label><input id="investmentVariableCost" type="text" inputmode="decimal" value="6,50"><p class="field-help">Materia prima o mercancía usada en una venta.</p></div>
+              <div class="field"><label for="investmentFixedCosts">Gastos fijos del mes</label><input id="investmentFixedCosts" type="text" inputmode="decimal" value="4200"><p class="field-help">Alquiler, salario, internet u otros pagos fijos.</p></div>
+            </div>
+            <details class="investment-disclosure">
+              <summary>Ajustes opcionales de ventas y gastos</summary>
+              <div class="investment-disclosure-body">
+                <p class="investment-note">Si todavía no conoces alguno de estos datos, puedes escribir 0. Siempre podrás ajustarlo después.</p>
+                <div class="investment-input-grid">
+                  <div class="field"><label for="investmentCapitalAvailable">Dinero total disponible</label><input id="investmentCapitalAvailable" type="text" inputmode="decimal" value="30000"><p class="field-help">Capital que el negocio puede usar, incluida la inversión inicial.</p></div>
+                  <div class="field"><label for="investmentOperatingExpenses">Otros gastos del mes</label><input id="investmentOperatingExpenses" type="text" inputmode="decimal" value="1300"><p class="field-help">Gastos que no incluiste como fijos ni por venta.</p></div>
+                  <div class="field"><label for="investmentTaxRate">Impuestos sobre la ganancia (%)</label><input id="investmentTaxRate" type="text" inputmode="decimal" value="12"></div>
+                  <div class="field"><label for="investmentWasteRate">Pérdidas o desperdicios (%)</label><input id="investmentWasteRate" type="text" inputmode="decimal" value="4"></div>
+                  <div class="field"><label for="investmentMissedSalesRate">Ventas que no se completan (%)</label><input id="investmentMissedSalesRate" type="text" inputmode="decimal" value="3"></div>
+                </div>
+              </div>
+            </details>
             <div class="custom-currency-editor" id="investmentCustomCurrencyEditor" hidden>
               <div class="field"><label for="investmentCustomName">Nombre</label><input id="investmentCustomName" type="text" maxlength="40" value="Peso cubano"></div>
               <div class="field"><label for="investmentCustomCode">Código</label><input id="investmentCustomCode" type="text" maxlength="8" value="CUP"></div>
               <div class="field"><label for="investmentCustomSymbol">Símbolo</label><input id="investmentCustomSymbol" type="text" maxlength="5" value="$"></div>
               <div class="field"><label for="investmentCustomPosition">Posición</label><select id="investmentCustomPosition"><option value="before">Antes: $25</option><option value="after">Después: 25 $</option></select></div>
-              <div class="field"><label for="investmentCustomDecimals">Decimales</label><select id="investmentCustomDecimals"><option value="0">0</option><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option></select></div>
+              <div class="field"><label for="investmentCustomDecimals">Decimales visibles</label><select id="investmentCustomDecimals"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
             </div>
           </div>
 
           <div class="investment-section">
-            <div class="investment-section-head"><div><p class="eyebrow">Liquidez</p><h2>Flujo de caja mensual</h2><p>La rentabilidad y la liquidez se calculan por separado. Otros movimientos pueden ser positivos o negativos.</p></div></div>
+            <div class="investment-section-head"><div><p class="eyebrow">Opcional</p><h2>Dinero que entra o sale de caja</h2><p>Úsalo si el negocio ya tiene dinero en caja, paga cuotas o recibe otro ingreso. Puedes dejar todos estos campos en 0.</p></div></div>
             <div class="investment-input-grid">
-              <div class="field"><label for="investmentOpeningCash">Caja inicial</label><input id="investmentOpeningCash" type="text" inputmode="decimal" value="5000"></div>
-              <div class="field"><label for="investmentPayments">Pagos mensuales</label><input id="investmentPayments" type="text" inputmode="decimal" value="350"></div>
-              <div class="field"><label for="investmentDebts">Deudas mensuales</label><input id="investmentDebts" type="text" inputmode="decimal" value="0"></div>
-              <div class="field"><label for="investmentOtherMovements">Otros movimientos mensuales</label><input id="investmentOtherMovements" type="text" inputmode="decimal" value="0"><p class="field-help">Usa un valor negativo para una salida adicional.</p></div>
+              <div class="field"><label for="investmentOpeningCash">Dinero que ya hay en caja</label><input id="investmentOpeningCash" type="text" inputmode="decimal" value="5000"></div>
+              <div class="field"><label for="investmentPayments">Cuotas o pagos cada mes</label><input id="investmentPayments" type="text" inputmode="decimal" value="350"></div>
+              <div class="field"><label for="investmentDebts">Deudas pagadas cada mes</label><input id="investmentDebts" type="text" inputmode="decimal" value="0"></div>
+              <div class="field"><label for="investmentOtherMovements">Otro dinero que entra o sale</label><input id="investmentOtherMovements" type="text" inputmode="decimal" value="0"><p class="field-help">Positivo si entra dinero; negativo si sale.</p></div>
             </div>
             <div class="investment-formula"><strong>Identidad de caja</strong><code>Flujo neto = flujo operativo − pagos − deudas + otros movimientos − reinversión</code><span class="visually-muted">La reinversión permanece dentro del capital empresarial, pero no se presenta como efectivo disponible.</span></div>
           </div>
@@ -4090,14 +4110,27 @@
           </div>
         </section>
 
-        <section class="investment-panel" id="investmentPanelProfitability" role="tabpanel" aria-labelledby="investmentTabProfitability" data-investment-panel="profitability" hidden>
+        <section class="investment-advanced-block" id="investmentPanelProfitability" data-investment-advanced-block="profitability" aria-labelledby="investmentAdvancedIntroTitle" hidden>
           <div class="investment-section">
-            <div class="investment-section-head"><div><p class="eyebrow">Rentabilidad</p><h2>Beneficio, margen, ROI y equilibrio</h2><p>La ganancia bruta excluye costos fijos; la neta descuenta operación, impuestos, pagos y deudas.</p></div></div>
+            <div class="investment-section-head"><div><p class="eyebrow">Avanzado · opcional</p><h2 id="investmentAdvancedIntroTitle">Métricas técnicas explicadas</h2><p>No necesitas estas fórmulas para usar el resumen. Están aquí para quien quiera estudiar con más detalle la rentabilidad, el riesgo y el valor del proyecto.</p></div><span class="inline-badge">Precisión completa</span></div>
+            <div class="investment-plain-glossary">
+              <div><strong>ROI</strong><span>Cuánta ganancia produce el negocio en relación con el dinero invertido.</span></div>
+              <div><strong>VAN</strong><span>Cuánto valor aportaría el negocio hoy después de considerar el tiempo y la tasa elegida.</span></div>
+              <div><strong>TIR</strong><span>Rentabilidad anual aproximada que igualaría el valor actual de entradas y salidas.</span></div>
+              <div><strong>Margen</strong><span>Qué parte de cada ingreso queda como ganancia después de pagar los gastos.</span></div>
+              <div><strong>Payback</strong><span>Tiempo estimado para recuperar el dinero que pusiste al comenzar.</span></div>
+              <div><strong>Sensibilidad</strong><span>Cómo cambia el resultado si cambian el precio, las ventas, los gastos o la inflación.</span></div>
+            </div>
+          </div>
+          <div class="investment-section">
+            <div class="investment-section-head"><div><p class="eyebrow">Rentabilidad</p><h2>ROI, margen y punto de equilibrio</h2><p>La ganancia bruta excluye costos fijos; la neta descuenta operación, impuestos, pagos y deudas.</p></div></div>
             <div class="investment-metric-grid">
               <article class="investment-metric"><span>Beneficio bruto</span><strong id="investmentGrossProfit">—</strong><small>Ingresos menos costos variables</small></article>
               <article class="investment-metric"><span>Beneficio neto</span><strong id="investmentNetProfit">—</strong><small>Resultado final del primer mes</small></article>
               <article class="investment-metric"><span>Margen de contribución</span><strong id="investmentContributionMargin">—</strong><small>Por unidad prevista</small></article>
+              <article class="investment-metric"><span>Margen neto</span><strong id="investmentMetricMargin">—</strong><small>Ganancia neta ÷ ingresos</small></article>
               <article class="investment-metric"><span>ROI mensual</span><strong id="investmentMonthlyRoi">—</strong><small>Primer mes ÷ inversión</small></article>
+              <article class="investment-metric"><span>ROI anual</span><strong id="investmentMetricRoi">—</strong><small>Beneficio anual ÷ inversión</small></article>
               <article class="investment-metric"><span>ROI acumulado</span><strong id="investmentAccumulatedRoi">—</strong><small>Durante el horizonte</small></article>
               <article class="investment-metric"><span>Beneficio real</span><strong id="investmentRealProfit">—</strong><small>Ajustado por inflación general</small></article>
             </div>
@@ -4106,6 +4139,7 @@
               <div class="investment-formula"><strong>Punto de equilibrio</strong><code>Unidades = costos fijos ÷ contribución efectiva por unidad</code><span id="investmentBreakEvenDetail" class="visually-muted">—</span></div>
               <div class="investment-formula"><strong>Payback</strong><code>Primer mes donde el beneficio neto acumulado ≥ inversión inicial</code><span id="investmentPaybackDetail" class="visually-muted">—</span></div>
             </div>
+            <article class="investment-chart-card"><h3>ROI acumulado</h3><p>Retorno acumulado y punto estimado de recuperación.</p><div class="investment-chart" id="investmentRoiChart" data-investment-chart="roi"></div></article>
           </div>
           <div class="investment-section">
             <div class="investment-section-head"><div><p class="eyebrow">Estado de resultados</p><h2>Ingresos y egresos mensuales</h2></div></div>
@@ -4115,18 +4149,16 @@
 
         <section class="investment-panel" id="investmentPanelProjection" role="tabpanel" aria-labelledby="investmentTabProjection" data-investment-panel="projection" hidden>
           <div class="investment-section">
-            <div class="investment-section-head"><div><p class="eyebrow">Supuestos</p><h2>Crecimiento, inflación y reinversión</h2><p>Las tasas anuales de costos se convierten a equivalentes mensuales compuestos. El crecimiento de ventas es mensual.</p></div></div>
+            <div class="investment-section-head"><div><p class="eyebrow">Mira hacia adelante</p><h2>Cómo puede cambiar el negocio</h2><p>Ajusta cuánto crecerían las ventas, cuánto subirían los gastos y qué parte de la ganancia volvería al negocio.</p></div></div>
             <div class="investment-input-grid">
-              <div class="field"><label for="investmentGrowthRate">Crecimiento mensual de ventas (%)</label><input id="investmentGrowthRate" type="text" inputmode="decimal" value="2"></div>
-              <div class="field"><label for="investmentReinvestmentRate">Reinversión de beneficios (%)</label><input id="investmentReinvestmentRate" type="text" inputmode="decimal" value="30"></div>
-              <div class="field"><label for="investmentGeneralInflation">Inflación anual general (%)</label><input id="investmentGeneralInflation" type="text" inputmode="decimal" value="4,5"></div>
-              <div class="field"><label for="investmentVariableInflation">Inflación anual de costos variables (%)</label><input id="investmentVariableInflation" type="text" inputmode="decimal" value="6"></div>
-              <div class="field"><label for="investmentFixedInflation">Inflación anual de costos fijos (%)</label><input id="investmentFixedInflation" type="text" inputmode="decimal" value="5"></div>
+              <div class="field"><label for="investmentGrowthRate">Aumento mensual de las ventas (%)</label><input id="investmentGrowthRate" type="text" inputmode="decimal" value="2"><p class="field-help">Ejemplo: 2 significa que venderías 2 % más cada mes.</p></div>
+              <div class="field"><label for="investmentReinvestmentRate">Ganancia que vuelve al negocio (%)</label><input id="investmentReinvestmentRate" type="text" inputmode="decimal" value="30"><p class="field-help">Dinero que no retiras y usas para fortalecer el negocio.</p></div>
+              <div class="field"><label for="investmentGeneralInflation">Inflación anual estimada (%)</label><input id="investmentGeneralInflation" type="text" inputmode="decimal" value="4,5"></div>
+              <div class="field"><label for="investmentVariableInflation">Subida anual del costo por venta (%)</label><input id="investmentVariableInflation" type="text" inputmode="decimal" value="6"></div>
+              <div class="field"><label for="investmentFixedInflation">Subida anual de gastos fijos (%)</label><input id="investmentFixedInflation" type="text" inputmode="decimal" value="5"></div>
               <div class="field"><label for="investmentHorizon">Horizonte</label><select id="investmentHorizon"><option value="3">3 meses</option><option value="6">6 meses</option><option value="12" selected>12 meses</option><option value="24">24 meses</option><option value="36">36 meses</option><option value="60">60 meses</option></select></div>
-              <div class="field"><label for="investmentDiscountRate">Tasa de descuento anual (%)</label><input id="investmentDiscountRate" type="text" inputmode="decimal" value="12"></div>
-              <div class="field"><label for="investmentRequiredReturn">Rentabilidad mínima anual (%)</label><input id="investmentRequiredReturn" type="text" inputmode="decimal" value="12"></div>
             </div>
-            <div class="investment-note">La reinversión separa el beneficio disponible del capital retenido. No inventa ventas adicionales: el crecimiento solo depende de la tasa de ventas introducida.</div>
+            <div class="investment-note">Los campos técnicos usados para VAN y TIR se movieron a «Avanzado». Aquí solo están los cambios fáciles de relacionar con el negocio.</div>
           </div>
           <div class="investment-section">
             <div class="investment-section-head"><div><p class="eyebrow">Comparación</p><h2>Sin reinversión frente a capital reinvertido</h2></div></div>
@@ -4137,9 +4169,9 @@
           </div>
         </section>
 
-        <section class="investment-panel" id="investmentPanelRisk" role="tabpanel" aria-labelledby="investmentTabRisk" data-investment-panel="risk" hidden>
+        <section class="investment-advanced-block" id="investmentPanelRisk" data-investment-advanced-block="risk" aria-label="Escenarios y sensibilidad" hidden>
           <div class="investment-section">
-            <div class="investment-section-head"><div><p class="eyebrow">Escenarios</p><h2>Pesimista, conservador, base, optimista y personalizado</h2><p>Activa o desactiva escenarios para compararlos simultáneamente. Los porcentajes modifican los supuestos de la configuración principal.</p></div></div>
+            <div class="investment-section-head"><div><p class="eyebrow">Escenarios avanzados</p><h2>Qué pasaría si las cosas cambian</h2><p>Compara un resultado pesimista, conservador, normal, optimista y personalizado. Cada escenario modifica los datos que configuraste.</p></div></div>
             <div class="investment-scenario-grid">
               <article class="investment-scenario" style="--scenario-color:#ff7182"><label><input type="checkbox" data-investment-scenario="pessimistic" checked> Pesimista</label><small>Ventas −25 %, precio −8 %, costos +18 %, crecimiento −3 p.p. y merma +7 p.p.</small></article>
               <article class="investment-scenario" style="--scenario-color:#ff9d44"><label><input type="checkbox" data-investment-scenario="conservative" checked> Conservador</label><small>Ventas −10 %, precio −3 %, costos +8 %, crecimiento −1 p.p. y merma +3 p.p.</small></article>
@@ -4160,14 +4192,15 @@
           </div>
 
           <div class="investment-section">
-            <div class="investment-section-head"><div><p class="eyebrow">Sensibilidad</p><h2>Cruce de variables</h2><p>Cada celda muestra el VAN resultante. Toca una celda para leer los dos ajustes aplicados.</p></div></div>
+            <div class="investment-section-head"><div><p class="eyebrow">Sensibilidad</p><h2>Cómo cambia el resultado al variar dos datos</h2><p>Cada celda muestra el VAN resultante. Toca una celda para leer los cambios de precio, ventas, gastos o inflación que se aplicaron.</p></div></div>
             <div class="sensitivity-controls"><div class="field"><label for="investmentSensitivityPair">Variables</label><select id="investmentSensitivityPair"><option value="price-sales">Precio × Ventas</option><option value="cost-sales">Costos × Ventas</option><option value="inflation-price">Inflación × Precio</option><option value="growth-reinvestment">Crecimiento × Reinversión</option></select></div><span class="investment-status" id="investmentRiskBadge" data-state="intermediate">Riesgo intermedio</span></div>
             <div class="investment-table-wrap" id="investmentSensitivityWrap"></div>
             <div class="investment-chart-detail" id="investmentSensitivityDetail" role="status" aria-live="polite">Selecciona una celda de la matriz para ver el detalle.</div>
+            <div class="investment-actions"><button class="button secondary small" id="investmentExportScenariosButton" type="button">Escenarios CSV</button><button class="button secondary small" id="investmentExportSensitivityButton" type="button">Sensibilidad CSV</button></div>
           </div>
         </section>
 
-        <section class="investment-panel" id="investmentPanelCompare" role="tabpanel" aria-labelledby="investmentTabCompare" data-investment-panel="compare" hidden>
+        <section class="investment-advanced-block" id="investmentPanelCompare" data-investment-advanced-block="compare" aria-label="Comparador avanzado de negocios" hidden>
           <div class="investment-section">
             <div class="investment-section-head"><div><p class="eyebrow">Portafolio local</p><h2>Comparador de negocios</h2><p>Guarda oportunidades como Restaurante, Tienda o Servicio digital. Cada registro conserva sus propios parámetros y moneda.</p></div><button class="button primary small" id="investmentSaveCompareButton" type="button">Guardar negocio actual</button></div>
             <div id="investmentPortfolioEmpty" class="investment-empty">Todavía no hay negocios guardados para comparar.</div>
@@ -4179,7 +4212,11 @@
 
         <section class="investment-panel" id="investmentPanelAdvanced" role="tabpanel" aria-labelledby="investmentTabAdvanced" data-investment-panel="advanced" hidden>
           <div class="investment-section">
-            <div class="investment-section-head"><div><p class="eyebrow">Análisis avanzado</p><h2>VAN, TIR y flujos descontados</h2><p>El VAN descuenta los flujos mensuales equivalentes; la TIR se muestra anualizada cuando existe una solución válida.</p></div></div>
+            <div class="investment-section-head"><div><p class="eyebrow">Valor del proyecto</p><h2>VAN, TIR y flujos descontados</h2><p>Estos resultados son opcionales. El VAN compara el proyecto con una tasa elegida y la TIR estima su rentabilidad anual.</p></div></div>
+            <div class="investment-input-grid">
+              <div class="field"><label for="investmentDiscountRate">Tasa anual para comparar el dinero (%)</label><input id="investmentDiscountRate" type="text" inputmode="decimal" value="12"><p class="field-help">Se usa para calcular el VAN. Si no tienes una referencia, puedes conservar 12 %.</p></div>
+              <div class="field"><label for="investmentRequiredReturn">Rentabilidad anual mínima deseada (%)</label><input id="investmentRequiredReturn" type="text" inputmode="decimal" value="12"><p class="field-help">La TIR se compara con este objetivo.</p></div>
+            </div>
             <div class="investment-advanced-grid">
               <article class="investment-metric"><span>VAN / NPV</span><strong id="investmentNpv">—</strong><small id="investmentNpvInterpretation">Valor actual de los flujos</small></article>
               <article class="investment-metric"><span>TIR / IRR anual</span><strong id="investmentIrr">—</strong><small id="investmentIrrInterpretation">Comparada con el objetivo</small></article>
@@ -4490,7 +4527,7 @@
     <section class="view" id="view-widget-runtime" data-view="widget-runtime" aria-label="Calculadora embebida" hidden>
       <div class="widget-runtime-shell" id="widgetRuntimeShell" data-theme="dark">
         <section class="widget-runtime-card" id="widgetRuntimeCard">
-          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.13.0-Beta.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>v0.13.0-Beta</span></div>
+          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.13.1-Beta-Patch.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>v0.13.1-Beta-Patch</span></div>
           <h1 id="widgetRuntimeTitle">Calculadora embebida</h1>
           <div class="widget-mini-grid">
             <div class="field"><label id="widgetRuntimeALabel" for="widgetRuntimeA">Valor A</label><input id="widgetRuntimeA" type="text" inputmode="decimal" value="100"></div>
@@ -4507,7 +4544,7 @@
 
     <section class="view" id="view-precios" data-view="precios" aria-labelledby="marketTitle" hidden>
       <div class="view-head">
-        <p class="eyebrow">Precios reales · v0.13.0</p>
+        <p class="eyebrow">Precios reales · v0.13.1</p>
         <h1 id="marketTitle">Productos, reduflación y archivos</h1>
         <p class="lede">Normaliza gramos, kilogramos, mililitros, litros y presentaciones; guarda el historial en este dispositivo e importa datos únicamente después de revisarlos.</p>
       </div>
@@ -5378,7 +5415,7 @@
       <a href="#cuenta" data-route="cuenta">Privacidad</a>
       <a href="#informes" data-route="informes">Informes</a>
     </nav>
-    <span class="footer-version version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.13.0-Beta</span>
+    <span class="footer-version version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.13.1-Beta-Patch</span>
   </footer>
 
   <dialog id="basketDialog" aria-labelledby="basketTitle">
@@ -5660,14 +5697,14 @@
     <div class="dialog-body dialog-stack">
       <p>Esta versión está preparada para pruebas públicas. La calculadora y tus datos locales siguen funcionando aunque la sincronización no esté disponible.</p>
       <div class="dialog-callout">
-        <strong>Qué incorpora v0.13.0-Beta</strong>
+        <strong>Qué corrige este parche</strong>
         <ul>
-          <li>nuevo módulo de inversiones para cualquier modelo de negocio, con configuración flexible y cálculo dinámico;</li>
-          <li>ROI, payback, punto de equilibrio, flujo de caja, beneficio nominal y real, VAN y TIR;</li>
-          <li>cinco escenarios, sensibilidad cruzada, comparación de negocios y gráficos táctiles;</li>
-          <li>16 monedas del proyecto y moneda Custom con formato, símbolo y decimales propios;</li>
-          <li>exportaciones CSV, TXT, gráficos, escenarios, sensibilidad y reporte financiero PDF;</li>
-          <li>la landing 3D, inflación, herramientas, historial, datos locales, PWA y cuenta opcional permanecen intactos.</li>
+          <li>los importes enteros se muestran como 10.000, sin ceros decimales innecesarios;</li>
+          <li>el signo negativo aparece antes del símbolo: −$70.567, no $−70.567;</li>
+          <li>el módulo de inversiones usa lenguaje cotidiano y explica qué dato debes introducir;</li>
+          <li>ROI, VAN, TIR, sensibilidad, escenarios y fórmulas quedan reunidos en «Avanzado»;</li>
+          <li>los avisos explican si faltan ventas, si cada venta pierde dinero o si la caja queda negativa;</li>
+          <li>los cálculos conservan toda su precisión interna y las funciones anteriores permanecen intactas.</li>
         </ul>
       </div>
       <section class="beta-consent-box" aria-labelledby="betaConsentTitle">
@@ -5776,7 +5813,7 @@
   (function(){
     'use strict';
 
-    const APP_VERSION = 'v0.13.0-Beta';
+    const APP_VERSION = 'v0.13.1-Beta-Patch';
     const VERSION = APP_VERSION;
     // El contrato de create-account/delete-account no cambió en este parche de exportaciones.
     const ACCOUNT_API_VERSION = 'v0.8.2-Beta-Patch';
@@ -5807,7 +5844,7 @@
     const MAX_EXPENSE_OBSERVATIONS = 300;
     const MAX_INVESTMENT_COSTS = 30;
     const MAX_INVESTMENT_PORTFOLIO = 12;
-    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.13.0-Beta.html';
+    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.13.1-Beta-Patch.html';
     const FX_CACHE_MAX_AGE = 15 * 60 * 1000;
     const FX_CACHE_STALE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
     const IPCA_CACHE_MAX_AGE = 90 * 24 * 60 * 60 * 1000;
@@ -6809,7 +6846,7 @@
       try{
         state.backend.client = window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
           auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'implicit',storageKey:'inflation.v080.auth'},
-          global:{headers:{'x-application-name':'inflation-insights-v0130-beta'}}
+          global:{headers:{'x-application-name':'inflation-insights-v0131-beta-patch'}}
         });
         state.backend.available = true;
         const sessionResult = await withTimeout(state.backend.client.auth.getSession());
@@ -7106,10 +7143,10 @@
           ]);
           payload.remote={user:{id:state.backend.user.id,email:state.backend.user.email || null},profiles:profiles,calculations:calculations,baskets:baskets,feedback:feedback,usageEvents:events};
         }
-        downloadJsonFile('mis-datos-inflation-insights-v0130-'+new Date().toISOString().slice(0,10)+'.json',payload);
+        downloadJsonFile('mis-datos-inflation-insights-v0131-'+new Date().toISOString().slice(0,10)+'.json',payload);
         setNotice($('accountNotice'),'Exportación preparada. El archivo incluye datos locales y, si había sesión, los remotos accesibles.','success');
       }catch(error){
-        downloadJsonFile('mis-datos-locales-inflation-insights-v0130.json',payload);
+        downloadJsonFile('mis-datos-locales-inflation-insights-v0131.json',payload);
         setNotice($('accountNotice'),'Se exportaron los datos locales, pero no fue posible recuperar los remotos.','warning');
       }finally{ setButtonBusy($('exportAllDataButton'),false); }
     }
@@ -7168,7 +7205,7 @@
         if($('pwaOfflineState')) $('pwaOfflineState').textContent='Este navegador no admite Service Worker';
         return;
       }
-      navigator.serviceWorker.register('./sw-v0.13.0-beta.js').then(function(registration){
+      navigator.serviceWorker.register('./sw-v0.13.1-beta-patch.js').then(function(registration){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent=navigator.onLine === false ? 'Modo offline activo' : 'Caché local preparada';
         registration.update().catch(function(){ return null; });
         registration.addEventListener('updatefound',function(){
@@ -9082,7 +9119,7 @@
           ipca:Object.assign({},state.ipca)
         }
       };
-      downloadJsonFile('resultado-inflacion-v0130.json',data);
+      downloadJsonFile('resultado-inflacion-v0131.json',data);
       trackEvent('report_exported',{tool:'calculator',format:'json'});
     }
 
@@ -9124,7 +9161,7 @@
         rows.push(['fecha_oficial_' + code,quote.officialDate || '']);
         rows.push(['consultado_' + code,quote.fetchedAt || '']);
       });
-      downloadCsvFile('resultado-inflacion-v0130.csv',rows);
+      downloadCsvFile('resultado-inflacion-v0131.csv',rows);
       trackEvent('report_exported',{tool:'calculator',format:'csv'});
     }
 
@@ -9659,7 +9696,7 @@
           };
         })
       };
-      downloadJsonFile('reajuste-salarial-v0130.json',data);
+      downloadJsonFile('reajuste-salarial-v0131.json',data);
       trackEvent('report_exported',{tool:'salary',format:'json'});
     }
 
@@ -9681,7 +9718,7 @@
       rows.push(['fecha_o_periodo_fuente',bundle.inputs.source.officialDate || '']);
       rows.push(['estado_fuente',salarySourceStateLabel(bundle.inputs.source.mode)]);
       rows.push(['periodo_analizado_meses',bundle.inputs.months]);
-      downloadCsvFile('reajuste-salarial-v0130.csv',rows);
+      downloadCsvFile('reajuste-salarial-v0131.csv',rows);
       trackEvent('report_exported',{tool:'salary',format:'csv'});
     }
 
@@ -9737,7 +9774,7 @@
         URL.revokeObjectURL(url);
         canvas.toBlob(function(png){
           if(!png){ showToast('El navegador no pudo generar la imagen.'); return; }
-          downloadBlob('informe-reajuste-salarial-v0130.png',png,'image/png');
+          downloadBlob('informe-reajuste-salarial-v0131.png',png,'image/png');
           trackEvent('report_exported',{tool:'salary',format:'png',design:'professional'});
           showToast('PNG profesional exportado en 1600 × 1100 px.');
         },'image/png');
@@ -10720,7 +10757,7 @@
     function exportPersonalJson(){
       const bundle = ensurePersonalResult();
       if(!bundle) return;
-      downloadJsonFile('costo-de-vida-v0130.json',personalExportPayload(bundle));
+      downloadJsonFile('costo-de-vida-v0131.json',personalExportPayload(bundle));
     }
 
     function exportPersonalProductsCsv(){
@@ -10730,7 +10767,7 @@
       bundle.metrics.products.forEach(function(item){
         rows.push([item.name,item.category,bundle.meta.currency,item.quantity,item.previousPrice,item.currentPrice,item.previousCost,item.currentCost,isFiniteNumber(item.variation) ? item.variation*100 : '',item.monetaryChange,item.contribution*100,item.notes]);
       });
-      downloadCsvFile('productos-costo-de-vida-v0130.csv',rows);
+      downloadCsvFile('productos-costo-de-vida-v0131.csv',rows);
     }
 
     function exportPersonalAnalysisCsv(){
@@ -10747,7 +10784,7 @@
         ['categoria','impacto_monetario','contribucion_pp']
       ];
       bundle.metrics.categories.forEach(function(item){ rows.push([item.name,item.monetaryChange,item.contribution*100]); });
-      downloadCsvFile('analisis-costo-de-vida-v0130.csv',rows);
+      downloadCsvFile('analisis-costo-de-vida-v0131.csv',rows);
     }
 
     function buildPersonalShareUrl(){
@@ -10880,7 +10917,7 @@
       try{
         const payload = normalizePersonalPayload(record.payload);
         const filename = (payload.name || 'cesta').toLocaleLowerCase('es').replace(/[^a-z0-9áéíóúüñ]+/gi,'-').replace(/^-|-$/g,'').slice(0,50) || 'cesta';
-        downloadJsonFile(filename+'-v0130.json',record.payload);
+        downloadJsonFile(filename+'-v0131.json',record.payload);
       }catch(error){
         setNotice($('personalNotice'),'No se pudo exportar este registro: ' + error.message,'error');
       }
@@ -11103,6 +11140,9 @@
       check('VAN y TIR de inversión son finitos',Number.isFinite(investmentExample.npv) && Number.isFinite(investmentExample.irrAnnual));
       const zeroInvestment=investmentEngine.simulate(Object.assign({},investmentExample.input,{initialInvestment:0}));
       check('Inversión inicial cero no produce ROI infinito',zeroInvestment.annualRoi === null && zeroInvestment.irrAnnual === null);
+      const customMoney={custom:true,code:'CUP',symbol:'$',position:'before',decimals:0};
+      check('Inversión muestra 10.000 sin decimales',formatInvestmentMoney(10000,customMoney) === '$10.000');
+      check('Signo monetario negativo va antes del símbolo',formatInvestmentMoney(-70567.3208,customMoney) === '-$70.567');
       check('Gráficos adaptan puntos al período',calculateInflation(100,110,6).points.length !== calculateInflation(100,110,120).points.length);
       check('Cesta ponderada schema v2 compatible',normalizeBasket({type:'weighted-basket',items:[{name:'A',weight:100,inflation:5}]}).length === 1);
       check('La cesta ponderada tiene identidad canónica por cuenta',isUuid(canonicalWeightedId) && canonicalWeightedId !== syncUserId && canonicalWeightedId === weightedBasketClientId(syncUserId));
@@ -11426,7 +11466,7 @@
       if(!result || !result.analysis) return;
       const rows=[['economía','índice','período','tasa_mensual_pct','acumulada_pct','indice_base_100','fuente','consultado']];
       result.analysis.points.forEach(function(point){ rows.push([result.economy,result.indexName,point.period,point.rate,point.accumulated*100,point.base100,result.source+' · '+result.provider,result.fetchedAt]); });
-      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0130.csv',rows);
+      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0131.csv',rows);
     }
 
     function setDataTab(name){
@@ -11485,7 +11525,7 @@
       const lowest=Math.min.apply(null,result.series.map(function(item){ return item.analysis.accumulated; }));
       const rows=[['economía','índice','inicio','fin','inflación_acumulada_pct','diferencia_pp','fuente','consultado']];
       result.series.forEach(function(item){ rows.push([item.economy,item.indexName,result.start,result.end,item.analysis.accumulated*100,(item.analysis.accumulated-lowest)*100,item.source+' · '+item.provider,item.fetchedAt]); });
-      downloadCsvFile('comparacion-internacional-v0130.csv',rows);
+      downloadCsvFile('comparacion-internacional-v0131.csv',rows);
     }
 
     function contractRange(){
@@ -11585,7 +11625,7 @@
       const result=state.contractComparison; if(!result) return;
       const rows=[['índice','inicio','fin','variación_pct','aumento','valor_final','moneda','fuente','último_dato']];
       result.rows.forEach(function(row){ rows.push([row.name,result.start,result.end,row.rate*100,row.difference,row.finalValue,result.currency,row.source,row.latestPeriod]); });
-      downloadCsvFile('comparacion-reajustes-v0130.csv',rows);
+      downloadCsvFile('comparacion-reajustes-v0131.csv',rows);
     }
 
     function parseLabRates(text,years,fallback){
@@ -11662,7 +11702,7 @@
       const result=state.labResult; if(!result) return;
       const rows=[['escenario','año','inflación_periodo_pct','valor_necesario','ingreso_nominal','ingreso_real','poder_adquisitivo_pct','pérdida_ganancia']];
       result.scenarios.forEach(function(item){ item.timeline.forEach(function(point){ rows.push([item.name,point.year,point.year ? item.rates[point.year-1] : 0,point.priceNeeded,point.nominalIncome,point.realIncome,point.purchasingPower,point.loss]); }); });
-      downloadCsvFile('laboratorio-escenarios-v0130.csv',rows);
+      downloadCsvFile('laboratorio-escenarios-v0131.csv',rows);
     }
 
     function advancedRowTemplate(item,index){
@@ -11727,7 +11767,7 @@
       const result=state.advancedResult; if(!result) return;
       const rows=[['período','tasa_pct','acumulada_pct','valor','indice_base_100','moneda']];
       result.rows.forEach(function(row){ rows.push([row.label,row.rate,row.accumulated*100,row.value,row.base100,result.currency]); });
-      downloadCsvFile('inflacion-por-periodos-v0130.csv',rows);
+      downloadCsvFile('inflacion-por-periodos-v0131.csv',rows);
     }
 
     function setMarketTab(tab,focus){
@@ -12148,7 +12188,7 @@
       const records=recordsForProduct(state.selectedProductKey);
       if(!records.length) return;
       const payload={schemaVersion:FILE_SCHEMA_VERSION,appVersion:APP_VERSION,type:'product-price-history',createdAt:nowIso(),data:{product:records[0].name,records:records}};
-      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0130.json',payload);
+      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0131.json',payload);
     }
 
     function calculateInflationGoal(){
@@ -12556,14 +12596,14 @@
 
     function exportUnifiedCsv(){
       if(!state.productRecords.length){ setNotice($('exportStudioNotice'),'No hay seguimientos de productos para exportar en CSV.','warning'); return; }
-      downloadBlob('seguimiento-productos-v0130-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
+      downloadBlob('seguimiento-productos-v0131-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
       setNotice($('exportStudioNotice'),'CSV UTF-8 exportado con fechas ISO y números decimales consistentes.','success');
     }
 
     function exportUnifiedJson(){
       const all=$('exportDataScope').value === 'all';
       const payload=all ? buildLocalExchangePayload() : structuredProductPayload();
-      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0130-'+new Date().toISOString().slice(0,10)+'.json',payload);
+      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0131-'+new Date().toISOString().slice(0,10)+'.json',payload);
       setNotice($('exportStudioNotice'),'JSON exportado con versión de esquema, versión de la aplicación, tipo y fecha de creación.','success');
     }
 
@@ -12704,7 +12744,7 @@
           canvas.toBlob(function(output){
             URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false);
             if(!output){ setNotice($('exportStudioNotice'),'El navegador no pudo crear el PNG.','error'); return; }
-            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0130.png',output,'image/png');
+            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0131.png',output,'image/png');
             setNotice($('exportStudioNotice'),'PNG exportado a '+pixels.width+' × '+pixels.height+' píxeles.','success');
           },'image/png',1);
         }catch(error){ URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false); setNotice($('exportStudioNotice'),'No se pudo renderizar el PNG.','error'); }
@@ -13351,7 +13391,7 @@
       const report=state.reportResult; if(!report) return;
       const rows=[['sección','contenido']]; report.sections.forEach(function(section){ section.lines.forEach(function(line){ rows.push([section.title,line]); }); });
       rows.push(['Metodología',report.methodology],['Supuestos',report.assumptions]);
-      downloadCsvFile('informe-inflacion-v0130.csv',rows);
+      downloadCsvFile('informe-inflacion-v0131.csv',rows);
     }
 
     const LANDING_QUALITY_PROFILES=Object.freeze({
@@ -14594,31 +14634,34 @@
     function formatInvestmentMoney(value,meta){
       if(!Number.isFinite(value)) return '—';
       const currency=meta || {custom:false,code:'BRL'};
+      const safeValue=Math.abs(value) < 1e-9 ? 0 : value;
       if(!currency.custom){
         try{
           const info=CURRENCIES[currency.code] || CURRENCIES.BRL;
-          const digits=info.digits == null ? 2 : info.digits;
-          return new Intl.NumberFormat(info.locale,{style:'currency',currency:currency.code,minimumFractionDigits:digits,maximumFractionDigits:digits}).format(value);
-        }catch(error){ return currency.code+' '+formatNumber(value,2,2); }
+          return new Intl.NumberFormat(info.locale,{style:'currency',currency:currency.code,minimumFractionDigits:0,maximumFractionDigits:0}).format(safeValue);
+        }catch(error){ return (safeValue < 0 ? '-' : '')+currency.code+' '+formatNumber(Math.abs(safeValue),0,0); }
       }
-      const number=new Intl.NumberFormat('es-ES',{minimumFractionDigits:currency.decimals,maximumFractionDigits:currency.decimals}).format(value);
-      return currency.position === 'after' ? number+' '+currency.symbol : currency.symbol+number;
+      const digits=Math.max(0,Math.min(4,Number(currency.decimals) || 0));
+      const sign=safeValue < 0 ? '-' : '';
+      const number=new Intl.NumberFormat('es-ES',{minimumFractionDigits:0,maximumFractionDigits:digits}).format(Math.abs(safeValue));
+      return currency.position === 'after' ? sign+number+' '+currency.symbol : sign+currency.symbol+number;
     }
 
     function formatInvestmentCompact(value,meta){
       if(!Number.isFinite(value)) return '—';
       const currency=meta || {custom:false,code:'BRL'};
       let number;
-      try{ number=new Intl.NumberFormat('es-ES',{notation:'compact',maximumFractionDigits:1}).format(value); }
-      catch(error){ number=formatNumber(value,0,1); }
-      if(currency.custom) return currency.position === 'after' ? number+' '+currency.symbol : currency.symbol+number;
-      return currency.code+' '+number;
+      const safeValue=Math.abs(value) < 1e-9 ? 0 : value;
+      try{ number=new Intl.NumberFormat('es-ES',{notation:'compact',maximumFractionDigits:1}).format(currency.custom ? Math.abs(safeValue) : safeValue); }
+      catch(error){ number=formatNumber(currency.custom ? Math.abs(safeValue) : safeValue,0,1); }
+      if(currency.custom){ const sign=safeValue < 0 ? '-' : ''; return currency.position === 'after' ? sign+number+' '+currency.symbol : sign+currency.symbol+number; }
+      return safeValue < 0 ? '-'+currency.code+' '+new Intl.NumberFormat('es-ES',{notation:'compact',maximumFractionDigits:1}).format(Math.abs(safeValue)) : currency.code+' '+number;
     }
 
     function formatInvestmentPayback(value,initialInvestment){
       if(initialInvestment === 0) return 'No requiere';
       if(value == null || !Number.isFinite(value)) return 'No se recupera';
-      return formatNumber(value,1,1)+' meses';
+      return formatNumber(value,0,1)+' meses';
     }
 
     function investmentRiskCopy(stateName){
@@ -14684,7 +14727,7 @@
       const fields={};
       INVESTMENT_FIELD_IDS.forEach(function(id){ if($(id)) fields[id]=$(id).value; });
       return {
-        schemaVersion:1,appVersion:APP_VERSION,updatedAt:nowIso(),fields:fields,
+        schemaVersion:2,appVersion:APP_VERSION,updatedAt:nowIso(),fields:fields,
         costs:state.investmentCosts.map(function(cost){ return Object.assign({},cost); }),
         activeScenarios:$$('[data-investment-scenario]:checked').map(function(input){ return input.dataset.investmentScenario; }),
         tab:state.investmentTab,zoom:state.investmentZoom
@@ -14692,14 +14735,15 @@
     }
 
     function applyInvestmentDraft(draft){
-      if(!draft || draft.schemaVersion !== 1 || !draft.fields) return false;
+      if(!draft || ![1,2].includes(draft.schemaVersion) || !draft.fields) return false;
       INVESTMENT_FIELD_IDS.forEach(function(id){ if($(id) && Object.prototype.hasOwnProperty.call(draft.fields,id)) $(id).value=String(draft.fields[id]); });
+      if(draft.schemaVersion === 1 && $('investmentCustomDecimals')) $('investmentCustomDecimals').value='0';
       state.investmentCosts=Array.isArray(draft.costs) ? draft.costs.slice(0,MAX_INVESTMENT_COSTS).map(function(cost){
         return {id:String(cost.id || createUuid()),name:String(cost.name || 'Gasto'),type:cost.type === 'variable' ? 'variable' : 'fixed',amount:Number.isFinite(Number(cost.amount)) ? Math.max(0,Number(cost.amount)) : 0};
       }) : defaultInvestmentCosts();
       const active=Array.isArray(draft.activeScenarios) ? draft.activeScenarios : Object.keys(INVESTMENT_SCENARIOS);
       $$('[data-investment-scenario]').forEach(function(input){ input.checked=active.includes(input.dataset.investmentScenario); });
-      state.investmentTab=['summary','operation','profitability','projection','risk','compare','advanced'].includes(draft.tab) ? draft.tab : 'summary';
+      state.investmentTab=['profitability','risk','compare'].includes(draft.tab) ? 'advanced' : ['summary','operation','projection','advanced'].includes(draft.tab) ? draft.tab : 'summary';
       state.investmentZoom=Number.isFinite(Number(draft.zoom)) ? Number(draft.zoom) : Number($('investmentHorizon').value || 12);
       return true;
     }
@@ -14715,7 +14759,7 @@
     }
 
     function setInvestmentTab(tab,focus){
-      const safe=['summary','operation','profitability','projection','risk','compare','advanced'].includes(tab) ? tab : 'summary';
+      const safe=['profitability','risk','compare'].includes(tab) ? 'advanced' : ['summary','operation','projection','advanced'].includes(tab) ? tab : 'summary';
       state.investmentTab=safe;
       $$('[data-investment-tab]').forEach(function(button){
         const active=button.dataset.investmentTab === safe;
@@ -14723,7 +14767,8 @@
         if(active && focus) button.focus();
       });
       $$('[data-investment-panel]').forEach(function(panel){ panel.hidden=panel.dataset.investmentPanel !== safe; });
-      safeStorageSet(KEYS.investmentPreferences,{schemaVersion:1,tab:safe,updatedAt:nowIso()},{silent:true});
+      $$('[data-investment-advanced-block]').forEach(function(panel){ panel.hidden=safe !== 'advanced'; });
+      safeStorageSet(KEYS.investmentPreferences,{schemaVersion:2,tab:safe,updatedAt:nowIso()},{silent:true});
     }
 
     function investmentCustomAdjustments(){
@@ -14768,16 +14813,33 @@
 
     function investmentResultSummary(result){
       const input=result.input,meta=input.currencyMeta;
-      return [
-        '<strong>Negocio:</strong> '+escapeXml(input.name)+'.',
-        '<strong>Inversión inicial:</strong> '+escapeXml(formatInvestmentMoney(input.initialInvestment,meta))+'.',
-        '<strong>Ingresos del primer mes:</strong> '+escapeXml(formatInvestmentMoney(result.first.revenue,meta))+'.',
-        '<strong>Gastos del primer mes:</strong> '+escapeXml(formatInvestmentMoney(result.first.totalExpenses,meta))+'.',
-        '<strong>Beneficio neto:</strong> '+escapeXml(formatInvestmentMoney(result.first.netProfit,meta))+' con margen '+escapeXml(result.margin == null ? 'no calculable' : formatPercent(result.margin,2))+'.',
-        '<strong>ROI anual estimado:</strong> '+escapeXml(result.annualRoi == null ? 'no aplica' : formatPercent(result.annualRoi,2))+'.',
-        '<strong>Payback:</strong> '+escapeXml(formatInvestmentPayback(result.payback,input.initialInvestment))+'.',
-        '<strong>Punto de equilibrio:</strong> '+escapeXml(result.breakEvenUnits == null ? 'imposible con el margen actual' : formatNumber(result.breakEvenUnits,1,2)+' unidades y '+formatInvestmentMoney(result.breakEvenRevenue,meta)+' al mes')+'.'
-      ].join(' ');
+      const monthly=result.first.netProfit;
+      const outcome=monthly > 0
+        ? '<strong>'+escapeXml(input.name)+' ganaría aproximadamente '+escapeXml(formatInvestmentMoney(monthly,meta))+' en el primer mes.</strong>'
+        : monthly < 0
+          ? '<strong>'+escapeXml(input.name)+' perdería aproximadamente '+escapeXml(formatInvestmentMoney(Math.abs(monthly),meta))+' en el primer mes.</strong>'
+          : '<strong>'+escapeXml(input.name)+' quedaría sin ganancia ni pérdida en el primer mes.</strong>';
+      const recovery=input.initialInvestment === 0
+        ? 'No necesitas recuperar una inversión inicial.'
+        : result.payback == null
+          ? 'Con esta proyección no recuperas lo invertido dentro de '+input.horizon+' meses.'
+          : 'Recuperarías lo invertido en aproximadamente '+formatInvestmentPayback(result.payback,input.initialInvestment)+'.';
+      const minimum=result.breakEvenUnits == null
+        ? 'El costo de cada venta es demasiado alto para cubrir los gastos; revisa el precio o los costos.'
+        : 'Para no perder dinero necesitas cerca de '+formatNumber(result.breakEvenUnits,0,1)+' ventas al mes.';
+      return [outcome,'Entran '+escapeXml(formatInvestmentMoney(result.first.revenue,meta))+' y salen '+escapeXml(formatInvestmentMoney(result.first.totalExpenses,meta))+'.',escapeXml(recovery),escapeXml(minimum)].join(' ');
+    }
+
+    function investmentGuidance(result,announce){
+      const input=result.input,meta=input.currencyMeta,first=result.first;
+      let type='success',message='Los resultados se actualizaron.';
+      if(input.units === 0){ type='warning'; message='No indicaste ventas. Añade cuántas unidades o servicios esperas vender al mes.'; }
+      else if(result.contributionPerUnit <= 0){ type='warning'; message='Cada venta cuesta lo mismo o más de lo que ingresa. Sube el precio o reduce el costo por venta.'; }
+      else if(first.netProfit < 0){ type='warning'; message='Con estos datos perderías '+formatInvestmentMoney(Math.abs(first.netProfit),meta)+' en el primer mes. Revisa ventas, precio y gastos.'; }
+      else if(result.rows.some(function(row){ return row.cash < 0; })){ type='warning'; message='El negocio genera ganancia, pero la caja queda negativa en algún mes. Revisa el dinero inicial, las cuotas y las deudas.'; }
+      else{ message='Con estos datos el primer mes deja una ganancia estimada de '+formatInvestmentMoney(first.netProfit,meta)+'.'; }
+      if(announce) message+=' El borrador quedó guardado en este dispositivo.';
+      return {type:type,message:message};
     }
 
     function renderInvestmentTables(result){
@@ -14803,11 +14865,12 @@
       const input=result.input,meta=input.currencyMeta,first=result.first;
       $('investmentCommandName').textContent=input.name;
       $('investmentCommandMeta').textContent='Proyección dinámica · '+input.horizon+' meses · '+meta.code+(meta.custom ? ' · '+meta.name : '');
-      $('investmentStatus').dataset.state=result.riskState; $('investmentStatus').textContent=investmentRiskCopy(result.riskState);
+      $('investmentStatus').dataset.state=first.netProfit > 0 ? 'favorable' : first.netProfit < 0 ? 'unfavorable' : 'intermediate';
+      $('investmentStatus').textContent=first.netProfit > 0 ? 'Ganancia estimada' : first.netProfit < 0 ? 'Pérdida estimada' : 'Sin ganancia';
       $('investmentRiskBadge').dataset.state=result.riskState; $('investmentRiskBadge').textContent='Riesgo '+investmentRiskCopy(result.riskState).toLowerCase()+' · '+formatNumber(result.riskScore,0,0)+'/100';
       setInvestmentMetric('investmentMetricInitial',formatInvestmentMoney(input.initialInvestment,meta));
       setInvestmentMetric('investmentMetricCapital',formatInvestmentMoney(result.rows.at(-1).businessCapital,meta),result.rows.at(-1).businessCapital >= input.capitalAvailable ? 'positive' : 'negative');
-      $('investmentMetricCapitalDetail').textContent='Capital retenido al mes '+input.horizon;
+      $('investmentMetricCapitalDetail').textContent='Saldo del negocio al mes '+input.horizon;
       setInvestmentMetric('investmentMetricRevenue',formatInvestmentMoney(first.revenue,meta));
       setInvestmentMetric('investmentMetricExpenses',formatInvestmentMoney(first.totalExpenses,meta));
       setInvestmentMetric('investmentMetricNet',formatInvestmentMoney(first.netProfit,meta),first.netProfit > 0 ? 'positive' : first.netProfit < 0 ? 'negative' : 'warning');
@@ -14815,7 +14878,7 @@
       setInvestmentMetric('investmentMetricMargin',result.margin == null ? 'No aplica' : formatPercent(result.margin,2),result.margin != null && result.margin >= .15 ? 'positive' : result.margin != null && result.margin < 0 ? 'negative' : 'warning');
       setInvestmentMetric('investmentMetricRoi',result.annualRoi == null ? 'No aplica' : formatPercent(result.annualRoi,2),result.annualRoi != null && result.annualRoi >= input.requiredReturn/100 ? 'positive' : result.annualRoi != null && result.annualRoi < 0 ? 'negative' : 'warning');
       setInvestmentMetric('investmentMetricPayback',formatInvestmentPayback(result.payback,input.initialInvestment),result.payback != null && result.payback <= input.horizon ? 'positive' : input.initialInvestment === 0 ? 'positive' : 'warning');
-      setInvestmentMetric('investmentMetricBreakEven',result.breakEvenUnits == null ? 'Imposible' : formatNumber(result.breakEvenUnits,1,1)+' unidades',result.breakEvenUnits != null && result.breakEvenUnits <= input.units ? 'positive' : 'warning');
+      setInvestmentMetric('investmentMetricBreakEven',result.breakEvenUnits == null ? 'No alcanza' : formatNumber(result.breakEvenUnits,0,1)+' ventas',result.breakEvenUnits != null && result.breakEvenUnits <= input.units ? 'positive' : 'warning');
       $('investmentSummaryText').innerHTML=investmentResultSummary(result);
       $('investmentRecoveryFill').style.width=formatNumber(result.recoveryPercent,0,2)+'%'; $('investmentRecoveryProgress').setAttribute('aria-valuenow',String(Math.round(result.recoveryPercent)));
       $('investmentRecoveredCapital').textContent='Recuperado: '+formatInvestmentMoney(result.recovered,meta)+' ('+formatNumber(result.recoveryPercent,1,1)+' %)'; $('investmentPendingCapital').textContent='Pendiente: '+formatInvestmentMoney(result.pending,meta);
@@ -14825,14 +14888,14 @@
       setInvestmentMetric('investmentMonthlyRoi',result.monthlyRoi == null ? 'No aplica' : formatPercent(result.monthlyRoi,2),result.monthlyRoi != null && result.monthlyRoi > 0 ? 'positive' : 'warning');
       setInvestmentMetric('investmentAccumulatedRoi',result.accumulatedRoi == null ? 'No aplica' : formatPercent(result.accumulatedRoi,2),result.accumulatedRoi != null && result.accumulatedRoi > 0 ? 'positive' : 'negative');
       setInvestmentMetric('investmentRealProfit',formatInvestmentMoney(result.totalReal,meta),result.totalReal > 0 ? 'positive' : 'negative');
-      $('investmentRoiInterpretation').textContent=result.annualRoi == null ? 'Sin inversión inicial, el ROI no se divide para evitar un resultado infinito.' : 'ROI mensual '+formatPercent(result.monthlyRoi,2)+', anual '+formatPercent(result.annualRoi,2)+' y acumulado '+formatPercent(result.accumulatedRoi,2)+'.';
-      $('investmentBreakEvenDetail').textContent=result.breakEvenUnits == null ? 'El margen de contribución es cero o negativo; no existe un volumen finito que cubra los costos.' : formatNumber(result.breakEvenUnits,2,2)+' unidades, equivalentes a '+formatInvestmentMoney(result.breakEvenRevenue,meta)+' mensuales.';
-      $('investmentPaybackDetail').textContent=input.initialInvestment === 0 ? 'No hay capital inicial que recuperar.' : result.payback == null ? 'El beneficio acumulado no recupera la inversión dentro del horizonte.' : 'La recuperación se estima en el mes '+formatNumber(result.payback,1,1)+'.';
+      $('investmentRoiInterpretation').textContent=result.annualRoi == null ? 'Sin inversión inicial, el ROI no se divide para evitar un resultado infinito.' : 'ROI mensual '+formatPercent(result.monthlyRoi,1)+', anual '+formatPercent(result.annualRoi,1)+' y acumulado '+formatPercent(result.accumulatedRoi,1)+'.';
+      $('investmentBreakEvenDetail').textContent=result.breakEvenUnits == null ? 'El margen de contribución es cero o negativo; no existe un volumen finito que cubra los costos.' : formatNumber(result.breakEvenUnits,0,1)+' unidades, equivalentes a '+formatInvestmentMoney(result.breakEvenRevenue,meta)+' mensuales.';
+      $('investmentPaybackDetail').textContent=input.initialInvestment === 0 ? 'No hay capital inicial que recuperar.' : result.payback == null ? 'El beneficio acumulado no recupera la inversión dentro del horizonte.' : 'La recuperación se estima en el mes '+formatNumber(result.payback,0,1)+'.';
       setInvestmentMetric('investmentNpv',formatInvestmentMoney(result.npv,meta),result.npv >= 0 ? 'positive' : 'negative');
-      $('investmentNpvInterpretation').textContent=result.npv >= 0 ? 'Valor actual positivo a '+formatNumber(input.discountRate,2,2)+' % anual.' : 'Valor actual negativo a '+formatNumber(input.discountRate,2,2)+' % anual.';
+      $('investmentNpvInterpretation').textContent=result.npv >= 0 ? 'Valor actual positivo a '+formatNumber(input.discountRate,0,1)+' % anual.' : 'Valor actual negativo a '+formatNumber(input.discountRate,0,1)+' % anual.';
       setInvestmentMetric('investmentIrr',result.irrAnnual == null ? 'No calculable' : formatPercent(result.irrAnnual,2),result.irrAnnual != null && result.irrAnnual >= input.requiredReturn/100 ? 'positive' : result.irrAnnual == null ? 'warning' : 'negative');
       $('investmentIrrInterpretation').textContent=result.irrAnnual == null ? 'Los flujos no ofrecen una raíz válida y única en el rango analizado.' : result.irrAnnual >= input.requiredReturn/100 ? 'Supera la rentabilidad mínima requerida.' : 'No alcanza la rentabilidad mínima requerida.';
-      setInvestmentMetric('investmentRequiredReturnResult',formatNumber(input.requiredReturn,2,2)+' %','warning');
+      setInvestmentMetric('investmentRequiredReturnResult',formatNumber(input.requiredReturn,0,1)+' %','warning');
       renderInvestmentTables(result);
     }
 
@@ -14846,7 +14909,8 @@
         $('investmentCustomCurrencyEditor').hidden=input.currency !== 'Custom';
         renderInvestmentDashboard(result); renderInvestmentScenarios(); renderInvestmentSensitivity(); renderInvestmentCharts(); renderInvestmentPortfolio();
         if(opts.save) safeStorageSet(KEYS.investmentDraft,investmentDraftSnapshot(),{silent:true});
-        setFeatureStatus('investmentNotice',opts.announce ? 'Análisis actualizado y guardado localmente.' : 'Resultados actualizados. Los cálculos mantienen precisión completa y redondean solo al mostrar.','success');
+        const guidance=investmentGuidance(result,opts.announce);
+        setFeatureStatus('investmentNotice',guidance.message,guidance.type);
         return result;
       }catch(error){
         setFeatureStatus('investmentNotice',error.message || 'Revisa los parámetros de la inversión.','error');
@@ -15041,7 +15105,7 @@
       const r=state.investmentResult;if(!r) return '';
       const i=r.input,m=i.currencyMeta;
       return [
-        'Inflation Insights · '+APP_VERSION,'Business Investment Update','',
+        'Inflation Insights · '+APP_VERSION,'Análisis de inversión de negocios','',
         'Negocio: '+i.name,'Moneda: '+m.code+(m.custom ? ' · '+m.name+' · símbolo '+m.symbol : ''),'Horizonte: '+i.horizon+' meses',
         'Inversión inicial: '+formatInvestmentMoney(i.initialInvestment,m),'Capital disponible: '+formatInvestmentMoney(i.capitalAvailable,m),
         'Ingresos mensuales: '+formatInvestmentMoney(r.first.revenue,m),'Gastos mensuales: '+formatInvestmentMoney(r.first.totalExpenses,m),'Beneficio mensual: '+formatInvestmentMoney(r.first.netProfit,m),
@@ -15056,20 +15120,20 @@
       const r=state.investmentResult;if(!r) return;
       const rows=[['app_version','negocio','moneda','mes','unidades','ingresos','gastos','beneficio_neto','reinversion','beneficio_disponible','flujo_operativo','flujo_inversion','flujo_neto','caja_final','capital_empresarial','roi_acumulado_pct','beneficio_real']];
       r.rows.forEach(function(row){ rows.push([APP_VERSION,r.input.name,r.input.currencyMeta.code,row.month,row.units,row.revenue,row.totalExpenses,row.netProfit,row.reinvestment,row.availableProfit,row.operatingCashFlow,row.investmentCashFlow,row.netCashFlow,row.cash,row.businessCapital,row.roiAccumulated == null ? '' : row.roiAccumulated*100,row.realProfit]); });
-      downloadCsvFile('proyeccion-inversion-'+investmentFileStem()+'-v0130.csv',rows);
+      downloadCsvFile('proyeccion-inversion-'+investmentFileStem()+'-v0131.csv',rows);
     }
 
     function exportInvestmentScenarios(){
       const rows=[['escenario','moneda','capital_inicial','beneficio_anual','roi_anual_pct','margen_pct','payback_meses','van','tir_anual_pct','riesgo','puntuacion_riesgo']];
       state.investmentScenarios.forEach(function(item){ const r=item.result; rows.push([item.name,r.input.currencyMeta.code,r.input.initialInvestment,r.annualProfit,r.annualRoi == null ? '' : r.annualRoi*100,r.margin == null ? '' : r.margin*100,r.payback == null ? '' : r.payback,r.npv,r.irrAnnual == null ? '' : r.irrAnnual*100,investmentRiskCopy(r.riskState),r.riskScore]); });
-      downloadCsvFile('escenarios-inversion-'+investmentFileStem()+'-v0130.csv',rows);
+      downloadCsvFile('escenarios-inversion-'+investmentFileStem()+'-v0131.csv',rows);
     }
 
     function exportInvestmentSensitivity(){
       const s=state.investmentSensitivity;if(!s) return;
       const rows=[[s.definition.yLabel+' / '+s.definition.xLabel].concat(s.definition.x)];
       s.cells.forEach(function(row,index){ rows.push([s.definition.y[index]].concat(row.map(function(cell){ return cell.result.npv; }))); });
-      downloadCsvFile('sensibilidad-inversion-'+investmentFileStem()+'-v0130.csv',rows);
+      downloadCsvFile('sensibilidad-inversion-'+investmentFileStem()+'-v0131.csv',rows);
     }
 
     function investmentProfessionalReport(){
@@ -15096,7 +15160,7 @@
       if(!state.investmentResult) return;
       const cards=$$('#view-inversiones .investment-chart-card').map(function(card){ const copy=card.cloneNode(true); copy.querySelectorAll('input,button').forEach(function(node){ node.remove(); }); return copy.outerHTML; }).join('');
       const html='<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gráficos · '+escapeXml(state.investmentResult.input.name)+'</title><style>body{margin:0;padding:24px;background:#08090d;color:#fff;font-family:system-ui}main{display:grid;gap:22px;max-width:1200px;margin:auto}.investment-chart-card{padding:18px;border:2px solid #ffd400;background:#11131b}.investment-chart-canvas{overflow:auto}.investment-chart-canvas svg{display:block;width:100%;min-width:600px}.investment-chart-canvas text{fill:#aeb2bf;font:700 12px system-ui}.investment-chart-gridline{stroke:#2b2e37}.investment-chart-axis{stroke:#777}.investment-chart-line{fill:none;stroke-width:4}.investment-chart-point{stroke:#08090d;stroke-width:3}</style><main><h1>'+escapeXml(state.investmentResult.input.name)+'</h1><p>Inflation Insights · '+APP_VERSION+' · exportado '+escapeXml(formatDateTime(nowIso()))+'</p>'+cards+'</main></html>';
-      downloadBlob('graficos-inversion-'+investmentFileStem()+'-v0130.html',html,'text/html;charset=utf-8');
+      downloadBlob('graficos-inversion-'+investmentFileStem()+'-v0131.html',html,'text/html;charset=utf-8');
     }
 
     function loadInvestmentExample(){
@@ -15160,10 +15224,10 @@
       $('investmentSaveButton').addEventListener('click',addCurrentInvestmentToPortfolio); $('investmentSaveCompareButton').addEventListener('click',addCurrentInvestmentToPortfolio);
       $('investmentResetButton').addEventListener('click',function(){ armLocalAction(this,'Confirmar reinicio',function(){ safeStorageRemove(KEYS.investmentDraft); loadInvestmentExample(); setFeatureStatus('investmentNotice','Borrador restablecido al ejemplo inicial.','success'); }); });
       $('investmentExportCsvButton').addEventListener('click',exportInvestmentCsv);
-      $('investmentExportSummaryButton').addEventListener('click',function(){ if(state.investmentResult) downloadBlob('resumen-inversion-'+investmentFileStem()+'-v0130.txt',investmentPlainSummary(),'text/plain;charset=utf-8'); });
-      $('investmentExportReportButton').addEventListener('click',function(){ downloadProfessionalReport(investmentProfessionalReport(),'informe-inversion-'+investmentFileStem()+'-v0130.pdf','investment'); });
+      $('investmentExportSummaryButton').addEventListener('click',function(){ if(state.investmentResult) downloadBlob('resumen-inversion-'+investmentFileStem()+'-v0131.txt',investmentPlainSummary(),'text/plain;charset=utf-8'); });
+      $('investmentExportReportButton').addEventListener('click',function(){ downloadProfessionalReport(investmentProfessionalReport(),'informe-inversion-'+investmentFileStem()+'-v0131.pdf','investment'); });
       $('investmentExportChartsButton').addEventListener('click',exportInvestmentCharts); $('investmentExportScenariosButton').addEventListener('click',exportInvestmentScenarios); $('investmentExportSensitivityButton').addEventListener('click',exportInvestmentSensitivity);
-      $('investmentExportPortfolioButton').addEventListener('click',function(){ downloadJsonFile('comparacion-inversiones-v0130.json',{schemaVersion:1,appVersion:APP_VERSION,createdAt:nowIso(),items:state.investmentPortfolio}); });
+      $('investmentExportPortfolioButton').addEventListener('click',function(){ downloadJsonFile('comparacion-inversiones-v0131.json',{schemaVersion:1,appVersion:APP_VERSION,createdAt:nowIso(),items:state.investmentPortfolio}); });
       $('investmentClearPortfolioButton').addEventListener('click',function(){ armLocalAction(this,'Confirmar borrado',function(){ state.investmentPortfolio=[]; saveInvestmentPortfolio(); renderInvestmentPortfolio(); renderInvestmentCharts(); setFeatureStatus('investmentNotice','Comparación local eliminada.','success'); }); });
     }
 
@@ -15173,7 +15237,11 @@
       $('investmentCurrency').innerHTML=CURRENCY_CODES.map(function(code){ return '<option value="'+code+'">'+code+' — '+escapeXml(CURRENCIES[code].name)+'</option>'; }).join('')+'<option value="Custom">Custom — Personalizada</option>';
       $('investmentCurrency').value=selected === 'Custom' ? 'Custom' : normalizeCurrencyCode(selected,'BRL');
       const draft=safeStorageGet(KEYS.investmentDraft,null),preferences=safeStorageGet(KEYS.investmentPreferences,null);
-      if(!applyInvestmentDraft(draft)){ state.investmentCosts=defaultInvestmentCosts(); if(preferences && preferences.schemaVersion === 1) state.investmentTab=preferences.tab || 'summary'; state.investmentZoom=Number($('investmentHorizon').value); }
+      if(!applyInvestmentDraft(draft)){
+        state.investmentCosts=defaultInvestmentCosts();
+        if(preferences && [1,2].includes(preferences.schemaVersion)) state.investmentTab=['profitability','risk','compare'].includes(preferences.tab) ? 'advanced' : preferences.tab || 'summary';
+        state.investmentZoom=Number($('investmentHorizon').value);
+      }
       state.investmentPortfolio=readInvestmentPortfolio();
       renderInvestmentCostRows(); $('investmentCustomCurrencyEditor').hidden=$('investmentCurrency').value !== 'Custom'; setInvestmentTab(state.investmentTab || 'summary'); bindInvestmentEvents(); state.investmentInitialized=true; calculateAndRenderInvestment({save:false});
     }
@@ -15460,7 +15528,7 @@
       $('copyContractReceiptButton').addEventListener('click',function(){ if(state.contractResult) copyText(contractReceiptText(state.contractResult),'Comprobante copiado.'); });
       $('exportContractJsonButton').addEventListener('click',function(){
         if(!state.contractResult) return;
-        downloadJsonFile('reajuste-contrato-v0130.json',Object.assign({},state.contractResult,{
+        downloadJsonFile('reajuste-contrato-v0131.json',Object.assign({},state.contractResult,{
           schemaVersion:FILE_SCHEMA_VERSION,
           appVersion:APP_VERSION,
           type:'contract-adjustment',
@@ -15468,7 +15536,7 @@
           createdAt:state.contractResult.fetchedAt || nowIso()
         }));
       });
-      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0130.pdf','contract'); });
+      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0131.pdf','contract'); });
       $('exportContractComparisonCsvButton').addEventListener('click',exportContractComparisonCsv);
       $('labForm').addEventListener('submit',function(event){ event.preventDefault(); calculateLab(); });
       $('saveLabButton').addEventListener('click',saveLabConfig);
@@ -15488,11 +15556,11 @@
       });
       $('loadAdvancedExampleButton').addEventListener('click',loadAdvancedExample);
       $('exportAdvancedCsvButton').addEventListener('click',exportAdvancedCsv);
-      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0130.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
+      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0131.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
       $('reportForm').addEventListener('submit',function(event){ event.preventDefault(); try{ renderReportPreview(buildReportData()); }catch(error){ setNotice($('reportNotice'),'Selecciona al menos una sección.','error'); } });
-      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0130.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
+      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0131.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
       $('exportReportCsvButton').addEventListener('click',exportReportCsv);
-      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0130.json',state.reportResult); });
+      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0131.json',state.reportResult); });
       $('installAppButton').addEventListener('click',promptPwaInstall);
       $('menuButton').addEventListener('click',function(){
         const opening = $('mainNav').dataset.open !== 'true';
@@ -15583,7 +15651,7 @@
       });
       $('copyLinkButton').addEventListener('click',function(){ copyText(buildShareUrl(),'Enlace del escenario copiado.'); });
       $('copyResultButton').addEventListener('click',function(){ copyText(resultPlainText(),'Resultado copiado.'); });
-      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0130.pdf','calculator'); });
+      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0131.pdf','calculator'); });
       $('exportJsonButton').addEventListener('click',exportResultJson);
       $('exportCsvButton').addEventListener('click',exportResultCsv);
       $('refreshQuotesButton').addEventListener('click',function(){ refreshQuotes(); });
@@ -15617,7 +15685,7 @@
       $('salaryShareButton').addEventListener('click',function(){ copyText(buildSalaryShareUrl(),'Enlace del análisis salarial copiado.'); });
       $('salaryExportCsvButton').addEventListener('click',exportSalaryCsv);
       $('salaryExportJsonButton').addEventListener('click',exportSalaryJson);
-      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0130.pdf','salary'); });
+      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0131.pdf','salary'); });
       $('salaryExportPngButton').addEventListener('click',exportSalaryChartPng);
 
       $('saveScenarioButton').addEventListener('click',function(){
@@ -15747,7 +15815,7 @@
       $('saveBasketButton').addEventListener('click',saveBasket);
       $('weightedCurrency').addEventListener('change',function(){ state.basketCurrency = normalizeCurrencyCode(this.value,'BRL'); });
       $('exportBasketButton').addEventListener('click',function(){
-        downloadJsonFile('cesta-ponderada-v0130.json',weightedBasketPayload());
+        downloadJsonFile('cesta-ponderada-v0131.json',weightedBasketPayload());
       });
       $('importBasketButton').addEventListener('click',function(){ $('basketFileInput').click(); });
       $('basketFileInput').addEventListener('change',function(event){
@@ -15883,7 +15951,7 @@
       });
       $$('[data-download-personal-chart]').forEach(function(button){
         button.addEventListener('click',function(){
-          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0130.png');
+          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0131.png');
         });
       });
 
