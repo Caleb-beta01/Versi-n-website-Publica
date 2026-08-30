@@ -10,10 +10,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Inflation Insights">
-  <link rel="manifest" href="./manifest-v0.14.0-beta.webmanifest">
+  <link rel="manifest" href="./manifest-v0.14.1-beta-patch.webmanifest">
   <link rel="icon" href="./icons/inflation-insights-192.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/inflation-insights-192.png">
-  <title>Calculadora de Inflación · v0.14.0-Beta</title>
+  <title>Calculadora de Inflación · v0.14.1-Beta-Patch</title>
   <style>
     :root{
       --bg:#07111f;
@@ -3460,6 +3460,26 @@
     .investment-export-options input{width:18px;height:18px;accent-color:#ffd400}
     .investment-export-submit{display:flex;flex-wrap:wrap;align-items:end;gap:10px;grid-column:1/-1}
     .investment-export-submit .field{flex:1 1 230px;margin:0}
+    .module-export-launcher{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px}
+    .module-export-launcher .button{min-width:210px}
+    .module-export-launcher-status{color:var(--muted);font-size:.84rem;font-weight:750}
+    .module-export-launcher-status[data-ready="true"]{color:#bcf7d0}
+    .universal-export-dialog{width:min(940px,calc(100% - 24px));max-height:min(92dvh,920px);padding:0;border:3px solid #ffd400;border-radius:0;color:#fff;background:#090a0f;box-shadow:14px 14px 0 rgba(0,0,0,.72)}
+    .universal-export-dialog::backdrop{background:rgba(0,0,0,.78);backdrop-filter:blur(3px)}
+    .universal-export-dialog .dialog-head{position:sticky;z-index:2;top:0;border-bottom:3px solid #ffd400;background:#090a0f}
+    .universal-export-dialog .dialog-body{display:grid;gap:16px;max-height:calc(92dvh - 82px);overflow:auto}
+    .universal-export-hub{display:grid;grid-template-columns:minmax(210px,.72fr) minmax(320px,1.28fr);gap:16px;padding:18px;border:2px solid #3b3e49;background:#08090d}
+    .universal-export-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    .universal-export-options label{display:flex;align-items:center;gap:9px;min-height:48px;padding:9px 11px;border:1px solid #343741;background:#11131b;color:#e7e8ee;font-weight:750}
+    .universal-export-options input{width:18px;height:18px;accent-color:#ffd400}
+    .universal-export-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;grid-column:1/-1}
+    .universal-export-controls .field{margin:0}
+    .universal-export-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px;border:1px solid #3b3e49;background:#11131b}
+    .universal-export-summary span{display:grid;gap:3px;color:#bfc1ca;font-size:.76rem}
+    .universal-export-summary strong{color:#fff;font-size:.9rem;overflow-wrap:anywhere}
+    .universal-export-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px}
+    .universal-export-actions .button{min-width:170px}
+    .universal-export-hint{margin:0;padding:12px 14px;border-left:5px solid #55f5e6;background:#10121a;color:#c9cbd4;line-height:1.5}
     .investment-project-list{display:grid;gap:12px}
     .investment-project-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:15px;border:2px solid #3b3e49;background:#0b0d13}
     .investment-project-card[data-conflict="true"]{border-color:#ffd400}
@@ -3488,6 +3508,7 @@
       .investment-advanced-grid{grid-template-columns:1fr}
       .investment-getting-started ol,.investment-plain-glossary{grid-template-columns:1fr}
       .investment-export-hub{grid-template-columns:1fr}
+      .universal-export-hub{grid-template-columns:1fr}
     }
     @media (max-width:620px){
       .investment-command-bar,.investment-section-head{align-items:stretch;flex-direction:column}
@@ -3506,6 +3527,9 @@
       .investment-progress-copy{flex-direction:column}
       .sensitivity-controls>.field{width:100%}
       .investment-export-options{grid-template-columns:1fr}
+      .universal-export-options,.universal-export-controls,.universal-export-summary{grid-template-columns:1fr}
+      .module-export-launcher{align-items:stretch;flex-direction:column}
+      .module-export-launcher .button,.universal-export-actions .button{width:100%}
       .investment-project-card{grid-template-columns:1fr}
       .investment-project-actions{justify-content:flex-start}
     }
@@ -4678,7 +4702,7 @@
     <section class="view" id="view-widget-runtime" data-view="widget-runtime" aria-label="Calculadora embebida" hidden>
       <div class="widget-runtime-shell" id="widgetRuntimeShell" data-theme="dark">
         <section class="widget-runtime-card" id="widgetRuntimeCard">
-          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.14.0-Beta.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>Calculadora</span></div>
+          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.14.1-Beta-Patch.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>Calculadora</span></div>
           <h1 id="widgetRuntimeTitle">Calculadora embebida</h1>
           <div class="widget-mini-grid">
             <div class="field"><label id="widgetRuntimeALabel" for="widgetRuntimeA">Valor A</label><input id="widgetRuntimeA" type="text" inputmode="decimal" value="100"></div>
@@ -5202,16 +5226,16 @@
 
         <section class="card account-card wide" aria-labelledby="aboutAppTitle">
           <div><p class="eyebrow">Acerca de la aplicación</p><h2 id="aboutAppTitle">Versión, novedades y detalles técnicos</h2></div>
-          <div class="about-version"><strong id="aboutAppVersion">v0.14.0</strong><span id="aboutAppChannel">Canal Beta · 30 ago 2026</span></div>
+          <div class="about-version"><strong id="aboutAppVersion">v0.14.1</strong><span id="aboutAppChannel">Beta Patch · 30 ago 2026</span></div>
           <ul class="release-list">
-            <li>Exportador unificado con PDF profesional, XLSX nativo, CSV, JSON, PNG y HTML.</li>
+            <li>El exportador unificado ahora funciona en la calculadora, las herramientas y el Centro de informes.</li>
+            <li>PDF, XLSX, CSV, JSON, PNG y HTML comparten opciones, nombres y metadatos coherentes.</li>
             <li>Proyectos de inversión locales con sincronización opcional y recuperación de conflictos.</li>
-            <li>Interfaz más limpia: la versión vive aquí y el aviso de actualización aparece una sola vez.</li>
           </ul>
           <dl class="storage-facts">
-            <div><dt>Historial</dt><dd>v0.13.6 corrigió gráficos interactivos y borradores; v0.14.0 reorganiza exportaciones y nube.</dd></div>
+            <div><dt>Historial</dt><dd>v0.14.0 reorganizó exportaciones y nube; v0.14.1 extiende el gestor profesional a toda la aplicación.</dd></div>
             <div><dt>Técnico</dt><dd>Aplicación estática, cálculos locales, Supabase opcional y políticas RLS por usuario.</dd></div>
-            <div><dt>Informe</dt><dd><a href="https://github.com/Caleb-beta01/Calculadora-de-Inflaci-n-app/issues/52" target="_blank" rel="noopener noreferrer">GitHub #52 · Export &amp; Cloud Cleanup</a></dd></div>
+            <div><dt>Informe</dt><dd><a href="https://github.com/Caleb-beta01/Calculadora-de-Inflaci-n-app/issues/55" target="_blank" rel="noopener noreferrer">GitHub #55 · Exportaciones unificadas</a></dd></div>
           </dl>
         </section>
 
@@ -5569,7 +5593,7 @@
             <label class="report-source-option"><input id="reportIncludeSummary" type="checkbox" checked>Resumen visual</label>
           </div></fieldset>
           <fieldset class="salary-fieldset"><legend class="salary-legend">Información incluida</legend><div class="report-source-grid">
-            <label class="report-source-option"><input type="checkbox" value="calculator" checked>Calculadora principal</label><label class="report-source-option"><input type="checkbox" value="salary">Reajuste salarial</label><label class="report-source-option"><input type="checkbox" value="shrink">Reduflación</label><label class="report-source-option"><input type="checkbox" value="unit">Precio unitario</label><label class="report-source-option"><input type="checkbox" value="goals">Metas protegidas</label><label class="report-source-option"><input type="checkbox" value="personal">Índice personal</label><label class="report-source-option"><input type="checkbox" value="history">Historial local</label><label class="report-source-option"><input type="checkbox" value="products">Seguimiento de productos</label><label class="report-source-option"><input type="checkbox" value="international">Datos históricos</label><label class="report-source-option"><input type="checkbox" value="comparison">Comparación internacional</label><label class="report-source-option"><input type="checkbox" value="contract">Reajuste o contrato</label><label class="report-source-option"><input type="checkbox" value="lab">Laboratorio de escenarios</label><label class="report-source-option"><input type="checkbox" value="advanced">Períodos avanzados</label><label class="report-source-option"><input type="checkbox" value="basket">Cestas guardadas</label><label class="report-source-option"><input id="reportIncludeCharts" type="checkbox" value="charts" checked>Gráficos disponibles</label>
+            <label class="report-source-option"><input type="checkbox" value="calculator" checked>Calculadora principal</label><label class="report-source-option"><input type="checkbox" value="salary">Reajuste salarial</label><label class="report-source-option"><input type="checkbox" value="shrink">Reduflación</label><label class="report-source-option"><input type="checkbox" value="unit">Precio unitario</label><label class="report-source-option"><input type="checkbox" value="goals">Metas protegidas</label><label class="report-source-option"><input type="checkbox" value="personal">Índice personal</label><label class="report-source-option"><input type="checkbox" value="history">Historial local</label><label class="report-source-option"><input type="checkbox" value="products">Seguimiento de productos</label><label class="report-source-option"><input type="checkbox" value="international">Datos históricos</label><label class="report-source-option"><input type="checkbox" value="comparison">Comparación internacional</label><label class="report-source-option"><input type="checkbox" value="contract">Reajuste o contrato</label><label class="report-source-option"><input type="checkbox" value="lab">Laboratorio de escenarios</label><label class="report-source-option"><input type="checkbox" value="advanced">Períodos avanzados</label><label class="report-source-option"><input type="checkbox" value="basket">Cestas guardadas</label><label class="report-source-option"><input type="checkbox" value="investment">Inversiones</label><label class="report-source-option"><input type="checkbox" value="budget">Presupuesto</label><label class="report-source-option"><input type="checkbox" value="time-money">Dinero en el tiempo</label><label class="report-source-option"><input type="checkbox" value="real-return">Rendimiento real</label><label class="report-source-option"><input type="checkbox" value="expenses">Suscripciones y gastos</label><label class="report-source-option"><input type="checkbox" value="anomaly">Anomalías de precios</label><label class="report-source-option"><input type="checkbox" value="education">Educación financiera</label><label class="report-source-option"><input type="checkbox" value="widgets">Widgets</label><label class="report-source-option"><input id="reportIncludeCharts" type="checkbox" value="charts" checked>Gráficos disponibles</label>
           </div></fieldset>
           <div class="field"><label for="reportMethodology">Metodología</label><textarea id="reportMethodology" rows="4" maxlength="1200">Las tasas se aplican de forma compuesta. Los datos externos se identifican con su fuente y fecha de consulta.</textarea></div>
           <div class="field"><label for="reportAssumptions">Supuestos y notas</label><textarea id="reportAssumptions" rows="4" maxlength="1200" placeholder="Ej.: se mantuvo una tasa constante en la simulación..."></textarea></div>
@@ -5866,17 +5890,17 @@
 
   <dialog id="betaWelcomeDialog" aria-labelledby="betaWelcomeTitle">
     <div class="dialog-head">
-      <h3 id="betaWelcomeTitle">Novedades de v0.14.0</h3>
+      <h3 id="betaWelcomeTitle">Novedades de v0.14.1</h3>
       <button class="icon-button" type="button" data-close-dialog="betaWelcomeDialog" aria-label="Cerrar novedades">×</button>
     </div>
     <div class="dialog-body dialog-stack">
-      <p>Exporta análisis más completos y guarda proyectos de inversión sin perder el funcionamiento local.</p>
+      <p>El gestor profesional de Inversiones ahora acompaña a la calculadora, las herramientas y los informes.</p>
       <div class="dialog-callout">
-        <strong>Tres cambios principales</strong>
+        <strong>Exportación coherente en toda la aplicación</strong>
         <ul>
-          <li>PDF profesional y XLSX editable con hojas, formatos y fórmulas;</li>
-          <li>un solo centro para exportar PDF, XLSX, CSV, JSON, PNG o HTML;</li>
-          <li>proyectos de inversión locales y sincronización opcional con recuperación de conflictos.</li>
+          <li>PDF profesional y XLSX editable en modos Informe y Datos;</li>
+          <li>CSV, JSON, PNG y HTML autocontenido desde cada resultado compatible;</li>
+          <li>Centro de informes ampliado con todas las herramientas financieras.</li>
         </ul>
       </div>
       <div class="auth-actions">
@@ -5969,6 +5993,39 @@
     </div>
   </dialog>
 
+  <dialog id="universalExportDialog" class="universal-export-dialog" aria-labelledby="universalExportTitle">
+    <div class="dialog-head">
+      <div><p class="eyebrow">Exportación unificada</p><h3 id="universalExportTitle">Exportar análisis</h3></div>
+      <button class="icon-button" type="button" data-close-dialog="universalExportDialog" aria-label="Cerrar exportación">×</button>
+    </div>
+    <div class="dialog-body dialog-stack">
+      <p id="universalExportDescription">Elige el formato y el contenido. Todo se genera localmente en este dispositivo.</p>
+      <div class="universal-export-summary" aria-live="polite">
+        <span>Módulo<strong id="universalExportModule">—</strong></span>
+        <span>Datos<strong id="universalExportRecordCount">0 registros</strong></span>
+        <span>Gráficos<strong id="universalExportChartCount">0 disponibles</strong></span>
+      </div>
+      <div class="universal-export-hub">
+        <div class="field"><label for="universalExportFormat">Formato</label><select id="universalExportFormat"><option value="pdf">PDF · Informe profesional</option><option value="xlsx">XLSX · Libro editable</option><option value="csv">CSV · Datos compatibles</option><option value="json">JSON · Respaldo completo</option><option value="html">HTML · Gráficos interactivos</option><option value="png">PNG · Gráfico seleccionado</option></select></div>
+        <div class="universal-export-options" aria-label="Contenido incluido">
+          <label><input id="universalExportIncludeSummary" type="checkbox" checked>Resumen</label>
+          <label><input id="universalExportIncludeData" type="checkbox" checked>Datos</label>
+          <label><input id="universalExportIncludeCharts" type="checkbox" checked>Gráficos</label>
+          <label><input id="universalExportIncludeMethodology" type="checkbox" checked>Metodología</label>
+          <label><input id="universalExportIncludeSources" type="checkbox" checked>Fuentes</label>
+          <label><input id="universalExportIncludeDate" type="checkbox" checked>Fecha y versión</label>
+        </div>
+        <div class="universal-export-controls">
+          <div class="field"><label for="universalExportMode">Tipo de libro</label><select id="universalExportMode"><option value="report">Informe</option><option value="data">Datos</option></select></div>
+          <div class="field"><label for="universalExportChart">Gráfico para PNG</label><select id="universalExportChart"><option value="0">Resumen del módulo</option></select></div>
+        </div>
+      </div>
+      <p class="universal-export-hint">Los archivos se crean sin enviar tus resultados a internet. El HTML funciona sin conexión y admite ratón, pantalla táctil y teclado.</p>
+      <div class="feature-status" id="universalExportNotice" role="status" aria-live="polite"></div>
+      <div class="universal-export-actions"><button class="button secondary" type="button" data-close-dialog="universalExportDialog">Cancelar</button><button class="button primary" id="universalExportRunButton" type="button">Exportar archivo</button></div>
+    </div>
+  </dialog>
+
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
   <div class="debug-panel" id="debugPanel" hidden></div>
 
@@ -5977,7 +6034,7 @@
   (function(){
     'use strict';
 
-    const APP_VERSION = 'v0.14.0-Beta';
+    const APP_VERSION = 'v0.14.1-Beta-Patch';
     const VERSION = APP_VERSION;
     // El contrato de create-account/delete-account no cambió en este parche de exportaciones.
     const ACCOUNT_API_VERSION = 'v0.8.2-Beta-Patch';
@@ -6012,7 +6069,7 @@
     const MAX_INVESTMENT_INGREDIENTS = 30;
     const MAX_INVESTMENT_PORTFOLIO = 12;
     const MAX_INVESTMENT_PROJECTS = 100;
-    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.14.0-Beta.html';
+    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.14.1-Beta-Patch.html';
     const FX_CACHE_MAX_AGE = 15 * 60 * 1000;
     const FX_CACHE_STALE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
     const IPCA_CACHE_MAX_AGE = 90 * 24 * 60 * 60 * 1000;
@@ -7024,7 +7081,7 @@
       try{
         state.backend.client = window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
           auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'implicit',storageKey:'inflation.v080.auth'},
-          global:{headers:{'x-application-name':'inflation-insights-v0140-beta'}}
+          global:{headers:{'x-application-name':'inflation-insights-v0141-beta-patch'}}
         });
         state.backend.available = true;
         const sessionResult = await withTimeout(state.backend.client.auth.getSession());
@@ -7321,10 +7378,10 @@
           ]);
           payload.remote={user:{id:state.backend.user.id,email:state.backend.user.email || null},profiles:profiles,calculations:calculations,baskets:baskets,investmentProjects:investments,feedback:feedback,usageEvents:events};
         }
-        downloadJsonFile('mis-datos-inflation-insights-v0140-'+new Date().toISOString().slice(0,10)+'.json',payload);
+        downloadJsonFile('mis-datos-inflation-insights-v0141-'+new Date().toISOString().slice(0,10)+'.json',payload);
         setNotice($('accountNotice'),'Exportación preparada. El archivo incluye datos locales y, si había sesión, los remotos accesibles.','success');
       }catch(error){
-        downloadJsonFile('mis-datos-locales-inflation-insights-v0140.json',payload);
+        downloadJsonFile('mis-datos-locales-inflation-insights-v0141.json',payload);
         setNotice($('accountNotice'),'Se exportaron los datos locales, pero no fue posible recuperar los remotos.','warning');
       }finally{ setButtonBusy($('exportAllDataButton'),false); }
     }
@@ -7383,7 +7440,7 @@
         if($('pwaOfflineState')) $('pwaOfflineState').textContent='Este navegador no admite Service Worker';
         return;
       }
-      navigator.serviceWorker.register('./sw-v0.14.0-beta.js').then(function(registration){
+      navigator.serviceWorker.register('./sw-v0.14.1-beta-patch.js').then(function(registration){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent=navigator.onLine === false ? 'Modo offline activo' : 'Caché local preparada';
         registration.update().catch(function(){ return null; });
         registration.addEventListener('updatefound',function(){
@@ -9382,7 +9439,7 @@
           ipca:Object.assign({},state.ipca)
         }
       };
-      downloadJsonFile('resultado-inflacion-v0140.json',data);
+      downloadJsonFile('resultado-inflacion-v0141.json',data);
       trackEvent('report_exported',{tool:'calculator',format:'json'});
     }
 
@@ -9424,7 +9481,7 @@
         rows.push(['fecha_oficial_' + code,quote.officialDate || '']);
         rows.push(['consultado_' + code,quote.fetchedAt || '']);
       });
-      downloadCsvFile('resultado-inflacion-v0140.csv',rows);
+      downloadCsvFile('resultado-inflacion-v0141.csv',rows);
       trackEvent('report_exported',{tool:'calculator',format:'csv'});
     }
 
@@ -9959,7 +10016,7 @@
           };
         })
       };
-      downloadJsonFile('reajuste-salarial-v0140.json',data);
+      downloadJsonFile('reajuste-salarial-v0141.json',data);
       trackEvent('report_exported',{tool:'salary',format:'json'});
     }
 
@@ -9981,7 +10038,7 @@
       rows.push(['fecha_o_periodo_fuente',bundle.inputs.source.officialDate || '']);
       rows.push(['estado_fuente',salarySourceStateLabel(bundle.inputs.source.mode)]);
       rows.push(['periodo_analizado_meses',bundle.inputs.months]);
-      downloadCsvFile('reajuste-salarial-v0140.csv',rows);
+      downloadCsvFile('reajuste-salarial-v0141.csv',rows);
       trackEvent('report_exported',{tool:'salary',format:'csv'});
     }
 
@@ -10037,7 +10094,7 @@
         URL.revokeObjectURL(url);
         canvas.toBlob(function(png){
           if(!png){ showToast('El navegador no pudo generar la imagen.'); return; }
-          downloadBlob('informe-reajuste-salarial-v0140.png',png,'image/png');
+          downloadBlob('informe-reajuste-salarial-v0141.png',png,'image/png');
           trackEvent('report_exported',{tool:'salary',format:'png',design:'professional'});
           showToast('PNG profesional exportado en 1600 × 1100 px.');
         },'image/png');
@@ -11020,7 +11077,7 @@
     function exportPersonalJson(){
       const bundle = ensurePersonalResult();
       if(!bundle) return;
-      downloadJsonFile('costo-de-vida-v0140.json',personalExportPayload(bundle));
+      downloadJsonFile('costo-de-vida-v0141.json',personalExportPayload(bundle));
     }
 
     function exportPersonalProductsCsv(){
@@ -11030,7 +11087,7 @@
       bundle.metrics.products.forEach(function(item){
         rows.push([item.name,item.category,bundle.meta.currency,item.quantity,item.previousPrice,item.currentPrice,item.previousCost,item.currentCost,isFiniteNumber(item.variation) ? item.variation*100 : '',item.monetaryChange,item.contribution*100,item.notes]);
       });
-      downloadCsvFile('productos-costo-de-vida-v0140.csv',rows);
+      downloadCsvFile('productos-costo-de-vida-v0141.csv',rows);
     }
 
     function exportPersonalAnalysisCsv(){
@@ -11047,7 +11104,7 @@
         ['categoria','impacto_monetario','contribucion_pp']
       ];
       bundle.metrics.categories.forEach(function(item){ rows.push([item.name,item.monetaryChange,item.contribution*100]); });
-      downloadCsvFile('analisis-costo-de-vida-v0140.csv',rows);
+      downloadCsvFile('analisis-costo-de-vida-v0141.csv',rows);
     }
 
     function buildPersonalShareUrl(){
@@ -11180,7 +11237,7 @@
       try{
         const payload = normalizePersonalPayload(record.payload);
         const filename = (payload.name || 'cesta').toLocaleLowerCase('es').replace(/[^a-z0-9áéíóúüñ]+/gi,'-').replace(/^-|-$/g,'').slice(0,50) || 'cesta';
-        downloadJsonFile(filename+'-v0140.json',record.payload);
+        downloadJsonFile(filename+'-v0141.json',record.payload);
       }catch(error){
         setNotice($('personalNotice'),'No se pudo exportar este registro: ' + error.message,'error');
       }
@@ -11729,7 +11786,7 @@
       if(!result || !result.analysis) return;
       const rows=[['economía','índice','período','tasa_mensual_pct','acumulada_pct','indice_base_100','fuente','consultado']];
       result.analysis.points.forEach(function(point){ rows.push([result.economy,result.indexName,point.period,point.rate,point.accumulated*100,point.base100,result.source+' · '+result.provider,result.fetchedAt]); });
-      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0140.csv',rows);
+      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0141.csv',rows);
     }
 
     function setDataTab(name){
@@ -11788,7 +11845,7 @@
       const lowest=Math.min.apply(null,result.series.map(function(item){ return item.analysis.accumulated; }));
       const rows=[['economía','índice','inicio','fin','inflación_acumulada_pct','diferencia_pp','fuente','consultado']];
       result.series.forEach(function(item){ rows.push([item.economy,item.indexName,result.start,result.end,item.analysis.accumulated*100,(item.analysis.accumulated-lowest)*100,item.source+' · '+item.provider,item.fetchedAt]); });
-      downloadCsvFile('comparacion-internacional-v0140.csv',rows);
+      downloadCsvFile('comparacion-internacional-v0141.csv',rows);
     }
 
     function contractRange(){
@@ -11888,7 +11945,7 @@
       const result=state.contractComparison; if(!result) return;
       const rows=[['índice','inicio','fin','variación_pct','aumento','valor_final','moneda','fuente','último_dato']];
       result.rows.forEach(function(row){ rows.push([row.name,result.start,result.end,row.rate*100,row.difference,row.finalValue,result.currency,row.source,row.latestPeriod]); });
-      downloadCsvFile('comparacion-reajustes-v0140.csv',rows);
+      downloadCsvFile('comparacion-reajustes-v0141.csv',rows);
     }
 
     function parseLabRates(text,years,fallback){
@@ -11965,7 +12022,7 @@
       const result=state.labResult; if(!result) return;
       const rows=[['escenario','año','inflación_periodo_pct','valor_necesario','ingreso_nominal','ingreso_real','poder_adquisitivo_pct','pérdida_ganancia']];
       result.scenarios.forEach(function(item){ item.timeline.forEach(function(point){ rows.push([item.name,point.year,point.year ? item.rates[point.year-1] : 0,point.priceNeeded,point.nominalIncome,point.realIncome,point.purchasingPower,point.loss]); }); });
-      downloadCsvFile('laboratorio-escenarios-v0140.csv',rows);
+      downloadCsvFile('laboratorio-escenarios-v0141.csv',rows);
     }
 
     function advancedRowTemplate(item,index){
@@ -12030,7 +12087,7 @@
       const result=state.advancedResult; if(!result) return;
       const rows=[['período','tasa_pct','acumulada_pct','valor','indice_base_100','moneda']];
       result.rows.forEach(function(row){ rows.push([row.label,row.rate,row.accumulated*100,row.value,row.base100,result.currency]); });
-      downloadCsvFile('inflacion-por-periodos-v0140.csv',rows);
+      downloadCsvFile('inflacion-por-periodos-v0141.csv',rows);
     }
 
     function setMarketTab(tab,focus){
@@ -12451,7 +12508,7 @@
       const records=recordsForProduct(state.selectedProductKey);
       if(!records.length) return;
       const payload={schemaVersion:FILE_SCHEMA_VERSION,appVersion:APP_VERSION,type:'product-price-history',createdAt:nowIso(),data:{product:records[0].name,records:records}};
-      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0140.json',payload);
+      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0141.json',payload);
     }
 
     function calculateInflationGoal(){
@@ -12859,14 +12916,14 @@
 
     function exportUnifiedCsv(){
       if(!state.productRecords.length){ setNotice($('exportStudioNotice'),'No hay seguimientos de productos para exportar en CSV.','warning'); return; }
-      downloadBlob('seguimiento-productos-v0140-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
+      downloadBlob('seguimiento-productos-v0141-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
       setNotice($('exportStudioNotice'),'CSV UTF-8 exportado con fechas ISO y números decimales consistentes.','success');
     }
 
     function exportUnifiedJson(){
       const all=$('exportDataScope').value === 'all';
       const payload=all ? buildLocalExchangePayload() : structuredProductPayload();
-      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0140-'+new Date().toISOString().slice(0,10)+'.json',payload);
+      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0141-'+new Date().toISOString().slice(0,10)+'.json',payload);
       setNotice($('exportStudioNotice'),'JSON exportado con versión de esquema, versión de la aplicación, tipo y fecha de creación.','success');
     }
 
@@ -13007,7 +13064,7 @@
           canvas.toBlob(function(output){
             URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false);
             if(!output){ setNotice($('exportStudioNotice'),'El navegador no pudo crear el PNG.','error'); return; }
-            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0140.png',output,'image/png');
+            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0141.png',output,'image/png');
             setNotice($('exportStudioNotice'),'PNG exportado a '+pixels.width+' × '+pixels.height+' píxeles.','success');
           },'image/png',1);
         }catch(error){ URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false); setNotice($('exportStudioNotice'),'No se pudo renderizar el PNG.','error'); }
@@ -13074,6 +13131,42 @@
         const contractReport=contractProfessionalReport();
         (contractReport && contractReport.charts || []).forEach(function(chart){ charts.push(chart); });
       }
+      if(selected.includes('investment') && state.investmentResult){
+        const investmentReport=investmentProfessionalReport();
+        (investmentReport && investmentReport.charts || []).forEach(function(chart){ charts.push(chart); });
+      }
+      if(selected.includes('budget') && state.budgetResult){
+        const item=state.budgetResult;
+        charts.push(reportChart('Presupuesto actual y proyectado',[{name:'Gastos',color:'#ff9d44',values:[{label:'Actual',value:item.currentTotal},{label:'Proyectado',value:item.futureTotal}]},{name:'Ahorro disponible',color:'#55f5e6',values:[{label:'Actual',value:item.currentSaving},{label:'Proyectado',value:item.futureSaving}]}],' '+item.input.currency));
+      }
+      if(selected.includes('time-money') && state.timeMoneyResult && state.timeMoneyResult.selection){
+        const item=state.timeMoneyResult,base=item.selection.first.index;
+        charts.push(reportChart('Índice y poder adquisitivo',[{name:'Índice base 100',color:'#ffd400',values:item.selection.points.map(function(point){ return {label:point.period,value:point.index/base*100}; })},{name:'Poder adquisitivo',color:'#55f5e6',values:item.selection.points.map(function(point){ return {label:point.period,value:base/point.index*100}; })}],''));
+      }
+      if(selected.includes('real-return') && state.realReturnResult){
+        const item=state.realReturnResult;
+        charts.push(reportChart('Capital nominal y capital real',[{name:'Capital',color:'#ffd400',values:[{label:'Inicial',value:item.initial},{label:'Final nominal',value:item.final}]},{name:'Poder adquisitivo',color:'#55f5e6',values:[{label:'Inicial',value:item.initial},{label:'Final real',value:item.adjusted}]}],' '+item.currency));
+      }
+      if(selected.includes('expenses')){
+        state.expenses.slice(0,4).forEach(function(item,index){
+          const history=expenseTracker.sortedHistory(item);
+          if(history.length) charts.push(reportChart('Evolución de '+item.name,[{name:item.name,color:CHART_COLORS[index%CHART_COLORS.length],values:history.map(function(point){ return {label:point.date,value:point.price}; })}],' '+item.currency));
+        });
+      }
+      if(selected.includes('anomaly') && state.anomalyResult){
+        charts.push(reportChart('Historial analizado',[{name:'Precio',color:'#ff6900',values:state.anomalyResult.history.map(function(point){ return {label:point.date,value:point.price}; })}],' '));
+      }
+      if(selected.includes('education')){
+        const amount=parseLocalized($('educationAmount').value),rate=Number($('educationRate').value)/100,years=Number($('educationYears').value);
+        if(Number.isFinite(amount) && amount > 0 && Number.isFinite(rate) && Number.isFinite(years)){
+          const item=educationEngine.simulate(amount,rate,years);
+          charts.push(reportChart('Experimento de inflación',[{name:'Costo',color:'#ffd400',values:[{label:'Hoy',value:amount},{label:'Futuro',value:item.futureCost}]},{name:'Poder adquisitivo',color:'#55f5e6',values:[{label:'Hoy',value:amount},{label:'Futuro',value:item.purchasingAmount}]}],' BRL'));
+        }
+      }
+      if(selected.includes('widgets') && state.widgetConfig){
+        const config=state.widgetConfig,result=widgetCalculation(config,config.a,config.b,config.c);
+        if(result.valid) charts.push(reportChart('Valores predeterminados del widget',[{name:'Entradas',color:'#55a8ff',values:[{label:'A',value:config.a},{label:'B',value:config.b},{label:'C',value:config.c}]}],''));
+      }
       return charts.filter(Boolean);
     }
 
@@ -13138,6 +13231,29 @@
         }else if(key === 'basket'){
           const weighted=safeStorageGet(KEYS.basket,null);
           sections.push(reportSection('Cestas personalizadas',['Cesta ponderada local: '+(weighted ? 'sí' : 'no'),'Cestas personales guardadas: '+readPersonalBaskets().length,'Historial de costo de vida: '+readPersonalHistory().length]));
+        }else if(key === 'investment'){
+          const report=investmentProfessionalReport();
+          sections.push(reportSection('Inversiones',report ? report.sections.reduce(function(lines,section){ return lines.concat(section.title+':',section.lines); },[]) : ['No había un análisis de inversión activo.']));
+        }else if(key === 'budget'){
+          const item=state.budgetResult;
+          sections.push(reportSection('Presupuesto familiar',item ? ['Ingresos mensuales: '+formatCurrency(item.input.income,item.input.currency),'Gasto actual: '+formatCurrency(item.currentTotal,item.input.currency),'Gasto proyectado: '+formatCurrency(item.futureTotal,item.input.currency),'Ahorro actual: '+formatCurrency(item.currentSaving,item.input.currency),'Ahorro proyectado: '+formatCurrency(item.futureSaving,item.input.currency),'Ingreso necesario: '+formatCurrency(item.requiredIncome,item.input.currency)] : ['No había un presupuesto calculado.']));
+        }else if(key === 'time-money'){
+          const item=state.timeMoneyResult,selection=item && item.selection;
+          sections.push(reportSection('Dinero en el tiempo',selection ? ['Cantidad original: '+formatCurrency(item.input.amount,item.input.currency),'Período: '+formatMonthLabel(selection.first.period)+' — '+formatMonthLabel(selection.last.period),'Inflación acumulada: '+formatPercent(selection.accumulated,4),'Valor equivalente: '+formatCurrency(selection.equivalent,item.input.currency),'Poder adquisitivo: '+formatPercent(selection.power,4),'Fuente: '+item.series.source+' · '+item.series.mode] : ['No había una consulta histórica activa.']));
+        }else if(key === 'real-return'){
+          const item=state.realReturnResult;
+          sections.push(reportSection('Rendimiento real',item ? ['Capital inicial: '+formatCurrency(item.initial,item.currency),'Capital final: '+formatCurrency(item.final,item.currency),'Rendimiento nominal: '+formatPercent(item.nominal,4),'Rendimiento real: '+formatPercent(item.real,4),'Capital ajustado: '+formatCurrency(item.adjusted,item.currency),'Rendimiento real anualizado: '+formatPercent(item.annualized,4)] : ['No había un rendimiento real calculado.']));
+        }else if(key === 'expenses'){
+          sections.push(reportSection('Suscripciones y gastos',state.expenses.length ? state.expenses.map(function(item){ const metrics=expenseTracker.metrics(item); return item.name+' · '+item.category+' · '+(metrics.last ? formatCurrency(metrics.last.price,item.currency) : 'sin precio')+' · '+item.history.length+' observaciones'; }) : ['No había gastos guardados.']));
+        }else if(key === 'anomaly'){
+          const item=state.anomalyResult,copy=item ? anomalyLevelCopy(item.level) : null;
+          sections.push(reportSection('Anomalías de precios',item ? [copy.label+' · '+copy.headline,'Observaciones: '+item.history.length,'Cambios comparables: '+item.baseline.length,'Mediana: '+(Number.isFinite(item.median) ? formatPercent(item.median,4) : 'no disponible'),'Puntuación robusta: '+(Number.isFinite(item.score) ? formatNumber(item.score,2,3)+' MAD' : 'no disponible')] : ['No había un análisis de anomalías activo.']));
+        }else if(key === 'education'){
+          const amount=parseLocalized($('educationAmount').value),rate=Number($('educationRate').value)/100,years=Number($('educationYears').value),item=Number.isFinite(amount) && amount > 0 ? educationEngine.simulate(amount,rate,years) : null;
+          sections.push(reportSection('Educación financiera',item ? ['Cantidad inicial: '+formatCurrency(amount,'BRL'),'Inflación anual: '+formatPercent(rate,2),'Duración: '+formatNumber(years,2,2)+' años','Costo futuro: '+formatCurrency(item.futureCost,'BRL'),'Poder adquisitivo restante: '+formatPercent(item.power,2),'Lecciones completadas: '+$$('[data-education-complete]:checked').length+'/11'] : ['No había un experimento educativo válido.']));
+        }else if(key === 'widgets'){
+          const config=state.widgetConfig,result=config ? widgetCalculation(config,config.a,config.b,config.c) : null;
+          sections.push(reportSection('Widgets',config ? ['Tipo: '+widgetTypeCopy(config.type).title,'Moneda: '+config.currency,'Tema: '+config.theme,'Valores: A '+formatNumber(config.a,0,6)+' · B '+formatNumber(config.b,0,6)+' · C '+formatNumber(config.c,0,6),'Resultado predeterminado: '+(result.valid ? result.headline : result.message)] : ['No había un widget configurado.']));
         }
       });
       return {
@@ -13713,7 +13829,436 @@
       const report=state.reportResult; if(!report) return;
       const rows=[['sección','contenido']]; report.sections.forEach(function(section){ section.lines.forEach(function(line){ rows.push([section.title,line]); }); });
       rows.push(['Metodología',report.methodology],['Supuestos',report.assumptions]);
-      downloadCsvFile('informe-inflacion-v0140.csv',rows);
+      downloadCsvFile('informe-inflacion-v0141.csv',rows);
+    }
+
+    const UNIVERSAL_EXPORT_MODULES=Object.freeze({
+      calculadora:{route:'calculadora',title:'Calculadora de inflación',slug:'calculadora',methodology:'La variación se calcula con factores compuestos y sin redondear los pasos intermedios.'},
+      presupuesto:{route:'presupuesto',title:'Presupuesto familiar',slug:'presupuesto',methodology:'Cada categoría se proyecta con su propia tasa anual compuesta y luego se agregan los resultados.'},
+      'tiempo-dinero':{route:'tiempo-dinero',title:'Dinero en el tiempo',slug:'dinero-tiempo',methodology:'Los niveles oficiales del índice se comparan sin interpolar meses ausentes.'},
+      'rendimiento-real':{route:'rendimiento-real',title:'Rendimiento real',slug:'rendimiento-real',methodology:'El rendimiento real usa la relación exacta de Fisher entre el factor nominal y el factor de inflación.'},
+      suscripciones:{route:'suscripciones',title:'Suscripciones y gastos',slug:'suscripciones-gastos',methodology:'Los precios guardados se ordenan por fecha y se comparan en la moneda de cada gasto.'},
+      anomalias:{route:'anomalias',title:'Anomalías de precios',slug:'anomalias-precios',methodology:'Los cambios equivalentes se contrastan con la mediana y la desviación absoluta mediana (MAD).'},
+      educacion:{route:'educacion',title:'Educación financiera',slug:'educacion-financiera',methodology:'El experimento aplica la tasa anual de forma compuesta durante el horizonte indicado.'},
+      widgets:{route:'widgets',title:'Widgets',slug:'widgets',methodology:'El resultado usa la misma fórmula validada que la calculadora embebida.'},
+      precios:{route:'precios',title:'Herramientas de precios',slug:'herramientas-precios',methodology:'Los precios y cantidades se normalizan antes de comparar variaciones, costos unitarios y metas.'},
+      salario:{route:'salario',title:'Reajuste salarial',slug:'reajuste-salarial',methodology:'El salario se compara con la inflación acumulada y con los reajustes introducidos.'},
+      historial:{route:'historial',title:'Historial local',slug:'historial-local',methodology:'El archivo refleja únicamente los registros disponibles localmente en este dispositivo.'},
+      'tipo-cambio':{route:'tipo-cambio',title:'Tipos de cambio',slug:'tipos-cambio',methodology:'Las cotizaciones se presentan con su proveedor, fecha y estado de actualización.'},
+      datos:{route:'datos',title:'Datos históricos',slug:'datos-historicos',methodology:'Las observaciones conservan la fuente, el proveedor, la fecha de consulta y el estado de caché.'},
+      reajustes:{route:'reajustes',title:'Reajustes y contratos',slug:'reajustes-contratos',methodology:'Las variaciones mensuales del índice se componen para el período completo.'},
+      laboratorio:{route:'laboratorio',title:'Laboratorio de escenarios',slug:'laboratorio-escenarios',methodology:'Los escenarios son simulaciones y se identifican como tales; no representan una predicción.'},
+      avanzada:{route:'avanzada',title:'Calculadora avanzada',slug:'calculadora-avanzada',methodology:'Cada tasa se convierte en un factor y los factores se multiplican respetando el orden de los períodos.'},
+      informes:{route:'informes',title:'Centro de informes',slug:'centro-informes',methodology:'El informe reúne las secciones elegidas y conserva metodología, supuestos y procedencia.'}
+    });
+    let universalExportSnapshot=null;
+
+    function universalExportVisible(element){
+      if(!element || element.closest('[hidden],details:not([open])')) return false;
+      const style=window.getComputedStyle(element);
+      return style.display !== 'none' && style.visibility !== 'hidden' && element.getClientRects().length > 0;
+    }
+
+    function universalExportFieldLabel(field){
+      const direct=field.id ? document.querySelector('label[for="'+field.id.replace(/"/g,'\\"')+'"]') : null;
+      const wrapping=field.closest('label');
+      return String(direct && direct.textContent || wrapping && wrapping.textContent || field.getAttribute('aria-label') || field.name || field.id || 'Campo').replace(/\s+/g,' ').trim().slice(0,120);
+    }
+
+    function universalExportValue(field){
+      if(field.type === 'checkbox' || field.type === 'radio') return field.checked ? 'Sí' : 'No';
+      if(field.tagName === 'SELECT'){
+        const option=field.options[field.selectedIndex];
+        return String(option && option.textContent || field.value || '').trim();
+      }
+      return String(field.value || '').trim();
+    }
+
+    function universalExportNumeric(value){
+      const text=String(value == null ? '' : value).trim();
+      if(!text || text === '—') return null;
+      const tokens=text.match(/[+-]?\d[\d.,]*/g) || [];
+      if(tokens.length !== 1) return null;
+      const parsed=parseLocalized(tokens[0]);
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function universalExportStatePayload(key){
+      const map={
+        calculadora:state.result,presupuesto:state.budgetResult,'tiempo-dinero':state.timeMoneyResult,'rendimiento-real':state.realReturnResult,
+        suscripciones:state.expenses,anomalias:state.anomalyResult,widgets:state.widgetConfig,salario:state.salaryResult,
+        'tipo-cambio':state.quotes,reajustes:{result:state.contractResult,comparison:state.contractComparison},laboratorio:state.labResult,
+        avanzada:state.advancedResult,informes:state.reportResult
+      };
+      if(key === 'precios') return {shrink:state.shrinkResult,unitComparison:state.unitCompareResult,goal:state.goalResult,weightedBasket:state.basket,personal:state.personalResult,products:state.productRecords};
+      if(key === 'datos') return {historical:state.internationalResult,comparison:state.comparisonResult};
+      if(key === 'historial') return {calculations:readHistory(),scenarios:readScenarios(),salary:readSalaryHistory(),personalBaskets:readPersonalBaskets(),products:readProductRecords()};
+      if(key === 'educacion'){
+        const amount=parseLocalized($('educationAmount').value),rate=Number($('educationRate').value)/100,years=Number($('educationYears').value);
+        return {amount:amount,rate:rate,years:years,result:Number.isFinite(amount) && amount > 0 ? educationEngine.simulate(amount,rate,years) : null,completed:$$('[data-education-complete]:checked').map(function(input){ return input.dataset.educationComplete; })};
+      }
+      return map[key] == null ? null : map[key];
+    }
+
+    function universalExportSafeClone(value){
+      try{
+        return JSON.parse(JSON.stringify(value,function(key,item){
+          if(typeof item === 'number' && !Number.isFinite(item)) return null;
+          if(item instanceof Element || typeof item === 'function') return undefined;
+          return item;
+        }));
+      }catch(error){ return null; }
+    }
+
+    function universalExportCharts(key){
+      const charts=[];
+      if(key === 'calculadora'){
+        const report=calculatorProfessionalReport(); (report && report.charts || []).forEach(function(chart){ charts.push(chart); });
+      }else if(key === 'presupuesto' && state.budgetResult){
+        const item=state.budgetResult;
+        charts.push(reportChart('Proyección del presupuesto',[{name:'Gastos',color:'#ff9d44',values:item.projection.map(function(point){ return {label:formatNumber(point.months,0,2)+' meses',value:point.total}; })},{name:'Ahorro',color:'#55f5e6',values:item.projection.map(function(point){ return {label:formatNumber(point.months,0,2)+' meses',value:point.saving}; })}],' '+item.input.currency));
+      }else if(key === 'tiempo-dinero' && state.timeMoneyResult && state.timeMoneyResult.selection){
+        const item=state.timeMoneyResult,base=item.selection.first.index;
+        charts.push(reportChart('Índice y poder adquisitivo',[{name:'Índice base 100',color:'#ffd400',values:item.selection.points.map(function(point){ return {label:point.period,value:point.index/base*100}; })},{name:'Poder adquisitivo',color:'#55f5e6',values:item.selection.points.map(function(point){ return {label:point.period,value:base/point.index*100}; })}],''));
+      }else if(key === 'rendimiento-real' && state.realReturnResult){
+        const item=state.realReturnResult;
+        charts.push(reportChart('Capital nominal y real',[{name:'Nominal',color:'#ffd400',values:[{label:'Inicial',value:item.initial},{label:'Final',value:item.final}]},{name:'Real',color:'#55f5e6',values:[{label:'Inicial',value:item.initial},{label:'Ajustado',value:item.adjusted}]}],' '+item.currency));
+      }else if(key === 'suscripciones'){
+        state.expenses.slice(0,6).forEach(function(item,index){ const history=expenseTracker.sortedHistory(item); if(history.length) charts.push(reportChart('Evolución de '+item.name,[{name:item.name,color:CHART_COLORS[index%CHART_COLORS.length],values:history.map(function(point){ return {label:point.date,value:point.price}; })}],' '+item.currency)); });
+      }else if(key === 'anomalias' && state.anomalyResult){
+        charts.push(reportChart('Historial analizado',[{name:'Precio',color:'#ff6900',values:state.anomalyResult.history.map(function(point){ return {label:point.date,value:point.price}; })}],' '));
+      }else if(key === 'educacion'){
+        const payload=universalExportStatePayload(key),item=payload.result;
+        if(item) charts.push(reportChart('Experimento de inflación',[{name:'Costo',color:'#ffd400',values:[{label:'Hoy',value:payload.amount},{label:'Futuro',value:item.futureCost}]},{name:'Poder adquisitivo',color:'#55f5e6',values:[{label:'Hoy',value:payload.amount},{label:'Futuro',value:item.purchasingAmount}]}],' BRL'));
+      }else if(key === 'widgets' && state.widgetConfig){
+        charts.push(reportChart('Valores del widget',[{name:'Entradas',color:'#55a8ff',values:[{label:'A',value:state.widgetConfig.a},{label:'B',value:state.widgetConfig.b},{label:'C',value:state.widgetConfig.c}]}],''));
+      }else if(key === 'precios'){
+        ['shrink','unit','goals','personal','products'].forEach(function(source){ collectReportCharts([source]).forEach(function(chart){ charts.push(chart); }); });
+      }else if(key === 'salario'){
+        const report=salaryProfessionalReport(); (report && report.charts || []).forEach(function(chart){ charts.push(chart); });
+      }else if(key === 'tipo-cambio'){
+        const records=Object.keys(state.quotes.records || {}).map(function(code){ return {label:code,value:Number(state.quotes.records[code] && state.quotes.records[code].rate)}; }).filter(function(point){ return Number.isFinite(point.value); });
+        if(records.length) charts.push(reportChart('Cotizaciones frente a BRL',[{name:'Cotización',color:'#55a8ff',values:records}],' BRL'));
+      }else if(key === 'datos'){
+        collectReportCharts(['international','comparison']).forEach(function(chart){ charts.push(chart); });
+      }else if(key === 'reajustes'){
+        const report=contractProfessionalReport(); (report && report.charts || []).forEach(function(chart){ charts.push(chart); });
+      }else if(key === 'laboratorio' && state.labResult){
+        collectReportCharts(['lab']).forEach(function(chart){ charts.push(chart); });
+      }else if(key === 'avanzada' && state.advancedResult){
+        collectReportCharts(['advanced']).forEach(function(chart){ charts.push(chart); });
+      }else if(key === 'informes' && state.reportResult){
+        (state.reportResult.charts || []).forEach(function(chart){ charts.push(chart); });
+      }
+      return charts.filter(Boolean);
+    }
+
+    function captureUniversalExportSnapshot(key){
+      const meta=UNIVERSAL_EXPORT_MODULES[key];
+      if(!meta) throw new Error('Módulo no compatible.');
+      const root=$('view-'+meta.route);
+      if(!root) throw new Error('No se encontró la herramienta.');
+      const reportData=key === 'informes' && state.reportResult ? state.reportResult : null;
+      const fields=[];
+      root.querySelectorAll('input,select,textarea').forEach(function(field){
+        if(!universalExportVisible(field) || ['button','submit','file','password'].includes(field.type)) return;
+        const value=universalExportValue(field);
+        if(value !== '') fields.push({label:universalExportFieldLabel(field),value:value,number:universalExportNumeric(value)});
+      });
+      const metrics=[];
+      root.querySelectorAll('.metric-tile,.stat,.tracker-stat,.summary-stat,.classification').forEach(function(card){
+        if(!universalExportVisible(card)) return;
+        const label=card.querySelector('span,small,h3,h4'),value=card.querySelector('strong,b,[data-value]');
+        if(label && value){ const text=String(value.textContent || '').replace(/\s+/g,' ').trim(); if(text && text !== '—') metrics.push({label:String(label.textContent || '').replace(/\s+/g,' ').trim(),value:text,number:universalExportNumeric(text)}); }
+      });
+      const tables=[];
+      root.querySelectorAll('table').forEach(function(table,index){
+        if(!universalExportVisible(table)) return;
+        const headers=Array.from(table.querySelectorAll('thead th')).map(function(cell){ return String(cell.textContent || '').replace(/\s+/g,' ').trim(); });
+        const rows=Array.from(table.querySelectorAll('tbody tr')).slice(0,1500).map(function(row){ return Array.from(row.querySelectorAll('th,td')).map(function(cell){ return String(cell.textContent || '').replace(/\s+/g,' ').trim(); }); }).filter(function(row){ return row.some(Boolean); });
+        if(headers.length || rows.length) tables.push({title:String(table.querySelector('caption') && table.querySelector('caption').textContent || 'Tabla '+(index+1)).replace(/\s+/g,' ').trim(),headers:headers,rows:rows});
+      });
+      if(reportData){
+        (reportData.sections || []).forEach(function(section,index){
+          const rows=(section.lines || []).map(function(line){
+            const text=String(line == null ? '' : line).replace(/\s+/g,' ').trim();
+            if(!text) return null;
+            const separator=text.indexOf(':');
+            return separator > 0 ? [text.slice(0,separator).trim(),text.slice(separator+1).trim()] : ['Contenido',text];
+          }).filter(Boolean);
+          if(rows.length) tables.push({title:String(section.title || 'Sección '+(index+1)).replace(/\s+/g,' ').trim(),headers:['Campo','Valor'],rows:rows});
+        });
+        (reportData.tables || []).forEach(function(table,index){
+          const columns=(table.columns || []).filter(function(column){ return column && column.label; });
+          const rows=(table.rows || []).slice(0,1500).map(function(row){
+            if(Array.isArray(row)) return row.map(function(value){ return String(value == null ? '' : value); });
+            return columns.map(function(column){ return String(row && row[column.key] == null ? '' : row[column.key]); });
+          }).filter(function(row){ return row.some(Boolean); });
+          if(columns.length && rows.length) tables.push({title:String(table.title || 'Tabla del informe '+(index+1)).replace(/\s+/g,' ').trim(),headers:columns.map(function(column){ return column.label; }),rows:rows});
+        });
+        metrics.unshift(
+          {label:'Secciones del informe',value:String((reportData.sections || []).length),number:(reportData.sections || []).length},
+          {label:'Visualizaciones',value:String((reportData.charts || []).length),number:(reportData.charts || []).length}
+        );
+      }
+      const sources=[];
+      root.querySelectorAll('.source-strip span,.source-state,.source-badge').forEach(function(node){ const text=String(node.textContent || '').replace(/\s+/g,' ').trim(); if(text && !sources.includes(text)) sources.push(text); });
+      const records=[];
+      metrics.forEach(function(item,index){ records.push({section:'Métricas',row:index+1,field:item.label,value:item.value,number:item.number}); });
+      fields.forEach(function(item,index){ records.push({section:'Entradas',row:index+1,field:item.label,value:item.value,number:item.number}); });
+      tables.forEach(function(table){ table.rows.forEach(function(row,rowIndex){ row.forEach(function(value,columnIndex){ records.push({section:table.title,row:rowIndex+1,field:table.headers[columnIndex] || 'Columna '+(columnIndex+1),value:value,number:universalExportNumeric(value)}); }); }); });
+      const snapshot={schemaVersion:1,type:'universal-module-export',appVersion:APP_VERSION,module:key,title:reportData && reportData.title ? reportData.title : meta.title,slug:meta.slug,createdAt:nowIso(),methodology:reportData && reportData.methodology ? reportData.methodology : meta.methodology,fields:fields,metrics:metrics,tables:tables,sources:sources,records:records,charts:universalExportCharts(key),data:universalExportSafeClone(universalExportStatePayload(key))};
+      if(!snapshot.sources.includes('Datos introducidos o guardados por el usuario · procesamiento local')) snapshot.sources.unshift('Datos introducidos o guardados por el usuario · procesamiento local');
+      return snapshot;
+    }
+
+    function universalExportReport(snapshot,options){
+      if(snapshot.module === 'informes' && snapshot.data && Array.isArray(snapshot.data.sections)){
+        const source=snapshot.data;
+        return {
+          appVersion:APP_VERSION,
+          title:source.title || snapshot.title,
+          createdAt:options.includeDate === false ? null : source.createdAt || snapshot.createdAt,
+          methodology:options.includeMethodology === false ? '' : source.methodology || snapshot.methodology,
+          assumptions:options.includeSources === false ? '' : source.assumptions || 'Fuentes y procedencia: '+snapshot.sources.join(' · '),
+          sections:options.includeData === false ? [] : source.sections,
+          charts:options.includeCharts === false ? [] : source.charts || [],
+          tables:options.includeData === false ? [] : source.tables || [],
+          design:Object.assign({style:'contrast',density:'comfortable',cover:true},source.design || {},{summary:options.includeSummary !== false})
+        };
+      }
+      const sections=[];
+      if(options.includeSummary !== false){
+        const lines=snapshot.metrics.length ? snapshot.metrics.map(function(item){ return item.label+': '+item.value; }) : ['Módulo: '+snapshot.title,'Registros capturados: '+snapshot.records.length];
+        sections.push(reportSection('Resumen',lines));
+      }
+      if(options.includeData !== false && snapshot.fields.length) sections.push(reportSection('Datos utilizados',snapshot.fields.map(function(item){ return item.label+': '+item.value; })));
+      const tables=options.includeData === false ? [] : snapshot.tables.map(function(table){
+        const columns=(table.headers.length ? table.headers : (table.rows[0] || []).map(function(_,index){ return 'Columna '+(index+1); })).map(function(label,index){ return {key:'c'+index,label:label,weight:1}; });
+        return {title:table.title,columns:columns,rows:table.rows.map(function(row){ const record={}; columns.forEach(function(column,index){ record[column.key]=row[index] == null ? '' : row[index]; }); return record; })};
+      });
+      return {appVersion:APP_VERSION,title:snapshot.title,createdAt:options.includeDate === false ? null : snapshot.createdAt,methodology:options.includeMethodology === false ? '' : snapshot.methodology,assumptions:options.includeSources === false ? '' : 'Fuentes y procedencia: '+snapshot.sources.join(' · '),sections:sections,charts:options.includeCharts === false ? [] : snapshot.charts,tables:tables,design:{style:'contrast',density:'comfortable',cover:true,summary:options.includeSummary !== false}};
+    }
+
+    function universalExportFilename(snapshot,extension,kind){
+      const suffix=kind ? '-'+String(kind).replace(/[^a-z0-9-]+/gi,'-').toLowerCase() : '';
+      return 'inflation-insights-'+snapshot.slug+suffix+'-v0141.'+extension;
+    }
+
+    function universalXlsxDrawingXml(title){
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><xdr:wsDr xmlns:xdr="http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><xdr:twoCellAnchor><xdr:from><xdr:col>3</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>2</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:from><xdr:to><xdr:col>11</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>22</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:to><xdr:graphicFrame macro=""><xdr:nvGraphicFramePr><xdr:cNvPr id="2" name="'+xlsxXml(title)+'"/><xdr:cNvGraphicFramePr/></xdr:nvGraphicFramePr><xdr:xfrm/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/chart"><c:chart xmlns:c="http://schemas.openxmlformats.org/drawingml/2006/chart" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" r:id="rId1"/></a:graphicData></a:graphic></xdr:graphicFrame><xdr:clientData/></xdr:twoCellAnchor></xdr:wsDr>';
+    }
+
+    function universalXlsxChartXml(series,categories){
+      const seriesXml=series.map(function(item,index){
+        const color=String(item.color || '#007a5e').replace('#','').toUpperCase();
+        return '<c:ser><c:idx val="'+index+'"/><c:order val="'+index+'"/><c:tx><c:v>'+xlsxXml(item.name)+'</c:v></c:tx><c:spPr><a:ln w="28575"><a:solidFill><a:srgbClr val="'+color+'"/></a:solidFill></a:ln></c:spPr><c:marker><c:symbol val="circle"/><c:size val="5"/></c:marker><c:cat><c:strRef><c:f>'+xlsxXml(categories)+'</c:f></c:strRef></c:cat><c:val><c:numRef><c:f>'+xlsxXml(item.range)+'</c:f></c:numRef></c:val></c:ser>';
+      }).join('');
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><c:chartSpace xmlns:c="http://schemas.openxmlformats.org/drawingml/2006/chart" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><c:chart><c:autoTitleDeleted val="1"/><c:plotArea><c:layout/><c:lineChart><c:grouping val="standard"/><c:varyColors val="0"/>'+seriesXml+'<c:axId val="1984600768"/><c:axId val="1984602480"/></c:lineChart><c:catAx><c:axId val="1984600768"/><c:scaling><c:orientation val="minMax"/></c:scaling><c:delete val="0"/><c:axPos val="b"/><c:tickLblPos val="nextTo"/><c:crossAx val="1984602480"/><c:crosses val="autoZero"/><c:auto val="1"/><c:lblAlgn val="ctr"/><c:lblOffset val="100"/></c:catAx><c:valAx><c:axId val="1984602480"/><c:scaling><c:orientation val="minMax"/></c:scaling><c:delete val="0"/><c:axPos val="l"/><c:majorGridlines/><c:numFmt formatCode="#,##0.00" sourceLinked="0"/><c:tickLblPos val="nextTo"/><c:crossAx val="1984600768"/><c:crosses val="autoZero"/><c:crossBetween val="between"/></c:valAx></c:plotArea><c:legend><c:legendPos val="b"/><c:layout/></c:legend><c:plotVisOnly val="1"/><c:dispBlanksAs val="gap"/></c:chart></c:chartSpace>';
+    }
+
+    function universalXlsxSheets(snapshot,mode,options){
+      const header=function(values){ return values.map(function(value){ return {v:value,s:1}; }); };
+      const title=function(value){ return [{v:value,s:2}]; };
+      const dataRows=[title(snapshot.title),[{v:'Exportación unificada',s:3},{v:APP_VERSION,s:3}],header(['Sección','Fila','Campo','Valor mostrado','Valor numérico'])].concat(snapshot.records.map(function(record){ return [{v:record.section,s:3},{v:record.row,s:6},{v:record.field,s:3},{v:record.value,s:3},{v:record.number == null ? '' : record.number,s:record.number == null ? 3 : 4}]; }));
+      const dataEnd=Math.max(4,dataRows.length);
+      const summaryRows=[title(snapshot.title),[{v:'Tipo',s:3},{v:mode === 'data' ? 'Datos' : 'Informe',s:3}],[{v:'Métrica',s:1},{v:'Valor',s:1}],[{v:'Registros',s:3},{v:snapshot.records.length,s:6,f:"COUNTA('Datos'!D4:D"+dataEnd+')'}],[{v:'Valores numéricos',s:3},{v:snapshot.records.filter(function(record){ return record.number != null; }).length,s:6,f:"COUNT('Datos'!E4:E"+dataEnd+')'}],[{v:'Tablas',s:3},{v:snapshot.tables.length,s:6}],[{v:'Gráficos',s:3},{v:options.includeCharts === false ? 0 : snapshot.charts.length,s:6}],[{v:'Versión',s:3},{v:APP_VERSION,s:3}],[{v:'Generado',s:3},{v:options.includeDate === false ? 'No incluido' : xlsxDateSerial(snapshot.createdAt),s:options.includeDate === false ? 3 : 7}]];
+      snapshot.metrics.slice(0,30).forEach(function(metric){ summaryRows.push([{v:metric.label,s:3},{v:metric.number == null ? metric.value : metric.number,s:metric.number == null ? 3 : 4}]); });
+      const selectedChart=options.includeCharts === false ? null : snapshot.charts[0];
+      const series=selectedChart ? selectedChart.series.slice(0,6) : [];
+      const pointCount=series.reduce(function(max,item){ return Math.max(max,item.values.length); },0);
+      const graphRows=[title(selectedChart ? selectedChart.title : 'Gráficos'),[{v:'Datos editables para el gráfico.',s:3}],header(['Punto'].concat(series.map(function(item){ return item.name; })))];
+      for(let index=0;index<pointCount;index+=1){ const labelSource=series.find(function(item){ return item.values[index]; }),label=labelSource ? labelSource.values[index].label : 'Punto '+(index+1); graphRows.push([{v:label,s:3}].concat(series.map(function(item){ const point=item.values[index]; return {v:point ? point.value : '',s:point ? 4 : 3}; }))); }
+      if(!series.length) graphRows.push([{v:'No había un gráfico disponible al exportar.',s:3}]);
+      const methodologyRows=[title('Metodología'),header(['Elemento','Detalle']),[{v:'Método',s:3},{v:options.includeMethodology === false ? 'No incluido' : snapshot.methodology,s:3}],[{v:'Procesamiento',s:3},{v:'Generado localmente; no se enviaron resultados a un servidor.',s:3}],[{v:'Versión',s:3},{v:APP_VERSION,s:3}]];
+      const sourceRows=[title('Fuentes'),header(['N.º','Procedencia'])].concat((options.includeSources === false ? ['No incluidas'] : snapshot.sources).map(function(source,index){ return [{v:index+1,s:6},{v:source,s:3}]; }));
+      return [
+        {name:'Resumen',rows:summaryRows,widths:[31,42],freeze:3,merges:['A1:B1'],selected:mode !== 'data'},
+        {name:'Datos',rows:dataRows,widths:[28,19,34,44,18],freeze:3,filter:'A3:E'+dataEnd,merges:['A1:E1'],selected:mode === 'data'},
+        {name:'Gráficos',rows:graphRows,widths:[20].concat(series.map(function(){ return 20; })).concat([3,12,12,12,12,12,12,12,12]),freeze:3,merges:['A1:L1','A2:B2'],drawing:Boolean(series.length)},
+        {name:'Metodología',rows:methodologyRows,widths:[22,88],freeze:2,merges:['A1:B1']},
+        {name:'Fuentes',rows:sourceRows,widths:[10,96],freeze:2,merges:['A1:B1']}
+      ];
+    }
+
+    function exportUniversalXlsx(snapshot,mode,options){
+      const sheets=universalXlsxSheets(snapshot,mode,options),files={},graphSheet=sheets[2],hasChart=Boolean(graphSheet.drawing),chart=snapshot.charts[0];
+      sheets.forEach(function(sheet,index){ files['xl/worksheets/sheet'+(index+1)+'.xml']=xlsxSheetXml(sheet); });
+      const types=['<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/><Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/><Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>'].concat(sheets.map(function(_,index){ return '<Override PartName="/xl/worksheets/sheet'+(index+1)+'.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'; }));
+      if(hasChart) types.push('<Override PartName="/xl/drawings/drawing1.xml" ContentType="application/vnd.openxmlformats-officedocument.drawing+xml"/><Override PartName="/xl/charts/chart1.xml" ContentType="application/vnd.openxmlformats-officedocument.drawingml.chart+xml"/>');
+      types.push('</Types>'); files['[Content_Types].xml']=types.join('');
+      files['_rels/.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/></Relationships>';
+      files['docProps/core.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><dc:title>'+xlsxXml(snapshot.title)+'</dc:title><dc:creator>Inflation Insights</dc:creator><cp:lastModifiedBy>Inflation Insights</cp:lastModifiedBy><dcterms:created xsi:type="dcterms:W3CDTF">'+snapshot.createdAt+'</dcterms:created><dcterms:modified xsi:type="dcterms:W3CDTF">'+snapshot.createdAt+'</dcterms:modified></cp:coreProperties>';
+      files['docProps/app.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"><Application>Inflation Insights</Application><AppVersion>0.14.1</AppVersion></Properties>';
+      files['xl/workbook.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><bookViews><workbookView activeTab="'+(mode === 'data' ? 1 : 0)+'"/></bookViews><sheets>'+sheets.map(function(sheet,index){ return '<sheet name="'+xlsxXml(sheet.name)+'" sheetId="'+(index+1)+'" r:id="rId'+(index+1)+'"/>'; }).join('')+'</sheets><calcPr calcId="191029" fullCalcOnLoad="1" forceFullCalc="1"/></workbook>';
+      files['xl/_rels/workbook.xml.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+sheets.map(function(_,index){ return '<Relationship Id="rId'+(index+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet'+(index+1)+'.xml"/>'; }).join('')+'<Relationship Id="rId'+(sheets.length+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>';
+      files['xl/styles.xml']=xlsxStylesXml();
+      if(hasChart){
+        files['xl/worksheets/_rels/sheet3.xml.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/drawing" Target="../drawings/drawing1.xml"/></Relationships>';
+        files['xl/drawings/drawing1.xml']=universalXlsxDrawingXml(chart.title);
+        files['xl/drawings/_rels/drawing1.xml.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/chart" Target="../charts/chart1.xml"/></Relationships>';
+        const series=chart.series.slice(0,6),graphEnd=3+series.reduce(function(max,item){ return Math.max(max,item.values.length); },0);
+        files['xl/charts/chart1.xml']=universalXlsxChartXml(series.map(function(item,index){ return {name:item.name,color:item.color,range:"'Gráficos'!$"+xlsxColumnName(index+1)+'$4:$'+xlsxColumnName(index+1)+'$'+graphEnd}; }),"'Gráficos'!$A$4:$A$"+graphEnd);
+      }
+      downloadBlob(universalExportFilename(snapshot,'xlsx',mode),xlsxZip(files),'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    }
+
+    function universalInteractiveChartMarkup(chart,index){
+      const width=760,height=320,pad=54,series=chart.series.slice(0,8),values=series.reduce(function(list,item){ return list.concat(item.values.map(function(point){ return point.value; })); },[]);
+      if(!values.length) return '';
+      let min=Math.min.apply(null,values),max=Math.max.apply(null,values);
+      if(min === max){ min-=1; max+=1; }
+      const maxPoints=Math.max.apply(null,series.map(function(item){ return item.values.length; })),x=function(position){ return pad+(width-pad*2)*(maxPoints <= 1 ? .5 : position/(maxPoints-1)); },y=function(value){ return height-pad-(value-min)/(max-min)*(height-pad*2); };
+      const controls=series.map(function(item,seriesIndex){ return '<label><input type="checkbox" checked data-export-series="chart-'+index+'-'+seriesIndex+'"><span style="--series:'+escapeXml(item.color)+'"></span>'+escapeXml(item.name)+'</label>'; }).join('');
+      const grid=[0,.25,.5,.75,1].map(function(position){ const value=max-(max-min)*position,py=pad+(height-pad*2)*position; return '<line x1="'+pad+'" y1="'+py+'" x2="'+(width-pad)+'" y2="'+py+'"/><text x="'+(pad-9)+'" y="'+(py+4)+'" text-anchor="end">'+escapeXml(formatNumber(value,0,2))+'</text>'; }).join('');
+      const groups=series.map(function(item,seriesIndex){
+        const points=item.values.map(function(point,pointIndex){ return x(pointIndex)+','+y(point.value); }).join(' ');
+        const dots=item.values.map(function(point,pointIndex){ const label=item.name+' · '+point.label+': '+formatNumber(point.value,0,4)+(chart.suffix || ''); return '<circle cx="'+x(pointIndex)+'" cy="'+y(point.value)+'" r="6" tabindex="0" role="button" data-export-point aria-label="'+escapeXml(label)+'" data-label="'+escapeXml(label)+'"/>'; }).join('');
+        return '<g data-export-series-group="chart-'+index+'-'+seriesIndex+'" style="--series:'+escapeXml(item.color)+'"><polyline points="'+points+'"/>'+dots+'</g>';
+      }).join('');
+      return '<article class="chart-card"><h2>'+escapeXml(chart.title)+'</h2><div class="chart-controls">'+controls+'</div><svg viewBox="0 0 '+width+' '+height+'" role="img" aria-label="'+escapeXml(chart.title)+'"><g class="grid">'+grid+'</g>'+groups+'</svg></article>';
+    }
+
+    function exportUniversalHtml(snapshot,options){
+      const chartMarkup=options.includeCharts === false ? '' : snapshot.charts.map(universalInteractiveChartMarkup).join('');
+      const metrics=options.includeSummary === false ? '' : '<section class="metrics">'+(snapshot.metrics.length ? snapshot.metrics : [{label:'Registros capturados',value:String(snapshot.records.length)}]).slice(0,18).map(function(item){ return '<article><span>'+escapeXml(item.label)+'</span><strong>'+escapeXml(item.value)+'</strong></article>'; }).join('')+'</section>';
+      const tables=options.includeData === false ? '' : snapshot.tables.slice(0,12).map(function(table){ return '<section class="table-card"><h2>'+escapeXml(table.title)+'</h2><div><table><thead><tr>'+table.headers.map(function(value){ return '<th>'+escapeXml(value)+'</th>'; }).join('')+'</tr></thead><tbody>'+table.rows.slice(0,500).map(function(row){ return '<tr>'+row.map(function(value){ return '<td>'+escapeXml(value)+'</td>'; }).join('')+'</tr>'; }).join('')+'</tbody></table></div></section>'; }).join('');
+      const methodology=options.includeMethodology === false ? '' : '<section class="note"><h2>Metodología</h2><p>'+escapeXml(snapshot.methodology)+'</p></section>';
+      const sources=options.includeSources === false ? '' : '<section class="note"><h2>Fuentes</h2><ul>'+snapshot.sources.map(function(source){ return '<li>'+escapeXml(source)+'</li>'; }).join('')+'</ul></section>';
+      const date=options.includeDate === false ? '' : '<p>Generado '+escapeXml(formatDateTime(snapshot.createdAt))+' · '+escapeXml(APP_VERSION)+'</p>';
+      const styles=':root{color-scheme:dark;--yellow:#ffd400;--cyan:#55f5e6;--ink:#08090d}*{box-sizing:border-box}body{margin:0;min-width:280px;padding:clamp(12px,3vw,32px);color:#f7f7fb;background:#08090d;font-family:Inter,system-ui,sans-serif;line-height:1.5}header,main{width:min(1180px,100%);margin:auto}header{padding:clamp(20px,4vw,42px);border:3px solid var(--yellow);background:#10131b;box-shadow:10px 10px 0 #000}h1{margin:4px 0;font-size:clamp(2rem,6vw,4.4rem);line-height:.95}h2{margin:0 0 14px}.eyebrow{color:var(--yellow);font-weight:900;text-transform:uppercase;letter-spacing:.12em}.help{padding:12px;border-left:6px solid var(--cyan);background:#171b24}.detail{position:sticky;z-index:5;top:8px;margin:18px 0;padding:12px 15px;border:2px solid var(--cyan);background:#10131b}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}.metrics article,.note,.table-card,.chart-card{margin:18px 0;padding:18px;border:2px solid #363b46;background:#11141c}.metrics span{display:block;color:#b9bec9;font-weight:800}.metrics strong{display:block;margin-top:8px;color:var(--yellow);font-size:clamp(1.1rem,3vw,1.8rem)}.chart-controls{display:flex;flex-wrap:wrap;gap:8px}.chart-controls label{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #555;background:#171b24;cursor:pointer;font-weight:800}.chart-controls span{width:13px;height:13px;background:var(--series)}svg{display:block;width:100%;min-width:620px;height:auto;margin-top:12px;background:#08090d}.chart-card{overflow:auto}.grid line{stroke:#303541}.grid text{fill:#9ea5b2;font:12px system-ui}[data-export-series-group] polyline{fill:none;stroke:var(--series);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1800;stroke-dashoffset:1800;animation:draw 1.15s ease forwards}[data-export-point]{fill:var(--series);stroke:#08090d;stroke-width:3;cursor:pointer;animation:point .4s ease backwards}[data-export-point]:hover,[data-export-point]:focus{stroke:#fff;stroke-width:5;outline:none;filter:drop-shadow(0 0 7px var(--series))}@keyframes draw{to{stroke-dashoffset:0}}@keyframes point{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}.table-card>div{overflow:auto}table{width:100%;border-collapse:collapse}th,td{padding:9px;border:1px solid #404550;text-align:left;white-space:nowrap}th{color:#111;background:var(--yellow)}.note ul{padding-left:22px}:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}@media(max-width:760px){.metrics{grid-template-columns:1fr}body{padding:10px}header{box-shadow:5px 5px 0 #000}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}';
+      const script="(function(){const detail=document.querySelector('[data-export-detail]');function point(target){if(!target)return;detail.textContent=target.dataset.label||target.getAttribute('aria-label');}document.addEventListener('pointerover',function(event){point(event.target.closest&&event.target.closest('[data-export-point]'));});document.addEventListener('focusin',function(event){point(event.target.closest&&event.target.closest('[data-export-point]'));});document.addEventListener('click',function(event){point(event.target.closest&&event.target.closest('[data-export-point]'));});document.addEventListener('keydown',function(event){const target=event.target.closest&&event.target.closest('[data-export-point]');if(target&&(event.key==='Enter'||event.key===' ')){event.preventDefault();point(target);}});document.addEventListener('change',function(event){const input=event.target.closest&&event.target.closest('[data-export-series]');if(!input)return;document.querySelectorAll('[data-export-series-group=\"'+input.dataset.exportSeries+'\"]').forEach(function(group){group.hidden=!input.checked;});detail.textContent=input.checked?'Serie mostrada.':'Serie oculta.';});})();";
+      const html='<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><title>'+escapeXml(snapshot.title)+' · Inflation Insights</title><style>'+styles+'</style></head><body><header><p class="eyebrow">Inflation Insights</p><h1>'+escapeXml(snapshot.title)+'</h1>'+date+'<p class="help">Archivo autocontenido: funciona sin internet. Usa ratón, pantalla táctil o Tab para explorar los puntos y las casillas para mostrar u ocultar series.</p></header><main>'+metrics+'<div class="detail" data-export-detail role="status" aria-live="polite">Selecciona un punto para leer su valor.</div>'+chartMarkup+tables+methodology+sources+'</main><scr'+'ipt>'+script+'</scr'+'ipt></body></html>';
+      downloadBlob(universalExportFilename(snapshot,'html','interactivo'),html,'text/html;charset=utf-8');
+    }
+
+    function universalPngSvg(snapshot,chart){
+      const width=1400,height=900,pad=86;
+      let markup='<svg xmlns="http://www.w3.org/2000/svg" width="'+width+'" height="'+height+'" viewBox="0 0 '+width+' '+height+'"><rect width="100%" height="100%" fill="#08090d"/><rect x="28" y="28" width="1344" height="844" fill="none" stroke="#ffd400" stroke-width="6"/><text x="'+pad+'" y="105" fill="#ffd400" font-family="system-ui" font-size="24" font-weight="900">INFLATION INSIGHTS · '+escapeXml(APP_VERSION)+'</text><text x="'+pad+'" y="168" fill="#ffffff" font-family="system-ui" font-size="48" font-weight="900">'+escapeXml(snapshot.title.slice(0,44))+'</text>';
+      if(chart && chart.series.length){
+        const series=chart.series.slice(0,6),values=series.reduce(function(list,item){ return list.concat(item.values.map(function(point){ return point.value; })); },[]); let min=Math.min.apply(null,values),max=Math.max.apply(null,values); if(min === max){ min-=1;max+=1; }
+        const left=150,top=250,chartWidth=1100,chartHeight=480,maxPoints=Math.max.apply(null,series.map(function(item){ return item.values.length; })),x=function(index){ return left+chartWidth*(maxPoints <= 1 ? .5 : index/(maxPoints-1)); },y=function(value){ return top+chartHeight-(value-min)/(max-min)*chartHeight; };
+        markup+='<text x="'+pad+'" y="225" fill="#55f5e6" font-family="system-ui" font-size="28" font-weight="800">'+escapeXml(chart.title.slice(0,64))+'</text>';
+        [0,.25,.5,.75,1].forEach(function(position){ const py=top+chartHeight*position,value=max-(max-min)*position; markup+='<line x1="'+left+'" y1="'+py+'" x2="'+(left+chartWidth)+'" y2="'+py+'" stroke="#303541" stroke-width="2"/><text x="'+(left-16)+'" y="'+(py+7)+'" text-anchor="end" fill="#b8bdc8" font-family="system-ui" font-size="19">'+escapeXml(formatNumber(value,0,2))+'</text>'; });
+        series.forEach(function(item,seriesIndex){ const points=item.values.map(function(point,index){ return x(index)+','+y(point.value); }).join(' '); markup+='<polyline points="'+points+'" fill="none" stroke="'+escapeXml(item.color)+'" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>'; item.values.forEach(function(point,index){ markup+='<circle cx="'+x(index)+'" cy="'+y(point.value)+'" r="9" fill="'+escapeXml(item.color)+'" stroke="#08090d" stroke-width="4"/>'; }); const legendX=pad+(seriesIndex%3)*405,legendY=790+Math.floor(seriesIndex/3)*34; markup+='<rect x="'+legendX+'" y="'+(legendY-18)+'" width="20" height="20" fill="'+escapeXml(item.color)+'"/><text x="'+(legendX+31)+'" y="'+legendY+'" fill="#fff" font-family="system-ui" font-size="19" font-weight="800">'+escapeXml(item.name.slice(0,30))+'</text>'; });
+      }else{
+        const metrics=(snapshot.metrics.length ? snapshot.metrics : [{label:'Registros capturados',value:String(snapshot.records.length)}]).slice(0,8);
+        metrics.forEach(function(item,index){ const column=index%2,row=Math.floor(index/2),x=pad+column*620,y=240+row*130; markup+='<rect x="'+x+'" y="'+y+'" width="565" height="104" fill="#11141c" stroke="#404550" stroke-width="3"/><text x="'+(x+22)+'" y="'+(y+34)+'" fill="#b8bdc8" font-family="system-ui" font-size="18" font-weight="800">'+escapeXml(item.label.slice(0,42))+'</text><text x="'+(x+22)+'" y="'+(y+78)+'" fill="#ffd400" font-family="system-ui" font-size="30" font-weight="900">'+escapeXml(item.value.slice(0,32))+'</text>'; });
+      }
+      markup+='<text x="'+pad+'" y="848" fill="#aeb3bf" font-family="system-ui" font-size="18">Generado localmente · '+escapeXml(formatDateTime(snapshot.createdAt))+'</text></svg>';
+      return markup;
+    }
+
+    function downloadUniversalPng(snapshot,chart){
+      return new Promise(function(resolve,reject){
+        if(DEBUG_NO_IMAGE){ reject(new Error('La exportación de imagen está desactivada en modo de prueba.')); return; }
+        const blob=new Blob([universalPngSvg(snapshot,chart)],{type:'image/svg+xml;charset=utf-8'}),url=URL.createObjectURL(blob),image=new Image();
+        image.onload=function(){
+          try{
+            const canvas=document.createElement('canvas'); canvas.width=1400; canvas.height=900; const context=canvas.getContext('2d',{alpha:false}); context.fillStyle='#08090d'; context.fillRect(0,0,1400,900); context.drawImage(image,0,0,1400,900);
+            canvas.toBlob(function(output){ URL.revokeObjectURL(url); if(!output){ reject(new Error('El navegador no pudo crear el PNG.')); return; } downloadBlob(universalExportFilename(snapshot,'png','grafico'),output,'image/png'); resolve(); },'image/png',1);
+          }catch(error){ URL.revokeObjectURL(url); reject(error); }
+        };
+        image.onerror=function(){ URL.revokeObjectURL(url); reject(new Error('El navegador no pudo interpretar el gráfico.')); };
+        image.src=url;
+      });
+    }
+
+    function universalExportOptions(){
+      return {
+        includeSummary:$('universalExportIncludeSummary').checked,
+        includeData:$('universalExportIncludeData').checked,
+        includeCharts:$('universalExportIncludeCharts').checked,
+        includeMethodology:$('universalExportIncludeMethodology').checked,
+        includeSources:$('universalExportIncludeSources').checked,
+        includeDate:$('universalExportIncludeDate').checked
+      };
+    }
+
+    function updateUniversalExportControls(){
+      const format=$('universalExportFormat').value,hasCharts=Boolean(universalExportSnapshot && universalExportSnapshot.charts.length);
+      $('universalExportMode').closest('.field').hidden=format !== 'xlsx';
+      $('universalExportChart').closest('.field').hidden=format !== 'png';
+      $('universalExportIncludeCharts').disabled=!hasCharts;
+      if(!hasCharts) $('universalExportIncludeCharts').checked=false;
+      $('universalExportRunButton').textContent='Exportar '+format.toUpperCase();
+    }
+
+    function openUniversalExport(key,preferredFormat){
+      try{
+        universalExportSnapshot=captureUniversalExportSnapshot(key);
+        $('universalExportTitle').textContent='Exportar · '+universalExportSnapshot.title;
+        $('universalExportModule').textContent=universalExportSnapshot.title;
+        $('universalExportRecordCount').textContent=universalExportSnapshot.records.length+' registros';
+        $('universalExportChartCount').textContent=universalExportSnapshot.charts.length+' disponibles';
+        $('universalExportChart').innerHTML='<option value="-1">Resumen del módulo</option>'+universalExportSnapshot.charts.map(function(chart,index){ return '<option value="'+index+'">'+escapeXml(chart.title)+'</option>'; }).join('');
+        $('universalExportFormat').value=['pdf','xlsx','csv','json','html','png'].includes(preferredFormat) ? preferredFormat : 'pdf';
+        $('universalExportIncludeCharts').checked=Boolean(universalExportSnapshot.charts.length);
+        setNotice($('universalExportNotice'),'');
+        updateUniversalExportControls();
+        $('universalExportDialog').showModal();
+        window.setTimeout(function(){ $('universalExportFormat').focus(); },40);
+      }catch(error){
+        console.error('No se pudo preparar la exportación unificada.',error);
+        showToast(error.message || 'No se pudo preparar esta herramienta para exportar.');
+      }
+    }
+
+    async function runUniversalExport(){
+      const snapshot=universalExportSnapshot,button=$('universalExportRunButton');
+      if(!snapshot){ setNotice($('universalExportNotice'),'Abre una herramienta antes de exportar.','warning'); return; }
+      const format=$('universalExportFormat').value,mode=$('universalExportMode').value,options=universalExportOptions();
+      if(!options.includeSummary && !options.includeData && !options.includeCharts && !options.includeMethodology && !options.includeSources){ setNotice($('universalExportNotice'),'Selecciona al menos un tipo de contenido.','warning'); return; }
+      setButtonBusy(button,true,'Generando…');
+      try{
+        if(format === 'pdf') downloadProfessionalReport(universalExportReport(snapshot,options),universalExportFilename(snapshot,'pdf','informe'),snapshot.module);
+        else if(format === 'xlsx') exportUniversalXlsx(snapshot,mode,options);
+        else if(format === 'csv'){
+          const rows=[['sección','fila','campo','valor_mostrado','valor_numérico']];
+          if(options.includeData) snapshot.records.forEach(function(record){ rows.push([record.section,record.row,record.field,record.value,record.number == null ? '' : record.number]); });
+          if(options.includeMethodology) rows.push([],['Metodología','',snapshot.methodology,'','']);
+          if(options.includeSources) snapshot.sources.forEach(function(source,index){ rows.push(['Fuente',index+1,source,'','']); });
+          downloadCsvFile(universalExportFilename(snapshot,'csv','datos'),rows);
+        }else if(format === 'json'){
+          downloadJsonFile(universalExportFilename(snapshot,'json','respaldo'),{schemaVersion:1,type:snapshot.type,appVersion:APP_VERSION,module:snapshot.module,title:snapshot.title,createdAt:options.includeDate ? snapshot.createdAt : null,summary:options.includeSummary ? snapshot.metrics : null,records:options.includeData ? snapshot.records : [],tables:options.includeData ? snapshot.tables : [],charts:options.includeCharts ? snapshot.charts : [],methodology:options.includeMethodology ? snapshot.methodology : null,sources:options.includeSources ? snapshot.sources : [],data:options.includeData ? snapshot.data : null});
+        }else if(format === 'html') exportUniversalHtml(snapshot,options);
+        else if(format === 'png'){
+          const chartIndex=Number($('universalExportChart').value),chart=options.includeCharts && chartIndex >= 0 ? snapshot.charts[chartIndex] : null;
+          await downloadUniversalPng(snapshot,chart);
+        }
+        setNotice($('universalExportNotice'),'Archivo '+format.toUpperCase()+' generado localmente.','success');
+        trackEvent('report_exported',{tool:snapshot.module,format:format,mode:mode,exporter:'unified'});
+      }catch(error){
+        console.error('No se pudo completar la exportación unificada.',error);
+        setNotice($('universalExportNotice'),error.message || 'No se pudo generar el archivo. Tus datos permanecen intactos.','error');
+      }finally{ setButtonBusy(button,false); updateUniversalExportControls(); }
+    }
+
+    function initUniversalExport(){
+      Object.keys(UNIVERSAL_EXPORT_MODULES).forEach(function(key){
+        const meta=UNIVERSAL_EXPORT_MODULES[key],root=$('view-'+meta.route),head=root && root.querySelector('.view-head');
+        if(!head || head.querySelector('[data-universal-export]')) return;
+        const launcher=document.createElement('div'); launcher.className='module-export-launcher';
+        launcher.innerHTML='<button class="button secondary" type="button" data-universal-export="'+key+'">Exportación profesional</button><span class="module-export-launcher-status" data-ready="true">PDF · XLSX · CSV · JSON · HTML · PNG</span>';
+        head.appendChild(launcher);
+      });
+      document.addEventListener('click',function(event){
+        const launcher=event.target.closest('[data-universal-export]');
+        if(launcher){ openUniversalExport(launcher.dataset.universalExport); return; }
+        const legacy={
+          exportCsvButton:['calculadora','csv'],exportJsonButton:['calculadora','json'],exportCalculatorPdfButton:['calculadora','pdf'],
+          salaryExportCsvButton:['salario','csv'],salaryExportJsonButton:['salario','json'],salaryExportPdfButton:['salario','pdf'],salaryExportPngButton:['salario','png'],
+          exportPersonalAnalysisCsvButton:['precios','csv'],exportPersonalJsonButton:['precios','json'],exportSelectedProductButton:['precios','json'],
+          exportInternationalCsvButton:['datos','csv'],exportComparisonCsvButton:['datos','csv'],
+          exportContractJsonButton:['reajustes','json'],exportContractPdfButton:['reajustes','pdf'],exportContractComparisonCsvButton:['reajustes','csv'],
+          exportLabCsvButton:['laboratorio','csv'],exportAdvancedCsvButton:['avanzada','csv'],exportAdvancedJsonButton:['avanzada','json'],
+          exportReportPdfButton:['informes','pdf'],exportReportCsvButton:['informes','csv'],exportReportJsonButton:['informes','json']
+        };
+        const target=event.target.closest('button[id]'),config=target && legacy[target.id];
+        if(config){ event.preventDefault(); event.stopImmediatePropagation(); openUniversalExport(config[0],config[1]); }
+      },true);
+      $('universalExportFormat').addEventListener('change',updateUniversalExportControls);
+      $('universalExportRunButton').addEventListener('click',runUniversalExport);
     }
 
     const LANDING_QUALITY_PROFILES=Object.freeze({
@@ -15160,7 +15705,7 @@
     function downloadInvestmentDraftBackup(options){
       const opts=Object.assign({announce:true},options || {});
       const rawName=String($('investmentBusinessName').value || 'negocio');
-      downloadJsonFile('datos-inversion-'+safeFilePart(rawName)+'-v0140.json',investmentDraftBackupPayload());
+      downloadJsonFile('datos-inversion-'+safeFilePart(rawName)+'-v0141.json',investmentDraftBackupPayload());
       if(opts.announce) setFeatureStatus('investmentNotice','Respaldo descargado. Usa «Cargar respaldo» si el visor local no recupera los datos al volver a abrir el HTML.','success');
     }
 
@@ -16040,7 +16585,7 @@
       types.push('</Types>'); files['[Content_Types].xml']=types.join('');
       files['_rels/.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/></Relationships>';
       files['docProps/core.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><dc:title>'+xlsxXml('Análisis de inversión · '+state.investmentResult.input.name)+'</dc:title><dc:creator>Inflation Insights</dc:creator><cp:lastModifiedBy>Inflation Insights</cp:lastModifiedBy><dcterms:created xsi:type="dcterms:W3CDTF">'+nowIso()+'</dcterms:created><dcterms:modified xsi:type="dcterms:W3CDTF">'+nowIso()+'</dcterms:modified></cp:coreProperties>';
-      files['docProps/app.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"><Application>Inflation Insights</Application><AppVersion>0.14</AppVersion></Properties>';
+      files['docProps/app.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"><Application>Inflation Insights</Application><AppVersion>0.14.1</AppVersion></Properties>';
       files['xl/workbook.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><bookViews><workbookView activeTab="'+(mode === 'data' ? 6 : 0)+'"/></bookViews><sheets>'+sheets.map(function(sheet,index){ return '<sheet name="'+xlsxXml(sheet.name)+'" sheetId="'+(index+1)+'" r:id="rId'+(index+1)+'"/>'; }).join('')+'</sheets><calcPr calcId="191029" fullCalcOnLoad="1" forceFullCalc="1"/></workbook>';
       files['xl/_rels/workbook.xml.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+sheets.map(function(_,index){ return '<Relationship Id="rId'+(index+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet'+(index+1)+'.xml"/>'; }).join('')+'<Relationship Id="rId'+(sheets.length+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>';
       files['xl/styles.xml']=xlsxStylesXml();
@@ -16230,7 +16775,7 @@
       $('investmentResetButton').addEventListener('click',function(){ armLocalAction(this,'Confirmar reinicio',function(){ safeStorageRemove(KEYS.investmentDraft); resetInvestmentForm(); state.investmentActiveProjectId=null; state.investmentLastSavedAt=null; state.investmentSaveFailed=false; setInvestmentDraftStatus('saved','Formulario vacío','El guardado anterior se eliminó de este navegador.'); updateInvestmentProjectSyncState(); setFeatureStatus('investmentNotice','Formulario vacío. No se cargaron nombres, productos ni importes de ejemplo.','success'); }); });
       $('investmentExportRunButton').addEventListener('click',runInvestmentExport);
       $('investmentExportScenariosButton').addEventListener('click',exportInvestmentScenarios); $('investmentExportSensitivityButton').addEventListener('click',exportInvestmentSensitivity);
-      $('investmentExportPortfolioButton').addEventListener('click',function(){ downloadJsonFile('comparacion-inversiones-v0140.json',{schemaVersion:1,appVersion:APP_VERSION,createdAt:nowIso(),items:state.investmentPortfolio}); });
+      $('investmentExportPortfolioButton').addEventListener('click',function(){ downloadJsonFile('comparacion-inversiones-v0141.json',{schemaVersion:1,appVersion:APP_VERSION,createdAt:nowIso(),items:state.investmentPortfolio}); });
       $('investmentClearPortfolioButton').addEventListener('click',function(){ armLocalAction(this,'Confirmar borrado',function(){ state.investmentPortfolio=[]; saveInvestmentPortfolio(); renderInvestmentPortfolio(); renderInvestmentCharts(); setFeatureStatus('investmentNotice','Comparación local eliminada.','success'); }); });
       $('investmentProjectList').addEventListener('click',handleInvestmentProjectAction);
       window.addEventListener('pagehide',function(){ if(state.investmentInitialized) saveInvestmentDraft({updateStatus:false}); });
@@ -16540,7 +17085,7 @@
       $('copyContractReceiptButton').addEventListener('click',function(){ if(state.contractResult) copyText(contractReceiptText(state.contractResult),'Comprobante copiado.'); });
       $('exportContractJsonButton').addEventListener('click',function(){
         if(!state.contractResult) return;
-        downloadJsonFile('reajuste-contrato-v0140.json',Object.assign({},state.contractResult,{
+        downloadJsonFile('reajuste-contrato-v0141.json',Object.assign({},state.contractResult,{
           schemaVersion:FILE_SCHEMA_VERSION,
           appVersion:APP_VERSION,
           type:'contract-adjustment',
@@ -16548,7 +17093,7 @@
           createdAt:state.contractResult.fetchedAt || nowIso()
         }));
       });
-      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0140.pdf','contract'); });
+      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0141.pdf','contract'); });
       $('exportContractComparisonCsvButton').addEventListener('click',exportContractComparisonCsv);
       $('labForm').addEventListener('submit',function(event){ event.preventDefault(); calculateLab(); });
       $('saveLabButton').addEventListener('click',saveLabConfig);
@@ -16568,11 +17113,11 @@
       });
       $('loadAdvancedExampleButton').addEventListener('click',loadAdvancedExample);
       $('exportAdvancedCsvButton').addEventListener('click',exportAdvancedCsv);
-      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0140.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
+      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0141.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
       $('reportForm').addEventListener('submit',function(event){ event.preventDefault(); try{ renderReportPreview(buildReportData()); }catch(error){ setNotice($('reportNotice'),'Selecciona al menos una sección.','error'); } });
-      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0140.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
+      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0141.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
       $('exportReportCsvButton').addEventListener('click',exportReportCsv);
-      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0140.json',state.reportResult); });
+      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0141.json',state.reportResult); });
       $('installAppButton').addEventListener('click',promptPwaInstall);
       $('menuButton').addEventListener('click',function(){
         const opening = $('mainNav').dataset.open !== 'true';
@@ -16661,7 +17206,7 @@
       });
       $('copyLinkButton').addEventListener('click',function(){ copyText(buildShareUrl(),'Enlace del escenario copiado.'); });
       $('copyResultButton').addEventListener('click',function(){ copyText(resultPlainText(),'Resultado copiado.'); });
-      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0140.pdf','calculator'); });
+      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0141.pdf','calculator'); });
       $('exportJsonButton').addEventListener('click',exportResultJson);
       $('exportCsvButton').addEventListener('click',exportResultCsv);
       $('refreshQuotesButton').addEventListener('click',function(){ refreshQuotes(); });
@@ -16695,7 +17240,7 @@
       $('salaryShareButton').addEventListener('click',function(){ copyText(buildSalaryShareUrl(),'Enlace del análisis salarial copiado.'); });
       $('salaryExportCsvButton').addEventListener('click',exportSalaryCsv);
       $('salaryExportJsonButton').addEventListener('click',exportSalaryJson);
-      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0140.pdf','salary'); });
+      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0141.pdf','salary'); });
       $('salaryExportPngButton').addEventListener('click',exportSalaryChartPng);
 
       $('saveScenarioButton').addEventListener('click',function(){
@@ -16825,7 +17370,7 @@
       $('saveBasketButton').addEventListener('click',saveBasket);
       $('weightedCurrency').addEventListener('change',function(){ state.basketCurrency = normalizeCurrencyCode(this.value,'BRL'); });
       $('exportBasketButton').addEventListener('click',function(){
-        downloadJsonFile('cesta-ponderada-v0140.json',weightedBasketPayload());
+        downloadJsonFile('cesta-ponderada-v0141.json',weightedBasketPayload());
       });
       $('importBasketButton').addEventListener('click',function(){ $('basketFileInput').click(); });
       $('basketFileInput').addEventListener('change',function(event){
@@ -16961,7 +17506,7 @@
       });
       $$('[data-download-personal-chart]').forEach(function(button){
         button.addEventListener('click',function(){
-          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0140.png');
+          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0141.png');
         });
       });
 
@@ -17042,6 +17587,7 @@
       $('footerYear').textContent = String(new Date().getFullYear());
       setupPwaInstall();
       bindEvents();
+      initUniversalExport();
       updateConnectionState();
       loadExternalCaches();
       if(DEBUG_NO_FX){
