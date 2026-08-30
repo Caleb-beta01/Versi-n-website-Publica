@@ -13958,6 +13958,7 @@
       if(!meta) throw new Error('Módulo no compatible.');
       const root=$('view-'+meta.route);
       if(!root) throw new Error('No se encontró la herramienta.');
+      const reportData=key === 'informes' && state.reportResult ? state.reportResult : null;
       const fields=[];
       root.querySelectorAll('input,select,textarea').forEach(function(field){
         if(!universalExportVisible(field) || ['button','submit','file','password'].includes(field.type)) return;
@@ -13977,18 +13978,55 @@
         const rows=Array.from(table.querySelectorAll('tbody tr')).slice(0,1500).map(function(row){ return Array.from(row.querySelectorAll('th,td')).map(function(cell){ return String(cell.textContent || '').replace(/\s+/g,' ').trim(); }); }).filter(function(row){ return row.some(Boolean); });
         if(headers.length || rows.length) tables.push({title:String(table.querySelector('caption') && table.querySelector('caption').textContent || 'Tabla '+(index+1)).replace(/\s+/g,' ').trim(),headers:headers,rows:rows});
       });
+      if(reportData){
+        (reportData.sections || []).forEach(function(section,index){
+          const rows=(section.lines || []).map(function(line){
+            const text=String(line == null ? '' : line).replace(/\s+/g,' ').trim();
+            if(!text) return null;
+            const separator=text.indexOf(':');
+            return separator > 0 ? [text.slice(0,separator).trim(),text.slice(separator+1).trim()] : ['Contenido',text];
+          }).filter(Boolean);
+          if(rows.length) tables.push({title:String(section.title || 'Sección '+(index+1)).replace(/\s+/g,' ').trim(),headers:['Campo','Valor'],rows:rows});
+        });
+        (reportData.tables || []).forEach(function(table,index){
+          const columns=(table.columns || []).filter(function(column){ return column && column.label; });
+          const rows=(table.rows || []).slice(0,1500).map(function(row){
+            if(Array.isArray(row)) return row.map(function(value){ return String(value == null ? '' : value); });
+            return columns.map(function(column){ return String(row && row[column.key] == null ? '' : row[column.key]); });
+          }).filter(function(row){ return row.some(Boolean); });
+          if(columns.length && rows.length) tables.push({title:String(table.title || 'Tabla del informe '+(index+1)).replace(/\s+/g,' ').trim(),headers:columns.map(function(column){ return column.label; }),rows:rows});
+        });
+        metrics.unshift(
+          {label:'Secciones del informe',value:String((reportData.sections || []).length),number:(reportData.sections || []).length},
+          {label:'Visualizaciones',value:String((reportData.charts || []).length),number:(reportData.charts || []).length}
+        );
+      }
       const sources=[];
       root.querySelectorAll('.source-strip span,.source-state,.source-badge').forEach(function(node){ const text=String(node.textContent || '').replace(/\s+/g,' ').trim(); if(text && !sources.includes(text)) sources.push(text); });
       const records=[];
       metrics.forEach(function(item,index){ records.push({section:'Métricas',row:index+1,field:item.label,value:item.value,number:item.number}); });
       fields.forEach(function(item,index){ records.push({section:'Entradas',row:index+1,field:item.label,value:item.value,number:item.number}); });
       tables.forEach(function(table){ table.rows.forEach(function(row,rowIndex){ row.forEach(function(value,columnIndex){ records.push({section:table.title,row:rowIndex+1,field:table.headers[columnIndex] || 'Columna '+(columnIndex+1),value:value,number:universalExportNumeric(value)}); }); }); });
-      const snapshot={schemaVersion:1,type:'universal-module-export',appVersion:APP_VERSION,module:key,title:meta.title,slug:meta.slug,createdAt:nowIso(),methodology:meta.methodology,fields:fields,metrics:metrics,tables:tables,sources:sources,records:records,charts:universalExportCharts(key),data:universalExportSafeClone(universalExportStatePayload(key))};
+      const snapshot={schemaVersion:1,type:'universal-module-export',appVersion:APP_VERSION,module:key,title:reportData && reportData.title ? reportData.title : meta.title,slug:meta.slug,createdAt:nowIso(),methodology:reportData && reportData.methodology ? reportData.methodology : meta.methodology,fields:fields,metrics:metrics,tables:tables,sources:sources,records:records,charts:universalExportCharts(key),data:universalExportSafeClone(universalExportStatePayload(key))};
       if(!snapshot.sources.includes('Datos introducidos o guardados por el usuario · procesamiento local')) snapshot.sources.unshift('Datos introducidos o guardados por el usuario · procesamiento local');
       return snapshot;
     }
 
     function universalExportReport(snapshot,options){
+      if(snapshot.module === 'informes' && snapshot.data && Array.isArray(snapshot.data.sections)){
+        const source=snapshot.data;
+        return {
+          appVersion:APP_VERSION,
+          title:source.title || snapshot.title,
+          createdAt:options.includeDate === false ? null : source.createdAt || snapshot.createdAt,
+          methodology:options.includeMethodology === false ? '' : source.methodology || snapshot.methodology,
+          assumptions:options.includeSources === false ? '' : source.assumptions || 'Fuentes y procedencia: '+snapshot.sources.join(' · '),
+          sections:options.includeData === false ? [] : source.sections,
+          charts:options.includeCharts === false ? [] : source.charts || [],
+          tables:options.includeData === false ? [] : source.tables || [],
+          design:Object.assign({style:'contrast',density:'comfortable',cover:true},source.design || {},{summary:options.includeSummary !== false})
+        };
+      }
       const sections=[];
       if(options.includeSummary !== false){
         const lines=snapshot.metrics.length ? snapshot.metrics.map(function(item){ return item.label+': '+item.value; }) : ['Módulo: '+snapshot.title,'Registros capturados: '+snapshot.records.length];
