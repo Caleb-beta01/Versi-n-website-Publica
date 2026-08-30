@@ -2,7 +2,7 @@
 
 Repositorio público y desplegable de la Calculadora de Inflación.
 
-- Versión activa: **v0.13.6-Beta-Patch**
+- Versión activa: **v0.14.0-Beta**
 - Canal: **Beta**
 - Despliegue: **GitHub Pages**
 - Desarrollo y QA: repositorio privado `Caleb-beta01/Calculadora-de-Inflaci-n-app`
@@ -12,11 +12,11 @@ Repositorio público y desplegable de la Calculadora de Inflación.
 La raíz se mantiene deliberadamente pequeña porque GitHub Pages y la PWA usan rutas relativas. Los archivos activos son:
 
 - `index.html`: entrada del sitio.
-- `v0.13.6-Beta-Patch.html`: snapshot requerido por el service worker activo.
-- `manifest-v0.13.6-beta-patch.webmanifest`: manifiesto PWA activo.
-- `sw-v0.13.6-beta-patch.js`: service worker activo.
+- `v0.14.0-Beta.html`: snapshot requerido por el service worker activo.
+- `manifest-v0.14.0-beta.webmanifest`: manifiesto PWA activo.
+- `sw-v0.14.0-beta.js`: service worker activo.
 - `icons/`: iconos requeridos por la PWA.
-- `.nojekyll`, `README.md` y `LICENSE`.
+- El conjunto v0.13.6 permanece como snapshot histórico recuperable; no es la entrada activa.\n- `.nojekyll`, `README.md` y `LICENSE`.
 - `docs/`: documentación de publicación.
 
 ## Archivo histórico
