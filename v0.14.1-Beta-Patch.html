@@ -13856,7 +13856,7 @@
     function universalExportVisible(element){
       if(!element || element.closest('[hidden]')) return false;
       const style=window.getComputedStyle(element);
-      return style.display !== 'none' && style.visibility !== 'hidden';
+      return style.display !== 'none' && style.visibility !== 'hidden' && element.getClientRects().length > 0;
     }
 
     function universalExportFieldLabel(field){
@@ -13890,7 +13890,7 @@
         'tipo-cambio':state.quotes,reajustes:{result:state.contractResult,comparison:state.contractComparison},laboratorio:state.labResult,
         avanzada:state.advancedResult,informes:state.reportResult
       };
-      if(key === 'precios') return {shrink:state.shrinkResult,unitComparison:state.unitCompareResult,goal:state.goalResult,personal:state.personalResult,products:state.productRecords};
+      if(key === 'precios') return {shrink:state.shrinkResult,unitComparison:state.unitCompareResult,goal:state.goalResult,weightedBasket:state.basket,personal:state.personalResult,products:state.productRecords};
       if(key === 'datos') return {historical:state.internationalResult,comparison:state.comparisonResult};
       if(key === 'historial') return {calculations:readHistory(),scenarios:readScenarios(),salary:readSalaryHistory(),personalBaskets:readPersonalBaskets(),products:readProductRecords()};
       if(key === 'educacion'){
@@ -13984,7 +13984,7 @@
       fields.forEach(function(item,index){ records.push({section:'Entradas',row:index+1,field:item.label,value:item.value,number:item.number}); });
       tables.forEach(function(table){ table.rows.forEach(function(row,rowIndex){ row.forEach(function(value,columnIndex){ records.push({section:table.title,row:rowIndex+1,field:table.headers[columnIndex] || 'Columna '+(columnIndex+1),value:value,number:universalExportNumeric(value)}); }); }); });
       const snapshot={schemaVersion:1,type:'universal-module-export',appVersion:APP_VERSION,module:key,title:meta.title,slug:meta.slug,createdAt:nowIso(),methodology:meta.methodology,fields:fields,metrics:metrics,tables:tables,sources:sources,records:records,charts:universalExportCharts(key),data:universalExportSafeClone(universalExportStatePayload(key))};
-      if(!snapshot.sources.length) snapshot.sources.push('Datos introducidos o guardados por el usuario · procesamiento local');
+      if(!snapshot.sources.includes('Datos introducidos o guardados por el usuario · procesamiento local')) snapshot.sources.unshift('Datos introducidos o guardados por el usuario · procesamiento local');
       return snapshot;
     }
 
@@ -14008,7 +14008,15 @@
     }
 
     function universalXlsxDrawingXml(title){
-      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><xdr:wsDr xmlns:xdr="http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><xdr:twoCellAnchor><xdr:from><xdr:col>0</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>2</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:from><xdr:to><xdr:col>8</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>22</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:to><xdr:graphicFrame macro=""><xdr:nvGraphicFramePr><xdr:cNvPr id="2" name="'+xlsxXml(title)+'"/><xdr:cNvGraphicFramePr/></xdr:nvGraphicFramePr><xdr:xfrm/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/chart"><c:chart xmlns:c="http://schemas.openxmlformats.org/drawingml/2006/chart" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" r:id="rId1"/></a:graphicData></a:graphic></xdr:graphicFrame><xdr:clientData/></xdr:twoCellAnchor></xdr:wsDr>';
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><xdr:wsDr xmlns:xdr="http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><xdr:twoCellAnchor><xdr:from><xdr:col>3</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>2</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:from><xdr:to><xdr:col>11</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>22</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:to><xdr:graphicFrame macro=""><xdr:nvGraphicFramePr><xdr:cNvPr id="2" name="'+xlsxXml(title)+'"/><xdr:cNvGraphicFramePr/></xdr:nvGraphicFramePr><xdr:xfrm/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/chart"><c:chart xmlns:c="http://schemas.openxmlformats.org/drawingml/2006/chart" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" r:id="rId1"/></a:graphicData></a:graphic></xdr:graphicFrame><xdr:clientData/></xdr:twoCellAnchor></xdr:wsDr>';
+    }
+
+    function universalXlsxChartXml(series,categories){
+      const seriesXml=series.map(function(item,index){
+        const color=String(item.color || '#007a5e').replace('#','').toUpperCase();
+        return '<c:ser><c:idx val="'+index+'"/><c:order val="'+index+'"/><c:tx><c:v>'+xlsxXml(item.name)+'</c:v></c:tx><c:spPr><a:ln w="28575"><a:solidFill><a:srgbClr val="'+color+'"/></a:solidFill></a:ln></c:spPr><c:marker><c:symbol val="circle"/><c:size val="5"/></c:marker><c:cat><c:strRef><c:f>'+xlsxXml(categories)+'</c:f></c:strRef></c:cat><c:val><c:numRef><c:f>'+xlsxXml(item.range)+'</c:f></c:numRef></c:val></c:ser>';
+      }).join('');
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><c:chartSpace xmlns:c="http://schemas.openxmlformats.org/drawingml/2006/chart" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><c:chart><c:autoTitleDeleted val="1"/><c:plotArea><c:layout/><c:lineChart><c:grouping val="standard"/><c:varyColors val="0"/>'+seriesXml+'<c:axId val="1984600768"/><c:axId val="1984602480"/></c:lineChart><c:catAx><c:axId val="1984600768"/><c:scaling><c:orientation val="minMax"/></c:scaling><c:delete val="0"/><c:axPos val="b"/><c:tickLblPos val="nextTo"/><c:crossAx val="1984602480"/><c:crosses val="autoZero"/><c:auto val="1"/><c:lblAlgn val="ctr"/><c:lblOffset val="100"/></c:catAx><c:valAx><c:axId val="1984602480"/><c:scaling><c:orientation val="minMax"/></c:scaling><c:delete val="0"/><c:axPos val="l"/><c:majorGridlines/><c:numFmt formatCode="#,##0.00" sourceLinked="0"/><c:tickLblPos val="nextTo"/><c:crossAx val="1984600768"/><c:crosses val="autoZero"/><c:crossBetween val="between"/></c:valAx></c:plotArea><c:legend><c:legendPos val="b"/><c:layout/></c:legend><c:plotVisOnly val="1"/><c:dispBlanksAs val="gap"/></c:chart></c:chartSpace>';
     }
 
     function universalXlsxSheets(snapshot,mode,options){
@@ -14021,15 +14029,15 @@
       const selectedChart=options.includeCharts === false ? null : snapshot.charts[0];
       const series=selectedChart ? selectedChart.series.slice(0,6) : [];
       const pointCount=series.reduce(function(max,item){ return Math.max(max,item.values.length); },0);
-      const graphRows=[title(selectedChart ? selectedChart.title : 'Gráficos'),[{v:'Los datos de los gráficos permanecen editables.',s:3}],header(['Punto'].concat(series.map(function(item){ return item.name; })))];
-      for(let index=0;index<pointCount;index+=1){ graphRows.push([{v:index+1,s:6}].concat(series.map(function(item){ const point=item.values[index]; return {v:point ? point.value : '',s:point ? 4 : 3}; }))); }
+      const graphRows=[title(selectedChart ? selectedChart.title : 'Gráficos'),[{v:'Datos editables para el gráfico.',s:3}],header(['Punto'].concat(series.map(function(item){ return item.name; })))];
+      for(let index=0;index<pointCount;index+=1){ const labelSource=series.find(function(item){ return item.values[index]; }),label=labelSource ? labelSource.values[index].label : 'Punto '+(index+1); graphRows.push([{v:label,s:3}].concat(series.map(function(item){ const point=item.values[index]; return {v:point ? point.value : '',s:point ? 4 : 3}; }))); }
       if(!series.length) graphRows.push([{v:'No había un gráfico disponible al exportar.',s:3}]);
       const methodologyRows=[title('Metodología'),header(['Elemento','Detalle']),[{v:'Método',s:3},{v:options.includeMethodology === false ? 'No incluido' : snapshot.methodology,s:3}],[{v:'Procesamiento',s:3},{v:'Generado localmente; no se enviaron resultados a un servidor.',s:3}],[{v:'Versión',s:3},{v:APP_VERSION,s:3}]];
       const sourceRows=[title('Fuentes'),header(['N.º','Procedencia'])].concat((options.includeSources === false ? ['No incluidas'] : snapshot.sources).map(function(source,index){ return [{v:index+1,s:6},{v:source,s:3}]; }));
       return [
         {name:'Resumen',rows:summaryRows,widths:[31,42],freeze:3,merges:['A1:B1'],selected:mode !== 'data'},
-        {name:'Datos',rows:dataRows,widths:[28,10,34,44,18],freeze:3,filter:'A3:E'+dataEnd,merges:['A1:E1'],selected:mode === 'data'},
-        {name:'Gráficos',rows:graphRows,widths:[14].concat(series.map(function(){ return 20; })),freeze:3,merges:['A1:'+xlsxColumnName(Math.max(1,series.length))+'1'],drawing:Boolean(series.length)},
+        {name:'Datos',rows:dataRows,widths:[28,19,34,44,18],freeze:3,filter:'A3:E'+dataEnd,merges:['A1:E1'],selected:mode === 'data'},
+        {name:'Gráficos',rows:graphRows,widths:[20].concat(series.map(function(){ return 20; })).concat([3,12,12,12,12,12,12,12,12]),freeze:3,merges:['A1:L1','A2:B2'],drawing:Boolean(series.length)},
         {name:'Metodología',rows:methodologyRows,widths:[22,88],freeze:2,merges:['A1:B1']},
         {name:'Fuentes',rows:sourceRows,widths:[10,96],freeze:2,merges:['A1:B1']}
       ];
@@ -14052,7 +14060,7 @@
         files['xl/drawings/drawing1.xml']=universalXlsxDrawingXml(chart.title);
         files['xl/drawings/_rels/drawing1.xml.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/chart" Target="../charts/chart1.xml"/></Relationships>';
         const series=chart.series.slice(0,6),graphEnd=3+series.reduce(function(max,item){ return Math.max(max,item.values.length); },0);
-        files['xl/charts/chart1.xml']=xlsxChartXml('line',series.map(function(item,index){ return {name:item.name,color:item.color,range:"'Gráficos'!$"+xlsxColumnName(index+1)+'$4:$'+xlsxColumnName(index+1)+'$'+graphEnd}; }),"'Gráficos'!$A$4:$A$"+graphEnd);
+        files['xl/charts/chart1.xml']=universalXlsxChartXml(series.map(function(item,index){ return {name:item.name,color:item.color,range:"'Gráficos'!$"+xlsxColumnName(index+1)+'$4:$'+xlsxColumnName(index+1)+'$'+graphEnd}; }),"'Gráficos'!$A$4:$A$"+graphEnd);
       }
       downloadBlob(universalExportFilename(snapshot,'xlsx',mode),xlsxZip(files),'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     }
