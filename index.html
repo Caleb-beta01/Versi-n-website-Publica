@@ -10,10 +10,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Inflation Insights">
-  <link rel="manifest" href="./manifest-v0.13.6-beta-patch.webmanifest">
+  <link rel="manifest" href="./manifest-v0.14.0-beta.webmanifest">
   <link rel="icon" href="./icons/inflation-insights-192.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/inflation-insights-192.png">
-  <title>Calculadora de Inflación · v0.13.6-Beta-Patch</title>
+  <title>Calculadora de Inflación · v0.14.0-Beta</title>
   <style>
     :root{
       --bg:#07111f;
@@ -3454,6 +3454,23 @@
     .investment-plain-glossary>div{padding:13px;border:1px solid #3b3e49;background:#08090d}
     .investment-plain-glossary strong{display:block;margin-bottom:5px;color:#fff}
     .investment-plain-glossary span{color:#bfc1ca;font-size:.86rem;line-height:1.45}
+    .investment-export-hub{display:grid;grid-template-columns:minmax(190px,.75fr) minmax(280px,1.25fr);gap:16px;padding:18px;border:2px solid #3b3e49;background:#08090d}
+    .investment-export-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    .investment-export-options label{display:flex;align-items:center;gap:9px;padding:9px 11px;border:1px solid #343741;background:#11131b;color:#e7e8ee;font-weight:750}
+    .investment-export-options input{width:18px;height:18px;accent-color:#ffd400}
+    .investment-export-submit{display:flex;flex-wrap:wrap;align-items:end;gap:10px;grid-column:1/-1}
+    .investment-export-submit .field{flex:1 1 230px;margin:0}
+    .investment-project-list{display:grid;gap:12px}
+    .investment-project-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:15px;border:2px solid #3b3e49;background:#0b0d13}
+    .investment-project-card[data-conflict="true"]{border-color:#ffd400}
+    .investment-project-card h3{margin:0 0 4px;color:#fff;font-size:1rem}
+    .investment-project-meta{display:flex;flex-wrap:wrap;gap:6px 12px;color:#bfc1ca;font-size:.82rem}
+    .investment-project-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px}
+    .about-version{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px;border:2px solid #ffd400;background:#171408}
+    .about-version strong{font-size:1.2rem;color:#fff}
+    .about-version span{color:#fff0a3;font-weight:900}
+    .release-list{margin:0;padding-left:20px;color:#d4d6df;line-height:1.6}
+    .release-list li+li{margin-top:5px}
 
     @media (max-width:1180px){
       .investment-tabs{grid-template-columns:repeat(4,minmax(150px,1fr))}
@@ -3470,6 +3487,7 @@
       .investment-scenario-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .investment-advanced-grid{grid-template-columns:1fr}
       .investment-getting-started ol,.investment-plain-glossary{grid-template-columns:1fr}
+      .investment-export-hub{grid-template-columns:1fr}
     }
     @media (max-width:620px){
       .investment-command-bar,.investment-section-head{align-items:stretch;flex-direction:column}
@@ -3487,6 +3505,9 @@
       .investment-chart-canvas{margin-inline:-8px}
       .investment-progress-copy{flex-direction:column}
       .sensitivity-controls>.field{width:100%}
+      .investment-export-options{grid-template-columns:1fr}
+      .investment-project-card{grid-template-columns:1fr}
+      .investment-project-actions{justify-content:flex-start}
     }
 
   </style>
@@ -3519,7 +3540,6 @@
         <button class="nav-link" type="button" data-route="informes">Informes</button>
         <button class="nav-link" type="button" data-route="historial">Historial</button>
         <button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button>
-        <span class="version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.13.6-Beta-Patch</span>
       </nav>
 
       <span class="status-chip header-status" id="connectionChip" data-status="online" aria-live="polite">
@@ -3558,7 +3578,7 @@
 
         <section class="landing-scene landing-hero" data-landing-scene="0" data-active="true" aria-describedby="homeSummary">
           <div class="landing-copy">
-            <p class="landing-eyebrow">v0.13.6‑Beta‑Patch · Gráficos interactivos exportables</p>
+            <p class="landing-eyebrow">Cálculos claros · Informes profesionales</p>
             <h1 class="landing-title" id="homeTitle">Mide el cambio. <span>Entiende el impacto.</span></h1>
             <p class="landing-lede" id="homeSummary">Calcula inflación, deflación y poder adquisitivo con precisión compuesta, fuentes identificadas y una experiencia preparada para móvil, escritorio y 4K.</p>
             <div class="landing-actions" role="group" aria-label="Acciones principales">
@@ -4029,7 +4049,7 @@
 
     <section class="view" id="view-inversiones" data-view="inversiones" aria-labelledby="investmentTitle" hidden>
       <div class="view-head">
-        <p class="eyebrow">Inversión de negocios · v0.13.6-Beta-Patch</p>
+        <p class="eyebrow">Inversión de negocios</p>
         <h1 id="investmentTitle">Inversiones de negocios</h1>
         <p class="lede">Configura tu tipo de negocio, uno o varios productos o servicios y los costos juntos o por separado. Después descubre cuánto entra, cuánto sale y cuándo recuperas lo invertido.</p>
       </div>
@@ -4053,12 +4073,14 @@
             <span id="investmentDraftStatusDetail">Tus datos se conservan en este navegador mientras escribes.</span>
           </div>
           <div class="investment-actions">
+            <button class="button primary small" id="investmentSaveProjectButton" type="button">Guardar proyecto</button>
             <button class="button primary small" id="investmentSaveDraftButton" type="button">Guardar datos</button>
             <button class="button secondary small" id="investmentBackupDraftButton" type="button">Descargar respaldo</button>
             <button class="button secondary small" id="investmentImportDraftButton" type="button">Cargar respaldo</button>
             <input id="investmentImportDraftInput" type="file" accept="application/json,.json" hidden>
           </div>
         </div>
+        <p class="field-help" id="investmentProjectSyncState" role="status" aria-live="polite">Proyecto local. Inicia sesión y activa la sincronización para conservarlo también en tu cuenta.</p>
 
         <div class="feature-status" id="investmentNotice" role="status" aria-live="polite">Los resultados se actualizan al modificar cualquier parámetro.</div>
 
@@ -4112,12 +4134,39 @@
 
           <div class="investment-section">
             <div class="investment-section-head"><div><p class="eyebrow">Exportaciones</p><h2>Conserva o comparte el análisis</h2><p>Los archivos se generan localmente. El HTML conserva tooltips, puntos, barras, pasteles y controles de series sin depender de internet.</p></div></div>
-            <div class="investment-actions">
-              <button class="button secondary small" id="investmentExportCsvButton" type="button">Proyección CSV</button>
-              <button class="button secondary small" id="investmentExportSummaryButton" type="button">Resumen TXT</button>
-              <button class="button primary small" id="investmentExportReportButton" type="button">Reporte financiero PDF</button>
-              <button class="button secondary small" id="investmentExportChartsButton" type="button">Gráficos HTML interactivos</button>
+            <div class="investment-export-hub" aria-labelledby="investmentExportFormatLabel">
+              <div class="field">
+                <label id="investmentExportFormatLabel" for="investmentExportFormat">Formato</label>
+                <select id="investmentExportFormat">
+                  <option value="pdf">PDF · Informe profesional</option>
+                  <option value="xlsx">XLSX · Libro editable</option>
+                  <option value="csv">CSV · Datos compatibles</option>
+                  <option value="json">JSON · Respaldo completo</option>
+                  <option value="html">HTML · Gráficos interactivos</option>
+                  <option value="png">PNG · Gráfico seleccionado</option>
+                </select>
+              </div>
+              <div class="investment-export-options" aria-label="Contenido de la exportación">
+                <label><input id="investmentExportIncludeSummary" type="checkbox" checked>Resumen</label>
+                <label><input id="investmentExportIncludeProjection" type="checkbox" checked>Proyección</label>
+                <label><input id="investmentExportIncludeCharts" type="checkbox" checked>Gráficos</label>
+                <label><input id="investmentExportIncludeMethodology" type="checkbox" checked>Metodología</label>
+                <label><input id="investmentExportIncludeSources" type="checkbox" checked>Fuentes y supuestos</label>
+                <label><input id="investmentExportIncludeDate" type="checkbox" checked>Fecha de generación</label>
+              </div>
+              <div class="investment-export-submit">
+                <div class="field">
+                  <label for="investmentExportMode">Modo del XLSX</label>
+                  <select id="investmentExportMode"><option value="report">Informe</option><option value="data">Datos</option></select>
+                </div>
+                <div class="field">
+                  <label for="investmentExportChart">Gráfico para PNG</label>
+                  <select id="investmentExportChart"><option value="investmentCapitalChart">Capital acumulado</option><option value="investmentOperationChart">Ingresos, gastos y beneficio</option><option value="investmentCashChart">Flujo de caja</option><option value="investmentExpenseChart">Distribución de gastos</option><option value="investmentProductPieChart">Ventas por producto</option><option value="investmentProfitChart">Beneficio y pérdidas</option></select>
+                </div>
+                <button class="button primary" id="investmentExportRunButton" type="button">Exportar análisis</button>
+              </div>
             </div>
+            <div class="feature-status" id="investmentExportNotice" role="status" aria-live="polite">Elige un formato y el contenido que quieres incluir.</div>
           </div>
         </section>
 
@@ -4629,7 +4678,7 @@
     <section class="view" id="view-widget-runtime" data-view="widget-runtime" aria-label="Calculadora embebida" hidden>
       <div class="widget-runtime-shell" id="widgetRuntimeShell" data-theme="dark">
         <section class="widget-runtime-card" id="widgetRuntimeCard">
-          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.13.6-Beta-Patch.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>v0.13.6-Beta-Patch</span></div>
+          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.14.0-Beta.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>Calculadora</span></div>
           <h1 id="widgetRuntimeTitle">Calculadora embebida</h1>
           <div class="widget-mini-grid">
             <div class="field"><label id="widgetRuntimeALabel" for="widgetRuntimeA">Valor A</label><input id="widgetRuntimeA" type="text" inputmode="decimal" value="100"></div>
@@ -4646,7 +4695,7 @@
 
     <section class="view" id="view-precios" data-view="precios" aria-labelledby="marketTitle" hidden>
       <div class="view-head">
-        <p class="eyebrow">Precios reales · v0.13.6</p>
+        <p class="eyebrow">Precios reales</p>
         <h1 id="marketTitle">Productos, reduflación y archivos</h1>
         <p class="lede">Normaliza gramos, kilogramos, mililitros, litros y presentaciones; guarda el historial en este dispositivo e importa datos únicamente después de revisarlos.</p>
       </div>
@@ -5081,8 +5130,8 @@
     <section class="view" id="view-cuenta" data-view="cuenta" aria-labelledby="accountTitle" hidden>
       <div class="view-head">
         <p class="eyebrow">Identidad opcional y control de datos</p>
-        <h1 id="accountTitle">Mi cuenta Beta</h1>
-        <p class="lede">La calculadora sigue funcionando sin registro. Inicia sesión solo si quieres sincronizar historial y cestas, enviar comentarios o recuperar tus datos en otro dispositivo.</p>
+        <h1 id="accountTitle">Mi cuenta</h1>
+        <p class="lede">La calculadora sigue funcionando sin registro. Inicia sesión solo si quieres sincronizar historial, cestas y proyectos de inversión o recuperar tus datos en otro dispositivo.</p>
       </div>
 
       <div class="account-grid">
@@ -5105,6 +5154,7 @@
             <div class="account-metric"><strong id="localRecordCount">0</strong><span>registros locales</span></div>
             <div class="account-metric"><strong id="remoteCalculationCount">—</strong><span>cálculos remotos</span></div>
             <div class="account-metric"><strong id="remoteBasketCount">—</strong><span>cestas remotas</span></div>
+            <div class="account-metric"><strong id="remoteInvestmentCount">—</strong><span>proyectos remotos</span></div>
           </div>
           <div class="account-actions" id="signedOutActions">
             <button class="button primary" id="openAuthButton" type="button">Iniciar sesión</button>
@@ -5124,7 +5174,7 @@
           </div>
           <div class="setting-row">
             <span class="setting-copy">
-              <strong>Sincronizar historial y cestas</strong>
+              <strong>Sincronizar historial, cestas e inversiones</strong>
               <span id="syncHelp">Inicia sesión para activar esta opción.</span>
             </span>
             <label class="toggle-control">
@@ -5136,9 +5186,33 @@
           <dl class="storage-facts">
             <div><dt>Última sincronización</dt><dd id="lastSyncTime">Nunca</dd></div>
             <div><dt>Estado de red</dt><dd id="accountNetworkState">Comprobando…</dd></div>
-            <div><dt>Conflictos</dt><dd>Gana la copia modificada más recientemente; nunca se descarta una copia local por un error de red.</dd></div>
+            <div><dt>Conflictos</dt><dd>Se conserva la versión más reciente y, si ambas cambiaron, se crea una copia recuperada para que puedas compararlas.</dd></div>
           </dl>
           <button class="button secondary" id="syncNowSecondaryButton" type="button" disabled>Reintentar sincronización</button>
+        </section>
+
+        <section class="card account-card wide" aria-labelledby="investmentProjectsTitle">
+          <div class="module-toolbar">
+            <div><p class="eyebrow">Mis inversiones</p><h2 id="investmentProjectsTitle">Proyectos guardados</h2></div>
+            <button class="button primary small" type="button" data-route="inversiones">Nuevo proyecto</button>
+          </div>
+          <p>Los proyectos funcionan sin cuenta. Con la sincronización activada también estarán disponibles en tus otros dispositivos.</p>
+          <div class="investment-project-list" id="investmentProjectList" aria-live="polite"><div class="investment-empty">Todavía no has guardado proyectos de inversión.</div></div>
+        </section>
+
+        <section class="card account-card wide" aria-labelledby="aboutAppTitle">
+          <div><p class="eyebrow">Acerca de la aplicación</p><h2 id="aboutAppTitle">Versión, novedades y detalles técnicos</h2></div>
+          <div class="about-version"><strong id="aboutAppVersion">v0.14.0</strong><span id="aboutAppChannel">Canal Beta · 30 ago 2026</span></div>
+          <ul class="release-list">
+            <li>Exportador unificado con PDF profesional, XLSX nativo, CSV, JSON, PNG y HTML.</li>
+            <li>Proyectos de inversión locales con sincronización opcional y recuperación de conflictos.</li>
+            <li>Interfaz más limpia: la versión vive aquí y el aviso de actualización aparece una sola vez.</li>
+          </ul>
+          <dl class="storage-facts">
+            <div><dt>Historial</dt><dd>v0.13.6 corrigió gráficos interactivos y borradores; v0.14.0 reorganiza exportaciones y nube.</dd></div>
+            <div><dt>Técnico</dt><dd>Aplicación estática, cálculos locales, Supabase opcional y políticas RLS por usuario.</dd></div>
+            <div><dt>Informe</dt><dd><a href="https://github.com/Caleb-beta01/Calculadora-de-Inflaci-n-app/issues/52" target="_blank" rel="noopener noreferrer">GitHub #52 · Export &amp; Cloud Cleanup</a></dd></div>
+          </dl>
         </section>
 
         <section class="card account-card" aria-labelledby="privacyTitle">
@@ -5241,8 +5315,8 @@
             <h2 id="storedDataTitle">Qué información se guarda</h2>
           </div>
           <dl class="storage-facts">
-            <div><dt>En este dispositivo</dt><dd>Historial, escenarios, análisis salariales, cestas, presupuesto, gastos y suscripciones, borrador de anomalías, progreso educativo, widgets, seguimiento de productos, preferencias, última ruta, caché de cotizaciones e IPCA y cola pendiente.</dd></div>
-            <div><dt>En tu cuenta</dt><dd>Solo si activas sincronización: cálculos guardados, cestas, preferencias y fechas de actualización.</dd></div>
+            <div><dt>En este dispositivo</dt><dd>Historial, escenarios, análisis salariales, cestas, proyectos de inversión, presupuesto, gastos y suscripciones, borrador de anomalías, progreso educativo, widgets, seguimiento de productos, preferencias, última ruta, caché de cotizaciones e IPCA y cola pendiente.</dd></div>
+            <div><dt>En tu cuenta</dt><dd>Solo si activas sincronización: cálculos guardados, cestas, proyectos de inversión, preferencias y fechas de actualización.</dd></div>
             <div><dt>Comentarios</dt><dd>Tipo, descripción, valoración, contexto, versión y únicamente los datos técnicos o financieros que marques de forma explícita.</dd></div>
             <div><dt>Nunca en el código</dt><dd>Contraseñas, claves administrativas o secretos del backend. La página contiene únicamente una clave pública limitada por RLS.</dd></div>
           </dl>
@@ -5517,7 +5591,6 @@
       <a href="#cuenta" data-route="cuenta">Privacidad</a>
       <a href="#informes" data-route="informes">Informes</a>
     </nav>
-    <span class="footer-version version-chip"><span class="beta-mini" aria-hidden="true">BETA</span>v0.13.6-Beta-Patch</span>
   </footer>
 
   <dialog id="basketDialog" aria-labelledby="basketTitle">
@@ -5793,39 +5866,22 @@
 
   <dialog id="betaWelcomeDialog" aria-labelledby="betaWelcomeTitle">
     <div class="dialog-head">
-      <h3 id="betaWelcomeTitle">🧪 Estás utilizando una versión Beta</h3>
-      <button class="icon-button" type="button" data-close-dialog="betaWelcomeDialog" aria-label="Cerrar aviso de la Beta">×</button>
+      <h3 id="betaWelcomeTitle">Novedades de v0.14.0</h3>
+      <button class="icon-button" type="button" data-close-dialog="betaWelcomeDialog" aria-label="Cerrar novedades">×</button>
     </div>
     <div class="dialog-body dialog-stack">
-      <p>Esta versión está preparada para pruebas públicas. La calculadora y tus datos locales siguen funcionando aunque la sincronización no esté disponible.</p>
+      <p>Exporta análisis más completos y guarda proyectos de inversión sin perder el funcionamiento local.</p>
       <div class="dialog-callout">
-        <strong>Qué corrige este parche</strong>
+        <strong>Tres cambios principales</strong>
         <ul>
-          <li>los pasteles muestran sus colores reales, incluido el caso de una sola categoría que representa el 100 %;</li>
-          <li>los gráficos principales y el HTML exportado se animan al abrirse y respetan la preferencia de movimiento reducido;</li>
-          <li>la interacción responde con tooltip, detalle persistente y selección visible por cursor, toque o teclado;</li>
-          <li>los datos de inversiones se guardan desde el primer cambio y vuelven después de recargar;</li>
-          <li>si abres el HTML con un visor local, «Guardar datos» descarga un respaldo que puedes cargar más tarde;</li>
-          <li>los importes enteros se muestran como 10.000, sin ceros decimales innecesarios;</li>
-          <li>el signo negativo aparece antes del símbolo: −$70.567, no $−70.567;</li>
-          <li>el formulario de inversiones comienza vacío y permite elegir el tipo de negocio;</li>
-          <li>puedes registrar uno o varios productos o servicios, con ventas por mes o por día;</li>
-          <li>los costos pueden escribirse como total por venta o separarse en ingredientes, materiales y otros gastos;</li>
-          <li>se retiraron los nombres, productos e importes de demostración del módulo;</li>
-          <li>ROI, VAN, TIR, sensibilidad, escenarios y fórmulas permanecen reunidos en «Avanzado».</li>
+          <li>PDF profesional y XLSX editable con hojas, formatos y fórmulas;</li>
+          <li>un solo centro para exportar PDF, XLSX, CSV, JSON, PNG o HTML;</li>
+          <li>proyectos de inversión locales y sincronización opcional con recuperación de conflictos.</li>
         </ul>
       </div>
-      <section class="beta-consent-box" aria-labelledby="betaConsentTitle">
-        <h4 id="betaConsentTitle">Ayúdanos a mejorar la Beta</h4>
-        <p>Podemos registrar eventos generales, como completar un cálculo o detectar un fallo de cotización. No guardaremos automáticamente precios, salarios o productos.</p>
-        <div class="auth-actions">
-          <button class="button secondary" id="declineAnalyticsButton" type="button">No permitir</button>
-          <button class="button primary" id="allowAnalyticsButton" type="button">Permitir</button>
-        </div>
-      </section>
       <div class="auth-actions">
+        <button class="button secondary" id="betaNewsButton" type="button">Ver novedades</button>
         <button class="button primary" id="betaContinueButton" type="button">Continuar</button>
-        <button class="button secondary" id="betaPrivacyButton" type="button">Ver privacidad</button>
       </div>
     </div>
   </dialog>
@@ -5890,7 +5946,7 @@
       <button class="icon-button" type="button" data-close-dialog="deleteAccountDialog" aria-label="Cancelar eliminación">×</button>
     </div>
     <form id="deleteAccountForm" class="dialog-body dialog-stack" novalidate>
-      <p>Se revocará la renovación de todas las sesiones y se eliminarán el usuario, los cálculos, las cestas, los comentarios y los eventos asociados. Un token de acceso ya emitido puede conservar validez hasta su vencimiento, pero los datos vinculados se eliminan en cascada. Esta acción no se puede deshacer.</p>
+      <p>Se revocará la renovación de todas las sesiones y se eliminarán exactamente tu usuario, cálculos, cestas, proyectos de inversión sincronizados, comentarios y eventos asociados. Los proyectos y demás datos locales de este dispositivo se conservarán. Un token de acceso ya emitido puede conservar validez hasta su vencimiento, pero los datos vinculados se eliminan en cascada. Esta acción no se puede deshacer.</p>
       <div class="field">
         <label for="deleteConfirmation">Escribe <strong>ELIMINAR</strong> para confirmar</label>
         <input type="text" class="delete-confirmation" id="deleteConfirmation" maxlength="8" autocomplete="off" spellcheck="false" aria-describedby="deleteAccountNotice">
@@ -5921,7 +5977,7 @@
   (function(){
     'use strict';
 
-    const APP_VERSION = 'v0.13.6-Beta-Patch';
+    const APP_VERSION = 'v0.14.0-Beta';
     const VERSION = APP_VERSION;
     // El contrato de create-account/delete-account no cambió en este parche de exportaciones.
     const ACCOUNT_API_VERSION = 'v0.8.2-Beta-Patch';
@@ -5932,6 +5988,7 @@
     const AUTH_EMAIL_COOLDOWN_MS = 60 * 1000;
     const AUTH_EMAIL_RATE_LIMIT_COOLDOWN_MS = 60 * 60 * 1000;
     const SYNC_SCHEMA_VERSION = 2;
+    const INVESTMENT_PROJECT_SCHEMA_VERSION = 1;
     const WELCOME_STORAGE_VERSION = APP_VERSION;
     const DATA_CACHE_SCHEMA_VERSION = 1;
     const BACKEND_TIMEOUT_MS = 12000;
@@ -5954,7 +6011,8 @@
     const MAX_INVESTMENT_PRODUCTS = 12;
     const MAX_INVESTMENT_INGREDIENTS = 30;
     const MAX_INVESTMENT_PORTFOLIO = 12;
-    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.13.6-Beta-Patch.html';
+    const MAX_INVESTMENT_PROJECTS = 100;
+    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.14.0-Beta.html';
     const FX_CACHE_MAX_AGE = 15 * 60 * 1000;
     const FX_CACHE_STALE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
     const IPCA_CACHE_MAX_AGE = 90 * 24 * 60 * 60 * 1000;
@@ -6006,6 +6064,8 @@
       ,investmentDraft: 'inflation.v130.investment-draft'
       ,investmentPortfolio: 'inflation.v130.investment-portfolio'
       ,investmentPreferences: 'inflation.v130.investment-preferences'
+      ,investmentProjects: 'inflation.v140.investment-projects'
+      ,investmentSyncQueue: 'inflation.v140.investment-sync-queue'
     });
     const LEGACY_KEYS = Object.freeze({
       quotes: 'inflation.v050.fx',
@@ -6402,6 +6462,8 @@
       investmentIngredients:[],
       investmentCosts:[],
       investmentPortfolio:[],
+      investmentProjects:[],
+      investmentActiveProjectId:null,
       investmentResult:null,
       investmentScenarios:[],
       investmentSensitivity:null,
@@ -6425,7 +6487,7 @@
         analyticsConsent:false,
         syncStatus:'local',
         lastSyncAt:null,
-        remoteCounts:{calculations:null,baskets:null},
+        remoteCounts:{calculations:null,baskets:null,investments:null},
         syncPromise:null,
         authSubscription:null,
         authBusy:false,
@@ -6738,6 +6800,7 @@
       return readHistory().length + readScenarios().length + readSalaryHistory().length +
         readPersonalBaskets().length + readPersonalHistory().length + readProductRecords().length +
         readExpenses().reduce(function(sum,item){ return sum+1+item.history.length; },0) +
+        readInvestmentProjects().filter(function(project){ return !project.deletedAt; }).length +
         (safeStorageGet(KEYS.basket,null) ? 1 : 0) + (safeStorageGet(KEYS.budgetDraft,null) ? 1 : 0);
     }
 
@@ -6875,6 +6938,7 @@
       $('localRecordCount').textContent = String(localRecordCount());
       $('remoteCalculationCount').textContent = signedIn && backend.remoteCounts.calculations != null ? String(backend.remoteCounts.calculations) : '—';
       $('remoteBasketCount').textContent = signedIn && backend.remoteCounts.baskets != null ? String(backend.remoteCounts.baskets) : '—';
+      $('remoteInvestmentCount').textContent = signedIn && backend.remoteCounts.investments != null ? String(backend.remoteCounts.investments) : '—';
       $('syncEnabled').disabled = !signedIn;
       $('syncEnabled').checked = Boolean(signedIn && backend.syncEnabled);
       $('syncHelp').textContent = signedIn ? (backend.syncEnabled ? 'Los cambios locales se enviarán cuando haya conexión.' : 'La nube está desactivada; todo sigue local.') : 'Inicia sesión para activar esta opción.';
@@ -6924,7 +6988,7 @@
       if(!state.backend.user){
         if(previousUserId) purgeRemoteCache(previousUserId);
         state.backend.syncEnabled = false;
-        state.backend.remoteCounts = {calculations:null,baskets:null};
+        state.backend.remoteCounts = {calculations:null,baskets:null,investments:null};
         setSyncStatus(navigator.onLine === false ? 'offline' : 'local');
         updateAccountUi();
         return;
@@ -6960,7 +7024,7 @@
       try{
         state.backend.client = window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
           auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'implicit',storageKey:'inflation.v080.auth'},
-          global:{headers:{'x-application-name':'inflation-insights-v0136-beta-patch'}}
+          global:{headers:{'x-application-name':'inflation-insights-v0140-beta'}}
         });
         state.backend.available = true;
         const sessionResult = await withTimeout(state.backend.client.auth.getSession());
@@ -7252,15 +7316,15 @@
       const payload={schemaVersion:SYNC_SCHEMA_VERSION,appVersion:APP_VERSION,type:'complete-data-export',exportedAt:nowIso(),local:local,remote:null};
       try{
         if(state.backend.user){
-          const [profiles,calculations,baskets,feedback,events]=await Promise.all([
-            fetchAllRemoteRows('profiles'),fetchAllRemoteRows('calculations'),fetchAllRemoteRows('baskets'),fetchAllRemoteRows('feedback'),fetchAllRemoteRows('usage_events')
+          const [profiles,calculations,baskets,investments,feedback,events]=await Promise.all([
+            fetchAllRemoteRows('profiles'),fetchAllRemoteRows('calculations'),fetchAllRemoteRows('baskets'),fetchAllRemoteRows('investment_projects'),fetchAllRemoteRows('feedback'),fetchAllRemoteRows('usage_events')
           ]);
-          payload.remote={user:{id:state.backend.user.id,email:state.backend.user.email || null},profiles:profiles,calculations:calculations,baskets:baskets,feedback:feedback,usageEvents:events};
+          payload.remote={user:{id:state.backend.user.id,email:state.backend.user.email || null},profiles:profiles,calculations:calculations,baskets:baskets,investmentProjects:investments,feedback:feedback,usageEvents:events};
         }
-        downloadJsonFile('mis-datos-inflation-insights-v0136-'+new Date().toISOString().slice(0,10)+'.json',payload);
+        downloadJsonFile('mis-datos-inflation-insights-v0140-'+new Date().toISOString().slice(0,10)+'.json',payload);
         setNotice($('accountNotice'),'Exportación preparada. El archivo incluye datos locales y, si había sesión, los remotos accesibles.','success');
       }catch(error){
-        downloadJsonFile('mis-datos-locales-inflation-insights-v0136.json',payload);
+        downloadJsonFile('mis-datos-locales-inflation-insights-v0140.json',payload);
         setNotice($('accountNotice'),'Se exportaron los datos locales, pero no fue posible recuperar los remotos.','warning');
       }finally{ setButtonBusy($('exportAllDataButton'),false); }
     }
@@ -7319,7 +7383,7 @@
         if($('pwaOfflineState')) $('pwaOfflineState').textContent='Este navegador no admite Service Worker';
         return;
       }
-      navigator.serviceWorker.register('./sw-v0.13.6-beta-patch.js').then(function(registration){
+      navigator.serviceWorker.register('./sw-v0.14.0-beta.js').then(function(registration){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent=navigator.onLine === false ? 'Modo offline activo' : 'Caché local preparada';
         registration.update().catch(function(){ return null; });
         registration.addEventListener('updatefound',function(){
@@ -7744,6 +7808,86 @@
       state.backend.remoteCounts.baskets=remoteRows.filter(function(row){ return !row.deleted_at; }).length;
     }
 
+    function investmentProjectCloudRow(project,userId){
+      return {
+        user_id:userId,client_id:project.id,name:project.name,business_type:project.businessType,currency:project.currency,
+        payload:cleanJsonValue(project.payload),summary:cleanJsonValue(project.summary),revision:Math.max(1,Number(project.revision) || 1),app_version:APP_VERSION,
+        content_updated_at:project.updatedAt,created_at:project.createdAt,deleted_at:project.deletedAt || null
+      };
+    }
+
+    async function readRemoteInvestmentProjects(){
+      const result=await withTimeout(state.backend.client.from('investment_projects').select('*').order('content_updated_at',{ascending:true}).limit(MAX_INVESTMENT_PROJECTS*2));
+      if(result.error) throw result.error;
+      return Array.isArray(result.data) ? result.data : [];
+    }
+
+    function remoteInvestmentProject(row,userId){
+      return normalizeInvestmentProject({
+        id:row.client_id,name:row.name,businessType:row.business_type,currency:row.currency,payload:row.payload,summary:row.summary,createdAt:row.created_at,updatedAt:row.content_updated_at || row.updated_at,deletedAt:row.deleted_at,revision:row.revision,
+        lastSyncedAt:row.updated_at,lastSyncedLocalUpdatedAt:row.content_updated_at,remoteContentUpdatedAt:row.content_updated_at,cloudId:row.id,cloudOwner:userId,syncOrigin:'remote'
+      });
+    }
+
+    function investmentProjectChangedAfter(value,reference){
+      const changed=new Date(value || 0).getTime(),base=new Date(reference || 0).getTime();
+      return Number.isFinite(changed) && changed > base+500;
+    }
+
+    function recoveredInvestmentProject(source,conflictId,label){
+      const copy=normalizeInvestmentProject({id:createUuid(),name:(source.name+' · '+label).slice(0,120),businessType:source.businessType,currency:source.currency,payload:JSON.parse(JSON.stringify(source.payload)),summary:Object.assign({},source.summary),createdAt:nowIso(),updatedAt:nowIso(),revision:1,syncOrigin:'local',conflictOf:conflictId});
+      if(copy && copy.payload && copy.payload.draft && copy.payload.draft.fields) copy.payload.draft.fields.investmentBusinessName=copy.name;
+      return copy;
+    }
+
+    function mergeRemoteInvestmentProjects(remoteRows,userId){
+      const local=readInvestmentProjects(),byId=new Map(local.map(function(project){ return [project.id,project]; })),additions=[];
+      remoteRows.forEach(function(row){
+        if(!row || !isUuid(row.client_id)) return;
+        const remote=remoteInvestmentProject(row,userId),current=byId.get(row.client_id);
+        if(!remote) return;
+        if(!current){ local.push(remote); byId.set(remote.id,remote); return; }
+        const reference=current.lastSyncedAt || current.remoteContentUpdatedAt || null;
+        const localChanged=Boolean(reference && investmentProjectChangedAfter(current.updatedAt,current.lastSyncedLocalUpdatedAt || reference));
+        const remoteChanged=Boolean(reference && investmentProjectChangedAfter(remote.updatedAt,current.remoteContentUpdatedAt || reference));
+        if(remote.deletedAt){
+          if(localChanged && !current.deletedAt){
+            const recovered=recoveredInvestmentProject(current,current.id,'copia recuperada'); if(recovered) additions.push(recovered);
+            Object.assign(current,remote);
+          }else if(!localChanged || new Date(remote.deletedAt).getTime() >= new Date(current.updatedAt).getTime()) Object.assign(current,remote);
+          return;
+        }
+        const contentDiffers=stableStringify(current.payload) !== stableStringify(remote.payload) || current.name !== remote.name;
+        if(localChanged && remoteChanged && contentDiffers){
+          const recovered=recoveredInvestmentProject(remote,current.id,'copia recuperada de la nube'); if(recovered) additions.push(recovered);
+          return;
+        }
+        if(!localChanged && new Date(remote.updatedAt).getTime() > new Date(current.updatedAt).getTime()) Object.assign(current,remote);
+        else if(!reference && new Date(remote.updatedAt).getTime() > new Date(current.updatedAt).getTime()) Object.assign(current,remote);
+      });
+      additions.forEach(function(project){ if(!byId.has(project.id)){ local.unshift(project); byId.set(project.id,project); } });
+      state.investmentProjects=local;
+      saveInvestmentProjects();
+    }
+
+    async function syncInvestmentProjects(){
+      const userId=state.backend.user.id;
+      let remoteRows=await readRemoteInvestmentProjects();
+      mergeRemoteInvestmentProjects(remoteRows,userId);
+      const candidates=state.investmentProjects.filter(function(project){
+        return project.syncOrigin !== 'remote' || project.cloudOwner === userId || project.updatedAt !== project.lastSyncedLocalUpdatedAt;
+      }).slice(0,MAX_INVESTMENT_PROJECTS*2).map(function(project){ return investmentProjectCloudRow(project,userId); });
+      await upsertInBatches('investment_projects',candidates);
+      remoteRows=await readRemoteInvestmentProjects();
+      const remoteById=new Map(remoteRows.map(function(row){ return [row.client_id,row]; })),syncedAt=nowIso();
+      state.investmentProjects.forEach(function(project){
+        const row=remoteById.get(project.id); if(!row) return;
+        project.cloudId=row.id; project.cloudOwner=userId; project.lastSyncedAt=syncedAt; project.lastSyncedLocalUpdatedAt=project.updatedAt; project.remoteContentUpdatedAt=row.content_updated_at; project.syncOrigin=project.syncOrigin === 'remote' ? 'remote' : 'local';
+      });
+      saveInvestmentProjects();
+      state.backend.remoteCounts.investments=remoteRows.filter(function(row){ return !row.deleted_at; }).length;
+    }
+
     function queueRemoteDeletion(table,clientId){
       if(!state.backend.user || !state.backend.syncEnabled || !isUuid(clientId) || !['calculations','baskets'].includes(table)) return;
       const value=safeStorageGet(KEYS.syncQueue,[]);
@@ -7781,19 +7925,23 @@
         saveBetaMeta({weightedCloudOwner:null,weightedLocalBeforeCloud:null});
         loadBasket();
       }
+      state.investmentProjects=readInvestmentProjects().filter(function(project){ return !(project.syncOrigin === 'remote' && project.cloudOwner === userId); });
+      saveInvestmentProjects();
       renderSavedLists();
       renderPersonalSavedLists();
     }
 
     async function refreshRemoteCounts(){
       if(!state.backend.client || !state.backend.user) return;
-      const [calculations,baskets]=await Promise.all([
+      const [calculations,baskets,investments]=await Promise.all([
         withTimeout(state.backend.client.from('calculations').select('*',{count:'exact',head:true}).is('deleted_at',null)),
-        withTimeout(state.backend.client.from('baskets').select('*',{count:'exact',head:true}).is('deleted_at',null))
+        withTimeout(state.backend.client.from('baskets').select('*',{count:'exact',head:true}).is('deleted_at',null)),
+        withTimeout(state.backend.client.from('investment_projects').select('*',{count:'exact',head:true}).is('deleted_at',null))
       ]);
       if(calculations.error) throw calculations.error;
       if(baskets.error) throw baskets.error;
-      state.backend.remoteCounts={calculations:calculations.count || 0,baskets:baskets.count || 0};
+      if(investments.error) throw investments.error;
+      state.backend.remoteCounts={calculations:calculations.count || 0,baskets:baskets.count || 0,investments:investments.count || 0};
       updateAccountUi();
     }
 
@@ -7851,6 +7999,7 @@
           await processDeletionQueue();
           await syncCalculationCollections();
           await syncBasketCollections();
+          await syncInvestmentProjects();
           await flushFeedbackQueue();
           const syncedAt=nowIso();
           await updateRemoteProfile({last_synced_at:syncedAt,preferences:{schemaVersion:SYNC_SCHEMA_VERSION,lastRoute:state.route,deviceId:loadBetaMeta().deviceId}});
@@ -9233,7 +9382,7 @@
           ipca:Object.assign({},state.ipca)
         }
       };
-      downloadJsonFile('resultado-inflacion-v0136.json',data);
+      downloadJsonFile('resultado-inflacion-v0140.json',data);
       trackEvent('report_exported',{tool:'calculator',format:'json'});
     }
 
@@ -9275,7 +9424,7 @@
         rows.push(['fecha_oficial_' + code,quote.officialDate || '']);
         rows.push(['consultado_' + code,quote.fetchedAt || '']);
       });
-      downloadCsvFile('resultado-inflacion-v0136.csv',rows);
+      downloadCsvFile('resultado-inflacion-v0140.csv',rows);
       trackEvent('report_exported',{tool:'calculator',format:'csv'});
     }
 
@@ -9810,7 +9959,7 @@
           };
         })
       };
-      downloadJsonFile('reajuste-salarial-v0136.json',data);
+      downloadJsonFile('reajuste-salarial-v0140.json',data);
       trackEvent('report_exported',{tool:'salary',format:'json'});
     }
 
@@ -9832,7 +9981,7 @@
       rows.push(['fecha_o_periodo_fuente',bundle.inputs.source.officialDate || '']);
       rows.push(['estado_fuente',salarySourceStateLabel(bundle.inputs.source.mode)]);
       rows.push(['periodo_analizado_meses',bundle.inputs.months]);
-      downloadCsvFile('reajuste-salarial-v0136.csv',rows);
+      downloadCsvFile('reajuste-salarial-v0140.csv',rows);
       trackEvent('report_exported',{tool:'salary',format:'csv'});
     }
 
@@ -9888,7 +10037,7 @@
         URL.revokeObjectURL(url);
         canvas.toBlob(function(png){
           if(!png){ showToast('El navegador no pudo generar la imagen.'); return; }
-          downloadBlob('informe-reajuste-salarial-v0136.png',png,'image/png');
+          downloadBlob('informe-reajuste-salarial-v0140.png',png,'image/png');
           trackEvent('report_exported',{tool:'salary',format:'png',design:'professional'});
           showToast('PNG profesional exportado en 1600 × 1100 px.');
         },'image/png');
@@ -10871,7 +11020,7 @@
     function exportPersonalJson(){
       const bundle = ensurePersonalResult();
       if(!bundle) return;
-      downloadJsonFile('costo-de-vida-v0136.json',personalExportPayload(bundle));
+      downloadJsonFile('costo-de-vida-v0140.json',personalExportPayload(bundle));
     }
 
     function exportPersonalProductsCsv(){
@@ -10881,7 +11030,7 @@
       bundle.metrics.products.forEach(function(item){
         rows.push([item.name,item.category,bundle.meta.currency,item.quantity,item.previousPrice,item.currentPrice,item.previousCost,item.currentCost,isFiniteNumber(item.variation) ? item.variation*100 : '',item.monetaryChange,item.contribution*100,item.notes]);
       });
-      downloadCsvFile('productos-costo-de-vida-v0136.csv',rows);
+      downloadCsvFile('productos-costo-de-vida-v0140.csv',rows);
     }
 
     function exportPersonalAnalysisCsv(){
@@ -10898,7 +11047,7 @@
         ['categoria','impacto_monetario','contribucion_pp']
       ];
       bundle.metrics.categories.forEach(function(item){ rows.push([item.name,item.monetaryChange,item.contribution*100]); });
-      downloadCsvFile('analisis-costo-de-vida-v0136.csv',rows);
+      downloadCsvFile('analisis-costo-de-vida-v0140.csv',rows);
     }
 
     function buildPersonalShareUrl(){
@@ -11031,7 +11180,7 @@
       try{
         const payload = normalizePersonalPayload(record.payload);
         const filename = (payload.name || 'cesta').toLocaleLowerCase('es').replace(/[^a-z0-9áéíóúüñ]+/gi,'-').replace(/^-|-$/g,'').slice(0,50) || 'cesta';
-        downloadJsonFile(filename+'-v0136.json',record.payload);
+        downloadJsonFile(filename+'-v0140.json',record.payload);
       }catch(error){
         setNotice($('personalNotice'),'No se pudo exportar este registro: ' + error.message,'error');
       }
@@ -11580,7 +11729,7 @@
       if(!result || !result.analysis) return;
       const rows=[['economía','índice','período','tasa_mensual_pct','acumulada_pct','indice_base_100','fuente','consultado']];
       result.analysis.points.forEach(function(point){ rows.push([result.economy,result.indexName,point.period,point.rate,point.accumulated*100,point.base100,result.source+' · '+result.provider,result.fetchedAt]); });
-      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0136.csv',rows);
+      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0140.csv',rows);
     }
 
     function setDataTab(name){
@@ -11639,7 +11788,7 @@
       const lowest=Math.min.apply(null,result.series.map(function(item){ return item.analysis.accumulated; }));
       const rows=[['economía','índice','inicio','fin','inflación_acumulada_pct','diferencia_pp','fuente','consultado']];
       result.series.forEach(function(item){ rows.push([item.economy,item.indexName,result.start,result.end,item.analysis.accumulated*100,(item.analysis.accumulated-lowest)*100,item.source+' · '+item.provider,item.fetchedAt]); });
-      downloadCsvFile('comparacion-internacional-v0136.csv',rows);
+      downloadCsvFile('comparacion-internacional-v0140.csv',rows);
     }
 
     function contractRange(){
@@ -11739,7 +11888,7 @@
       const result=state.contractComparison; if(!result) return;
       const rows=[['índice','inicio','fin','variación_pct','aumento','valor_final','moneda','fuente','último_dato']];
       result.rows.forEach(function(row){ rows.push([row.name,result.start,result.end,row.rate*100,row.difference,row.finalValue,result.currency,row.source,row.latestPeriod]); });
-      downloadCsvFile('comparacion-reajustes-v0136.csv',rows);
+      downloadCsvFile('comparacion-reajustes-v0140.csv',rows);
     }
 
     function parseLabRates(text,years,fallback){
@@ -11816,7 +11965,7 @@
       const result=state.labResult; if(!result) return;
       const rows=[['escenario','año','inflación_periodo_pct','valor_necesario','ingreso_nominal','ingreso_real','poder_adquisitivo_pct','pérdida_ganancia']];
       result.scenarios.forEach(function(item){ item.timeline.forEach(function(point){ rows.push([item.name,point.year,point.year ? item.rates[point.year-1] : 0,point.priceNeeded,point.nominalIncome,point.realIncome,point.purchasingPower,point.loss]); }); });
-      downloadCsvFile('laboratorio-escenarios-v0136.csv',rows);
+      downloadCsvFile('laboratorio-escenarios-v0140.csv',rows);
     }
 
     function advancedRowTemplate(item,index){
@@ -11881,7 +12030,7 @@
       const result=state.advancedResult; if(!result) return;
       const rows=[['período','tasa_pct','acumulada_pct','valor','indice_base_100','moneda']];
       result.rows.forEach(function(row){ rows.push([row.label,row.rate,row.accumulated*100,row.value,row.base100,result.currency]); });
-      downloadCsvFile('inflacion-por-periodos-v0136.csv',rows);
+      downloadCsvFile('inflacion-por-periodos-v0140.csv',rows);
     }
 
     function setMarketTab(tab,focus){
@@ -12302,7 +12451,7 @@
       const records=recordsForProduct(state.selectedProductKey);
       if(!records.length) return;
       const payload={schemaVersion:FILE_SCHEMA_VERSION,appVersion:APP_VERSION,type:'product-price-history',createdAt:nowIso(),data:{product:records[0].name,records:records}};
-      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0136.json',payload);
+      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0140.json',payload);
     }
 
     function calculateInflationGoal(){
@@ -12710,14 +12859,14 @@
 
     function exportUnifiedCsv(){
       if(!state.productRecords.length){ setNotice($('exportStudioNotice'),'No hay seguimientos de productos para exportar en CSV.','warning'); return; }
-      downloadBlob('seguimiento-productos-v0136-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
+      downloadBlob('seguimiento-productos-v0140-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
       setNotice($('exportStudioNotice'),'CSV UTF-8 exportado con fechas ISO y números decimales consistentes.','success');
     }
 
     function exportUnifiedJson(){
       const all=$('exportDataScope').value === 'all';
       const payload=all ? buildLocalExchangePayload() : structuredProductPayload();
-      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0136-'+new Date().toISOString().slice(0,10)+'.json',payload);
+      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0140-'+new Date().toISOString().slice(0,10)+'.json',payload);
       setNotice($('exportStudioNotice'),'JSON exportado con versión de esquema, versión de la aplicación, tipo y fecha de creación.','success');
     }
 
@@ -12858,7 +13007,7 @@
           canvas.toBlob(function(output){
             URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false);
             if(!output){ setNotice($('exportStudioNotice'),'El navegador no pudo crear el PNG.','error'); return; }
-            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0136.png',output,'image/png');
+            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0140.png',output,'image/png');
             setNotice($('exportStudioNotice'),'PNG exportado a '+pixels.width+' × '+pixels.height+' píxeles.','success');
           },'image/png',1);
         }catch(error){ URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false); setNotice($('exportStudioNotice'),'No se pudo renderizar el PNG.','error'); }
@@ -13345,6 +13494,57 @@
       pdfText(commands,'Visualización generada localmente · valores sin redondeo intermedio',84,115,{size:7.5,font:'F2',color:palette.ink});
       return page;
     }
+    function pdfDrawTablePages(report,palette,pages){
+      (report.tables || []).forEach(function(table,tableIndex){
+        const columns=(table.columns || []).filter(function(column){ return column && column.label; });
+        const rows=Array.isArray(table.rows) ? table.rows : [];
+        if(!columns.length || !rows.length) return;
+        const totalWeight=columns.reduce(function(sum,column){ return sum+Math.max(.4,Number(column.weight) || 1); },0);
+        const widths=columns.map(function(column){ return 499*Math.max(.4,Number(column.weight) || 1)/totalWeight; });
+        let page=null,y=0,pageNumber=0;
+        function startPage(){
+          pageNumber+=1;
+          page=pdfPage('table',palette);
+          pdfPageScaffold(page,table.title+(pageNumber > 1 ? ' · continuación' : ''),'TABLA '+String(tableIndex+1).padStart(2,'0'));
+          pages.push(page);
+          y=716;
+          let x=48;
+          columns.forEach(function(column,index){
+            pdfRect(page.commands,x,y-34,widths[index],34,palette.ink,palette.grid,.8);
+            const headerLines=pdfWrapText(column.label,widths[index]-12,7.4,'F2').slice(0,2);
+            headerLines.forEach(function(line,lineIndex){ pdfText(page.commands,line,x+6,y-13-lineIndex*10,{size:7.4,font:'F2',color:palette.white}); });
+            x+=widths[index];
+          });
+          y-=34;
+        }
+        startPage();
+        rows.forEach(function(row,rowIndex){
+          const values=columns.map(function(column,columnIndex){
+            const raw=Array.isArray(row) ? row[columnIndex] : row[column.key];
+            return pdfSafeText(raw == null ? '' : raw);
+          });
+          const wrapped=values.map(function(value,index){ return pdfWrapText(value,widths[index]-12,7.6,'F1').slice(0,3); });
+          const rowHeight=Math.max(25,10+Math.max.apply(null,wrapped.map(function(lines){ return Math.max(1,lines.length); }))*10);
+          if(y-rowHeight < 72) startPage();
+          let x=48;
+          columns.forEach(function(column,index){
+            const fill=rowIndex%2 ? palette.paper : palette.surface;
+            pdfRect(page.commands,x,y-rowHeight,widths[index],rowHeight,fill,palette.grid,.55);
+            const lines=wrapped[index].length ? wrapped[index] : ['—'];
+            lines.forEach(function(line,lineIndex){
+              let display=line;
+              if(lineIndex === 2 && pdfWrapText(values[index],widths[index]-12,7.6,'F1').length > 3) display=line.replace(/[.\s]+$/,'')+'...';
+              const align=column.align === 'right' ? 'right' : 'left';
+              const textWidth=pdfApproxWidth(display,7.6,'F1');
+              const textX=align === 'right' ? x+widths[index]-6-textWidth : x+6;
+              pdfText(page.commands,display,textX,y-16-lineIndex*10,{size:7.6,font:'F1',color:palette.ink});
+            });
+            x+=widths[index];
+          });
+          y-=rowHeight;
+        });
+      });
+    }
     function pdfFinalizePages(pages,report){
       pages.forEach(function(page,index){
         const palette=page.palette,commands=page.commands;
@@ -13400,13 +13600,21 @@
         assumptions:pdfSafeText(input.assumptions || '').slice(0,1200),
         design:design,
         sections:(input.sections || []).map(function(section){ return reportSection(pdfSafeText(section.title || 'Sección'),(section.lines || []).map(pdfSafeText)); }),
-        charts:(input.charts || []).filter(Boolean)
+        charts:(input.charts || []).filter(Boolean),
+        tables:(input.tables || []).map(function(table){
+          return {
+            title:pdfSafeText(table.title || 'Tabla'),
+            columns:(table.columns || []).map(function(column){ return {key:String(column.key || ''),label:pdfSafeText(column.label || ''),weight:Number(column.weight) || 1,align:column.align === 'right' ? 'right' : 'left'}; }),
+            rows:Array.isArray(table.rows) ? table.rows.slice(0,1500) : []
+          };
+        })
       };
       if(!report.sections.length) report.sections.push(reportSection('Resumen',['No se incluyeron resultados adicionales en este documento.']));
       const palette=pdfPalette(design.style),pages=[];
       if(design.cover !== false) pages.push(pdfDrawCover(report,palette));
       if(design.summary !== false) pages.push(pdfDrawSummary(report,palette));
       pdfDrawSectionPages(report,palette,pages);
+      pdfDrawTablePages(report,palette,pages);
       report.charts.forEach(function(chart,index){ pages.push(pdfDrawChartPage(chart,index,palette)); });
       return pdfBuildDocument(pages,report);
     }
@@ -13505,7 +13713,7 @@
       const report=state.reportResult; if(!report) return;
       const rows=[['sección','contenido']]; report.sections.forEach(function(section){ section.lines.forEach(function(line){ rows.push([section.title,line]); }); });
       rows.push(['Metodología',report.methodology],['Supuestos',report.assumptions]);
-      downloadCsvFile('informe-inflacion-v0136.csv',rows);
+      downloadCsvFile('informe-inflacion-v0140.csv',rows);
     }
 
     const LANDING_QUALITY_PROFILES=Object.freeze({
@@ -14829,7 +15037,7 @@
       const currencyMeta=investmentCurrencyMetaFromForm();
       if(currencyMeta.custom){
         if(!currencyMeta.name) throw new Error('Escribe el nombre de la moneda personalizada.');
-        if(!/^[A-Z0-9]{2,8}$/.test(currencyMeta.code)) throw new Error('El código Custom debe contener entre 2 y 8 letras o números.');
+        if(!/^[A-Z][A-Z0-9]{1,7}$/.test(currencyMeta.code)) throw new Error('El código Custom debe tener entre 2 y 8 caracteres y comenzar por una letra.');
         if(!currencyMeta.symbol || currencyMeta.symbol.length > 5) throw new Error('El símbolo Custom debe tener entre 1 y 5 caracteres.');
       }
       const catalogMode=$('investmentCatalogMode').value;
@@ -14952,7 +15160,7 @@
     function downloadInvestmentDraftBackup(options){
       const opts=Object.assign({announce:true},options || {});
       const rawName=String($('investmentBusinessName').value || 'negocio');
-      downloadJsonFile('datos-inversion-'+safeFilePart(rawName)+'-v0136.json',investmentDraftBackupPayload());
+      downloadJsonFile('datos-inversion-'+safeFilePart(rawName)+'-v0140.json',investmentDraftBackupPayload());
       if(opts.announce) setFeatureStatus('investmentNotice','Respaldo descargado. Usa «Cargar respaldo» si el visor local no recupera los datos al volver a abrir el HTML.','success');
     }
 
@@ -15041,6 +15249,115 @@
       state.investmentTab=['profitability','risk','compare'].includes(draft.tab) ? 'advanced' : ['summary','operation','projection','advanced'].includes(draft.tab) ? draft.tab : 'summary';
       state.investmentZoom=Number.isFinite(Number(draft.zoom)) ? Number(draft.zoom) : Number($('investmentHorizon').value || 12);
       return true;
+    }
+
+    function normalizeInvestmentProject(project){
+      if(!project || !isUuid(project.id) || !project.payload || !project.payload.draft) return null;
+      const createdAt=project.createdAt || project.updatedAt || nowIso(),updatedAt=project.updatedAt || createdAt;
+      return {
+        schemaVersion:INVESTMENT_PROJECT_SCHEMA_VERSION,id:project.id,name:String(project.name || 'Proyecto sin nombre').slice(0,120),businessType:String(project.businessType || 'other').slice(0,40),currency:String(project.currency || 'BRL').slice(0,8),
+        payload:project.payload,summary:project.summary && typeof project.summary === 'object' ? project.summary : {},createdAt:createdAt,updatedAt:updatedAt,deletedAt:project.deletedAt || null,revision:Math.max(1,Number(project.revision) || 1),
+        lastSyncedAt:project.lastSyncedAt || null,lastSyncedLocalUpdatedAt:project.lastSyncedLocalUpdatedAt || null,remoteContentUpdatedAt:project.remoteContentUpdatedAt || null,cloudId:project.cloudId || null,cloudOwner:project.cloudOwner || null,syncOrigin:project.syncOrigin === 'remote' ? 'remote' : 'local',conflictOf:project.conflictOf || null
+      };
+    }
+
+    function readInvestmentProjects(){
+      const value=safeStorageGet(KEYS.investmentProjects,[]);
+      return (Array.isArray(value) ? value : []).map(normalizeInvestmentProject).filter(Boolean).slice(0,MAX_INVESTMENT_PROJECTS*2);
+    }
+
+    function saveInvestmentProjects(){
+      state.investmentProjects=state.investmentProjects.map(normalizeInvestmentProject).filter(Boolean).sort(function(a,b){ return new Date(b.updatedAt)-new Date(a.updatedAt); }).slice(0,MAX_INVESTMENT_PROJECTS*2);
+      const saved=safeStorageSet(KEYS.investmentProjects,state.investmentProjects,{silent:true});
+      renderInvestmentProjects(); updateAccountUi(); updateInvestmentProjectSyncState();
+      return saved;
+    }
+
+    function investmentProjectSummary(result){
+      return {initialInvestment:result.input.initialInvestment,annualProfit:result.annualProfit,annualRoi:result.annualRoi,accumulatedRoi:result.accumulatedRoi,npv:result.npv,irrAnnual:result.irrAnnual,payback:result.payback,riskState:result.riskState,riskScore:result.riskScore,horizon:result.input.horizon};
+    }
+
+    function investmentProjectPayload(){
+      const result=state.investmentResult;
+      return {
+        schemaVersion:INVESTMENT_PROJECT_SCHEMA_VERSION,appVersion:APP_VERSION,draft:investmentDraftSnapshot(),input:result.input,projection:result.rows,
+        scenarios:state.investmentScenarios.map(function(item){ return {id:item.id,name:item.name,summary:investmentProjectSummary(item.result)}; }),
+        sensitivity:state.investmentSensitivity ? {definition:state.investmentSensitivity.definition,cells:state.investmentSensitivity.cells.map(function(row){ return row.map(function(cell){ return {x:cell.x,y:cell.y,npv:cell.result.npv,annualProfit:cell.result.annualProfit,riskState:cell.result.riskState}; }); })} : null
+      };
+    }
+
+    function updateInvestmentProjectSyncState(){
+      const node=$('investmentProjectSyncState'); if(!node) return;
+      const active=state.investmentProjects.find(function(project){ return project.id === state.investmentActiveProjectId && !project.deletedAt; });
+      if(!active){ node.textContent='Proyecto local. Inicia sesión y activa la sincronización para conservarlo también en tu cuenta.'; return; }
+      if(active.conflictOf) node.textContent='Copia recuperada de un conflicto. Revisa los datos y guarda cuando decidas cuál conservar.';
+      else if(active.lastSyncedAt) node.textContent='Proyecto guardado localmente y sincronizado por última vez '+formatDateTime(active.lastSyncedAt)+'.';
+      else if(state.backend.user && state.backend.syncEnabled) node.textContent='Proyecto guardado localmente y pendiente de sincronización.';
+      else node.textContent='Proyecto guardado solo en este dispositivo.';
+    }
+
+    function saveCurrentInvestmentProject(){
+      const result=state.investmentResult;
+      if(!result){ setFeatureStatus('investmentNotice','Completa primero un análisis válido.','warning'); return; }
+      const now=nowIso(),existing=state.investmentProjects.find(function(project){ return project.id === state.investmentActiveProjectId && !project.deletedAt; });
+      const project=normalizeInvestmentProject({
+        id:existing ? existing.id : createUuid(),name:result.input.name,businessType:result.input.businessType,currency:result.input.currencyMeta.code,payload:investmentProjectPayload(),summary:investmentProjectSummary(result),createdAt:existing ? existing.createdAt : now,updatedAt:now,revision:existing ? existing.revision+1 : 1,
+        lastSyncedAt:existing && existing.lastSyncedAt,lastSyncedLocalUpdatedAt:existing && existing.lastSyncedLocalUpdatedAt,remoteContentUpdatedAt:existing && existing.remoteContentUpdatedAt,cloudId:existing && existing.cloudId,cloudOwner:existing && existing.cloudOwner,syncOrigin:'local',conflictOf:existing && existing.conflictOf
+      });
+      state.investmentProjects=state.investmentProjects.filter(function(item){ return item.id !== project.id; }); state.investmentProjects.unshift(project); state.investmentActiveProjectId=project.id;
+      const saved=saveInvestmentProjects();
+      setFeatureStatus('investmentNotice',saved ? 'Proyecto “'+project.name+'” guardado en este dispositivo.' : 'El navegador bloqueó el guardado del proyecto. Descarga un respaldo. ',saved ? 'success' : 'warning');
+      if(saved && state.backend.user && state.backend.syncEnabled) window.setTimeout(function(){ syncAllData({reason:'investment-project-saved'}); },0);
+    }
+
+    function openInvestmentProject(id){
+      const project=state.investmentProjects.find(function(item){ return item.id === id && !item.deletedAt; }); if(!project) return;
+      if(!applyInvestmentDraft(project.payload.draft)){ showToast('El proyecto no contiene un formulario compatible.'); return; }
+      state.investmentActiveProjectId=project.id; updateInvestmentSetupUi(); setInvestmentTab('summary'); calculateAndRenderInvestment({save:true,announce:true}); showRoute('inversiones');
+      updateInvestmentProjectSyncState(); setFeatureStatus('investmentNotice','Proyecto “'+project.name+'” abierto. Los indicadores se recalcularon con el motor actual.','success');
+    }
+
+    function renameInvestmentProject(project){
+      const name=window.prompt('Nuevo nombre del proyecto:',project.name); if(name == null) return;
+      const clean=String(name).trim().replace(/\s+/g,' ').slice(0,120); if(!clean){ showToast('Escribe un nombre para el proyecto.'); return; }
+      project.name=clean; project.updatedAt=nowIso(); project.revision+=1; project.syncOrigin='local';
+      if(project.payload && project.payload.draft && project.payload.draft.fields) project.payload.draft.fields.investmentBusinessName=clean;
+      saveInvestmentProjects(); if(state.backend.user && state.backend.syncEnabled) syncAllData({reason:'investment-project-renamed'});
+    }
+
+    function duplicateInvestmentProject(project){
+      const copy=normalizeInvestmentProject({id:createUuid(),name:(project.name+' (copia)').slice(0,120),businessType:project.businessType,currency:project.currency,payload:JSON.parse(JSON.stringify(project.payload)),summary:Object.assign({},project.summary),createdAt:nowIso(),updatedAt:nowIso(),revision:1,syncOrigin:'local',conflictOf:project.id});
+      if(copy.payload && copy.payload.draft && copy.payload.draft.fields) copy.payload.draft.fields.investmentBusinessName=copy.name;
+      state.investmentProjects.unshift(copy); saveInvestmentProjects(); if(state.backend.user && state.backend.syncEnabled) syncAllData({reason:'investment-project-duplicated'});
+      setNotice($('accountNotice'),'Se creó “'+copy.name+'” sin modificar el proyecto original.','success');
+    }
+
+    function exportStoredInvestmentProject(project){
+      downloadJsonFile('inversion-'+safeFilePart(project.name)+'-'+new Date().toISOString().slice(0,10)+'.json',{schemaVersion:INVESTMENT_PROJECT_SCHEMA_VERSION,type:'investment-project',appVersion:APP_VERSION,exportedAt:nowIso(),project:project});
+    }
+
+    function renderInvestmentProjects(){
+      const list=$('investmentProjectList'); if(!list) return;
+      const items=state.investmentProjects.filter(function(project){ return !project.deletedAt; }).sort(function(a,b){ return new Date(b.updatedAt)-new Date(a.updatedAt); });
+      if(!items.length){ list.innerHTML='<div class="investment-empty">Todavía no has guardado proyectos de inversión.</div>'; return; }
+      list.innerHTML=items.map(function(project){
+        const summary=project.summary || {},sync=project.lastSyncedAt ? 'Sincronizado' : 'Solo local',risk=summary.riskState ? investmentRiskCopy(summary.riskState) : 'Pendiente';
+        return '<article class="investment-project-card" data-investment-project-id="'+escapeXml(project.id)+'" data-conflict="'+String(Boolean(project.conflictOf))+'"><div><h3>'+escapeXml(project.name)+'</h3><div class="investment-project-meta"><span>'+escapeXml(project.businessType)+'</span><span>'+escapeXml(project.currency)+'</span><span>'+escapeXml(risk)+'</span><span>'+escapeXml(sync)+'</span><span>Actualizado '+escapeXml(formatDateTime(project.updatedAt))+'</span></div></div><div class="investment-project-actions"><button class="button primary small" type="button" data-investment-project-action="open">Abrir</button><button class="button secondary small" type="button" data-investment-project-action="rename">Renombrar</button><button class="button secondary small" type="button" data-investment-project-action="duplicate">Duplicar</button><button class="button secondary small" type="button" data-investment-project-action="export">Exportar</button><button class="button danger small" type="button" data-investment-project-action="delete">Borrar</button></div></article>';
+      }).join('');
+    }
+
+    function handleInvestmentProjectAction(event){
+      const button=event.target.closest('[data-investment-project-action]'),card=event.target.closest('[data-investment-project-id]'); if(!button || !card) return;
+      const project=state.investmentProjects.find(function(item){ return item.id === card.dataset.investmentProjectId && !item.deletedAt; }); if(!project) return;
+      const action=button.dataset.investmentProjectAction;
+      if(action === 'open') openInvestmentProject(project.id);
+      else if(action === 'rename') renameInvestmentProject(project);
+      else if(action === 'duplicate') duplicateInvestmentProject(project);
+      else if(action === 'export') exportStoredInvestmentProject(project);
+      else if(action === 'delete'){
+        setNotice($('accountNotice'),'Se borrará únicamente el proyecto “'+project.name+'” de este dispositivo y, si estaba sincronizado, de tu cuenta. Los demás proyectos y datos no se tocarán. Pulsa de nuevo para confirmar.','warning');
+        armLocalAction(button,'Confirmar borrado',function(){ project.deletedAt=nowIso(); project.updatedAt=project.deletedAt; project.revision+=1; project.syncOrigin='local'; if(state.investmentActiveProjectId === project.id) state.investmentActiveProjectId=null; saveInvestmentProjects(); if(state.backend.user && state.backend.syncEnabled) syncAllData({reason:'investment-project-deleted'}); setNotice($('accountNotice'),'Proyecto “'+project.name+'” borrado. Los demás datos permanecen intactos.','success'); });
+      }
     }
 
     function investmentOfferCopy(){
@@ -15234,7 +15551,7 @@
       setInvestmentMetric('investmentIrr',result.irrAnnual == null ? 'No calculable' : formatPercent(result.irrAnnual,2),result.irrAnnual != null && result.irrAnnual >= input.requiredReturn/100 ? 'positive' : result.irrAnnual == null ? 'warning' : 'negative');
       $('investmentIrrInterpretation').textContent=result.irrAnnual == null ? 'Los flujos no ofrecen una raíz válida y única en el rango analizado.' : result.irrAnnual >= input.requiredReturn/100 ? 'Supera la rentabilidad mínima requerida.' : 'No alcanza la rentabilidad mínima requerida.';
       setInvestmentMetric('investmentRequiredReturnResult',formatNumber(input.requiredReturn,0,1)+' %','warning');
-      ['investmentSaveButton','investmentSaveCompareButton','investmentExportCsvButton','investmentExportSummaryButton','investmentExportReportButton','investmentExportChartsButton','investmentExportScenariosButton','investmentExportSensitivityButton'].forEach(function(id){ if($(id)) $(id).disabled=false; });
+      ['investmentSaveButton','investmentSaveCompareButton','investmentSaveProjectButton','investmentExportRunButton','investmentExportScenariosButton','investmentExportSensitivityButton'].forEach(function(id){ if($(id)) $(id).disabled=false; });
       renderInvestmentTables(result);
     }
 
@@ -15260,7 +15577,7 @@
       $('investmentChartDetail').textContent='Los gráficos aparecerán después de completar los datos obligatorios.';
       ['investmentCapitalChart','investmentOperationChart','investmentCashChart','investmentExpenseChart','investmentProductPieChart','investmentProfitChart','investmentRoiChart','investmentReinvestmentChart','investmentScenarioChart'].forEach(function(id){ if($(id)) $(id).innerHTML='<div class="investment-empty">Sin datos todavía.</div>'; });
       $('investmentCostSetupSummary').hidden=true;
-      ['investmentSaveButton','investmentSaveCompareButton','investmentExportCsvButton','investmentExportSummaryButton','investmentExportReportButton','investmentExportChartsButton','investmentExportScenariosButton','investmentExportSensitivityButton'].forEach(function(id){ if($(id)) $(id).disabled=true; });
+      ['investmentSaveButton','investmentSaveCompareButton','investmentSaveProjectButton','investmentExportRunButton','investmentExportScenariosButton','investmentExportSensitivityButton'].forEach(function(id){ if($(id)) $(id).disabled=true; });
       renderInvestmentPortfolio();
     }
 
@@ -15523,6 +15840,22 @@
       return String(name).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,42) || 'negocio';
     }
 
+    function investmentExportFilename(extension,variant){
+      const date=new Date().toISOString().slice(0,10),suffix=variant ? '-'+safeFilePart(variant) : '';
+      return 'inversion-'+investmentFileStem()+suffix+'-'+date+'.'+extension;
+    }
+
+    function investmentExportOptions(){
+      return {
+        includeSummary:$('investmentExportIncludeSummary').checked,
+        includeProjection:$('investmentExportIncludeProjection').checked,
+        includeCharts:$('investmentExportIncludeCharts').checked,
+        includeMethodology:$('investmentExportIncludeMethodology').checked,
+        includeSources:$('investmentExportIncludeSources').checked,
+        includeDate:$('investmentExportIncludeDate').checked
+      };
+    }
+
     function investmentPlainSummary(){
       const r=state.investmentResult;if(!r) return '';
       const i=r.input,m=i.currencyMeta;
@@ -15541,22 +15874,23 @@
     function exportInvestmentCsv(){
       const r=state.investmentResult;if(!r) return;
       const productNames=r.input.products.map(function(product){ return product.name; }).join(' | ');
-      const rows=[['app_version','negocio','tipo_negocio','productos_o_servicios','registro_ventas','modo_costos','moneda','mes','unidades','ingresos','gastos','beneficio_neto','reinversion','beneficio_disponible','flujo_operativo','flujo_inversion','flujo_neto','caja_final','capital_empresarial','roi_acumulado_pct','beneficio_real']];
-      r.rows.forEach(function(row){ rows.push([APP_VERSION,r.input.name,r.input.businessTypeLabel,productNames,r.input.salesPeriod,r.input.costMode,r.input.currencyMeta.code,row.month,row.units,row.revenue,row.totalExpenses,row.netProfit,row.reinvestment,row.availableProfit,row.operatingCashFlow,row.investmentCashFlow,row.netCashFlow,row.cash,row.businessCapital,row.roiAccumulated == null ? '' : row.roiAccumulated*100,row.realProfit]); });
-      downloadCsvFile('proyeccion-inversion-'+investmentFileStem()+'-v0136.csv',rows);
+      const generatedAt=nowIso();
+      const rows=[['app_version','generado_iso','negocio','tipo_negocio','productos_o_servicios','registro_ventas','modo_costos','moneda','mes','unidades','ingresos','gastos','beneficio_neto','reinversion','beneficio_disponible','flujo_operativo','flujo_inversion','flujo_neto','caja_final','capital_empresarial','roi_acumulado_pct','beneficio_real']];
+      r.rows.forEach(function(row){ rows.push([APP_VERSION,generatedAt,r.input.name,r.input.businessTypeLabel,productNames,r.input.salesPeriod,r.input.costMode,r.input.currencyMeta.code,row.month,row.units,row.revenue,row.totalExpenses,row.netProfit,row.reinvestment,row.availableProfit,row.operatingCashFlow,row.investmentCashFlow,row.netCashFlow,row.cash,row.businessCapital,row.roiAccumulated == null ? '' : row.roiAccumulated*100,row.realProfit]); });
+      downloadCsvFile(investmentExportFilename('csv','datos'),rows);
     }
 
     function exportInvestmentScenarios(){
       const rows=[['escenario','moneda','capital_inicial','beneficio_anual','roi_anual_pct','margen_pct','payback_meses','van','tir_anual_pct','riesgo','puntuacion_riesgo']];
       state.investmentScenarios.forEach(function(item){ const r=item.result; rows.push([item.name,r.input.currencyMeta.code,r.input.initialInvestment,r.annualProfit,r.annualRoi == null ? '' : r.annualRoi*100,r.margin == null ? '' : r.margin*100,r.payback == null ? '' : r.payback,r.npv,r.irrAnnual == null ? '' : r.irrAnnual*100,investmentRiskCopy(r.riskState),r.riskScore]); });
-      downloadCsvFile('escenarios-inversion-'+investmentFileStem()+'-v0136.csv',rows);
+      downloadCsvFile(investmentExportFilename('csv','escenarios'),rows);
     }
 
     function exportInvestmentSensitivity(){
       const s=state.investmentSensitivity;if(!s) return;
       const rows=[[s.definition.yLabel+' / '+s.definition.xLabel].concat(s.definition.x)];
       s.cells.forEach(function(row,index){ rows.push([s.definition.y[index]].concat(row.map(function(cell){ return cell.result.npv; }))); });
-      downloadCsvFile('sensibilidad-inversion-'+investmentFileStem()+'-v0136.csv',rows);
+      downloadCsvFile(investmentExportFilename('csv','sensibilidad'),rows);
     }
 
     function investmentProfessionalReport(){
@@ -15572,6 +15906,14 @@
           reportSection('Escenarios',scenarioLines),
           reportSection('Riesgo y sensibilidad',['Clasificación: '+investmentRiskCopy(r.riskState)+' ('+formatNumber(r.riskScore,0,0)+'/100).','Meses con pérdidas: '+r.negativeMonths+' de '+i.horizon+'.','La matriz '+state.investmentSensitivity.definition.yLabel+' × '+state.investmentSensitivity.definition.xLabel+' usa el VAN como resultado comparable.'])
         ],
+        tables:[
+          {title:'Proyección mensual',columns:[
+            {key:'month',label:'Mes',weight:.55},{key:'units',label:'Unidades',weight:.8,align:'right'},{key:'revenue',label:'Ingresos',weight:1.2,align:'right'},{key:'expenses',label:'Gastos',weight:1.2,align:'right'},{key:'profit',label:'Beneficio',weight:1.2,align:'right'},{key:'cashFlow',label:'Flujo neto',weight:1.2,align:'right'},{key:'cash',label:'Caja final',weight:1.2,align:'right'}
+          ],rows:r.rows.map(function(row){ return {month:'M'+row.month,units:formatNumber(row.units,0,2),revenue:formatInvestmentMoney(row.revenue,m),expenses:formatInvestmentMoney(row.totalExpenses,m),profit:formatInvestmentMoney(row.netProfit,m),cashFlow:formatInvestmentMoney(row.netCashFlow,m),cash:formatInvestmentMoney(row.cash,m)}; })},
+          {title:'Comparación de escenarios',columns:[
+            {key:'name',label:'Escenario',weight:1.25},{key:'annualProfit',label:'Beneficio anual',weight:1.25,align:'right'},{key:'roi',label:'ROI',weight:.8,align:'right'},{key:'npv',label:'VAN',weight:1.1,align:'right'},{key:'payback',label:'Payback',weight:.9,align:'right'},{key:'risk',label:'Riesgo',weight:1}
+          ],rows:state.investmentScenarios.map(function(item){ return {name:item.name,annualProfit:formatInvestmentMoney(item.result.annualProfit,m),roi:item.result.annualRoi == null ? 'No aplica' : formatPercent(item.result.annualRoi,2),npv:formatInvestmentMoney(item.result.npv,m),payback:formatInvestmentPayback(item.result.payback,i.initialInvestment),risk:investmentRiskCopy(item.result.riskState)}; })}
+        ],
         charts:[
           reportChart('Ingresos, gastos y beneficio',[{name:'Ingresos',color:'#55f5e6',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.revenue}; })},{name:'Gastos',color:'#ff9d44',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.totalExpenses}; })},{name:'Beneficio',color:'#ffd400',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.netProfit}; })}],' '+m.code),
           reportChart('Capital empresarial',[{name:'Capital',color:'#55f5e6',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.businessCapital}; })},{name:'Caja',color:'#55a8ff',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.cash}; })}],' '+m.code)
@@ -15579,10 +15921,190 @@
       };
     }
 
+    function xlsxXml(value){
+      return String(value == null ? '' : value).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function xlsxColumnName(index){
+      let value=index+1,name='';
+      while(value){ value-=1; name=String.fromCharCode(65+(value%26))+name; value=Math.floor(value/26); }
+      return name;
+    }
+
+    function xlsxDateSerial(value){
+      const date=new Date(value);
+      return Number.isNaN(date.getTime()) ? 0 : date.getTime()/86400000+25569;
+    }
+
+    function xlsxCellXml(cell,columnIndex,rowIndex){
+      const item=cell && typeof cell === 'object' && !Array.isArray(cell) ? cell : {v:cell};
+      const ref=xlsxColumnName(columnIndex)+(rowIndex+1),style=Number.isFinite(item.s) ? ' s="'+item.s+'"' : '';
+      if(item.f){
+        const cached=Number.isFinite(Number(item.v)) ? Number(item.v) : 0;
+        return '<c r="'+ref+'"'+style+'><f>'+xlsxXml(String(item.f).replace(/^=/,''))+'</f><v>'+cached+'</v></c>';
+      }
+      if(typeof item.v === 'number' && Number.isFinite(item.v)) return '<c r="'+ref+'"'+style+'><v>'+item.v+'</v></c>';
+      if(typeof item.v === 'boolean') return '<c r="'+ref+'" t="b"'+style+'><v>'+(item.v ? 1 : 0)+'</v></c>';
+      return '<c r="'+ref+'" t="inlineStr"'+style+'><is><t xml:space="preserve">'+xlsxXml(item.v)+'</t></is></c>';
+    }
+
+    function xlsxSheetXml(sheet){
+      const rows=sheet.rows || [],lastColumn=Math.max(0,rows.reduce(function(max,row){ return Math.max(max,(row || []).length); },0)-1),lastRow=Math.max(1,rows.length);
+      const columns=(sheet.widths || []).map(function(width,index){ return '<col min="'+(index+1)+'" max="'+(index+1)+'" width="'+Math.max(7,Number(width) || 12)+'" customWidth="1"/>'; }).join('');
+      const data=rows.map(function(row,rowIndex){
+        const height=row && row.height ? ' ht="'+row.height+'" customHeight="1"' : '';
+        const values=Array.isArray(row) ? row : row.cells || [];
+        return '<row r="'+(rowIndex+1)+'"'+height+'>'+values.map(function(cell,columnIndex){ return xlsxCellXml(cell,columnIndex,rowIndex); }).join('')+'</row>';
+      }).join('');
+      const freeze=sheet.freeze ? '<pane ySplit="'+sheet.freeze+'" topLeftCell="A'+(sheet.freeze+1)+'" activePane="bottomLeft" state="frozen"/>' : '';
+      const selected=sheet.selected ? ' tabSelected="1"' : '';
+      const filters=sheet.filter ? '<autoFilter ref="'+xlsxXml(sheet.filter)+'"/>' : '';
+      const merges=sheet.merges && sheet.merges.length ? '<mergeCells count="'+sheet.merges.length+'">'+sheet.merges.map(function(ref){ return '<mergeCell ref="'+xlsxXml(ref)+'"/>'; }).join('')+'</mergeCells>' : '';
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><dimension ref="A1:'+xlsxColumnName(lastColumn)+lastRow+'"/><sheetViews><sheetView workbookViewId="0"'+selected+'>'+freeze+'</sheetView></sheetViews><sheetFormatPr defaultRowHeight="18"/>'+(columns ? '<cols>'+columns+'</cols>' : '')+'<sheetData>'+data+'</sheetData>'+filters+merges+(sheet.conditional || '')+'<printOptions horizontalCentered="1"/><pageMargins left="0.35" right="0.35" top="0.55" bottom="0.55" header="0.2" footer="0.2"/><pageSetup orientation="landscape" fitToWidth="1" fitToHeight="0"/>'+(sheet.drawing ? '<drawing r:id="rId1"/>' : '')+'</worksheet>';
+    }
+
+    function xlsxStylesXml(){
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><numFmts count="3"><numFmt numFmtId="164" formatCode="#,##0.00_);[Red](#,##0.00)"/><numFmt numFmtId="165" formatCode="0.00%"/><numFmt numFmtId="166" formatCode="yyyy-mm-dd"/></numFmts><fonts count="3"><font><sz val="11"/><color theme="1"/><name val="Calibri"/><family val="2"/></font><font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font><font><b/><sz val="18"/><color rgb="FF071521"/><name val="Calibri"/></font></fonts><fills count="5"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF071521"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FF55F5E6"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFF4F7F8"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="2"><border><left/><right/><top/><bottom/><diagonal/></border><border><left style="thin"><color rgb="FFD5DDE0"/></left><right style="thin"><color rgb="FFD5DDE0"/></right><top style="thin"><color rgb="FFD5DDE0"/></top><bottom style="thin"><color rgb="FFD5DDE0"/></bottom><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="9"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf><xf numFmtId="0" fontId="2" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf><xf numFmtId="0" fontId="0" fillId="4" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf><xf numFmtId="164" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="165" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="3" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="166" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="2" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles><dxfs count="2"><dxf><font><color rgb="FF9C0006"/></font><fill><patternFill patternType="solid"><fgColor rgb="FFFFC7CE"/><bgColor indexed="64"/></patternFill></fill></dxf><dxf><fill><patternFill patternType="solid"><fgColor rgb="FFC6EFCE"/><bgColor indexed="64"/></patternFill></fill></dxf></dxfs><tableStyles count="0" defaultTableStyle="TableStyleMedium2" defaultPivotStyle="PivotStyleLight16"/></styleSheet>';
+    }
+
+    function xlsxChartXml(type,series,categories){
+      const isBar=type === 'bar',tag=isBar ? 'barChart' : 'lineChart';
+      const seriesXml=series.map(function(item,index){
+        const color=String(item.color || '#007a5e').replace('#','').toUpperCase();
+        return '<c:ser><c:idx val="'+index+'"/><c:order val="'+index+'"/><c:tx><c:v>'+xlsxXml(item.name)+'</c:v></c:tx><c:spPr>'+(isBar ? '<a:solidFill><a:srgbClr val="'+color+'"/></a:solidFill>' : '<a:ln w="28575"><a:solidFill><a:srgbClr val="'+color+'"/></a:solidFill></a:ln>')+'</c:spPr>'+(isBar ? '' : '<c:marker><c:symbol val="none"/></c:marker>')+'<c:cat><c:numRef><c:f>'+xlsxXml(categories)+'</c:f></c:numRef></c:cat><c:val><c:numRef><c:f>'+xlsxXml(item.range)+'</c:f></c:numRef></c:val></c:ser>';
+      }).join('');
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><c:chartSpace xmlns:c="http://schemas.openxmlformats.org/drawingml/2006/chart" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><c:chart><c:autoTitleDeleted val="1"/><c:plotArea><c:layout/><c:'+tag+'>'+(isBar ? '<c:barDir val="col"/><c:grouping val="clustered"/><c:varyColors val="0"/>' : '<c:grouping val="standard"/><c:varyColors val="0"/>')+seriesXml+'<c:axId val="1984600768"/><c:axId val="1984602480"/></c:'+tag+'><c:catAx><c:axId val="1984600768"/><c:scaling><c:orientation val="minMax"/></c:scaling><c:delete val="0"/><c:axPos val="b"/><c:tickLblPos val="nextTo"/><c:crossAx val="1984602480"/><c:crosses val="autoZero"/><c:auto val="1"/><c:lblAlgn val="ctr"/><c:lblOffset val="100"/></c:catAx><c:valAx><c:axId val="1984602480"/><c:scaling><c:orientation val="minMax"/></c:scaling><c:delete val="0"/><c:axPos val="l"/><c:majorGridlines/><c:numFmt formatCode="#,##0.00" sourceLinked="0"/><c:tickLblPos val="nextTo"/><c:crossAx val="1984600768"/><c:crosses val="autoZero"/><c:crossBetween val="between"/></c:valAx></c:plotArea><c:legend><c:legendPos val="b"/><c:layout/></c:legend><c:plotVisOnly val="1"/><c:dispBlanksAs val="gap"/></c:chart><c:printSettings><c:headerFooter/><c:pageMargins b="0.75" l="0.7" r="0.7" t="0.75" header="0.3" footer="0.3"/><c:pageSetup/></c:printSettings></c:chartSpace>';
+    }
+
+    function xlsxDrawingXml(){
+      function anchor(id,name,fromRow,toRow,rel){ return '<xdr:twoCellAnchor><xdr:from><xdr:col>0</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>'+fromRow+'</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:from><xdr:to><xdr:col>8</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>'+toRow+'</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:to><xdr:graphicFrame macro=""><xdr:nvGraphicFramePr><xdr:cNvPr id="'+id+'" name="'+xlsxXml(name)+'"/><xdr:cNvGraphicFramePr/></xdr:nvGraphicFramePr><xdr:xfrm/><a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/chart"><c:chart xmlns:c="http://schemas.openxmlformats.org/drawingml/2006/chart" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" r:id="'+rel+'"/></a:graphicData></a:graphic></xdr:graphicFrame><xdr:clientData/></xdr:twoCellAnchor>'; }
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><xdr:wsDr xmlns:xdr="http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">'+anchor(2,'Ingresos, gastos y beneficio',3,20,'rId1')+anchor(3,'Flujo de caja por mes',21,38,'rId2')+'</xdr:wsDr>';
+    }
+
+    function xlsxZip(files){
+      const encoder=new TextEncoder(),entries=[],crcTable=Array.from({length:256},function(_,value){ let crc=value; for(let bit=0;bit<8;bit+=1) crc=(crc&1) ? 0xedb88320^(crc>>>1) : crc>>>1; return crc>>>0; });
+      const asBytes=function(value){ return value instanceof Uint8Array ? value : encoder.encode(String(value)); };
+      const crc32=function(bytes){ let crc=0xffffffff; bytes.forEach(function(byte){ crc=crcTable[(crc^byte)&255]^(crc>>>8); }); return (crc^0xffffffff)>>>0; };
+      const u16=function(value){ const out=new Uint8Array(2); new DataView(out.buffer).setUint16(0,value,true); return out; };
+      const u32=function(value){ const out=new Uint8Array(4); new DataView(out.buffer).setUint32(0,value>>>0,true); return out; };
+      const concat=function(parts){ const length=parts.reduce(function(sum,part){ return sum+part.length; },0),out=new Uint8Array(length); let offset=0; parts.forEach(function(part){ out.set(part,offset); offset+=part.length; }); return out; };
+      let offset=0; const local=[];
+      Object.keys(files).forEach(function(name){
+        const nameBytes=encoder.encode(name),data=asBytes(files[name]),crc=crc32(data);
+        const header=concat([u32(0x04034b50),u16(20),u16(0x0800),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(nameBytes.length),u16(0),nameBytes]);
+        local.push(header,data); entries.push({name:nameBytes,data:data,crc:crc,offset:offset}); offset+=header.length+data.length;
+      });
+      const central=[]; let centralSize=0;
+      entries.forEach(function(entry){
+        const header=concat([u32(0x02014b50),u16(20),u16(20),u16(0x0800),u16(0),u16(0),u16(0),u32(entry.crc),u32(entry.data.length),u32(entry.data.length),u16(entry.name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(entry.offset),entry.name]);
+        central.push(header); centralSize+=header.length;
+      });
+      const end=concat([u32(0x06054b50),u16(0),u16(0),u16(entries.length),u16(entries.length),u32(centralSize),u32(offset),u16(0)]);
+      return concat(local.concat(central,[end]));
+    }
+
+    function investmentWorkbookSheets(mode,options){
+      const r=state.investmentResult,i=r.input,n=r.rows.length,start=4,end=n+3,generated=nowIso(),header=function(values){ return values.map(function(value){ return {v:value,s:1}; }); };
+      const title=function(text){ return [{v:text,s:2}]; };
+      const summaryRows=[title('Informe de inversión · '+i.name),[{v:'Modo',s:3},{v:mode === 'data' ? 'Datos' : 'Informe',s:3}],[{v:'Métrica',s:1},{v:'Valor',s:1}],[{v:'Inversión inicial',s:3},{v:i.initialInvestment,s:4}],[{v:'Ingresos proyectados',s:3},{v:r.totals.revenue,s:4,f:"SUM('Ingresos'!D"+start+':D'+end+')'}],[{v:'Gastos proyectados',s:3},{v:r.totals.expenses,s:4,f:"SUM('Costos'!G"+start+':G'+end+')'}],[{v:'Beneficio neto proyectado',s:3},{v:r.totalNet,s:4,f:"SUM('Flujo de caja'!D"+start+':D'+end+')'}],[{v:'ROI acumulado',s:3},{v:r.accumulatedRoi || 0,s:5,f:'IF(B4=0,0,B7/B4)'}],[{v:'VAN',s:3},{v:r.npv,s:4}],[{v:'TIR anual',s:3},{v:r.irrAnnual || 0,s:5}],[{v:'Payback (meses)',s:3},{v:r.payback == null ? '' : r.payback,s:8}],[{v:'Riesgo',s:3},{v:investmentRiskCopy(r.riskState),s:3}],[{v:'Moneda',s:3},{v:i.currencyMeta.code,s:3}],[{v:'Generado',s:3},{v:xlsxDateSerial(generated),s:7}]];
+      const incomeRows=[title('Ingresos'),[{v:'Negocio',s:3},{v:i.name,s:3}],header(['Mes','Unidades previstas','Unidades realizadas','Ingresos'])].concat(r.rows.map(function(row){ return [{v:row.month,s:6},{v:row.units,s:8},{v:row.realizedUnits,s:8},{v:row.revenue,s:4}]; }));
+      incomeRows.push([{v:'Total',s:1},{v:'',s:1},{v:'',s:1},{v:r.totals.revenue,s:4,f:'SUM(D'+start+':D'+end+')'}]);
+      const costRows=[title('Costos'),[{v:'Negocio',s:3},{v:i.name,s:3}],header(['Mes','Variables','Fijos','Impuestos','Pagos','Deudas','Total'])].concat(r.rows.map(function(row,index){ const x=index+start; return [{v:row.month,s:6},{v:row.variableCosts,s:4},{v:row.fixedCosts,s:4},{v:row.taxes,s:4},{v:row.payments,s:4},{v:row.debts,s:4},{v:row.totalExpenses,s:4,f:'SUM(B'+x+':F'+x+')'}]; }));
+      costRows.push([{v:'Total',s:1},{v:r.totals.variableCosts,s:4,f:'SUM(B'+start+':B'+end+')'},{v:r.totals.fixedCosts,s:4,f:'SUM(C'+start+':C'+end+')'},{v:r.rows.reduce(function(sum,row){ return sum+row.taxes; },0),s:4,f:'SUM(D'+start+':D'+end+')'},{v:r.rows.reduce(function(sum,row){ return sum+row.payments; },0),s:4,f:'SUM(E'+start+':E'+end+')'},{v:r.rows.reduce(function(sum,row){ return sum+row.debts; },0),s:4,f:'SUM(F'+start+':F'+end+')'},{v:r.totals.expenses,s:4,f:'SUM(G'+start+':G'+end+')'}]);
+      const cashRows=[title('Flujo de caja'),[{v:'Negocio',s:3},{v:i.name,s:3}],header(['Mes','Ingresos','Gastos','Beneficio neto','Reinversión','Disponible','Flujo operativo','Flujo inversión','Flujo financiación','Flujo neto','Caja','ROI acumulado'])].concat(r.rows.map(function(row,index){ const x=index+start,previous=x===start ? i.openingCash : 'K'+(x-1); return [{v:row.month,s:6},{v:row.revenue,s:4,f:"'Ingresos'!D"+x},{v:row.totalExpenses,s:4,f:"'Costos'!G"+x},{v:row.netProfit,s:4},{v:row.reinvestment,s:4},{v:row.availableProfit,s:4,f:'D'+x+'-E'+x},{v:row.operatingCashFlow,s:4},{v:row.investmentCashFlow,s:4,f:'-E'+x},{v:row.financingCashFlow,s:4},{v:row.netCashFlow,s:4,f:'G'+x+'+H'+x+'+I'+x},{v:row.cash,s:4,f:(typeof previous === 'number' ? String(previous) : previous)+'+J'+x},{v:row.roiAccumulated || 0,s:5,f:'IF(Resumen!B4=0,0,SUM($D$'+start+':D'+x+')/Resumen!B4)'}]; }));
+      const scenarioRows=[title('Escenarios'),[{v:'Negocio',s:3},{v:i.name,s:3}],header(['Escenario','Capital inicial','Beneficio anual','ROI anual','Margen','Payback','VAN','TIR anual','Riesgo'])].concat(state.investmentScenarios.map(function(item,index){ const sr=item.result,x=index+start; return [{v:item.name,s:3},{v:sr.input.initialInvestment,s:4},{v:sr.annualProfit,s:4},{v:sr.annualRoi || 0,s:5,f:'IF(B'+x+'=0,0,C'+x+'/B'+x+')'},{v:sr.margin || 0,s:5},{v:sr.payback == null ? '' : sr.payback,s:8},{v:sr.npv,s:4},{v:sr.irrAnnual || 0,s:5},{v:investmentRiskCopy(sr.riskState),s:3}]; }));
+      const graphRows=[title('Gráficos'),[{v:'Los gráficos son objetos nativos del libro y siguen siendo editables.',s:3}],header(['Mes','Ingresos','Gastos','Beneficio','Flujo neto'])].concat(r.rows.map(function(row,index){ const source=index+start,x=index+start; return [{v:row.month,s:6},{v:row.revenue,s:4,f:"'Flujo de caja'!B"+source},{v:row.totalExpenses,s:4,f:"'Flujo de caja'!C"+source},{v:row.netProfit,s:4,f:"'Flujo de caja'!D"+source},{v:row.netCashFlow,s:4,f:"'Flujo de caja'!J"+source}]; }));
+      const dataHeaders=['mes','unidades','unidades_realizadas','ingresos','costos_variables','costos_fijos','impuestos','pagos','deudas','otros_movimientos','gastos_totales','beneficio_bruto','beneficio_operativo','beneficio_neto','reinversion','beneficio_disponible','flujo_operativo','flujo_inversion','flujo_financiacion','flujo_neto','caja','neto_acumulado','disponible_acumulado','reinversion_acumulada','capital_retenido','capital_negocio','beneficio_real','roi_acumulado'];
+      const dataRows=[title('Datos auditables'),[{v:'app_version',s:3},{v:APP_VERSION,s:3}],header(dataHeaders)].concat(r.rows.map(function(row){ return dataHeaders.map(function(key){ const map={mes:'month',unidades:'units',unidades_realizadas:'realizedUnits',ingresos:'revenue',costos_variables:'variableCosts',costos_fijos:'fixedCosts',impuestos:'taxes',pagos:'payments',deudas:'debts',otros_movimientos:'otherMovements',gastos_totales:'totalExpenses',beneficio_bruto:'grossProfit',beneficio_operativo:'operatingProfit',beneficio_neto:'netProfit',reinversion:'reinvestment',beneficio_disponible:'availableProfit',flujo_operativo:'operatingCashFlow',flujo_inversion:'investmentCashFlow',flujo_financiacion:'financingCashFlow',flujo_neto:'netCashFlow',caja:'cash',neto_acumulado:'cumulativeNet',disponible_acumulado:'cumulativeAvailable',reinversion_acumulada:'cumulativeReinvestment',capital_retenido:'retainedCapital',capital_negocio:'businessCapital',beneficio_real:'realProfit',roi_acumulado:'roiAccumulated'}; const value=row[map[key]]; return {v:value == null ? '' : value,s:key === 'mes' ? 6 : key === 'roi_acumulado' ? 5 : 8}; }); }));
+      const methodologyRows=[title('Metodología'),[{v:'Tema',s:1},{v:'Descripción',s:1}],[{v:'Cálculo',s:3},{v:'Los flujos se proyectan por mes con precisión completa; el redondeo es solo visual.',s:3}],[{v:'Tasas',s:3},{v:'Las tasas anuales se convierten a equivalentes mensuales mediante composición geométrica.',s:3}],[{v:'ROI',s:3},{v:'Beneficio dividido por inversión inicial. Las fórmulas del libro se pueden auditar y editar.',s:3}],[{v:'VAN y TIR',s:3},{v:'El VAN descuenta flujos; la TIR busca la tasa que lleva el VAN a cero.',s:3}],[{v:'Fuente',s:3},{v:'Datos introducidos por el usuario y resultados generados localmente por '+APP_VERSION+'.',s:3}],[{v:'Privacidad',s:3},{v:'El archivo se crea en este dispositivo y no se envía a un servidor.',s:3}]];
+      const projectionEnabled=options.includeProjection !== false;
+      if(!projectionEnabled){ [incomeRows,costRows,cashRows,dataRows].forEach(function(rows){ rows.splice(3); rows.push([{v:'No incluido por la configuración de exportación.',s:3}]); }); }
+      return [
+        {name:'Resumen',rows:summaryRows,widths:[30,24],freeze:3,merges:['A1:B1'],selected:mode !== 'data'},
+        {name:'Flujo de caja',rows:cashRows,widths:[9,15,15,16,15,15,16,16,16,16,16,14],freeze:3,filter:'A3:L'+Math.max(3,cashRows.length),merges:['A1:L1'],conditional:'<conditionalFormatting sqref="D4:D'+Math.max(4,cashRows.length)+'"><cfRule type="cellIs" dxfId="0" priority="1" operator="lessThan"><formula>0</formula></cfRule></conditionalFormatting>'},
+        {name:'Ingresos',rows:incomeRows,widths:[9,18,20,18],freeze:3,filter:'A3:D'+Math.max(3,incomeRows.length),merges:['A1:D1']},
+        {name:'Costos',rows:costRows,widths:[9,16,16,15,15,15,18],freeze:3,filter:'A3:G'+Math.max(3,costRows.length),merges:['A1:G1'],conditional:'<conditionalFormatting sqref="G4:G'+Math.max(4,costRows.length)+'"><cfRule type="dataBar" priority="2"><dataBar><cfvo type="min"/><cfvo type="max"/><color rgb="FFFF9D44"/></dataBar></cfRule></conditionalFormatting>'},
+        {name:'Escenarios',rows:scenarioRows,widths:[18,18,18,14,14,14,18,14,16],freeze:3,filter:'A3:I'+Math.max(3,scenarioRows.length),merges:['A1:I1'],conditional:'<conditionalFormatting sqref="D4:D'+Math.max(4,scenarioRows.length)+'"><cfRule type="cellIs" dxfId="1" priority="3" operator="greaterThan"><formula>0</formula></cfRule></conditionalFormatting>'},
+        {name:'Gráficos',rows:graphRows,widths:[9,18,18,18,18,3,16,16],freeze:3,merges:['A1:I1'],drawing:options.includeCharts !== false},
+        {name:'Datos',rows:dataRows,widths:dataHeaders.map(function(_,index){ return index === 0 ? 9 : 18; }),freeze:3,filter:'A3:'+xlsxColumnName(dataHeaders.length-1)+Math.max(3,dataRows.length),merges:['A1:'+xlsxColumnName(dataHeaders.length-1)+'1'],selected:mode === 'data'},
+        {name:'Metodología',rows:methodologyRows,widths:[22,85],freeze:2,merges:['A1:B1']}
+      ];
+    }
+
+    function exportInvestmentXlsx(mode,options){
+      const sheets=investmentWorkbookSheets(mode,options),n=state.investmentResult.rows.length,graphEnd=n+3,files={};
+      const sheetOverrides={};
+      sheets.forEach(function(sheet,index){ files['xl/worksheets/sheet'+(index+1)+'.xml']=xlsxSheetXml(sheet); if(sheet.drawing) sheetOverrides[index+1]=true; });
+      const types=['<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/><Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/><Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>'].concat(sheets.map(function(_,index){ return '<Override PartName="/xl/worksheets/sheet'+(index+1)+'.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'; }));
+      if(Object.keys(sheetOverrides).length) types.push('<Override PartName="/xl/drawings/drawing1.xml" ContentType="application/vnd.openxmlformats-officedocument.drawing+xml"/><Override PartName="/xl/charts/chart1.xml" ContentType="application/vnd.openxmlformats-officedocument.drawingml.chart+xml"/><Override PartName="/xl/charts/chart2.xml" ContentType="application/vnd.openxmlformats-officedocument.drawingml.chart+xml"/>');
+      types.push('</Types>'); files['[Content_Types].xml']=types.join('');
+      files['_rels/.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/></Relationships>';
+      files['docProps/core.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><dc:title>'+xlsxXml('Análisis de inversión · '+state.investmentResult.input.name)+'</dc:title><dc:creator>Inflation Insights</dc:creator><cp:lastModifiedBy>Inflation Insights</cp:lastModifiedBy><dcterms:created xsi:type="dcterms:W3CDTF">'+nowIso()+'</dcterms:created><dcterms:modified xsi:type="dcterms:W3CDTF">'+nowIso()+'</dcterms:modified></cp:coreProperties>';
+      files['docProps/app.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"><Application>Inflation Insights</Application><AppVersion>0.14</AppVersion></Properties>';
+      files['xl/workbook.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><bookViews><workbookView activeTab="'+(mode === 'data' ? 6 : 0)+'"/></bookViews><sheets>'+sheets.map(function(sheet,index){ return '<sheet name="'+xlsxXml(sheet.name)+'" sheetId="'+(index+1)+'" r:id="rId'+(index+1)+'"/>'; }).join('')+'</sheets><calcPr calcId="191029" fullCalcOnLoad="1" forceFullCalc="1"/></workbook>';
+      files['xl/_rels/workbook.xml.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+sheets.map(function(_,index){ return '<Relationship Id="rId'+(index+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet'+(index+1)+'.xml"/>'; }).join('')+'<Relationship Id="rId'+(sheets.length+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>';
+      files['xl/styles.xml']=xlsxStylesXml();
+      if(Object.keys(sheetOverrides).length){
+        files['xl/worksheets/_rels/sheet6.xml.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/drawing" Target="../drawings/drawing1.xml"/></Relationships>';
+        files['xl/drawings/drawing1.xml']=xlsxDrawingXml();
+        files['xl/drawings/_rels/drawing1.xml.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/chart" Target="../charts/chart1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/chart" Target="../charts/chart2.xml"/></Relationships>';
+        files['xl/charts/chart1.xml']=xlsxChartXml('line',[{name:'Ingresos',range:"'Gráficos'!$B$4:$B$"+graphEnd,color:'#007A5E'},{name:'Gastos',range:"'Gráficos'!$C$4:$C$"+graphEnd,color:'#FF9D44'},{name:'Beneficio',range:"'Gráficos'!$D$4:$D$"+graphEnd,color:'#FFD400'}],"'Gráficos'!$A$4:$A$"+graphEnd);
+        files['xl/charts/chart2.xml']=xlsxChartXml('bar',[{name:'Flujo neto',range:"'Gráficos'!$E$4:$E$"+graphEnd,color:'#55A8FF'}],"'Gráficos'!$A$4:$A$"+graphEnd);
+      }
+      downloadBlob(investmentExportFilename('xlsx',mode),xlsxZip(files),'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    }
+
+    function investmentReportForExport(options){
+      const report=investmentProfessionalReport();
+      if(!report) return null;
+      if(options.includeSummary === false) report.sections=report.sections.filter(function(section){ return section.title !== 'Resumen ejecutivo'; });
+      if(options.includeProjection === false) report.tables=report.tables.filter(function(table){ return table.title !== 'Proyección mensual'; });
+      if(options.includeCharts === false) report.charts=[];
+      if(options.includeMethodology === false) report.methodology='';
+      if(options.includeSources === false) report.assumptions='';
+      return report;
+    }
+
+    function investmentJsonPayload(options){
+      const r=state.investmentResult;
+      return {
+        schemaVersion:4,type:'investment-analysis',appVersion:APP_VERSION,
+        generatedAt:options.includeDate === false ? null : nowIso(),
+        projectId:state.investmentActiveProjectId,
+        summary:options.includeSummary === false ? null : {annualProfit:r.annualProfit,annualRevenue:r.annualRevenue,totalNet:r.totalNet,roiAnnual:r.annualRoi,roiAccumulated:r.accumulatedRoi,npv:r.npv,irrAnnual:r.irrAnnual,payback:r.payback,riskState:r.riskState,riskScore:r.riskScore},
+        input:r.input,
+        projection:options.includeProjection === false ? [] : r.rows,
+        scenarios:state.investmentScenarios,
+        sensitivity:state.investmentSensitivity,
+        methodology:options.includeMethodology === false ? null : 'Proyección mensual con tasas equivalentes compuestas, VAN, TIR, ROI y beneficio real sin redondeo intermedio.',
+        sources:options.includeSources === false ? null : {kind:'user-input',processing:'local',appVersion:APP_VERSION}
+      };
+    }
+
+    function runInvestmentExport(){
+      if(!state.investmentResult){ setFeatureStatus('investmentExportNotice','Completa primero un análisis válido.','warning'); return; }
+      const format=$('investmentExportFormat').value,mode=$('investmentExportMode').value,options=investmentExportOptions(),button=$('investmentExportRunButton');
+      setButtonBusy(button,true,'Generando…');
+      try{
+        if(format === 'pdf') downloadProfessionalReport(investmentReportForExport(options),investmentExportFilename('pdf','informe'),'investment');
+        else if(format === 'xlsx') exportInvestmentXlsx(mode,options);
+        else if(format === 'csv') exportInvestmentCsv();
+        else if(format === 'json') downloadJsonFile(investmentExportFilename('json','respaldo'),investmentJsonPayload(options));
+        else if(format === 'html') exportInvestmentCharts(options);
+        else if(format === 'png') exportSvgContainerPng($('investmentExportChart').value,investmentExportFilename('png','grafico'));
+        setFeatureStatus('investmentExportNotice','Exportación '+format.toUpperCase()+' generada localmente.','success');
+        trackEvent('report_exported',{tool:'investment',format:format,mode:mode});
+      }catch(error){
+        console.error('No se pudo exportar el análisis de inversión.',error);
+        setFeatureStatus('investmentExportNotice','No se pudo generar el archivo. Tus datos siguen guardados localmente.','error');
+      }finally{ setButtonBusy(button,false); }
+    }
+
     const INVESTMENT_CHART_SAFETY_STYLES='@keyframes investment-line-draw{from{stroke-dashoffset:.28;opacity:.72}to{stroke-dashoffset:0;opacity:1}}@keyframes investment-point-in{from{opacity:.6;transform:scale(.65)}to{opacity:1;transform:scale(1)}}@keyframes investment-bar-in{from{opacity:.6;transform:scaleX(.35)}to{opacity:.9;transform:scaleX(1)}}@keyframes investment-pie-in{from{opacity:.72}to{opacity:1}}.investment-chart-line{stroke-dashoffset:0;opacity:1;animation:investment-line-draw .82s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:var(--chart-delay,0ms)}.investment-chart-point{opacity:1;animation:investment-point-in .34s cubic-bezier(.2,.9,.25,1.25) backwards;animation-delay:var(--point-delay,0ms)}.investment-chart-bar{opacity:.9;animation:investment-bar-in .58s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:var(--bar-delay,0ms)}.investment-pie-slice{opacity:1;animation:investment-pie-in .62s ease-out backwards;animation-delay:var(--slice-delay,0ms)}.investment-chart-point:hover,.investment-chart-point:focus,.investment-chart-point[data-active="true"],.investment-chart-bar:hover,.investment-chart-bar:focus,.investment-chart-bar[data-active="true"]{animation:none;opacity:1;transform:none}.investment-pie-slice:hover,.investment-pie-slice:focus,.investment-pie-slice[data-active="true"]{animation:none;opacity:1}';
 
-    function exportInvestmentCharts(){
+    function exportInvestmentCharts(options){
       if(!state.investmentResult) return;
+      const settings=Object.assign({includeDate:true},options || {});
       const cards=$$('#view-inversiones .investment-chart-card').map(function(card){
         const copy=card.cloneNode(true);
         copy.querySelectorAll('[data-investment-point]').forEach(function(node){ node.removeAttribute('data-active'); });
@@ -15591,8 +16113,9 @@
       const interactionScript="(function(){const detail=document.querySelector('[data-export-chart-detail]'),tooltip=document.querySelector('[data-export-chart-tooltip]');let current=null;function targetFrom(event){return event.target.closest&&event.target.closest('[data-investment-point]');}function select(target,event){if(!target)return;const label=target.getAttribute('aria-label')||'Elemento del gráfico';detail.textContent=label;const chart=target.closest('.investment-chart');if(chart)chart.querySelectorAll('[data-investment-point]').forEach(function(node){const active=node.dataset.investmentPoint===target.dataset.investmentPoint;node.dataset.active=String(active);if(node.hasAttribute('aria-pressed'))node.setAttribute('aria-pressed',String(active));});current=target;if(event&&Number.isFinite(event.clientX)){tooltip.textContent=label;tooltip.hidden=false;move(event);}}function move(event){if(tooltip.hidden)return;const gap=14,maxX=window.innerWidth-tooltip.offsetWidth-gap,maxY=window.innerHeight-tooltip.offsetHeight-gap;tooltip.style.left=Math.max(gap,Math.min(maxX,event.clientX+gap))+'px';tooltip.style.top=Math.max(gap,Math.min(maxY,event.clientY+gap))+'px';}document.addEventListener('pointerover',function(event){select(targetFrom(event),event);});document.addEventListener('pointermove',function(event){if(current)move(event);});document.addEventListener('pointerout',function(event){const target=targetFrom(event);if(target&&!target.contains(event.relatedTarget)){tooltip.hidden=true;current=null;}});document.addEventListener('focusin',function(event){select(targetFrom(event));tooltip.hidden=true;});document.addEventListener('click',function(event){select(targetFrom(event),event);});document.addEventListener('keydown',function(event){const target=targetFrom(event);if(target&&!target.matches('button,input')&&(event.key==='Enter'||event.key===' ')){event.preventDefault();select(target);}});document.addEventListener('change',function(event){const input=event.target.closest&&event.target.closest('[data-investment-series]');if(!input)return;const chart=input.closest('.investment-chart'),key=input.dataset.investmentChartKey+':'+input.dataset.investmentSeries;chart.querySelectorAll('[data-investment-series-group]').forEach(function(group){if(group.dataset.investmentSeriesGroup===key)group.hidden=!input.checked;});const any=Array.from(chart.querySelectorAll('[data-investment-series]')).some(function(toggle){return toggle.checked;});const canvas=chart.querySelector('[data-investment-series-canvas]'),empty=chart.querySelector('[data-investment-series-empty]');if(canvas)canvas.hidden=!any;if(empty)empty.hidden=any;detail.textContent=any?'Serie actualizada. Pasa el cursor, toca o enfoca un dato para leerlo.':'Activa al menos una serie para volver a mostrar este gráfico.';});})();";
       const styles=':root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;min-width:280px;padding:24px;background:#08090d;color:#fff;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}[hidden]{display:none!important}header,main{width:min(1200px,100%);margin:auto}header{padding:24px;border:2px solid #55f5e6;background:#10141c}h1{margin:0 0 8px;font-size:clamp(1.8rem,5vw,3.2rem)}header p{margin:0;color:#c9cbd4}.export-chart-help{margin-top:14px;padding:12px 14px;border-left:6px solid #ffd400;background:#171923}.export-chart-detail{position:sticky;z-index:5;top:10px;min-height:58px;margin:18px 0;padding:13px 15px;border:2px solid #55f5e6;background:#10141c;box-shadow:0 12px 30px rgba(0,0,0,.35)}.export-chart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.investment-chart-card{display:grid;align-content:start;gap:12px;min-width:0;padding:18px;border:2px solid #ffd400;background:#11131b}.investment-chart-card.full{grid-column:1/-1}.investment-chart-card h3{margin:0}.investment-chart-card p{margin:0;color:#bfc1ca}.investment-chart{display:grid;gap:10px;min-width:0}.investment-chart-legend{display:flex;flex-wrap:wrap;gap:8px}.investment-chart-toggle{display:inline-flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid #454955;background:#151720;color:#fff;font-size:.78rem;font-weight:800;cursor:pointer}.investment-chart-toggle input{accent-color:var(--series-color,#ffd400)}.investment-chart-swatch{width:12px;height:12px;background:var(--series-color,#ffd400)}.investment-chart-canvas{min-height:260px;overflow:auto;border:1px solid #343741;background:#08090d}.investment-chart-canvas svg{display:block;width:100%;min-width:600px;height:auto}.investment-chart-canvas text{fill:#aeb2bf;font:700 12px system-ui}.investment-chart-gridline{stroke:#2b2e37}.investment-chart-axis{stroke:#777}.investment-chart-line{fill:none;stroke-width:4;stroke-linejoin:round;stroke-linecap:round}.investment-chart-point{cursor:pointer;stroke:#08090d;stroke-width:3}.investment-chart-bar{cursor:pointer;opacity:.9}.investment-chart-point:hover,.investment-chart-point:focus,.investment-chart-point[data-active="true"],.investment-chart-bar:hover,.investment-chart-bar:focus,.investment-chart-bar[data-active="true"]{opacity:1;stroke:#fff;stroke-width:4;filter:drop-shadow(0 0 7px rgba(85,245,230,.8));outline:none}.investment-empty{display:grid;place-items:center;min-height:120px;padding:18px;color:#bfc1ca;text-align:center}.investment-pie-layout{display:grid;grid-template-columns:minmax(210px,.9fr) minmax(220px,1.1fr);gap:14px;align-items:center;padding:12px}.investment-pie-canvas{display:grid;place-items:center;min-height:290px;overflow:visible}.investment-chart-canvas.investment-pie-canvas svg{width:min(100%,360px);min-width:0;overflow:visible}.investment-pie-slice{cursor:pointer;stroke:#08090d;stroke-width:3;transition:stroke-width .16s ease,filter .16s ease}.investment-pie-slice:hover,.investment-pie-slice:focus,.investment-pie-slice[data-active="true"]{stroke:#fff;stroke-width:8;filter:drop-shadow(0 0 8px rgba(255,255,255,.45));outline:none}.investment-pie-legend{display:grid;gap:8px}.investment-pie-legend-button{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:9px;align-items:center;width:100%;min-height:42px;padding:8px 10px;border:1px solid #454955;background:#151720;color:#fff;text-align:left;cursor:pointer}.investment-pie-legend-button:hover,.investment-pie-legend-button:focus,.investment-pie-legend-button[data-active="true"]{border-color:#55f5e6;background:#102128;outline:none}.investment-pie-legend-button strong{overflow-wrap:anywhere;font-size:.8rem}.investment-pie-legend-button small{color:#c8cbd4;font-weight:800}.investment-pie-swatch{width:14px;height:14px;background:var(--slice-color,#ffd400)}.export-chart-tooltip{position:fixed;z-index:20;max-width:min(360px,calc(100vw - 28px));padding:9px 11px;border:2px solid #ffd400;background:#050507;color:#fff;box-shadow:0 10px 28px rgba(0,0,0,.5);pointer-events:none;font-size:.82rem}:focus-visible{outline:3px solid #55f5e6;outline-offset:3px}@media(max-width:820px){body{padding:12px}.export-chart-grid{grid-template-columns:1fr}.investment-chart-card.full{grid-column:auto}.investment-pie-layout{grid-template-columns:1fr;padding:8px}}';
       const chartMotionStyles='@keyframes investment-line-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}@keyframes investment-point-in{from{opacity:0;transform:scale(.35)}to{opacity:1;transform:scale(1)}}@keyframes investment-bar-in{from{opacity:.2;transform:scaleX(0)}to{opacity:.9;transform:scaleX(1)}}@keyframes investment-pie-in{from{opacity:0}to{opacity:1}}.investment-chart-line{stroke-dasharray:1;stroke-dashoffset:1;animation:investment-line-draw .82s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:var(--chart-delay,0ms)}.investment-chart-point{opacity:0;transform-box:fill-box;transform-origin:center;animation:investment-point-in .34s cubic-bezier(.2,.9,.25,1.25) forwards;animation-delay:var(--point-delay,0ms)}.investment-chart-bar{opacity:0;transform-box:fill-box;transform-origin:var(--bar-origin,0%) 50%;animation:investment-bar-in .58s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:var(--bar-delay,0ms)}.investment-pie-slice{cursor:pointer;touch-action:manipulation;stroke:var(--slice-color,#ffd400);stroke-width:var(--slice-width,68px);opacity:0;animation:investment-pie-in .62s ease-out forwards;animation-delay:var(--slice-delay,0ms);transition:stroke-width .16s ease,filter .16s ease,opacity .16s ease}.investment-pie-slice:hover,.investment-pie-slice:focus,.investment-pie-slice[data-active="true"]{stroke:var(--slice-color,#ffd400);stroke-width:calc(var(--slice-width,68px) + 8px);filter:brightness(1.18) drop-shadow(0 0 8px rgba(255,255,255,.45));outline:none}.investment-pie-legend-button,.investment-chart-point,.investment-chart-bar{touch-action:manipulation}@media(prefers-reduced-motion:reduce){.investment-chart-line,.investment-chart-point,.investment-chart-bar,.investment-pie-slice{animation:none!important;opacity:1!important;transform:none!important}.investment-chart-line{stroke-dasharray:none!important;stroke-dashoffset:0!important}}';
-      const html='<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><title>Gráficos interactivos · '+escapeXml(state.investmentResult.input.name)+'</title><style>'+styles+chartMotionStyles+INVESTMENT_CHART_SAFETY_STYLES+'</style></head><body><header><p>Inflation Insights · '+APP_VERSION+'</p><h1>'+escapeXml(state.investmentResult.input.name)+'</h1><p>Exportado '+escapeXml(formatDateTime(nowIso()))+'</p><div class="export-chart-help">Archivo autocontenido: funciona sin internet. Los gráficos se animan al abrirse; pasa el cursor, toca o usa Tab para explorar cada punto, barra o porción. Las casillas permiten ocultar y mostrar series.</div></header><main><div class="export-chart-detail" id="exportChartDetail" data-export-chart-detail role="status" aria-live="polite">Selecciona un elemento de cualquier gráfico para ver su valor.</div><section class="export-chart-grid" aria-label="Gráficos financieros interactivos">'+cards+'</section></main><div class="export-chart-tooltip" id="exportChartTooltip" data-export-chart-tooltip role="tooltip" hidden></div><scr'+'ipt>'+interactionScript+'</scr'+'ipt></body></html>';
-      downloadBlob('graficos-inversion-'+investmentFileStem()+'-v0136.html',html,'text/html;charset=utf-8');
+      const dateLine=settings.includeDate === false ? '' : '<p>Exportado '+escapeXml(formatDateTime(nowIso()))+'</p>';
+      const html='<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><title>Gráficos interactivos · '+escapeXml(state.investmentResult.input.name)+'</title><style>'+styles+chartMotionStyles+INVESTMENT_CHART_SAFETY_STYLES+'</style></head><body><header><p>Inflation Insights · '+APP_VERSION+'</p><h1>'+escapeXml(state.investmentResult.input.name)+'</h1>'+dateLine+'<div class="export-chart-help">Archivo autocontenido: funciona sin internet. Los gráficos se animan al abrirse; pasa el cursor, toca o usa Tab para explorar cada punto, barra o porción. Las casillas permiten ocultar y mostrar series.</div></header><main><div class="export-chart-detail" id="exportChartDetail" data-export-chart-detail role="status" aria-live="polite">Selecciona un elemento de cualquier gráfico para ver su valor.</div><section class="export-chart-grid" aria-label="Gráficos financieros interactivos">'+cards+'</section></main><div class="export-chart-tooltip" id="exportChartTooltip" data-export-chart-tooltip role="tooltip" hidden></div><scr'+'ipt>'+interactionScript+'</scr'+'ipt></body></html>';
+      downloadBlob(investmentExportFilename('html','graficos'),html,'text/html;charset=utf-8');
     }
 
     function resetInvestmentForm(){
@@ -15699,17 +16222,17 @@
         else{ state.investmentPortfolio=state.investmentPortfolio.filter(function(item){ return item.id !== button.dataset.investmentPortfolioId; }); saveInvestmentPortfolio(); renderInvestmentPortfolio(); renderInvestmentCharts(); }
       });
       $('investmentSaveButton').addEventListener('click',addCurrentInvestmentToPortfolio); $('investmentSaveCompareButton').addEventListener('click',addCurrentInvestmentToPortfolio);
+      $('investmentSaveProjectButton').addEventListener('click',saveCurrentInvestmentProject);
       $('investmentSaveDraftButton').addEventListener('click',saveInvestmentDraftManually);
       $('investmentBackupDraftButton').addEventListener('click',function(){ saveInvestmentDraft({manual:true,updateStatus:false}); downloadInvestmentDraftBackup(); });
       $('investmentImportDraftButton').addEventListener('click',function(){ $('investmentImportDraftInput').click(); });
       $('investmentImportDraftInput').addEventListener('change',function(event){ importInvestmentDraftBackup(event.target.files && event.target.files[0]); });
-      $('investmentResetButton').addEventListener('click',function(){ armLocalAction(this,'Confirmar reinicio',function(){ safeStorageRemove(KEYS.investmentDraft); resetInvestmentForm(); state.investmentLastSavedAt=null; state.investmentSaveFailed=false; setInvestmentDraftStatus('saved','Formulario vacío','El guardado anterior se eliminó de este navegador.'); setFeatureStatus('investmentNotice','Formulario vacío. No se cargaron nombres, productos ni importes de ejemplo.','success'); }); });
-      $('investmentExportCsvButton').addEventListener('click',exportInvestmentCsv);
-      $('investmentExportSummaryButton').addEventListener('click',function(){ if(state.investmentResult) downloadBlob('resumen-inversion-'+investmentFileStem()+'-v0136.txt',investmentPlainSummary(),'text/plain;charset=utf-8'); });
-      $('investmentExportReportButton').addEventListener('click',function(){ downloadProfessionalReport(investmentProfessionalReport(),'informe-inversion-'+investmentFileStem()+'-v0136.pdf','investment'); });
-      $('investmentExportChartsButton').addEventListener('click',exportInvestmentCharts); $('investmentExportScenariosButton').addEventListener('click',exportInvestmentScenarios); $('investmentExportSensitivityButton').addEventListener('click',exportInvestmentSensitivity);
-      $('investmentExportPortfolioButton').addEventListener('click',function(){ downloadJsonFile('comparacion-inversiones-v0136.json',{schemaVersion:1,appVersion:APP_VERSION,createdAt:nowIso(),items:state.investmentPortfolio}); });
+      $('investmentResetButton').addEventListener('click',function(){ armLocalAction(this,'Confirmar reinicio',function(){ safeStorageRemove(KEYS.investmentDraft); resetInvestmentForm(); state.investmentActiveProjectId=null; state.investmentLastSavedAt=null; state.investmentSaveFailed=false; setInvestmentDraftStatus('saved','Formulario vacío','El guardado anterior se eliminó de este navegador.'); updateInvestmentProjectSyncState(); setFeatureStatus('investmentNotice','Formulario vacío. No se cargaron nombres, productos ni importes de ejemplo.','success'); }); });
+      $('investmentExportRunButton').addEventListener('click',runInvestmentExport);
+      $('investmentExportScenariosButton').addEventListener('click',exportInvestmentScenarios); $('investmentExportSensitivityButton').addEventListener('click',exportInvestmentSensitivity);
+      $('investmentExportPortfolioButton').addEventListener('click',function(){ downloadJsonFile('comparacion-inversiones-v0140.json',{schemaVersion:1,appVersion:APP_VERSION,createdAt:nowIso(),items:state.investmentPortfolio}); });
       $('investmentClearPortfolioButton').addEventListener('click',function(){ armLocalAction(this,'Confirmar borrado',function(){ state.investmentPortfolio=[]; saveInvestmentPortfolio(); renderInvestmentPortfolio(); renderInvestmentCharts(); setFeatureStatus('investmentNotice','Comparación local eliminada.','success'); }); });
+      $('investmentProjectList').addEventListener('click',handleInvestmentProjectAction);
       window.addEventListener('pagehide',function(){ if(state.investmentInitialized) saveInvestmentDraft({updateStatus:false}); });
       document.addEventListener('visibilitychange',function(){ if(document.visibilityState === 'hidden' && state.investmentInitialized) saveInvestmentDraft({updateStatus:false}); });
     }
@@ -15728,7 +16251,8 @@
       }
       if(!$('investmentBusinessType').value) state.investmentTab='operation';
       state.investmentPortfolio=readInvestmentPortfolio();
-      updateInvestmentSetupUi(); setInvestmentTab(state.investmentTab || 'summary'); bindInvestmentEvents(); state.investmentInitialized=true; calculateAndRenderInvestment({save:false});
+      state.investmentProjects=readInvestmentProjects();
+      updateInvestmentSetupUi(); setInvestmentTab(state.investmentTab || 'summary'); renderInvestmentProjects(); bindInvestmentEvents(); state.investmentInitialized=true; calculateAndRenderInvestment({save:false}); updateInvestmentProjectSyncState();
       if(isTransientInvestmentOrigin()) setInvestmentDraftStatus('warning',restored ? 'Datos recuperados en este visor' : 'Visor local detectado','La dirección local puede cambiar. Pulsa «Guardar datos» para descargar un respaldo recuperable.');
       else if(restored){ state.investmentLastSavedAt=draft.updatedAt || null; setInvestmentDraftStatus('saved','Datos recuperados',draft.updatedAt ? 'Último guardado: '+formatDateTime(draft.updatedAt)+'.' : 'El formulario anterior se restauró en este navegador.'); }
       else setInvestmentDraftStatus('saved','Guardado automático activo','Tus datos se conservarán en este navegador desde el primer cambio.');
@@ -16016,7 +16540,7 @@
       $('copyContractReceiptButton').addEventListener('click',function(){ if(state.contractResult) copyText(contractReceiptText(state.contractResult),'Comprobante copiado.'); });
       $('exportContractJsonButton').addEventListener('click',function(){
         if(!state.contractResult) return;
-        downloadJsonFile('reajuste-contrato-v0136.json',Object.assign({},state.contractResult,{
+        downloadJsonFile('reajuste-contrato-v0140.json',Object.assign({},state.contractResult,{
           schemaVersion:FILE_SCHEMA_VERSION,
           appVersion:APP_VERSION,
           type:'contract-adjustment',
@@ -16024,7 +16548,7 @@
           createdAt:state.contractResult.fetchedAt || nowIso()
         }));
       });
-      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0136.pdf','contract'); });
+      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0140.pdf','contract'); });
       $('exportContractComparisonCsvButton').addEventListener('click',exportContractComparisonCsv);
       $('labForm').addEventListener('submit',function(event){ event.preventDefault(); calculateLab(); });
       $('saveLabButton').addEventListener('click',saveLabConfig);
@@ -16044,11 +16568,11 @@
       });
       $('loadAdvancedExampleButton').addEventListener('click',loadAdvancedExample);
       $('exportAdvancedCsvButton').addEventListener('click',exportAdvancedCsv);
-      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0136.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
+      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0140.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
       $('reportForm').addEventListener('submit',function(event){ event.preventDefault(); try{ renderReportPreview(buildReportData()); }catch(error){ setNotice($('reportNotice'),'Selecciona al menos una sección.','error'); } });
-      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0136.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
+      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0140.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
       $('exportReportCsvButton').addEventListener('click',exportReportCsv);
-      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0136.json',state.reportResult); });
+      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0140.json',state.reportResult); });
       $('installAppButton').addEventListener('click',promptPwaInstall);
       $('menuButton').addEventListener('click',function(){
         const opening = $('mainNav').dataset.open !== 'true';
@@ -16083,10 +16607,8 @@
       $('signOutButton').addEventListener('click',signOutCurrent);
       $('syncEnabled').addEventListener('change',function(){ setSyncEnabled(this.checked,{startSync:this.checked}); });
       $('analyticsConsent').addEventListener('change',function(){ setAnalyticsConsent(this.checked); });
-      $('declineAnalyticsButton').addEventListener('click',function(){ setAnalyticsConsent(false); if($('betaWelcomeDialog').open) $('betaWelcomeDialog').close(); });
-      $('allowAnalyticsButton').addEventListener('click',function(){ setAnalyticsConsent(true); if($('betaWelcomeDialog').open) $('betaWelcomeDialog').close(); });
       $('betaContinueButton').addEventListener('click',function(){ saveBetaMeta({betaWelcomeSeen:true,lastWelcomeVersion:WELCOME_STORAGE_VERSION}); if($('betaWelcomeDialog').open) $('betaWelcomeDialog').close(); });
-      $('betaPrivacyButton').addEventListener('click',function(){ saveBetaMeta({betaWelcomeSeen:true,lastWelcomeVersion:WELCOME_STORAGE_VERSION}); if($('betaWelcomeDialog').open) $('betaWelcomeDialog').close(); showRoute('cuenta'); });
+      $('betaNewsButton').addEventListener('click',function(){ saveBetaMeta({betaWelcomeSeen:true,lastWelcomeVersion:WELCOME_STORAGE_VERSION}); if($('betaWelcomeDialog').open) $('betaWelcomeDialog').close(); showRoute('cuenta'); window.setTimeout(function(){ $('aboutAppTitle').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',block:'start'}); },80); });
       $('betaWelcomeDialog').addEventListener('close',function(){ saveBetaMeta({betaWelcomeSeen:true,lastWelcomeVersion:WELCOME_STORAGE_VERSION}); });
       $('keepLocalButton').addEventListener('click',function(){ chooseMigration(false); });
       $('migrateSyncButton').addEventListener('click',function(){ chooseMigration(true); });
@@ -16139,7 +16661,7 @@
       });
       $('copyLinkButton').addEventListener('click',function(){ copyText(buildShareUrl(),'Enlace del escenario copiado.'); });
       $('copyResultButton').addEventListener('click',function(){ copyText(resultPlainText(),'Resultado copiado.'); });
-      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0136.pdf','calculator'); });
+      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0140.pdf','calculator'); });
       $('exportJsonButton').addEventListener('click',exportResultJson);
       $('exportCsvButton').addEventListener('click',exportResultCsv);
       $('refreshQuotesButton').addEventListener('click',function(){ refreshQuotes(); });
@@ -16173,7 +16695,7 @@
       $('salaryShareButton').addEventListener('click',function(){ copyText(buildSalaryShareUrl(),'Enlace del análisis salarial copiado.'); });
       $('salaryExportCsvButton').addEventListener('click',exportSalaryCsv);
       $('salaryExportJsonButton').addEventListener('click',exportSalaryJson);
-      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0136.pdf','salary'); });
+      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0140.pdf','salary'); });
       $('salaryExportPngButton').addEventListener('click',exportSalaryChartPng);
 
       $('saveScenarioButton').addEventListener('click',function(){
@@ -16303,7 +16825,7 @@
       $('saveBasketButton').addEventListener('click',saveBasket);
       $('weightedCurrency').addEventListener('change',function(){ state.basketCurrency = normalizeCurrencyCode(this.value,'BRL'); });
       $('exportBasketButton').addEventListener('click',function(){
-        downloadJsonFile('cesta-ponderada-v0136.json',weightedBasketPayload());
+        downloadJsonFile('cesta-ponderada-v0140.json',weightedBasketPayload());
       });
       $('importBasketButton').addEventListener('click',function(){ $('basketFileInput').click(); });
       $('basketFileInput').addEventListener('change',function(event){
@@ -16439,7 +16961,7 @@
       });
       $$('[data-download-personal-chart]').forEach(function(button){
         button.addEventListener('click',function(){
-          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0136.png');
+          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0140.png');
         });
       });
 
