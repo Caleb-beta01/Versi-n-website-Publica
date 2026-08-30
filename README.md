@@ -16,7 +16,8 @@ La raíz se mantiene deliberadamente pequeña porque GitHub Pages y la PWA usan 
 - `manifest-v0.14.0-beta.webmanifest`: manifiesto PWA activo.
 - `sw-v0.14.0-beta.js`: service worker activo.
 - `icons/`: iconos requeridos por la PWA.
-- El conjunto v0.13.6 permanece como snapshot histórico recuperable; no es la entrada activa.\n- `.nojekyll`, `README.md` y `LICENSE`.
+- El conjunto v0.13.6 permanece como snapshot histórico recuperable; no es la entrada activa.
+- `.nojekyll`, `README.md` y `LICENSE`.
 - `docs/`: documentación de publicación.
 
 ## Archivo histórico
