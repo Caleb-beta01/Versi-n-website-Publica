@@ -13877,9 +13877,9 @@
     function universalExportNumeric(value){
       const text=String(value == null ? '' : value).trim();
       if(!text || text === '—') return null;
-      const cleaned=text.replace(/\s/g,'').replace(/[^0-9,\.\-+]/g,'');
-      if(!cleaned) return null;
-      const parsed=parseLocalized(cleaned);
+      const tokens=text.match(/[+-]?\d[\d.,]*/g) || [];
+      if(tokens.length !== 1) return null;
+      const parsed=parseLocalized(tokens[0]);
       return Number.isFinite(parsed) ? parsed : null;
     }
 
