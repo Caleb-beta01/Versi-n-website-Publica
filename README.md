@@ -2,40 +2,24 @@
 
 Repositorio público y desplegable de la Calculadora de Inflación.
 
-- Versión activa: **v0.14.1-Beta-Patch**
+- Versión activa: **v0.16.0-Beta**
 - Canal: **Beta**
 - Despliegue: **GitHub Pages**
 - Desarrollo y QA: repositorio privado `Caleb-beta01/Calculadora-de-Inflaci-n-app`
 
 ## Raíz de producción
 
-La raíz se mantiene deliberadamente pequeña porque GitHub Pages y la PWA usan rutas relativas. Los archivos activos son:
+La raíz se mantiene compatible con las rutas relativas de GitHub Pages y la PWA. Los archivos activos son:
 
-- `index.html`: entrada del sitio.
-- `v0.14.1-Beta-Patch.html`: snapshot requerido por el service worker activo.
-- `manifest-v0.14.1-beta-patch.webmanifest`: manifiesto PWA activo.
-- `sw-v0.14.1-beta-patch.js`: service worker activo.
+- `index.html`: entrada del sitio y copia exacta de la versión activa.
+- `v0.16.0-Beta.html`: candidata fija de la versión activa.
+- `manifest-v0.16.0-beta.webmanifest`: manifiesto PWA activo.
+- `sw-v0.16.0-beta.js`: service worker activo.
 - `icons/`: iconos requeridos por la PWA.
-- Los manifiestos y service workers de v0.14.0 y el conjunto v0.13.6 permanecen como apoyo histórico recuperable; no son la entrada activa.
 - `.nojekyll`, `README.md` y `LICENSE`.
 - `docs/`: documentación de publicación.
 
-## Archivo histórico
-
-Los artefactos sustituidos se conservan fuera de la raíz en `archive/`:
-
-```text
-archive/
-├── backups/
-└── releases/
-    ├── alpha/
-    └── beta/
-        ├── html/
-        ├── manifests/
-        └── service-workers/
-```
-
-No se deben restaurar archivos individuales de versiones diferentes como una combinación. Una reversión debe usar un conjunto coherente de HTML, manifiesto, service worker e iconos.
+Los artefactos de versiones anteriores permanecen disponibles como historial recuperable. No deben combinarse archivos de versiones distintas: una reversión debe usar un conjunto coherente de HTML, manifiesto y service worker.
 
 Consulta `docs/DEPLOYMENT.md` antes de publicar o revertir una versión.
 
