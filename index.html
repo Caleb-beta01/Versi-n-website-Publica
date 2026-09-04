@@ -10,10 +10,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Inflation Insights">
-  <link rel="manifest" href="./manifest-v0.15.0-beta.webmanifest">
+  <link rel="manifest" href="./manifest-v0.16.0-beta.webmanifest">
   <link rel="icon" href="./icons/inflation-insights-192.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/inflation-insights-192.png">
-  <title>Calculadora de Inflación · v0.15.0-Beta</title>
+  <title>Calculadora de Inflación · v0.16.0-Beta</title>
   <style>
     :root{
       --bg:#07111f;
@@ -3534,7 +3534,7 @@
       .investment-project-actions{justify-content:flex-start}
     }
 
-    /* v0.15.0-Beta · simulación, financiación y planificación empresarial. */
+    /* v0.16.0-Beta · centro de decisiones y planificación conectada. */
     .monte-carlo-hero{border-color:#55f5e6;background:
       radial-gradient(circle at 88% 10%,rgba(85,245,230,.12),transparent 25rem),
       linear-gradient(145deg,#11131b,#090b10)}
@@ -3598,6 +3598,190 @@
       .monte-histogram-bin::before{animation:none}
     }
 
+    /* Centro de Decisiones: lectura rápida, configuración local y visualización responsive. */
+    .decision-view{--decision-green:#4ade80;--decision-yellow:#ffd400;--decision-red:#ff7182;--decision-cyan:#55f5e6}
+    .decision-shell{display:grid;gap:18px}
+    .decision-command{
+      position:sticky;z-index:42;top:84px;display:flex;align-items:center;gap:14px;
+      padding:15px 18px;border:2px solid #3a3d47;background:rgba(8,9,13,.96);
+      box-shadow:0 18px 40px rgba(0,0,0,.24);backdrop-filter:blur(14px)
+    }
+    .decision-command-copy{min-width:0;display:grid;gap:2px;margin-right:auto}
+    .decision-command-copy strong{color:#fff;font-size:1rem}
+    .decision-command-copy span{color:#aeb2bf;font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .decision-command-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+    .decision-tabs{
+      display:flex;gap:7px;padding:8px;border:1px solid #343741;background:#0d0f16;
+      overflow-x:auto;scrollbar-width:thin
+    }
+    .decision-tab{
+      min-height:44px;flex:0 0 auto;padding:9px 14px;border:1px solid #3d404a;
+      color:#c8cbd5;background:#11131b;font-weight:850;cursor:pointer
+    }
+    .decision-tab:hover{border-color:#707582;color:#fff}
+    .decision-tab[aria-selected="true"]{border-color:#ffd400;color:#111;background:#ffd400}
+    .decision-panel{display:grid;gap:18px}
+    .decision-section{padding:22px;border:1px solid #343741;background:linear-gradient(145deg,#11131b,#0a0b10)}
+    .decision-section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px}
+    .decision-section-head h2,.decision-section-head h3{margin-bottom:7px;color:#fff}
+    .decision-section-head p{max-width:760px;margin:0;color:#afb3bf}
+    .decision-overview-grid{display:grid;grid-template-columns:minmax(280px,.82fr) minmax(0,1.18fr);gap:18px}
+    .decision-state-card{
+      position:relative;min-height:290px;display:grid;align-content:space-between;gap:20px;padding:24px;
+      border:3px solid #768092;background:#11131b;overflow:hidden
+    }
+    .decision-state-card::after{
+      position:absolute;width:220px;aspect-ratio:1;right:-92px;bottom:-110px;border-radius:50%;
+      background:var(--decision-tone,#8296b0);opacity:.12;filter:blur(3px);content:""
+    }
+    .decision-state-card[data-state="favorable"]{--decision-tone:var(--decision-green);border-color:var(--decision-green);background:linear-gradient(145deg,#0d2517,#0b1110)}
+    .decision-state-card[data-state="attention"]{--decision-tone:var(--decision-yellow);border-color:var(--decision-yellow);background:linear-gradient(145deg,#29240d,#11120f)}
+    .decision-state-card[data-state="risk"]{--decision-tone:var(--decision-red);border-color:var(--decision-red);background:linear-gradient(145deg,#2d1017,#140d11)}
+    .decision-state-label{display:flex;align-items:center;gap:10px;color:#c7cad4;font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    .decision-state-dot{width:13px;height:13px;border-radius:50%;background:var(--decision-tone,#8296b0);box-shadow:0 0 0 6px color-mix(in srgb,var(--decision-tone,#8296b0) 18%,transparent)}
+    .decision-state-card strong{position:relative;z-index:1;display:block;color:#fff;font-size:clamp(2rem,5vw,4rem);line-height:.98;letter-spacing:-.045em}
+    .decision-state-card p{position:relative;z-index:1;margin:0;color:#d2d4dc;line-height:1.65}
+    .decision-flow{display:flex;align-items:center;flex-wrap:wrap;gap:7px;color:#aeb2bf;font-size:.78rem;font-weight:850}
+    .decision-flow span{padding:6px 9px;border:1px solid #3a3d47;background:#0b0c11}
+    .decision-flow b{color:#ffd400}
+    .decision-metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .decision-metric{min-width:0;min-height:132px;display:grid;align-content:space-between;gap:8px;padding:15px;border:1px solid #3a3d47;border-top:4px solid var(--metric-color,#55f5e6);background:#0d0f16}
+    .decision-metric span{color:#aeb2bf;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.045em}
+    .decision-metric strong{overflow-wrap:anywhere;color:#fff;font-size:clamp(1.12rem,2vw,1.65rem)}
+    .decision-metric small{color:#8f94a1;line-height:1.4}
+    .decision-insight-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .decision-insight{padding:18px;border:1px solid #3c404b;border-left:6px solid var(--insight-color,#55f5e6);background:#0d0f16}
+    .decision-insight span{display:block;margin-bottom:8px;color:#aeb2bf;font-size:.75rem;font-weight:900;text-transform:uppercase}
+    .decision-insight strong{display:block;color:#fff;font-size:1.15rem}
+    .decision-insight p{margin:7px 0 0;color:#b9bdc8}
+    .decision-explain-controls,.decision-form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:end}
+    .decision-explanation{min-height:150px;margin-top:14px;padding:18px;border:1px solid #42505a;border-left:6px solid #55f5e6;background:#0b1518;color:#dcefee;line-height:1.75}
+    .decision-explanation h3{margin-bottom:9px}
+    .decision-explanation p:last-child{margin-bottom:0}
+    .decision-empty{padding:22px;border:1px dashed #555a67;color:#aeb2bf;background:#0b0c11;text-align:center}
+    .decision-widget-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .decision-widget{
+      min-width:0;min-height:180px;display:grid;grid-template-rows:auto 1fr auto;gap:14px;padding:16px;
+      border:1px solid #3a3d47;border-top:5px solid var(--widget-color,#55f5e6);background:#0d0f16
+    }
+    .decision-widget[data-expanded="true"]{grid-column:span 2;min-height:220px}
+    .decision-widget-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+    .decision-widget-title{color:#b8bcc7;font-size:.73rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+    .decision-widget-actions{display:flex;gap:4px}
+    .decision-widget-actions button{width:32px;height:32px;padding:0;border:1px solid #454954;color:#dce0e9;background:#171922;cursor:pointer}
+    .decision-widget-actions button:hover{border-color:#ffd400;color:#ffd400}
+    .decision-widget-value{align-self:center;overflow-wrap:anywhere;color:#fff;font-size:clamp(1.5rem,3vw,2.45rem);font-weight:950;letter-spacing:-.035em}
+    .decision-widget-detail{color:#9095a2;font-size:.8rem}
+    .decision-hidden-widgets{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .decision-hidden-widgets button{padding:8px 11px;border:1px dashed #5a5f6c;color:#c6cad4;background:#11131b;cursor:pointer}
+    .decision-goal-output{margin-top:16px}
+    .decision-recommendations{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .decision-recommendation{display:grid;gap:9px;padding:17px;border:1px solid #3c404a;border-top:5px solid #ffd400;background:#0d0f16}
+    .decision-recommendation b{color:#fff;font-size:1.05rem}
+    .decision-recommendation strong{color:#ffd400;font-size:1.35rem}
+    .decision-recommendation p{margin:0;color:#b9bdc8}
+    .decision-saved-list{display:grid;gap:9px}
+    .decision-saved-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:13px;border:1px solid #3a3d47;background:#0d0f16}
+    .decision-saved-item strong{display:block;color:#fff}
+    .decision-saved-item span{display:block;color:#979ca8;font-size:.8rem}
+    .decision-scenario-builder{display:grid;grid-template-columns:minmax(300px,.72fr) minmax(0,1.28fr);gap:16px}
+    .decision-branch-form{padding:16px;border:1px solid #3a3d47;background:#0d0f16}
+    .decision-branch-form .decision-form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .decision-tree-wrap{min-width:0;padding:16px;border:1px solid #343741;background:#08090d;overflow:auto}
+    .decision-tree,.decision-tree ul{margin:0;padding:0;list-style:none}
+    .decision-tree ul{margin-left:20px;padding-left:18px;border-left:2px solid #454954}
+    .decision-tree li{position:relative;margin:10px 0}
+    .decision-tree ul>li::before{position:absolute;left:-18px;top:28px;width:17px;border-top:2px solid #454954;content:""}
+    .decision-node{min-width:220px;padding:13px;border:1px solid #454954;border-left:6px solid var(--node-color,#55f5e6);background:#11131b}
+    .decision-node[data-state="risk"]{--node-color:#ff7182}
+    .decision-node[data-state="attention"]{--node-color:#ffd400}
+    .decision-node[data-state="favorable"]{--node-color:#4ade80}
+    .decision-node-head{display:flex;justify-content:space-between;gap:8px}
+    .decision-node strong{color:#fff}
+    .decision-node small{display:block;margin-top:5px;color:#9ba0ac}
+    .decision-node-metrics{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+    .decision-node-metrics span{padding:4px 7px;border:1px solid #3c404a;color:#d5d8e1;background:#090a0e;font-size:.72rem}
+    .decision-node-actions{display:flex;gap:5px;margin-top:9px}
+    .decision-node-actions button{min-height:34px;padding:5px 8px;border:1px solid #454954;color:#d9dce5;background:#151720;cursor:pointer}
+    .decision-comparison-chart{display:grid;gap:9px;margin-top:14px}
+    .decision-comparison-row{display:grid;grid-template-columns:minmax(120px,.32fr) minmax(0,1fr) auto;gap:10px;align-items:center}
+    .decision-comparison-track{height:24px;border:1px solid #3d414c;background:#08090d;overflow:hidden}
+    .decision-comparison-fill{height:100%;width:var(--bar-width,0%);background:var(--bar-color,#55f5e6);transform-origin:left;animation:decision-bar-in .45s ease both}
+    @keyframes decision-bar-in{from{transform:scaleX(0);opacity:.4}to{transform:scaleX(1);opacity:1}}
+    .decision-portfolio-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .decision-distribution{display:grid;grid-template-columns:minmax(220px,.7fr) minmax(0,1.3fr);gap:18px;align-items:center}
+    .decision-donut{width:min(100%,300px);aspect-ratio:1;margin:auto;border-radius:50%;background:conic-gradient(#343741 0 100%);position:relative}
+    .decision-donut::after{position:absolute;inset:25%;display:grid;place-items:center;border:1px solid #343741;border-radius:50%;color:#fff;background:#0b0c11;font-weight:900;content:attr(data-center)}
+    .decision-legend{display:grid;gap:8px}
+    .decision-legend-row{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:9px;align-items:center;color:#c6cad4}
+    .decision-legend-row i{width:12px;height:12px;background:var(--legend-color)}
+    .decision-calendar-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+    .decision-calendar-nav,.decision-calendar-modes{display:flex;gap:7px;flex-wrap:wrap}
+    .decision-calendar-nav button,.decision-calendar-modes button{min-height:40px;padding:7px 11px;border:1px solid #424650;color:#d9dce5;background:#11131b;cursor:pointer}
+    .decision-calendar-modes button[aria-pressed="true"]{color:#111;border-color:#ffd400;background:#ffd400}
+    .decision-calendar-title{color:#fff;font-size:1.15rem;font-weight:900}
+    .decision-calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid #3a3d47;border-left:1px solid #3a3d47}
+    .decision-calendar-weekday{padding:8px;border-right:1px solid #3a3d47;border-bottom:1px solid #3a3d47;color:#aeb2bf;background:#11131b;font-size:.7rem;font-weight:900;text-align:center;text-transform:uppercase}
+    .decision-day{min-height:116px;padding:7px;border:0;border-right:1px solid #3a3d47;border-bottom:1px solid #3a3d47;color:#e8eaf0;background:#0d0f16;text-align:left;cursor:pointer;overflow:hidden}
+    .decision-day:hover,.decision-day:focus-visible{position:relative;z-index:1;background:#181b23;box-shadow:inset 0 0 0 2px #ffd400}
+    .decision-day[data-outside="true"]{color:#6e727d;background:#090a0e}
+    .decision-day[data-selected="true"]{box-shadow:inset 0 0 0 3px #55f5e6}
+    .decision-day-number{display:block;margin-bottom:5px;font-weight:900}
+    .decision-day-event{display:block;margin-top:3px;padding:3px 5px;overflow:hidden;color:#111;background:var(--event-color,#55f5e6);font-size:.65rem;font-weight:850;text-overflow:ellipsis;white-space:nowrap}
+    .decision-day-more{display:block;margin-top:4px;color:#ffd400;font-size:.68rem}
+    .decision-year-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .decision-year-month{padding:14px;border:1px solid #3a3d47;background:#0d0f16;text-align:left;cursor:pointer}
+    .decision-year-month strong{display:block;color:#fff}
+    .decision-year-month span{display:block;margin-top:7px;color:#aeb2bf}
+    .decision-event-list,.decision-alert-list{display:grid;gap:9px}
+    .decision-event,.decision-alert{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:13px;border:1px solid #3a3d47;background:#0d0f16}
+    .decision-event-date{min-width:64px;padding:7px;color:#111;background:var(--event-color,#55f5e6);font-weight:900;text-align:center}
+    .decision-event strong,.decision-alert strong{display:block;color:#fff}
+    .decision-event span,.decision-alert span{display:block;color:#9da2ae;font-size:.78rem}
+    .decision-alert[data-triggered="true"]{border-left:6px solid #ff7182;background:#231015}
+    .decision-alert[data-triggered="false"]{border-left:6px solid #4ade80}
+    .decision-rule-state{min-width:92px;padding:7px 9px;border:1px solid currentColor;color:#4ade80;text-align:center;font-size:.72rem;font-weight:900}
+    .decision-alert[data-triggered="true"] .decision-rule-state{color:#ff7182}
+    .decision-status-strip{padding:12px 14px;border:1px solid #3a3d47;color:#c6cad4;background:#0d0f16}
+    .decision-status-strip[data-tone="success"]{border-color:#4ade80;color:#d9fce4;background:#0d2115}
+    .decision-status-strip[data-tone="warning"]{border-color:#ffd400;color:#fff0a8;background:#24200d}
+    .decision-status-strip[data-tone="error"]{border-color:#ff7182;color:#ffd5da;background:#271016}
+    .decision-table-wrap{overflow:auto;border:1px solid #343741}
+    .decision-table{width:100%;min-width:860px;border-collapse:collapse}
+    .decision-table th,.decision-table td{padding:11px 12px;border-bottom:1px solid #343741;color:#d4d7e0;text-align:right;white-space:nowrap}
+    .decision-table th{position:sticky;top:0;color:#fff;background:#171922;font-size:.72rem;text-transform:uppercase}
+    .decision-table th:first-child,.decision-table td:first-child{text-align:left}
+    @media(max-width:1180px){
+      .decision-widget-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .decision-metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .decision-portfolio-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media(max-width:900px){
+      .decision-command{position:static;align-items:stretch;flex-direction:column}
+      .decision-command-actions{justify-content:flex-start}
+      .decision-overview-grid,.decision-scenario-builder,.decision-distribution{grid-template-columns:1fr}
+      .decision-widget-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .decision-recommendations{grid-template-columns:1fr}
+      .decision-form-grid,.decision-explain-controls{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .decision-year-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media(max-width:620px){
+      .decision-section{padding:16px}
+      .decision-section-head{flex-direction:column}
+      .decision-metric-grid,.decision-widget-grid,.decision-form-grid,.decision-explain-controls,.decision-portfolio-summary,.decision-insight-grid,.decision-year-grid{grid-template-columns:1fr}
+      .decision-widget[data-expanded="true"]{grid-column:auto}
+      .decision-branch-form .decision-form-grid{grid-template-columns:1fr}
+      .decision-day{min-height:76px;padding:4px}
+      .decision-calendar-weekday{padding:6px 2px;font-size:.58rem}
+      .decision-day-event{font-size:0;width:9px;height:9px;display:inline-block;padding:0;border-radius:50%}
+      .decision-day-more{font-size:.58rem}
+      .decision-event,.decision-alert,.decision-saved-item{grid-template-columns:1fr}
+      .decision-command-actions .button{width:100%}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .decision-comparison-fill{animation:none}
+    }
+
   </style>
 </head>
 <body>
@@ -3623,12 +3807,13 @@
         <button class="nav-link" type="button" data-route="calculadora">Calculadora</button>
         <button class="nav-link" type="button" data-route="herramientas">Herramientas</button>
         <button class="nav-link" type="button" data-route="inversiones">Inversiones</button>
+        <button class="nav-link" type="button" data-route="decisiones">Decisiones</button>
         <button class="nav-link" type="button" data-route="precios">Precios</button>
         <button class="nav-link" type="button" data-route="datos">Datos</button>
         <button class="nav-link" type="button" data-route="informes">Informes</button>
         <button class="nav-link" type="button" data-route="historial">Historial</button>
         <button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button>
-        <span class="version-chip" aria-label="Versión actual">v0.15.0 · Beta</span>
+        <span class="version-chip" aria-label="Versión actual">v0.16.0 · Beta</span>
       </nav>
 
       <span class="status-chip header-status" id="connectionChip" data-status="online" aria-live="polite">
@@ -3743,7 +3928,7 @@
               <button class="landing-feature" type="button" data-route="precios"><b>Reduflación</b><p>Compara precio y contenido para detectar aumentos ocultos por menor cantidad.</p></button>
               <button class="landing-feature" type="button" data-route="salario"><b>Salarios y contratos</b><p>Mide aumentos nominales, poder real y reajustes compuestos.</p></button>
               <button class="landing-feature" type="button" data-route="inversiones"><b>Inversiones de negocios</b><p>Descubre cuánto ganas, cuánto gastas y cuándo recuperas lo invertido.</p></button>
-              <button class="landing-feature" type="button" data-route="precios"><b>Importación revisable</b><p>Previsualiza JSON, CSV, PDF e imágenes antes de incorporar cualquier dato.</p></button>
+              <button class="landing-feature" type="button" data-route="decisiones"><b>Centro de Decisiones</b><p>Convierte ROI, riesgo, caja y escenarios en señales y acciones matemáticas.</p></button>
               <button class="landing-feature" type="button" data-route="informes"><b>Informes profesionales</b><p>Exporta PDF, PNG, CSV y JSON con versión, metodología y fuentes.</p></button>
               <button class="landing-feature" type="button" data-route="cuenta"><b>Offline y privacidad</b><p>Conserva datos locales compatibles y sigue calculando sin conexión.</p></button>
             </div>
@@ -3998,6 +4183,12 @@
           <button class="button primary small" type="button" data-route="inversiones">Analizar un negocio</button>
         </article>
         <article class="card tool-card">
+          <div class="tool-icon" aria-hidden="true">◎</div>
+          <h2>Centro de Decisiones</h2>
+          <p>Reúne indicadores, fija objetivos, compara ramas y organiza portafolio, calendario y alertas locales.</p>
+          <button class="button primary small" type="button" data-route="decisiones">Abrir decisiones</button>
+        </article>
+        <article class="card tool-card">
           <div class="tool-icon" aria-hidden="true">A/B</div>
           <h2>Comparador de escenarios</h2>
           <p>Contrasta dos variaciones de precio usando el mismo período y observa la diferencia entre sus tasas.</p>
@@ -4151,6 +4342,7 @@
           </div>
           <span class="investment-status" id="investmentStatus" data-state="intermediate">Completa datos</span>
           <div class="investment-actions">
+            <button class="button primary small" type="button" data-route="decisiones">Centro de Decisiones</button>
             <button class="button secondary small" id="investmentSaveButton" type="button">Añadir a comparación</button>
             <button class="button danger small" id="investmentResetButton" type="button">Restablecer</button>
           </div>
@@ -4678,6 +4870,227 @@
       </div>
     </section>
 
+    <section class="view decision-view" id="view-decisiones" data-view="decisiones" aria-labelledby="decisionTitle" hidden>
+      <div class="view-head">
+        <p class="eyebrow">Decision Center Update</p>
+        <h1 id="decisionTitle">Centro de Decisiones</h1>
+        <p class="lede">Conecta los datos de tu negocio con escenarios, objetivos y señales fáciles de interpretar. Todas las recomendaciones se calculan con el mismo motor financiero de Inversiones.</p>
+      </div>
+
+      <div class="decision-shell">
+        <div class="decision-command">
+          <div class="decision-command-copy">
+            <strong id="decisionCommandName">Sin análisis activo</strong>
+            <span id="decisionCommandMeta">Configura un negocio para convertir resultados en decisiones.</span>
+          </div>
+          <div class="decision-command-actions">
+            <button class="button primary small" id="decisionRefreshButton" type="button">Actualizar análisis</button>
+            <button class="button secondary small" type="button" data-route="inversiones">Editar negocio</button>
+            <button class="button secondary small" id="decisionExportJsonButton" type="button">Respaldo JSON</button>
+            <button class="button secondary small" id="decisionExportCsvButton" type="button">Resumen CSV</button>
+            <button class="button secondary small" id="decisionImportButton" type="button">Importar</button>
+            <button class="button secondary small" id="decisionUndoImportButton" type="button" hidden>Deshacer importación</button>
+            <input id="decisionImportInput" type="file" accept="application/json,.json" hidden>
+          </div>
+        </div>
+        <div class="decision-status-strip" id="decisionDataNotice" role="status" aria-live="polite">El Centro de Decisiones funciona sin cuenta y conserva su configuración en este dispositivo.</div>
+
+        <div class="decision-tabs" role="tablist" aria-label="Módulos del Centro de Decisiones">
+          <button class="decision-tab" id="decisionTabOverview" type="button" role="tab" aria-selected="true" aria-controls="decisionPanelOverview" data-decision-tab="overview">Decisión</button>
+          <button class="decision-tab" id="decisionTabDashboard" type="button" role="tab" aria-selected="false" aria-controls="decisionPanelDashboard" data-decision-tab="dashboard" tabindex="-1">Dashboard</button>
+          <button class="decision-tab" id="decisionTabGoals" type="button" role="tab" aria-selected="false" aria-controls="decisionPanelGoals" data-decision-tab="goals" tabindex="-1">Objetivos</button>
+          <button class="decision-tab" id="decisionTabScenarios" type="button" role="tab" aria-selected="false" aria-controls="decisionPanelScenarios" data-decision-tab="scenarios" tabindex="-1">Escenarios</button>
+          <button class="decision-tab" id="decisionTabPortfolio" type="button" role="tab" aria-selected="false" aria-controls="decisionPanelPortfolio" data-decision-tab="portfolio" tabindex="-1">Portafolio</button>
+          <button class="decision-tab" id="decisionTabCalendar" type="button" role="tab" aria-selected="false" aria-controls="decisionPanelCalendar" data-decision-tab="calendar" tabindex="-1">Calendario</button>
+          <button class="decision-tab" id="decisionTabAlerts" type="button" role="tab" aria-selected="false" aria-controls="decisionPanelAlerts" data-decision-tab="alerts" tabindex="-1">Alertas</button>
+        </div>
+
+        <section class="decision-panel" id="decisionPanelOverview" role="tabpanel" aria-labelledby="decisionTabOverview" data-decision-panel="overview">
+          <div class="decision-overview-grid">
+            <article class="decision-state-card" id="decisionOverallState" data-state="attention">
+              <span class="decision-state-label"><i class="decision-state-dot" aria-hidden="true"></i>Estado general</span>
+              <div>
+                <strong id="decisionOverallTitle">Sin datos</strong>
+                <p id="decisionOverallReason">Completa un negocio válido para evaluar rentabilidad, riesgo y liquidez.</p>
+              </div>
+              <div class="decision-flow" aria-label="Flujo de decisión"><span>Datos</span><b>→</b><span>Cálculos</span><b>→</b><span>Escenarios</span><b>→</b><span>Decisión</span></div>
+            </article>
+            <div class="decision-metric-grid" aria-live="polite">
+              <article class="decision-metric" style="--metric-color:#c084fc"><span>ROI esperado</span><strong id="decisionMetricRoi">—</strong><small>Rentabilidad anual estimada</small></article>
+              <article class="decision-metric" style="--metric-color:#ff9d44"><span>Nivel de riesgo</span><strong id="decisionMetricRisk">—</strong><small id="decisionMetricRiskDetail">Escala de 0 a 100</small></article>
+              <article class="decision-metric" style="--metric-color:#ff7182"><span>Probabilidad de pérdida</span><strong id="decisionMetricLoss">—</strong><small id="decisionMetricLossDetail">Monte Carlo o estrés determinista</small></article>
+              <article class="decision-metric" style="--metric-color:#ffd400"><span>Margen de beneficio</span><strong id="decisionMetricMargin">—</strong><small>Neto sobre ingresos</small></article>
+              <article class="decision-metric" style="--metric-color:#4ade80"><span>Recuperación</span><strong id="decisionMetricPayback">—</strong><small>Tiempo estimado</small></article>
+              <article class="decision-metric" style="--metric-color:#55f5e6"><span>Punto de equilibrio</span><strong id="decisionMetricBreakEven">—</strong><small>Ventas mínimas mensuales</small></article>
+              <article class="decision-metric" style="--metric-color:#55a8ff"><span>Caja proyectada</span><strong id="decisionMetricCash">—</strong><small>Saldo al final del horizonte</small></article>
+              <article class="decision-metric" style="--metric-color:#55f5e6"><span>Flujo de caja esperado</span><strong id="decisionMetricFlow">—</strong><small>Promedio mensual neto</small></article>
+              <article class="decision-metric" style="--metric-color:#4ade80"><span>VAN</span><strong id="decisionMetricNpv">—</strong><small>Valor actual neto</small></article>
+              <article class="decision-metric" style="--metric-color:#c084fc"><span>TIR</span><strong id="decisionMetricIrr">—</strong><small>Rentabilidad interna anual</small></article>
+            </div>
+          </div>
+
+          <div class="decision-insight-grid">
+            <article class="decision-insight" style="--insight-color:#ff7182">
+              <span>Principal factor de riesgo</span>
+              <strong id="decisionPrimaryRisk">—</strong>
+              <p id="decisionPrimaryRiskDetail">Se medirá la sensibilidad del beneficio.</p>
+            </article>
+            <article class="decision-insight" style="--insight-color:#4ade80">
+              <span>Principal oportunidad</span>
+              <strong id="decisionPrimaryOpportunity">—</strong>
+              <p id="decisionPrimaryOpportunityDetail">Se compararán cambios posibles en ventas, precio y costos.</p>
+            </article>
+          </div>
+
+          <div class="decision-section">
+            <div class="decision-section-head"><div><p class="eyebrow">Interpretación automática</p><h2>Explícame este resultado</h2><p>El texto se genera a partir de los números actuales. No usa respuestas aleatorias ni envía datos a un servidor.</p></div></div>
+            <div class="decision-explain-controls">
+              <div class="field"><label for="decisionExplanationLevel">Nivel de explicación</label><select id="decisionExplanationLevel"><option value="basic">Básico</option><option value="intermediate">Intermedio</option><option value="technical">Técnico</option></select></div>
+              <button class="button primary" id="decisionExplainButton" type="button">Explicarme el resultado</button>
+              <button class="button secondary" id="decisionOpenGoalButton" type="button">Convertirlo en objetivo</button>
+            </div>
+            <div class="decision-explanation" id="decisionExplanation" role="status" aria-live="polite"><p>Primero completa un análisis en Inversiones.</p></div>
+          </div>
+        </section>
+
+        <section class="decision-panel" id="decisionPanelDashboard" role="tabpanel" aria-labelledby="decisionTabDashboard" data-decision-panel="dashboard" hidden>
+          <div class="decision-section">
+            <div class="decision-section-head">
+              <div><p class="eyebrow">Panel personalizable</p><h2>Tu dashboard financiero</h2><p>Mueve, oculta o expande widgets. La disposición se guarda localmente y cada indicador se actualiza cuando cambian los datos.</p></div>
+              <button class="button secondary small" id="decisionResetDashboardButton" type="button">Restaurar disposición</button>
+            </div>
+            <div class="decision-widget-grid" id="decisionWidgetGrid" aria-live="polite"></div>
+            <div class="decision-hidden-widgets" id="decisionHiddenWidgets" aria-label="Widgets ocultos"></div>
+          </div>
+        </section>
+
+        <section class="decision-panel" id="decisionPanelGoals" role="tabpanel" aria-labelledby="decisionTabGoals" data-decision-panel="goals" hidden>
+          <div class="decision-section">
+            <div class="decision-section-head"><div><p class="eyebrow">Cálculo inverso</p><h2>¿Qué tendría que cambiar?</h2><p>Define una meta. El motor prueba cambios medibles en precio, ventas y costos hasta encontrar alternativas que alcancen el objetivo.</p></div></div>
+            <form id="decisionGoalForm" novalidate>
+              <div class="decision-form-grid">
+                <div class="field"><label for="decisionGoalName">Nombre del objetivo</label><input id="decisionGoalName" type="text" maxlength="80" autocomplete="off"></div>
+                <div class="field"><label for="decisionGoalMetric">Indicador</label><select id="decisionGoalMetric"><option value="roi">ROI anual (%)</option><option value="profit">Beneficio anual</option><option value="payback">Recuperación máxima (meses)</option><option value="margin">Margen neto (%)</option><option value="risk">Riesgo máximo (0–100)</option><option value="cash">Caja final</option></select></div>
+                <div class="field"><label for="decisionGoalTarget">Meta</label><input id="decisionGoalTarget" type="text" inputmode="decimal" value="" aria-describedby="decisionGoalTargetHelp"><p class="field-help" id="decisionGoalTargetHelp">Escribe el ROI anual deseado.</p></div>
+              </div>
+              <div class="action-row"><button class="button primary" type="submit">Calcular alternativas</button><button class="button secondary" id="decisionSaveGoalButton" type="button" disabled>Guardar objetivo</button></div>
+            </form>
+            <div class="decision-status-strip" id="decisionGoalNotice" role="status" aria-live="polite">Las recomendaciones mostrarán el cambio mínimo encontrado dentro de rangos prudentes.</div>
+            <div class="decision-goal-output" id="decisionGoalOutput" hidden>
+              <div class="decision-recommendations" id="decisionGoalRecommendations"></div>
+            </div>
+          </div>
+          <div class="decision-section">
+            <div class="decision-section-head"><div><p class="eyebrow">Seguimiento local</p><h2>Objetivos guardados</h2></div></div>
+            <div class="decision-saved-list" id="decisionGoalList"><div class="decision-empty">Todavía no guardaste objetivos.</div></div>
+          </div>
+        </section>
+
+        <section class="decision-panel" id="decisionPanelScenarios" role="tabpanel" aria-labelledby="decisionTabScenarios" data-decision-panel="scenarios" hidden>
+          <div class="decision-section">
+            <div class="decision-section-head"><div><p class="eyebrow">Árbol de decisiones</p><h2>Constructor visual de escenarios</h2><p>Cada rama hereda los cambios de su rama anterior. El resultado muestra beneficio, ROI, VAN, TIR, caja, riesgo, margen y equilibrio.</p></div><button class="button secondary small" id="decisionExportScenariosButton" type="button">Exportar CSV</button></div>
+            <div class="decision-scenario-builder">
+              <form class="decision-branch-form" id="decisionScenarioForm" novalidate>
+                <h3>Nueva rama</h3>
+                <div class="decision-form-grid">
+                  <div class="field"><label for="decisionScenarioParent">Parte de</label><select id="decisionScenarioParent"></select></div>
+                  <div class="field"><label for="decisionScenarioName">Nombre</label><input id="decisionScenarioName" type="text" maxlength="60" autocomplete="off"></div>
+                  <div class="field"><label for="decisionScenarioSales">Ventas (%)</label><input id="decisionScenarioSales" type="text" inputmode="decimal" value="0"></div>
+                  <div class="field"><label for="decisionScenarioPrice">Precio (%)</label><input id="decisionScenarioPrice" type="text" inputmode="decimal" value="0"></div>
+                  <div class="field"><label for="decisionScenarioCosts">Costos (%)</label><input id="decisionScenarioCosts" type="text" inputmode="decimal" value="0"></div>
+                  <div class="field"><label for="decisionScenarioInflation">Inflación (p.p.)</label><input id="decisionScenarioInflation" type="text" inputmode="decimal" value="0"></div>
+                  <div class="field"><label for="decisionScenarioGrowth">Crecimiento (p.p.)</label><input id="decisionScenarioGrowth" type="text" inputmode="decimal" value="0"></div>
+                </div>
+                <button class="button primary" type="submit">Añadir rama</button>
+                <p class="field-help">Máximo de 40 ramas. Los porcentajes se acumulan dentro de cada camino.</p>
+              </form>
+              <div class="decision-tree-wrap" id="decisionTreeWrap"><div class="decision-empty">La situación actual aparecerá al completar un negocio.</div></div>
+            </div>
+            <div class="decision-status-strip" id="decisionScenarioNotice" role="status" aria-live="polite">Las ramas se guardan en este dispositivo.</div>
+            <div class="decision-comparison-chart" id="decisionScenarioChart"></div>
+            <div class="decision-table-wrap"><table class="decision-table"><caption class="table-caption">Comparación calculada de todas las ramas</caption><thead><tr><th>Escenario</th><th>Beneficio</th><th>ROI</th><th>VAN</th><th>TIR</th><th>Caja</th><th>Margen</th><th>Equilibrio</th><th>Riesgo</th></tr></thead><tbody id="decisionScenarioTableBody"><tr><td colspan="9">Sin escenarios calculados.</td></tr></tbody></table></div>
+          </div>
+        </section>
+
+        <section class="decision-panel" id="decisionPanelPortfolio" role="tabpanel" aria-labelledby="decisionTabPortfolio" data-decision-panel="portfolio" hidden>
+          <div class="decision-section">
+            <div class="decision-section-head">
+              <div><p class="eyebrow">Varias inversiones</p><h2>Portafolio empresarial</h2><p>Compara proyectos en la misma moneda y calcula capital, rendimiento ponderado, concentración, exposición al riesgo, caja consolidada y diversificación.</p></div>
+              <div class="decision-command-actions"><button class="button primary small" id="decisionAddPortfolioButton" type="button">Añadir negocio actual</button><button class="button secondary small" id="decisionPortfolioExportButton" type="button">Exportar portafolio</button></div>
+            </div>
+            <div class="field" style="max-width:320px"><label for="decisionPortfolioCurrency">Moneda para consolidar</label><select id="decisionPortfolioCurrency"></select></div>
+            <div class="decision-status-strip" id="decisionPortfolioNotice" role="status" aria-live="polite">Los importes de monedas distintas se mantienen separados para no sumar valores incompatibles.</div>
+            <div class="decision-portfolio-summary">
+              <article class="decision-metric" style="--metric-color:#ffd400"><span>Capital total</span><strong id="decisionPortfolioCapital">—</strong><small>Dentro de la moneda seleccionada</small></article>
+              <article class="decision-metric" style="--metric-color:#4ade80"><span>Rentabilidad ponderada</span><strong id="decisionPortfolioReturn">—</strong><small>ROI según peso del capital</small></article>
+              <article class="decision-metric" style="--metric-color:#ff7182"><span>Exposición al riesgo</span><strong id="decisionPortfolioRisk">—</strong><small>Promedio ponderado</small></article>
+              <article class="decision-metric" style="--metric-color:#55f5e6"><span>Diversificación</span><strong id="decisionPortfolioDiversification">—</strong><small id="decisionPortfolioConcentration">Concentración: —</small></article>
+              <article class="decision-metric" style="--metric-color:#55a8ff"><span>Flujo consolidado</span><strong id="decisionPortfolioFlow">—</strong><small>Beneficio anual estimado</small></article>
+            </div>
+            <div class="decision-distribution">
+              <div class="decision-donut" id="decisionPortfolioDonut" data-center="0 proyectos" role="img" aria-label="Distribución del capital por proyecto"></div>
+              <div class="decision-legend" id="decisionPortfolioLegend"><div class="decision-empty">Añade proyectos para ver la distribución.</div></div>
+            </div>
+            <div class="decision-table-wrap"><table class="decision-table"><caption class="table-caption">Proyectos del portafolio empresarial</caption><thead><tr><th>Proyecto</th><th>Capital</th><th>Peso</th><th>Beneficio</th><th>ROI</th><th>Riesgo</th><th>Recuperación</th><th>Acciones</th></tr></thead><tbody id="decisionPortfolioBody"><tr><td colspan="8">Sin proyectos.</td></tr></tbody></table></div>
+          </div>
+        </section>
+
+        <section class="decision-panel" id="decisionPanelCalendar" role="tabpanel" aria-labelledby="decisionTabCalendar" data-decision-panel="calendar" hidden>
+          <div class="decision-section">
+            <div class="decision-section-head"><div><p class="eyebrow">Movimientos económicos</p><h2>Calendario financiero</h2><p>Registra pagos, ingresos, contratos e inversiones. Las repeticiones se calculan localmente y pueden verse por día, mes o año.</p></div></div>
+            <form id="decisionEventForm" novalidate>
+              <div class="decision-form-grid">
+                <div class="field"><label for="decisionEventTitle">Concepto</label><input id="decisionEventTitle" type="text" maxlength="80" autocomplete="off"></div>
+                <div class="field"><label for="decisionEventDate">Fecha inicial</label><input id="decisionEventDate" type="date"></div>
+                <div class="field"><label for="decisionEventType">Tipo</label><select id="decisionEventType"><option value="income">Ingreso previsto</option><option value="payment">Pago</option><option value="loan">Préstamo</option><option value="rent">Alquiler</option><option value="tax">Impuesto</option><option value="supplier">Proveedor</option><option value="subscription">Suscripción</option><option value="sale">Venta</option><option value="investment">Inversión</option><option value="contract">Contrato</option></select></div>
+                <div class="field"><label for="decisionEventAmount">Importe</label><input id="decisionEventAmount" type="text" inputmode="decimal"></div>
+                <div class="field"><label for="decisionEventCurrency">Moneda</label><select id="decisionEventCurrency"></select></div>
+                <div class="field"><label for="decisionEventRecurrence">Repetición</label><select id="decisionEventRecurrence"><option value="once">Una vez</option><option value="monthly">Cada mes</option><option value="yearly">Cada año</option></select></div>
+                <div class="field"><label for="decisionEventLink">Módulo relacionado</label><select id="decisionEventLink"><option value="none">Ninguno</option><option value="business">Negocio actual</option><option value="subscriptions">Suscripciones</option><option value="portfolio">Portafolio</option><option value="taxes">Impuestos</option></select></div>
+              </div>
+              <div class="action-row"><button class="button primary" type="submit">Añadir evento</button><button class="button secondary" id="decisionImportSubscriptionsButton" type="button">Añadir suscripciones del mes</button><button class="button secondary" id="decisionAddBusinessFlowButton" type="button">Añadir flujo del negocio</button></div>
+            </form>
+            <div class="decision-status-strip" id="decisionCalendarNotice" role="status" aria-live="polite">Los eventos se guardan únicamente en este navegador.</div>
+          </div>
+          <div class="decision-section">
+            <div class="decision-calendar-toolbar">
+              <div class="decision-calendar-nav"><button type="button" id="decisionCalendarPrevious" aria-label="Período anterior">←</button><button type="button" id="decisionCalendarToday">Hoy</button><button type="button" id="decisionCalendarNext" aria-label="Período siguiente">→</button></div>
+              <strong class="decision-calendar-title" id="decisionCalendarTitle">Calendario</strong>
+              <div class="decision-calendar-modes" role="group" aria-label="Vista del calendario"><button type="button" data-decision-calendar-view="day" aria-pressed="false">Día</button><button type="button" data-decision-calendar-view="month" aria-pressed="true">Mes</button><button type="button" data-decision-calendar-view="year" aria-pressed="false">Año</button></div>
+            </div>
+            <div id="decisionCalendarView"></div>
+          </div>
+          <div class="decision-section">
+            <div class="decision-section-head"><div><p class="eyebrow">Detalle</p><h2 id="decisionSelectedDateTitle">Eventos seleccionados</h2></div></div>
+            <div class="decision-event-list" id="decisionSelectedEvents"><div class="decision-empty">Selecciona un día para ver sus movimientos.</div></div>
+          </div>
+        </section>
+
+        <section class="decision-panel" id="decisionPanelAlerts" role="tabpanel" aria-labelledby="decisionTabAlerts" data-decision-panel="alerts" hidden>
+          <div class="decision-section">
+            <div class="decision-section-head"><div><p class="eyebrow">Reglas configurables</p><h2>Alertas financieras locales</h2><p>Las reglas se revisan cada vez que cambia el análisis. No se envían notificaciones externas ni se necesita un servidor.</p></div></div>
+            <form id="decisionAlertForm" novalidate>
+              <div class="decision-form-grid">
+                <div class="field"><label for="decisionAlertMetric">Avisar cuando…</label><select id="decisionAlertMetric"><option value="margin_below">el margen caiga por debajo de</option><option value="expense_growth_above">los gastos aumenten más de</option><option value="loss_above">la probabilidad de pérdida supere</option><option value="cash_below">la caja disponible baje de</option><option value="roi_below">el ROI caiga por debajo de</option><option value="risk_above">el riesgo supere</option></select></div>
+                <div class="field"><label for="decisionAlertThreshold">Umbral</label><input id="decisionAlertThreshold" type="text" inputmode="decimal"><p class="field-help" id="decisionAlertThresholdHelp">Porcentaje.</p></div>
+                <div class="field"><label for="decisionAlertName">Nombre de la regla</label><input id="decisionAlertName" type="text" maxlength="80" autocomplete="off"></div>
+              </div>
+              <button class="button primary" type="submit">Crear alerta</button>
+            </form>
+            <div class="decision-status-strip" id="decisionAlertNotice" role="status" aria-live="polite">Crea una regla para comenzar a vigilar tus indicadores.</div>
+          </div>
+          <div class="decision-section">
+            <div class="decision-section-head"><div><p class="eyebrow">Estado actual</p><h2>Alertas activas</h2></div></div>
+            <div class="decision-alert-list" id="decisionTriggeredAlerts"><div class="decision-empty">No hay reglas activadas.</div></div>
+          </div>
+          <div class="decision-section">
+            <div class="decision-section-head"><div><p class="eyebrow">Configuración</p><h2>Todas las reglas</h2></div></div>
+            <div class="decision-alert-list" id="decisionAlertList"><div class="decision-empty">Todavía no creaste alertas.</div></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
     <section class="view" id="view-presupuesto" data-view="presupuesto" aria-labelledby="budgetTitle" hidden>
       <div class="view-head">
         <p class="eyebrow">Finanzas personales · nueva función</p>
@@ -4969,7 +5382,7 @@
     <section class="view" id="view-widget-runtime" data-view="widget-runtime" aria-label="Calculadora embebida" hidden>
       <div class="widget-runtime-shell" id="widgetRuntimeShell" data-theme="dark">
         <section class="widget-runtime-card" id="widgetRuntimeCard">
-          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.15.0-Beta.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>Calculadora</span></div>
+          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.16.0-Beta.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>Calculadora</span></div>
           <h1 id="widgetRuntimeTitle">Calculadora embebida</h1>
           <div class="widget-mini-grid">
             <div class="field"><label id="widgetRuntimeALabel" for="widgetRuntimeA">Valor A</label><input id="widgetRuntimeA" type="text" inputmode="decimal" value="100"></div>
@@ -5493,16 +5906,16 @@
 
         <section class="card account-card wide" aria-labelledby="aboutAppTitle">
           <div><p class="eyebrow">Acerca de la aplicación</p><h2 id="aboutAppTitle">Versión, novedades y detalles técnicos</h2></div>
-          <div class="about-version"><strong id="aboutAppVersion">v0.15.0</strong><span id="aboutAppChannel">Beta · 3 sep 2026</span></div>
+          <div class="about-version"><strong id="aboutAppVersion">v0.16.0</strong><span id="aboutAppChannel">Beta · 4 sep 2026</span></div>
           <ul class="release-list">
-            <li>Monte Carlo ejecuta hasta 25.000 escenarios en un Web Worker, con progreso, cancelación, percentiles e histograma interactivo.</li>
-            <li>Préstamos, estacionalidad, activos, inventario, metas, KPI y comprar frente a financiar comparten el proyecto empresarial.</li>
-            <li>El motor financiero único calcula el escenario normal y las simulaciones sin duplicar fórmulas.</li>
+            <li>El Centro de Decisiones reúne rentabilidad, riesgo, caja, equilibrio, oportunidades y explicaciones comprensibles.</li>
+            <li>Dashboard configurable, objetivos matemáticos, ramas de escenarios, portafolio, calendario y alertas funcionan localmente.</li>
+            <li>La simulación de negocios y Monte Carlo de v0.15.0 permanece integrada mediante el mismo motor financiero.</li>
           </ul>
           <dl class="storage-facts">
-            <div><dt>Historial</dt><dd>v0.14.1 unificó las exportaciones; v0.15.0 añade simulación de riesgo y planificación empresarial.</dd></div>
-            <div><dt>Técnico</dt><dd>Aplicación estática, cálculos locales, Web Worker dedicado, Supabase opcional y políticas RLS por usuario.</dd></div>
-            <div><dt>Informe</dt><dd><a href="https://github.com/Caleb-beta01/Calculadora-de-Inflaci-n-app/issues/56" target="_blank" rel="noopener noreferrer">GitHub #56 · Business Simulation Update</a></dd></div>
+            <div><dt>Historial</dt><dd>v0.15.0 añadió simulación empresarial; v0.16.0 conecta sus resultados en un flujo completo de decisión.</dd></div>
+            <div><dt>Técnico</dt><dd>Aplicación estática, cálculos locales reutilizables, almacenamiento con esquema, Web Worker y Supabase opcional.</dd></div>
+            <div><dt>Informe</dt><dd><a href="https://github.com/Caleb-beta01/Calculadora-de-Inflaci-n-app/issues/57" target="_blank" rel="noopener noreferrer">GitHub #57 · Decision Center Update</a></dd></div>
           </dl>
         </section>
 
@@ -5606,7 +6019,7 @@
             <h2 id="storedDataTitle">Qué información se guarda</h2>
           </div>
           <dl class="storage-facts">
-            <div><dt>En este dispositivo</dt><dd>Historial, escenarios, análisis salariales, cestas, proyectos de inversión, presupuesto, gastos y suscripciones, borrador de anomalías, progreso educativo, widgets, seguimiento de productos, preferencias, última ruta, caché de cotizaciones e IPCA y cola pendiente.</dd></div>
+            <div><dt>En este dispositivo</dt><dd>Historial, escenarios, análisis salariales, cestas, proyectos de inversión, dashboard de decisiones, objetivos, ramas, calendario, alertas, presupuesto, gastos y suscripciones, borrador de anomalías, progreso educativo, widgets, seguimiento de productos, preferencias, última ruta, caché de cotizaciones e IPCA y cola pendiente.</dd></div>
             <div><dt>En tu cuenta</dt><dd>Solo si activas sincronización: cálculos guardados, cestas, proyectos de inversión, preferencias y fechas de actualización.</dd></div>
             <div><dt>Comentarios</dt><dd>Tipo, descripción, valoración, contexto, versión y únicamente los datos técnicos o financieros que marques de forma explícita.</dd></div>
             <div><dt>Nunca en el código</dt><dd>Contraseñas, claves administrativas o secretos del backend. La página contiene únicamente una clave pública limitada por RLS.</dd></div>
@@ -6157,17 +6570,17 @@
 
   <dialog id="betaWelcomeDialog" aria-labelledby="betaWelcomeTitle">
     <div class="dialog-head">
-      <h3 id="betaWelcomeTitle">Novedades de v0.15.0</h3>
+      <h3 id="betaWelcomeTitle">Novedades de v0.16.0</h3>
       <button class="icon-button" type="button" data-close-dialog="betaWelcomeDialog" aria-label="Cerrar novedades">×</button>
     </div>
     <div class="dialog-body dialog-stack">
-      <p>Inversiones evoluciona hacia un simulador de negocios que muestra incertidumbre, riesgo y planificación.</p>
+      <p>Los análisis ahora desembocan en un Centro de Decisiones que compara alternativas y explica qué variable conviene modificar.</p>
       <div class="dialog-callout">
-        <strong>Monte Carlo Business Simulator</strong>
+        <strong>Decision Center Update</strong>
         <ul>
-          <li>1.000, 5.000, 10.000 o 25.000 escenarios sin bloquear la interfaz;</li>
-          <li>histograma, percentiles, probabilidad de pérdida y factores sensibles;</li>
-          <li>préstamos, activos, inventario, estacionalidad, metas y KPI empresariales.</li>
+          <li>estado general, ROI, riesgo, pérdida, margen, recuperación, equilibrio y caja en una sola vista;</li>
+          <li>objetivos con recomendaciones calculadas, árbol de escenarios y portafolio consolidado;</li>
+          <li>dashboard configurable, calendario, alertas locales y explicaciones básica, intermedia o técnica.</li>
         </ul>
       </div>
       <div class="auth-actions">
@@ -6301,7 +6714,7 @@
   (function(){
     'use strict';
 
-    const APP_VERSION = 'v0.15.0-Beta';
+    const APP_VERSION = 'v0.16.0-Beta';
     const VERSION = APP_VERSION;
     // El contrato de create-account/delete-account no cambió en este parche de exportaciones.
     const ACCOUNT_API_VERSION = 'v0.8.2-Beta-Patch';
@@ -6338,7 +6751,12 @@
     const MAX_INVESTMENT_PROJECTS = 100;
     const MAX_BUSINESS_ASSETS = 30;
     const MAX_MONTE_CARLO_RUNS = 25000;
-    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.15.0-Beta.html';
+    const DECISION_WORKSPACE_SCHEMA_VERSION = 1;
+    const MAX_DECISION_GOALS = 30;
+    const MAX_DECISION_SCENARIOS = 40;
+    const MAX_DECISION_EVENTS = 500;
+    const MAX_DECISION_ALERTS = 40;
+    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.16.0-Beta.html';
     const FX_CACHE_MAX_AGE = 15 * 60 * 1000;
     const FX_CACHE_STALE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
     const IPCA_CACHE_MAX_AGE = 90 * 24 * 60 * 60 * 1000;
@@ -6392,6 +6810,8 @@
       ,investmentPreferences: 'inflation.v130.investment-preferences'
       ,investmentProjects: 'inflation.v140.investment-projects'
       ,investmentSyncQueue: 'inflation.v140.investment-sync-queue'
+      ,decisionWorkspace: 'inflation.v160.decision-workspace'
+      ,decisionWorkspaceBackup: 'inflation.v160.decision-workspace-backup'
     });
     const LEGACY_KEYS = Object.freeze({
       quotes: 'inflation.v050.fx',
@@ -6427,7 +6847,7 @@
     const DEBUG_NO_FX = DEBUG_MODE && START_PARAMS.get('noFx') === '1';
     const DEBUG_NO_CLIPBOARD = DEBUG_MODE && START_PARAMS.get('noClipboard') === '1';
     const DEBUG_NO_IMAGE = DEBUG_MODE && START_PARAMS.get('noImage') === '1';
-    const ROUTES = new Set(['inicio','calculadora','herramientas','inversiones','presupuesto','tiempo-dinero','rendimiento-real','suscripciones','anomalias','educacion','widgets','widget-runtime','precios','salario','historial','cuenta','tipo-cambio','datos','reajustes','laboratorio','avanzada','informes']);
+    const ROUTES = new Set(['inicio','calculadora','herramientas','inversiones','decisiones','presupuesto','tiempo-dinero','rendimiento-real','suscripciones','anomalias','educacion','widgets','widget-runtime','precios','salario','historial','cuenta','tipo-cambio','datos','reajustes','laboratorio','avanzada','informes']);
     const UNIT_DEFS = Object.freeze({
       g:Object.freeze({group:'mass',factor:.001,base:'kg',label:'g'}),
       kg:Object.freeze({group:'mass',factor:1,base:'kg',label:'kg'}),
@@ -6739,6 +7159,165 @@
       });
     }
     const investmentEngine=createInvestmentEngine();
+    function createDecisionEngine(financialEngine){
+      const adjustmentKeys=['sales','price','costs','inflation','growth'];
+      function safeSimulation(input,adjustments,options){
+        try{
+          const adjusted=financialEngine.adjustedInput(input,adjustments || {});
+          return financialEngine.simulate(adjusted,Object.assign({calculateIrr:false},options || {}));
+        }catch(error){ return null; }
+      }
+      function goalValue(result,metric){
+        if(!result) return NaN;
+        if(metric === 'roi') return result.annualRoi == null ? NaN : result.annualRoi*100;
+        if(metric === 'profit') return result.annualProfit;
+        if(metric === 'payback') return result.payback == null ? Infinity : result.payback;
+        if(metric === 'margin') return result.margin == null ? NaN : result.margin*100;
+        if(metric === 'risk') return result.riskScore;
+        if(metric === 'cash') return result.rows.length ? result.rows.at(-1).cash : NaN;
+        return NaN;
+      }
+      function goalReached(value,metric,target){
+        if(!Number.isFinite(target)) return false;
+        if(metric === 'payback' || metric === 'risk') return Number.isFinite(value) && value <= target;
+        return Number.isFinite(value) && value >= target;
+      }
+      return Object.freeze({
+        stress:function(input){
+          const cases=[
+            {key:'sales',label:'Caída de ventas',change:-20,adjustments:{sales:-20}},
+            {key:'price',label:'Presión sobre el precio',change:-10,adjustments:{price:-10}},
+            {key:'costs',label:'Aumento de costos',change:15,adjustments:{costs:15}},
+            {key:'inflation',label:'Inflación superior',change:5,adjustments:{inflation:5}},
+            {key:'growth',label:'Menor crecimiento',change:-3,adjustments:{growth:-3}},
+            {key:'combined',label:'Ventas débiles y costos altos',change:null,adjustments:{sales:-12,costs:12}}
+          ].map(function(item){
+            return Object.assign({},item,{result:safeSimulation(input,item.adjustments)});
+          }).filter(function(item){ return item.result; });
+          const losses=cases.filter(function(item){ return item.result.annualProfit < 0 || item.result.rows.some(function(row){ return row.cash < 0; }); }).length;
+          return {cases:cases,lossProbability:cases.length ? losses/cases.length : 0};
+        },
+        sensitivity:function(result){
+          if(!result) return {risks:[],opportunities:[]};
+          const specs=[
+            {key:'sales',label:'Volumen de ventas',negative:{sales:-10},positive:{sales:10}},
+            {key:'price',label:'Precio de venta',negative:{price:-10},positive:{price:10}},
+            {key:'costs',label:'Costos operativos',negative:{costs:10},positive:{costs:-10}},
+            {key:'inflation',label:'Inflación de costos',negative:{inflation:3},positive:{inflation:-3}},
+            {key:'growth',label:'Crecimiento mensual',negative:{growth:-2},positive:{growth:2}}
+          ];
+          const base=result.annualProfit;
+          const rows=specs.map(function(spec){
+            const down=safeSimulation(result.input,spec.negative),up=safeSimulation(result.input,spec.positive);
+            return {
+              key:spec.key,label:spec.label,
+              negativeImpact:down ? down.annualProfit-base : 0,
+              positiveImpact:up ? up.annualProfit-base : 0,
+              negativeResult:down,positiveResult:up
+            };
+          });
+          return {
+            risks:rows.slice().sort(function(a,b){ return a.negativeImpact-b.negativeImpact; }),
+            opportunities:rows.slice().sort(function(a,b){ return b.positiveImpact-a.positiveImpact; })
+          };
+        },
+        snapshot:function(result,monteCarlo,expenseGrowth,subscriptionMonthly){
+          if(!result) return null;
+          const stress=this.stress(result.input),sensitivity=this.sensitivity(result);
+          const hasMonte=monteCarlo && Number.isFinite(monteCarlo.lossProbability);
+          const lossProbability=hasMonte ? Math.max(0,Math.min(1,monteCarlo.lossProbability)) : stress.lossProbability;
+          const riskScore=Math.max(result.riskScore,lossProbability*100);
+          const last=result.rows.at(-1),monthlyFlow=result.rows.length ? result.totals.netCashFlow/result.rows.length : 0;
+          const inflationFactor=Math.pow(1+result.input.generalInflation/100,result.input.horizon/12);
+          const inflationAccumulated=Number.isFinite(inflationFactor) ? inflationFactor-1 : NaN;
+          let status='favorable',title='Favorable',reason='El negocio combina rentabilidad, liquidez y riesgo dentro de rangos favorables.';
+          if(result.annualProfit < 0 || last.cash < 0 || riskScore >= 60 || lossProbability >= .4){
+            status='risk'; title='Riesgo elevado'; reason=result.annualProfit < 0 ? 'La proyección anual termina con pérdida.' : last.cash < 0 ? 'La caja proyectada entra en terreno negativo.' : 'La exposición estimada supera el umbral de riesgo.';
+          }else if(result.npv < 0 || result.margin == null || result.margin < .15 || (result.input.initialInvestment > 0 && result.payback == null) || lossProbability >= .2){
+            status='attention'; title='Atención'; reason=result.npv < 0 ? 'El VAN no supera la tasa de descuento elegida.' : result.margin != null && result.margin < .15 ? 'El margen es menor al 15 % y deja poco espacio ante cambios.' : 'Conviene revisar la sensibilidad antes de decidir.';
+          }
+          return {
+            status:status,title:title,reason:reason,riskScore:riskScore,lossProbability:lossProbability,
+            lossSource:hasMonte ? 'Monte Carlo · '+String(monteCarlo.validRuns || monteCarlo.runs || 0)+' escenarios' : '6 pruebas de estrés deterministas',
+            roi:result.annualRoi,margin:result.margin,payback:result.payback,breakEvenUnits:result.breakEvenUnits,
+            cash:last.cash,monthlyFlow:monthlyFlow,npv:result.npv,irr:result.irrAnnual,
+            annualProfit:result.annualProfit,monthlyExpenses:result.first.totalExpenses,
+            capital:result.input.initialInvestment,inflationAccumulated:inflationAccumulated,
+            purchasingPower:Number.isFinite(inflationFactor) && inflationFactor>0 ? 1/inflationFactor : NaN,
+            subscriptionMonthly:Number.isFinite(subscriptionMonthly) ? subscriptionMonthly : 0,
+            expenseGrowth:Number.isFinite(expenseGrowth) ? expenseGrowth : null,
+            primaryRisk:sensitivity.risks[0] || null,primaryOpportunity:sensitivity.opportunities[0] || null,
+            stress:stress,result:result
+          };
+        },
+        goalValue:goalValue,
+        goalReached:goalReached,
+        solveGoal:function(result,metric,target){
+          const baseValue=goalValue(result,metric);
+          if(goalReached(baseValue,metric,target)) return {metric:metric,target:target,baseValue:baseValue,reached:true,recommendations:[]};
+          const specs=[
+            {key:'price',label:'Aumentar el precio',maximum:300,adjust:function(value){ return {price:value}; }},
+            {key:'sales',label:'Aumentar las ventas',maximum:500,adjust:function(value){ return {sales:value}; }},
+            {key:'costs',label:'Reducir los costos',maximum:95,adjust:function(value){ return {costs:-value}; }}
+          ];
+          const recommendations=[];
+          specs.forEach(function(spec){
+            const endResult=safeSimulation(result.input,spec.adjust(spec.maximum),{calculateIrr:true});
+            if(!endResult || !goalReached(goalValue(endResult,metric),metric,target)) return;
+            let low=0,high=spec.maximum,best=endResult;
+            for(let iteration=0;iteration<45;iteration+=1){
+              const middle=(low+high)/2,candidate=safeSimulation(result.input,spec.adjust(middle),{calculateIrr:true});
+              if(candidate && goalReached(goalValue(candidate,metric),metric,target)){ high=middle; best=candidate; }
+              else low=middle;
+            }
+            recommendations.push({
+              key:spec.key,label:spec.label,change:high,result:best,
+              before:baseValue,after:goalValue(best,metric),
+              unitDelta:spec.key === 'sales' ? Math.max(0,best.input.units-result.input.units) : null,
+              moneyDelta:spec.key === 'price' ? Math.max(0,best.input.salePrice-result.input.salePrice) : spec.key === 'costs' ? Math.max(0,result.first.totalExpenses-best.first.totalExpenses) : null
+            });
+          });
+          return {metric:metric,target:target,baseValue:baseValue,reached:false,recommendations:recommendations.sort(function(a,b){ return a.change-b.change; })};
+        },
+        evaluateTree:function(input,nodes){
+          const list=Array.isArray(nodes) ? nodes.slice(0,40) : [],map=new Map(list.map(function(node){ return [node.id,node]; })),memo=new Map(),visiting=new Set();
+          function cumulative(node){
+            if(memo.has(node.id)) return memo.get(node.id);
+            if(visiting.has(node.id)) throw new Error('El árbol contiene una relación circular.');
+            visiting.add(node.id);
+            const total={sales:0,price:0,costs:0,inflation:0,growth:0};
+            if(node.parentId && map.has(node.parentId)){
+              const parent=cumulative(map.get(node.parentId));
+              adjustmentKeys.forEach(function(key){ total[key]=parent[key]; });
+            }
+            adjustmentKeys.forEach(function(key){ total[key]+=Number(node.adjustments && node.adjustments[key]) || 0; });
+            visiting.delete(node.id); memo.set(node.id,total); return total;
+          }
+          return list.map(function(node){
+            try{
+              const adjustments=cumulative(node),adjusted=financialEngine.adjustedInput(input,adjustments),result=financialEngine.simulate(adjusted);
+              return {node:node,adjustments:adjustments,result:result,error:null};
+            }catch(error){ return {node:node,adjustments:null,result:null,error:error.message || 'Escenario inválido'}; }
+          });
+        },
+        portfolio:function(items,currencyCode){
+          const selected=(Array.isArray(items) ? items : []).filter(function(item){
+            return item && item.metrics && item.currencyMeta && item.currencyMeta.code === currencyCode && Number.isFinite(Number(item.metrics.initialInvestment));
+          });
+          const capital=selected.reduce(function(sum,item){ return sum+Math.max(0,Number(item.metrics.initialInvestment)); },0);
+          const weighted=function(field){
+            if(capital<=0) return null;
+            return selected.reduce(function(sum,item){ const value=Number(item.metrics[field]); return sum+(Number.isFinite(value)?value:0)*Math.max(0,Number(item.metrics.initialInvestment)); },0)/capital;
+          };
+          const weights=selected.map(function(item){ return capital>0?Math.max(0,Number(item.metrics.initialInvestment))/capital:(selected.length?1/selected.length:0); });
+          const hhi=weights.reduce(function(sum,value){ return sum+value*value; },0);
+          const diversification=selected.length<=1 ? 0 : Math.max(0,Math.min(100,(1-hhi)/(1-1/selected.length)*100));
+          const annualFlow=selected.reduce(function(sum,item){ return sum+(Number(item.metrics.annualProfit)||0); },0);
+          return {items:selected,capital:capital,weightedRoi:weighted('annualRoi'),weightedRisk:weighted('riskScore'),annualFlow:annualFlow,weights:weights,hhi:hhi,concentration:weights.length?Math.max.apply(null,weights):0,diversification:diversification};
+        }
+      });
+    }
+    const decisionEngine=createDecisionEngine(investmentEngine);
     let featureChartSequence=0;
     let landingExperience=null;
     const FALLBACK_IPCA = Object.freeze({
@@ -6825,6 +7404,14 @@
       businessAssetResult:null,
       inventoryResult:null,
       businessGoalResult:null,
+      decisionWorkspace:null,
+      decisionSnapshot:null,
+      decisionGoalResult:null,
+      decisionScenarioEvaluation:[],
+      decisionTab:'overview',
+      decisionCalendarCursor:null,
+      decisionCalendarSelected:null,
+      decisionInitialized:false,
       auditText:'',
       deferredInstallPrompt:null,
       backend: {
@@ -7151,6 +7738,7 @@
         readPersonalBaskets().length + readPersonalHistory().length + readProductRecords().length +
         readExpenses().reduce(function(sum,item){ return sum+1+item.history.length; },0) +
         readInvestmentProjects().filter(function(project){ return !project.deletedAt; }).length +
+        decisionWorkspaceRecordCount() +
         (safeStorageGet(KEYS.basket,null) ? 1 : 0) + (safeStorageGet(KEYS.budgetDraft,null) ? 1 : 0);
     }
 
@@ -7374,7 +7962,7 @@
       try{
         state.backend.client = window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
           auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'implicit',storageKey:'inflation.v080.auth'},
-          global:{headers:{'x-application-name':'inflation-insights-v0150-beta'}}
+          global:{headers:{'x-application-name':'inflation-insights-v0160-beta'}}
         });
         state.backend.available = true;
         const sessionResult = await withTimeout(state.backend.client.auth.getSession());
@@ -7671,10 +8259,10 @@
           ]);
           payload.remote={user:{id:state.backend.user.id,email:state.backend.user.email || null},profiles:profiles,calculations:calculations,baskets:baskets,investmentProjects:investments,feedback:feedback,usageEvents:events};
         }
-        downloadJsonFile('mis-datos-inflation-insights-v0150-'+new Date().toISOString().slice(0,10)+'.json',payload);
+        downloadJsonFile('mis-datos-inflation-insights-v0160-'+new Date().toISOString().slice(0,10)+'.json',payload);
         setNotice($('accountNotice'),'Exportación preparada. El archivo incluye datos locales y, si había sesión, los remotos accesibles.','success');
       }catch(error){
-        downloadJsonFile('mis-datos-locales-inflation-insights-v0150.json',payload);
+        downloadJsonFile('mis-datos-locales-inflation-insights-v0160.json',payload);
         setNotice($('accountNotice'),'Se exportaron los datos locales, pero no fue posible recuperar los remotos.','warning');
       }finally{ setButtonBusy($('exportAllDataButton'),false); }
     }
@@ -7733,7 +8321,7 @@
         if($('pwaOfflineState')) $('pwaOfflineState').textContent='Este navegador no admite Service Worker';
         return;
       }
-      navigator.serviceWorker.register('./sw-v0.15.0-beta.js').then(function(registration){
+      navigator.serviceWorker.register('./sw-v0.16.0-beta.js').then(function(registration){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent=navigator.onLine === false ? 'Modo offline activo' : 'Caché local preparada';
         registration.update().catch(function(){ return null; });
         registration.addEventListener('updatefound',function(){
@@ -8507,6 +9095,7 @@
       if(safeRoute === 'educacion') renderEducationExperiment();
       if(safeRoute === 'widgets') renderWidgetGenerator(false);
       if(safeRoute === 'inversiones' && state.investmentInitialized) calculateAndRenderInvestment({save:false});
+      if(safeRoute === 'decisiones' && state.decisionInitialized) refreshDecisionCenter();
       if(opts.focus){
         const reduceMotion=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         window.scrollTo({top:0,behavior:reduceMotion ? 'auto' : 'smooth'});
@@ -9732,7 +10321,7 @@
           ipca:Object.assign({},state.ipca)
         }
       };
-      downloadJsonFile('resultado-inflacion-v0150.json',data);
+      downloadJsonFile('resultado-inflacion-v0160.json',data);
       trackEvent('report_exported',{tool:'calculator',format:'json'});
     }
 
@@ -9774,7 +10363,7 @@
         rows.push(['fecha_oficial_' + code,quote.officialDate || '']);
         rows.push(['consultado_' + code,quote.fetchedAt || '']);
       });
-      downloadCsvFile('resultado-inflacion-v0150.csv',rows);
+      downloadCsvFile('resultado-inflacion-v0160.csv',rows);
       trackEvent('report_exported',{tool:'calculator',format:'csv'});
     }
 
@@ -10309,7 +10898,7 @@
           };
         })
       };
-      downloadJsonFile('reajuste-salarial-v0150.json',data);
+      downloadJsonFile('reajuste-salarial-v0160.json',data);
       trackEvent('report_exported',{tool:'salary',format:'json'});
     }
 
@@ -10331,7 +10920,7 @@
       rows.push(['fecha_o_periodo_fuente',bundle.inputs.source.officialDate || '']);
       rows.push(['estado_fuente',salarySourceStateLabel(bundle.inputs.source.mode)]);
       rows.push(['periodo_analizado_meses',bundle.inputs.months]);
-      downloadCsvFile('reajuste-salarial-v0150.csv',rows);
+      downloadCsvFile('reajuste-salarial-v0160.csv',rows);
       trackEvent('report_exported',{tool:'salary',format:'csv'});
     }
 
@@ -10387,7 +10976,7 @@
         URL.revokeObjectURL(url);
         canvas.toBlob(function(png){
           if(!png){ showToast('El navegador no pudo generar la imagen.'); return; }
-          downloadBlob('informe-reajuste-salarial-v0150.png',png,'image/png');
+          downloadBlob('informe-reajuste-salarial-v0160.png',png,'image/png');
           trackEvent('report_exported',{tool:'salary',format:'png',design:'professional'});
           showToast('PNG profesional exportado en 1600 × 1100 px.');
         },'image/png');
@@ -11370,7 +11959,7 @@
     function exportPersonalJson(){
       const bundle = ensurePersonalResult();
       if(!bundle) return;
-      downloadJsonFile('costo-de-vida-v0150.json',personalExportPayload(bundle));
+      downloadJsonFile('costo-de-vida-v0160.json',personalExportPayload(bundle));
     }
 
     function exportPersonalProductsCsv(){
@@ -11380,7 +11969,7 @@
       bundle.metrics.products.forEach(function(item){
         rows.push([item.name,item.category,bundle.meta.currency,item.quantity,item.previousPrice,item.currentPrice,item.previousCost,item.currentCost,isFiniteNumber(item.variation) ? item.variation*100 : '',item.monetaryChange,item.contribution*100,item.notes]);
       });
-      downloadCsvFile('productos-costo-de-vida-v0150.csv',rows);
+      downloadCsvFile('productos-costo-de-vida-v0160.csv',rows);
     }
 
     function exportPersonalAnalysisCsv(){
@@ -11397,7 +11986,7 @@
         ['categoria','impacto_monetario','contribucion_pp']
       ];
       bundle.metrics.categories.forEach(function(item){ rows.push([item.name,item.monetaryChange,item.contribution*100]); });
-      downloadCsvFile('analisis-costo-de-vida-v0150.csv',rows);
+      downloadCsvFile('analisis-costo-de-vida-v0160.csv',rows);
     }
 
     function buildPersonalShareUrl(){
@@ -11530,7 +12119,7 @@
       try{
         const payload = normalizePersonalPayload(record.payload);
         const filename = (payload.name || 'cesta').toLocaleLowerCase('es').replace(/[^a-z0-9áéíóúüñ]+/gi,'-').replace(/^-|-$/g,'').slice(0,50) || 'cesta';
-        downloadJsonFile(filename+'-v0150.json',record.payload);
+        downloadJsonFile(filename+'-v0160.json',record.payload);
       }catch(error){
         setNotice($('personalNotice'),'No se pudo exportar este registro: ' + error.message,'error');
       }
@@ -11736,7 +12325,7 @@
       check('División por cero rechazada en precio unitario',Number.isNaN(unitPrice(10,0,'g')));
       check('CSV con punto decimal y encabezados comunes',productRowsFromCsv('Producto,Fecha,Precio,Cantidad,Unidad\nLeche,2026-01-10,5.49,1,L').length === 1);
       check('CSV reconoce moneda nueva',productRowsFromCsv('Producto,Fecha,Precio,Moneda,Cantidad,Unidad\nTé,2026-01-10,500,JPY,1,paquete')[0].currency === 'JPY');
-      check('Claves históricas conservadas y datos v0.13 separados',Object.values(KEYS).every(function(key){ return /^inflation\.v(?:060|080|090|100|110|120|130)\./.test(key); }));
+      check('Claves históricas conservadas y espacios versionados separados',Object.values(KEYS).every(function(key){ return /^inflation\.v(?:060|080|090|100|110|120|130|140|160)\./.test(key); }));
       const realReturnExample=realReturnEngine.calculate({initial:1000,final:1100,inflation:.06,months:12,currency:'BRL'});
       check('Rendimiento real 10 % frente a 6 % ≈ 3,7736 %',Math.abs(realReturnExample.real-(1.10/1.06-1)) < 1e-12);
       const budgetExample=budgetEngine.project({income:5000,currency:'BRL',months:60,rows:[{name:'Vivienda',amount:1500,rate:5},{name:'Alimentos',amount:900,rate:6}]});
@@ -12079,7 +12668,7 @@
       if(!result || !result.analysis) return;
       const rows=[['economía','índice','período','tasa_mensual_pct','acumulada_pct','indice_base_100','fuente','consultado']];
       result.analysis.points.forEach(function(point){ rows.push([result.economy,result.indexName,point.period,point.rate,point.accumulated*100,point.base100,result.source+' · '+result.provider,result.fetchedAt]); });
-      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0150.csv',rows);
+      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0160.csv',rows);
     }
 
     function setDataTab(name){
@@ -12138,7 +12727,7 @@
       const lowest=Math.min.apply(null,result.series.map(function(item){ return item.analysis.accumulated; }));
       const rows=[['economía','índice','inicio','fin','inflación_acumulada_pct','diferencia_pp','fuente','consultado']];
       result.series.forEach(function(item){ rows.push([item.economy,item.indexName,result.start,result.end,item.analysis.accumulated*100,(item.analysis.accumulated-lowest)*100,item.source+' · '+item.provider,item.fetchedAt]); });
-      downloadCsvFile('comparacion-internacional-v0150.csv',rows);
+      downloadCsvFile('comparacion-internacional-v0160.csv',rows);
     }
 
     function contractRange(){
@@ -12238,7 +12827,7 @@
       const result=state.contractComparison; if(!result) return;
       const rows=[['índice','inicio','fin','variación_pct','aumento','valor_final','moneda','fuente','último_dato']];
       result.rows.forEach(function(row){ rows.push([row.name,result.start,result.end,row.rate*100,row.difference,row.finalValue,result.currency,row.source,row.latestPeriod]); });
-      downloadCsvFile('comparacion-reajustes-v0150.csv',rows);
+      downloadCsvFile('comparacion-reajustes-v0160.csv',rows);
     }
 
     function parseLabRates(text,years,fallback){
@@ -12315,7 +12904,7 @@
       const result=state.labResult; if(!result) return;
       const rows=[['escenario','año','inflación_periodo_pct','valor_necesario','ingreso_nominal','ingreso_real','poder_adquisitivo_pct','pérdida_ganancia']];
       result.scenarios.forEach(function(item){ item.timeline.forEach(function(point){ rows.push([item.name,point.year,point.year ? item.rates[point.year-1] : 0,point.priceNeeded,point.nominalIncome,point.realIncome,point.purchasingPower,point.loss]); }); });
-      downloadCsvFile('laboratorio-escenarios-v0150.csv',rows);
+      downloadCsvFile('laboratorio-escenarios-v0160.csv',rows);
     }
 
     function advancedRowTemplate(item,index){
@@ -12380,7 +12969,7 @@
       const result=state.advancedResult; if(!result) return;
       const rows=[['período','tasa_pct','acumulada_pct','valor','indice_base_100','moneda']];
       result.rows.forEach(function(row){ rows.push([row.label,row.rate,row.accumulated*100,row.value,row.base100,result.currency]); });
-      downloadCsvFile('inflacion-por-periodos-v0150.csv',rows);
+      downloadCsvFile('inflacion-por-periodos-v0160.csv',rows);
     }
 
     function setMarketTab(tab,focus){
@@ -12801,7 +13390,7 @@
       const records=recordsForProduct(state.selectedProductKey);
       if(!records.length) return;
       const payload={schemaVersion:FILE_SCHEMA_VERSION,appVersion:APP_VERSION,type:'product-price-history',createdAt:nowIso(),data:{product:records[0].name,records:records}};
-      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0150.json',payload);
+      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0160.json',payload);
     }
 
     function calculateInflationGoal(){
@@ -13209,14 +13798,14 @@
 
     function exportUnifiedCsv(){
       if(!state.productRecords.length){ setNotice($('exportStudioNotice'),'No hay seguimientos de productos para exportar en CSV.','warning'); return; }
-      downloadBlob('seguimiento-productos-v0150-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
+      downloadBlob('seguimiento-productos-v0160-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
       setNotice($('exportStudioNotice'),'CSV UTF-8 exportado con fechas ISO y números decimales consistentes.','success');
     }
 
     function exportUnifiedJson(){
       const all=$('exportDataScope').value === 'all';
       const payload=all ? buildLocalExchangePayload() : structuredProductPayload();
-      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0150-'+new Date().toISOString().slice(0,10)+'.json',payload);
+      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0160-'+new Date().toISOString().slice(0,10)+'.json',payload);
       setNotice($('exportStudioNotice'),'JSON exportado con versión de esquema, versión de la aplicación, tipo y fecha de creación.','success');
     }
 
@@ -13357,7 +13946,7 @@
           canvas.toBlob(function(output){
             URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false);
             if(!output){ setNotice($('exportStudioNotice'),'El navegador no pudo crear el PNG.','error'); return; }
-            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0150.png',output,'image/png');
+            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0160.png',output,'image/png');
             setNotice($('exportStudioNotice'),'PNG exportado a '+pixels.width+' × '+pixels.height+' píxeles.','success');
           },'image/png',1);
         }catch(error){ URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false); setNotice($('exportStudioNotice'),'No se pudo renderizar el PNG.','error'); }
@@ -14122,7 +14711,7 @@
       const report=state.reportResult; if(!report) return;
       const rows=[['sección','contenido']]; report.sections.forEach(function(section){ section.lines.forEach(function(line){ rows.push([section.title,line]); }); });
       rows.push(['Metodología',report.methodology],['Supuestos',report.assumptions]);
-      downloadCsvFile('informe-inflacion-v0150.csv',rows);
+      downloadCsvFile('informe-inflacion-v0160.csv',rows);
     }
 
     const UNIVERSAL_EXPORT_MODULES=Object.freeze({
@@ -14143,6 +14732,7 @@
       laboratorio:{route:'laboratorio',title:'Laboratorio de escenarios',slug:'laboratorio-escenarios',methodology:'Los escenarios son simulaciones y se identifican como tales; no representan una predicción.'},
       avanzada:{route:'avanzada',title:'Calculadora avanzada',slug:'calculadora-avanzada',methodology:'Cada tasa se convierte en un factor y los factores se multiplican respetando el orden de los períodos.'},
       inversiones:{route:'inversiones',title:'Negocios e inversión',slug:'negocios-inversion',methodology:'La proyección determinista y Monte Carlo comparten el mismo motor financiero y se calculan localmente sin redondeos intermedios.'},
+      decisiones:{route:'decisiones',title:'Centro de Decisiones',slug:'centro-decisiones',methodology:'Los indicadores, objetivos y escenarios reutilizan el motor financiero; las alertas y el calendario funcionan localmente.'},
       informes:{route:'informes',title:'Centro de informes',slug:'centro-informes',methodology:'El informe reúne las secciones elegidas y conserva metodología, supuestos y procedencia.'}
     });
     let universalExportSnapshot=null;
@@ -14356,7 +14946,7 @@
 
     function universalExportFilename(snapshot,extension,kind){
       const suffix=kind ? '-'+String(kind).replace(/[^a-z0-9-]+/gi,'-').toLowerCase() : '';
-      return 'inflation-insights-'+snapshot.slug+suffix+'-v0150.'+extension;
+      return 'inflation-insights-'+snapshot.slug+suffix+'-v0160.'+extension;
     }
 
     function universalXlsxDrawingXml(title){
@@ -14403,7 +14993,7 @@
       types.push('</Types>'); files['[Content_Types].xml']=types.join('');
       files['_rels/.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/></Relationships>';
       files['docProps/core.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><dc:title>'+xlsxXml(snapshot.title)+'</dc:title><dc:creator>Inflation Insights</dc:creator><cp:lastModifiedBy>Inflation Insights</cp:lastModifiedBy><dcterms:created xsi:type="dcterms:W3CDTF">'+snapshot.createdAt+'</dcterms:created><dcterms:modified xsi:type="dcterms:W3CDTF">'+snapshot.createdAt+'</dcterms:modified></cp:coreProperties>';
-      files['docProps/app.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"><Application>Inflation Insights</Application><AppVersion>0.15.0</AppVersion></Properties>';
+      files['docProps/app.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"><Application>Inflation Insights</Application><AppVersion>0.16.0</AppVersion></Properties>';
       files['xl/workbook.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><bookViews><workbookView activeTab="'+(mode === 'data' ? 1 : 0)+'"/></bookViews><sheets>'+sheets.map(function(sheet,index){ return '<sheet name="'+xlsxXml(sheet.name)+'" sheetId="'+(index+1)+'" r:id="rId'+(index+1)+'"/>'; }).join('')+'</sheets><calcPr calcId="191029" fullCalcOnLoad="1" forceFullCalc="1"/></workbook>';
       files['xl/_rels/workbook.xml.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+sheets.map(function(_,index){ return '<Relationship Id="rId'+(index+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet'+(index+1)+'.xml"/>'; }).join('')+'<Relationship Id="rId'+(sheets.length+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>';
       files['xl/styles.xml']=xlsxStylesXml();
@@ -15294,6 +15884,7 @@
       const saved=safeStorageSet(KEYS.expenses,{schemaVersion:1,appVersion:APP_VERSION,updatedAt:nowIso(),items:state.expenses});
       renderExpenses();
       renderAnomalyStoredOptions();
+      if(state.decisionInitialized) refreshDecisionCenter();
       return saved;
     }
 
@@ -16041,7 +16632,7 @@
     function downloadInvestmentDraftBackup(options){
       const opts=Object.assign({announce:true},options || {});
       const rawName=String($('investmentBusinessName').value || 'negocio');
-      downloadJsonFile('datos-inversion-'+safeFilePart(rawName)+'-v0150.json',investmentDraftBackupPayload());
+      downloadJsonFile('datos-inversion-'+safeFilePart(rawName)+'-v0160.json',investmentDraftBackupPayload());
       if(opts.announce) setFeatureStatus('investmentNotice','Respaldo descargado. Usa «Cargar respaldo» si el visor local no recupera los datos al volver a abrir el HTML.','success');
     }
 
@@ -16494,12 +17085,14 @@
         if(opts.save) saveInvestmentDraft();
         const guidance=investmentGuidance(result,opts.announce);
         setFeatureStatus('investmentNotice',guidance.message,guidance.type);
+        if(state.decisionInitialized && state.route==='decisiones') refreshDecisionCenter();
         return result;
       }catch(error){
         const message=error.message || 'Revisa los parámetros de la inversión.';
         renderInvestmentIncomplete(message);
         if(opts.save) saveInvestmentDraft();
         setFeatureStatus('investmentNotice',message,'warning');
+        if(state.decisionInitialized && state.route==='decisiones') refreshDecisionCenter();
         return null;
       }
     }
@@ -16955,7 +17548,7 @@
       types.push('</Types>'); files['[Content_Types].xml']=types.join('');
       files['_rels/.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/></Relationships>';
       files['docProps/core.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><dc:title>'+xlsxXml('Análisis de inversión · '+state.investmentResult.input.name)+'</dc:title><dc:creator>Inflation Insights</dc:creator><cp:lastModifiedBy>Inflation Insights</cp:lastModifiedBy><dcterms:created xsi:type="dcterms:W3CDTF">'+nowIso()+'</dcterms:created><dcterms:modified xsi:type="dcterms:W3CDTF">'+nowIso()+'</dcterms:modified></cp:coreProperties>';
-      files['docProps/app.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"><Application>Inflation Insights</Application><AppVersion>0.15.0</AppVersion></Properties>';
+      files['docProps/app.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"><Application>Inflation Insights</Application><AppVersion>0.16.0</AppVersion></Properties>';
       files['xl/workbook.xml']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><bookViews><workbookView activeTab="'+(mode === 'data' ? 6 : 0)+'"/></bookViews><sheets>'+sheets.map(function(sheet,index){ return '<sheet name="'+xlsxXml(sheet.name)+'" sheetId="'+(index+1)+'" r:id="rId'+(index+1)+'"/>'; }).join('')+'</sheets><calcPr calcId="191029" fullCalcOnLoad="1" forceFullCalc="1"/></workbook>';
       files['xl/_rels/workbook.xml.rels']='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+sheets.map(function(_,index){ return '<Relationship Id="rId'+(index+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet'+(index+1)+'.xml"/>'; }).join('')+'<Relationship Id="rId'+(sheets.length+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>';
       files['xl/styles.xml']=xlsxStylesXml();
@@ -17325,7 +17918,7 @@
     function exportMonteCarloSummary(){
       if(!state.monteCarloResult) return;
       const name=state.investmentResult ? state.investmentResult.input.name : 'negocio';
-      downloadJsonFile('monte-carlo-'+safeFilePart(name)+'-v0150.json',{schemaVersion:1,type:'monte-carlo-business-summary',appVersion:APP_VERSION,createdAt:nowIso(),project:name,result:state.monteCarloResult,notice:'Estimación probabilística; no garantiza rendimientos futuros.'});
+      downloadJsonFile('monte-carlo-'+safeFilePart(name)+'-v0160.json',{schemaVersion:1,type:'monte-carlo-business-summary',appVersion:APP_VERSION,createdAt:nowIso(),project:name,result:state.monteCarloResult,notice:'Estimación probabilística; no garantiza rendimientos futuros.'});
     }
 
     const businessLoanEngine=Object.freeze({
@@ -17666,6 +18259,954 @@
       renderBusinessKpis();
     }
 
+    const DECISION_WIDGET_DEFINITIONS=Object.freeze([
+      Object.freeze({key:'inflation',title:'Inflación acumulada',color:'#ff9d44'}),
+      Object.freeze({key:'purchasing',title:'Poder adquisitivo',color:'#ffd400'}),
+      Object.freeze({key:'roi',title:'ROI de inversiones',color:'#c084fc'}),
+      Object.freeze({key:'cash',title:'Caja disponible',color:'#55a8ff'}),
+      Object.freeze({key:'expenses',title:'Gastos mensuales',color:'#ff7182'}),
+      Object.freeze({key:'subscriptions',title:'Suscripciones',color:'#ff9d44'}),
+      Object.freeze({key:'capital',title:'Capital invertido',color:'#ffd400'}),
+      Object.freeze({key:'break_even',title:'Punto de equilibrio',color:'#55f5e6'}),
+      Object.freeze({key:'npv',title:'VAN',color:'#4ade80'}),
+      Object.freeze({key:'irr',title:'TIR',color:'#c084fc'}),
+      Object.freeze({key:'profit',title:'Beneficio estimado',color:'#4ade80'}),
+      Object.freeze({key:'risk',title:'Riesgo financiero',color:'#ff7182'})
+    ]);
+    const DECISION_WIDGET_KEYS=Object.freeze(DECISION_WIDGET_DEFINITIONS.map(function(item){ return item.key; }));
+    const DECISION_TAB_KEYS=Object.freeze(['overview','dashboard','goals','scenarios','portfolio','calendar','alerts']);
+    const DECISION_SCENARIO_FIELDS=Object.freeze(['sales','price','costs','inflation','growth']);
+
+    function defaultDecisionWorkspace(){
+      return {
+        schemaVersion:DECISION_WORKSPACE_SCHEMA_VERSION,appVersion:APP_VERSION,updatedAt:nowIso(),
+        dashboard:{order:DECISION_WIDGET_KEYS.slice(),hidden:[],expanded:[]},
+        preferences:{tab:'overview',explanationLevel:'basic',calendarView:'month',portfolioCurrency:'BRL'},
+        goals:[],
+        scenarios:[{id:'decision-root',parentId:null,name:'Situación actual',adjustments:{sales:0,price:0,costs:0,inflation:0,growth:0},createdAt:nowIso()}],
+        calendar:[],
+        alerts:[]
+      };
+    }
+
+    function finiteDecisionNumber(value,fallback){
+      const number=Number(value);
+      return Number.isFinite(number) ? number : fallback;
+    }
+
+    function sanitizeDecisionWorkspace(source){
+      const base=defaultDecisionWorkspace(),raw=source && source.workspace ? source.workspace : source;
+      if(!raw || typeof raw !== 'object') return base;
+      const dashboard=raw.dashboard && typeof raw.dashboard === 'object' ? raw.dashboard : {};
+      const requestedOrder=Array.isArray(dashboard.order) ? dashboard.order.filter(function(key,index,list){ return DECISION_WIDGET_KEYS.includes(key) && list.indexOf(key)===index; }) : [];
+      base.dashboard.order=requestedOrder.concat(DECISION_WIDGET_KEYS.filter(function(key){ return !requestedOrder.includes(key); }));
+      base.dashboard.hidden=Array.isArray(dashboard.hidden) ? dashboard.hidden.filter(function(key,index,list){ return DECISION_WIDGET_KEYS.includes(key) && list.indexOf(key)===index; }) : [];
+      base.dashboard.expanded=Array.isArray(dashboard.expanded) ? dashboard.expanded.filter(function(key,index,list){ return DECISION_WIDGET_KEYS.includes(key) && list.indexOf(key)===index; }) : [];
+      const preferences=raw.preferences && typeof raw.preferences === 'object' ? raw.preferences : {};
+      base.preferences.tab=DECISION_TAB_KEYS.includes(preferences.tab) ? preferences.tab : 'overview';
+      base.preferences.explanationLevel=['basic','intermediate','technical'].includes(preferences.explanationLevel) ? preferences.explanationLevel : 'basic';
+      base.preferences.calendarView=['day','month','year'].includes(preferences.calendarView) ? preferences.calendarView : 'month';
+      base.preferences.portfolioCurrency=/^[A-Z][A-Z0-9]{1,7}$/.test(String(preferences.portfolioCurrency || '')) ? String(preferences.portfolioCurrency) : 'BRL';
+      base.goals=(Array.isArray(raw.goals) ? raw.goals : []).slice(0,MAX_DECISION_GOALS).map(function(goal){
+        if(!goal || !goal.id || !['roi','profit','payback','margin','risk','cash'].includes(goal.metric)) return null;
+        const target=Number(goal.target);
+        if(!Number.isFinite(target)) return null;
+        return {id:String(goal.id).slice(0,80),name:String(goal.name || 'Objetivo').slice(0,80),metric:goal.metric,target:target,createdAt:String(goal.createdAt || nowIso()),recommendations:Array.isArray(goal.recommendations)?goal.recommendations.slice(0,3):[]};
+      }).filter(Boolean);
+      const rawScenarios=(Array.isArray(raw.scenarios) ? raw.scenarios : []).slice(0,MAX_DECISION_SCENARIOS);
+      const ids=new Set(),scenarios=[];
+      rawScenarios.forEach(function(node){
+        if(!node || !node.id) return;
+        const id=String(node.id).slice(0,80);
+        if(ids.has(id)) return;
+        ids.add(id);
+        const adjustments={};
+        DECISION_SCENARIO_FIELDS.forEach(function(key){ adjustments[key]=finiteDecisionNumber(node.adjustments && node.adjustments[key],0); });
+        scenarios.push({id:id,parentId:node.parentId==null?null:String(node.parentId).slice(0,80),name:String(node.name || 'Escenario').slice(0,60),adjustments:adjustments,createdAt:String(node.createdAt || nowIso())});
+      });
+      let root=scenarios.find(function(node){ return node.id === 'decision-root'; });
+      if(!root){ root=base.scenarios[0]; scenarios.unshift(root); ids.add(root.id); }
+      root.parentId=null; root.name='Situación actual'; root.adjustments={sales:0,price:0,costs:0,inflation:0,growth:0};
+      scenarios.forEach(function(node){ if(node.id !== root.id && (!node.parentId || !ids.has(node.parentId) || node.parentId===node.id)) node.parentId=root.id; });
+      base.scenarios=scenarios.slice(0,MAX_DECISION_SCENARIOS);
+      base.calendar=(Array.isArray(raw.calendar) ? raw.calendar : []).slice(0,MAX_DECISION_EVENTS).map(function(event){
+        if(!event || !event.id || !/^\d{4}-\d{2}-\d{2}$/.test(String(event.date || ''))) return null;
+        const amount=Number(event.amount);
+        if(!Number.isFinite(amount) || amount < 0 || amount > MAX_PRICE) return null;
+        const type=['income','payment','loan','rent','tax','supplier','subscription','sale','investment','contract'].includes(event.type) ? event.type : 'payment';
+        const recurrence=['once','monthly','yearly'].includes(event.recurrence) ? event.recurrence : 'once';
+        const currency=/^[A-Z][A-Z0-9]{1,7}$/.test(String(event.currency || '')) ? String(event.currency) : 'BRL';
+        return {id:String(event.id).slice(0,80),title:String(event.title || 'Movimiento').slice(0,80),date:String(event.date),type:type,amount:amount,currency:currency,recurrence:recurrence,link:String(event.link || 'none').slice(0,30),sourceId:event.sourceId?String(event.sourceId).slice(0,100):null,confirmedDates:Array.isArray(event.confirmedDates)?event.confirmedDates.filter(function(value){ return /^\d{4}-\d{2}-\d{2}$/.test(String(value)); }).slice(-100):[],createdAt:String(event.createdAt || nowIso())};
+      }).filter(Boolean);
+      base.alerts=(Array.isArray(raw.alerts) ? raw.alerts : []).slice(0,MAX_DECISION_ALERTS).map(function(rule){
+        if(!rule || !rule.id || !['margin_below','expense_growth_above','loss_above','cash_below','roi_below','risk_above'].includes(rule.metric)) return null;
+        const threshold=Number(rule.threshold);
+        if(!Number.isFinite(threshold)) return null;
+        return {id:String(rule.id).slice(0,80),name:String(rule.name || 'Alerta').slice(0,80),metric:rule.metric,threshold:threshold,enabled:rule.enabled!==false,createdAt:String(rule.createdAt || nowIso())};
+      }).filter(Boolean);
+      base.updatedAt=String(raw.updatedAt || nowIso());
+      return base;
+    }
+
+    function loadDecisionWorkspace(){
+      const stored=safeStorageGet(KEYS.decisionWorkspace,null);
+      state.decisionWorkspace=sanitizeDecisionWorkspace(stored);
+      return state.decisionWorkspace;
+    }
+
+    function saveDecisionWorkspace(options){
+      const opts=Object.assign({announce:false},options || {});
+      if(!state.decisionWorkspace) state.decisionWorkspace=defaultDecisionWorkspace();
+      state.decisionWorkspace.schemaVersion=DECISION_WORKSPACE_SCHEMA_VERSION;
+      state.decisionWorkspace.appVersion=APP_VERSION;
+      state.decisionWorkspace.updatedAt=nowIso();
+      const saved=safeStorageSet(KEYS.decisionWorkspace,state.decisionWorkspace,{silent:true});
+      if(opts.announce) setDecisionNotice('decisionDataNotice',saved?'Centro de Decisiones guardado en este dispositivo.':'El navegador bloqueó el guardado. Descarga un respaldo para conservar los datos.',saved?'success':'error');
+      return saved;
+    }
+
+    function decisionWorkspaceRecordCount(){
+      const workspace=state.decisionWorkspace || sanitizeDecisionWorkspace(safeStorageGet(KEYS.decisionWorkspace,null));
+      return workspace.goals.length+Math.max(0,workspace.scenarios.length-1)+workspace.calendar.length+workspace.alerts.length;
+    }
+
+    function setDecisionNotice(id,message,tone){
+      const node=$(id); if(!node) return;
+      node.textContent=String(message || '');
+      node.dataset.tone=tone || '';
+    }
+
+    function decisionExpenseGrowth(){
+      const changes=[];
+      (state.expenses || []).forEach(function(item){
+        const metrics=expenseTracker.metrics(item);
+        if(metrics.changes.length){
+          const latest=metrics.changes.at(-1);
+          if(latest && Number.isFinite(latest.change)) changes.push(latest.change);
+        }
+      });
+      return changes.length ? Math.max.apply(null,changes) : null;
+    }
+
+    function decisionSubscriptionMonthly(currency){
+      return (state.expenses || []).filter(function(item){ return !currency || item.currency===currency; }).reduce(function(sum,item){
+        const amount=expenseTracker.monthlyCost(item);
+        return sum+(Number.isFinite(amount)?amount:0);
+      },0);
+    }
+
+    function setDecisionTab(tab,options){
+      const opts=Object.assign({focus:false,save:true},options || {}),safe=DECISION_TAB_KEYS.includes(tab)?tab:'overview';
+      state.decisionTab=safe;
+      $$('[data-decision-tab]').forEach(function(button){
+        const active=button.dataset.decisionTab===safe;
+        button.setAttribute('aria-selected',String(active)); button.tabIndex=active?0:-1;
+        if(active && opts.focus) button.focus();
+      });
+      $$('[data-decision-panel]').forEach(function(panel){ panel.hidden=panel.dataset.decisionPanel!==safe; });
+      if(state.decisionWorkspace){
+        state.decisionWorkspace.preferences.tab=safe;
+        if(opts.save) saveDecisionWorkspace();
+      }
+      if(safe === 'calendar') renderDecisionCalendar();
+    }
+
+    function decisionRiskLabel(score){
+      if(!Number.isFinite(score)) return 'Sin datos';
+      return score<30?'Bajo':score<60?'Medio':'Alto';
+    }
+
+    function renderDecisionOverview(snapshot){
+      const stateCard=$('decisionOverallState');
+      if(!snapshot){
+        stateCard.dataset.state='attention'; $('decisionOverallTitle').textContent='Sin datos'; $('decisionOverallReason').textContent='Completa un negocio válido para evaluar rentabilidad, riesgo y liquidez.';
+        ['decisionMetricRoi','decisionMetricRisk','decisionMetricLoss','decisionMetricMargin','decisionMetricPayback','decisionMetricBreakEven','decisionMetricCash','decisionMetricFlow','decisionMetricNpv','decisionMetricIrr'].forEach(function(id){ $(id).textContent='—'; });
+        $('decisionMetricRiskDetail').textContent='Escala de 0 a 100'; $('decisionMetricLossDetail').textContent='Monte Carlo o estrés determinista';
+        $('decisionPrimaryRisk').textContent='—'; $('decisionPrimaryRiskDetail').textContent='Se medirá la sensibilidad del beneficio.';
+        $('decisionPrimaryOpportunity').textContent='—'; $('decisionPrimaryOpportunityDetail').textContent='Se compararán cambios posibles en ventas, precio y costos.';
+        return;
+      }
+      const result=snapshot.result,meta=result.input.currencyMeta;
+      stateCard.dataset.state=snapshot.status; $('decisionOverallTitle').textContent=snapshot.title; $('decisionOverallReason').textContent=snapshot.reason;
+      $('decisionMetricRoi').textContent=snapshot.roi==null?'No aplica':formatPercent(snapshot.roi,2);
+      $('decisionMetricRisk').textContent=decisionRiskLabel(snapshot.riskScore);
+      $('decisionMetricRiskDetail').textContent=formatNumber(snapshot.riskScore,0,0)+' / 100';
+      $('decisionMetricLoss').textContent=formatPercent(snapshot.lossProbability,1);
+      $('decisionMetricLossDetail').textContent=snapshot.lossSource;
+      $('decisionMetricMargin').textContent=snapshot.margin==null?'No aplica':formatPercent(snapshot.margin,2);
+      $('decisionMetricPayback').textContent=formatInvestmentPayback(snapshot.payback,result.input.initialInvestment);
+      $('decisionMetricBreakEven').textContent=snapshot.breakEvenUnits==null?'No alcanzable':formatNumber(snapshot.breakEvenUnits,0,1)+' ventas';
+      $('decisionMetricCash').textContent=formatInvestmentMoney(snapshot.cash,meta);
+      $('decisionMetricFlow').textContent=formatInvestmentMoney(snapshot.monthlyFlow,meta);
+      $('decisionMetricNpv').textContent=formatInvestmentMoney(snapshot.npv,meta);
+      $('decisionMetricIrr').textContent=snapshot.irr==null?'No calculable':formatPercent(snapshot.irr,2);
+      const risk=snapshot.primaryRisk,opportunity=snapshot.primaryOpportunity;
+      $('decisionPrimaryRisk').textContent=risk?risk.label:'Sin sensibilidad';
+      $('decisionPrimaryRiskDetail').textContent=risk?'Un cambio desfavorable del 10 % reduciría el beneficio anual en '+formatInvestmentMoney(Math.abs(risk.negativeImpact),meta)+'.':'No fue posible calcular un cambio válido.';
+      $('decisionPrimaryOpportunity').textContent=opportunity?opportunity.label:'Sin sensibilidad';
+      $('decisionPrimaryOpportunityDetail').textContent=opportunity?'Un cambio favorable de referencia aumentaría el beneficio anual en '+formatInvestmentMoney(opportunity.positiveImpact,meta)+'.':'No fue posible calcular un cambio válido.';
+    }
+
+    function decisionWidgetValue(key,snapshot){
+      if(!snapshot) return {value:'—',detail:'Completa un negocio'};
+      const meta=snapshot.result.input.currencyMeta;
+      if(key==='inflation') return {value:formatPercent(snapshot.inflationAccumulated,2),detail:'Durante '+snapshot.result.input.horizon+' meses'};
+      if(key==='purchasing') return {value:Number.isFinite(snapshot.purchasingPower)?formatPercent(snapshot.purchasingPower,2):'—',detail:'Poder restante frente a la inflación'};
+      if(key==='roi') return {value:snapshot.roi==null?'No aplica':formatPercent(snapshot.roi,2),detail:'ROI anual estimado'};
+      if(key==='cash') return {value:formatInvestmentMoney(snapshot.cash,meta),detail:'Saldo al final'};
+      if(key==='expenses') return {value:formatInvestmentMoney(snapshot.monthlyExpenses,meta),detail:'Gastos del primer mes'};
+      if(key==='subscriptions') return {value:formatInvestmentMoney(snapshot.subscriptionMonthly,meta),detail:'Total mensual registrado'};
+      if(key==='capital') return {value:formatInvestmentMoney(snapshot.capital,meta),detail:'Inversión inicial'};
+      if(key==='break_even') return {value:snapshot.breakEvenUnits==null?'No alcanzable':formatNumber(snapshot.breakEvenUnits,0,1),detail:'Ventas mensuales'};
+      if(key==='npv') return {value:formatInvestmentMoney(snapshot.npv,meta),detail:'Tasa '+formatNumber(snapshot.result.input.discountRate,0,1)+' %'};
+      if(key==='irr') return {value:snapshot.irr==null?'No calculable':formatPercent(snapshot.irr,2),detail:'TIR anual'};
+      if(key==='profit') return {value:formatInvestmentMoney(snapshot.annualProfit,meta),detail:'Beneficio anual estimado'};
+      if(key==='risk') return {value:decisionRiskLabel(snapshot.riskScore),detail:formatNumber(snapshot.riskScore,0,0)+'/100 · pérdida '+formatPercent(snapshot.lossProbability,1)};
+      return {value:'—',detail:''};
+    }
+
+    function renderDecisionDashboard(){
+      const workspace=state.decisionWorkspace;if(!workspace) return;
+      const definitions=new Map(DECISION_WIDGET_DEFINITIONS.map(function(item){ return [item.key,item]; }));
+      const visible=workspace.dashboard.order.filter(function(key){ return !workspace.dashboard.hidden.includes(key); });
+      $('decisionWidgetGrid').innerHTML=visible.length?visible.map(function(key,index){
+        const definition=definitions.get(key),value=decisionWidgetValue(key,state.decisionSnapshot),expanded=workspace.dashboard.expanded.includes(key);
+        return '<article class="decision-widget" data-widget-key="'+key+'" data-expanded="'+String(expanded)+'" style="--widget-color:'+definition.color+'"><div class="decision-widget-head"><span class="decision-widget-title">'+escapeXml(definition.title)+'</span><span class="decision-widget-actions"><button type="button" data-decision-widget-action="up" aria-label="Mover '+escapeXml(definition.title)+' hacia atrás" '+(index===0?'disabled':'')+'>←</button><button type="button" data-decision-widget-action="down" aria-label="Mover '+escapeXml(definition.title)+' hacia delante" '+(index===visible.length-1?'disabled':'')+'>→</button><button type="button" data-decision-widget-action="expand" aria-label="'+(expanded?'Contraer ':'Expandir ')+escapeXml(definition.title)+'">'+(expanded?'↙':'↗')+'</button><button type="button" data-decision-widget-action="hide" aria-label="Ocultar '+escapeXml(definition.title)+'">×</button></span></div><strong class="decision-widget-value">'+escapeXml(value.value)+'</strong><span class="decision-widget-detail">'+escapeXml(value.detail)+'</span></article>';
+      }).join(''):'<div class="decision-empty">Todos los widgets están ocultos. Restáuralos desde la lista inferior.</div>';
+      const hidden=workspace.dashboard.order.filter(function(key){ return workspace.dashboard.hidden.includes(key); });
+      $('decisionHiddenWidgets').innerHTML=hidden.length?'<span class="field-help">Ocultos:</span>'+hidden.map(function(key){ const item=definitions.get(key); return '<button type="button" data-decision-show-widget="'+key+'">+ '+escapeXml(item.title)+'</button>'; }).join(''):'<span class="field-help">No hay widgets ocultos.</span>';
+    }
+
+    function renderDecisionExplanation(){
+      const snapshot=state.decisionSnapshot,level=$('decisionExplanationLevel').value;
+      if(state.decisionWorkspace){ state.decisionWorkspace.preferences.explanationLevel=level; saveDecisionWorkspace(); }
+      if(!snapshot){ $('decisionExplanation').innerHTML='<p>Primero completa un análisis en Inversiones.</p>'; return; }
+      const result=snapshot.result,meta=result.input.currencyMeta,profit=result.first.netProfit,loss=formatPercent(snapshot.lossProbability,1);
+      if(level==='basic'){
+        $('decisionExplanation').innerHTML='<h3>'+escapeXml(snapshot.title)+'</h3><p>'+escapeXml(profit>=0?'El negocio deja dinero después de pagar sus gastos durante el primer mes.':'El negocio gasta más dinero del que ingresa durante el primer mes.')+' '+escapeXml('El beneficio mensual estimado es '+formatInvestmentMoney(profit,meta)+' y la caja final sería '+formatInvestmentMoney(snapshot.cash,meta)+'.')+'</p><p>'+escapeXml(snapshot.reason)+' La principal variable que conviene vigilar es '+(snapshot.primaryRisk?snapshot.primaryRisk.label.toLocaleLowerCase('es'):'la estabilidad de los datos')+'.</p>';
+      }else if(level==='intermediate'){
+        $('decisionExplanation').innerHTML='<h3>Lectura financiera intermedia</h3><p>'+escapeXml('El ROI anual estimado es '+(snapshot.roi==null?'no aplicable':formatPercent(snapshot.roi,2))+', el margen neto '+(snapshot.margin==null?'no aplicable':formatPercent(snapshot.margin,2))+' y el VAN '+formatInvestmentMoney(snapshot.npv,meta)+'.')+'</p><p>'+escapeXml('La exposición a pérdida es '+loss+' según '+snapshot.lossSource+'. El punto de equilibrio exige '+(snapshot.breakEvenUnits==null?'un margen de contribución positivo':formatNumber(snapshot.breakEvenUnits,0,1)+' ventas mensuales')+'. '+snapshot.reason)+'</p>';
+      }else{
+        $('decisionExplanation').innerHTML='<h3>Lectura técnica y sensibilidad</h3><p>'+escapeXml('VAN = '+formatInvestmentMoney(snapshot.npv,meta)+' con una tasa anual de descuento de '+formatNumber(result.input.discountRate,0,2)+' %. TIR anual = '+(snapshot.irr==null?'no calculable':formatPercent(snapshot.irr,2))+'. ROI anual = '+(snapshot.roi==null?'no aplicable':formatPercent(snapshot.roi,2))+'.')+'</p><p>'+escapeXml('El riesgo combinado es '+formatNumber(snapshot.riskScore,0,0)+'/100. La pérdida estimada es '+loss+' mediante '+snapshot.lossSource+'. El análisis de sensibilidad vuelve a ejecutar el mismo motor modificando ventas, precio, costos, inflación y crecimiento; no representa una garantía ni una predicción causal.')+'</p><p><code>VAN = −I₀ + Σ FCₜ/(1+r)ᵗ</code> · <code>ROI = beneficio anual/I₀</code> · <code>Equilibrio = costos fijos/margen unitario</code></p>';
+      }
+    }
+
+    function refreshDecisionCenter(options){
+      const opts=Object.assign({announce:false},options || {});
+      if(!state.decisionInitialized) return;
+      const decisionCurrency=state.investmentResult&&state.investmentResult.input.currencyMeta.code;
+      state.decisionSnapshot=decisionEngine.snapshot(state.investmentResult,state.monteCarloResult,decisionExpenseGrowth(),decisionSubscriptionMonthly(decisionCurrency));
+      const snapshot=state.decisionSnapshot;
+      if(snapshot){
+        $('decisionCommandName').textContent=snapshot.result.input.name;
+        $('decisionCommandMeta').textContent=snapshot.result.input.businessTypeLabel+' · '+snapshot.result.input.horizon+' meses · actualizado '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+        setDecisionNotice('decisionDataNotice','Análisis conectado. Dashboard, objetivos, escenarios y alertas utilizan los mismos datos financieros.',opts.announce?'success':'');
+      }else{
+        $('decisionCommandName').textContent='Sin análisis activo';
+        $('decisionCommandMeta').textContent='Configura un negocio para convertir resultados en decisiones.';
+        setDecisionNotice('decisionDataNotice','No hay un negocio válido. El calendario, las alertas y la configuración permanecen guardados; abre Inversiones para calcular métricas.','warning');
+      }
+      renderDecisionOverview(snapshot); renderDecisionDashboard(); renderDecisionGoals(); renderDecisionScenarios(); renderDecisionPortfolio(); renderDecisionCalendar(); renderDecisionAlerts();
+      if(snapshot) renderDecisionExplanation();
+    }
+
+    const DECISION_GOAL_META=Object.freeze({
+      roi:Object.freeze({label:'ROI anual',help:'Escribe el ROI anual deseado en porcentaje.',unit:'percent'}),
+      profit:Object.freeze({label:'Beneficio anual',help:'Escribe el beneficio anual que quieres alcanzar.',unit:'money'}),
+      payback:Object.freeze({label:'Recuperación',help:'Escribe el máximo de meses para recuperar la inversión.',unit:'months'}),
+      margin:Object.freeze({label:'Margen neto',help:'Escribe el margen neto deseado en porcentaje.',unit:'percent'}),
+      risk:Object.freeze({label:'Riesgo',help:'Escribe el nivel máximo aceptable entre 0 y 100.',unit:'score'}),
+      cash:Object.freeze({label:'Caja final',help:'Escribe el saldo mínimo deseado al terminar el horizonte.',unit:'money'})
+    });
+
+    function decisionFormatGoalValue(metric,value,result){
+      if(!Number.isFinite(value)) return 'No calculable';
+      if(metric==='roi' || metric==='margin') return formatNumber(value,0,2)+' %';
+      if(metric==='payback') return formatNumber(value,0,1)+' meses';
+      if(metric==='risk') return formatNumber(value,0,0)+'/100';
+      const meta=result && result.input ? result.input.currencyMeta : {custom:false,code:'BRL'};
+      return formatInvestmentMoney(value,meta);
+    }
+
+    function updateDecisionGoalHelp(){
+      const metric=$('decisionGoalMetric').value,meta=DECISION_GOAL_META[metric] || DECISION_GOAL_META.roi;
+      $('decisionGoalTargetHelp').textContent=meta.help;
+    }
+
+    function readDecisionGoalTarget(metric){
+      const raw=String($('decisionGoalTarget').value || '').trim(),target=parseLocalized(raw);
+      if(!raw || !Number.isFinite(target)) throw new Error('Escribe una meta numérica válida.');
+      if(metric==='payback' && (target<=0 || target>12000)) throw new Error('La recuperación debe estar entre más de 0 y 12.000 meses.');
+      if(metric==='risk' && (target<0 || target>100)) throw new Error('El riesgo debe estar entre 0 y 100.');
+      if(metric==='margin' && (target<-100 || target>100)) throw new Error('El margen debe estar entre −100 % y 100 %.');
+      if(Math.abs(target)>MAX_PRICE) throw new Error('La meta supera el límite numérico permitido.');
+      return target;
+    }
+
+    function renderDecisionGoalResult(calculation){
+      const output=$('decisionGoalOutput'),container=$('decisionGoalRecommendations'),result=state.investmentResult;
+      output.hidden=false;
+      if(calculation.reached){
+        container.innerHTML='<article class="decision-recommendation" style="border-top-color:#4ade80"><b>Objetivo ya alcanzado</b><strong>'+escapeXml(decisionFormatGoalValue(calculation.metric,calculation.baseValue,result))+'</strong><p>El valor actual ya cumple la meta indicada. Puedes guardarla para vigilar que se mantenga.</p></article>';
+        setDecisionNotice('decisionGoalNotice','La meta ya se cumple con la configuración actual.','success');
+      }else if(!calculation.recommendations.length){
+        container.innerHTML='<div class="decision-empty">No se encontró una alternativa dentro de los límites: precio +300 %, ventas +500 % o costos −95 %. Revisa la meta o cambia más de una variable.</div>';
+        setDecisionNotice('decisionGoalNotice','La meta no es alcanzable modificando una sola variable dentro de los rangos analizados.','warning');
+      }else{
+        container.innerHTML=calculation.recommendations.map(function(item){
+          let action='Cambio mínimo estimado: '+formatNumber(item.change,1,2)+' %.';
+          if(item.key==='sales' && Number.isFinite(item.unitDelta)) action+=' Equivale a unas '+formatNumber(item.unitDelta,0,1)+' ventas adicionales al mes.';
+          if(item.key==='price' && Number.isFinite(item.moneyDelta)) action+=' El precio medio subiría '+formatInvestmentMoney(item.moneyDelta,result.input.currencyMeta)+' por venta.';
+          if(item.key==='costs' && Number.isFinite(item.moneyDelta)) action+=' El ahorro del primer mes sería '+formatInvestmentMoney(item.moneyDelta,result.input.currencyMeta)+'.';
+          return '<article class="decision-recommendation"><b>'+escapeXml(item.label)+'</b><strong>'+escapeXml(formatNumber(item.change,1,2)+' %')+'</strong><p>'+escapeXml(action)+'</p><p>'+escapeXml(DECISION_GOAL_META[calculation.metric].label+': '+decisionFormatGoalValue(calculation.metric,item.before,result)+' → '+decisionFormatGoalValue(calculation.metric,item.after,item.result))+'</p></article>';
+        }).join('');
+        setDecisionNotice('decisionGoalNotice','Se encontraron '+calculation.recommendations.length+' alternativas matemáticas. Cada una modifica una sola variable y vuelve a calcular todo el proyecto.','success');
+      }
+      $('decisionSaveGoalButton').disabled=false;
+    }
+
+    function calculateDecisionGoal(){
+      try{
+        if(!state.investmentResult) throw new Error('Completa primero un negocio válido en Inversiones.');
+        const metric=$('decisionGoalMetric').value,target=readDecisionGoalTarget(metric);
+        const calculation=decisionEngine.solveGoal(state.investmentResult,metric,target);
+        state.decisionGoalResult=calculation;
+        renderDecisionGoalResult(calculation);
+        return calculation;
+      }catch(error){
+        state.decisionGoalResult=null; $('decisionGoalOutput').hidden=true; $('decisionSaveGoalButton').disabled=true;
+        setDecisionNotice('decisionGoalNotice',error.message || 'No se pudo calcular el objetivo.','error');
+        return null;
+      }
+    }
+
+    function saveCurrentDecisionGoal(){
+      const calculation=state.decisionGoalResult;if(!calculation || !state.decisionWorkspace) return;
+      const metric=calculation.metric,name=String($('decisionGoalName').value || '').trim() || DECISION_GOAL_META[metric].label+' '+decisionFormatGoalValue(metric,calculation.target,state.investmentResult);
+      const recommendations=calculation.recommendations.slice(0,3).map(function(item){ return {key:item.key,label:item.label,change:item.change,before:item.before,after:item.after,unitDelta:item.unitDelta,moneyDelta:item.moneyDelta}; });
+      state.decisionWorkspace.goals.unshift({id:createUuid(),name:name.slice(0,80),metric:metric,target:calculation.target,createdAt:nowIso(),recommendations:recommendations});
+      state.decisionWorkspace.goals=state.decisionWorkspace.goals.slice(0,MAX_DECISION_GOALS);
+      saveDecisionWorkspace(); renderDecisionGoals(); setDecisionNotice('decisionGoalNotice','Objetivo guardado localmente.','success');
+    }
+
+    function renderDecisionGoals(){
+      if(!state.decisionWorkspace) return;
+      const goals=state.decisionWorkspace.goals,snapshot=state.decisionSnapshot;
+      $('decisionGoalList').innerHTML=goals.length?goals.map(function(goal){
+        const current=snapshot?decisionEngine.goalValue(snapshot.result,goal.metric):NaN,reached=snapshot&&decisionEngine.goalReached(current,goal.metric,goal.target);
+        const status=!snapshot?'Sin análisis':reached?'Meta alcanzada':'Pendiente';
+        return '<article class="decision-saved-item" data-goal-id="'+escapeXml(goal.id)+'"><div><strong>'+escapeXml(goal.name)+'</strong><span>'+escapeXml(DECISION_GOAL_META[goal.metric].label+' · meta '+decisionFormatGoalValue(goal.metric,goal.target,snapshot&&snapshot.result))+' · '+escapeXml(status)+'</span></div><div class="decision-command-actions"><button class="button secondary small" type="button" data-decision-goal-action="recalculate">Recalcular</button><button class="button danger small" type="button" data-decision-goal-action="delete">Eliminar</button></div></article>';
+      }).join(''):'<div class="decision-empty">Todavía no guardaste objetivos.</div>';
+    }
+
+    function decisionScenarioDepth(nodeId,nodes){
+      const map=new Map(nodes.map(function(node){ return [node.id,node]; }));let depth=0,current=map.get(nodeId),visited=new Set();
+      while(current && current.parentId && map.has(current.parentId) && !visited.has(current.id)){ visited.add(current.id); depth+=1; current=map.get(current.parentId); }
+      return depth;
+    }
+
+    function decisionScenarioState(result){
+      if(!result || result.annualProfit<0 || result.rows.at(-1).cash<0 || result.riskScore>=60) return 'risk';
+      if(result.npv<0 || result.margin==null || result.margin<.15 || result.riskScore>=30) return 'attention';
+      return 'favorable';
+    }
+
+    function decisionScenarioAdjustmentsCopy(adjustments){
+      const parts=[];
+      if(adjustments.sales) parts.push('ventas '+formatNumber(adjustments.sales,0,2)+' %');
+      if(adjustments.price) parts.push('precio '+formatNumber(adjustments.price,0,2)+' %');
+      if(adjustments.costs) parts.push('costos '+formatNumber(adjustments.costs,0,2)+' %');
+      if(adjustments.inflation) parts.push('inflación '+formatNumber(adjustments.inflation,0,2)+' p.p.');
+      if(adjustments.growth) parts.push('crecimiento '+formatNumber(adjustments.growth,0,2)+' p.p.');
+      return parts.length?parts.join(' · '):'Sin cambios';
+    }
+
+    function renderDecisionScenarioParents(){
+      const nodes=state.decisionWorkspace.scenarios,current=$('decisionScenarioParent').value;
+      $('decisionScenarioParent').innerHTML=nodes.map(function(node){ return '<option value="'+escapeXml(node.id)+'">'+escapeXml('— '.repeat(decisionScenarioDepth(node.id,nodes))+node.name)+'</option>'; }).join('');
+      $('decisionScenarioParent').value=nodes.some(function(node){ return node.id===current; })?current:'decision-root';
+    }
+
+    function decisionTreeMarkup(nodes,evaluations){
+      const byParent=new Map();
+      nodes.forEach(function(node){ const key=node.parentId || '__root__'; if(!byParent.has(key)) byParent.set(key,[]); byParent.get(key).push(node); });
+      const evaluationMap=new Map((evaluations || []).map(function(item){ return [item.node.id,item]; }));
+      function branch(parentId,visited){
+        const children=byParent.get(parentId) || [];
+        if(!children.length) return '';
+        return '<ul>'+children.map(function(node){
+          if(visited.has(node.id)) return '';
+          const next=new Set(visited);next.add(node.id);
+          const evaluation=evaluationMap.get(node.id),result=evaluation&&evaluation.result,meta=result?result.input.currencyMeta:{custom:false,code:'BRL'},stateName=result?decisionScenarioState(result):'attention';
+          const metrics=result?'<div class="decision-node-metrics"><span>Beneficio '+escapeXml(formatInvestmentMoney(result.annualProfit,meta))+'</span><span>ROI '+escapeXml(result.annualRoi==null?'—':formatPercent(result.annualRoi,1))+'</span><span>Riesgo '+escapeXml(formatNumber(result.riskScore,0,0))+'/100</span></div>':'<div class="decision-node-metrics"><span>Sin cálculo</span></div>';
+          const actions=node.id==='decision-root'?'<button type="button" data-decision-scenario-action="child">Crear rama</button>':'<button type="button" data-decision-scenario-action="child">Ramificar</button><button type="button" data-decision-scenario-action="delete">Eliminar rama</button>';
+          return '<li><article class="decision-node" data-scenario-id="'+escapeXml(node.id)+'" data-state="'+stateName+'"><div class="decision-node-head"><strong>'+escapeXml(node.name)+'</strong><small>'+escapeXml(result?(stateName==='favorable'?'Favorable':stateName==='attention'?'Atención':'Riesgo'):'Sin datos')+'</small></div><small>'+escapeXml(decisionScenarioAdjustmentsCopy(node.adjustments))+'</small>'+metrics+'<div class="decision-node-actions">'+actions+'</div></article>'+branch(node.id,next)+'</li>';
+        }).join('')+'</ul>';
+      }
+      return '<div class="decision-tree">'+branch('__root__',new Set())+'</div>';
+    }
+
+    function renderDecisionScenarios(){
+      if(!state.decisionWorkspace) return;
+      const nodes=state.decisionWorkspace.scenarios;
+      renderDecisionScenarioParents();
+      const evaluations=state.investmentResult?decisionEngine.evaluateTree(state.investmentResult.input,nodes):[];
+      state.decisionScenarioEvaluation=evaluations;
+      $('decisionTreeWrap').innerHTML=decisionTreeMarkup(nodes,evaluations);
+      if(!evaluations.length){
+        $('decisionScenarioTableBody').innerHTML='<tr><td colspan="9">Completa un negocio válido para calcular las ramas.</td></tr>';
+        $('decisionScenarioChart').innerHTML='<div class="decision-empty">La comparación visual aparecerá después del cálculo.</div>';
+        return;
+      }
+      $('decisionScenarioTableBody').innerHTML=evaluations.map(function(item){
+        if(!item.result) return '<tr><td>'+escapeXml(item.node.name)+'</td><td colspan="8">'+escapeXml(item.error || 'Escenario inválido')+'</td></tr>';
+        const r=item.result,m=r.input.currencyMeta;
+        return '<tr><td>'+escapeXml(item.node.name)+'</td><td>'+escapeXml(formatInvestmentMoney(r.annualProfit,m))+'</td><td>'+escapeXml(r.annualRoi==null?'No aplica':formatPercent(r.annualRoi,2))+'</td><td>'+escapeXml(formatInvestmentMoney(r.npv,m))+'</td><td>'+escapeXml(r.irrAnnual==null?'No calculable':formatPercent(r.irrAnnual,2))+'</td><td>'+escapeXml(formatInvestmentMoney(r.rows.at(-1).cash,m))+'</td><td>'+escapeXml(r.margin==null?'No aplica':formatPercent(r.margin,2))+'</td><td>'+escapeXml(r.breakEvenUnits==null?'No alcanzable':formatNumber(r.breakEvenUnits,0,1))+'</td><td>'+escapeXml(formatNumber(r.riskScore,0,0)+'/100')+'</td></tr>';
+      }).join('');
+      const valid=evaluations.filter(function(item){ return item.result; }),max=Math.max.apply(null,valid.map(function(item){ return Math.abs(item.result.annualProfit); }).concat([1]));
+      $('decisionScenarioChart').innerHTML=valid.map(function(item){
+        const profit=item.result.annualProfit,width=Math.max(1,Math.abs(profit)/max*100),color=profit<0?'#ff7182':decisionScenarioState(item.result)==='attention'?'#ffd400':'#4ade80';
+        return '<div class="decision-comparison-row"><span>'+escapeXml(item.node.name)+'</span><div class="decision-comparison-track"><div class="decision-comparison-fill" style="--bar-width:'+width.toFixed(2)+'%;--bar-color:'+color+'"></div></div><strong>'+escapeXml(formatInvestmentMoney(profit,item.result.input.currencyMeta))+'</strong></div>';
+      }).join('');
+    }
+
+    function addDecisionScenario(){
+      try{
+        const workspace=state.decisionWorkspace;
+        if(workspace.scenarios.length>=MAX_DECISION_SCENARIOS) throw new Error('El árbol admite un máximo de '+MAX_DECISION_SCENARIOS+' ramas.');
+        const parentId=$('decisionScenarioParent').value;
+        if(!workspace.scenarios.some(function(node){ return node.id===parentId; })) throw new Error('Selecciona una rama de origen válida.');
+        const name=String($('decisionScenarioName').value || '').trim();
+        if(!name) throw new Error('Escribe el nombre de la nueva rama.');
+        const limits={sales:[-100,1000],price:[-100,1000],costs:[-100,1000],inflation:[-1000,10000],growth:[-100,100]};
+        const ids={sales:'decisionScenarioSales',price:'decisionScenarioPrice',costs:'decisionScenarioCosts',inflation:'decisionScenarioInflation',growth:'decisionScenarioGrowth'},adjustments={};
+        DECISION_SCENARIO_FIELDS.forEach(function(key){
+          const raw=String($(ids[key]).value || '').trim(),value=raw?parseLocalized(raw):0,min=limits[key][0],max=limits[key][1];
+          if(!Number.isFinite(value) || value<min || value>max) throw new Error('El cambio de '+key+' debe estar entre '+min+' y '+max+'.');
+          adjustments[key]=value;
+        });
+        workspace.scenarios.push({id:createUuid(),parentId:parentId,name:name.slice(0,60),adjustments:adjustments,createdAt:nowIso()});
+        saveDecisionWorkspace(); $('decisionScenarioName').value=''; DECISION_SCENARIO_FIELDS.forEach(function(key){ $(ids[key]).value='0'; });
+        renderDecisionScenarios(); setDecisionNotice('decisionScenarioNotice','Rama añadida y calculada con el motor financiero compartido.','success');
+      }catch(error){ setDecisionNotice('decisionScenarioNotice',error.message || 'No se pudo añadir la rama.','error'); }
+    }
+
+    function decisionScenarioDescendants(id){
+      const nodes=state.decisionWorkspace.scenarios,remove=new Set([id]);let changed=true;
+      while(changed){ changed=false; nodes.forEach(function(node){ if(node.parentId && remove.has(node.parentId) && !remove.has(node.id)){ remove.add(node.id);changed=true; } }); }
+      return remove;
+    }
+
+    function exportDecisionScenarios(){
+      const evaluations=state.decisionScenarioEvaluation || [];
+      if(!evaluations.length){ setDecisionNotice('decisionScenarioNotice','Completa un negocio antes de exportar los escenarios.','warning'); return; }
+      const rows=[['version','escenario','padre','ventas_pct','precio_pct','costos_pct','inflacion_pp','crecimiento_pp','beneficio_anual','roi_anual','van','tir_anual','caja_final','margen','punto_equilibrio','riesgo']];
+      evaluations.forEach(function(item){
+        const r=item.result,a=item.adjustments || {};
+        rows.push([APP_VERSION,item.node.name,item.node.parentId || '',a.sales,a.price,a.costs,a.inflation,a.growth,r?r.annualProfit:'',r&&r.annualRoi!=null?r.annualRoi:'',r?r.npv:'',r&&r.irrAnnual!=null?r.irrAnnual:'',r?r.rows.at(-1).cash:'',r&&r.margin!=null?r.margin:'',r&&r.breakEvenUnits!=null?r.breakEvenUnits:'',r?r.riskScore:'']);
+      });
+      downloadCsvFile('arbol-decisiones-v0160.csv',rows); setDecisionNotice('decisionScenarioNotice','Árbol exportado en CSV con ajustes acumulados y resultados completos.','success');
+    }
+
+    function decisionPortfolioCurrencies(){
+      const codes=[];
+      (state.investmentPortfolio || []).forEach(function(item){
+        const code=item && item.currencyMeta && item.currencyMeta.code;
+        if(code && !codes.includes(code)) codes.push(code);
+      });
+      if(state.investmentResult && state.investmentResult.input.currencyMeta.code && !codes.includes(state.investmentResult.input.currencyMeta.code)) codes.push(state.investmentResult.input.currencyMeta.code);
+      return codes.length?codes:['BRL'];
+    }
+
+    function renderDecisionPortfolio(){
+      if(!state.decisionWorkspace) return;
+      const select=$('decisionPortfolioCurrency'),codes=decisionPortfolioCurrencies();
+      const preferred=state.decisionWorkspace.preferences.portfolioCurrency,current=codes.includes(select.value)?select.value:(codes.includes(preferred)?preferred:codes[0]);
+      select.innerHTML=codes.map(function(code){ return '<option value="'+escapeXml(code)+'">'+escapeXml(code)+'</option>'; }).join('');
+      select.value=current; state.decisionWorkspace.preferences.portfolioCurrency=current;
+      const summary=decisionEngine.portfolio(state.investmentPortfolio,current),meta=summary.items[0]&&summary.items[0].currencyMeta || (state.investmentResult&&state.investmentResult.input.currencyMeta.code===current?state.investmentResult.input.currencyMeta:{custom:false,code:current});
+      $('decisionPortfolioCapital').textContent=formatInvestmentMoney(summary.capital,meta);
+      $('decisionPortfolioReturn').textContent=summary.weightedRoi==null?'No aplica':formatPercent(summary.weightedRoi,2);
+      $('decisionPortfolioRisk').textContent=summary.weightedRisk==null?'No aplica':formatNumber(summary.weightedRisk,0,0)+'/100';
+      $('decisionPortfolioDiversification').textContent=formatNumber(summary.diversification,0,0)+'/100';
+      $('decisionPortfolioConcentration').textContent='Concentración mayor: '+formatPercent(summary.concentration,1);
+      $('decisionPortfolioFlow').textContent=formatInvestmentMoney(summary.annualFlow,meta);
+      const colors=['#ffd400','#55f5e6','#ff6900','#c084fc','#4ade80','#55a8ff','#ff7182','#ff9d44','#76d7ff','#d6ff6b','#eb7dff','#80f0b2'];
+      if(summary.items.length){
+        let start=0;const segments=[];
+        summary.weights.forEach(function(weight,index){ const end=start+weight*100; segments.push(colors[index%colors.length]+' '+start.toFixed(3)+'% '+end.toFixed(3)+'%'); start=end; });
+        $('decisionPortfolioDonut').style.background='conic-gradient('+segments.join(',')+')';
+        $('decisionPortfolioDonut').dataset.center=summary.items.length+' '+(summary.items.length===1?'proyecto':'proyectos');
+        $('decisionPortfolioDonut').setAttribute('aria-label','Distribución de capital: '+summary.items.map(function(item,index){ return item.name+' '+formatPercent(summary.weights[index],1); }).join(', '));
+        $('decisionPortfolioLegend').innerHTML=summary.items.map(function(item,index){ return '<div class="decision-legend-row"><i style="--legend-color:'+colors[index%colors.length]+'"></i><span>'+escapeXml(item.name)+'</span><strong>'+escapeXml(formatPercent(summary.weights[index],1))+'</strong></div>'; }).join('');
+      }else{
+        $('decisionPortfolioDonut').style.background='conic-gradient(#343741 0 100%)'; $('decisionPortfolioDonut').dataset.center='0 proyectos'; $('decisionPortfolioDonut').setAttribute('aria-label','Portafolio vacío');
+        $('decisionPortfolioLegend').innerHTML='<div class="decision-empty">Añade proyectos para ver la distribución.</div>';
+      }
+      $('decisionPortfolioBody').innerHTML=summary.items.length?summary.items.map(function(item,index){
+        const metrics=item.metrics,weight=summary.weights[index],itemMeta=item.currencyMeta || meta;
+        return '<tr data-portfolio-id="'+escapeXml(item.id)+'"><td>'+escapeXml(item.name)+'</td><td>'+escapeXml(formatInvestmentMoney(metrics.initialInvestment,itemMeta))+'</td><td>'+escapeXml(formatPercent(weight,1))+'</td><td>'+escapeXml(formatInvestmentMoney(metrics.annualProfit,itemMeta))+'</td><td>'+escapeXml(metrics.annualRoi==null?'No aplica':formatPercent(metrics.annualRoi,2))+'</td><td>'+escapeXml(formatNumber(metrics.riskScore,0,0)+'/100')+'</td><td>'+escapeXml(formatInvestmentPayback(metrics.payback,metrics.initialInvestment))+'</td><td><div class="decision-command-actions"><button class="button secondary small" type="button" data-decision-portfolio-action="open">Abrir</button><button class="button danger small" type="button" data-decision-portfolio-action="delete">Eliminar</button></div></td></tr>';
+      }).join(''):'<tr><td colspan="8">No hay proyectos guardados en '+escapeXml(current)+'.</td></tr>';
+      const allCodes=Array.from(new Set((state.investmentPortfolio || []).map(function(item){ return item.currencyMeta&&item.currencyMeta.code; }).filter(Boolean)));
+      const otherCount=(state.investmentPortfolio || []).length-summary.items.length;
+      setDecisionNotice('decisionPortfolioNotice',otherCount>0?'Se consolidan '+summary.items.length+' proyectos en '+current+'. Otros '+otherCount+' permanecen separados porque usan '+allCodes.filter(function(code){ return code!==current; }).join(', ')+'.':'Portafolio consolidado en '+current+'. Los importes de monedas distintas nunca se suman sin una conversión explícita.',otherCount>0?'warning':'');
+    }
+
+    function addCurrentDecisionPortfolio(){
+      if(!state.investmentResult){ setDecisionNotice('decisionPortfolioNotice','Completa primero un negocio válido en Inversiones.','error'); return; }
+      addCurrentInvestmentToPortfolio();
+      state.decisionWorkspace.preferences.portfolioCurrency=state.investmentResult.input.currencyMeta.code;
+      saveDecisionWorkspace(); renderDecisionPortfolio();
+      setDecisionNotice('decisionPortfolioNotice','“'+state.investmentResult.input.name+'” se añadió al portafolio local.','success');
+    }
+
+    function exportDecisionPortfolio(){
+      const currency=$('decisionPortfolioCurrency').value,summary=decisionEngine.portfolio(state.investmentPortfolio,currency);
+      downloadJsonFile('portafolio-empresarial-v0160.json',{schemaVersion:1,type:'decision-center-portfolio',appVersion:APP_VERSION,exportedAt:nowIso(),currency:currency,summary:{capital:summary.capital,weightedRoi:summary.weightedRoi,weightedRisk:summary.weightedRisk,annualFlow:summary.annualFlow,concentration:summary.concentration,diversification:summary.diversification},items:summary.items});
+      setDecisionNotice('decisionPortfolioNotice','Portafolio exportado con proyectos, pesos y métricas consolidadas.','success');
+    }
+
+    const DECISION_EVENT_TYPES=Object.freeze({
+      income:Object.freeze({label:'Ingreso previsto',color:'#4ade80',direction:1}),
+      payment:Object.freeze({label:'Pago',color:'#ff7182',direction:-1}),
+      loan:Object.freeze({label:'Préstamo',color:'#55a8ff',direction:1}),
+      rent:Object.freeze({label:'Alquiler',color:'#ff9d44',direction:-1}),
+      tax:Object.freeze({label:'Impuesto',color:'#ffd400',direction:-1}),
+      supplier:Object.freeze({label:'Proveedor',color:'#ff6900',direction:-1}),
+      subscription:Object.freeze({label:'Suscripción',color:'#c084fc',direction:-1}),
+      sale:Object.freeze({label:'Venta',color:'#55f5e6',direction:1}),
+      investment:Object.freeze({label:'Inversión',color:'#76d7ff',direction:-1}),
+      contract:Object.freeze({label:'Contrato',color:'#d6ff6b',direction:-1})
+    });
+    const DECISION_MONTHS=Object.freeze(['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']);
+    const DECISION_WEEKDAYS=Object.freeze(['Dom','Lun','Mar','Mié','Jue','Vie','Sáb']);
+
+    function decisionDateFromKey(key){
+      const match=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(key || ''));
+      if(!match) return null;
+      const date=new Date(Date.UTC(Number(match[1]),Number(match[2])-1,Number(match[3])));
+      return Number.isFinite(date.getTime())&&decisionDateKey(date)===String(key)?date:null;
+    }
+
+    function decisionDateKey(date){
+      return date.getUTCFullYear()+'-'+String(date.getUTCMonth()+1).padStart(2,'0')+'-'+String(date.getUTCDate()).padStart(2,'0');
+    }
+
+    function decisionTodayKey(){
+      const today=new Date();
+      return today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
+    }
+
+    function decisionDaysInMonth(year,month){
+      return new Date(Date.UTC(year,month+1,0)).getUTCDate();
+    }
+
+    function decisionShiftMonth(date,amount){
+      return new Date(Date.UTC(date.getUTCFullYear(),date.getUTCMonth()+amount,1));
+    }
+
+    function decisionEventOccurs(event,key){
+      const target=decisionDateFromKey(key),start=decisionDateFromKey(event.date);
+      if(!target || !start || target<start) return false;
+      if(event.recurrence==='once') return key===event.date;
+      if(event.recurrence==='monthly'){
+        const day=Math.min(start.getUTCDate(),decisionDaysInMonth(target.getUTCFullYear(),target.getUTCMonth()));
+        return target.getUTCDate()===day;
+      }
+      if(event.recurrence==='yearly'){
+        if(target.getUTCMonth()!==start.getUTCMonth()) return false;
+        return target.getUTCDate()===Math.min(start.getUTCDate(),decisionDaysInMonth(target.getUTCFullYear(),target.getUTCMonth()));
+      }
+      return false;
+    }
+
+    function decisionEventsOn(key){
+      const workspace=state.decisionWorkspace;
+      return workspace?(workspace.calendar || []).filter(function(event){ return decisionEventOccurs(event,key); }):[];
+    }
+
+    function decisionEventMoney(event){
+      return isSupportedCurrency(event.currency)?formatCurrency(event.amount,event.currency):formatNumber(event.amount,0,2)+' '+event.currency;
+    }
+
+    function decisionCalendarTitleFor(date,view){
+      if(view==='day') return date.toLocaleDateString('es',{timeZone:'UTC',day:'numeric',month:'long',year:'numeric'});
+      if(view==='year') return String(date.getUTCFullYear());
+      return DECISION_MONTHS[date.getUTCMonth()]+' '+date.getUTCFullYear();
+    }
+
+    function renderDecisionSelectedEvents(key){
+      const events=decisionEventsOn(key),date=decisionDateFromKey(key);
+      $('decisionSelectedDateTitle').textContent=date?'Eventos del '+date.toLocaleDateString('es',{timeZone:'UTC',day:'numeric',month:'long',year:'numeric'}):'Eventos seleccionados';
+      $('decisionSelectedEvents').innerHTML=events.length?events.map(function(event){
+        const meta=DECISION_EVENT_TYPES[event.type] || DECISION_EVENT_TYPES.payment,confirmed=event.confirmedDates.includes(key);
+        return '<article class="decision-event" data-event-id="'+escapeXml(event.id)+'" data-occurrence-date="'+escapeXml(key)+'" style="--event-color:'+meta.color+'"><span class="decision-event-date">'+escapeXml(key.slice(8,10)+'/'+key.slice(5,7))+'</span><div><strong>'+escapeXml(event.title)+'</strong><span>'+escapeXml(meta.label+' · '+decisionEventMoney(event)+' · '+(event.recurrence==='once'?'una vez':event.recurrence==='monthly'?'mensual':'anual')+(confirmed?' · confirmado':''))+'</span></div><div class="decision-command-actions"><button class="button secondary small" type="button" data-decision-event-action="confirm">'+(confirmed?'Marcar pendiente':'Confirmar')+'</button><button class="button danger small" type="button" data-decision-event-action="delete">Eliminar</button></div></article>';
+      }).join(''):'<div class="decision-empty">No hay movimientos en esta fecha.</div>';
+    }
+
+    function renderDecisionMonth(date){
+      const first=new Date(Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),1)),start=new Date(first);start.setUTCDate(first.getUTCDate()-first.getUTCDay());
+      let html=DECISION_WEEKDAYS.map(function(day){ return '<div class="decision-calendar-weekday">'+day+'</div>'; }).join('');
+      for(let index=0;index<42;index+=1){
+        const current=new Date(start);current.setUTCDate(start.getUTCDate()+index);
+        const key=decisionDateKey(current),events=decisionEventsOn(key),outside=current.getUTCMonth()!==date.getUTCMonth(),selected=key===state.decisionCalendarSelected;
+        const chips=events.slice(0,3).map(function(event){ const meta=DECISION_EVENT_TYPES[event.type]||DECISION_EVENT_TYPES.payment; return '<span class="decision-day-event" style="--event-color:'+meta.color+'">'+escapeXml(event.title)+'</span>'; }).join('');
+        html+='<button class="decision-day" type="button" data-decision-day="'+key+'" data-outside="'+String(outside)+'" data-selected="'+String(selected)+'" aria-label="'+escapeXml(current.toLocaleDateString('es',{timeZone:'UTC',day:'numeric',month:'long'})+', '+events.length+' eventos')+'"><span class="decision-day-number">'+current.getUTCDate()+'</span>'+chips+(events.length>3?'<span class="decision-day-more">+'+(events.length-3)+' más</span>':'')+'</button>';
+      }
+      return '<div class="decision-calendar-grid">'+html+'</div>';
+    }
+
+    function renderDecisionYear(date){
+      const year=date.getUTCFullYear();
+      return '<div class="decision-year-grid">'+DECISION_MONTHS.map(function(month,index){
+        const days=decisionDaysInMonth(year,index);let count=0,confirmed=0;
+        for(let day=1;day<=days;day+=1){
+          const key=year+'-'+String(index+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');
+          const events=decisionEventsOn(key);count+=events.length;confirmed+=events.filter(function(event){ return event.confirmedDates.includes(key); }).length;
+        }
+        return '<button class="decision-year-month" type="button" data-decision-month="'+index+'"><strong>'+month+'</strong><span>'+count+' '+(count===1?'evento':'eventos')+' · '+confirmed+' confirmados</span></button>';
+      }).join('')+'</div>';
+    }
+
+    function renderDecisionDay(date){
+      const key=decisionDateKey(date),events=decisionEventsOn(key);
+      const income=events.filter(function(event){ return (DECISION_EVENT_TYPES[event.type]||DECISION_EVENT_TYPES.payment).direction>0; }).length;
+      const outflow=events.length-income;
+      return '<div class="decision-status-strip" data-tone="'+(outflow>income?'warning':'')+'">Esta fecha contiene '+events.length+' movimientos: '+income+' entradas y '+outflow+' salidas. Los importes de monedas distintas se muestran por separado.</div>';
+    }
+
+    function renderDecisionCalendar(){
+      if(!state.decisionWorkspace || !$('decisionCalendarView')) return;
+      const view=state.decisionWorkspace.preferences.calendarView || 'month';
+      const cursor=state.decisionCalendarCursor || decisionDateFromKey(state.decisionCalendarSelected) || decisionDateFromKey(decisionTodayKey());
+      state.decisionCalendarCursor=cursor;
+      $$('[data-decision-calendar-view]').forEach(function(button){ button.setAttribute('aria-pressed',String(button.dataset.decisionCalendarView===view)); });
+      $('decisionCalendarTitle').textContent=decisionCalendarTitleFor(cursor,view);
+      $('decisionCalendarView').innerHTML=view==='month'?renderDecisionMonth(cursor):view==='year'?renderDecisionYear(cursor):renderDecisionDay(cursor);
+      renderDecisionSelectedEvents(state.decisionCalendarSelected || decisionDateKey(cursor));
+    }
+
+    function navigateDecisionCalendar(direction){
+      const view=state.decisionWorkspace.preferences.calendarView,cursor=state.decisionCalendarCursor || decisionDateFromKey(decisionTodayKey());
+      let next;
+      if(view==='day'){ next=new Date(cursor);next.setUTCDate(cursor.getUTCDate()+direction); }
+      else if(view==='year') next=new Date(Date.UTC(cursor.getUTCFullYear()+direction,cursor.getUTCMonth(),1));
+      else next=decisionShiftMonth(cursor,direction);
+      state.decisionCalendarCursor=next;
+      if(view==='day') state.decisionCalendarSelected=decisionDateKey(next);
+      renderDecisionCalendar(); saveDecisionWorkspace();
+    }
+
+    function setDecisionCalendarView(view){
+      if(!['day','month','year'].includes(view)) return;
+      state.decisionWorkspace.preferences.calendarView=view;
+      const selected=decisionDateFromKey(state.decisionCalendarSelected);
+      if(selected) state.decisionCalendarCursor=view==='month'?new Date(Date.UTC(selected.getUTCFullYear(),selected.getUTCMonth(),1)):selected;
+      saveDecisionWorkspace();renderDecisionCalendar();
+    }
+
+    function addDecisionEvent(event){
+      if(state.decisionWorkspace.calendar.length>=MAX_DECISION_EVENTS) throw new Error('El calendario admite un máximo de '+MAX_DECISION_EVENTS+' movimientos.');
+      state.decisionWorkspace.calendar.push(event);saveDecisionWorkspace();renderDecisionCalendar();renderDecisionAlerts();
+    }
+
+    function submitDecisionEvent(){
+      try{
+        const title=String($('decisionEventTitle').value || '').trim(),date=$('decisionEventDate').value,type=$('decisionEventType').value,amount=parseLocalized($('decisionEventAmount').value),currency=$('decisionEventCurrency').value,recurrence=$('decisionEventRecurrence').value,link=$('decisionEventLink').value;
+        if(!title) throw new Error('Escribe el concepto del movimiento.');
+        if(!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error('Selecciona una fecha válida.');
+        if(!DECISION_EVENT_TYPES[type]) throw new Error('Selecciona un tipo de movimiento válido.');
+        if(!Number.isFinite(amount) || amount<0 || amount>MAX_PRICE) throw new Error('El importe debe estar entre 0 y el límite permitido.');
+        if(!isSupportedCurrency(currency)) throw new Error('Selecciona una moneda compatible.');
+        if(!['once','monthly','yearly'].includes(recurrence)) throw new Error('Selecciona una repetición válida.');
+        addDecisionEvent({id:createUuid(),title:title.slice(0,80),date:date,type:type,amount:amount,currency:currency,recurrence:recurrence,link:link,sourceId:null,confirmedDates:[],createdAt:nowIso()});
+        $('decisionEventTitle').value='';$('decisionEventAmount').value='';
+        state.decisionCalendarSelected=date;state.decisionCalendarCursor=new Date(Date.UTC(Number(date.slice(0,4)),Number(date.slice(5,7))-1,1));
+        renderDecisionCalendar();setDecisionNotice('decisionCalendarNotice','Movimiento añadido al calendario local.','success');
+      }catch(error){ setDecisionNotice('decisionCalendarNotice',error.message || 'No se pudo añadir el movimiento.','error'); }
+    }
+
+    function importDecisionSubscriptions(){
+      try{
+        const expenses=(state.expenses || []).filter(function(item){ return expenseTracker.metrics(item).last; });
+        if(!expenses.length) throw new Error('No hay suscripciones con precios guardados para añadir.');
+        const base=decisionDateFromKey(state.decisionCalendarSelected || decisionTodayKey()),year=base.getUTCFullYear(),month=base.getUTCMonth(),workspace=state.decisionWorkspace;
+        let added=0;
+        expenses.forEach(function(item){
+          const metrics=expenseTracker.metrics(item),date=year+'-'+String(month+1).padStart(2,'0')+'-01',sourceId='expense:'+item.id;
+          if(workspace.calendar.some(function(event){ return event.sourceId===sourceId && event.date===date; })) return;
+          if(workspace.calendar.length>=MAX_DECISION_EVENTS) return;
+          workspace.calendar.push({id:createUuid(),title:item.name,date:date,type:'subscription',amount:metrics.last.price,currency:item.currency,recurrence:item.frequency==='annual'?'yearly':'monthly',link:'subscriptions',sourceId:sourceId,confirmedDates:[],createdAt:nowIso()});added+=1;
+        });
+        if(!added) throw new Error('Esas suscripciones ya estaban añadidas para el mes seleccionado.');
+        saveDecisionWorkspace();renderDecisionCalendar();setDecisionNotice('decisionCalendarNotice',added+' suscripciones añadidas sin duplicar registros existentes.','success');
+      }catch(error){ setDecisionNotice('decisionCalendarNotice',error.message || 'No se pudieron añadir las suscripciones.','warning'); }
+    }
+
+    function addDecisionBusinessFlow(){
+      try{
+        const snapshot=state.decisionSnapshot;if(!snapshot) throw new Error('Completa un negocio válido antes de añadir su flujo.');
+        const date=(state.decisionCalendarSelected || decisionTodayKey()).slice(0,8)+'01',amount=Math.abs(snapshot.monthlyFlow);
+        addDecisionEvent({id:createUuid(),title:'Flujo mensual · '+snapshot.result.input.name,date:date,type:snapshot.monthlyFlow>=0?'income':'payment',amount:amount,currency:snapshot.result.input.currencyMeta.code,recurrence:'monthly',link:'business',sourceId:'business:'+snapshot.result.input.name.slice(0,40),confirmedDates:[],createdAt:nowIso()});
+        setDecisionNotice('decisionCalendarNotice','Flujo mensual del negocio añadido al calendario. Si cambian los datos, puedes eliminar este evento y generarlo de nuevo.','success');
+      }catch(error){ setDecisionNotice('decisionCalendarNotice',error.message || 'No se pudo añadir el flujo.','warning'); }
+    }
+
+    const DECISION_ALERT_DEFINITIONS=Object.freeze({
+      margin_below:Object.freeze({label:'Margen por debajo de',unit:'percent',comparison:'below'}),
+      expense_growth_above:Object.freeze({label:'Aumento de gastos por encima de',unit:'percent',comparison:'above'}),
+      loss_above:Object.freeze({label:'Probabilidad de pérdida por encima de',unit:'percent',comparison:'above'}),
+      cash_below:Object.freeze({label:'Caja por debajo de',unit:'money',comparison:'below'}),
+      roi_below:Object.freeze({label:'ROI por debajo de',unit:'percent',comparison:'below'}),
+      risk_above:Object.freeze({label:'Riesgo por encima de',unit:'score',comparison:'above'})
+    });
+
+    function decisionAlertCurrentValue(metric){
+      const snapshot=state.decisionSnapshot;
+      if(metric==='expense_growth_above'){ const value=decisionExpenseGrowth(); return value==null?null:value*100; }
+      if(!snapshot) return null;
+      if(metric==='margin_below') return snapshot.margin==null?null:snapshot.margin*100;
+      if(metric==='loss_above') return snapshot.lossProbability*100;
+      if(metric==='cash_below') return snapshot.cash;
+      if(metric==='roi_below') return snapshot.roi==null?null:snapshot.roi*100;
+      if(metric==='risk_above') return snapshot.riskScore;
+      return null;
+    }
+
+    function evaluateDecisionAlert(rule){
+      const definition=DECISION_ALERT_DEFINITIONS[rule.metric],value=decisionAlertCurrentValue(rule.metric);
+      const available=definition&&Number.isFinite(value);
+      const triggered=Boolean(rule.enabled&&available&&(definition.comparison==='below'?value<rule.threshold:value>rule.threshold));
+      return {rule:rule,definition:definition,value:value,available:available,triggered:triggered};
+    }
+
+    function decisionAlertValueText(definition,value){
+      if(!definition || !Number.isFinite(value)) return 'Sin datos';
+      if(definition.unit==='percent') return formatNumber(value,0,2)+' %';
+      if(definition.unit==='score') return formatNumber(value,0,0)+'/100';
+      const meta=state.decisionSnapshot?state.decisionSnapshot.result.input.currencyMeta:{custom:false,code:'BRL'};
+      return formatInvestmentMoney(value,meta);
+    }
+
+    function updateDecisionAlertHelp(){
+      const definition=DECISION_ALERT_DEFINITIONS[$('decisionAlertMetric').value];
+      $('decisionAlertThresholdHelp').textContent=definition&&definition.unit==='money'?'Importe en la moneda del negocio.':definition&&definition.unit==='score'?'Valor entre 0 y 100.':'Porcentaje.';
+    }
+
+    function renderDecisionAlertCard(evaluation,compact){
+      const rule=evaluation.rule,definition=evaluation.definition,current=decisionAlertValueText(definition,evaluation.value),threshold=decisionAlertValueText(definition,rule.threshold);
+      return '<article class="decision-alert" data-alert-id="'+escapeXml(rule.id)+'" data-triggered="'+String(evaluation.triggered)+'"><span class="decision-rule-state">'+(evaluation.triggered?'ACTIVA':rule.enabled?'VIGILANDO':'PAUSADA')+'</span><div><strong>'+escapeXml(rule.name)+'</strong><span>'+escapeXml(definition.label+' '+threshold+' · actual: '+current+(evaluation.available?'':' · indicador no disponible'))+'</span></div>'+(compact?'':'<div class="decision-command-actions"><button class="button secondary small" type="button" data-decision-alert-action="toggle">'+(rule.enabled?'Pausar':'Activar')+'</button><button class="button danger small" type="button" data-decision-alert-action="delete">Eliminar</button></div>')+'</article>';
+    }
+
+    function renderDecisionAlerts(){
+      if(!state.decisionWorkspace) return;
+      const evaluations=state.decisionWorkspace.alerts.map(evaluateDecisionAlert),triggered=evaluations.filter(function(item){ return item.triggered; });
+      $('decisionTriggeredAlerts').innerHTML=triggered.length?triggered.map(function(item){ return renderDecisionAlertCard(item,true); }).join(''):'<div class="decision-empty">No hay reglas activadas con los valores actuales.</div>';
+      $('decisionAlertList').innerHTML=evaluations.length?evaluations.map(function(item){ return renderDecisionAlertCard(item,false); }).join(''):'<div class="decision-empty">Todavía no creaste alertas.</div>';
+      if(evaluations.length) setDecisionNotice('decisionAlertNotice',triggered.length?triggered.length+' '+(triggered.length===1?'regla requiere':'reglas requieren')+' atención ahora.':'Todas las reglas disponibles están dentro de sus umbrales.',triggered.length?'warning':'success');
+    }
+
+    function addDecisionAlert(){
+      try{
+        const workspace=state.decisionWorkspace;
+        if(workspace.alerts.length>=MAX_DECISION_ALERTS) throw new Error('Puedes guardar un máximo de '+MAX_DECISION_ALERTS+' alertas.');
+        const metric=$('decisionAlertMetric').value,definition=DECISION_ALERT_DEFINITIONS[metric],threshold=parseLocalized($('decisionAlertThreshold').value),name=String($('decisionAlertName').value || '').trim();
+        if(!definition) throw new Error('Selecciona una regla válida.');
+        if(!Number.isFinite(threshold) || Math.abs(threshold)>MAX_PRICE) throw new Error('Escribe un umbral numérico válido.');
+        if(definition.unit==='score'&&(threshold<0||threshold>100)) throw new Error('El riesgo debe estar entre 0 y 100.');
+        workspace.alerts.unshift({id:createUuid(),name:(name||definition.label+' '+decisionAlertValueText(definition,threshold)).slice(0,80),metric:metric,threshold:threshold,enabled:true,createdAt:nowIso()});
+        $('decisionAlertName').value='';$('decisionAlertThreshold').value='';
+        saveDecisionWorkspace();renderDecisionAlerts();
+      }catch(error){ setDecisionNotice('decisionAlertNotice',error.message || 'No se pudo crear la alerta.','error'); }
+    }
+
+    function decisionWorkspaceExportPayload(){
+      return {
+        schemaVersion:DECISION_WORKSPACE_SCHEMA_VERSION,type:'decision-center-workspace',appVersion:APP_VERSION,exportedAt:nowIso(),
+        workspace:state.decisionWorkspace,
+        portfolio:state.investmentPortfolio
+      };
+    }
+
+    function exportDecisionWorkspace(){
+      downloadJsonFile('centro-de-decisiones-v0160-'+new Date().toISOString().slice(0,10)+'.json',decisionWorkspaceExportPayload());
+      setDecisionNotice('decisionDataNotice','Respaldo completo descargado: dashboard, objetivos, escenarios, portafolio, calendario, alertas y preferencias.','success');
+    }
+
+    function exportDecisionSummaryCsv(){
+      const snapshot=state.decisionSnapshot,workspace=state.decisionWorkspace,rows=[['version','seccion','elemento','valor','detalle']];
+      if(snapshot){
+        const result=snapshot.result,meta=result.input.currencyMeta;
+        rows.push([APP_VERSION,'decision','estado',snapshot.title,snapshot.reason]);
+        rows.push([APP_VERSION,'decision','roi_anual',snapshot.roi==null?'':snapshot.roi,'proporción']);
+        rows.push([APP_VERSION,'decision','riesgo',snapshot.riskScore,'0-100']);
+        rows.push([APP_VERSION,'decision','probabilidad_perdida',snapshot.lossProbability,snapshot.lossSource]);
+        rows.push([APP_VERSION,'decision','margen',snapshot.margin==null?'':snapshot.margin,'proporción']);
+        rows.push([APP_VERSION,'decision','payback_meses',snapshot.payback==null?'':snapshot.payback,'']);
+        rows.push([APP_VERSION,'decision','punto_equilibrio_unidades',snapshot.breakEvenUnits==null?'':snapshot.breakEvenUnits,'']);
+        rows.push([APP_VERSION,'decision','caja_final',snapshot.cash,meta.code]);
+        rows.push([APP_VERSION,'decision','flujo_mensual',snapshot.monthlyFlow,meta.code]);
+        rows.push([APP_VERSION,'decision','van',snapshot.npv,meta.code]);
+        rows.push([APP_VERSION,'decision','tir_anual',snapshot.irr==null?'':snapshot.irr,'proporción']);
+      }
+      workspace.goals.forEach(function(goal){ rows.push([APP_VERSION,'objetivo',goal.name,goal.target,goal.metric]); });
+      (state.decisionScenarioEvaluation || []).forEach(function(item){ rows.push([APP_VERSION,'escenario',item.node.name,item.result?item.result.annualProfit:'',item.result?'beneficio anual':'sin cálculo']); });
+      state.investmentPortfolio.forEach(function(item){ rows.push([APP_VERSION,'portafolio',item.name,item.metrics.initialInvestment,(item.currencyMeta&&item.currencyMeta.code)||'']); });
+      workspace.calendar.forEach(function(event){ rows.push([APP_VERSION,'calendario',event.title,event.amount,event.date+' · '+event.currency+' · '+event.recurrence]); });
+      workspace.alerts.forEach(function(rule){ rows.push([APP_VERSION,'alerta',rule.name,rule.threshold,rule.metric+' · '+(rule.enabled?'activa':'pausada')]); });
+      downloadCsvFile('resumen-centro-de-decisiones-v0160.csv',rows);
+      setDecisionNotice('decisionDataNotice','Resumen CSV exportado con métricas y registros del Centro de Decisiones.','success');
+    }
+
+    function sanitizeImportedDecisionPortfolio(items){
+      return (Array.isArray(items)?items:[]).slice(0,MAX_INVESTMENT_PORTFOLIO).filter(function(item){
+        return item&&item.id&&item.name&&item.metrics&&item.draft&&item.currencyMeta&&/^[A-Z][A-Z0-9]{1,7}$/.test(String(item.currencyMeta.code||''));
+      }).map(function(item){ return Object.assign({},item,{id:String(item.id).slice(0,80),name:String(item.name).slice(0,80)}); });
+    }
+
+    async function importDecisionWorkspace(file){
+      if(!file) return;
+      try{
+        if(file.size>MAX_IMPORT_BYTES) throw new Error('El archivo supera el límite de 8 MB.');
+        const text=await readInvestmentDraftFile(file),parsed=JSON.parse(text.replace(/^\ufeff/,''));
+        if(!parsed || (parsed.type&&parsed.type!=='decision-center-workspace') || !(parsed.workspace||parsed.dashboard)) throw new Error('El archivo no es un respaldo compatible del Centro de Decisiones.');
+        const incoming=sanitizeDecisionWorkspace(parsed),incomingPortfolio=Array.isArray(parsed.portfolio)?sanitizeImportedDecisionPortfolio(parsed.portfolio):null;
+        const summary=incoming.goals.length+' objetivos, '+Math.max(0,incoming.scenarios.length-1)+' ramas, '+incoming.calendar.length+' eventos y '+incoming.alerts.length+' alertas';
+        if(!window.confirm('Se reemplazará únicamente la configuración del Centro de Decisiones por '+summary+'. Se guardará una copia local para deshacer. Inversiones, historial y demás herramientas no se borrarán. ¿Continuar?')) return;
+        safeStorageSet(KEYS.decisionWorkspaceBackup,{schemaVersion:1,type:'decision-center-import-backup',createdAt:nowIso(),workspace:state.decisionWorkspace,portfolio:state.investmentPortfolio},{silent:true});
+        state.decisionWorkspace=incoming;
+        if(incomingPortfolio){ state.investmentPortfolio=incomingPortfolio;saveInvestmentPortfolio(); }
+        saveDecisionWorkspace();$('decisionUndoImportButton').hidden=false;
+        state.decisionTab=incoming.preferences.tab;setDecisionTab(state.decisionTab,{save:false});
+        $('decisionExplanationLevel').value=incoming.preferences.explanationLevel;
+        refreshDecisionCenter();setDecisionNotice('decisionDataNotice','Importación completada. Puedes deshacerla mientras permanezca la copia local de seguridad.','success');
+      }catch(error){ setDecisionNotice('decisionDataNotice',error.message || 'No se pudo importar el respaldo.','error'); }
+    }
+
+    function restoreDecisionImportBackup(){
+      const backup=safeStorageGet(KEYS.decisionWorkspaceBackup,null);
+      if(!backup || !backup.workspace){ setDecisionNotice('decisionDataNotice','No hay una importación anterior para restaurar.','warning');$('decisionUndoImportButton').hidden=true;return; }
+      state.decisionWorkspace=sanitizeDecisionWorkspace(backup.workspace);
+      if(Array.isArray(backup.portfolio)){ state.investmentPortfolio=sanitizeImportedDecisionPortfolio(backup.portfolio);saveInvestmentPortfolio(); }
+      saveDecisionWorkspace();safeStorageRemove(KEYS.decisionWorkspaceBackup);$('decisionUndoImportButton').hidden=true;
+      state.decisionTab=state.decisionWorkspace.preferences.tab;setDecisionTab(state.decisionTab,{save:false});
+      $('decisionExplanationLevel').value=state.decisionWorkspace.preferences.explanationLevel;
+      refreshDecisionCenter();setDecisionNotice('decisionDataNotice','Se restauró la configuración anterior a la importación.','success');
+    }
+
+    function moveDecisionWidget(key,direction){
+      const dashboard=state.decisionWorkspace.dashboard,order=dashboard.order,index=order.indexOf(key);
+      if(index<0) return;
+      let target=index+direction;
+      while(target>=0&&target<order.length&&dashboard.hidden.includes(order[target])) target+=direction;
+      if(target<0||target>=order.length) return;
+      const value=order[index];order[index]=order[target];order[target]=value;saveDecisionWorkspace();renderDecisionDashboard();
+    }
+
+    function bindDecisionEvents(){
+      $$('[data-decision-tab]').forEach(function(button){
+        button.addEventListener('click',function(){ setDecisionTab(button.dataset.decisionTab); });
+        button.addEventListener('keydown',function(event){
+          if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+          event.preventDefault();
+          const tabs=$$('[data-decision-tab]'),current=tabs.indexOf(button);
+          const index=event.key==='Home'?0:event.key==='End'?tabs.length-1:(current+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
+          setDecisionTab(tabs[index].dataset.decisionTab,{focus:true});
+        });
+      });
+      $('decisionRefreshButton').addEventListener('click',function(){ if(state.investmentInitialized) calculateAndRenderInvestment({save:false,announce:true});refreshDecisionCenter({announce:true}); });
+      $('decisionExportJsonButton').addEventListener('click',exportDecisionWorkspace);
+      $('decisionExportCsvButton').addEventListener('click',exportDecisionSummaryCsv);
+      $('decisionImportButton').addEventListener('click',function(){ $('decisionImportInput').click(); });
+      $('decisionImportInput').addEventListener('change',function(event){ const file=event.target.files&&event.target.files[0];event.target.value='';importDecisionWorkspace(file); });
+      $('decisionUndoImportButton').addEventListener('click',function(){ setDecisionNotice('decisionDataNotice','Se restaurará únicamente la copia anterior del Centro de Decisiones. Pulsa de nuevo para confirmar.','warning');armLocalAction(this,'Confirmar restauración',restoreDecisionImportBackup); });
+      $('decisionExplainButton').addEventListener('click',renderDecisionExplanation);
+      $('decisionExplanationLevel').addEventListener('change',renderDecisionExplanation);
+      $('decisionOpenGoalButton').addEventListener('click',function(){ setDecisionTab('goals');window.setTimeout(function(){ $('decisionGoalTarget').focus(); },40); });
+      $('decisionWidgetGrid').addEventListener('click',function(event){
+        const button=event.target.closest('[data-decision-widget-action]'),card=event.target.closest('[data-widget-key]');if(!button||!card)return;
+        const key=card.dataset.widgetKey,action=button.dataset.decisionWidgetAction,dashboard=state.decisionWorkspace.dashboard;
+        if(action==='up'||action==='down') moveDecisionWidget(key,action==='up'?-1:1);
+        else if(action==='hide'){ if(!dashboard.hidden.includes(key))dashboard.hidden.push(key);saveDecisionWorkspace();renderDecisionDashboard(); }
+        else if(action==='expand'){ dashboard.expanded=dashboard.expanded.includes(key)?dashboard.expanded.filter(function(item){return item!==key;}):dashboard.expanded.concat(key);saveDecisionWorkspace();renderDecisionDashboard(); }
+      });
+      $('decisionHiddenWidgets').addEventListener('click',function(event){ const button=event.target.closest('[data-decision-show-widget]');if(!button)return;state.decisionWorkspace.dashboard.hidden=state.decisionWorkspace.dashboard.hidden.filter(function(key){return key!==button.dataset.decisionShowWidget;});saveDecisionWorkspace();renderDecisionDashboard(); });
+      $('decisionResetDashboardButton').addEventListener('click',function(){ setDecisionNotice('decisionDataNotice','Se restaurará solo la disposición del dashboard; objetivos, eventos y alertas permanecerán intactos. Pulsa de nuevo para confirmar.','warning');armLocalAction(this,'Confirmar disposición',function(){ state.decisionWorkspace.dashboard={order:DECISION_WIDGET_KEYS.slice(),hidden:[],expanded:[]};saveDecisionWorkspace();renderDecisionDashboard();setDecisionNotice('decisionDataNotice','Disposición original del dashboard restaurada.','success'); }); });
+      $('decisionGoalMetric').addEventListener('change',updateDecisionGoalHelp);
+      $('decisionGoalForm').addEventListener('submit',function(event){ event.preventDefault();calculateDecisionGoal(); });
+      $('decisionSaveGoalButton').addEventListener('click',saveCurrentDecisionGoal);
+      $('decisionGoalList').addEventListener('click',function(event){
+        const button=event.target.closest('[data-decision-goal-action]'),card=event.target.closest('[data-goal-id]');if(!button||!card)return;
+        const goal=state.decisionWorkspace.goals.find(function(item){return item.id===card.dataset.goalId;});if(!goal)return;
+        if(button.dataset.decisionGoalAction==='recalculate'){ $('decisionGoalName').value=goal.name;$('decisionGoalMetric').value=goal.metric;$('decisionGoalTarget').value=String(goal.target);updateDecisionGoalHelp();calculateDecisionGoal();window.scrollTo({top:$('decisionGoalForm').getBoundingClientRect().top+window.scrollY-100,behavior:'smooth'}); }
+        else{ setDecisionNotice('decisionGoalNotice','Se eliminará únicamente el objetivo “'+goal.name+'”. Pulsa de nuevo para confirmar.','warning');armLocalAction(button,'Confirmar',function(){ state.decisionWorkspace.goals=state.decisionWorkspace.goals.filter(function(item){return item.id!==goal.id;});saveDecisionWorkspace();renderDecisionGoals();setDecisionNotice('decisionGoalNotice','Objetivo eliminado; los demás datos permanecen intactos.','success'); }); }
+      });
+      $('decisionScenarioForm').addEventListener('submit',function(event){ event.preventDefault();addDecisionScenario(); });
+      $('decisionExportScenariosButton').addEventListener('click',exportDecisionScenarios);
+      $('decisionTreeWrap').addEventListener('click',function(event){
+        const button=event.target.closest('[data-decision-scenario-action]'),card=event.target.closest('[data-scenario-id]');if(!button||!card)return;
+        const node=state.decisionWorkspace.scenarios.find(function(item){return item.id===card.dataset.scenarioId;});if(!node)return;
+        if(button.dataset.decisionScenarioAction==='child'){ $('decisionScenarioParent').value=node.id;$('decisionScenarioName').focus(); }
+        else{
+          const remove=decisionScenarioDescendants(node.id),count=remove.size;
+          setDecisionNotice('decisionScenarioNotice','Se eliminará la rama “'+node.name+'”'+(count>1?' y '+(count-1)+' subramas':'')+'. Pulsa de nuevo para confirmar.','warning');
+          armLocalAction(button,'Confirmar',function(){ state.decisionWorkspace.scenarios=state.decisionWorkspace.scenarios.filter(function(item){return !remove.has(item.id);});saveDecisionWorkspace();renderDecisionScenarios();setDecisionNotice('decisionScenarioNotice','Rama eliminada. Los demás escenarios permanecen intactos.','success'); });
+        }
+      });
+      $('decisionAddPortfolioButton').addEventListener('click',addCurrentDecisionPortfolio);
+      $('decisionPortfolioExportButton').addEventListener('click',exportDecisionPortfolio);
+      $('decisionPortfolioCurrency').addEventListener('change',function(){ state.decisionWorkspace.preferences.portfolioCurrency=this.value;saveDecisionWorkspace();renderDecisionPortfolio(); });
+      $('decisionPortfolioBody').addEventListener('click',function(event){
+        const button=event.target.closest('[data-decision-portfolio-action]'),row=event.target.closest('[data-portfolio-id]');if(!button||!row)return;
+        const item=state.investmentPortfolio.find(function(record){return record.id===row.dataset.portfolioId;});if(!item)return;
+        if(button.dataset.decisionPortfolioAction==='open'){ restoreInvestmentRecord(item.id);showRoute('inversiones'); }
+        else{ setDecisionNotice('decisionPortfolioNotice','Se eliminará únicamente “'+item.name+'” del portafolio. Pulsa de nuevo para confirmar.','warning');armLocalAction(button,'Confirmar',function(){ state.investmentPortfolio=state.investmentPortfolio.filter(function(record){return record.id!==item.id;});saveInvestmentPortfolio();renderDecisionPortfolio();setDecisionNotice('decisionPortfolioNotice','Proyecto eliminado del portafolio; su borrador y otros proyectos no se tocaron.','success'); }); }
+      });
+      $('decisionEventForm').addEventListener('submit',function(event){event.preventDefault();submitDecisionEvent();});
+      $('decisionImportSubscriptionsButton').addEventListener('click',importDecisionSubscriptions);
+      $('decisionAddBusinessFlowButton').addEventListener('click',addDecisionBusinessFlow);
+      $('decisionCalendarPrevious').addEventListener('click',function(){navigateDecisionCalendar(-1);});
+      $('decisionCalendarToday').addEventListener('click',function(){ const today=decisionDateFromKey(decisionTodayKey());state.decisionCalendarSelected=decisionTodayKey();state.decisionCalendarCursor=today;renderDecisionCalendar(); });
+      $('decisionCalendarNext').addEventListener('click',function(){navigateDecisionCalendar(1);});
+      $$('[data-decision-calendar-view]').forEach(function(button){button.addEventListener('click',function(){setDecisionCalendarView(button.dataset.decisionCalendarView);});});
+      $('decisionCalendarView').addEventListener('click',function(event){
+        const day=event.target.closest('[data-decision-day]'),month=event.target.closest('[data-decision-month]');
+        if(day){ state.decisionCalendarSelected=day.dataset.decisionDay;const date=decisionDateFromKey(day.dataset.decisionDay);state.decisionCalendarCursor=new Date(Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),1));renderDecisionCalendar(); }
+        else if(month){ state.decisionCalendarCursor=new Date(Date.UTC(state.decisionCalendarCursor.getUTCFullYear(),Number(month.dataset.decisionMonth),1));state.decisionCalendarSelected=decisionDateKey(state.decisionCalendarCursor);setDecisionCalendarView('month'); }
+      });
+      $('decisionSelectedEvents').addEventListener('click',function(event){
+        const button=event.target.closest('[data-decision-event-action]'),card=event.target.closest('[data-event-id]');if(!button||!card)return;
+        const item=state.decisionWorkspace.calendar.find(function(record){return record.id===card.dataset.eventId;}),key=card.dataset.occurrenceDate;if(!item)return;
+        if(button.dataset.decisionEventAction==='confirm'){ item.confirmedDates=item.confirmedDates.includes(key)?item.confirmedDates.filter(function(value){return value!==key;}):item.confirmedDates.concat(key).slice(-100);saveDecisionWorkspace();renderDecisionCalendar(); }
+        else{ setDecisionNotice('decisionCalendarNotice','Se eliminará únicamente el evento “'+item.title+'” y todas sus repeticiones futuras. Pulsa de nuevo para confirmar.','warning');armLocalAction(button,'Confirmar',function(){ state.decisionWorkspace.calendar=state.decisionWorkspace.calendar.filter(function(record){return record.id!==item.id;});saveDecisionWorkspace();renderDecisionCalendar();renderDecisionAlerts();setDecisionNotice('decisionCalendarNotice','Evento eliminado; los demás movimientos permanecen intactos.','success'); }); }
+      });
+      $('decisionAlertMetric').addEventListener('change',updateDecisionAlertHelp);
+      $('decisionAlertForm').addEventListener('submit',function(event){event.preventDefault();addDecisionAlert();});
+      $('decisionAlertList').addEventListener('click',function(event){
+        const button=event.target.closest('[data-decision-alert-action]'),card=event.target.closest('[data-alert-id]');if(!button||!card)return;
+        const rule=state.decisionWorkspace.alerts.find(function(item){return item.id===card.dataset.alertId;});if(!rule)return;
+        if(button.dataset.decisionAlertAction==='toggle'){rule.enabled=!rule.enabled;saveDecisionWorkspace();renderDecisionAlerts();}
+        else{setDecisionNotice('decisionAlertNotice','Se eliminará únicamente la regla “'+rule.name+'”. Pulsa de nuevo para confirmar.','warning');armLocalAction(button,'Confirmar',function(){state.decisionWorkspace.alerts=state.decisionWorkspace.alerts.filter(function(item){return item.id!==rule.id;});saveDecisionWorkspace();renderDecisionAlerts();});}
+      });
+      window.addEventListener('pagehide',function(){if(state.decisionInitialized)saveDecisionWorkspace();});
+    }
+
+    function initDecisionCenter(){
+      if(state.decisionInitialized) return;
+      loadDecisionWorkspace();
+      const today=decisionTodayKey(),date=decisionDateFromKey(today);
+      state.decisionCalendarSelected=today;state.decisionCalendarCursor=new Date(Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),1));
+      $('decisionEventDate').value=today;
+      const currencyOptions=CURRENCY_CODES.map(function(code){return '<option value="'+code+'">'+code+' — '+escapeXml(CURRENCIES[code].name)+'</option>';}).join('');
+      $('decisionEventCurrency').innerHTML=currencyOptions;
+      $('decisionEventCurrency').value=state.investmentResult&&isSupportedCurrency(state.investmentResult.input.currencyMeta.code)?state.investmentResult.input.currencyMeta.code:'BRL';
+      $('decisionExplanationLevel').value=state.decisionWorkspace.preferences.explanationLevel;
+      $('decisionUndoImportButton').hidden=!safeStorageGet(KEYS.decisionWorkspaceBackup,null);
+      bindDecisionEvents();state.decisionInitialized=true;
+      state.decisionTab=state.decisionWorkspace.preferences.tab;setDecisionTab(state.decisionTab,{save:false});
+      updateDecisionGoalHelp();updateDecisionAlertHelp();saveDecisionWorkspace();refreshDecisionCenter();
+    }
+
     function clearBusinessModuleOutputs(){
       const metrics=['businessLoanPayment','businessLoanInterest','businessLoanAmortized','businessLoanOutstanding','businessLoanTotalCost','businessLoanCashImpact','inventoryValue','inventoryCogs','inventoryMargin','inventoryTurnover','inventoryUnitsAvailable','inventoryReorders','businessGoalRevenue','businessGoalUnits','businessGoalMonthlyProfit','businessGoalMargin','businessGoalGrowth','businessGoalTime','businessAssetAcquisition','businessAssetDepreciation','businessAssetCurrentValue','businessAssetProjectedValue'];
       metrics.forEach(function(id){ if($(id)) setInvestmentMetric(id,'—'); });
@@ -17825,7 +19366,7 @@
       $('investmentResetButton').addEventListener('click',function(){ armLocalAction(this,'Confirmar reinicio',function(){ safeStorageRemove(KEYS.investmentDraft); resetInvestmentForm(); state.investmentActiveProjectId=null; state.investmentLastSavedAt=null; state.investmentSaveFailed=false; setInvestmentDraftStatus('saved','Formulario vacío','El guardado anterior se eliminó de este navegador.'); updateInvestmentProjectSyncState(); setFeatureStatus('investmentNotice','Formulario vacío. No se cargaron nombres, productos ni importes de ejemplo.','success'); }); });
       $('investmentExportRunButton').addEventListener('click',runInvestmentExport);
       $('investmentExportScenariosButton').addEventListener('click',exportInvestmentScenarios); $('investmentExportSensitivityButton').addEventListener('click',exportInvestmentSensitivity);
-      $('investmentExportPortfolioButton').addEventListener('click',function(){ downloadJsonFile('comparacion-inversiones-v0150.json',{schemaVersion:1,appVersion:APP_VERSION,createdAt:nowIso(),items:state.investmentPortfolio}); });
+      $('investmentExportPortfolioButton').addEventListener('click',function(){ downloadJsonFile('comparacion-inversiones-v0160.json',{schemaVersion:1,appVersion:APP_VERSION,createdAt:nowIso(),items:state.investmentPortfolio}); });
       $('investmentClearPortfolioButton').addEventListener('click',function(){ armLocalAction(this,'Confirmar borrado',function(){ state.investmentPortfolio=[]; saveInvestmentPortfolio(); renderInvestmentPortfolio(); renderInvestmentCharts(); setFeatureStatus('investmentNotice','Comparación local eliminada.','success'); }); });
       $('investmentProjectList').addEventListener('click',handleInvestmentProjectAction);
       BUSINESS_SIMULATION_FIELD_IDS.forEach(function(id){
@@ -18202,7 +19743,7 @@
       $('copyContractReceiptButton').addEventListener('click',function(){ if(state.contractResult) copyText(contractReceiptText(state.contractResult),'Comprobante copiado.'); });
       $('exportContractJsonButton').addEventListener('click',function(){
         if(!state.contractResult) return;
-        downloadJsonFile('reajuste-contrato-v0150.json',Object.assign({},state.contractResult,{
+        downloadJsonFile('reajuste-contrato-v0160.json',Object.assign({},state.contractResult,{
           schemaVersion:FILE_SCHEMA_VERSION,
           appVersion:APP_VERSION,
           type:'contract-adjustment',
@@ -18210,7 +19751,7 @@
           createdAt:state.contractResult.fetchedAt || nowIso()
         }));
       });
-      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0150.pdf','contract'); });
+      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0160.pdf','contract'); });
       $('exportContractComparisonCsvButton').addEventListener('click',exportContractComparisonCsv);
       $('labForm').addEventListener('submit',function(event){ event.preventDefault(); calculateLab(); });
       $('saveLabButton').addEventListener('click',saveLabConfig);
@@ -18230,11 +19771,11 @@
       });
       $('loadAdvancedExampleButton').addEventListener('click',loadAdvancedExample);
       $('exportAdvancedCsvButton').addEventListener('click',exportAdvancedCsv);
-      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0150.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
+      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0160.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
       $('reportForm').addEventListener('submit',function(event){ event.preventDefault(); try{ renderReportPreview(buildReportData()); }catch(error){ setNotice($('reportNotice'),'Selecciona al menos una sección.','error'); } });
-      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0150.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
+      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0160.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
       $('exportReportCsvButton').addEventListener('click',exportReportCsv);
-      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0150.json',state.reportResult); });
+      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0160.json',state.reportResult); });
       $('installAppButton').addEventListener('click',promptPwaInstall);
       $('menuButton').addEventListener('click',function(){
         const opening = $('mainNav').dataset.open !== 'true';
@@ -18270,7 +19811,7 @@
       $('syncEnabled').addEventListener('change',function(){ setSyncEnabled(this.checked,{startSync:this.checked}); });
       $('analyticsConsent').addEventListener('change',function(){ setAnalyticsConsent(this.checked); });
       $('betaContinueButton').addEventListener('click',function(){ saveBetaMeta({betaWelcomeSeen:true,lastWelcomeVersion:WELCOME_STORAGE_VERSION}); if($('betaWelcomeDialog').open) $('betaWelcomeDialog').close(); });
-      $('betaNewsButton').addEventListener('click',function(){ saveBetaMeta({betaWelcomeSeen:true,lastWelcomeVersion:WELCOME_STORAGE_VERSION}); if($('betaWelcomeDialog').open) $('betaWelcomeDialog').close(); showRoute('cuenta'); window.setTimeout(function(){ $('aboutAppTitle').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',block:'start'}); },80); });
+      $('betaNewsButton').addEventListener('click',function(){ saveBetaMeta({betaWelcomeSeen:true,lastWelcomeVersion:WELCOME_STORAGE_VERSION}); if($('betaWelcomeDialog').open) $('betaWelcomeDialog').close(); showRoute('decisiones'); });
       $('betaWelcomeDialog').addEventListener('close',function(){ saveBetaMeta({betaWelcomeSeen:true,lastWelcomeVersion:WELCOME_STORAGE_VERSION}); });
       $('keepLocalButton').addEventListener('click',function(){ chooseMigration(false); });
       $('migrateSyncButton').addEventListener('click',function(){ chooseMigration(true); });
@@ -18323,7 +19864,7 @@
       });
       $('copyLinkButton').addEventListener('click',function(){ copyText(buildShareUrl(),'Enlace del escenario copiado.'); });
       $('copyResultButton').addEventListener('click',function(){ copyText(resultPlainText(),'Resultado copiado.'); });
-      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0150.pdf','calculator'); });
+      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0160.pdf','calculator'); });
       $('exportJsonButton').addEventListener('click',exportResultJson);
       $('exportCsvButton').addEventListener('click',exportResultCsv);
       $('refreshQuotesButton').addEventListener('click',function(){ refreshQuotes(); });
@@ -18357,7 +19898,7 @@
       $('salaryShareButton').addEventListener('click',function(){ copyText(buildSalaryShareUrl(),'Enlace del análisis salarial copiado.'); });
       $('salaryExportCsvButton').addEventListener('click',exportSalaryCsv);
       $('salaryExportJsonButton').addEventListener('click',exportSalaryJson);
-      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0150.pdf','salary'); });
+      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0160.pdf','salary'); });
       $('salaryExportPngButton').addEventListener('click',exportSalaryChartPng);
 
       $('saveScenarioButton').addEventListener('click',function(){
@@ -18487,7 +20028,7 @@
       $('saveBasketButton').addEventListener('click',saveBasket);
       $('weightedCurrency').addEventListener('change',function(){ state.basketCurrency = normalizeCurrencyCode(this.value,'BRL'); });
       $('exportBasketButton').addEventListener('click',function(){
-        downloadJsonFile('cesta-ponderada-v0150.json',weightedBasketPayload());
+        downloadJsonFile('cesta-ponderada-v0160.json',weightedBasketPayload());
       });
       $('importBasketButton').addEventListener('click',function(){ $('basketFileInput').click(); });
       $('basketFileInput').addEventListener('change',function(event){
@@ -18623,7 +20164,7 @@
       });
       $$('[data-download-personal-chart]').forEach(function(button){
         button.addEventListener('click',function(){
-          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0150.png');
+          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0160.png');
         });
       });
 
@@ -18704,6 +20245,7 @@
       $('footerYear').textContent = String(new Date().getFullYear());
       setupPwaInstall();
       bindEvents();
+      initDecisionCenter();
       initUniversalExport();
       updateConnectionState();
       loadExternalCaches();
