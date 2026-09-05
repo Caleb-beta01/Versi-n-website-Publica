@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#03040a">
+  <meta name="theme-color" content="#ffd400">
   <meta name="color-scheme" content="dark">
   <meta name="description" content="Calcula inflación y analiza negocios con resultados claros: dinero invertido, ingresos, gastos, ganancias, pérdidas y recuperación.">
   <meta name="application-name" content="Inflation Insights">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Inflation Insights">
-  <link rel="manifest" href="./manifest-v0.18.0-beta.webmanifest">
+  <link rel="manifest" href="./manifest-v0.17.0-beta.webmanifest">
   <link rel="icon" href="./icons/inflation-insights-192.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/inflation-insights-192.png">
-  <title>Inflation Insights · v0.18.0-Beta</title>
+  <title>Calculadora de Inflación · v0.17.0-Beta</title>
   <style>
     :root{
       --bg:#07111f;
@@ -2238,6 +2238,299 @@
     .goal-scenario strong{font-size:1.5rem}
     .source-disclosure{margin-top:12px;color:var(--muted);font-size:.82rem}
 
+    /* v0.12.0-Beta · 3D Experience Update */
+    body[data-route="inicio"]{background:#050507}
+    body[data-route="inicio"] .app-header{
+      border-bottom-color:#ffd400;
+      color:#fff;
+      background:rgba(5,5,7,.9);
+      box-shadow:0 12px 42px rgba(0,0,0,.3);
+      backdrop-filter:blur(18px);
+    }
+    body[data-route="inicio"] .brand{color:#fff;background:transparent}
+    body[data-route="inicio"] .brand-mark{color:#111;background:#ffd400}
+    body[data-route="inicio"] .version-chip{color:#111;background:#ffd400}
+    body[data-route="inicio"] .header-status{color:#fff;background:#16161b;border-color:#ffd400}
+    body[data-route="inicio"] .menu-button{color:#111;background:#ffd400}
+    body[data-route="inicio"] .main-nav{background:rgba(5,5,7,.86)}
+    body[data-route="inicio"] .nav-link{color:#fff;background:transparent;border-color:#ffd400}
+    body[data-route="inicio"] .nav-link:hover,
+    body[data-route="inicio"] .nav-link[aria-current="page"]{color:#111;background:#ffd400}
+    #view-inicio.home-view{
+      position:relative;
+      width:100vw;
+      max-width:none;
+      margin-left:calc(50% - 50vw);
+      padding:0;
+      overflow:clip;
+      color:#fff;
+      background:#050507;
+      isolation:isolate;
+    }
+    .landing3d{
+      --landing-yellow:#ffd400;
+      --landing-orange:#ff6900;
+      --landing-cyan:#55f5e6;
+      --landing-paper:#f7f5ef;
+      position:relative;
+      min-height:100vh;
+      overflow:clip;
+      color:#fff;
+      background:
+        radial-gradient(circle at 74% 8%,rgba(255,105,0,.16),transparent 34rem),
+        radial-gradient(circle at 12% 52%,rgba(85,245,230,.1),transparent 36rem),
+        #050507;
+    }
+    .landing-canvas{
+      position:fixed;
+      z-index:0;
+      inset:74px 0 0;
+      width:100vw;
+      height:calc(100svh - 74px);
+      pointer-events:none;
+    }
+    .landing3d::before{
+      content:"";
+      position:fixed;
+      z-index:0;
+      inset:74px 0 0;
+      pointer-events:none;
+      opacity:.28;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+      background-size:clamp(34px,3vw,66px) clamp(34px,3vw,66px);
+      mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 80%,transparent);
+    }
+    .landing-toolbar{
+      position:sticky;
+      z-index:8;
+      top:86px;
+      width:min(calc(100% - 32px),1380px);
+      min-height:52px;
+      margin:16px auto -68px;
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      pointer-events:none;
+    }
+    .landing-control{
+      min-height:48px;
+      display:flex;
+      align-items:center;
+      gap:9px;
+      padding:7px 10px;
+      border:2px solid rgba(255,212,0,.68);
+      color:#fff;
+      background:rgba(8,8,11,.78);
+      box-shadow:0 12px 34px rgba(0,0,0,.28);
+      backdrop-filter:blur(16px);
+      pointer-events:auto;
+    }
+    .landing-control label{font-size:.72rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+    .landing-control select{
+      min-height:34px;
+      padding:4px 28px 4px 8px;
+      border:1px solid #fff;
+      color:#fff;
+      background:#17171d;
+      font-weight:800;
+    }
+    .landing-control-state{max-width:150px;color:#d9d9df;font-size:.68rem;font-weight:750}
+    .landing-motion-button{
+      min-height:48px;
+      padding:8px 13px;
+      border:2px solid rgba(255,255,255,.5);
+      color:#fff;
+      background:rgba(8,8,11,.78);
+      cursor:pointer;
+      font-weight:900;
+      pointer-events:auto;
+    }
+    .landing-motion-button:hover{color:#111;background:var(--landing-yellow);border-color:#111}
+    .landing-scene{
+      position:relative;
+      z-index:2;
+      width:min(100%,1600px);
+      min-height:100svh;
+      margin:auto;
+      padding:clamp(108px,11vw,190px) clamp(22px,6vw,104px) clamp(84px,10vw,160px);
+      display:grid;
+      align-items:center;
+      opacity:.72;
+      transform:translateY(34px) scale(.985);
+      transition:opacity .7s ease,transform .9s cubic-bezier(.2,.75,.15,1);
+    }
+    .landing-scene[data-active="true"]{opacity:1;transform:none}
+    .landing-hero{grid-template-columns:minmax(0,1.12fr) minmax(330px,.88fr);gap:clamp(38px,7vw,120px)}
+    .landing-copy{max-width:980px}
+    .landing-eyebrow{
+      width:max-content;
+      max-width:100%;
+      margin:0 0 26px;
+      padding:8px 12px;
+      border:2px solid var(--landing-yellow);
+      color:var(--landing-yellow);
+      background:rgba(0,0,0,.56);
+      font-size:clamp(.7rem,.9vw,.9rem);
+      font-weight:950;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+    }
+    .landing-title{
+      max-width:1000px;
+      margin:0;
+      color:#fff;
+      font-size:clamp(3.6rem,8.1vw,9.2rem);
+      font-weight:950;
+      line-height:.84;
+      letter-spacing:-.072em;
+      text-transform:uppercase;
+      text-wrap:balance;
+    }
+    .landing-title span{
+      display:block;
+      color:transparent;
+      background:linear-gradient(110deg,#fff 4%,var(--landing-yellow) 42%,var(--landing-orange) 88%);
+      -webkit-background-clip:text;
+      background-clip:text;
+    }
+    .landing-lede{
+      max-width:760px;
+      margin:30px 0 0;
+      color:#d6d7df;
+      font-size:clamp(1rem,1.55vw,1.35rem);
+      font-weight:650;
+      line-height:1.65;
+    }
+    .landing-actions{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px}
+    .landing-primary,.landing-secondary{
+      min-height:64px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      padding:15px 23px;
+      border:3px solid #111;
+      cursor:pointer;
+      font-weight:950;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+    }
+    .landing-primary{color:#111;background:var(--landing-yellow);box-shadow:8px 8px 0 var(--landing-orange)}
+    .landing-secondary{color:#fff;background:#121218;border-color:#fff;box-shadow:7px 7px 0 rgba(255,255,255,.18)}
+    .landing-primary:hover,.landing-secondary:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--landing-orange)}
+    .landing-metrics{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .landing-metric{padding:14px;border-top:2px solid rgba(255,255,255,.32);background:linear-gradient(180deg,rgba(255,255,255,.055),transparent)}
+    .landing-metric strong{display:block;color:var(--landing-yellow);font-size:clamp(1.3rem,2.3vw,2rem)}
+    .landing-metric span{display:block;margin-top:3px;color:#b9bbc5;font-size:.78rem;font-weight:800;text-transform:uppercase}
+    .landing-orbit{
+      position:relative;
+      width:min(39vw,540px);
+      aspect-ratio:1;
+      margin:auto;
+      display:grid;
+      place-items:center;
+      perspective:1000px;
+      transform-style:preserve-3d;
+      filter:drop-shadow(0 30px 70px rgba(0,0,0,.55));
+    }
+    .landing-orbit-core{
+      position:relative;
+      z-index:2;
+      width:42%;
+      aspect-ratio:1;
+      display:grid;
+      place-items:center;
+      border:4px solid #111;
+      border-radius:50%;
+      color:#111;
+      background:radial-gradient(circle at 34% 26%,#fff8ad,var(--landing-yellow) 42%,#f18a00 100%);
+      box-shadow:0 0 0 10px rgba(255,212,0,.12),0 0 80px rgba(255,105,0,.4);
+      font-size:clamp(2.3rem,6vw,5.8rem);
+      font-weight:950;
+      animation:landing-core-float 5s ease-in-out infinite;
+    }
+    .landing-orbit-ring{position:absolute;width:88%;height:36%;border:2px solid rgba(85,245,230,.65);border-radius:50%;transform:rotateX(67deg) rotateZ(-12deg)}
+    .landing-orbit-ring:nth-child(2){width:68%;height:92%;border-color:rgba(255,212,0,.52);transform:rotateY(69deg) rotateZ(18deg)}
+    .landing-orbit-ring:nth-child(3){width:94%;height:65%;border-color:rgba(255,105,0,.58);transform:rotateX(58deg) rotateY(28deg)}
+    .landing-orbit-node{position:absolute;width:15%;aspect-ratio:1;display:grid;place-items:center;border:2px solid #fff;border-radius:50%;color:#111;background:#fff;font-size:clamp(.58rem,1.25vw,.92rem);font-weight:950;box-shadow:0 12px 30px rgba(0,0,0,.34)}
+    .landing-orbit-node:nth-of-type(1){left:3%;top:28%;background:var(--landing-cyan);animation:landing-node-a 8s ease-in-out infinite}
+    .landing-orbit-node:nth-of-type(2){right:5%;top:16%;background:var(--landing-orange);animation:landing-node-b 9s ease-in-out infinite}
+    .landing-orbit-node:nth-of-type(3){right:10%;bottom:8%;background:var(--landing-yellow);animation:landing-node-a 7s ease-in-out infinite reverse}
+    @keyframes landing-core-float{50%{transform:translateY(-14px) rotateY(10deg)}}
+    @keyframes landing-node-a{50%{transform:translate3d(18px,-18px,70px) rotate(8deg)}}
+    @keyframes landing-node-b{50%{transform:translate3d(-22px,16px,90px) rotate(-9deg)}}
+    .landing-panel{
+      max-width:1060px;
+      padding:clamp(26px,4vw,58px);
+      border:1px solid rgba(255,255,255,.24);
+      background:linear-gradient(145deg,rgba(18,18,25,.88),rgba(8,8,12,.62));
+      box-shadow:0 32px 90px rgba(0,0,0,.46),inset 0 1px 0 rgba(255,255,255,.09);
+      backdrop-filter:blur(20px);
+    }
+    .landing-panel[data-side="right"]{margin-left:auto}
+    .landing-section-number{color:var(--landing-orange);font-size:.78rem;font-weight:950;letter-spacing:.18em;text-transform:uppercase}
+    .landing-heading{max-width:900px;margin:12px 0 18px;color:#fff;font-size:clamp(2.4rem,5.7vw,6.2rem);font-weight:950;line-height:.94;letter-spacing:-.055em;text-wrap:balance}
+    .landing-heading em{color:var(--landing-yellow);font-style:normal}
+    .landing-text{max-width:760px;margin:0;color:#c8cad4;font-size:clamp(1rem,1.35vw,1.22rem);line-height:1.7}
+    .landing-facts{margin-top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .landing-fact{min-height:132px;padding:18px;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.045)}
+    .landing-fact strong{display:block;color:var(--landing-cyan);font-size:1.06rem}
+    .landing-fact span{display:block;margin-top:8px;color:#b7b9c3;font-size:.86rem;line-height:1.5}
+    .landing-chart-shell{margin-top:30px;padding:18px;border:2px solid rgba(255,212,0,.5);background:rgba(0,0,0,.34)}
+    .landing-chart-shell svg{width:100%;height:auto;overflow:visible}
+    .landing-chart-line{fill:none;stroke:var(--landing-yellow);stroke-width:7;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 12px rgba(255,212,0,.55));stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 1.8s ease}
+    .landing-scene[data-active="true"] .landing-chart-line{stroke-dashoffset:0}
+    .landing-chart-area{fill:url(#landingChartGradient)}
+    .landing-currency-grid{margin-top:30px;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:10px}
+    .landing-currency{
+      min-height:104px;
+      padding:14px 10px;
+      display:grid;
+      align-content:space-between;
+      border:2px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.055);
+      transform-style:preserve-3d;
+      transition:transform .25s ease,border-color .25s ease,background .25s ease;
+    }
+    .landing-currency:hover{border-color:var(--landing-yellow);background:rgba(255,212,0,.12);transform:translateY(-7px) rotateX(4deg)}
+    .landing-currency strong{color:#fff;font-size:1.15rem;letter-spacing:.06em}
+    .landing-currency span{color:#aeb0ba;font-size:.67rem;font-weight:760;line-height:1.3}
+    .landing-currency:nth-child(3n+1) strong{color:var(--landing-yellow)}
+    .landing-currency:nth-child(3n+2) strong{color:var(--landing-cyan)}
+    .landing-currency:nth-child(3n) strong{color:#ff9b62}
+    .landing-feature-grid{margin-top:30px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .landing-feature{min-height:190px;padding:22px;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05)}
+    .landing-feature b{display:block;color:var(--landing-yellow);font-size:1.05rem;text-transform:uppercase}
+    .landing-feature p{margin:10px 0 0;color:#bec0ca;line-height:1.58}
+    .landing-final{text-align:center}
+    .landing-final .landing-panel{margin-inline:auto}
+    .landing-final .landing-heading{margin-inline:auto}
+    .landing-final .landing-text{margin-inline:auto}
+    .landing-final .landing-actions{justify-content:center}
+    .landing-pwa{margin:28px auto 0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;color:#bfc1ca;font-size:.8rem;font-weight:800}
+    .landing-pwa span{padding:7px 10px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.05)}
+    .landing-fallback{position:relative;z-index:5;margin:0;padding:14px 20px;color:#111;background:var(--landing-yellow);font-weight:850;text-align:center}
+    .landing-transition{
+      position:fixed;
+      z-index:1200;
+      inset:0;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      color:#111;
+      background:var(--landing-yellow);
+      clip-path:circle(0 at 50% 50%);
+      transition:clip-path .72s cubic-bezier(.68,0,.18,1);
+    }
+    .landing-transition.is-active{clip-path:circle(145vmax at 50% 50%)}
+    .landing-transition-core{display:grid;place-items:center;gap:14px;text-align:center;transform:scale(.8);opacity:0;transition:transform .5s ease .18s,opacity .4s ease .18s}
+    .landing-transition.is-active .landing-transition-core{transform:scale(1);opacity:1}
+    .landing-transition-mark{width:100px;aspect-ratio:1;display:grid;place-items:center;border:5px solid #111;border-radius:50%;background:#fff;font-size:3.3rem;font-weight:950;box-shadow:10px 10px 0 var(--landing-orange)}
+    .landing-transition-core strong{font-size:clamp(1.4rem,4vw,3rem);font-weight:950;text-transform:uppercase}
+    .landing-transition-core button{padding:9px 13px;border:2px solid #111;color:#fff;background:#111;cursor:pointer;font-weight:900}
     .source-state[data-mode="offline"]::before,.source-state[data-mode="provider"]::before,.source-state[data-mode="currency"]::before{background:var(--danger)}
     .source-state[data-mode="offline"],.source-state[data-mode="provider"],.source-state[data-mode="currency"]{color:var(--danger);border-color:var(--nb-ink);background:#ffe2e6}
 
@@ -3241,7 +3534,7 @@
       .investment-project-actions{justify-content:flex-start}
     }
 
-    /* v0.18.0-Beta · centro de decisiones y planificación conectada. */
+    /* v0.17.0-Beta · centro de decisiones y planificación conectada. */
     .monte-carlo-hero{border-color:#55f5e6;background:
       radial-gradient(circle at 88% 10%,rgba(85,245,230,.12),transparent 25rem),
       linear-gradient(145deg,#11131b,#090b10)}
@@ -3515,47 +3808,9 @@ body[data-business-performance=low] *,body[data-business-performance=low] *::bef
 .bw-chart [data-series]{animation:bwReveal .35s ease-out}
 @media(prefers-reduced-motion:reduce){.bw-chart [data-series]{animation:none}}
 
-
-/* v0.18: one persistent projected financial surface, independent of application layout. */
-:root{--bg:#03040a;--surface:#090d18;--text:#f5f7ff;--text-secondary:#8b95a9;--electric-blue:#4776ff;--cyan:#39f2d0;--violet:#8d5cff;--data-green:#69f0ae;--alert:#ff657a;--content-max:1440px;--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:72px;--nb-yellow:#39f2d0;--nb-orange:#4776ff;--primary:#39f2d0;--gold:#39f2d0}
-html,body{max-width:100%;overflow-x:clip}img,svg,canvas{max-width:100%}h1,h2,h3,p,span,label,button{overflow-wrap:anywhere}button,input,select,textarea{min-width:0}main>section{min-width:0}
-:focus-visible{outline:2px solid #39f2d0!important;outline-offset:5px}
-body{background:#03040a}.app-header{border:0;border-bottom:1px solid #ffffff18;background:#090d18ec;box-shadow:none;backdrop-filter:blur(16px)}
-.header-inner{max-width:var(--content-max);width:100%;padding:var(--s4) var(--s5);min-height:80px;gap:var(--s5);margin:auto}.brand{border:0!important;box-shadow:none!important;background:none!important;color:#f5f7ff!important;padding:0;gap:12px}.brand-mark{width:34px;height:34px;background:#39f2d0!important;border:0;border-radius:50%;box-shadow:none}.brand-copy strong{font-size:1rem}.brand-copy>span{display:none}
-.main-nav{gap:4px;background:transparent;border:0;box-shadow:none}.main-nav .nav-link,.main-nav summary{font-size:.85rem!important;border:0!important;box-shadow:none;border-radius:8px;padding:10px!important;color:#b6bed0;background:none;font-weight:550;text-transform:none;letter-spacing:0;min-height:44px;cursor:pointer;white-space:normal}.main-nav .nav-link:hover,.main-nav .nav-link[aria-current=page],.main-nav summary:hover{color:#f5f7ff!important;background:#4776ff22!important}.version-chip{font-size:.7rem;background:none!important;color:#9aa5bb!important;border:0!important;padding:4px;box-shadow:none!important;white-space:nowrap}.header-status{display:none}.menu-button{border:1px solid #ffffff30;background:#39f2d0;border-radius:8px;margin:0}.nav-group{position:relative}.nav-group>summary{list-style:none}.nav-group>summary::-webkit-details-marker{display:none}.nav-group>summary::after{content:'⌄';margin-left:5px}.nav-group-panel{position:absolute;right:0;top:100%;min-width:230px;max-height:70vh;overflow:auto;padding:8px;background:#0c1220;border:1px solid #ffffff28;border-radius:12px;box-shadow:0 16px 40px #0009;z-index:50}.nav-group-panel .nav-link{display:block;width:100%;text-align:left}.universe-nav{display:none}
-body[data-route=inicio] .main-nav,body[data-route=inicio] .menu-button,body[data-route=inicio] .app-footer{display:none!important}body[data-route=inicio] .app-header{background:#03040acc;border-color:#ffffff14;box-shadow:none}body[data-route=inicio] .header-inner{justify-content:space-between}body[data-route=inicio] .universe-nav{display:flex;gap:var(--s6);align-items:center}.universe-nav button{font-size:.875rem;font-weight:500;min-height:44px;padding:8px 0;border:0;background:none;color:#b8c0d1;cursor:pointer}.universe-nav button:last-child{color:#39f2d0}.universe-nav button:hover{color:white}
-body[data-route=inicio] main{width:100%;max-width:none;margin:0;padding:0}#view-inicio.home-view{width:100%;max-width:none;margin:0;padding:0;isolation:isolate;background:#03040a;color:#f5f7ff;overflow:clip}
-.universe{position:relative;background:#03040a;color:#f5f7ff;font-family:Inter,ui-sans-serif,system-ui,sans-serif;isolation:isolate}.universe-canvas{position:fixed;inset:0;width:100%;height:100svh;pointer-events:none;z-index:-2}.universe-shade{position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,#03040a88,transparent 60%),linear-gradient(0deg,#03040a66,transparent 25%)}
-.universe button{cursor:pointer}.universe h1,.universe h2{color:#f5f7ff!important;font-weight:550;text-transform:none;letter-spacing:-.065em;text-shadow:none;margin:0}.universe h1{font-size:clamp(3.2rem,7.5vw,7.8rem);line-height:1.02}.universe h1 span{color:#95a9f7}.universe h2{font-size:clamp(2.5rem,4.7vw,5.1rem);line-height:1.05}.universe em{font-style:normal;color:#8493b3}.universe-hero{position:relative;width:min(100%,var(--content-max));margin:auto;min-height:calc(100svh - 80px);padding:var(--s8) var(--s5) 110px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}.universe-wordmark{letter-spacing:.3em;font-size:.75rem;font-weight:550;margin:0 0 var(--s6);color:#b7c3de}.universe-caption{font-size:1rem;color:#aeb9ce;margin:var(--s5) 0 var(--s6)}.universe .universe-enter{display:inline-flex;align-items:center;justify-content:center;gap:32px;padding:16px 24px;min-height:56px;max-width:100%;font-size:.95rem;font-weight:650;letter-spacing:0;color:#061a18;background:#39f2d0;border:1px solid #76ffe6;border-radius:40px;box-shadow:0 0 42px #39f2d017;transition:background .2s,box-shadow .2s,transform .2s}.universe-enter:hover{background:#9affec;box-shadow:0 0 50px #39f2d042;transform:translateY(-2px)}.universe-enter span{font-size:1.4rem}
-.universe-hero-foot{position:absolute;bottom:var(--s6);left:var(--s5);right:var(--s5);display:flex;align-items:center;justify-content:space-between;gap:16px;color:#95a0b8;font-size:.7rem;letter-spacing:.12em}.universe-hero-foot button{background:none;border:0;color:#d8deed;font-size:.8rem;padding:12px;letter-spacing:0}.universe-hero-foot button span{margin-left:16px}
-.universe-story{position:relative}.universe-chapter{position:relative;width:min(100%,var(--content-max));min-height:105svh;margin:auto;padding:var(--s8) var(--s7);display:flex;align-items:center}.universe-copy{width:48%;min-width:0;position:relative}.universe-label{font-size:.75rem;letter-spacing:.19em;color:#39f2d0;margin:0 0 var(--s6)}.universe-description{font-size:1rem;line-height:1.7;max-width:38ch;color:#aeb9ce;margin:var(--s5) 0}.universe small{display:block;color:#929fb8;font-size:.75rem;line-height:1.6;margin-top:var(--s4)}.universe-value-path{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap;margin-top:var(--s6)}.universe-value-path strong{font-size:clamp(1.5rem,2.4vw,2.6rem);font-weight:500;letter-spacing:-.05em}.universe-value-path strong:last-child{color:#ff8999}.universe-value-path>span{color:#586780}
-.universe-comparison{width:min(100%,380px);margin-top:var(--s6);padding:var(--s5);border:1px solid #ffffff24;border-radius:20px;background:#0b122188;backdrop-filter:blur(12px)}.universe-comparison label{display:flex;justify-content:space-between;color:#c6d0e5;font-size:.875rem;gap:16px}.universe-comparison output{color:#39f2d0}.universe-comparison input{display:block;width:100%;min-height:32px;margin:8px 0 20px;padding:0;accent-color:#39f2d0;box-shadow:none}.universe-comparison input:last-of-type{accent-color:#8d5cff}.universe-outcomes{display:flex;justify-content:space-between;gap:24px;padding-top:16px;border-top:1px solid #ffffff18;font-size:.75rem;color:#99a7bf}.universe-outcomes strong{display:block;font-size:1.75rem;color:#39f2d0;font-weight:550}.universe-outcomes>span:last-child strong{color:#b79aff}
-.universe-choices{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s6)}.universe-choices button{min-height:46px;font-size:.95rem;flex:1;padding:10px 16px;border:1px solid #ffffff30;border-radius:30px;background:#0c1120aa;color:#bdc9df}.universe-choices button[aria-pressed=true]{color:#03040a;background:#39f2d0;border-color:#39f2d0}.universe-decision{border-left:1px solid #39f2d077;padding-left:20px;margin:24px 0;max-width:40ch;min-height:152px}.universe-decision strong{font-size:1.25rem;font-weight:500}.universe-decision p{font-size:1rem;color:#b6c1d8;margin:12px 0}.universe-decision>span{font-size:.8rem;color:#9aa9c4}.universe-text-link{border:0;border-bottom:1px solid #ffffff30;background:none;color:#39f2d0;padding:12px 0;font-size:.9rem}.universe-text-link span{margin-left:16px}
-.universe-close{text-align:center;position:relative;min-height:90svh;padding:var(--s8) var(--s5);display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(0deg,#03040a 15%,#03040a22);gap:var(--s6)}.universe-close h2{font-size:clamp(2.5rem,5.8vw,6rem)}.universe-close .universe-label,.universe-close p,.universe-close small{margin:0}.universe-privacy{font-size:.8rem;color:#a2aec6}.universe-privacy button{font-size:inherit;color:inherit;padding:8px 0;background:none;border:0}.universe-settings{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:16px;padding-top:32px;border-top:1px solid #ffffff16;max-width:850px;font-size:.75rem;color:#9eacc7}.universe-settings select,.universe-settings button{width:auto;max-width:100%;min-height:44px;padding:10px 12px;border:1px solid #ffffff24;border-radius:8px;background:#090d18;color:#c9d3e7;font-size:.8rem;box-shadow:none}.universe-install{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;color:#73809a;font-size:.75rem}.universe-transition{position:fixed;inset:0;z-index:205;display:flex;align-items:flex-end;justify-content:center;gap:24px;padding:48px;background:linear-gradient(0deg,#03040a,transparent 60%);color:#fff;pointer-events:auto}.universe-transition button{padding:10px 16px;border-radius:30px;border:1px solid #ffffff55;background:#090d18;color:#fff}.universe[data-entering=true] .universe-canvas{z-index:200}.universe[data-entering=true] .universe-hero{opacity:0;transition:opacity .35s}.universe-app-reveal{animation:universeAppReveal .45s ease both}@keyframes universeAppReveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-/* The app inherits the new identity; functional cards and controls keep their structure. */
-body:not([data-route=inicio]) .view-head{background:#0c1220;border:1px solid #ffffff20;box-shadow:none}body:not([data-route=inicio]) .view-head h1{color:#f5f7ff}body:not([data-route=inicio]) .eyebrow{color:#39f2d0}body:not([data-route=inicio]) .button.primary{background:#39f2d0;color:#061a18;border-color:#39f2d0;box-shadow:none}.app-footer{background:#090d18;border-color:#ffffff20;box-shadow:none}.app-footer strong{color:#f5f7ff}.bw-hero{background:linear-gradient(120deg,#122c35,#0c1220 65%);--bw-line:#39f2d030}.bw-kicker{color:#39f2d0!important}
-@media(min-width:1440px){.universe-chapter{padding-inline:var(--s8)}.universe-hero{padding-top:var(--s8)}.universe-copy{width:50%}}
-@media(min-width:900px) and (max-width:1179px){.header-inner{gap:12px;padding-inline:16px}.brand-copy strong{font-size:.85rem}.main-nav .nav-link,.main-nav summary{font-size:.75rem!important;padding:8px!important}.version-chip{display:none}}
-@media(max-width:900px){.main-nav{background:#090d18;max-width:100%;overflow-y:auto}.main-nav .nav-link,.main-nav summary{font-size:1rem!important}.nav-group{width:100%}.nav-group-panel{position:static;min-width:0;width:100%;box-shadow:none}.version-chip{margin-top:auto}.header-inner{padding:16px 24px}.universe-chapter{padding:72px 32px}.universe-copy{width:57%}.universe-nav{gap:24px!important}}
-@media(min-width:600px) and (max-width:899px){.universe h1{font-size:clamp(3.6rem,8.5vw,5rem)}.universe h2{font-size:clamp(2.5rem,5.5vw,3.4rem)}.universe-wordmark{margin-bottom:24px}}
-@media(max-width:599px){.header-inner{min-height:72px;padding:12px 16px;gap:8px}.brand-copy strong{font-size:.8rem}.brand-mark{width:28px;height:28px}.brand{gap:8px}body[data-route=inicio] .universe-nav{gap:14px!important}.universe-nav button{font-size:.75rem}.universe-hero{min-height:calc(100svh - 72px);padding:48px 16px 100px;justify-content:flex-start;padding-top:clamp(48px,11svh,100px)}.universe h1{font-size:clamp(2.45rem,9.7vw,3.6rem);line-height:1.07;letter-spacing:-.06em}.universe-wordmark{font-size:.65rem;letter-spacing:.2em;margin-bottom:24px}.universe-caption{font-size:.875rem;max-width:24ch;margin:24px 0}.universe-hero-foot{left:16px;right:16px;bottom:24px;justify-content:space-between}.universe-hero-foot>span:first-child{display:none}.universe-hero-foot>span{font-size:.65rem}.universe-hero-foot button{padding:8px 0}.universe-chapter{min-height:105svh;padding:72px 24px 42svh;align-items:flex-start}.universe-copy{width:100%}.universe h2{font-size:clamp(2.3rem,10vw,3.75rem);line-height:1.07}.universe-description{max-width:32ch}.universe-label{margin-bottom:24px}.universe-comparison{padding:20px;margin-top:24px}.universe-shade{background:linear-gradient(180deg,#03040a77,transparent 70%)}.universe-value-path{gap:12px}.universe-value-path strong{font-size:1.6rem}.universe-close{min-height:100svh;padding:72px 24px;gap:24px}.universe-close h2{font-size:clamp(2.2rem,9.8vw,3.4rem)}.universe-settings{gap:12px}.universe-settings label{width:100%}.universe-install{gap:8px}.universe-transition{padding:24px;align-items:center;flex-direction:column}.universe .universe-enter{font-size:.875rem;gap:20px;padding:14px 22px}.universe-choices button{padding:10px 12px}}
-@media(max-height:500px) and (orientation:landscape){.universe-hero{min-height:690px;padding-top:48px}.universe-chapter{min-height:800px}.universe-canvas{height:100vh}}
-@media(prefers-reduced-motion:reduce){.universe *, .universe *::before,.universe *::after{animation:none!important;transition:opacity .12s!important;scroll-behavior:auto!important}.universe-enter:hover{transform:none}.universe-app-reveal{animation:none}}
-.universe[data-reduced-motion=true] *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-/* Reset the former brand geometry at its original specificity. */
-body .app-header .header-inner{min-height:80px;padding-block:16px}
-body .app-header .brand-mark{width:34px;height:34px;min-width:34px;border-radius:50%!important;box-shadow:none!important;border:0!important}
-body .app-header .brand-copy strong{max-width:none;font-size:1rem;font-weight:600;line-height:1.2;text-transform:none;letter-spacing:-.025em}
-body .app-header .brand-copy{max-width:none}
-@media(max-width:599px){body .app-header .header-inner{min-height:72px;padding-block:12px}body .app-header .brand-mark{width:26px;height:26px;min-width:26px}body .app-header .brand-copy strong{font-size:.75rem}}
-body .app-header .brand{flex:0 0 auto;min-height:0;padding:0!important}
-body .app-header .universe-nav{flex:0 0 auto}
-body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
-@media(max-width:599px){body .app-header .header-inner{gap:12px}body .app-header .brand-copy{width:82px}body .app-header .universe-nav{gap:12px!important}}
-
   </style>
 </head>
-<body data-route="inicio">
+<body>
   <a class="skip-link" href="#mainContent">Saltar al contenido</a>
 
   <header class="app-header">
@@ -3574,8 +3829,19 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
         </span>
       </button>
 
-<nav class="universe-nav" aria-label="Landing navigation" lang="en"><button type="button" data-universe-scroll="universeMeasure">Product</button><button type="button" data-universe-scroll="universeAbout">About</button><button type="button" data-universe-enter>Enter ↗</button></nav>
-<nav class="main-nav" id="mainNav" aria-label="Navegación principal" data-open="false"><button class="nav-link" type="button" data-route="negocios">Overview</button><button class="nav-link" type="button" data-route="calculadora">Calculate</button><details class="nav-group"><summary>Analyze</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="inversiones">Inversiones</button><button class="nav-link" type="button" data-route="precios">Precios y reduflación</button><button class="nav-link" type="button" data-route="salario">Salarios</button><button class="nav-link" type="button" data-route="laboratorio">Comparaciones</button></div></details><button class="nav-link" type="button" data-route="decisiones">Decide</button><button class="nav-link" type="button" data-route="datos">Data</button><button class="nav-link" type="button" data-route="informes">Reports</button><details class="nav-group"><summary>More</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="herramientas">Todas las herramientas</button><button class="nav-link" type="button" data-route="historial">Historial</button><button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button><button class="nav-link" type="button" data-route="inicio">Volver a la portada</button></div></details><span class="version-chip" aria-label="Versión actual">v0.18.0 · Beta</span></nav>
+      <nav class="main-nav" id="mainNav" aria-label="Navegación principal" data-open="false">
+        <button class="nav-link" type="button" data-route="negocios">Negocios</button>
+        <button class="nav-link" type="button" data-route="calculadora">Calculadora</button>
+        <button class="nav-link" type="button" data-route="herramientas">Herramientas</button>
+        <button class="nav-link" type="button" data-route="inversiones">Inversiones</button>
+        <button class="nav-link" type="button" data-route="decisiones">Decisiones</button>
+        <button class="nav-link" type="button" data-route="precios">Precios</button>
+        <button class="nav-link" type="button" data-route="datos">Datos</button>
+        <button class="nav-link" type="button" data-route="informes">Informes</button>
+        <button class="nav-link" type="button" data-route="historial">Historial</button>
+        <button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button>
+        <span class="version-chip" aria-label="Versión actual">v0.17.0 · Beta</span>
+      </nav>
 
       <span class="status-chip header-status" id="connectionChip" data-status="online" aria-live="polite">
         <span class="status-dot" aria-hidden="true"></span>
@@ -3593,41 +3859,127 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
 
   <main id="mainContent" tabindex="-1">
     <section class="view home-view" id="view-inicio" data-view="inicio" aria-labelledby="homeTitle">
-      <div class="universe" id="landing3d" lang="en">
-        <canvas id="landingCanvas" class="universe-canvas" aria-hidden="true"></canvas>
-        <div class="universe-shade" aria-hidden="true"></div>
-        <section class="universe-hero" aria-describedby="homeSummary">
-          <p class="universe-wordmark">INFLATION INSIGHTS</p>
-          <h1 id="homeTitle">Understand value.<br><span>Measure change.</span><br>Decide better.</h1>
-          <p id="homeSummary" class="universe-caption">A new perspective on your money.</p>
-          <button id="openCalculator3dButton" type="button" class="universe-enter" data-universe-enter>Enter Experience <span aria-hidden="true">↗</span></button>
-          <div class="universe-hero-foot"><span>FINANCIAL DATA UNIVERSE</span><button type="button" data-universe-scroll="universeMeasure">Explore the product <span aria-hidden="true">↓</span></button><span>v0.18.0 · BETA</span></div>
-        </section>
-        <div class="universe-story" id="universeProduct">
-          <section class="universe-chapter" id="universeMeasure" data-universe-chapter="measure" aria-labelledby="universeMeasureTitle">
-            <div class="universe-copy"><p class="universe-label">01 / MEASURE</p><h2 id="universeMeasureTitle">Value changes<br>over time.<br><em>Now you can<br>see how.</em></h2><p class="universe-description">El mismo dinero. Un poder de compra diferente.</p>
-              <div class="universe-value-path" aria-label="Ejemplo ilustrativo de pérdida de valor"><strong>$1,000</strong><span aria-hidden="true">↘</span><strong>$873</strong><span aria-hidden="true">↘</span><strong>$742</strong></div><small>Illustrative values · not a live index</small>
-            </div>
-          </section>
-          <section class="universe-chapter" id="universeCompare" data-universe-chapter="compare" aria-labelledby="universeCompareTitle">
-            <div class="universe-copy"><p class="universe-label">02 / COMPARE</p><h2 id="universeCompareTitle">Different choices.<br><em>Different<br>outcomes.</em></h2><p class="universe-description">Compara dos tasas anuales sobre $1,000 durante cinco años.</p>
-              <div class="universe-comparison"><label for="universeRateA"><span>Scenario A</span><output id="universeRateALabel">2%</output></label><input id="universeRateA" type="range" min="-10" max="15" step="1" value="2"><label for="universeRateB"><span>Scenario B</span><output id="universeRateBLabel">6%</output></label><input id="universeRateB" type="range" min="-10" max="15" step="1" value="6"><div class="universe-outcomes" aria-live="polite"><span>A <strong id="universeValueA">$1,104</strong></span><span>B <strong id="universeValueB">$1,338</strong></span></div></div><small>Illustrative compound growth · before inflation and costs</small>
-            </div>
-          </section>
-          <section class="universe-chapter" id="universeDecide" data-universe-chapter="decide" aria-labelledby="universeDecideTitle">
-            <div class="universe-copy"><p class="universe-label">03 / DECIDE</p><h2 id="universeDecideTitle">Numbers become<br>useful when they<br><em>help you choose.</em></h2>
-              <div class="universe-choices" role="group" aria-label="Explorar una decisión"><button type="button" data-universe-choice="save" aria-pressed="true">Save</button><button type="button" data-universe-choice="invest" aria-pressed="false">Invest</button><button type="button" data-universe-choice="spend" aria-pressed="false">Spend</button></div>
-              <div class="universe-decision" aria-live="polite"><strong id="universeDecisionTitle">Preserve your buffer.</strong><p id="universeDecisionText">Explora cuánto necesitas reservar y cómo la inflación cambia su valor.</p><span id="universeDecisionRisk">Riesgo a comparar: pérdida de poder adquisitivo.</span></div>
-              <button class="universe-text-link" type="button" data-route="decisiones">Abrir centro de decisiones <span aria-hidden="true">↗</span></button>
-            </div>
-          </section>
+      <div class="landing3d" id="landing3d" data-quality="auto">
+        <canvas class="landing-canvas" id="landingCanvas" aria-hidden="true"></canvas>
+
+        <div class="landing-toolbar" aria-label="Controles de la experiencia gráfica">
+          <div class="landing-control">
+            <label for="graphicsQuality">Calidad</label>
+            <select id="graphicsQuality" aria-describedby="graphicsQualityState">
+              <option value="auto">Automática</option>
+              <option value="ultra">Ultra</option>
+              <option value="high">Alta</option>
+              <option value="medium">Equilibrado</option>
+              <option value="low">Rendimiento</option>
+            </select>
+            <span class="landing-control-state" id="graphicsQualityState">Detectando dispositivo</span>
+          </div>
+          <button class="landing-motion-button" id="landingMotionButton" type="button" aria-pressed="false">Reducir movimiento</button>
         </div>
-        <section class="universe-close" id="universeAbout" aria-labelledby="homeCtaTitle"><p class="universe-label">YOUR NEXT PERSPECTIVE</p><h2 id="homeCtaTitle">Ready to understand<br><em>your money?</em></h2><button id="openCalculatorFinalButton" type="button" class="universe-enter" data-universe-enter>Open Inflation Insights <span aria-hidden="true">↗</span></button><p class="universe-privacy"><button type="button" data-route="cuenta">Privacy</button> · Offline · Data stays on your device</p><small>El uso anónimo es local. La sincronización de cuenta es opcional.</small>
-          <div class="universe-settings" lang="es"><label for="graphicsQuality">Calidad gráfica</label><select id="graphicsQuality" aria-describedby="graphicsQualityState"><option value="auto">Auto</option><option value="ultra">Ultra</option><option value="high">High</option><option value="medium">Balanced</option><option value="low">Performance</option></select><span id="graphicsQualityState" role="status"></span><button id="landingMotionButton" type="button" aria-pressed="false">Reducir movimiento</button><button id="installAppButton" type="button" hidden>Instalar aplicación</button></div><div class="universe-install"><span id="pwaInstallState"></span><span id="pwaOfflineState"></span></div>
+
+        <section class="landing-scene landing-hero" data-landing-scene="0" data-active="true" aria-describedby="homeSummary">
+          <div class="landing-copy">
+            <p class="landing-eyebrow">Cálculos claros · Informes profesionales</p>
+            <h1 class="landing-title" id="homeTitle">Mide el cambio. <span>Entiende el impacto.</span></h1>
+            <p class="landing-lede" id="homeSummary">Calcula inflación, deflación y poder adquisitivo con precisión compuesta, fuentes identificadas y una experiencia preparada para móvil, escritorio y 4K.</p>
+            <div class="landing-actions" role="group" aria-label="Acciones principales">
+              <button class="landing-primary" id="openCalculator3dButton" type="button"><span>Abrir calculadora</span><span aria-hidden="true">→</span></button>
+              <button class="landing-secondary" type="button" data-route="negocios">Abrir Business Workspace</button>
+            </div>
+            <div class="landing-metrics" aria-label="Capacidades principales">
+              <div class="landing-metric"><strong>32</strong><span>monedas compatibles</span></div>
+              <div class="landing-metric"><strong>4K</strong><span>interfaz y exportación</span></div>
+              <div class="landing-metric"><strong>100 %</strong><span>cálculo local y auditable</span></div>
+            </div>
+          </div>
+          <div class="landing-orbit" aria-hidden="true">
+            <span class="landing-orbit-ring"></span><span class="landing-orbit-ring"></span><span class="landing-orbit-ring"></span>
+            <span class="landing-orbit-core">%</span>
+            <span class="landing-orbit-node">BRL</span><span class="landing-orbit-node">USD</span><span class="landing-orbit-node">JPY</span>
+          </div>
         </section>
-        <p id="landingMotionStatus" class="sr-update" role="status" aria-live="polite"></p>
-        <div id="landingTransition" class="universe-transition" role="status" aria-live="polite" hidden><span>Opening your perspective</span><button id="landingSkipTransitionButton" type="button">Saltar animación</button></div>
-        <noscript><p>Activa JavaScript para utilizar la calculadora y las herramientas interactivas.</p></noscript>
+
+        <section class="landing-scene" data-landing-scene="1" aria-labelledby="landingMethodTitle">
+          <div class="landing-panel">
+            <span class="landing-section-number">01 · La variación real</span>
+            <h2 class="landing-heading" id="landingMethodTitle">De un precio a una <em>decisión clara.</em></h2>
+            <p class="landing-text">Comparamos el valor inicial con el final sin redondear los pasos intermedios. El tiempo se normaliza y las tasas equivalentes se calculan mediante composición geométrica, no con aproximaciones lineales.</p>
+            <div class="landing-facts">
+              <div class="landing-fact"><strong>Inflación total</strong><span>Variación porcentual acumulada entre ambos valores.</span></div>
+              <div class="landing-fact"><strong>CAGR</strong><span>Tasa anual equivalente para períodos cortos o largos.</span></div>
+              <div class="landing-fact"><strong>Poder adquisitivo</strong><span>Cuánto compra hoy el mismo importe inicial.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-scene" data-landing-scene="2" aria-labelledby="landingChartTitle">
+          <div class="landing-panel" data-side="right">
+            <span class="landing-section-number">02 · Profundidad de datos</span>
+            <h2 class="landing-heading" id="landingChartTitle">Una trayectoria visible, <em>no datos inventados.</em></h2>
+            <p class="landing-text">Los gráficos de la calculadora muestran interpolaciones matemáticas claramente etiquetadas. Los datos históricos oficiales se mantienen separados y siempre indican fuente, fecha y estado.</p>
+            <div class="landing-chart-shell" aria-label="Ejemplo ilustrativo de una trayectoria matemática">
+              <svg viewBox="0 0 900 300" role="img" aria-labelledby="landingChartSvgTitle landingChartSvgDesc">
+                <title id="landingChartSvgTitle">Trayectoria ilustrativa de precios</title>
+                <desc id="landingChartSvgDesc">Una línea ascendente con variaciones intermedias. Es una visualización conceptual, no una serie histórica.</desc>
+                <defs><linearGradient id="landingChartGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd400" stop-opacity=".34"/><stop offset="1" stop-color="#ffd400" stop-opacity="0"/></linearGradient></defs>
+                <path class="landing-chart-area" d="M30 258 C145 232 190 250 278 192 S438 212 520 142 S690 154 870 44 L870 280 L30 280 Z"/>
+                <path class="landing-chart-line" d="M30 258 C145 232 190 250 278 192 S438 212 520 142 S690 154 870 44"/>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-scene" data-landing-scene="3" aria-labelledby="landingCurrenciesTitle">
+          <div class="landing-panel">
+            <span class="landing-section-number">03 · Cobertura internacional</span>
+            <h2 class="landing-heading" id="landingCurrenciesTitle"><em>32 monedas.</em> Una misma metodología.</h2>
+            <p class="landing-text">Conversión con proveedor principal, respaldo alternativo y última cotización válida almacenada. Nunca sustituimos una tasa real por un valor inventado.</p>
+            <div class="landing-currency-grid" aria-label="Monedas compatibles">
+              <div class="landing-currency"><strong>BRL</strong><span>Real brasileño</span></div><div class="landing-currency"><strong>USD</strong><span>Dólar estadounidense</span></div>
+              <div class="landing-currency"><strong>EUR</strong><span>Euro</span></div><div class="landing-currency"><strong>GBP</strong><span>Libra esterlina</span></div>
+              <div class="landing-currency"><strong>CAD</strong><span>Dólar canadiense</span></div><div class="landing-currency"><strong>MXN</strong><span>Peso mexicano</span></div>
+              <div class="landing-currency"><strong>ARS</strong><span>Peso argentino</span></div><div class="landing-currency"><strong>JPY</strong><span>Yen japonés</span></div>
+              <div class="landing-currency"><strong>CNY</strong><span>Yuan chino</span></div><div class="landing-currency"><strong>CHF</strong><span>Franco suizo</span></div>
+              <div class="landing-currency"><strong>AUD</strong><span>Dólar australiano</span></div><div class="landing-currency"><strong>NZD</strong><span>Dólar neozelandés</span></div>
+              <div class="landing-currency"><strong>CLP</strong><span>Peso chileno</span></div><div class="landing-currency"><strong>COP</strong><span>Peso colombiano</span></div>
+              <div class="landing-currency"><strong>PEN</strong><span>Sol peruano</span></div><div class="landing-currency"><strong>UYU</strong><span>Peso uruguayo</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-scene" data-landing-scene="4" aria-labelledby="landingToolsTitle">
+          <div class="landing-panel" data-side="right">
+            <span class="landing-section-number">04 · Más que una calculadora</span>
+            <h2 class="landing-heading" id="landingToolsTitle">Herramientas para <em>precios reales.</em></h2>
+            <div class="landing-feature-grid">
+              <button class="landing-feature" type="button" data-route="precios"><b>Reduflación</b><p>Compara precio y contenido para detectar aumentos ocultos por menor cantidad.</p></button>
+              <button class="landing-feature" type="button" data-route="salario"><b>Salarios y contratos</b><p>Mide aumentos nominales, poder real y reajustes compuestos.</p></button>
+              <button class="landing-feature" type="button" data-route="inversiones"><b>Inversiones de negocios</b><p>Descubre cuánto ganas, cuánto gastas y cuándo recuperas lo invertido.</p></button>
+              <button class="landing-feature" type="button" data-route="decisiones"><b>Centro de Decisiones</b><p>Convierte ROI, riesgo, caja y escenarios en señales y acciones matemáticas.</p></button>
+              <button class="landing-feature" type="button" data-route="informes"><b>Informes profesionales</b><p>Exporta PDF, PNG, CSV y JSON con versión, metodología y fuentes.</p></button>
+              <button class="landing-feature" type="button" data-route="cuenta"><b>Offline y privacidad</b><p>Conserva datos locales compatibles y sigue calculando sin conexión.</p></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-scene landing-final" data-landing-scene="5" aria-labelledby="homeCtaTitle">
+          <div class="landing-panel">
+            <span class="landing-section-number">05 · Todo listo</span>
+            <h2 class="landing-heading" id="homeCtaTitle"><span id="pwaTitle">Convierte cambios de precio en <em>respuestas.</em></span></h2>
+            <p class="landing-text">La experiencia 3D nunca es necesaria para usar la herramienta. Puedes abrir la calculadora inmediatamente, reducir el movimiento o usarla sin conexión con los datos ya almacenados.</p>
+            <div class="landing-actions">
+              <button class="landing-primary" id="openCalculatorFinalButton" type="button">Abrir calculadora <span aria-hidden="true">→</span></button>
+              <button class="landing-secondary" id="installAppButton" type="button" hidden>Instalar aplicación</button>
+            </div>
+            <div class="landing-pwa"><span id="pwaInstallState">Comprobando instalación</span><span id="pwaOfflineState">Caché preparada al abrir</span><span>Datos locales preservados</span></div>
+          </div>
+        </section>
+
+        <noscript><p class="landing-fallback">La animación 3D necesita JavaScript, pero puedes usar la calculadora desde el enlace “Calculadora” del menú.</p></noscript>
+        <p class="sr-update" id="landingMotionStatus" role="status" aria-live="polite"></p>
+        <div class="landing-transition" id="landingTransition" role="status" aria-live="polite" hidden>
+          <div class="landing-transition-core"><span class="landing-transition-mark" aria-hidden="true">%</span><strong>Abriendo calculadora</strong><button id="landingSkipTransitionButton" type="button">Saltar animación</button></div>
+        </div>
       </div>
     </section>
 
@@ -5057,7 +5409,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
     <section class="view" id="view-widget-runtime" data-view="widget-runtime" aria-label="Calculadora embebida" hidden>
       <div class="widget-runtime-shell" id="widgetRuntimeShell" data-theme="dark">
         <section class="widget-runtime-card" id="widgetRuntimeCard">
-          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.18.0-Beta.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>Calculadora</span></div>
+          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.17.0-Beta.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>Calculadora</span></div>
           <h1 id="widgetRuntimeTitle">Calculadora embebida</h1>
           <div class="widget-mini-grid">
             <div class="field"><label id="widgetRuntimeALabel" for="widgetRuntimeA">Valor A</label><input id="widgetRuntimeA" type="text" inputmode="decimal" value="100"></div>
@@ -5581,14 +5933,14 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
 
         <section class="card account-card wide" aria-labelledby="aboutAppTitle">
           <div><p class="eyebrow">Acerca de la aplicación</p><h2 id="aboutAppTitle">Versión, novedades y detalles técnicos</h2></div>
-          <div class="about-version"><strong id="aboutAppVersion">v0.18.0</strong><span id="aboutAppChannel">Beta · 4 sep 2026</span></div>
+          <div class="about-version"><strong id="aboutAppVersion">v0.17.0</strong><span id="aboutAppChannel">Beta · 4 sep 2026</span></div>
           <ul class="release-list">
             <li>El Centro de Decisiones reúne rentabilidad, riesgo, caja, equilibrio, oportunidades y explicaciones comprensibles.</li>
             <li>Dashboard configurable, objetivos matemáticos, ramas de escenarios, portafolio, calendario y alertas funcionan localmente.</li>
             <li>La simulación de negocios y Monte Carlo de v0.15.0 permanece integrada mediante el mismo motor financiero.</li>
           </ul>
           <dl class="storage-facts">
-            <div><dt>Historial</dt><dd>v0.15.0 añadió simulación empresarial; v0.18.0 conecta sus resultados en un flujo completo de decisión.</dd></div>
+            <div><dt>Historial</dt><dd>v0.15.0 añadió simulación empresarial; v0.17.0 conecta sus resultados en un flujo completo de decisión.</dd></div>
             <div><dt>Técnico</dt><dd>Aplicación estática, cálculos locales reutilizables, almacenamiento con esquema, Web Worker y Supabase opcional.</dd></div>
             <div><dt>Informe</dt><dd><a href="https://github.com/Caleb-beta01/Calculadora-de-Inflaci-n-app/issues/58" target="_blank" rel="noopener noreferrer">GitHub #58 · MEGA BUSINESS UPDATE</a></dd></div>
           </dl>
@@ -6246,17 +6598,17 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
 
   <dialog id="betaWelcomeDialog" aria-labelledby="betaWelcomeTitle">
     <div class="dialog-head">
-      <h3 id="betaWelcomeTitle">Novedades de v0.18.0</h3>
+      <h3 id="betaWelcomeTitle">Novedades de v0.17.0</h3>
       <button class="icon-button" type="button" data-close-dialog="betaWelcomeDialog" aria-label="Cerrar novedades">×</button>
     </div>
     <div class="dialog-body dialog-stack">
-      <p>Explora una nueva perspectiva del valor, compara escenarios y entra a tus herramientas.</p>
+      <p>Crea espacios independientes para tus negocios, controla los movimientos reales y proyecta hasta cinco años.</p>
       <div class="dialog-callout">
-        <strong>FINANCIAL DATA UNIVERSE</strong>
+        <strong>MEGA BUSINESS UPDATE</strong>
         <ul>
-          <li>Portada reconstruida con una escena financiera 3D continua e interactiva;</li>
-          <li>nueva navegación: Overview, Calculate, Analyze, Decide, Data, Reports y More;</li>
-          <li>diseño móvil, calidad adaptable y movimiento reducido; tus herramientas y datos se conservan.</li>
+          <li>Business Workspace con productos, inventario, gastos, presupuestos y movimientos reales;</li>
+          <li>plan a 60 meses, precios avanzados, Goal Engine y cuatro escenarios comparables;</li>
+          <li>32 monedas, monedas personalizadas, dashboard reorganizable e informes interactivos.</li>
         </ul>
       </div>
       <div class="auth-actions">
@@ -6390,7 +6742,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
   (function(){
     'use strict';
 
-    const APP_VERSION = 'v0.18.0-Beta';
+    const APP_VERSION = 'v0.17.0-Beta';
     const VERSION = APP_VERSION;
     // El contrato de create-account/delete-account no cambió en este parche de exportaciones.
     const ACCOUNT_API_VERSION = 'v0.8.2-Beta-Patch';
@@ -6432,7 +6784,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
     const MAX_DECISION_SCENARIOS = 40;
     const MAX_DECISION_EVENTS = 500;
     const MAX_DECISION_ALERTS = 40;
-    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.18.0-Beta.html';
+    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.17.0-Beta.html';
     const FX_CACHE_MAX_AGE = 15 * 60 * 1000;
     const FX_CACHE_STALE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
     const IPCA_CACHE_MAX_AGE = 90 * 24 * 60 * 60 * 1000;
@@ -7654,7 +8006,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       try{
         state.backend.client = window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
           auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'implicit',storageKey:'inflation.v080.auth'},
-          global:{headers:{'x-application-name':'inflation-insights-v0180-beta'}}
+          global:{headers:{'x-application-name':'inflation-insights-v0170-beta'}}
         });
         state.backend.available = true;
         const sessionResult = await withTimeout(state.backend.client.auth.getSession());
@@ -7951,10 +8303,10 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
           ]);
           payload.remote={user:{id:state.backend.user.id,email:state.backend.user.email || null},profiles:profiles,calculations:calculations,baskets:baskets,investmentProjects:investments,feedback:feedback,usageEvents:events};
         }
-        downloadJsonFile('mis-datos-inflation-insights-v0180-'+new Date().toISOString().slice(0,10)+'.json',payload);
+        downloadJsonFile('mis-datos-inflation-insights-v0170-'+new Date().toISOString().slice(0,10)+'.json',payload);
         setNotice($('accountNotice'),'Exportación preparada. El archivo incluye datos locales y, si había sesión, los remotos accesibles.','success');
       }catch(error){
-        downloadJsonFile('mis-datos-locales-inflation-insights-v0180.json',payload);
+        downloadJsonFile('mis-datos-locales-inflation-insights-v0170.json',payload);
         setNotice($('accountNotice'),'Se exportaron los datos locales, pero no fue posible recuperar los remotos.','warning');
       }finally{ setButtonBusy($('exportAllDataButton'),false); }
     }
@@ -8013,7 +8365,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
         if($('pwaOfflineState')) $('pwaOfflineState').textContent='Este navegador no admite Service Worker';
         return;
       }
-      navigator.serviceWorker.register('./sw-v0.18.0-beta.js').then(function(registration){
+      navigator.serviceWorker.register('./sw-v0.17.0-beta.js').then(function(registration){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent=navigator.onLine === false ? 'Modo offline activo' : 'Caché local preparada';
         registration.update().catch(function(){ return null; });
         registration.addEventListener('updatefound',function(){
@@ -8744,7 +9096,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
 
     function trapMenuFocus(event){
       if(event.key !== 'Tab' || $('mainNav').dataset.open !== 'true') return;
-      const focusable = $$('button:not([disabled]),summary',$('mainNav')).filter(function(el){return el.getClientRects().length>0;});
+      const focusable = $$('button:not([disabled])',$('mainNav'));
       if(!focusable.length) return;
       const first = focusable[0];
       const last = focusable[focusable.length-1];
@@ -8767,7 +9119,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
         view.hidden = view.dataset.view !== safeRoute;
       });
       if(landingExperience) landingExperience.setActive(safeRoute === 'inicio');
-      $$('button[data-route],a[data-route]').forEach(function(button){
+      $$('[data-route]').forEach(function(button){
         if(button.dataset.route === safeRoute) button.setAttribute('aria-current','page');
         else button.removeAttribute('aria-current');
       });
@@ -8799,8 +9151,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
     function routeFromLocation(initial){
       const route = location.hash.replace(/^#/,'').toLowerCase();
       const remembered=loadBetaMeta().lastRoute;
-      const newVersionEntry=initial && !route && loadBetaMeta().lastWelcomeVersion !== WELCOME_STORAGE_VERSION;
-      const rememberedRoute=newVersionEntry || remembered === 'widget-runtime' ? 'inicio' : remembered;
+      const rememberedRoute=remembered === 'widget-runtime' ? 'inicio' : remembered;
       showRoute(ROUTES.has(route) && route !== 'widget-runtime' ? route : (ROUTES.has(rememberedRoute) ? rememberedRoute : 'inicio'),{updateHash:false,focus:!initial});
     }
 
@@ -10015,7 +10366,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
           ipca:Object.assign({},state.ipca)
         }
       };
-      downloadJsonFile('resultado-inflacion-v0180.json',data);
+      downloadJsonFile('resultado-inflacion-v0170.json',data);
       trackEvent('report_exported',{tool:'calculator',format:'json'});
     }
 
@@ -10057,7 +10408,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
         rows.push(['fecha_oficial_' + code,quote.officialDate || '']);
         rows.push(['consultado_' + code,quote.fetchedAt || '']);
       });
-      downloadCsvFile('resultado-inflacion-v0180.csv',rows);
+      downloadCsvFile('resultado-inflacion-v0170.csv',rows);
       trackEvent('report_exported',{tool:'calculator',format:'csv'});
     }
 
@@ -10592,7 +10943,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
           };
         })
       };
-      downloadJsonFile('reajuste-salarial-v0180.json',data);
+      downloadJsonFile('reajuste-salarial-v0170.json',data);
       trackEvent('report_exported',{tool:'salary',format:'json'});
     }
 
@@ -10614,7 +10965,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       rows.push(['fecha_o_periodo_fuente',bundle.inputs.source.officialDate || '']);
       rows.push(['estado_fuente',salarySourceStateLabel(bundle.inputs.source.mode)]);
       rows.push(['periodo_analizado_meses',bundle.inputs.months]);
-      downloadCsvFile('reajuste-salarial-v0180.csv',rows);
+      downloadCsvFile('reajuste-salarial-v0170.csv',rows);
       trackEvent('report_exported',{tool:'salary',format:'csv'});
     }
 
@@ -10670,7 +11021,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
         URL.revokeObjectURL(url);
         canvas.toBlob(function(png){
           if(!png){ showToast('El navegador no pudo generar la imagen.'); return; }
-          downloadBlob('informe-reajuste-salarial-v0180.png',png,'image/png');
+          downloadBlob('informe-reajuste-salarial-v0170.png',png,'image/png');
           trackEvent('report_exported',{tool:'salary',format:'png',design:'professional'});
           showToast('PNG profesional exportado en 1600 × 1100 px.');
         },'image/png');
@@ -11653,7 +12004,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
     function exportPersonalJson(){
       const bundle = ensurePersonalResult();
       if(!bundle) return;
-      downloadJsonFile('costo-de-vida-v0180.json',personalExportPayload(bundle));
+      downloadJsonFile('costo-de-vida-v0170.json',personalExportPayload(bundle));
     }
 
     function exportPersonalProductsCsv(){
@@ -11663,7 +12014,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       bundle.metrics.products.forEach(function(item){
         rows.push([item.name,item.category,bundle.meta.currency,item.quantity,item.previousPrice,item.currentPrice,item.previousCost,item.currentCost,isFiniteNumber(item.variation) ? item.variation*100 : '',item.monetaryChange,item.contribution*100,item.notes]);
       });
-      downloadCsvFile('productos-costo-de-vida-v0180.csv',rows);
+      downloadCsvFile('productos-costo-de-vida-v0170.csv',rows);
     }
 
     function exportPersonalAnalysisCsv(){
@@ -11680,7 +12031,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
         ['categoria','impacto_monetario','contribucion_pp']
       ];
       bundle.metrics.categories.forEach(function(item){ rows.push([item.name,item.monetaryChange,item.contribution*100]); });
-      downloadCsvFile('analisis-costo-de-vida-v0180.csv',rows);
+      downloadCsvFile('analisis-costo-de-vida-v0170.csv',rows);
     }
 
     function buildPersonalShareUrl(){
@@ -11813,7 +12164,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       try{
         const payload = normalizePersonalPayload(record.payload);
         const filename = (payload.name || 'cesta').toLocaleLowerCase('es').replace(/[^a-z0-9áéíóúüñ]+/gi,'-').replace(/^-|-$/g,'').slice(0,50) || 'cesta';
-        downloadJsonFile(filename+'-v0180.json',record.payload);
+        downloadJsonFile(filename+'-v0170.json',record.payload);
       }catch(error){
         setNotice($('personalNotice'),'No se pudo exportar este registro: ' + error.message,'error');
       }
@@ -12362,7 +12713,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       if(!result || !result.analysis) return;
       const rows=[['economía','índice','período','tasa_mensual_pct','acumulada_pct','indice_base_100','fuente','consultado']];
       result.analysis.points.forEach(function(point){ rows.push([result.economy,result.indexName,point.period,point.rate,point.accumulated*100,point.base100,result.source+' · '+result.provider,result.fetchedAt]); });
-      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0180.csv',rows);
+      downloadCsvFile('inflacion-historica-'+result.country.toLowerCase()+'-v0170.csv',rows);
     }
 
     function setDataTab(name){
@@ -12421,7 +12772,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       const lowest=Math.min.apply(null,result.series.map(function(item){ return item.analysis.accumulated; }));
       const rows=[['economía','índice','inicio','fin','inflación_acumulada_pct','diferencia_pp','fuente','consultado']];
       result.series.forEach(function(item){ rows.push([item.economy,item.indexName,result.start,result.end,item.analysis.accumulated*100,(item.analysis.accumulated-lowest)*100,item.source+' · '+item.provider,item.fetchedAt]); });
-      downloadCsvFile('comparacion-internacional-v0180.csv',rows);
+      downloadCsvFile('comparacion-internacional-v0170.csv',rows);
     }
 
     function contractRange(){
@@ -12521,7 +12872,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       const result=state.contractComparison; if(!result) return;
       const rows=[['índice','inicio','fin','variación_pct','aumento','valor_final','moneda','fuente','último_dato']];
       result.rows.forEach(function(row){ rows.push([row.name,result.start,result.end,row.rate*100,row.difference,row.finalValue,result.currency,row.source,row.latestPeriod]); });
-      downloadCsvFile('comparacion-reajustes-v0180.csv',rows);
+      downloadCsvFile('comparacion-reajustes-v0170.csv',rows);
     }
 
     function parseLabRates(text,years,fallback){
@@ -12598,7 +12949,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       const result=state.labResult; if(!result) return;
       const rows=[['escenario','año','inflación_periodo_pct','valor_necesario','ingreso_nominal','ingreso_real','poder_adquisitivo_pct','pérdida_ganancia']];
       result.scenarios.forEach(function(item){ item.timeline.forEach(function(point){ rows.push([item.name,point.year,point.year ? item.rates[point.year-1] : 0,point.priceNeeded,point.nominalIncome,point.realIncome,point.purchasingPower,point.loss]); }); });
-      downloadCsvFile('laboratorio-escenarios-v0180.csv',rows);
+      downloadCsvFile('laboratorio-escenarios-v0170.csv',rows);
     }
 
     function advancedRowTemplate(item,index){
@@ -12663,7 +13014,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       const result=state.advancedResult; if(!result) return;
       const rows=[['período','tasa_pct','acumulada_pct','valor','indice_base_100','moneda']];
       result.rows.forEach(function(row){ rows.push([row.label,row.rate,row.accumulated*100,row.value,row.base100,result.currency]); });
-      downloadCsvFile('inflacion-por-periodos-v0180.csv',rows);
+      downloadCsvFile('inflacion-por-periodos-v0170.csv',rows);
     }
 
     function setMarketTab(tab,focus){
@@ -13084,7 +13435,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       const records=recordsForProduct(state.selectedProductKey);
       if(!records.length) return;
       const payload={schemaVersion:FILE_SCHEMA_VERSION,appVersion:APP_VERSION,type:'product-price-history',createdAt:nowIso(),data:{product:records[0].name,records:records}};
-      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0180.json',payload);
+      downloadJsonFile('historial-'+safeFilePart(records[0].name)+'-'+records[0].currency.toLocaleLowerCase('es')+'-v0170.json',payload);
     }
 
     function calculateInflationGoal(){
@@ -13492,14 +13843,14 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
 
     function exportUnifiedCsv(){
       if(!state.productRecords.length){ setNotice($('exportStudioNotice'),'No hay seguimientos de productos para exportar en CSV.','warning'); return; }
-      downloadBlob('seguimiento-productos-v0180-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
+      downloadBlob('seguimiento-productos-v0170-'+new Date().toISOString().slice(0,10)+'.csv',productCsvContent($('exportIncludeMetrics').checked),'text/csv;charset=utf-8');
       setNotice($('exportStudioNotice'),'CSV UTF-8 exportado con fechas ISO y números decimales consistentes.','success');
     }
 
     function exportUnifiedJson(){
       const all=$('exportDataScope').value === 'all';
       const payload=all ? buildLocalExchangePayload() : structuredProductPayload();
-      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0180-'+new Date().toISOString().slice(0,10)+'.json',payload);
+      downloadJsonFile((all ? 'respaldo-local' : 'seguimiento-productos')+'-v0170-'+new Date().toISOString().slice(0,10)+'.json',payload);
       setNotice($('exportStudioNotice'),'JSON exportado con versión de esquema, versión de la aplicación, tipo y fecha de creación.','success');
     }
 
@@ -13640,7 +13991,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
           canvas.toBlob(function(output){
             URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false);
             if(!output){ setNotice($('exportStudioNotice'),'El navegador no pudo crear el PNG.','error'); return; }
-            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0180.png',output,'image/png');
+            downloadBlob('inflation-insights-'+$('exportPngContent').value+'-'+pixels.width+'x'+pixels.height+'-v0170.png',output,'image/png');
             setNotice($('exportStudioNotice'),'PNG exportado a '+pixels.width+' × '+pixels.height+' píxeles.','success');
           },'image/png',1);
         }catch(error){ URL.revokeObjectURL(url); setButtonBusy($('downloadPngExportButton'),false); setNotice($('exportStudioNotice'),'No se pudo renderizar el PNG.','error'); }
@@ -14405,7 +14756,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       const report=state.reportResult; if(!report) return;
       const rows=[['sección','contenido']]; report.sections.forEach(function(section){ section.lines.forEach(function(line){ rows.push([section.title,line]); }); });
       rows.push(['Metodología',report.methodology],['Supuestos',report.assumptions]);
-      downloadCsvFile('informe-inflacion-v0180.csv',rows);
+      downloadCsvFile('informe-inflacion-v0170.csv',rows);
     }
 
     const UNIVERSAL_EXPORT_MODULES=Object.freeze({
@@ -14640,7 +14991,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
 
     function universalExportFilename(snapshot,extension,kind){
       const suffix=kind ? '-'+String(kind).replace(/[^a-z0-9-]+/gi,'-').toLowerCase() : '';
-      return 'inflation-insights-'+snapshot.slug+suffix+'-v0180.'+extension;
+      return 'inflation-insights-'+snapshot.slug+suffix+'-v0170.'+extension;
     }
 
     function universalXlsxDrawingXml(title){
@@ -14860,211 +15211,285 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
     }
 
     const LANDING_QUALITY_PROFILES=Object.freeze({
-      ultra:Object.freeze({particles:150,segments:64,rows:22,fps:60,dpr:2,pixelBudget:8500000,lights:3,blur:18,label:'Ultra'}),
-      high:Object.freeze({particles:95,segments:48,rows:16,fps:60,dpr:1.6,pixelBudget:6000000,lights:2,blur:12,label:'High'}),
-      medium:Object.freeze({particles:48,segments:32,rows:10,fps:45,dpr:1.25,pixelBudget:3500000,lights:1,blur:4,label:'Balanced'}),
-      low:Object.freeze({particles:16,segments:20,rows:6,fps:30,dpr:1,pixelBudget:1800000,lights:1,blur:0,label:'Performance'})
+      ultra:Object.freeze({particles:180,coins:16,fps:60,dpr:2,pixelBudget:9200000,glow:true,label:'Ultra'}),
+      high:Object.freeze({particles:118,coins:16,fps:60,dpr:1.65,pixelBudget:7200000,glow:true,label:'Alta'}),
+      medium:Object.freeze({particles:70,coins:12,fps:45,dpr:1.3,pixelBudget:4700000,glow:false,label:'Media'}),
+      low:Object.freeze({particles:30,coins:8,fps:30,dpr:1,pixelBudget:2300000,glow:false,label:'Baja / móvil'})
     });
+
     function automaticLandingQuality(){
-      const cores=Number(navigator.hardwareConcurrency||2),memory=Number(navigator.deviceMemory||4);
-      if(navigator.connection && navigator.connection.saveData || innerWidth<600 || cores<=2 || memory<=2) return 'low';
-      if(innerWidth>=2560 && cores>=8 && memory>=8) return 'ultra';
-      return innerWidth>=1200 && cores>=6 && memory>=6 ? 'high' : 'medium';
+      const width=Math.max(window.innerWidth || 0,window.screen && window.screen.width || 0);
+      const cores=Number(navigator.hardwareConcurrency || 2);
+      const memory=Number(navigator.deviceMemory || 0);
+      const saveData=Boolean(navigator.connection && navigator.connection.saveData);
+      const coarse=window.matchMedia && window.matchMedia('(pointer:coarse)').matches;
+      if(saveData || width < 720 || coarse && (cores <= 4 || memory && memory <= 4)) return 'low';
+      if(width >= 2560 && cores >= 8 && (!memory || memory >= 8)) return 'ultra';
+      if(width >= 1280 && cores >= 6 && (!memory || memory >= 6)) return 'high';
+      return 'medium';
     }
+
     function setupLandingExperience(){
       const root=$('landing3d'),canvas=$('landingCanvas');
-      if(!root||!canvas) return null;
-      const context=canvas.getContext('2d',{alpha:false}),quality=$('graphicsQuality'),qualityState=$('graphicsQualityState');
-      const motionButton=$('landingMotionButton'),motionStatus=$('landingMotionStatus'),transition=$('landingTransition');
-      const media=matchMedia('(prefers-reduced-motion: reduce)');
-      const chapters=$$('[data-universe-chapter]',root),enterButtons=$$('[data-universe-enter]');
+      if(!root || !canvas) return null;
+      const qualitySelect=$('graphicsQuality');
+      const qualityState=$('graphicsQualityState');
+      const motionButton=$('landingMotionButton');
+      const motionStatus=$('landingMotionStatus');
+      const orbit=root.querySelector('.landing-orbit');
+      const scenes=$$('[data-landing-scene]',root);
+      const transition=$('landingTransition');
+      const skipTransition=$('landingSkipTransitionButton');
+      const prefersReduced=window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : {matches:false,addEventListener:function(){}};
+      const context=canvas.getContext && canvas.getContext('2d',{alpha:false,desynchronized:true});
+      const currencyCodes=CURRENCY_CODES;
       let requested=safeStorageGet(KEYS.graphicsQuality,'auto');
       if(!['auto','ultra','high','medium','low'].includes(requested)) requested='auto';
-      let resolved=requested==='auto'?automaticLandingQuality():requested,profile=LANDING_QUALITY_PROFILES[resolved];
-      let manualReduced=false,active=state.route==='inicio',raf=0,scrollRaf=0,lastFrame=0,transitionTimer=0,enterStart=0;
-      let width=1,height=1,dpr=1,progress=0,chapter=0,choice='save',sceneChoice=0,particles=[],slowFrames=0;
-      const pointer={x:0,y:0,targetX:0,targetY:0};
-      const reduced=()=>media.matches||manualReduced;
-      const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
-      const lerp=(a,b,t)=>a+(b-a)*t;
-      const smooth=t=>t*t*(3-2*t);
-      function rebuild(){
-        particles=Array.from({length:profile.particles},(_,i)=>({x:Math.sin(i*127.1)*9,y:Math.cos(i*311.7)*5,z:Math.sin(i*74.7)*5+6}));
+      let resolved=requested === 'auto' ? automaticLandingQuality() : requested;
+      let profile=LANDING_QUALITY_PROFILES[resolved];
+      let systemReduced=Boolean(prefersReduced.matches);
+      let manualReduced=systemReduced;
+      let routeActive=state.route === 'inicio';
+      let documentActive=!document.hidden;
+      let raf=0,lastFrame=0,scrollRaf=0,transitionTimer=0;
+      let width=0,height=0,dpr=1,progress=0,activeScene=0;
+      let pointer={x:0,y:0,targetX:0,targetY:0};
+      let particles=[];
+
+      function pseudoRandom(seed){
+        let value=seed >>> 0;
+        return function(){ value=(value*1664525+1013904223)>>>0; return value/4294967296; };
       }
-      function resize(){
-        width=Math.max(1,innerWidth);height=Math.max(1,innerHeight);
-        dpr=Math.min(devicePixelRatio||1,profile.dpr,Math.sqrt(profile.pixelBudget/(width*height)));
-        canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);
-        if(context) context.setTransform(dpr,0,0,dpr,0,0);
+
+      function rebuildWorld(){
+        const random=pseudoRandom(1102026+profile.particles);
+        particles=Array.from({length:profile.particles},function(){
+          return {x:(random()-.5)*1800,y:(random()-.5)*1100,z:90+random()*1500,size:.7+random()*2.3,hue:random()>.74 ? 'orange' : random()>.48 ? 'cyan' : 'white'};
+        });
       }
-      function qualityLabel(){
+
+      function updateQualityLabel(){
+        const prefix=requested === 'auto' ? 'Auto → ' : '';
+        qualityState.textContent=prefix+profile.label+' · '+profile.fps+' FPS máx.';
         root.dataset.quality=resolved;
-        quality.value=requested;
-        qualityState.textContent=(requested==='auto'?'Auto · ':'')+profile.label;
-        root.dataset.segments=String(profile.segments);root.dataset.particles=String(profile.particles);
       }
+
       function setQuality(value,announce){
-        requested=['auto','ultra','high','medium','low'].includes(value)?value:'auto';
-        resolved=requested==='auto'?automaticLandingQuality():requested;profile=LANDING_QUALITY_PROFILES[resolved];
-        safeStorageSet(KEYS.graphicsQuality,requested,{silent:true});slowFrames=0;rebuild();resize();qualityLabel();render(performance.now());
+        requested=['auto','ultra','high','medium','low'].includes(value) ? value : 'auto';
+        resolved=requested === 'auto' ? automaticLandingQuality() : requested;
+        profile=LANDING_QUALITY_PROFILES[resolved];
+        qualitySelect.value=requested;
+        safeStorageSet(KEYS.graphicsQuality,requested,{silent:true});
+        rebuildWorld();
+        resizeCanvas();
+        updateQualityLabel();
+        draw(performance.now(),true);
         if(announce) motionStatus.textContent='Calidad gráfica: '+profile.label+'.';
       }
-      // Perspective projection and camera rotation are shared by the mesh, bars, paths and particles.
-      function project(x,y,z,time,portal){
-        const mobile=width<600,still=reduced();
-        const yaw=-.42+(still?0:pointer.x*.14+Math.sin(time*.00013)*.04)+chapter*.08;
-        const pitch=.58+(still?0:pointer.y*.055);
-        const rx=x*Math.cos(yaw)-z*Math.sin(yaw),rz=x*Math.sin(yaw)+z*Math.cos(yaw);
-        const ry=y*Math.cos(pitch)-rz*Math.sin(pitch),depth=y*Math.sin(pitch)+rz*Math.cos(pitch);
-        const focal=Math.min(width*(mobile?.92:.72),height*1.28);
-        const scale=focal/Math.max(1.8,11+depth-portal*6.5);
-        const story=smooth(clamp(progress*5,0,1));
-        const centerX=lerp(width*.52,width*(mobile?.54:.76),story);
-        const centerY=lerp(height*.80,height*(mobile?.80:.60),story);
-        return {x:centerX+rx*scale,y:centerY+ry*scale,s:scale,z:depth};
+
+      function setReduced(value,announce){
+        manualReduced=Boolean(value) || systemReduced;
+        motionButton.setAttribute('aria-pressed',String(manualReduced));
+        motionButton.textContent=manualReduced ? 'Reactivar movimiento' : 'Reducir movimiento';
+        root.dataset.reducedMotion=String(manualReduced);
+        if(orbit) orbit.style.transform='';
+        if(announce) motionStatus.textContent=manualReduced ? 'Movimiento reducido. La calculadora mantiene todas sus funciones.' : 'Movimiento ambiental reactivado.';
+        updateAnimationState();
+        draw(performance.now(),true);
       }
-      function stroke(points,color,lineWidth=1){
-        if(!points.length)return;
-        context.beginPath();points.forEach((p,i)=>i?context.lineTo(p.x,p.y):context.moveTo(p.x,p.y));
-        context.strokeStyle=color;context.lineWidth=lineWidth;context.stroke();
+
+      function resizeCanvas(){
+        if(!context) return;
+        width=Math.max(1,window.innerWidth);
+        height=Math.max(1,window.innerHeight-72);
+        const desired=Math.min(window.devicePixelRatio || 1,profile.dpr);
+        const budgetScale=Math.sqrt(profile.pixelBudget/Math.max(1,width*height));
+        dpr=Math.max(.75,Math.min(desired,budgetScale));
+        canvas.width=Math.max(1,Math.round(width*dpr));
+        canvas.height=Math.max(1,Math.round(height*dpr));
+        canvas.style.width=width+'px';
+        canvas.style.height=height+'px';
+        context.setTransform(dpr,0,0,dpr,0,0);
       }
-      function face(points,color){
-        context.beginPath();points.forEach((p,i)=>i?context.lineTo(p.x,p.y):context.moveTo(p.x,p.y));context.closePath();context.fillStyle=color;context.fill();
+
+      function project(x,y,z){
+        const depth=Math.max(70,z);
+        const scale=Math.min(3.4,620/depth);
+        return {x:width*.5+(x+pointer.x*115)*scale,y:height*.5+(y+pointer.y*72)*scale,scale:scale,depth:depth};
       }
-      function surfaceY(x,z,time){
-        const t=(x+4)/8,ambient=reduced()?0:Math.sin(x*.8+z*.7+time*.0005)*.09;
-        const slope=lerp(1.7,-1.4,clamp(chapter,0,1));
-        const a=Number($('universeRateA').value)/100,b=Number($('universeRateB').value)/100;
-        const compare=(Math.pow(1+lerp(a,b,(z+2)/4),t*5)-1)*3;
-        const choose=choice==='invest'?-2.0:choice==='spend'?1.8:-.5;
-        return Math.sin(t*Math.PI*1.5+z*.28)*.55-t*lerp(slope,choose,clamp(chapter-2,0,1))+ambient-clamp(chapter-1,0,1)*compare;
-      }
-      function render(now){
-        if(!context||!active) return;
-        const still=reduced(),time=still?0:now,portal=enterStart&&!still?smooth(clamp((now-enterStart)/950,0,1)):0;
-        pointer.x=still?0:lerp(pointer.x,pointer.targetX,.07);pointer.y=still?0:lerp(pointer.y,pointer.targetY,.07);
-        context.fillStyle='#03040a';context.fillRect(0,0,width,height);
-        for(let light=0;light<profile.lights;light++){
-          const gx=width*(.6+light*.14+pointer.x*.025),gy=height*(.62-light*.24+pointer.y*.03);
-          const glow=context.createRadialGradient(gx,gy,0,gx,gy,Math.max(width,height)*.58);
-          glow.addColorStop(0,light===0?'#21489130':light===1?'#52289120':'#1f786819');glow.addColorStop(1,'#03040a00');context.fillStyle=glow;context.fillRect(0,0,width,height);
+
+      function drawFloor(time){
+        context.save();
+        context.strokeStyle='rgba(255,212,0,.11)';
+        context.lineWidth=1;
+        const horizon=height*.58;
+        for(let line=0;line<11;line += 1){
+          const t=line/10;
+          const y=horizon+Math.pow(t,1.8)*height*.5;
+          context.beginPath();context.moveTo(0,y);context.lineTo(width,y);context.stroke();
         }
-        const p=(x,y,z)=>project(x,y,z,time,portal);
-        particles.forEach((item,i)=>{
-          const drift=still?0:Math.sin(time*.00018+i)*.3,point=p(item.x,item.y+drift,item.z);
-          context.fillStyle=i%3?'#638fcf55':'#39f2d08c';context.beginPath();context.arc(point.x,point.y,clamp(point.s*.012,.5,2),0,Math.PI*2);context.fill();
+        for(let column=-8;column<=8;column += 1){
+          const bottom=width*.5+column*width*.12+pointer.x*35;
+          context.beginPath();context.moveTo(width*.5+pointer.x*25,horizon);context.lineTo(bottom,height);context.stroke();
+        }
+        context.restore();
+      }
+
+      function drawParticles(time){
+        context.save();
+        context.globalCompositeOperation='lighter';
+        particles.forEach(function(item,index){
+          const travel=manualReduced ? 0 : (time*.035+progress*720+index*2.7);
+          const z=((item.z-travel)%1580+1580)%1580+70;
+          const point=project(item.x,item.y,z);
+          if(point.x < -30 || point.x > width+30 || point.y < -30 || point.y > height+30) return;
+          const alpha=Math.max(.04,Math.min(.72,(1-z/1700)*.74));
+          const color=item.hue === 'orange' ? '255,105,0' : item.hue === 'cyan' ? '85,245,230' : '255,255,255';
+          context.fillStyle='rgba('+color+','+alpha+')';
+          context.beginPath();context.arc(point.x,point.y,Math.max(.45,item.size*point.scale),0,Math.PI*2);context.fill();
         });
-        const rows=profile.rows,segments=profile.segments;
-        // Painter's order gives the mesh translucent depth without a downloaded 3D dependency.
-        for(let j=rows;j>=0;j--){
-          const z=-2+j/rows*4,points=[];
-          for(let i=0;i<=segments;i++){const x=-4+i/segments*8;points.push(p(x,surfaceY(x,z,time),z));}
-          if(j<rows){const z2=z+4/rows,next=[];for(let i=segments;i>=0;i--){const x=-4+i/segments*8;next.push(p(x,surfaceY(x,z2,time),z2));}face(points.concat(next),'rgba(45,95,172,.045)');}
-          const front=j===0;
-          context.shadowBlur=front?profile.blur:0;context.shadowColor='#39f2d0';
-          stroke(points,front?'#69ffe0':j%3===0?'#4776ff88':'#4776ff38',front?2:1);
-        }
-        context.shadowBlur=0;
-        for(let i=0;i<=segments;i+=2){const x=-4+i/segments*8,points=[];for(let j=0;j<=rows;j++){const z=-2+j/rows*4;points.push(p(x,surfaceY(x,z,time),z));}stroke(points,'#6b89d83c');}
-        // A/B trajectories emerge from the same world; slider changes move the actual geometry.
-        if(chapter>1){
-          ['A','B'].forEach((name,si)=>{const rate=Number($('universeRate'+name).value)/100,points=[];
-            for(let i=0;i<=segments;i++){const t=i/segments;points.push(p(-4+t*8,-(Math.pow(1+rate,t*5)-1)*4-1.2,si*2-1));}
-            stroke(points,si?'#b299ff':'#39f2d0',2.5);
-          });
-        }
-        // Extruded price bars bridge the surface and the application's chart language.
-        for(let i=0;i<7;i++){
-          const x=-3+i*.9,z=.7,bar=.4+i*.19+Math.sin(i+chapter)*.2,base=1.65;
-          const pts=[p(x,base,z),p(x+.34,base,z),p(x+.34,base-bar,z),p(x,base-bar,z)];
-          face(pts,i%2?'#4776ff35':'#39f2d033');stroke(pts.concat([pts[0]]),'#81c8f766');
-          face([pts[2],p(x+.34,base-bar,z+.3),p(x,base-bar,z+.3),pts[3]],'#8cacf740');
-          face([pts[1],p(x+.34,base,z+.3),p(x+.34,base-bar,z+.3),pts[2]],'#4776ff25');
-        }
-        if(chapter>2){
-          ['Save','Invest','Spend'].forEach((name,i)=>{
-            const t=still?0:Math.sin(time*.0007+i)*.06,end=p((i-1)*3,-1.6+t,1.5),start=p(0,1.6,1.5);
-            stroke([start,p((i-1)*1.7,.2,1.5),end],sceneChoice===i?'#39f2d0':'#8194c055',sceneChoice===i?2.5:1);
-            context.font='500 '+(width<600?12:14)+'px system-ui';context.textAlign='center';context.fillStyle=sceneChoice===i?'#83ffe7':'#a2b4d6';context.fillText(name,end.x,end.y-15);
-          });
-        }
-        root.dataset.scene=chapter<.5?'hero':chapter<1.5?'measure':chapter<2.5?'compare':'decide';
+        context.restore();
       }
-      function frame(now){
-        raf=0;if(!active||document.hidden||reduced())return;
-        if(now-lastFrame>=1000/profile.fps-1){
-          const start=performance.now();render(now);const spent=performance.now()-start;lastFrame=now;
-          slowFrames=spent>1000/profile.fps*.85?slowFrames+1:Math.max(0,slowFrames-1);
-          if(requested==='auto'&&slowFrames>70&&resolved!=='low'){
-            const levels=['ultra','high','medium','low'];resolved=levels[levels.indexOf(resolved)+1];profile=LANDING_QUALITY_PROFILES[resolved];slowFrames=0;rebuild();resize();qualityLabel();
-          }
+
+      function drawCoins(time){
+        const count=Math.min(profile.coins,currencyCodes.length);
+        const motion=manualReduced ? 0 : time*.00012;
+        const radius=Math.min(width*.38,560);
+        const visible=[];
+        for(let index=0;index<count;index += 1){
+          const angle=motion+index/count*Math.PI*2+progress*Math.PI*.62;
+          const x=Math.cos(angle)*radius;
+          const y=Math.sin(angle*.94)*Math.min(height*.31,260);
+          const z=480+Math.sin(angle*1.7)*300;
+          visible.push({code:currencyCodes[index],point:project(x,y,z),z:z,index:index});
         }
+        visible.sort(function(a,b){ return b.z-a.z; }).forEach(function(item){
+          const size=Math.max(14,Math.min(46,23*item.point.scale));
+          const alpha=Math.max(.18,Math.min(.82,1-item.z/1250));
+          context.save();
+          if(profile.glow){ context.shadowBlur=18; context.shadowColor=item.index%3 === 0 ? 'rgba(255,212,0,.55)' : 'rgba(85,245,230,.35)'; }
+          context.fillStyle=item.index%3 === 0 ? 'rgba(255,212,0,'+alpha+')' : item.index%3 === 1 ? 'rgba(85,245,230,'+alpha+')' : 'rgba(255,255,255,'+alpha+')';
+          context.strokeStyle='rgba(5,5,7,.85)';context.lineWidth=Math.max(1,size*.08);
+          context.beginPath();context.arc(item.point.x,item.point.y,size,0,Math.PI*2);context.fill();context.stroke();
+          context.shadowBlur=0;context.fillStyle='#08080b';context.font='900 '+Math.max(8,size*.34)+'px system-ui';context.textAlign='center';context.textBaseline='middle';context.fillText(item.code,item.point.x,item.point.y);
+          context.restore();
+        });
+      }
+
+      function drawDataRibbon(time){
+        const strength=Math.max(0,1-Math.abs(progress-.42)*4.3);
+        if(strength <= .01) return;
+        context.save();
+        context.translate(pointer.x*24,pointer.y*15);
+        context.strokeStyle='rgba(255,212,0,'+(.18+.5*strength)+')';
+        context.lineWidth=2+strength*4;
+        context.beginPath();
+        for(let step=0;step<=44;step += 1){
+          const x=width*(.06+.88*step/44);
+          const wave=Math.sin(step*.46+(manualReduced ? 0 : time*.001))*height*.035;
+          const y=height*(.73-.43*Math.pow(step/44,1.3))+wave;
+          if(step === 0) context.moveTo(x,y); else context.lineTo(x,y);
+        }
+        context.stroke();context.restore();
+      }
+
+      function draw(time,force){
+        if(!context || !width || !height) return;
+        if(!force && time-lastFrame < 1000/profile.fps) return;
+        lastFrame=time;
+        pointer.x+=(pointer.targetX-pointer.x)*.055;
+        pointer.y+=(pointer.targetY-pointer.y)*.055;
+        const gradient=context.createRadialGradient(width*(.66+pointer.x*.03),height*(.22+pointer.y*.03),10,width*.55,height*.44,Math.max(width,height)*.78);
+        gradient.addColorStop(0,'#1a1010');gradient.addColorStop(.32,'#090a10');gradient.addColorStop(1,'#030305');
+        context.fillStyle=gradient;context.fillRect(0,0,width,height);
+        drawFloor(time);drawParticles(time);drawDataRibbon(time);drawCoins(time);
+      }
+
+      function frame(time){
+        raf=0;
+        if(!routeActive || !documentActive || manualReduced) return;
+        draw(time,false);
         raf=requestAnimationFrame(frame);
       }
-      function syncAnimation(){
-        const running=active&&!document.hidden&&!reduced()&&Boolean(context);
-        if(!running&&raf){cancelAnimationFrame(raf);raf=0;}
-        if(running&&!raf){lastFrame=performance.now();raf=requestAnimationFrame(frame);}
-        root.dataset.animating=String(running);
+
+      function updateAnimationState(){
+        const shouldRun=Boolean(context && routeActive && documentActive && !manualReduced);
+        if(shouldRun && !raf) raf=requestAnimationFrame(frame);
+        if(!shouldRun && raf){ cancelAnimationFrame(raf); raf=0; }
       }
-      function updateScroll(){
-        scrollRaf=0;if(!active)return;
-        const rect=root.getBoundingClientRect();progress=clamp(-rect.top/Math.max(1,root.offsetHeight-innerHeight),0,1);
-        chapter=0;chapters.forEach((el,i)=>{const r=el.getBoundingClientRect();if(r.top<height*.75)chapter=i+clamp((height*.75-r.top)/(height*.5),0,1);});
-        render(performance.now());
+
+      function updateScrollState(){
+        scrollRaf=0;
+        const rect=root.getBoundingClientRect();
+        const travel=Math.max(1,root.offsetHeight-window.innerHeight);
+        progress=Math.max(0,Math.min(1,-rect.top/travel));
+        let nearest=0,distance=Infinity;
+        const center=window.innerHeight*.52;
+        scenes.forEach(function(scene,index){
+          const sceneRect=scene.getBoundingClientRect();
+          const current=Math.abs(sceneRect.top+sceneRect.height*.5-center);
+          if(current < distance){ distance=current; nearest=index; }
+        });
+        activeScene=nearest;
+        scenes.forEach(function(scene,index){ scene.dataset.active=String(index === activeScene); });
+        draw(performance.now(),true);
       }
-      function setReduced(value,announce){
-        manualReduced=Boolean(value);pointer.x=pointer.y=pointer.targetX=pointer.targetY=0;
-        root.dataset.reducedMotion=String(reduced());motionButton.setAttribute('aria-pressed',String(reduced()));
-        motionButton.textContent=media.matches?'Movimiento reducido del sistema':manualReduced?'Reactivar movimiento':'Reducir movimiento';
-        motionButton.disabled=media.matches;
-        if(enterStart&&reduced())finishTransition();syncAnimation();render(performance.now());
-        if(announce)motionStatus.textContent=reduced()?'Movimiento reducido activo.':'Movimiento reactivado.';
+
+      function requestScrollUpdate(){
+        if(!scrollRaf) scrollRaf=requestAnimationFrame(updateScrollState);
       }
-      function resetTransition(){
-        clearTimeout(transitionTimer);transitionTimer=0;enterStart=0;root.dataset.entering='false';transition.hidden=true;
-        enterButtons.forEach(b=>b.disabled=false);
-      }
+
       function setActive(value){
-        active=Boolean(value);if(!active){resetTransition();if(scrollRaf){cancelAnimationFrame(scrollRaf);scrollRaf=0;}}
-        else{resize();updateScroll();render(performance.now());}syncAnimation();
+        routeActive=Boolean(value);
+        if(routeActive){ resizeCanvas();requestScrollUpdate(); }
+        updateAnimationState();
       }
+
       function finishTransition(){
-        if(!enterStart)return;resetTransition();showRoute('negocios');
-        const view=$('view-negocios');view.classList.add('universe-app-reveal');setTimeout(()=>view.classList.remove('universe-app-reveal'),500);
+        if(transitionTimer){ window.clearTimeout(transitionTimer);transitionTimer=0; }
+        showRoute('calculadora');
+        window.setTimeout(function(){ transition.classList.remove('is-active');transition.hidden=true; },120);
       }
-      function enter(){
-        if(enterStart)return;
-        enterStart=performance.now()||1;root.dataset.entering='true';transition.hidden=false;enterButtons.forEach(b=>b.disabled=true);
-        $('landingSkipTransitionButton').focus({preventScroll:true});
-        transitionTimer=setTimeout(finishTransition,reduced()?120:1000);
+
+      function openCalculator(){
+        if(manualReduced || prefersReduced.matches){ showRoute('calculadora');return; }
+        transition.hidden=false;
+        requestAnimationFrame(function(){ transition.classList.add('is-active'); });
+        transitionTimer=window.setTimeout(finishTransition,760);
       }
-      function compare(){
-        ['A','B'].forEach(name=>{const rate=Number($('universeRate'+name).value);$('universeRate'+name+'Label').textContent=rate+'%';$('universeValue'+name).textContent='$'+Math.round(1000*Math.pow(1+rate/100,5)).toLocaleString('en-US');});
-        render(performance.now());
+
+      if(!context){
+        canvas.hidden=true;
+        root.dataset.canvas='unavailable';
+        qualityState.textContent='Canvas no disponible · modo ligero';
+      }else{
+        root.dataset.canvas='ready';
+        rebuildWorld();resizeCanvas();
       }
-      const decisions={save:['Preserve your buffer.','Explora cuánto necesitas reservar y cómo la inflación cambia su valor.','Riesgo a comparar: pérdida de poder adquisitivo.'],invest:['Explore the upside.','Compara rentabilidad, costes y distintos escenarios antes de asignar capital.','Riesgo a comparar: variación del rendimiento y pérdidas.'],spend:['Make room for what matters.','Mide el coste de una compra frente a tus ingresos, gastos y objetivos.','Riesgo a comparar: menor liquidez disponible.']};
-      $$('[data-universe-choice]',root).forEach((button,i)=>button.addEventListener('click',()=>{
-        choice=button.dataset.universeChoice;sceneChoice=i;$$('[data-universe-choice]',root).forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
-        ['Title','Text','Risk'].forEach((key,j)=>$('universeDecision'+key).textContent=decisions[choice][j]);render(performance.now());
-      }));
-      quality.addEventListener('change',()=>setQuality(quality.value,true));motionButton.addEventListener('click',()=>setReduced(!manualReduced,true));
-      enterButtons.forEach(b=>b.addEventListener('click',enter));$('landingSkipTransitionButton').addEventListener('click',finishTransition);
-      $$('[data-universe-scroll]').forEach(b=>b.addEventListener('click',()=>$(b.dataset.universeScroll).scrollIntoView({behavior:reduced()?'instant':'smooth',block:'start'})));
-      ['A','B'].forEach(n=>$('universeRate'+n).addEventListener('input',compare));
-      root.addEventListener('pointermove',e=>{if(!active||reduced())return;pointer.targetX=clamp(e.clientX/width*2-1,-1,1);pointer.targetY=clamp(e.clientY/height*2-1,-1,1);},{passive:true});
-      root.addEventListener('pointerleave',()=>{pointer.targetX=pointer.targetY=0;},{passive:true});
-      window.addEventListener('scroll',()=>{if(active&&!scrollRaf)scrollRaf=requestAnimationFrame(updateScroll);},{passive:true});
-      window.addEventListener('resize',()=>{if(!active)return;if(requested==='auto')setQuality('auto',false);else resize();updateScroll();},{passive:true});
-      document.addEventListener('visibilitychange',()=>{if(document.hidden&&enterStart)finishTransition();syncAnimation();});
-      media.addEventListener('change',()=>setReduced(manualReduced,true));
-      document.addEventListener('keydown',e=>{if(e.key==='Escape'&&enterStart)finishTransition();});
-      $$('.nav-group').forEach(group=>group.addEventListener('toggle',()=>{if(group.open)$$('.nav-group').forEach(g=>{if(g!==group)g.open=false;});}));
-      document.addEventListener('click',e=>{$$('.nav-group').forEach(g=>{if(!g.contains(e.target)||e.target.closest('button[data-route],a[data-route]'))g.open=false;});});
-      document.addEventListener('keydown',e=>{if(e.key==='Escape')$$('.nav-group[open]').forEach(g=>{g.open=false;g.querySelector('summary').focus();});});
-      if(!context){canvas.hidden=true;qualityState.textContent='Gráficos no disponibles · todas las herramientas siguen accesibles';quality.disabled=true;}
-      rebuild();resize();if(context)qualityLabel();setReduced(false,false);updateScroll();compare();syncAnimation();
-      return {setActive,setQuality,setReduced,render:()=>render(performance.now())};
+      qualitySelect.value=requested;
+      updateQualityLabel();
+      setReduced(manualReduced,false);
+      qualitySelect.addEventListener('change',function(){ setQuality(this.value,true); });
+      motionButton.addEventListener('click',function(){ setReduced(!manualReduced,true); });
+      $('openCalculator3dButton').addEventListener('click',openCalculator);
+      $('openCalculatorFinalButton').addEventListener('click',openCalculator);
+      skipTransition.addEventListener('click',finishTransition);
+      root.addEventListener('pointermove',function(event){
+        if(manualReduced) return;
+        pointer.targetX=(event.clientX/window.innerWidth-.5)*2;
+        pointer.targetY=(event.clientY/window.innerHeight-.5)*2;
+        if(orbit) orbit.style.transform='rotateX('+(-pointer.targetY*4)+'deg) rotateY('+(pointer.targetX*6)+'deg)';
+      },{passive:true});
+      root.addEventListener('pointerleave',function(){ pointer.targetX=0;pointer.targetY=0;if(orbit) orbit.style.transform=''; },{passive:true});
+      window.addEventListener('scroll',requestScrollUpdate,{passive:true});
+      window.addEventListener('resize',function(){
+        if(requested === 'auto') setQuality('auto',false); else resizeCanvas();
+        requestScrollUpdate();
+      },{passive:true});
+      document.addEventListener('visibilitychange',function(){ documentActive=!document.hidden;updateAnimationState(); });
+      if(prefersReduced.addEventListener) prefersReduced.addEventListener('change',function(event){ systemReduced=Boolean(event.matches);setReduced(systemReduced,true); });
+      requestScrollUpdate();updateAnimationState();
+      return {setActive:setActive,setQuality:setQuality,setReduced:setReduced,render:function(){ draw(performance.now(),true); }};
     }
 
     function setupPwaInstall(){
@@ -16252,7 +16677,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
     function downloadInvestmentDraftBackup(options){
       const opts=Object.assign({announce:true},options || {});
       const rawName=String($('investmentBusinessName').value || 'negocio');
-      downloadJsonFile('datos-inversion-'+safeFilePart(rawName)+'-v0180.json',investmentDraftBackupPayload());
+      downloadJsonFile('datos-inversion-'+safeFilePart(rawName)+'-v0170.json',investmentDraftBackupPayload());
       if(opts.announce) setFeatureStatus('investmentNotice','Respaldo descargado. Usa «Cargar respaldo» si el visor local no recupera los datos al volver a abrir el HTML.','success');
     }
 
@@ -17538,7 +17963,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
     function exportMonteCarloSummary(){
       if(!state.monteCarloResult) return;
       const name=state.investmentResult ? state.investmentResult.input.name : 'negocio';
-      downloadJsonFile('monte-carlo-'+safeFilePart(name)+'-v0180.json',{schemaVersion:1,type:'monte-carlo-business-summary',appVersion:APP_VERSION,createdAt:nowIso(),project:name,result:state.monteCarloResult,notice:'Estimación probabilística; no garantiza rendimientos futuros.'});
+      downloadJsonFile('monte-carlo-'+safeFilePart(name)+'-v0170.json',{schemaVersion:1,type:'monte-carlo-business-summary',appVersion:APP_VERSION,createdAt:nowIso(),project:name,result:state.monteCarloResult,notice:'Estimación probabilística; no garantiza rendimientos futuros.'});
     }
 
     const businessLoanEngine=Object.freeze({
@@ -18325,7 +18750,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
         const r=item.result,a=item.adjustments || {};
         rows.push([APP_VERSION,item.node.name,item.node.parentId || '',a.sales,a.price,a.costs,a.inflation,a.growth,r?r.annualProfit:'',r&&r.annualRoi!=null?r.annualRoi:'',r?r.npv:'',r&&r.irrAnnual!=null?r.irrAnnual:'',r?r.rows.at(-1).cash:'',r&&r.margin!=null?r.margin:'',r&&r.breakEvenUnits!=null?r.breakEvenUnits:'',r?r.riskScore:'']);
       });
-      downloadCsvFile('arbol-decisiones-v0180.csv',rows); setDecisionNotice('decisionScenarioNotice','Árbol exportado en CSV con ajustes acumulados y resultados completos.','success');
+      downloadCsvFile('arbol-decisiones-v0170.csv',rows); setDecisionNotice('decisionScenarioNotice','Árbol exportado en CSV con ajustes acumulados y resultados completos.','success');
     }
 
     function decisionPortfolioCurrencies(){
@@ -18382,7 +18807,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
 
     function exportDecisionPortfolio(){
       const currency=$('decisionPortfolioCurrency').value,summary=decisionEngine.portfolio(state.investmentPortfolio,currency);
-      downloadJsonFile('portafolio-empresarial-v0180.json',{schemaVersion:1,type:'decision-center-portfolio',appVersion:APP_VERSION,exportedAt:nowIso(),currency:currency,summary:{capital:summary.capital,weightedRoi:summary.weightedRoi,weightedRisk:summary.weightedRisk,annualFlow:summary.annualFlow,concentration:summary.concentration,diversification:summary.diversification},items:summary.items});
+      downloadJsonFile('portafolio-empresarial-v0170.json',{schemaVersion:1,type:'decision-center-portfolio',appVersion:APP_VERSION,exportedAt:nowIso(),currency:currency,summary:{capital:summary.capital,weightedRoi:summary.weightedRoi,weightedRisk:summary.weightedRisk,annualFlow:summary.annualFlow,concentration:summary.concentration,diversification:summary.diversification},items:summary.items});
       setDecisionNotice('decisionPortfolioNotice','Portafolio exportado con proyectos, pesos y métricas consolidadas.','success');
     }
 
@@ -18649,7 +19074,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
     }
 
     function exportDecisionWorkspace(){
-      downloadJsonFile('centro-de-decisiones-v0180-'+new Date().toISOString().slice(0,10)+'.json',decisionWorkspaceExportPayload());
+      downloadJsonFile('centro-de-decisiones-v0170-'+new Date().toISOString().slice(0,10)+'.json',decisionWorkspaceExportPayload());
       setDecisionNotice('decisionDataNotice','Respaldo completo descargado: dashboard, objetivos, escenarios, portafolio, calendario, alertas y preferencias.','success');
     }
 
@@ -18674,7 +19099,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       state.investmentPortfolio.forEach(function(item){ rows.push([APP_VERSION,'portafolio',item.name,item.metrics.initialInvestment,(item.currencyMeta&&item.currencyMeta.code)||'']); });
       workspace.calendar.forEach(function(event){ rows.push([APP_VERSION,'calendario',event.title,event.amount,event.date+' · '+event.currency+' · '+event.recurrence]); });
       workspace.alerts.forEach(function(rule){ rows.push([APP_VERSION,'alerta',rule.name,rule.threshold,rule.metric+' · '+(rule.enabled?'activa':'pausada')]); });
-      downloadCsvFile('resumen-centro-de-decisiones-v0180.csv',rows);
+      downloadCsvFile('resumen-centro-de-decisiones-v0170.csv',rows);
       setDecisionNotice('decisionDataNotice','Resumen CSV exportado con métricas y registros del Centro de Decisiones.','success');
     }
 
@@ -18986,7 +19411,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       $('investmentResetButton').addEventListener('click',function(){ armLocalAction(this,'Confirmar reinicio',function(){ safeStorageRemove(KEYS.investmentDraft); resetInvestmentForm(); state.investmentActiveProjectId=null; state.investmentLastSavedAt=null; state.investmentSaveFailed=false; setInvestmentDraftStatus('saved','Formulario vacío','El guardado anterior se eliminó de este navegador.'); updateInvestmentProjectSyncState(); setFeatureStatus('investmentNotice','Formulario vacío. No se cargaron nombres, productos ni importes de ejemplo.','success'); }); });
       $('investmentExportRunButton').addEventListener('click',runInvestmentExport);
       $('investmentExportScenariosButton').addEventListener('click',exportInvestmentScenarios); $('investmentExportSensitivityButton').addEventListener('click',exportInvestmentSensitivity);
-      $('investmentExportPortfolioButton').addEventListener('click',function(){ downloadJsonFile('comparacion-inversiones-v0180.json',{schemaVersion:1,appVersion:APP_VERSION,createdAt:nowIso(),items:state.investmentPortfolio}); });
+      $('investmentExportPortfolioButton').addEventListener('click',function(){ downloadJsonFile('comparacion-inversiones-v0170.json',{schemaVersion:1,appVersion:APP_VERSION,createdAt:nowIso(),items:state.investmentPortfolio}); });
       $('investmentClearPortfolioButton').addEventListener('click',function(){ armLocalAction(this,'Confirmar borrado',function(){ state.investmentPortfolio=[]; saveInvestmentPortfolio(); renderInvestmentPortfolio(); renderInvestmentCharts(); setFeatureStatus('investmentNotice','Comparación local eliminada.','success'); }); });
       $('investmentProjectList').addEventListener('click',handleInvestmentProjectAction);
       BUSINESS_SIMULATION_FIELD_IDS.forEach(function(id){
@@ -19082,7 +19507,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
     }
 
     function bindEvents(){
-      $$('button[data-route],a[data-route]').forEach(function(button){
+      $$('[data-route]').forEach(function(button){
         button.addEventListener('click',function(event){
           if(button.tagName === 'A') event.preventDefault();
           showRoute(button.dataset.route);
@@ -19363,7 +19788,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       $('copyContractReceiptButton').addEventListener('click',function(){ if(state.contractResult) copyText(contractReceiptText(state.contractResult),'Comprobante copiado.'); });
       $('exportContractJsonButton').addEventListener('click',function(){
         if(!state.contractResult) return;
-        downloadJsonFile('reajuste-contrato-v0180.json',Object.assign({},state.contractResult,{
+        downloadJsonFile('reajuste-contrato-v0170.json',Object.assign({},state.contractResult,{
           schemaVersion:FILE_SCHEMA_VERSION,
           appVersion:APP_VERSION,
           type:'contract-adjustment',
@@ -19371,7 +19796,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
           createdAt:state.contractResult.fetchedAt || nowIso()
         }));
       });
-      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0180.pdf','contract'); });
+      $('exportContractPdfButton').addEventListener('click',function(){ downloadProfessionalReport(contractProfessionalReport(),'comprobante-reajuste-contrato-v0170.pdf','contract'); });
       $('exportContractComparisonCsvButton').addEventListener('click',exportContractComparisonCsv);
       $('labForm').addEventListener('submit',function(event){ event.preventDefault(); calculateLab(); });
       $('saveLabButton').addEventListener('click',saveLabConfig);
@@ -19391,11 +19816,11 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       });
       $('loadAdvancedExampleButton').addEventListener('click',loadAdvancedExample);
       $('exportAdvancedCsvButton').addEventListener('click',exportAdvancedCsv);
-      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0180.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
+      $('exportAdvancedJsonButton').addEventListener('click',function(){ if(state.advancedResult) downloadJsonFile('inflacion-por-periodos-v0170.json',Object.assign({schemaVersion:FILE_SCHEMA_VERSION,type:'period-inflation'},state.advancedResult)); });
       $('reportForm').addEventListener('submit',function(event){ event.preventDefault(); try{ renderReportPreview(buildReportData()); }catch(error){ setNotice($('reportNotice'),'Selecciona al menos una sección.','error'); } });
-      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0180.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
+      $('exportReportPdfButton').addEventListener('click',function(){ if(state.reportResult && downloadProfessionalReport(state.reportResult,'informe-inflacion-profesional-v0170.pdf','report-center')) setNotice($('reportNotice'),'PDF profesional exportado con portada, jerarquía visual, paginación y gráficos integrados.','success'); });
       $('exportReportCsvButton').addEventListener('click',exportReportCsv);
-      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0180.json',state.reportResult); });
+      $('exportReportJsonButton').addEventListener('click',function(){ if(state.reportResult) downloadJsonFile('informe-inflacion-v0170.json',state.reportResult); });
       $('installAppButton').addEventListener('click',promptPwaInstall);
       $('menuButton').addEventListener('click',function(){
         const opening = $('mainNav').dataset.open !== 'true';
@@ -19484,7 +19909,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       });
       $('copyLinkButton').addEventListener('click',function(){ copyText(buildShareUrl(),'Enlace del escenario copiado.'); });
       $('copyResultButton').addEventListener('click',function(){ copyText(resultPlainText(),'Resultado copiado.'); });
-      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0180.pdf','calculator'); });
+      $('exportCalculatorPdfButton').addEventListener('click',function(){ downloadProfessionalReport(calculatorProfessionalReport(),'informe-calculadora-inflacion-v0170.pdf','calculator'); });
       $('exportJsonButton').addEventListener('click',exportResultJson);
       $('exportCsvButton').addEventListener('click',exportResultCsv);
       $('refreshQuotesButton').addEventListener('click',function(){ refreshQuotes(); });
@@ -19518,7 +19943,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       $('salaryShareButton').addEventListener('click',function(){ copyText(buildSalaryShareUrl(),'Enlace del análisis salarial copiado.'); });
       $('salaryExportCsvButton').addEventListener('click',exportSalaryCsv);
       $('salaryExportJsonButton').addEventListener('click',exportSalaryJson);
-      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0180.pdf','salary'); });
+      $('salaryExportPdfButton').addEventListener('click',function(){ downloadProfessionalReport(salaryProfessionalReport(),'informe-reajuste-salarial-v0170.pdf','salary'); });
       $('salaryExportPngButton').addEventListener('click',exportSalaryChartPng);
 
       $('saveScenarioButton').addEventListener('click',function(){
@@ -19648,7 +20073,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       $('saveBasketButton').addEventListener('click',saveBasket);
       $('weightedCurrency').addEventListener('change',function(){ state.basketCurrency = normalizeCurrencyCode(this.value,'BRL'); });
       $('exportBasketButton').addEventListener('click',function(){
-        downloadJsonFile('cesta-ponderada-v0180.json',weightedBasketPayload());
+        downloadJsonFile('cesta-ponderada-v0170.json',weightedBasketPayload());
       });
       $('importBasketButton').addEventListener('click',function(){ $('basketFileInput').click(); });
       $('basketFileInput').addEventListener('change',function(event){
@@ -19784,7 +20209,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
       });
       $$('[data-download-personal-chart]').forEach(function(button){
         button.addEventListener('click',function(){
-          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0180.png');
+          exportSvgContainerPng(button.dataset.downloadPersonalChart,button.dataset.downloadPersonalChart.replace('personal','costo-').replace('Chart','').toLocaleLowerCase('es')+'-v0170.png');
         });
       });
 
@@ -19894,7 +20319,7 @@ body .app-header .universe-nav button{white-space:nowrap;overflow-wrap:normal}
         registerOfflineWorker();
         initBackend();
       }
-      if(!widgetMode && state.route !== 'inicio' && betaMeta.lastWelcomeVersion !== WELCOME_STORAGE_VERSION){
+      if(!widgetMode && betaMeta.lastWelcomeVersion !== WELCOME_STORAGE_VERSION){
         window.setTimeout(function(){ if(!$('betaWelcomeDialog').open) $('betaWelcomeDialog').showModal(); },180);
       }
       if(DEBUG_MODE) runSelfTests();
@@ -20116,7 +20541,7 @@ const BusinessWorkspace = (() => {
     let draft=null;try{draft=original[KEYS.investmentDraft]?JSON.parse(original[KEYS.investmentDraft]):null;}catch(e){/* Original raw data remains in the migration backup. */}
     const legacyKeys=['investmentDraft','investmentProjects','investmentPortfolio','decisionWorkspace','productRecords','expenses','budgetDraft'];
     if(legacyKeys.some(k=>original[KEYS[k]]!==undefined)){
-      const b=newBusiness(String(draft?.fields?.investmentBusinessName||'Datos anteriores a v0.18.0').slice(0,80),isSupportedCurrency(draft?.fields?.investmentCurrency)?draft.fields.investmentCurrency:'BRL');
+      const b=newBusiness(String(draft?.fields?.investmentBusinessName||'Datos anteriores a v0.17.0').slice(0,80),isSupportedCurrency(draft?.fields?.investmentCurrency)?draft.fields.investmentCurrency:'BRL');
       b.legacy=Object.fromEntries(legacyKeys.map(k=>[k,original[KEYS[k]]??null]));
       if(draft)b.investments.push({id:uid(),name:'Borrador conservado',draft});
       // A complete legacy result has already normalized sales periods and detailed costs.
@@ -20135,7 +20560,7 @@ const BusinessWorkspace = (() => {
     b.financialPlan={months:i.horizon,growth:(Math.pow(1+i.growthRate/100,12)-1)*100,inflation:i.generalInflation,priceGrowth:0,tax:i.taxRate,reinvest:i.reinvestmentRate,investment:i.initialInvestment,cash:Math.max(0,i.openingCash),debt:i.debts,interest:0,term:i.horizon,discount:i.discountRate};
   }
   function header(){
-    root.innerHTML='<div class="bw-hero"><div><p class="bw-kicker">v0.18.0-Beta · Overview</p><h1>Tu negocio, con perspectiva.</h1><p>Organiza lo que ocurre hoy y explora los próximos cinco años. Cada espacio conserva sus productos, movimientos y decisiones.</p></div><span class="bw-pill">32 monedas + Custom</span></div><div class="bw-toolbar">'+select('bwBusiness','Espacio de negocio','<option value="">Selecciona un espacio</option>'+db.businesses.map(b=>'<option value="'+b.id+'"'+(b.id===db.active?' selected':'')+'>'+esc(b.name)+' · '+esc(b.currency)+'</option>').join(''))+button('Nuevo negocio','new')+button('Buscar · Ctrl + K','command')+'</div><div id="bwStatus" class="bw-status" role="status" aria-live="polite">Datos locales · No se envían a una cuenta automáticamente.</div><div id="bwTabs" class="bw-tabs" role="tablist" aria-label="Módulos empresariales">'+Object.entries(labels).map(([k,v])=>'<button type="button" class="button secondary small" role="tab" id="bwTab-'+k+'" aria-controls="bwPanel" aria-selected="'+(tab===k)+'" tabindex="'+(tab===k?'0':'-1')+'" data-bw-tab="'+k+'">'+v+'</button>').join('')+'</div><div id="bwPanel" role="tabpanel" aria-labelledby="bwTab-'+tab+'"></div>';
+    root.innerHTML='<div class="bw-hero"><div><p class="bw-kicker">v0.17.0-Beta · Mega Business Update</p><h1>Tu negocio, con perspectiva.</h1><p>Organiza lo que ocurre hoy y explora los próximos cinco años. Cada espacio conserva sus productos, movimientos y decisiones.</p></div><span class="bw-pill">32 monedas + Custom</span></div><div class="bw-toolbar">'+select('bwBusiness','Espacio de negocio','<option value="">Selecciona un espacio</option>'+db.businesses.map(b=>'<option value="'+b.id+'"'+(b.id===db.active?' selected':'')+'>'+esc(b.name)+' · '+esc(b.currency)+'</option>').join(''))+button('Nuevo negocio','new')+button('Buscar · Ctrl + K','command')+'</div><div id="bwStatus" class="bw-status" role="status" aria-live="polite">Datos locales · No se envían a una cuenta automáticamente.</div><div id="bwTabs" class="bw-tabs" role="tablist" aria-label="Módulos empresariales">'+Object.entries(labels).map(([k,v])=>'<button type="button" class="button secondary small" role="tab" id="bwTab-'+k+'" aria-controls="bwPanel" aria-selected="'+(tab===k)+'" tabindex="'+(tab===k?'0':'-1')+'" data-bw-tab="'+k+'">'+v+'</button>').join('')+'</div><div id="bwPanel" role="tabpanel" aria-labelledby="bwTab-'+tab+'"></div>';
     root.onchange=handleChange;root.onclick=handleClick;root.onsubmit=handleSubmit;
     root.onkeydown=e=>{const t=e.target.closest('[data-bw-tab]');if(!t||!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const keys=Object.keys(labels),i=keys.indexOf(t.dataset.bwTab),next=e.key==='Home'?0:e.key==='End'?keys.length-1:(i+(e.key==='ArrowRight'?1:-1)+keys.length)%keys.length;openTab(keys[next]);$('bwTab-'+keys[next]).focus();};
     render();
@@ -20266,15 +20691,15 @@ const BusinessWorkspace = (() => {
         if(action==='hide')d.hidden=[...new Set([...d.hidden,k])];persist();render();
       }
       if(action==='favorite'){const code=buttonEl.dataset.code,f=db.currencyPreferences.favorites;db.currencyPreferences.favorites=f.includes(code)?f.filter(x=>x!==code):[...f,code];persist();$('bwCurrencyList').innerHTML=currencyList($('bwCurrencySearch').value);}
-      if(action==='export')download('business-workspaces-v0.18.0.json',JSON.stringify(db,null,2),'application/json');
-      if(action==='backup')download('business-backup-v0.18.0.json',JSON.stringify(BusinessStorage.backup(),null,2),'application/json');
+      if(action==='export')download('business-workspaces-v0.17.0.json',JSON.stringify(db,null,2),'application/json');
+      if(action==='backup')download('business-backup-v0.17.0.json',JSON.stringify(BusinessStorage.backup(),null,2),'application/json');
       if(action==='import')$('bwImportFile').click();
       if(action==='capture')capture();
       if(action==='open-investment'){const item=b.investments.find(x=>x.id===buttonEl.dataset.id);if(!item||!applyInvestmentDraft(item.draft))throw new Error('El borrador no es compatible.');calculateAndRenderInvestment({save:false});showRoute('inversiones');}
       if(action==='chart-range'){const start=BusinessFinance.bounded(Number($('bwChartStart').value),'Inicio',1,60),end=BusinessFinance.bounded(Number($('bwChartEnd').value),'Fin',start,60);if(!Number.isInteger(start)||!Number.isInteger(end))throw new Error('El período debe usar meses enteros.');chartStart=start;chartEnd=end;chartTarget=BusinessFinance.bounded(Number($('bwChartTarget').value),'Objetivo',-1e12,1e12);chartNote=$('bwChartNote').value;render();}
       if(action==='chart-png')exportPng();
       if(action==='report-html')exportReport();
-      if(action==='csv'){const rows=model().rows,keys=Object.keys(rows[0]);download('plan-'+safeFilePart(b.name)+'-v0.18.0.csv','\uFEFF'+keys.join(',')+'\n'+rows.map(r=>keys.map(k=>r[k]).join(',')).join('\n'),'text/csv;charset=utf-8');}
+      if(action==='csv'){const rows=model().rows,keys=Object.keys(rows[0]);download('plan-'+safeFilePart(b.name)+'-v0.17.0.csv','\uFEFF'+keys.join(',')+'\n'+rows.map(r=>keys.map(k=>r[k]).join(',')).join('\n'),'text/csv;charset=utf-8');}
       if(action==='print')window.print();
       if(action==='risk')showRoute('inversiones');
     }catch(err){notice(err.message,true);}
@@ -20344,14 +20769,14 @@ const BusinessWorkspace = (() => {
     panel.querySelector('#bwIncludeCharts')?.closest('.bw-checks')?.remove();
     const script="document.querySelectorAll('[data-tip]').forEach(function(e){function show(){var p=e.closest('.bw-chart').querySelector('.bw-tip');if(p)p.textContent=e.dataset.tip;}e.addEventListener('pointerenter',show);e.addEventListener('focus',show);e.addEventListener('click',show);});document.querySelectorAll('[data-series-toggle]').forEach(function(e){e.addEventListener('change',function(){e.closest('.bw-chart').querySelector('[data-series=\"'+e.dataset.seriesToggle+'\"]').style.display=e.checked?'':'none';});});";
     const css='body{background:#101118;color:#eee;font:16px system-ui;max-width:1200px;margin:auto;padding:20px}svg{width:100%;height:auto}svg text{fill:#ddd;font:12px system-ui}.bw-card{padding:20px;margin:16px 0;border:1px solid #555;border-radius:14px}.bw-table{overflow:auto}table{width:100%;border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid #444;text-align:right}td:first-child,th:first-child{text-align:left}h1,h2,h3,th{color:#ffd400}label{margin-right:15px}.bw-tip{color:#ffd400}';
-    const html='<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(b.name)+' · v0.18.0-Beta</title><style>'+css+'</style><body><h1>'+esc(b.name)+' · Informe empresarial</h1><p>v0.18.0-Beta · '+esc(nowIso())+' · '+esc(b.currency)+'</p>'+panel.innerHTML+'<script>'+script+'<'+ '/script></body></html>';
-    download('informe-'+safeFilePart(b.name)+'-v0.18.0.html',html,'text/html');
+    const html='<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(b.name)+' · v0.17.0-Beta</title><style>'+css+'</style><body><h1>'+esc(b.name)+' · Informe empresarial</h1><p>v0.17.0-Beta · '+esc(nowIso())+' · '+esc(b.currency)+'</p>'+panel.innerHTML+'<script>'+script+'<'+ '/script></body></html>';
+    download('informe-'+safeFilePart(b.name)+'-v0.17.0.html',html,'text/html');
     b.reports.push({id:uid(),name:b.name,createdAt:nowIso(),type:'html',months:b.financialPlan.months});persist();
   }
   function exportPng(){
     const svg=$('bwPanel').querySelector('.bw-chart svg');if(!svg)throw new Error('No hay gráfico disponible.');const clone=svg.cloneNode(true);clone.querySelectorAll('text').forEach(t=>{t.setAttribute('fill','#ddd');t.setAttribute('font-family','system-ui');t.setAttribute('font-size','12');});
     const image=new Image(),url=URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(clone)],{type:'image/svg+xml'}));
-    image.onload=()=>{const canvas=document.createElement('canvas');canvas.width=3840;canvas.height=Math.round(3840*svg.viewBox.baseVal.height/svg.viewBox.baseVal.width);const ctx=canvas.getContext('2d');ctx.fillStyle='#13141c';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(image,0,0,canvas.width,canvas.height);URL.revokeObjectURL(url);canvas.toBlob(blob=>{if(blob){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='grafico-empresarial-v0.18.0-4k.png';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}else notice('No se pudo generar el PNG.',true);},'image/png');};image.onerror=()=>{URL.revokeObjectURL(url);notice('No se pudo exportar el gráfico.',true);};image.src=url;
+    image.onload=()=>{const canvas=document.createElement('canvas');canvas.width=3840;canvas.height=Math.round(3840*svg.viewBox.baseVal.height/svg.viewBox.baseVal.width);const ctx=canvas.getContext('2d');ctx.fillStyle='#13141c';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(image,0,0,canvas.width,canvas.height);URL.revokeObjectURL(url);canvas.toBlob(blob=>{if(blob){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='grafico-empresarial-v0.17.0-4k.png';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}else notice('No se pudo generar el PNG.',true);},'image/png');};image.onerror=()=>{URL.revokeObjectURL(url);notice('No se pudo exportar el gráfico.',true);};image.src=url;
   }
   function applyPerformance(){let mode=db.performance||'auto';if(mode==='auto')mode=window.matchMedia('(prefers-reduced-motion: reduce)').matches||navigator.hardwareConcurrency<=4?'low':'medium';document.body.dataset.businessPerformance=mode;const quality=$('graphicsQuality');if(quality&&['high','medium','low'].includes(mode)){quality.value=mode;quality.dispatchEvent(new Event('change'));}}
   function openCommand(){
@@ -20379,7 +20804,7 @@ const BusinessWorkspace = (() => {
     $('bwCommandResults').addEventListener('click',e=>{const target=e.target.closest('button');if(!target)return;dialog.close();if(target.dataset.commandTab){showRoute('negocios');openTab(target.dataset.commandTab);}else showRoute(target.dataset.commandRoute);});
     document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();if(!dialog.open)openCommand();}});
     document.querySelectorAll('[data-business-open]').forEach(button=>button.addEventListener('click',()=>{showRoute('negocios');openTab(button.dataset.businessOpen);}));
-    hydrateSearchableCurrencies();applyPerformance();
+    hydrateSearchableCurrencies();const currencyGrid=document.querySelector('.landing-currency-grid');if(currencyGrid)currencyGrid.innerHTML=CURRENCY_CODES.map(code=>'<div class="landing-currency"><strong>'+code+'</strong><span>'+esc(CURRENCIES[code].name)+'</span></div>').join('');applyPerformance();
   }
   return Object.freeze({init,refresh:()=>{if(root&&state.route==='negocios')render();},openTab});
 })();
@@ -20389,4 +20814,3 @@ const BusinessWorkspace = (() => {
   </script>
 </body>
 </html>
-
