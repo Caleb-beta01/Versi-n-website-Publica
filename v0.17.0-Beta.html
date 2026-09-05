@@ -3797,6 +3797,16 @@ body[data-business-performance=low] *,body[data-business-performance=low] *::bef
 @media(max-width:680px){.bw-hero{display:block;padding:20px}.bw-widget.expanded{grid-column:span 1}.bw-tabs button{flex:1 1 auto;padding:9px}.bw-card{padding:15px}.bw-chart svg{min-height:150px}.bw-toolbar>*{width:100%}}
 @media(prefers-reduced-motion:reduce){.bw-chart *{transition:none!important}}
 @media print{body[data-route=negocios] [data-view]:not(#view-negocios),.bw-tabs,.bw-toolbar,.bw-actions{display:none!important}.bw-card{break-inside:avoid;color:#111;background:#fff}.bw-card p{color:#222}}
+/* The legacy light-theme heading rule must not darken workspace cards. */
+#view-negocios{color:#f1f2f6}
+#view-negocios h2,#view-negocios h3,#view-negocios summary{color:#f1f2f6}
+#view-negocios .bw-table td{color:#e4e5ee;background:#13141c}
+#view-negocios .bw-table th{color:#ffd400;background:#191a21}
+#view-negocios .bw-hero{margin-top:0}
+@media(min-width:1181px) and (max-width:1450px){.main-nav .nav-link{font-size:.65rem;padding-inline:7px}.brand-copy strong{font-size:.79rem}}
+@keyframes bwReveal{from{opacity:0}to{opacity:1}}
+.bw-chart [data-series]{animation:bwReveal .35s ease-out}
+@media(prefers-reduced-motion:reduce){.bw-chart [data-series]{animation:none}}
 
   </style>
 </head>
@@ -4185,7 +4195,7 @@ body[data-business-performance=low] *,body[data-business-performance=low] *::bef
       </div>
     </section>
 
-    <section class="view" id="view-herramientas" data-view="herramientas" aria-labelledby="toolsTitle" hidden>
+    <section class="view" id="view-herramientas" data-view="herramientas" aria-labelledby="toolsTitle" hidden><div class="action-row"><button type="button" class="button primary" data-route="negocios">Business Workspace · Negocios</button></div>
       <div class="view-head">
         <p class="eyebrow">Herramientas funcionales</p>
         <h1 id="toolsTitle">Analiza más que un porcentaje</h1>
@@ -5932,7 +5942,7 @@ body[data-business-performance=low] *,body[data-business-performance=low] *::bef
           <dl class="storage-facts">
             <div><dt>Historial</dt><dd>v0.15.0 añadió simulación empresarial; v0.17.0 conecta sus resultados en un flujo completo de decisión.</dd></div>
             <div><dt>Técnico</dt><dd>Aplicación estática, cálculos locales reutilizables, almacenamiento con esquema, Web Worker y Supabase opcional.</dd></div>
-            <div><dt>Informe</dt><dd><a href="https://github.com/Caleb-beta01/Calculadora-de-Inflaci-n-app/issues/57" target="_blank" rel="noopener noreferrer">GitHub #57 · Decision Center Update</a></dd></div>
+            <div><dt>Informe</dt><dd><a href="https://github.com/Caleb-beta01/Calculadora-de-Inflaci-n-app/issues/58" target="_blank" rel="noopener noreferrer">GitHub #58 · MEGA BUSINESS UPDATE</a></dd></div>
           </dl>
         </section>
 
@@ -6278,7 +6288,7 @@ body[data-business-performance=low] *,body[data-business-performance=low] *::bef
       <section class="card mt-18"><div class="chart-panel"><h3>Evolución período a período</h3><div id="advancedChart" role="img" aria-label="Gráfico del valor e índice base 100 por período"></div></div><div class="table-wrap mt-18" tabindex="0"><table><caption class="table-caption">Detalle de cada factor aplicado</caption><thead><tr><th>Período</th><th>Tasa</th><th>Variación acumulada</th><th>Valor resultante</th><th>Índice base 100</th></tr></thead><tbody id="advancedTableBody"><tr><td colspan="5">Completa los períodos para calcular.</td></tr></tbody></table></div></section>
     </section>
 
-    <section class="view" id="view-informes" data-view="informes" aria-labelledby="reportsTitle" hidden>
+    <section class="view" id="view-informes" data-view="informes" aria-labelledby="reportsTitle" hidden><div class="action-row"><button type="button" class="button primary" data-business-open="reports">Informe del negocio activo</button></div>
       <div class="view-head"><p class="eyebrow">Centro de informes</p><h1 id="reportsTitle">Convierte tus resultados en un informe</h1><p class="lede">Elige exactamente qué incluir. El archivo identifica datos introducidos, resultados, fuentes, metodología y supuestos sin enviar el contenido a un servidor.</p></div>
       <div class="report-layout">
         <form class="card module-form" id="reportForm" novalidate>
@@ -20793,6 +20803,7 @@ const BusinessWorkspace = (() => {
     $('bwCommandSearch').addEventListener('input',e=>renderCommand(e.target.value));
     $('bwCommandResults').addEventListener('click',e=>{const target=e.target.closest('button');if(!target)return;dialog.close();if(target.dataset.commandTab){showRoute('negocios');openTab(target.dataset.commandTab);}else showRoute(target.dataset.commandRoute);});
     document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();if(!dialog.open)openCommand();}});
+    document.querySelectorAll('[data-business-open]').forEach(button=>button.addEventListener('click',()=>{showRoute('negocios');openTab(button.dataset.businessOpen);}));
     hydrateSearchableCurrencies();const currencyGrid=document.querySelector('.landing-currency-grid');if(currencyGrid)currencyGrid.innerHTML=CURRENCY_CODES.map(code=>'<div class="landing-currency"><strong>'+code+'</strong><span>'+esc(CURRENCIES[code].name)+'</span></div>').join('');applyPerformance();
   }
   return Object.freeze({init,refresh:()=>{if(root&&state.route==='negocios')render();},openTab});
