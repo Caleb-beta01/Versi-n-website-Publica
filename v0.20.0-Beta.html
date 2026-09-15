@@ -3723,6 +3723,24 @@ body .bw-status{border-left-color:#a4f9f0}body .bw-widget:focus-within{outline-c
 body #view-negocios .bw-table td{background:#0d1528}body #view-negocios .bw-table th{background:#141e36}
 body .nav-group-panel{background:#0e172d;border-color:#91b4ec40}
 .horizon-settings{margin:0 0 24px}.horizon-settings summary{cursor:pointer}.horizon-settings .field{margin-top:18px}
+body.departing{overflow:hidden}
+body .view:not(.home-view)>.view-head{min-height:0;padding:clamp(24px,4vw,48px);border:1px solid #9bcfff2e;border-radius:24px;background:radial-gradient(ellipse at 90% 0,#62438d33,transparent 55%),linear-gradient(130deg,#102337,#0c1427);box-shadow:none}
+body .view:not(.home-view)>.view-head h1{font-weight:500;line-height:1.06;font-size:clamp(2rem,4.2vw,4rem);text-transform:none;letter-spacing:-.05em}
+body .view:not(.home-view)>.view-head .eyebrow{padding:0;background:none;border:0;box-shadow:none;color:#a4f9f0;font-weight:600;letter-spacing:.1em}
+body .card,body .scenario-config,body .analysis-output,body .metric-tile,body .source-box,body .route-shortcut,body .feature-jump{border-radius:18px;border-color:#91a5d52e;box-shadow:none}
+body .card{border-top-width:1px}
+body .tool-card:nth-child(n){background:linear-gradient(145deg,#111d33,#0b1224);border-top:1px solid #91a5d52e;margin:0;box-shadow:none}
+body .tool-grid{align-items:stretch}
+body .tool-icon,body .section-number{background:#162943;color:#a4f9f0;border:1px solid #8dd8ff40;box-shadow:none;border-radius:14px;font-weight:600}
+body .tool-card:nth-child(3n+2) .tool-icon{background:#261e43;color:#ccbaff}
+body .tool-card:nth-child(3n) .tool-icon{background:#172747;color:#a0d5ff}
+body .button{border-radius:12px;font-weight:600;letter-spacing:0}
+body .button.secondary{border-color:#9ab6e34d;background:#15213a;box-shadow:none}
+body .button:hover{transform:translateY(-2px)}
+body input,body select,body textarea,body details.fold,body .salary-fieldset{border-radius:10px}
+body input:hover,body select:hover,body textarea:hover{border-color:#a4f9f0}
+body .route-shortcut{border-left:1px solid #8dd8ff40;background:#0d192d}
+body .route-shortcut:hover{border-color:#a4f9f0;background:#132a3e}
 @media(max-width:650px){#horizonte .chapter{min-height:max(760px,100svh)}#horizonte h1{font-size:clamp(45px,11.8vw,76px)}#horizonte h2,#horizonte .vision h2{font-size:clamp(40px,10.5vw,68px)}#horizonte .future h2{font-size:clamp(39px,10.3vw,66px)}#horizonte .site-header{padding-inline:22px}#horizonte .wordmark{font-size:14px;gap:9px}#horizonte .open-app{min-height:44px}body .main-nav{background:#0a1226}}
 @media(max-height:500px) and (orientation:landscape){#horizonte .chapter{height:auto;min-height:720px}#horizonte .site-header{height:80px}#horizonte h1{font-size:clamp(55px,8vw,85px)}}
 @media(prefers-reduced-motion:reduce){#horizonte .chapter-copy{transform:none!important}html{scroll-behavior:auto!important}}
@@ -70275,7 +70293,7 @@ function setupLandingExperience(){'use strict';
  const disposables=[];const cleanup=()=>{stopped=true;cancelAnimationFrame(raf);cancelAnimationFrame(flightFrame);removeEventListener('scroll',onScroll);removeEventListener('pointermove',onPointer);document.removeEventListener('pointerleave',resetPointer);button.removeEventListener('click',toggle);reduced.removeEventListener('change',pref);disposables.forEach(f=>f());};window.__iiDispose=cleanup;
  try{
  const T=window.THREE;if(!T)throw new Error('Three unavailable');
- let software=false,renderer;try{renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance',preserveDrawingBuffer:false});}catch{software=true;renderer=window.createPerspectiveRenderer(canvas,T);}canvas.dataset.renderer=software?'perspective-canvas':'webgl';renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0x071012,0);renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;renderer.outputColorSpace=T.SRGBColorSpace;
+ let software=false,renderer;try{const context=canvas.getContext('webgl2',{alpha:true,antialias:true,powerPreference:'high-performance'});if(!context)throw new Error('WebGL2 unavailable');renderer=new T.WebGLRenderer({canvas,context,antialias:true,alpha:true,powerPreference:'high-performance',preserveDrawingBuffer:false});}catch{software=true;renderer=window.createPerspectiveRenderer(canvas,T);}canvas.dataset.renderer=software?'perspective-canvas':'webgl';renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0x071012,0);renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;renderer.outputColorSpace=T.SRGBColorSpace;
  const scene=new T.Scene();scene.fog=new T.FogExp2(0x091416,.018);const camera=new T.PerspectiveCamera(40,1,.1,100);camera.position.set(0,0,13);
  const studio=new T.Scene();studio.background=new T.Color(0x172123);
  function softbox(color,power,w,h,x,y,z){const box=new T.Mesh(new T.PlaneGeometry(w,h),new T.MeshBasicMaterial({color,side:T.DoubleSide}));box.material.color.multiplyScalar(power);box.position.set(x,y,z);box.lookAt(0,0,0);studio.add(box);}
