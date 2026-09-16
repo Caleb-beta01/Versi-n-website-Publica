@@ -10,10 +10,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Inflation Insights">
-  <link rel="manifest" href="./manifest-v0.20.4-beta-patch.webmanifest">
+  <link rel="manifest" href="./manifest-v0.20.3-beta-patch.webmanifest">
   <link rel="icon" href="./icons/inflation-insights-192.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/inflation-insights-192.png">
-  <title>Inflation Insights · v0.20.4-Beta-Patch</title>
+  <title>Inflation Insights · v0.20.3-Beta-Patch</title>
   <style>
     :root{
       --bg:#07111f;
@@ -3241,7 +3241,7 @@
       .investment-project-actions{justify-content:flex-start}
     }
 
-    /* v0.20.4-Beta-Patch · centro de decisiones y planificación conectada. */
+    /* v0.20.3-Beta-Patch · centro de decisiones y planificación conectada. */
     .monte-carlo-hero{border-color:#55f5e6;background:
       radial-gradient(circle at 88% 10%,rgba(85,245,230,.12),transparent 25rem),
       linear-gradient(145deg,#11131b,#090b10)}
@@ -3797,7 +3797,7 @@ body #feedbackForm .toggle-control{font-weight:500;min-height:44px;cursor:pointe
       </button>
 
 
-<nav class="main-nav" id="mainNav" aria-label="Navegación principal" data-open="false"><button class="nav-link" type="button" data-route="negocios">Negocios</button><button class="nav-link" type="button" data-route="calculadora">Calcular</button><details class="nav-group"><summary>Analizar</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="inversiones">Inversiones</button><button class="nav-link" type="button" data-route="precios">Precios y reduflación</button><button class="nav-link" type="button" data-route="salario">Salarios</button><button class="nav-link" type="button" data-route="laboratorio">Comparaciones</button></div></details><button class="nav-link" type="button" data-route="decisiones">Decisiones</button><button class="nav-link" type="button" data-route="datos">Datos</button><button class="nav-link" type="button" data-route="informes">Informes</button><details class="nav-group"><summary>Más</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="herramientas">Todas las herramientas</button><button class="nav-link" type="button" data-route="historial">Historial</button><button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button><button class="nav-link" type="button" data-route="inicio">Volver a la portada</button></div></details><span class="version-chip" aria-label="Versión actual">v0.20.4 · Beta</span></nav>
+<nav class="main-nav" id="mainNav" aria-label="Navegación principal" data-open="false"><button class="nav-link" type="button" data-route="negocios">Negocios</button><button class="nav-link" type="button" data-route="calculadora">Calcular</button><details class="nav-group"><summary>Analizar</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="inversiones">Inversiones</button><button class="nav-link" type="button" data-route="precios">Precios y reduflación</button><button class="nav-link" type="button" data-route="salario">Salarios</button><button class="nav-link" type="button" data-route="laboratorio">Comparaciones</button></div></details><button class="nav-link" type="button" data-route="decisiones">Decisiones</button><button class="nav-link" type="button" data-route="datos">Datos</button><button class="nav-link" type="button" data-route="informes">Informes</button><details class="nav-group"><summary>Más</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="herramientas">Todas las herramientas</button><button class="nav-link" type="button" data-route="historial">Historial</button><button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button><button class="nav-link" type="button" data-route="inicio">Volver a la portada</button></div></details><span class="version-chip" aria-label="Versión actual">v0.20.3 · Beta</span></nav>
 
       <span class="status-chip header-status" id="connectionChip" data-status="online" aria-live="polite">
         <span class="status-dot" aria-hidden="true"></span>
@@ -3818,7 +3818,7 @@ body #feedbackForm .toggle-control{font-weight:500;min-height:44px;cursor:pointe
 <div id="horizonte">
 <a class="skip" href="#inicio" data-horizon-scroll="vision">Saltar a la descripción</a>
 <div class="world" aria-hidden="true"><div class="aurora"></div><canvas id="world"></canvas><canvas id="light-trails"></canvas><div class="world-vignette"></div></div>
-<div class="transition-veil" aria-hidden="true"></div><div id="horizonTransition" class="horizon-transition" hidden><span role="status">Entrando a tus herramientas…</span></div>
+<div class="transition-veil" aria-hidden="true"></div><div id="horizonTransition" class="horizon-transition" hidden><span role="status">Entrando a tus herramientas…</span><button type="button" id="horizonSkip">Saltar animación</button></div>
 <div class="grain" aria-hidden="true"></div>
 <header class="site-header"><a class="wordmark" href="#inicio" data-horizon-scroll="inicio" aria-label="Inflation Insights, inicio"><svg width="22" height="25" viewBox="0 0 22 25" fill="none" aria-hidden="true"><path d="M2 23V13M10 23V7M18 23V1" stroke="currentColor" stroke-width="3"/></svg><span>Inflation Insights</span></a></header>
 <div class="horizon-chapters">
@@ -3827,7 +3827,7 @@ body #feedbackForm .toggle-control{font-weight:500;min-height:44px;cursor:pointe
 <section class="chapter possibilities" id="posibilidades" data-chapter="2" aria-labelledby="possibilities-title"><div class="chapter-copy" data-depth="0.14"><h2 id="possibilities-title">De una idea<br>a <em>lo posible.</em></h2><p>Explora el potencial de tus proyectos y encuentra una visión más amplia de lo que pueden llegar a ser.</p></div></section>
 <section class="chapter future" id="futuro" data-chapter="3" aria-labelledby="future-title"><div class="chapter-copy" data-depth="0.08"><h2 id="future-title">Tu próximo paso.<br><em>Con otra mirada.</em></h2><a class="final-cta explore-link" href="#herramientas">Explorar <span class="cta-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></svg></span></a></div><footer><a href="#inicio" data-horizon-scroll="inicio">Inflation Insights</a><a href="#inicio" data-horizon-scroll="inicio" aria-label="Volver al inicio">↑</a></footer></section>
 </div>
-
+<button id="motion-toggle" class="motion-control" type="button" aria-label="Pausar animación" aria-pressed="false"><svg class="pause-icon" width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="M2 1V13M10 1V13" stroke="currentColor" stroke-width="2"/></svg><svg class="play-icon" width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="M1 1L11 7L1 13Z" fill="currentColor"/></svg></button>
 <noscript><p class="nojs">Activa JavaScript para disfrutar de la experiencia en movimiento.</p></noscript>
 <!--
 Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)
@@ -5469,7 +5469,7 @@ THE SOFTWARE.
     <section class="view" id="view-widget-runtime" data-view="widget-runtime" aria-label="Calculadora embebida" hidden>
       <div class="widget-runtime-shell" id="widgetRuntimeShell" data-theme="dark">
         <section class="widget-runtime-card" id="widgetRuntimeCard">
-          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.20.4-Beta-Patch.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>Calculadora</span></div>
+          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.20.3-Beta-Patch.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>Calculadora</span></div>
           <h1 id="widgetRuntimeTitle">Calculadora embebida</h1>
           <div class="widget-mini-grid">
             <div class="field"><label id="widgetRuntimeALabel" for="widgetRuntimeA">Valor A</label><input id="widgetRuntimeA" type="text" inputmode="decimal" value="100"></div>
@@ -61821,7 +61821,7 @@ window.createPerspectiveRenderer=function(canvas,T){
   (function(){
     'use strict';
 
-    const APP_VERSION = 'v0.20.4-Beta-Patch';
+    const APP_VERSION = 'v0.20.3-Beta-Patch';
     const VERSION = APP_VERSION;
     // El contrato de create-account/delete-account no cambió en este parche de exportaciones.
     const ACCOUNT_API_VERSION = 'v0.8.2-Beta-Patch';
@@ -61863,7 +61863,7 @@ window.createPerspectiveRenderer=function(canvas,T){
     const MAX_DECISION_SCENARIOS = 40;
     const MAX_DECISION_EVENTS = 500;
     const MAX_DECISION_ALERTS = 40;
-    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.20.4-Beta-Patch.html';
+    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.20.3-Beta-Patch.html';
     const FX_CACHE_MAX_AGE = 15 * 60 * 1000;
     const FX_CACHE_STALE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
     const IPCA_CACHE_MAX_AGE = 90 * 24 * 60 * 60 * 1000;
@@ -63445,7 +63445,7 @@ window.createPerspectiveRenderer=function(canvas,T){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent='Este navegador no admite Service Worker';
         return;
       }
-      navigator.serviceWorker.register('./sw-v0.20.4-beta-patch.js').then(function(registration){
+      navigator.serviceWorker.register('./sw-v0.20.3-beta-patch.js').then(function(registration){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent=navigator.onLine === false ? 'Modo offline activo' : 'Caché local preparada';
         registration.update().catch(function(){ return null; });
         registration.addEventListener('updatefound',function(){
@@ -70311,17 +70311,17 @@ function setupLandingExperience(){'use strict';
  $$('.nav-group').forEach(group=>group.addEventListener('toggle',()=>{if(group.open)$$('.nav-group').forEach(g=>{if(g!==group)g.open=false;});}));
  document.addEventListener('click',e=>$$('.nav-group').forEach(g=>{if(!g.contains(e.target)||e.target.closest('[data-route]'))g.open=false;}));
  document.addEventListener('keydown',e=>{if(e.key==='Escape')$$('.nav-group[open]').forEach(g=>{g.open=false;g.querySelector('summary').focus();});});
- const canvas=document.getElementById('world');if(!canvas)return;
+ const canvas=document.getElementById('world'),button=document.getElementById('motion-toggle');if(!canvas||!button)return;
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');let paused=reduced.matches,stopped=false,active=state.route==='inicio';
  const sections=[...document.querySelectorAll('.chapter')],copies=[...document.querySelectorAll('.chapter-copy')];
- const syncMotionPreference=()=>{document.documentElement.classList.toggle('paused',paused);};syncMotionPreference();
- let draw=()=>{},raf=0,flight=null,flightFrame=0;const veil=document.querySelector('.transition-veil'),transition=$('horizonTransition'),chapters=document.querySelector('.horizon-chapters'),header=document.querySelector('.site-header');let origin=null;
- const pref=e=>{paused=e.matches;syncMotionPreference();draw();};reduced.addEventListener('change',pref);
+ const setButton=()=>{button.setAttribute('aria-pressed',String(paused));button.setAttribute('aria-label',paused?'Activar animación':'Pausar animación');document.documentElement.classList.toggle('paused',paused);};setButton();
+ let draw=()=>{},raf=0,flight=null,flightFrame=0;const veil=document.querySelector('.transition-veil'),transition=$('horizonTransition'),skip=$('horizonSkip'),chapters=document.querySelector('.horizon-chapters'),header=document.querySelector('.site-header');let origin=null;const toggle=()=>{paused=!paused;setButton();draw();};button.addEventListener('click',toggle);
+ const pref=e=>{paused=e.matches;setButton();draw();};reduced.addEventListener('change',pref);
  let scroll=window.scrollY,targetX=0,targetY=0,px=0,py=0,time=0,last=0;
  const onScroll=()=>{scroll=window.scrollY;if(active&&paused)draw();};addEventListener('scroll',onScroll,{passive:true});
  const onPointer=e=>{if(!active||e.pointerType==='touch'||paused)return;targetX=(e.clientX/innerWidth-.5)*2;targetY=(e.clientY/innerHeight-.5)*2;};addEventListener('pointermove',onPointer,{passive:true});
  const resetPointer=()=>{targetX=targetY=0;};document.addEventListener('pointerleave',resetPointer);
- const disposables=[];const cleanup=()=>{stopped=true;cancelAnimationFrame(raf);cancelAnimationFrame(flightFrame);removeEventListener('scroll',onScroll);removeEventListener('pointermove',onPointer);document.removeEventListener('pointerleave',resetPointer);reduced.removeEventListener('change',pref);disposables.forEach(f=>f());};window.__iiDispose=cleanup;
+ const disposables=[];const cleanup=()=>{stopped=true;cancelAnimationFrame(raf);cancelAnimationFrame(flightFrame);removeEventListener('scroll',onScroll);removeEventListener('pointermove',onPointer);document.removeEventListener('pointerleave',resetPointer);button.removeEventListener('click',toggle);reduced.removeEventListener('change',pref);disposables.forEach(f=>f());};window.__iiDispose=cleanup;
  try{
  const T=window.THREE;if(!T)throw new Error('Three unavailable');
  let software=false,renderer;try{const context=canvas.getContext('webgl2',{alpha:true,antialias:true,powerPreference:'high-performance'});if(!context)throw new Error('WebGL2 unavailable');renderer=new T.WebGLRenderer({canvas,context,antialias:true,alpha:true,powerPreference:'high-performance',preserveDrawingBuffer:false});}catch{software=true;renderer=window.createPerspectiveRenderer(canvas,T);}canvas.dataset.renderer=software?'perspective-canvas':'webgl';renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0x071012,0);renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;renderer.outputColorSpace=T.SRGBColorSpace;
@@ -70370,7 +70370,7 @@ function setupLandingExperience(){'use strict';
  draw=()=>{render();if(!active||paused||document.hidden){cancelAnimationFrame(raf);raf=0;}else if(!raf)raf=requestAnimationFrame(loop);};
  const resize=()=>{mobile=innerWidth<=650;renderer.setSize(innerWidth,innerHeight,false);fxWidth=innerWidth;fxHeight=innerHeight;fx.width=fxWidth;fx.height=fxHeight;camera.aspect=innerWidth/innerHeight;camera.fov=mobile?48:40;camera.updateProjectionMatrix();draw();};addEventListener('resize',resize);
  const visibility=()=>{if(document.hidden&&flight)restore();draw();};document.addEventListener('visibilitychange',visibility);
- const contextLost=e=>{e.preventDefault();cancelAnimationFrame(raf);raf=0;canvas.dataset.rendered='lost';document.body.classList.add('no-webgl');paused=true;syncMotionPreference();if(flight)finish();};canvas.addEventListener('webglcontextlost',contextLost);disposables.push(()=>canvas.removeEventListener('webglcontextlost',contextLost));
+ const contextLost=e=>{e.preventDefault();cancelAnimationFrame(raf);raf=0;canvas.dataset.rendered='lost';document.body.classList.add('no-webgl');paused=true;setButton();if(flight)finish();};canvas.addEventListener('webglcontextlost',contextLost);disposables.push(()=>canvas.removeEventListener('webglcontextlost',contextLost));
  disposables.push(()=>removeEventListener('resize',resize),()=>document.removeEventListener('visibilitychange',visibility),()=>{scene.traverse(o=>{o.geometry?.dispose();if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>m.dispose());});env.dispose();renderer.dispose();});
  const quality=$('graphicsQuality'),qualityState=$('graphicsQualityState');
  let frameInterval=software?50:32;
@@ -70378,10 +70378,10 @@ function setupLandingExperience(){'use strict';
  const qualityChange=()=>setQuality(quality.value);quality.addEventListener('change',qualityChange);disposables.push(()=>quality.removeEventListener('change',qualityChange));
  setQuality(safeStorageGet(KEYS.graphicsQuality,'auto'));document.body.dataset.experience='ready';
  const links=[...document.querySelectorAll('.explore-link')];
- function restore(){cancelAnimationFrame(flightFrame);flight=null;transition.hidden=true;chapters.inert=false;header.inert=false;document.body.classList.remove('departing');veil.style.opacity='0';camera.fov=mobile?48:40;camera.updateProjectionMatrix();draw();}
- function depart(e){if(e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();if(flight)return;origin=e.currentTarget;flight={start:performance.now()};document.body.classList.add('departing');transition.hidden=false;chapters.inert=true;header.inert=true;const duration=(reduced.matches||paused)?200:2100;
+ function restore(){cancelAnimationFrame(flightFrame);flight=null;transition.hidden=true;chapters.inert=false;header.inert=false;button.disabled=false;document.body.classList.remove('departing');veil.style.opacity='0';camera.fov=mobile?48:40;camera.updateProjectionMatrix();draw();}
+ function depart(e){if(e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();if(flight)return;origin=e.currentTarget;flight={start:performance.now()};document.body.classList.add('departing');transition.hidden=false;chapters.inert=true;header.inert=true;button.disabled=true;skip.focus({preventScroll:true});const duration=(reduced.matches||paused)?200:2100;
   function advance(now){if(!flight)return;const p=clamp((now-flight.start)/duration,0,1);veil.style.opacity=String(smooth(clamp((p-.62)/.38,0,1)));canvas.dataset.transitionProgress=p.toFixed(3);if(p>=1){finish();return;}flightFrame=requestAnimationFrame(advance);}flightFrame=requestAnimationFrame(advance);}
- const finish=()=>{if(!flight)return;restore();showRoute('herramientas');window.scrollTo({top:0,behavior:'instant'});};const escape=e=>{if(e.key==='Escape'&&flight){restore();origin?.focus({preventScroll:true});}};const pageshow=e=>{if(e.persisted)restore();};links.forEach(link=>link.addEventListener('click',depart));addEventListener('keydown',escape);addEventListener('pageshow',pageshow);disposables.push(()=>{links.forEach(link=>link.removeEventListener('click',depart));removeEventListener('keydown',escape);removeEventListener('pageshow',pageshow);});
+ const finish=()=>{if(!flight)return;restore();showRoute('herramientas');window.scrollTo({top:0,behavior:'instant'});};skip.addEventListener('click',finish);disposables.push(()=>skip.removeEventListener('click',finish));const escape=e=>{if(e.key==='Escape'&&flight){restore();origin?.focus({preventScroll:true});}};const pageshow=e=>{if(e.persisted)restore();};links.forEach(link=>link.addEventListener('click',depart));addEventListener('keydown',escape);addEventListener('pageshow',pageshow);disposables.push(()=>{links.forEach(link=>link.removeEventListener('click',depart));removeEventListener('keydown',escape);removeEventListener('pageshow',pageshow);});
  return {setActive(value){active=Boolean(value);if(!active){restore();cancelAnimationFrame(raf);raf=0;}else{scroll=window.scrollY;resize();draw();}},setQuality,dispose:cleanup};
  }catch(err){document.body.classList.add('no-webgl');document.body.dataset.experience='fallback';console.warn('Horizonte: efectos visuales no disponibles.',err);cleanup();return {setActive(){},dispose:cleanup};}
 }
@@ -75599,7 +75599,7 @@ const BusinessWorkspace = (() => {
     b.financialPlan={months:i.horizon,growth:(Math.pow(1+i.growthRate/100,12)-1)*100,inflation:i.generalInflation,priceGrowth:0,tax:i.taxRate,reinvest:i.reinvestmentRate,investment:i.initialInvestment,cash:Math.max(0,i.openingCash),debt:i.debts,interest:0,term:i.horizon,discount:i.discountRate};
   }
   function header(){
-    root.innerHTML='<div class="bw-hero"><div><p class="bw-kicker">v0.20.4-Beta-Patch · Business Operations Suite</p><h1>De la idea a la operación.</h1><p>Clientes, pedidos, inventario y equipo conectados con las finanzas de tu negocio.</p></div><span class="bw-pill">32 monedas + Custom</span></div><div class="bw-toolbar">'+select('bwBusiness','Espacio de negocio','<option value="">Selecciona un espacio</option>'+db.businesses.map(b=>'<option value="'+b.id+'"'+(b.id===db.active?' selected':'')+'>'+esc(b.name)+' · '+esc(b.currency)+'</option>').join(''))+button('Nuevo negocio','new')+button('Buscar · Ctrl + K','search-command')+'</div><div class="op-syncbar"><span id="opSyncStatus" role="status">'+esc(BusinessSync.statusText())+'</span><button type="button" class="button secondary small" data-bw-tab="cloud">Cuenta y sincronización</button></div><div id="bwStatus" class="bw-status" role="status" aria-live="polite">Datos guardados en este dispositivo.</div><div id="bwTabs" class="bw-tabs" role="tablist" aria-label="Módulos empresariales">'+Object.entries(labels).map(([k,v])=>'<button type="button" class="button secondary small" role="tab" id="bwTab-'+k+'" aria-controls="bwPanel" aria-selected="'+(tab===k)+'" tabindex="'+(tab===k?'0':'-1')+'" data-bw-tab="'+k+'">'+v+'</button>').join('')+'</div><div id="bwPanel" role="tabpanel" aria-labelledby="bwTab-'+tab+'"></div>';
+    root.innerHTML='<div class="bw-hero"><div><p class="bw-kicker">v0.20.3-Beta-Patch · Business Operations Suite</p><h1>De la idea a la operación.</h1><p>Clientes, pedidos, inventario y equipo conectados con las finanzas de tu negocio.</p></div><span class="bw-pill">32 monedas + Custom</span></div><div class="bw-toolbar">'+select('bwBusiness','Espacio de negocio','<option value="">Selecciona un espacio</option>'+db.businesses.map(b=>'<option value="'+b.id+'"'+(b.id===db.active?' selected':'')+'>'+esc(b.name)+' · '+esc(b.currency)+'</option>').join(''))+button('Nuevo negocio','new')+button('Buscar · Ctrl + K','search-command')+'</div><div class="op-syncbar"><span id="opSyncStatus" role="status">'+esc(BusinessSync.statusText())+'</span><button type="button" class="button secondary small" data-bw-tab="cloud">Cuenta y sincronización</button></div><div id="bwStatus" class="bw-status" role="status" aria-live="polite">Datos guardados en este dispositivo.</div><div id="bwTabs" class="bw-tabs" role="tablist" aria-label="Módulos empresariales">'+Object.entries(labels).map(([k,v])=>'<button type="button" class="button secondary small" role="tab" id="bwTab-'+k+'" aria-controls="bwPanel" aria-selected="'+(tab===k)+'" tabindex="'+(tab===k?'0':'-1')+'" data-bw-tab="'+k+'">'+v+'</button>').join('')+'</div><div id="bwPanel" role="tabpanel" aria-labelledby="bwTab-'+tab+'"></div>';
     root.onchange=handleChange;root.onclick=handleClick;root.onsubmit=handleSubmit;
     root.onkeydown=e=>{const t=e.target.closest('[data-bw-tab]');if(!t||!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const keys=Object.keys(labels),i=keys.indexOf(t.dataset.bwTab),next=e.key==='Home'?0:e.key==='End'?keys.length-1:(i+(e.key==='ArrowRight'?1:-1)+keys.length)%keys.length;openTab(keys[next]);$('bwTab-'+keys[next]).focus();};
     render();
@@ -75812,7 +75812,7 @@ const BusinessWorkspace = (() => {
     panel.querySelector('#bwIncludeCharts')?.closest('.bw-checks')?.remove();
     const script="document.querySelectorAll('[data-tip]').forEach(function(e){function show(){var p=e.closest('.bw-chart').querySelector('.bw-tip');if(p)p.textContent=e.dataset.tip;}e.addEventListener('pointerenter',show);e.addEventListener('focus',show);e.addEventListener('click',show);});document.querySelectorAll('[data-series-toggle]').forEach(function(e){e.addEventListener('change',function(){e.closest('.bw-chart').querySelector('[data-series=\"'+e.dataset.seriesToggle+'\"]').style.display=e.checked?'':'none';});});";
     const css='body{background:#101118;color:#eee;font:16px system-ui;max-width:1200px;margin:auto;padding:20px}svg{width:100%;height:auto}svg text{fill:#ddd;font:12px system-ui}.bw-card{padding:20px;margin:16px 0;border:1px solid #555;border-radius:14px}.bw-table{overflow:auto}table{width:100%;border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid #444;text-align:right}td:first-child,th:first-child{text-align:left}h1,h2,h3,th{color:#ffd400}label{margin-right:15px}.bw-tip{color:#ffd400}';
-    const html='<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(b.name)+' · v0.20.4-Beta-Patch</title><style>'+css+'</style><body><h1>'+esc(b.name)+' · Informe empresarial</h1><p>v0.20.4-Beta-Patch · '+esc(nowIso())+' · '+esc(b.currency)+'</p>'+panel.innerHTML+'<script>'+script+'<'+ '/script></body></html>';
+    const html='<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(b.name)+' · v0.20.3-Beta-Patch</title><style>'+css+'</style><body><h1>'+esc(b.name)+' · Informe empresarial</h1><p>v0.20.3-Beta-Patch · '+esc(nowIso())+' · '+esc(b.currency)+'</p>'+panel.innerHTML+'<script>'+script+'<'+ '/script></body></html>';
     download('informe-'+safeFilePart(b.name)+'-v0.20.0.html',html,'text/html');
     b.reports.push({id:uid(),name:b.name,createdAt:nowIso(),type:'html',months:b.financialPlan.months});persist();
   }
