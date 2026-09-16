@@ -10,10 +10,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Inflation Insights">
-  <link rel="manifest" href="./manifest-v0.20.5-beta-patch.webmanifest">
+  <link rel="manifest" href="./manifest-v0.20.6-beta-patch.webmanifest">
   <link rel="icon" href="./icons/inflation-insights-192.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/inflation-insights-192.png">
-  <title>Inflation Insights · v0.20.5-Beta-Patch</title>
+  <title>Inflation Insights · v0.20.6-Beta-Patch</title>
   <style>
     :root{
       --bg:#07111f;
@@ -3241,7 +3241,7 @@
       .investment-project-actions{justify-content:flex-start}
     }
 
-    /* v0.20.5-Beta-Patch · centro de decisiones y planificación conectada. */
+    /* v0.20.6-Beta-Patch · centro de decisiones y planificación conectada. */
     .monte-carlo-hero{border-color:#55f5e6;background:
       radial-gradient(circle at 88% 10%,rgba(85,245,230,.12),transparent 25rem),
       linear-gradient(145deg,#11131b,#090b10)}
@@ -3776,9 +3776,11 @@ body .toggle-control>span{flex:1 1 0;min-width:0;max-width:100%;white-space:norm
 body .toggle-control>input[type=checkbox]{appearance:auto;flex:0 0 22px;box-sizing:border-box;width:22px;min-width:22px;max-width:22px;height:22px;min-height:22px;padding:0;margin:2px 0 0;accent-color:#a4f9f0}
 body #feedbackForm .toggle-control{font-weight:500;min-height:44px;cursor:pointer}
 </style>
-<style id="icon-canvas-v0205">
-/* Lienzo vectorial v0.20.5: una sola familia de iconos SVG, sin emojis ni fuentes externas. */
+<style id="icon-canvas-v0206">
+/* Lienzo vectorial v0.20.6: una sola familia de iconos SVG, sin emojis ni fuentes externas. */
 .ii-icon{width:1.25em;height:1.25em;display:inline-block;flex:0 0 auto;overflow:visible;color:inherit;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.22em}
+.ii-icon>use{width:32px;height:32px;pointer-events:none}
+.ii-icon path,.ii-icon circle,.ii-icon rect,.ii-icon line,.ii-icon polyline,.ii-icon polygon{vector-effect:non-scaling-stroke}
 .tool-icon .ii-icon{width:34px;height:34px;stroke-width:1.55}
 .icon-label{display:inline-flex;align-items:center;gap:9px;min-width:0}
 .route-shortcut .ii-icon{width:24px;height:24px;color:#a4f9f0}
@@ -3788,36 +3790,40 @@ body #feedbackForm .toggle-control{font-weight:500;min-height:44px;cursor:pointe
 .country-choice{display:inline-flex;align-items:center;gap:8px}.country-choice .ii-icon{width:18px;height:18px;color:#a4f9f0}.country-code{font-size:.72em;font-weight:850;letter-spacing:.08em;color:#a4f9f0}
 #anomalyClassification .classification-icon{width:22px;height:22px;margin-right:8px;color:#8894aa}#anomalyClassification[data-level="normal"] .classification-icon{color:#48c774}#anomalyClassification[data-level="elevated"] .classification-icon{color:#ffd400}#anomalyClassification[data-level="very-high"] .classification-icon{color:#ff9f43}#anomalyClassification[data-level="anomaly"] .classification-icon{color:#ff5d6c}
 .beta-service-notice{align-items:center;gap:10px}.beta-service-notice:not([hidden]){display:flex}.beta-service-notice .ii-icon{width:20px;height:20px;flex:0 0 20px}
+body select{color-scheme:dark}
+body select option,body select optgroup{color:#eef5ff;background-color:#080f20}
+body select option:disabled{color:#93a1b7}
+body select optgroup{font-weight:800}
 </style>
 </head>
 <body data-route="inicio">
   <a class="skip-link" href="#mainContent">Saltar al contenido</a>
   <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;overflow:hidden">
     <defs>
-      <symbol id="ii-orbit-lens" viewBox="0 0 32 32"><circle cx="13" cy="13" r="7"/><path d="m18 18 7 7M4 13h3m6-9v3m10 6h5M13 22v6"/><path d="M22 5c3 2 5 5 5 8"/></symbol>
-      <symbol id="ii-basket" viewBox="0 0 32 32"><path d="M5 13h22l-2 13H7L5 13Z"/><path d="m10 13 6-8 6 8M11 17v5m5-5v5m5-5v5"/></symbol>
-      <symbol id="ii-shield-grid" viewBox="0 0 32 32"><path d="M16 3 27 7v8c0 7-4.7 11.8-11 14-6.3-2.2-11-7-11-14V7l11-4Z"/><path d="M11 11h10v10H11zM11 16h10M16 11v10"/></symbol>
-      <symbol id="ii-venture" viewBox="0 0 32 32"><path d="M5 26 13 18l5 4 9-12"/><path d="M20 10h7v7M7 7h7v7H7z"/></symbol>
-      <symbol id="ii-compass" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="m20 10-2.5 7.5L10 22l4.5-7.5L20 10Z"/><circle cx="16" cy="16" r="1"/></symbol>
-      <symbol id="ii-compare" viewBox="0 0 32 32"><path d="M7 6v20M25 6v20M4 10h6M22 22h6"/><path d="m12 11 4-4 4 4M12 21l4 4 4-4"/></symbol>
-      <symbol id="ii-unit" viewBox="0 0 32 32"><rect x="5" y="7" width="9" height="18" rx="2"/><rect x="18" y="11" width="9" height="14" rx="2"/><path d="M8 12h3m10 4h3M4 28h24"/></symbol>
-      <symbol id="ii-exchange" viewBox="0 0 32 32"><path d="M6 11h18l-4-4M26 21H8l4 4"/><circle cx="16" cy="16" r="12"/></symbol>
-      <symbol id="ii-salary" viewBox="0 0 32 32"><path d="M5 10h22v15H5zM9 10V7h14v3"/><path d="M5 15h22M16 15v10"/></symbol>
-      <symbol id="ii-contract" viewBox="0 0 32 32"><path d="M7 4h13l5 5v19H7zM20 4v6h5M11 15h10M11 20h10M11 25h6"/><path d="m4 13 3-3 3 3"/></symbol>
-      <symbol id="ii-lab" viewBox="0 0 32 32"><path d="M12 4h8M14 4v8L7 25a2 2 0 0 0 2 3h14a2 2 0 0 0 2-3l-7-13V4"/><path d="M10 22h12M13 18c2 1 4-1 6 0"/></symbol>
-      <symbol id="ii-budget" viewBox="0 0 32 32"><path d="M5 9h22v17H5zM5 13h22M21 18h6"/><path d="M10 9c0-3 3-5 6-5s6 2 6 5"/></symbol>
-      <symbol id="ii-time" viewBox="0 0 32 32"><circle cx="16" cy="17" r="11"/><path d="M16 10v7l5 3M11 4h10M16 4v2"/><path d="M5 9 2 12"/></symbol>
-      <symbol id="ii-real-return" viewBox="0 0 32 32"><path d="M5 7v19h22M8 11l6 6 5-4 7 8"/><path d="M22 21h4v-4"/></symbol>
-      <symbol id="ii-receipt" viewBox="0 0 32 32"><path d="M7 4h18v25l-4-3-5 3-5-3-4 3V4Z"/><path d="M11 10h10M11 15h10M11 20h6"/></symbol>
-      <symbol id="ii-pulse" viewBox="0 0 32 32"><path d="M3 17h6l3-8 6 16 4-8h7"/><path d="M6 6h20M6 28h20"/></symbol>
-      <symbol id="ii-learn" viewBox="0 0 32 32"><path d="m3 12 13-7 13 7-13 7L3 12Z"/><path d="M8 15v7c5 4 11 4 16 0v-7M29 12v9"/></symbol>
-      <symbol id="ii-code" viewBox="0 0 32 32"><path d="m11 8-7 8 7 8M21 8l7 8-7 8M19 5l-6 22"/></symbol>
-      <symbol id="ii-signal" viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="4"/><path d="M16 2v3m0 22v3M2 16h3m22 0h3"/></symbol>
-      <symbol id="ii-gear" viewBox="0 0 32 32"><circle cx="16" cy="16" r="5"/><path d="M16 3v4m0 18v4M3 16h4m18 0h4M7 7l3 3m12 12 3 3M25 7l-3 3M10 22l-3 3"/><circle cx="16" cy="16" r="11"/></symbol>
-      <symbol id="ii-geo" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 6 8 6 12s-2 8-6 12c-4-4-6-8-6-12s2-8 6-12Z"/></symbol>
-      <symbol id="ii-alert" viewBox="0 0 32 32"><path d="M16 4 29 27H3L16 4Z"/><path d="M16 12v7m0 4v1"/></symbol>
-      <symbol id="ii-check" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="m10 16 4 4 8-9"/></symbol>
-      <symbol id="ii-spark" viewBox="0 0 32 32"><path d="m16 3 3.5 8.5L29 13l-7 6 2 10-8-5-8 5 2-10-7-6 9.5-1.5L16 3Z"/><circle cx="16" cy="16" r="3"/></symbol>
+      <symbol id="ii-orbit-lens" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="13" r="7"/><path d="m18 18 7 7M4 13h3m6-9v3m10 6h5M13 22v6"/><path d="M22 5c3 2 5 5 5 8"/></symbol>
+      <symbol id="ii-basket" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13h22l-2 13H7L5 13Z"/><path d="m10 13 6-8 6 8M11 17v5m5-5v5m5-5v5"/></symbol>
+      <symbol id="ii-shield-grid" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3 27 7v8c0 7-4.7 11.8-11 14-6.3-2.2-11-7-11-14V7l11-4Z"/><path d="M11 11h10v10H11zM11 16h10M16 11v10"/></symbol>
+      <symbol id="ii-venture" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 26 13 18l5 4 9-12"/><path d="M20 10h7v7M7 7h7v7H7z"/></symbol>
+      <symbol id="ii-compass" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="12"/><path d="m20 10-2.5 7.5L10 22l4.5-7.5L20 10Z"/><circle cx="16" cy="16" r="1"/></symbol>
+      <symbol id="ii-compare" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 6v20M25 6v20M4 10h6M22 22h6"/><path d="m12 11 4-4 4 4M12 21l4 4 4-4"/></symbol>
+      <symbol id="ii-unit" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="9" height="18" rx="2"/><rect x="18" y="11" width="9" height="14" rx="2"/><path d="M8 12h3m10 4h3M4 28h24"/></symbol>
+      <symbol id="ii-exchange" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h18l-4-4M26 21H8l4 4"/><circle cx="16" cy="16" r="12"/></symbol>
+      <symbol id="ii-salary" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h22v15H5zM9 10V7h14v3"/><path d="M5 15h22M16 15v10"/></symbol>
+      <symbol id="ii-contract" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h13l5 5v19H7zM20 4v6h5M11 15h10M11 20h10M11 25h6"/><path d="m4 13 3-3 3 3"/></symbol>
+      <symbol id="ii-lab" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4h8M14 4v8L7 25a2 2 0 0 0 2 3h14a2 2 0 0 0 2-3l-7-13V4"/><path d="M10 22h12M13 18c2 1 4-1 6 0"/></symbol>
+      <symbol id="ii-budget" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h22v17H5zM5 13h22M21 18h6"/><path d="M10 9c0-3 3-5 6-5s6 2 6 5"/></symbol>
+      <symbol id="ii-time" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="17" r="11"/><path d="M16 10v7l5 3M11 4h10M16 4v2"/><path d="M5 9 2 12"/></symbol>
+      <symbol id="ii-real-return" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7v19h22M8 11l6 6 5-4 7 8"/><path d="M22 21h4v-4"/></symbol>
+      <symbol id="ii-receipt" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h18v25l-4-3-5 3-5-3-4 3V4Z"/><path d="M11 10h10M11 15h10M11 20h6"/></symbol>
+      <symbol id="ii-pulse" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h6l3-8 6 16 4-8h7"/><path d="M6 6h20M6 28h20"/></symbol>
+      <symbol id="ii-learn" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 12 13-7 13 7-13 7L3 12Z"/><path d="M8 15v7c5 4 11 4 16 0v-7M29 12v9"/></symbol>
+      <symbol id="ii-code" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m11 8-7 8 7 8M21 8l7 8-7 8M19 5l-6 22"/></symbol>
+      <symbol id="ii-signal" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="4"/><path d="M16 2v3m0 22v3M2 16h3m22 0h3"/></symbol>
+      <symbol id="ii-gear" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="5"/><path d="M16 3v4m0 18v4M3 16h4m18 0h4M7 7l3 3m12 12 3 3M25 7l-3 3M10 22l-3 3"/><circle cx="16" cy="16" r="11"/></symbol>
+      <symbol id="ii-geo" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 6 8 6 12s-2 8-6 12c-4-4-6-8-6-12s2-8 6-12Z"/></symbol>
+      <symbol id="ii-alert" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4 29 27H3L16 4Z"/><path d="M16 12v7m0 4v1"/></symbol>
+      <symbol id="ii-check" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="12"/><path d="m10 16 4 4 8-9"/></symbol>
+      <symbol id="ii-spark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 3.5 8.5L29 13l-7 6 2 10-8-5-8 5 2-10-7-6 9.5-1.5L16 3Z"/><circle cx="16" cy="16" r="3"/></symbol>
     </defs>
   </svg>
 
@@ -3838,7 +3844,7 @@ body #feedbackForm .toggle-control{font-weight:500;min-height:44px;cursor:pointe
       </button>
 
 
-<nav class="main-nav" id="mainNav" aria-label="Navegación principal" data-open="false"><button class="nav-link" type="button" data-route="negocios">Negocios</button><button class="nav-link" type="button" data-route="calculadora">Calcular</button><details class="nav-group"><summary>Analizar</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="inversiones">Inversiones</button><button class="nav-link" type="button" data-route="precios">Precios y reduflación</button><button class="nav-link" type="button" data-route="salario">Salarios</button><button class="nav-link" type="button" data-route="laboratorio">Comparaciones</button></div></details><button class="nav-link" type="button" data-route="decisiones">Decisiones</button><button class="nav-link" type="button" data-route="datos">Datos</button><button class="nav-link" type="button" data-route="informes">Informes</button><details class="nav-group"><summary>Más</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="herramientas">Todas las herramientas</button><button class="nav-link" type="button" data-route="historial">Historial</button><button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button><button class="nav-link" type="button" data-route="inicio">Volver a la portada</button></div></details><span class="version-chip" aria-label="Versión actual">v0.20.5 · Beta</span></nav>
+<nav class="main-nav" id="mainNav" aria-label="Navegación principal" data-open="false"><button class="nav-link" type="button" data-route="negocios">Negocios</button><button class="nav-link" type="button" data-route="calculadora">Calcular</button><details class="nav-group"><summary>Analizar</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="inversiones">Inversiones</button><button class="nav-link" type="button" data-route="precios">Precios y reduflación</button><button class="nav-link" type="button" data-route="salario">Salarios</button><button class="nav-link" type="button" data-route="laboratorio">Comparaciones</button></div></details><button class="nav-link" type="button" data-route="decisiones">Decisiones</button><button class="nav-link" type="button" data-route="datos">Datos</button><button class="nav-link" type="button" data-route="informes">Informes</button><details class="nav-group"><summary>Más</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="herramientas">Todas las herramientas</button><button class="nav-link" type="button" data-route="historial">Historial</button><button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button><button class="nav-link" type="button" data-route="inicio">Volver a la portada</button></div></details><span class="version-chip" aria-label="Versión actual">v0.20.6 · Beta</span></nav>
 
       <span class="status-chip header-status" id="connectionChip" data-status="online" aria-live="polite">
         <span class="status-dot" aria-hidden="true"></span>
@@ -4092,8 +4098,8 @@ THE SOFTWARE.
       </div>
 
       <div class="route-shortcuts" aria-label="Modos de cálculo">
-        <button class="route-shortcut" type="button" data-route="avanzada"><span class="icon-label"><svg class="ii-icon" aria-hidden="true"><use href="#ii-orbit-lens"/></svg>Calculadora por períodos</span><span aria-hidden="true">→</span></button>
-        <button class="route-shortcut" type="button" id="openBasketShortcut"><span class="icon-label"><svg class="ii-icon" aria-hidden="true"><use href="#ii-basket"/></svg>Cesta de inflación</span><span aria-hidden="true">→</span></button>
+        <button class="route-shortcut" type="button" data-route="avanzada"><span class="icon-label"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><circle cx="13" cy="13" r="7"/><path d="m18 18 7 7M4 13h3m6-9v3m10 6h5M13 22v6"/><path d="M22 5c3 2 5 5 5 8"/></svg>Calculadora por períodos</span><span aria-hidden="true">→</span></button>
+        <button class="route-shortcut" type="button" id="openBasketShortcut"><span class="icon-label"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><path d="M5 13h22l-2 13H7L5 13Z"/><path d="m10 13 6-8 6 8M11 17v5m5-5v5m5-5v5"/></svg>Cesta de inflación</span><span aria-hidden="true">→</span></button>
         <button class="route-shortcut" type="button" id="openComparisonShortcut"><span>A/B Comparar escenarios</span><span aria-hidden="true">→</span></button>
       </div>
 
@@ -4284,7 +4290,7 @@ THE SOFTWARE.
             </details>
 
             <div class="result-actions">
-              <button class="button secondary small audit-trigger" id="openCalculatorAuditButton" type="button"><svg class="ii-icon" aria-hidden="true"><use href="#ii-shield-grid"/></svg>Ver cálculo</button>
+              <button class="button secondary small audit-trigger" id="openCalculatorAuditButton" type="button"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><path d="M16 3 27 7v8c0 7-4.7 11.8-11 14-6.3-2.2-11-7-11-14V7l11-4Z"/><path d="M11 11h10v10H11zM11 16h10M16 11v10"/></svg>Ver cálculo</button>
               <button class="button primary small" id="modifyButton" type="button">Modificar cálculo</button>
               <button class="button secondary small" id="copyResultButton" type="button">Copiar resultado</button>
               <button class="button secondary small" id="exportCsvButton" type="button">Exportar CSV</button>
@@ -4305,103 +4311,103 @@ THE SOFTWARE.
 
       <div class="tool-grid">
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-venture"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="M5 26 13 18l5 4 9-12"/><path d="M20 10h7v7M7 7h7v7H7z"/></svg></div>
           <h2>Inversiones de negocios</h2>
           <p>Configura ventas y gastos, entiende la ganancia con palabras claras y abre las métricas técnicas solo cuando las necesites.</p>
           <button class="button primary small" type="button" data-route="inversiones">Analizar un negocio</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-compass"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><circle cx="16" cy="16" r="12"/><path d="m20 10-2.5 7.5L10 22l4.5-7.5L20 10Z"/><circle cx="16" cy="16" r="1"/></svg></div>
           <h2>Centro de Decisiones</h2>
           <p>Reúne indicadores, fija objetivos, compara ramas y organiza portafolio, calendario y alertas locales.</p>
           <button class="button primary small" type="button" data-route="decisiones">Abrir decisiones</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-compare"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="M7 6v20M25 6v20M4 10h6M22 22h6"/><path d="m12 11 4-4 4 4M12 21l4 4 4-4"/></svg></div>
           <h2>Comparador de escenarios</h2>
           <p>Contrasta dos variaciones de precio usando el mismo período y observa la diferencia entre sus tasas.</p>
           <button class="button secondary small" id="openComparisonTool" type="button">Abrir comparador</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-basket"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="M5 13h22l-2 13H7L5 13Z"/><path d="m10 13 6-8 6 8M11 17v5m5-5v5m5-5v5"/></svg></div>
           <h2>Costo de vida</h2>
           <p>Mide tu inflación con precios reales o conserva la cesta ponderada por categorías.</p>
           <button class="button secondary small" id="openBasketTool" type="button">Abrir costo de vida</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-unit"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><rect x="5" y="7" width="9" height="18" rx="2"/><rect x="18" y="11" width="9" height="14" rx="2"/><path d="M8 12h3m10 4h3M4 28h24"/></svg></div>
           <h2>Productos y reduflación</h2>
           <p>Compara formatos, detecta reducciones ocultas y conserva un historial del precio por unidad.</p>
           <button class="button secondary small" type="button" data-route="precios">Analizar productos</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-exchange"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="M6 11h18l-4-4M26 21H8l4 4"/><circle cx="16" cy="16" r="12"/></svg></div>
           <h2>Cotizaciones</h2>
           <p>Consulta el valor en BRL de cada moneda extranjera disponible, con fuente, fecha y estado individual.</p>
           <button class="button secondary small" type="button" data-route="tipo-cambio">Ver cotizaciones</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-salary"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="M5 10h22v15H5zM9 10V7h14v3"/><path d="M5 15h22M16 15v10"/></svg></div>
           <h2>Reajuste salarial</h2>
           <p>Comprueba si un aumento supera la inflación y cuánto poder adquisitivo ganas o pierdes.</p>
           <button class="button secondary small" id="openSalaryTool" type="button" data-route="salario">Analizar salario</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-contract"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="M7 4h13l5 5v19H7zM20 4v6h5M11 15h10M11 20h10M11 25h6"/><path d="m4 13 3-3 3 3"/></svg></div>
           <h2>Reajustes y contratos</h2>
           <p>Actualiza alquileres, mensualidades, servicios o cualquier valor con IPCA, INPC, IGP-M o una tasa propia.</p>
           <button class="button secondary small" type="button" data-route="reajustes">Calcular reajuste</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-lab"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="M12 4h8M14 4v8L7 25a2 2 0 0 0 2 3h14a2 2 0 0 0 2-3l-7-13V4"/><path d="M10 22h12M13 18c2 1 4-1 6 0"/></svg></div>
           <h2>Laboratorio económico</h2>
           <p>Compara inflación, ingresos y poder adquisitivo en escenarios moderado, adverso, extremo y personalizado.</p>
           <button class="button secondary small" type="button" data-route="laboratorio">Simular escenarios</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-budget"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="M5 9h22v17H5zM5 13h22M21 18h6"/><path d="M10 9c0-3 3-5 6-5s6 2 6 5"/></svg></div>
           <h2>Presupuesto familiar</h2>
           <p>Proyecta cada categoría con su propia inflación y descubre el salario necesario para conservar tu nivel de vida.</p>
           <button class="button secondary small" type="button" data-route="presupuesto">Simular presupuesto</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-time"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><circle cx="16" cy="17" r="11"/><path d="M16 10v7l5 3M11 4h10M16 4v2"/><path d="M5 9 2 12"/></svg></div>
           <h2>Máquina del tiempo</h2>
           <p>Compara el poder adquisitivo entre dos meses con índices oficiales, fuente, fecha y copia local identificada.</p>
           <button class="button secondary small" type="button" data-route="tiempo-dinero">Comparar épocas</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-real-return"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="M5 7v19h22M8 11l6 6 5-4 7 8"/><path d="M22 21h4v-4"/></svg></div>
           <h2>Rendimiento real</h2>
           <p>Separa rentabilidad nominal y real mediante la relación compuesta correcta, no con una simple resta.</p>
           <button class="button secondary small" type="button" data-route="rendimiento-real">Evaluar inversión</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-receipt"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="M7 4h18v25l-4-3-5 3-5-3-4 3V4Z"/><path d="M11 10h10M11 15h10M11 20h6"/></svg></div>
           <h2>Gastos y suscripciones</h2>
           <p>Conserva precios recurrentes, calcula su coste mensual y anual e identifica cuáles suben más deprisa.</p>
           <button class="button secondary small" type="button" data-route="suscripciones">Gestionar gastos</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-pulse"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="M3 17h6l3-8 6 16 4-8h7"/><path d="M6 6h20M6 28h20"/></svg></div>
           <h2>Aumentos anormales</h2>
           <p>Analiza magnitud, tiempo, historial y frecuencia sin confundir un aumento de precio con reduflación.</p>
           <button class="button secondary small" type="button" data-route="anomalias">Analizar historial</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-shield-grid"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="M16 3 27 7v8c0 7-4.7 11.8-11 14-6.3-2.2-11-7-11-14V7l11-4Z"/><path d="M11 11h10v10H11zM11 16h10M16 11v10"/></svg></div>
           <h2>Auditoría de cálculo</h2>
           <p>Abre cualquier resultado compatible para revisar datos, conversiones, fórmula, pasos y redondeo.</p>
           <button class="button secondary small" type="button" data-route="calculadora">Calcular y auditar</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-learn"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="m3 12 13-7 13 7-13 7L3 12Z"/><path d="M8 15v7c5 4 11 4 16 0v-7M29 12v9"/></svg></div>
           <h2>Aprende inflación</h2>
           <p>Experimenta con inflación compuesta, poder adquisitivo, índices, CAGR, deflación y rendimiento real.</p>
           <button class="button secondary small" type="button" data-route="educacion">Abrir modo educativo</button>
         </article>
         <article class="card tool-card">
-          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon"><use href="#ii-code"/></svg></div>
+          <div class="tool-icon" aria-hidden="true"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false"><path d="m11 8-7 8 7 8M21 8l7 8-7 8M19 5l-6 22"/></svg></div>
           <h2>Widgets embebibles</h2>
           <p>Configura una calculadora reducida, previsualízala y copia un iframe listo para otra página web.</p>
           <button class="button secondary small" type="button" data-route="widgets">Crear widget</button>
@@ -5244,7 +5250,7 @@ THE SOFTWARE.
           <div class="feature-status" id="budgetNotice" role="status" aria-live="polite">Completa los ingresos y al menos una categoría.</div>
         </form>
         <section class="card feature-card" aria-labelledby="budgetResultsTitle">
-          <div class="module-toolbar"><div><p class="eyebrow">Proyección</p><h2 id="budgetResultsTitle">Impacto en tu presupuesto</h2></div><button class="button secondary small audit-trigger" id="budgetAuditButton" type="button" disabled><svg class="ii-icon" aria-hidden="true"><use href="#ii-shield-grid"/></svg>Ver cálculo</button></div>
+          <div class="module-toolbar"><div><p class="eyebrow">Proyección</p><h2 id="budgetResultsTitle">Impacto en tu presupuesto</h2></div><button class="button secondary small audit-trigger" id="budgetAuditButton" type="button" disabled><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><path d="M16 3 27 7v8c0 7-4.7 11.8-11 14-6.3-2.2-11-7-11-14V7l11-4Z"/><path d="M11 11h10v10H11zM11 16h10M16 11v10"/></svg>Ver cálculo</button></div>
           <div class="feature-empty" id="budgetEmpty">Aquí verás el gasto actual y futuro, la capacidad de ahorro y el salario requerido.</div>
           <div class="feature-stack" id="budgetResults" hidden>
             <div class="metric-grid">
@@ -5284,7 +5290,7 @@ THE SOFTWARE.
           <div class="feature-status" id="timeMoneyNotice" role="status" aria-live="polite">La primera consulta necesita internet; después puede utilizar una copia fechada.</div>
         </form>
         <section class="card feature-card" aria-labelledby="timeMoneyResultsTitle">
-          <div class="module-toolbar"><div><p class="eyebrow">Equivalencia</p><h2 id="timeMoneyResultsTitle">Valor del dinero entre épocas</h2></div><button class="button secondary small audit-trigger" id="timeMoneyAuditButton" type="button" disabled><svg class="ii-icon" aria-hidden="true"><use href="#ii-shield-grid"/></svg>Ver cálculo</button></div>
+          <div class="module-toolbar"><div><p class="eyebrow">Equivalencia</p><h2 id="timeMoneyResultsTitle">Valor del dinero entre épocas</h2></div><button class="button secondary small audit-trigger" id="timeMoneyAuditButton" type="button" disabled><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><path d="M16 3 27 7v8c0 7-4.7 11.8-11 14-6.3-2.2-11-7-11-14V7l11-4Z"/><path d="M11 11h10v10H11zM11 16h10M16 11v10"/></svg>Ver cálculo</button></div>
           <div class="feature-empty" id="timeMoneyEmpty">Selecciona dos meses para calcular la equivalencia con el índice oficial.</div>
           <div class="feature-stack" id="timeMoneyResults" hidden>
             <div class="metric-grid">
@@ -5329,7 +5335,7 @@ THE SOFTWARE.
           <div class="feature-status" id="realReturnNotice" role="status" aria-live="polite">Ejemplo: 10 % nominal y 6 % de inflación producen aproximadamente 3,77 % real.</div>
         </form>
         <section class="card feature-card" aria-labelledby="realReturnResultsTitle">
-          <div class="module-toolbar"><div><p class="eyebrow">Resultado compuesto</p><h2 id="realReturnResultsTitle">Rentabilidad nominal ≠ real</h2></div><button class="button secondary small audit-trigger" id="realReturnAuditButton" type="button" disabled><svg class="ii-icon" aria-hidden="true"><use href="#ii-shield-grid"/></svg>Ver cálculo</button></div>
+          <div class="module-toolbar"><div><p class="eyebrow">Resultado compuesto</p><h2 id="realReturnResultsTitle">Rentabilidad nominal ≠ real</h2></div><button class="button secondary small audit-trigger" id="realReturnAuditButton" type="button" disabled><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><path d="M16 3 27 7v8c0 7-4.7 11.8-11 14-6.3-2.2-11-7-11-14V7l11-4Z"/><path d="M11 11h10v10H11zM11 16h10M16 11v10"/></svg>Ver cálculo</button></div>
           <div class="feature-empty" id="realReturnEmpty">Completa el capital, la inflación y la duración.</div>
           <div class="feature-stack" id="realReturnResults" hidden>
             <div class="metric-grid">
@@ -5412,9 +5418,9 @@ THE SOFTWARE.
           <div class="feature-status" id="anomalyNotice" role="status" aria-live="polite">Se recomiendan al menos cinco observaciones para comparar el último cambio con tres cambios anteriores.</div>
         </form>
         <section class="card feature-card" aria-labelledby="anomalyResultTitle">
-          <div class="module-toolbar"><div><p class="eyebrow">Clasificación</p><h2 id="anomalyResultTitle">Comportamiento del último cambio</h2></div><button class="button secondary small audit-trigger" id="anomalyAuditButton" type="button" disabled><svg class="ii-icon" aria-hidden="true"><use href="#ii-shield-grid"/></svg>Ver análisis</button></div>
+          <div class="module-toolbar"><div><p class="eyebrow">Clasificación</p><h2 id="anomalyResultTitle">Comportamiento del último cambio</h2></div><button class="button secondary small audit-trigger" id="anomalyAuditButton" type="button" disabled><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><path d="M16 3 27 7v8c0 7-4.7 11.8-11 14-6.3-2.2-11-7-11-14V7l11-4Z"/><path d="M11 11h10v10H11zM11 16h10M16 11v10"/></svg>Ver análisis</button></div>
           <div class="classification" id="anomalyClassification" data-level="insufficient">
-            <span><svg class="ii-icon classification-icon" aria-hidden="true"><use href="#ii-signal"/></svg><span id="anomalyLabel">Datos insuficientes</span></span>
+            <span><svg class="ii-icon classification-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="4"/><path d="M16 2v3m0 22v3M2 16h3m22 0h3"/></svg><span id="anomalyLabel">Datos insuficientes</span></span>
             <strong id="anomalyHeadline">Añade un historial comparable</strong>
             <p id="anomalyExplanation">La herramienta considera magnitud, días transcurridos, mediana histórica, dispersión y frecuencia.</p>
           </div>
@@ -5510,7 +5516,7 @@ THE SOFTWARE.
     <section class="view" id="view-widget-runtime" data-view="widget-runtime" aria-label="Calculadora embebida" hidden>
       <div class="widget-runtime-shell" id="widgetRuntimeShell" data-theme="dark">
         <section class="widget-runtime-card" id="widgetRuntimeCard">
-          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.20.5-Beta-Patch.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>Calculadora</span></div>
+          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.20.6-Beta-Patch.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>Calculadora</span></div>
           <h1 id="widgetRuntimeTitle">Calculadora embebida</h1>
           <div class="widget-mini-grid">
             <div class="field"><label id="widgetRuntimeALabel" for="widgetRuntimeA">Valor A</label><input id="widgetRuntimeA" type="text" inputmode="decimal" value="100"></div>
@@ -6290,7 +6296,7 @@ THE SOFTWARE.
             <div class="field"><label for="compareEnd">Mes final</label><input id="compareEnd" type="month" min="1980-01" required></div>
             <fieldset class="full salary-fieldset"><legend class="salary-legend">Economías (elige entre 2 y 5)</legend>
               <div class="comparison-picker" id="comparisonPicker">
-                <label><input type="checkbox" value="BR" checked><span class="country-choice"><svg class="ii-icon" aria-hidden="true"><use href="#ii-geo"/></svg><span class="country-code">BR</span>Brasil</span></label><label><input type="checkbox" value="US" checked><span class="country-choice"><svg class="ii-icon" aria-hidden="true"><use href="#ii-geo"/></svg><span class="country-code">US</span>Estados Unidos</span></label><label><input type="checkbox" value="EU" checked><span class="country-choice"><svg class="ii-icon" aria-hidden="true"><use href="#ii-geo"/></svg><span class="country-code">EU</span>Zona euro</span></label><label><input type="checkbox" value="MX"><span class="country-choice"><svg class="ii-icon" aria-hidden="true"><use href="#ii-geo"/></svg><span class="country-code">MX</span>México</span></label><label><input type="checkbox" value="AR"><span class="country-choice"><svg class="ii-icon" aria-hidden="true"><use href="#ii-geo"/></svg><span class="country-code">AR</span>Argentina</span></label><label><input type="checkbox" value="CA"><span class="country-choice"><svg class="ii-icon" aria-hidden="true"><use href="#ii-geo"/></svg><span class="country-code">CA</span>Canadá</span></label><label><input type="checkbox" value="GB"><span class="country-choice"><svg class="ii-icon" aria-hidden="true"><use href="#ii-geo"/></svg><span class="country-code">GB</span>Reino Unido</span></label>
+                <label><input type="checkbox" value="BR" checked><span class="country-choice"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 6 8 6 12s-2 8-6 12c-4-4-6-8-6-12s2-8 6-12Z"/></svg><span class="country-code">BR</span>Brasil</span></label><label><input type="checkbox" value="US" checked><span class="country-choice"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 6 8 6 12s-2 8-6 12c-4-4-6-8-6-12s2-8 6-12Z"/></svg><span class="country-code">US</span>Estados Unidos</span></label><label><input type="checkbox" value="EU" checked><span class="country-choice"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 6 8 6 12s-2 8-6 12c-4-4-6-8-6-12s2-8 6-12Z"/></svg><span class="country-code">EU</span>Zona euro</span></label><label><input type="checkbox" value="MX"><span class="country-choice"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 6 8 6 12s-2 8-6 12c-4-4-6-8-6-12s2-8 6-12Z"/></svg><span class="country-code">MX</span>México</span></label><label><input type="checkbox" value="AR"><span class="country-choice"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 6 8 6 12s-2 8-6 12c-4-4-6-8-6-12s2-8 6-12Z"/></svg><span class="country-code">AR</span>Argentina</span></label><label><input type="checkbox" value="CA"><span class="country-choice"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 6 8 6 12s-2 8-6 12c-4-4-6-8-6-12s2-8 6-12Z"/></svg><span class="country-code">CA</span>Canadá</span></label><label><input type="checkbox" value="GB"><span class="country-choice"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 6 8 6 12s-2 8-6 12c-4-4-6-8-6-12s2-8 6-12Z"/></svg><span class="country-code">GB</span>Reino Unido</span></label>
               </div>
             </fieldset>
           </div>
@@ -6363,10 +6369,10 @@ THE SOFTWARE.
       <div class="view-head"><p class="eyebrow">Simulación local y editable</p><h1 id="labTitle">Laboratorio de escenarios económicos</h1><p class="lede">Compara hasta cuatro trayectorias de precios e ingresos. Puedes usar una tasa constante o escribir tasas anuales separadas por comas; el cálculo siempre es compuesto.</p></div>
       <form class="module-form" id="labForm" novalidate>
         <div class="scenario-editor" id="scenarioEditor">
-          <section class="scenario-config" data-scenario-index="0" data-tone="moderate"><h3 class="scenario-title"><svg class="ii-icon" aria-hidden="true"><use href="#ii-signal"/></svg><input aria-label="Nombre del escenario moderado" data-lab-field="name" value="Moderado" maxlength="40"></h3><div class="lab-form-grid"><div class="field"><label>Valor inicial</label><input data-lab-field="initial" type="text" inputmode="decimal" value="1000"></div><div class="field"><label>Inflación anual (%)</label><input data-lab-field="inflation" type="text" inputmode="decimal" value="4"></div><div class="field"><label>Crecimiento de ingresos (%)</label><input data-lab-field="income" type="text" inputmode="decimal" value="5"></div><div class="field"><label>Duración (años)</label><input data-lab-field="years" type="number" min="1" max="50" value="5"></div><div class="field full"><label>Tasas año por año <span class="field-help">(opcional)</span></label><input data-lab-field="rates" type="text" placeholder="4; 5; 7; 4,5; 3,5"></div></div></section>
-          <section class="scenario-config" data-scenario-index="1" data-tone="adverse"><h3 class="scenario-title"><svg class="ii-icon" aria-hidden="true"><use href="#ii-pulse"/></svg><input aria-label="Nombre del escenario adverso" data-lab-field="name" value="Adverso" maxlength="40"></h3><div class="lab-form-grid"><div class="field"><label>Valor inicial</label><input data-lab-field="initial" type="text" inputmode="decimal" value="1000"></div><div class="field"><label>Inflación anual (%)</label><input data-lab-field="inflation" type="text" inputmode="decimal" value="8"></div><div class="field"><label>Crecimiento de ingresos (%)</label><input data-lab-field="income" type="text" inputmode="decimal" value="4"></div><div class="field"><label>Duración (años)</label><input data-lab-field="years" type="number" min="1" max="50" value="5"></div><div class="field full"><label>Tasas año por año <span class="field-help">(opcional)</span></label><input data-lab-field="rates" type="text" placeholder="8; 9; 7; 8; 6"></div></div></section>
-          <section class="scenario-config" data-scenario-index="2" data-tone="extreme"><h3 class="scenario-title"><svg class="ii-icon" aria-hidden="true"><use href="#ii-alert"/></svg><input aria-label="Nombre del escenario extremo" data-lab-field="name" value="Extremo" maxlength="40"></h3><div class="lab-form-grid"><div class="field"><label>Valor inicial</label><input data-lab-field="initial" type="text" inputmode="decimal" value="1000"></div><div class="field"><label>Inflación anual (%)</label><input data-lab-field="inflation" type="text" inputmode="decimal" value="18"></div><div class="field"><label>Crecimiento de ingresos (%)</label><input data-lab-field="income" type="text" inputmode="decimal" value="3"></div><div class="field"><label>Duración (años)</label><input data-lab-field="years" type="number" min="1" max="50" value="5"></div><div class="field full"><label>Tasas año por año <span class="field-help">(opcional)</span></label><input data-lab-field="rates" type="text" placeholder="18; 20; 15; 12; 10"></div></div></section>
-          <section class="scenario-config" data-scenario-index="3" data-tone="custom"><h3 class="scenario-title"><svg class="ii-icon" aria-hidden="true"><use href="#ii-gear"/></svg><input aria-label="Nombre del escenario personalizado" data-lab-field="name" value="Personalizado" maxlength="40"></h3><div class="lab-form-grid"><div class="field"><label>Valor inicial</label><input data-lab-field="initial" type="text" inputmode="decimal" value="1000"></div><div class="field"><label>Inflación anual (%)</label><input data-lab-field="inflation" type="text" inputmode="decimal" value="6"></div><div class="field"><label>Crecimiento de ingresos (%)</label><input data-lab-field="income" type="text" inputmode="decimal" value="6"></div><div class="field"><label>Duración (años)</label><input data-lab-field="years" type="number" min="1" max="50" value="5"></div><div class="field full"><label>Tasas año por año <span class="field-help">(opcional)</span></label><input data-lab-field="rates" type="text" placeholder="4; 5; 7; 4,5; 3,5"></div></div></section>
+          <section class="scenario-config" data-scenario-index="0" data-tone="moderate"><h3 class="scenario-title"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="4"/><path d="M16 2v3m0 22v3M2 16h3m22 0h3"/></svg><input aria-label="Nombre del escenario moderado" data-lab-field="name" value="Moderado" maxlength="40"></h3><div class="lab-form-grid"><div class="field"><label>Valor inicial</label><input data-lab-field="initial" type="text" inputmode="decimal" value="1000"></div><div class="field"><label>Inflación anual (%)</label><input data-lab-field="inflation" type="text" inputmode="decimal" value="4"></div><div class="field"><label>Crecimiento de ingresos (%)</label><input data-lab-field="income" type="text" inputmode="decimal" value="5"></div><div class="field"><label>Duración (años)</label><input data-lab-field="years" type="number" min="1" max="50" value="5"></div><div class="field full"><label>Tasas año por año <span class="field-help">(opcional)</span></label><input data-lab-field="rates" type="text" placeholder="4; 5; 7; 4,5; 3,5"></div></div></section>
+          <section class="scenario-config" data-scenario-index="1" data-tone="adverse"><h3 class="scenario-title"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><path d="M3 17h6l3-8 6 16 4-8h7"/><path d="M6 6h20M6 28h20"/></svg><input aria-label="Nombre del escenario adverso" data-lab-field="name" value="Adverso" maxlength="40"></h3><div class="lab-form-grid"><div class="field"><label>Valor inicial</label><input data-lab-field="initial" type="text" inputmode="decimal" value="1000"></div><div class="field"><label>Inflación anual (%)</label><input data-lab-field="inflation" type="text" inputmode="decimal" value="8"></div><div class="field"><label>Crecimiento de ingresos (%)</label><input data-lab-field="income" type="text" inputmode="decimal" value="4"></div><div class="field"><label>Duración (años)</label><input data-lab-field="years" type="number" min="1" max="50" value="5"></div><div class="field full"><label>Tasas año por año <span class="field-help">(opcional)</span></label><input data-lab-field="rates" type="text" placeholder="8; 9; 7; 8; 6"></div></div></section>
+          <section class="scenario-config" data-scenario-index="2" data-tone="extreme"><h3 class="scenario-title"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><path d="M16 4 29 27H3L16 4Z"/><path d="M16 12v7m0 4v1"/></svg><input aria-label="Nombre del escenario extremo" data-lab-field="name" value="Extremo" maxlength="40"></h3><div class="lab-form-grid"><div class="field"><label>Valor inicial</label><input data-lab-field="initial" type="text" inputmode="decimal" value="1000"></div><div class="field"><label>Inflación anual (%)</label><input data-lab-field="inflation" type="text" inputmode="decimal" value="18"></div><div class="field"><label>Crecimiento de ingresos (%)</label><input data-lab-field="income" type="text" inputmode="decimal" value="3"></div><div class="field"><label>Duración (años)</label><input data-lab-field="years" type="number" min="1" max="50" value="5"></div><div class="field full"><label>Tasas año por año <span class="field-help">(opcional)</span></label><input data-lab-field="rates" type="text" placeholder="18; 20; 15; 12; 10"></div></div></section>
+          <section class="scenario-config" data-scenario-index="3" data-tone="custom"><h3 class="scenario-title"><svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><circle cx="16" cy="16" r="5"/><path d="M16 3v4m0 18v4M3 16h4m18 0h4M7 7l3 3m12 12 3 3M25 7l-3 3M10 22l-3 3"/><circle cx="16" cy="16" r="11"/></svg><input aria-label="Nombre del escenario personalizado" data-lab-field="name" value="Personalizado" maxlength="40"></h3><div class="lab-form-grid"><div class="field"><label>Valor inicial</label><input data-lab-field="initial" type="text" inputmode="decimal" value="1000"></div><div class="field"><label>Inflación anual (%)</label><input data-lab-field="inflation" type="text" inputmode="decimal" value="6"></div><div class="field"><label>Crecimiento de ingresos (%)</label><input data-lab-field="income" type="text" inputmode="decimal" value="6"></div><div class="field"><label>Duración (años)</label><input data-lab-field="years" type="number" min="1" max="50" value="5"></div><div class="field full"><label>Tasas año por año <span class="field-help">(opcional)</span></label><input data-lab-field="rates" type="text" placeholder="4; 5; 7; 4,5; 3,5"></div></div></section>
         </div>
         <div class="action-row"><button class="button primary" type="submit">Simular y comparar</button><button class="button secondary" id="saveLabButton" type="button">Guardar configuración</button><button class="button secondary" id="restoreLabButton" type="button">Restaurar guardada</button><button class="button secondary" id="exportLabCsvButton" type="button" disabled>Exportar CSV</button></div>
         <div class="inline-notice" id="labNotice" role="status" aria-live="polite"></div>
@@ -61862,7 +61868,7 @@ window.createPerspectiveRenderer=function(canvas,T){
   (function(){
     'use strict';
 
-    const APP_VERSION = 'v0.20.5-Beta-Patch';
+    const APP_VERSION = 'v0.20.6-Beta-Patch';
     const VERSION = APP_VERSION;
     // El contrato de create-account/delete-account no cambió en este parche de exportaciones.
     const ACCOUNT_API_VERSION = 'v0.8.2-Beta-Patch';
@@ -61904,7 +61910,7 @@ window.createPerspectiveRenderer=function(canvas,T){
     const MAX_DECISION_SCENARIOS = 40;
     const MAX_DECISION_EVENTS = 500;
     const MAX_DECISION_ALERTS = 40;
-    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.20.5-Beta-Patch.html';
+    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.20.6-Beta-Patch.html';
     const FX_CACHE_MAX_AGE = 15 * 60 * 1000;
     const FX_CACHE_STALE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
     const IPCA_CACHE_MAX_AGE = 90 * 24 * 60 * 60 * 1000;
@@ -63013,10 +63019,12 @@ window.createPerspectiveRenderer=function(canvas,T){
       const notice = $('backendNotice');
       if(!message){ notice.hidden = true; notice.textContent = ''; notice.removeAttribute('data-kind'); return; }
       const icon = document.createElementNS('http://www.w3.org/2000/svg','svg');
-      icon.setAttribute('class','ii-icon'); icon.setAttribute('aria-hidden','true');
-      const use = document.createElementNS('http://www.w3.org/2000/svg','use');
-      use.setAttribute('href',kind === 'success' ? '#ii-check' : '#ii-alert');
-      icon.appendChild(use);
+      icon.setAttribute('class','ii-icon'); icon.setAttribute('viewBox','0 0 32 32');
+      icon.setAttribute('focusable','false'); icon.setAttribute('aria-hidden','true');
+      const iconGeometry = kind === 'success'
+        ? '<circle cx="16" cy="16" r="12"></circle><path d="m10 16 4 4 8-9"></path>'
+        : '<path d="M16 4 29 27H3L16 4Z"></path><path d="M16 12v7m0 4v1"></path>';
+      icon.innerHTML = iconGeometry;
       const copy = document.createElement('span'); copy.textContent = message;
       notice.replaceChildren(icon,copy);
       notice.dataset.kind = kind || 'warning';
@@ -63492,7 +63500,7 @@ window.createPerspectiveRenderer=function(canvas,T){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent='Este navegador no admite Service Worker';
         return;
       }
-      navigator.serviceWorker.register('./sw-v0.20.5-beta-patch.js').then(function(registration){
+      navigator.serviceWorker.register('./sw-v0.20.6-beta-patch.js').then(function(registration){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent=navigator.onLine === false ? 'Modo offline activo' : 'Caché local preparada';
         registration.update().catch(function(){ return null; });
         registration.addEventListener('updatefound',function(){
@@ -75646,7 +75654,7 @@ const BusinessWorkspace = (() => {
     b.financialPlan={months:i.horizon,growth:(Math.pow(1+i.growthRate/100,12)-1)*100,inflation:i.generalInflation,priceGrowth:0,tax:i.taxRate,reinvest:i.reinvestmentRate,investment:i.initialInvestment,cash:Math.max(0,i.openingCash),debt:i.debts,interest:0,term:i.horizon,discount:i.discountRate};
   }
   function header(){
-    root.innerHTML='<div class="bw-hero"><div><p class="bw-kicker">v0.20.5-Beta-Patch · Business Operations Suite</p><h1>De la idea a la operación.</h1><p>Clientes, pedidos, inventario y equipo conectados con las finanzas de tu negocio.</p></div><span class="bw-pill">32 monedas + Custom</span></div><div class="bw-toolbar">'+select('bwBusiness','Espacio de negocio','<option value="">Selecciona un espacio</option>'+db.businesses.map(b=>'<option value="'+b.id+'"'+(b.id===db.active?' selected':'')+'>'+esc(b.name)+' · '+esc(b.currency)+'</option>').join(''))+button('Nuevo negocio','new')+button('Buscar · Ctrl + K','search-command')+'</div><div class="op-syncbar"><span id="opSyncStatus" role="status">'+esc(BusinessSync.statusText())+'</span><button type="button" class="button secondary small" data-bw-tab="cloud">Cuenta y sincronización</button></div><div id="bwStatus" class="bw-status" role="status" aria-live="polite">Datos guardados en este dispositivo.</div><div id="bwTabs" class="bw-tabs" role="tablist" aria-label="Módulos empresariales">'+Object.entries(labels).map(([k,v])=>'<button type="button" class="button secondary small" role="tab" id="bwTab-'+k+'" aria-controls="bwPanel" aria-selected="'+(tab===k)+'" tabindex="'+(tab===k?'0':'-1')+'" data-bw-tab="'+k+'">'+v+'</button>').join('')+'</div><div id="bwPanel" role="tabpanel" aria-labelledby="bwTab-'+tab+'"></div>';
+    root.innerHTML='<div class="bw-hero"><div><p class="bw-kicker">v0.20.6-Beta-Patch · Business Operations Suite</p><h1>De la idea a la operación.</h1><p>Clientes, pedidos, inventario y equipo conectados con las finanzas de tu negocio.</p></div><span class="bw-pill">32 monedas + Custom</span></div><div class="bw-toolbar">'+select('bwBusiness','Espacio de negocio','<option value="">Selecciona un espacio</option>'+db.businesses.map(b=>'<option value="'+b.id+'"'+(b.id===db.active?' selected':'')+'>'+esc(b.name)+' · '+esc(b.currency)+'</option>').join(''))+button('Nuevo negocio','new')+button('Buscar · Ctrl + K','search-command')+'</div><div class="op-syncbar"><span id="opSyncStatus" role="status">'+esc(BusinessSync.statusText())+'</span><button type="button" class="button secondary small" data-bw-tab="cloud">Cuenta y sincronización</button></div><div id="bwStatus" class="bw-status" role="status" aria-live="polite">Datos guardados en este dispositivo.</div><div id="bwTabs" class="bw-tabs" role="tablist" aria-label="Módulos empresariales">'+Object.entries(labels).map(([k,v])=>'<button type="button" class="button secondary small" role="tab" id="bwTab-'+k+'" aria-controls="bwPanel" aria-selected="'+(tab===k)+'" tabindex="'+(tab===k?'0':'-1')+'" data-bw-tab="'+k+'">'+v+'</button>').join('')+'</div><div id="bwPanel" role="tabpanel" aria-labelledby="bwTab-'+tab+'"></div>';
     root.onchange=handleChange;root.onclick=handleClick;root.onsubmit=handleSubmit;
     root.onkeydown=e=>{const t=e.target.closest('[data-bw-tab]');if(!t||!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const keys=Object.keys(labels),i=keys.indexOf(t.dataset.bwTab),next=e.key==='Home'?0:e.key==='End'?keys.length-1:(i+(e.key==='ArrowRight'?1:-1)+keys.length)%keys.length;openTab(keys[next]);$('bwTab-'+keys[next]).focus();};
     render();
@@ -75750,7 +75758,7 @@ const BusinessWorkspace = (() => {
   function renderSettings(b){
     return '<section class="bw-card"><h2>Monedas, preferencias y datos</h2><p>Moneda base: <strong>'+esc(b.currency)+'</strong>. Para mantener la coherencia de los importes ya registrados, se elige al crear el espacio. Puedes crear otro espacio en una moneda diferente.</p><label for="bwCurrencySearch">Buscar monedas<input id="bwCurrencySearch" type="search" placeholder="Código o nombre"></label><div id="bwCurrencyList" class="bw-currency-list">'+currencyList('')+'</div></section><section class="bw-card"><h2>Custom Currency</h2><p>Define una unidad propia. El valor relativo es manual y no se etiqueta como cotización de mercado.</p><form data-bw-form="currency" class="bw-form">'+textInput('bwCurrencyName','Nombre de la moneda')+textInput('bwCurrencyCode','Código único (3–8 letras o números)','',8)+textInput('bwCurrencySymbol','Símbolo','',12)+input('bwCurrencyDigits','Decimales',2,0,6,'1')+input('bwCurrencyValue','Valor de una unidad','',.0000000001)+select('bwCurrencyReference','Moneda de referencia',currencyOptions('BRL',false))+'<div class="bw-actions"><button class="button primary" type="submit">Crear moneda personalizada</button></div></form></section><section class="bw-card"><h2>Espacios y copias</h2>'+businessForm()+'<div class="bw-actions">'+button('Descargar todos los espacios JSON','export')+button('Descargar copia anterior y migración','backup')+button('Importar copia JSON','import')+button('Vincular análisis de Inversiones','capture')+'</div><input id="bwImportFile" type="file" accept=".json,application/json" hidden><p>Importar añade espacios con nuevos identificadores y conserva los existentes. Los registros antiguos permanecen en su ubicación original y en la copia previa a la migración. No hay borrado automático de tus negocios.</p>'+select('bwPerformance','Modo de rendimiento',options({auto:'Automático',high:'Alto',medium:'Equilibrado',low:'Rendimiento'},db.performance||'auto'))+'<p>El modo Rendimiento reduce movimiento en toda la interfaz. La calidad de la portada mantiene sus controles.</p></section>';
   }
-  function currencyList(query){return Object.entries(registry()).filter(([k,v])=>(k+' '+v.name).toLowerCase().includes(query.toLowerCase())).map(([k,v])=>{const active=db.currencyPreferences.favorites.includes(k),icon='<svg class="ii-icon" aria-hidden="true"><use href="#ii-spark"></use></svg><span class="visually-hidden">'+(active?'Quitar de favoritas':'Añadir a favoritas')+'</span>';return '<div class="bw-currency-result"><span>'+esc(k+' — '+v.name)+(v.reference?' · 1 '+k+' = '+v.value+' '+v.reference:' · '+esc(v.region||''))+'</span>'+button(icon,'favorite','data-code="'+k+'" aria-pressed="'+active+'" aria-label="Alternar favorita '+k+'"')+'</div>';}).join('');}
+  function currencyList(query){return Object.entries(registry()).filter(([k,v])=>(k+' '+v.name).toLowerCase().includes(query.toLowerCase())).map(([k,v])=>{const active=db.currencyPreferences.favorites.includes(k),icon='<svg class="ii-icon" viewBox="0 0 32 32" focusable="false" aria-hidden="true"><path d="m16 3 3.5 8.5L29 13l-7 6 2 10-8-5-8 5 2-10-7-6 9.5-1.5L16 3Z"/><circle cx="16" cy="16" r="3"/></svg><span class="visually-hidden">'+(active?'Quitar de favoritas':'Añadir a favoritas')+'</span>';return '<div class="bw-currency-result"><span>'+esc(k+' — '+v.name)+(v.reference?' · 1 '+k+' = '+v.value+' '+v.reference:' · '+esc(v.region||''))+'</span>'+button(icon,'favorite','data-code="'+k+'" aria-pressed="'+active+'" aria-label="Alternar favorita '+k+'"')+'</div>';}).join('');}
   function bindCharts(panel){panel.querySelectorAll('[data-tip]').forEach(el=>{const show=()=>{const out=el.closest('.bw-chart')?.querySelector('.bw-tip');if(out)out.textContent=el.dataset.tip;};el.addEventListener('pointerenter',show);el.addEventListener('focus',show);el.addEventListener('click',show);});}
   function bindDrag(){let dragged=null;const grid=$('bwWidgets');if(!grid)return;grid.ondragstart=e=>{dragged=e.target.closest('[data-widget]')?.dataset.widget;e.dataTransfer?.setData('text/plain',dragged||'');};grid.ondragover=e=>e.preventDefault();grid.ondrop=e=>{e.preventDefault();const target=e.target.closest('[data-widget]')?.dataset.widget;if(!dragged||!target||target===dragged)return;const order=current().dashboardLayout.order,a=order.indexOf(dragged),b=order.indexOf(target);if(a<0||b<0)return;order.splice(a,1);order.splice(b,0,dragged);try{persist();render();}catch(err){notice(err.message,true);}};}
   function handleChange(e){
@@ -75859,7 +75867,7 @@ const BusinessWorkspace = (() => {
     panel.querySelector('#bwIncludeCharts')?.closest('.bw-checks')?.remove();
     const script="document.querySelectorAll('[data-tip]').forEach(function(e){function show(){var p=e.closest('.bw-chart').querySelector('.bw-tip');if(p)p.textContent=e.dataset.tip;}e.addEventListener('pointerenter',show);e.addEventListener('focus',show);e.addEventListener('click',show);});document.querySelectorAll('[data-series-toggle]').forEach(function(e){e.addEventListener('change',function(){e.closest('.bw-chart').querySelector('[data-series=\"'+e.dataset.seriesToggle+'\"]').style.display=e.checked?'':'none';});});";
     const css='body{background:#101118;color:#eee;font:16px system-ui;max-width:1200px;margin:auto;padding:20px}svg{width:100%;height:auto}svg text{fill:#ddd;font:12px system-ui}.bw-card{padding:20px;margin:16px 0;border:1px solid #555;border-radius:14px}.bw-table{overflow:auto}table{width:100%;border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid #444;text-align:right}td:first-child,th:first-child{text-align:left}h1,h2,h3,th{color:#ffd400}label{margin-right:15px}.bw-tip{color:#ffd400}';
-    const html='<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(b.name)+' · v0.20.5-Beta-Patch</title><style>'+css+'</style><body><h1>'+esc(b.name)+' · Informe empresarial</h1><p>v0.20.5-Beta-Patch · '+esc(nowIso())+' · '+esc(b.currency)+'</p>'+panel.innerHTML+'<script>'+script+'<'+ '/script></body></html>';
+    const html='<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(b.name)+' · v0.20.6-Beta-Patch</title><style>'+css+'</style><body><h1>'+esc(b.name)+' · Informe empresarial</h1><p>v0.20.6-Beta-Patch · '+esc(nowIso())+' · '+esc(b.currency)+'</p>'+panel.innerHTML+'<script>'+script+'<'+ '/script></body></html>';
     download('informe-'+safeFilePart(b.name)+'-v0.20.0.html',html,'text/html');
     b.reports.push({id:uid(),name:b.name,createdAt:nowIso(),type:'html',months:b.financialPlan.months});persist();
   }
