@@ -10,10 +10,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Inflation Insights">
-  <link rel="manifest" href="./manifest-v0.20.1-beta-patch.webmanifest">
+  <link rel="manifest" href="./manifest-v0.20.0-beta.webmanifest">
   <link rel="icon" href="./icons/inflation-insights-192.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/inflation-insights-192.png">
-  <title>Inflation Insights · v0.20.1-Beta-Patch</title>
+  <title>Inflation Insights · v0.20.0-Beta</title>
   <style>
     :root{
       --bg:#07111f;
@@ -3241,7 +3241,7 @@
       .investment-project-actions{justify-content:flex-start}
     }
 
-    /* v0.20.1-Beta-Patch · centro de decisiones y planificación conectada. */
+    /* v0.20.0-Beta · centro de decisiones y planificación conectada. */
     .monte-carlo-hero{border-color:#55f5e6;background:
       radial-gradient(circle at 88% 10%,rgba(85,245,230,.12),transparent 25rem),
       linear-gradient(145deg,#11131b,#090b10)}
@@ -3745,22 +3745,6 @@ body .route-shortcut:hover{border-color:#a4f9f0;background:#132a3e}
 @media(max-height:500px) and (orientation:landscape){#horizonte .chapter{height:auto;min-height:720px}#horizonte .site-header{height:80px}#horizonte h1{font-size:clamp(55px,8vw,85px)}}
 @media(prefers-reduced-motion:reduce){#horizonte .chapter-copy{transform:none!important}html{scroll-behavior:auto!important}}
 </style>
-<style id="mobile-v0201">/* Keep intrinsic grid content inside the available card width. */
-body .view:not(.home-view)>.view-head{grid-template-columns:minmax(0,1fr)}
-body .view:not(.home-view)>.view-head>*{min-width:0;max-width:100%;box-sizing:border-box}
-body .module-export-launcher{min-width:0;max-width:100%}
-body .module-export-launcher .button{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
-body .module-export-launcher-status{min-width:0;max-width:100%;overflow-wrap:anywhere}
-body .data-tabs{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:6px;border:1px solid #91a5d52e;border-radius:16px;background:#0d1528}
-body .data-tabs .data-tab{min-width:0;border:0;border-radius:10px;background:transparent;color:#c9d6e9;font-weight:600;white-space:normal;padding:12px 8px}
-body .data-tabs .data-tab:hover{background:#20324c;color:#eff4ff}
-body .data-tabs .data-tab[aria-selected=true]{background:linear-gradient(115deg,#b6fff1,#9ce7ff 55%,#c9b3ff);color:#091529}
-#horizonte .future .final-cta{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:space-between;gap:28px;min-width:0;width:210px;max-width:100%;min-height:60px;padding:12px 14px 12px 24px;border:1px solid #c8faff88;border-radius:999px;background:linear-gradient(115deg,#c0fff3,#a5e9ff 55%,#c5b8f7);box-shadow:0 8px 32px #02071655,inset 0 1px 0 #ffffff66;font-size:15px;font-weight:500;line-height:1.2;text-decoration:none}
-#horizonte .final-cta .cta-icon{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border-radius:50%;background:#ffffff40;transform:none}
-#horizonte .final-cta .cta-icon svg{display:block;flex:none;width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transform:none}
-#horizonte .future .final-cta:hover{background:linear-gradient(115deg,#d5fff7,#b5f2ff 55%,#d6caff);box-shadow:0 10px 36px #5acbff26}
-@media(max-width:650px){body .data-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}body .view:not(.home-view)>.view-head{padding:24px 20px}body .view:not(.home-view)>.view-head h1{font-size:clamp(1.8rem,8vw,2.5rem);line-height:1.12}body .view:not(.home-view)>.view-head .lede{font-size:1rem;font-weight:450;line-height:1.6}body .view:not(.home-view)>.view-head .eyebrow{font-size:.7rem;line-height:1.6}}
-</style>
 </head>
 <body data-route="inicio">
   <a class="skip-link" href="#mainContent">Saltar al contenido</a>
@@ -3782,7 +3766,7 @@ body .data-tabs .data-tab[aria-selected=true]{background:linear-gradient(115deg,
       </button>
 
 
-<nav class="main-nav" id="mainNav" aria-label="Navegación principal" data-open="false"><button class="nav-link" type="button" data-route="negocios">Negocios</button><button class="nav-link" type="button" data-route="calculadora">Calcular</button><details class="nav-group"><summary>Analizar</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="inversiones">Inversiones</button><button class="nav-link" type="button" data-route="precios">Precios y reduflación</button><button class="nav-link" type="button" data-route="salario">Salarios</button><button class="nav-link" type="button" data-route="laboratorio">Comparaciones</button></div></details><button class="nav-link" type="button" data-route="decisiones">Decisiones</button><button class="nav-link" type="button" data-route="datos">Datos</button><button class="nav-link" type="button" data-route="informes">Informes</button><details class="nav-group"><summary>Más</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="herramientas">Todas las herramientas</button><button class="nav-link" type="button" data-route="historial">Historial</button><button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button><button class="nav-link" type="button" data-route="inicio">Volver a la portada</button></div></details><span class="version-chip" aria-label="Versión actual">v0.20.1 · Beta</span></nav>
+<nav class="main-nav" id="mainNav" aria-label="Navegación principal" data-open="false"><button class="nav-link" type="button" data-route="negocios">Negocios</button><button class="nav-link" type="button" data-route="calculadora">Calcular</button><details class="nav-group"><summary>Analizar</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="inversiones">Inversiones</button><button class="nav-link" type="button" data-route="precios">Precios y reduflación</button><button class="nav-link" type="button" data-route="salario">Salarios</button><button class="nav-link" type="button" data-route="laboratorio">Comparaciones</button></div></details><button class="nav-link" type="button" data-route="decisiones">Decisiones</button><button class="nav-link" type="button" data-route="datos">Datos</button><button class="nav-link" type="button" data-route="informes">Informes</button><details class="nav-group"><summary>Más</summary><div class="nav-group-panel"><button class="nav-link" type="button" data-route="herramientas">Todas las herramientas</button><button class="nav-link" type="button" data-route="historial">Historial</button><button class="nav-link" type="button" data-route="cuenta">Mi cuenta</button><button class="nav-link" type="button" data-route="inicio">Volver a la portada</button></div></details><span class="version-chip" aria-label="Versión actual">v0.20.0 · Beta</span></nav>
 
       <span class="status-chip header-status" id="connectionChip" data-status="online" aria-live="polite">
         <span class="status-dot" aria-hidden="true"></span>
@@ -3805,12 +3789,12 @@ body .data-tabs .data-tab[aria-selected=true]{background:linear-gradient(115deg,
 <div class="world" aria-hidden="true"><div class="aurora"></div><canvas id="world"></canvas><canvas id="light-trails"></canvas><div class="world-vignette"></div></div>
 <div class="transition-veil" aria-hidden="true"></div><div id="horizonTransition" class="horizon-transition" hidden><span role="status">Entrando a tus herramientas…</span><button type="button" id="horizonSkip">Saltar animación</button></div>
 <div class="grain" aria-hidden="true"></div>
-<header class="site-header"><a class="wordmark" href="#inicio" data-horizon-scroll="inicio" aria-label="Inflation Insights, inicio"><svg width="22" height="25" viewBox="0 0 22 25" fill="none" aria-hidden="true"><path d="M2 23V13M10 23V7M18 23V1" stroke="currentColor" stroke-width="3"/></svg><span>Inflation Insights</span></a></header>
+<header class="site-header"><a class="wordmark" href="#inicio" data-horizon-scroll="inicio" aria-label="Inflation Insights, inicio"><svg width="22" height="25" viewBox="0 0 22 25" fill="none" aria-hidden="true"><path d="M2 23V13M10 23V7M18 23V1" stroke="currentColor" stroke-width="3"/></svg><span>Inflation Insights</span></a><nav aria-label="Navegación principal"><a class="open-app explore-link" href="#herramientas">Explorar <span aria-hidden="true">↗</span></a></nav></header>
 <div class="horizon-chapters">
 <section class="chapter intro" id="inicio" data-chapter="0" aria-labelledby="homeTitle"><div class="chapter-copy hero-copy" data-depth="0.18"><h1 id="homeTitle">El valor de<br><em>ver más allá.</em></h1><p>Una perspectiva más clara sobre tu dinero,<br class="desktop-br"> tus proyectos y lo que viene.</p><a class="discover" href="#inicio" data-horizon-scroll="vision" aria-label="Descubrir"><span class="discover-arrow" aria-hidden="true">↓</span></a></div><span class="hero-line" aria-hidden="true"></span></section>
 <section class="chapter vision" id="vision" data-chapter="1" aria-labelledby="vision-title"><div class="chapter-copy" data-depth="0.10"><h2 id="vision-title">Comprender<br>lo que <em>cambia.</em></h2><p>Descubre cómo el tiempo transforma el valor de tu dinero y mira tus decisiones con más claridad.</p></div></section>
 <section class="chapter possibilities" id="posibilidades" data-chapter="2" aria-labelledby="possibilities-title"><div class="chapter-copy" data-depth="0.14"><h2 id="possibilities-title">De una idea<br>a <em>lo posible.</em></h2><p>Explora el potencial de tus proyectos y encuentra una visión más amplia de lo que pueden llegar a ser.</p></div></section>
-<section class="chapter future" id="futuro" data-chapter="3" aria-labelledby="future-title"><div class="chapter-copy" data-depth="0.08"><h2 id="future-title">Tu próximo paso.<br><em>Con otra mirada.</em></h2><a class="final-cta explore-link" href="#herramientas">Explorar <span class="cta-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></svg></span></a></div><footer><a href="#inicio" data-horizon-scroll="inicio">Inflation Insights</a><a href="#inicio" data-horizon-scroll="inicio" aria-label="Volver al inicio">↑</a></footer></section>
+<section class="chapter future" id="futuro" data-chapter="3" aria-labelledby="future-title"><div class="chapter-copy" data-depth="0.08"><h2 id="future-title">Tu próximo paso.<br><em>Con otra mirada.</em></h2><a class="final-cta explore-link" href="#herramientas">Explorar <span aria-hidden="true">↗</span></a></div><footer><a href="#inicio" data-horizon-scroll="inicio">Inflation Insights</a><a href="#inicio" data-horizon-scroll="inicio" aria-label="Volver al inicio">↑</a></footer></section>
 </div>
 <button id="motion-toggle" class="motion-control" type="button" aria-label="Pausar animación" aria-pressed="false"><svg class="pause-icon" width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="M2 1V13M10 1V13" stroke="currentColor" stroke-width="2"/></svg><svg class="play-icon" width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="M1 1L11 7L1 13Z" fill="currentColor"/></svg></button>
 <noscript><p class="nojs">Activa JavaScript para disfrutar de la experiencia en movimiento.</p></noscript>
@@ -5454,7 +5438,7 @@ THE SOFTWARE.
     <section class="view" id="view-widget-runtime" data-view="widget-runtime" aria-label="Calculadora embebida" hidden>
       <div class="widget-runtime-shell" id="widgetRuntimeShell" data-theme="dark">
         <section class="widget-runtime-card" id="widgetRuntimeCard">
-          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.20.1-Beta-Patch.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>Calculadora</span></div>
+          <div class="widget-runtime-brand" id="widgetRuntimeBrand"><a href="https://caleb-beta01.github.io/Versi-n-website-Publica/v0.20.0-Beta.html" target="_blank" rel="noopener noreferrer">Inflation Insights</a><span>Calculadora</span></div>
           <h1 id="widgetRuntimeTitle">Calculadora embebida</h1>
           <div class="widget-mini-grid">
             <div class="field"><label id="widgetRuntimeALabel" for="widgetRuntimeA">Valor A</label><input id="widgetRuntimeA" type="text" inputmode="decimal" value="100"></div>
@@ -61806,7 +61790,7 @@ window.createPerspectiveRenderer=function(canvas,T){
   (function(){
     'use strict';
 
-    const APP_VERSION = 'v0.20.1-Beta-Patch';
+    const APP_VERSION = 'v0.20.0-Beta';
     const VERSION = APP_VERSION;
     // El contrato de create-account/delete-account no cambió en este parche de exportaciones.
     const ACCOUNT_API_VERSION = 'v0.8.2-Beta-Patch';
@@ -61848,7 +61832,7 @@ window.createPerspectiveRenderer=function(canvas,T){
     const MAX_DECISION_SCENARIOS = 40;
     const MAX_DECISION_EVENTS = 500;
     const MAX_DECISION_ALERTS = 40;
-    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.20.1-Beta-Patch.html';
+    const WIDGET_PUBLIC_URL = 'https://caleb-beta01.github.io/Versi-n-website-Publica/v0.20.0-Beta.html';
     const FX_CACHE_MAX_AGE = 15 * 60 * 1000;
     const FX_CACHE_STALE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
     const IPCA_CACHE_MAX_AGE = 90 * 24 * 60 * 60 * 1000;
@@ -63430,7 +63414,7 @@ window.createPerspectiveRenderer=function(canvas,T){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent='Este navegador no admite Service Worker';
         return;
       }
-      navigator.serviceWorker.register('./sw-v0.20.1-beta-patch.js').then(function(registration){
+      navigator.serviceWorker.register('./sw-v0.20.0-beta.js').then(function(registration){
         if($('pwaOfflineState')) $('pwaOfflineState').textContent=navigator.onLine === false ? 'Modo offline activo' : 'Caché local preparada';
         registration.update().catch(function(){ return null; });
         registration.addEventListener('updatefound',function(){
@@ -75584,7 +75568,7 @@ const BusinessWorkspace = (() => {
     b.financialPlan={months:i.horizon,growth:(Math.pow(1+i.growthRate/100,12)-1)*100,inflation:i.generalInflation,priceGrowth:0,tax:i.taxRate,reinvest:i.reinvestmentRate,investment:i.initialInvestment,cash:Math.max(0,i.openingCash),debt:i.debts,interest:0,term:i.horizon,discount:i.discountRate};
   }
   function header(){
-    root.innerHTML='<div class="bw-hero"><div><p class="bw-kicker">v0.20.1-Beta-Patch · Business Operations Suite</p><h1>De la idea a la operación.</h1><p>Clientes, pedidos, inventario y equipo conectados con las finanzas de tu negocio.</p></div><span class="bw-pill">32 monedas + Custom</span></div><div class="bw-toolbar">'+select('bwBusiness','Espacio de negocio','<option value="">Selecciona un espacio</option>'+db.businesses.map(b=>'<option value="'+b.id+'"'+(b.id===db.active?' selected':'')+'>'+esc(b.name)+' · '+esc(b.currency)+'</option>').join(''))+button('Nuevo negocio','new')+button('Buscar · Ctrl + K','search-command')+'</div><div class="op-syncbar"><span id="opSyncStatus" role="status">'+esc(BusinessSync.statusText())+'</span><button type="button" class="button secondary small" data-bw-tab="cloud">Cuenta y sincronización</button></div><div id="bwStatus" class="bw-status" role="status" aria-live="polite">Datos guardados en este dispositivo.</div><div id="bwTabs" class="bw-tabs" role="tablist" aria-label="Módulos empresariales">'+Object.entries(labels).map(([k,v])=>'<button type="button" class="button secondary small" role="tab" id="bwTab-'+k+'" aria-controls="bwPanel" aria-selected="'+(tab===k)+'" tabindex="'+(tab===k?'0':'-1')+'" data-bw-tab="'+k+'">'+v+'</button>').join('')+'</div><div id="bwPanel" role="tabpanel" aria-labelledby="bwTab-'+tab+'"></div>';
+    root.innerHTML='<div class="bw-hero"><div><p class="bw-kicker">v0.20.0-Beta · Business Operations Suite</p><h1>De la idea a la operación.</h1><p>Clientes, pedidos, inventario y equipo conectados con las finanzas de tu negocio.</p></div><span class="bw-pill">32 monedas + Custom</span></div><div class="bw-toolbar">'+select('bwBusiness','Espacio de negocio','<option value="">Selecciona un espacio</option>'+db.businesses.map(b=>'<option value="'+b.id+'"'+(b.id===db.active?' selected':'')+'>'+esc(b.name)+' · '+esc(b.currency)+'</option>').join(''))+button('Nuevo negocio','new')+button('Buscar · Ctrl + K','search-command')+'</div><div class="op-syncbar"><span id="opSyncStatus" role="status">'+esc(BusinessSync.statusText())+'</span><button type="button" class="button secondary small" data-bw-tab="cloud">Cuenta y sincronización</button></div><div id="bwStatus" class="bw-status" role="status" aria-live="polite">Datos guardados en este dispositivo.</div><div id="bwTabs" class="bw-tabs" role="tablist" aria-label="Módulos empresariales">'+Object.entries(labels).map(([k,v])=>'<button type="button" class="button secondary small" role="tab" id="bwTab-'+k+'" aria-controls="bwPanel" aria-selected="'+(tab===k)+'" tabindex="'+(tab===k?'0':'-1')+'" data-bw-tab="'+k+'">'+v+'</button>').join('')+'</div><div id="bwPanel" role="tabpanel" aria-labelledby="bwTab-'+tab+'"></div>';
     root.onchange=handleChange;root.onclick=handleClick;root.onsubmit=handleSubmit;
     root.onkeydown=e=>{const t=e.target.closest('[data-bw-tab]');if(!t||!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const keys=Object.keys(labels),i=keys.indexOf(t.dataset.bwTab),next=e.key==='Home'?0:e.key==='End'?keys.length-1:(i+(e.key==='ArrowRight'?1:-1)+keys.length)%keys.length;openTab(keys[next]);$('bwTab-'+keys[next]).focus();};
     render();
@@ -75797,7 +75781,7 @@ const BusinessWorkspace = (() => {
     panel.querySelector('#bwIncludeCharts')?.closest('.bw-checks')?.remove();
     const script="document.querySelectorAll('[data-tip]').forEach(function(e){function show(){var p=e.closest('.bw-chart').querySelector('.bw-tip');if(p)p.textContent=e.dataset.tip;}e.addEventListener('pointerenter',show);e.addEventListener('focus',show);e.addEventListener('click',show);});document.querySelectorAll('[data-series-toggle]').forEach(function(e){e.addEventListener('change',function(){e.closest('.bw-chart').querySelector('[data-series=\"'+e.dataset.seriesToggle+'\"]').style.display=e.checked?'':'none';});});";
     const css='body{background:#101118;color:#eee;font:16px system-ui;max-width:1200px;margin:auto;padding:20px}svg{width:100%;height:auto}svg text{fill:#ddd;font:12px system-ui}.bw-card{padding:20px;margin:16px 0;border:1px solid #555;border-radius:14px}.bw-table{overflow:auto}table{width:100%;border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid #444;text-align:right}td:first-child,th:first-child{text-align:left}h1,h2,h3,th{color:#ffd400}label{margin-right:15px}.bw-tip{color:#ffd400}';
-    const html='<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(b.name)+' · v0.20.1-Beta-Patch</title><style>'+css+'</style><body><h1>'+esc(b.name)+' · Informe empresarial</h1><p>v0.20.1-Beta-Patch · '+esc(nowIso())+' · '+esc(b.currency)+'</p>'+panel.innerHTML+'<script>'+script+'<'+ '/script></body></html>';
+    const html='<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(b.name)+' · v0.20.0-Beta</title><style>'+css+'</style><body><h1>'+esc(b.name)+' · Informe empresarial</h1><p>v0.20.0-Beta · '+esc(nowIso())+' · '+esc(b.currency)+'</p>'+panel.innerHTML+'<script>'+script+'<'+ '/script></body></html>';
     download('informe-'+safeFilePart(b.name)+'-v0.20.0.html',html,'text/html');
     b.reports.push({id:uid(),name:b.name,createdAt:nowIso(),type:'html',months:b.financialPlan.months});persist();
   }
