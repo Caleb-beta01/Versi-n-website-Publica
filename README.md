@@ -1,28 +1,19 @@
 # Calculadora de Inflación
 
-Repositorio público y desplegable de la Calculadora de Inflación.
+Repositorio público y desplegable de Inflation Insights.
 
-- Versión activa: **v0.18.0-Beta**
-- Canal: **Beta**
-- Despliegue: **GitHub Pages**
-- Desarrollo y QA: repositorio privado `Caleb-beta01/Calculadora-de-Inflaci-n-app`
+- Versión activa: **v0.21.0-Beta**
+- [Abrir aplicación](https://caleb-beta01.github.io/Versi-n-website-Publica/)
+- [HTML de la versión](v0.21.0-Beta.html)
+- [QA y limitaciones](docs/qa/v0.21.0-Beta.md)
+- Desarrollo: repositorio privado `Caleb-beta01/Calculadora-de-Inflaci-n-app`, informe #65 y PR #66.
 
-## Raíz de producción
+## Producción
 
-La raíz se mantiene compatible con las rutas relativas de GitHub Pages y la PWA. Los archivos activos son:
+`index.html` es una copia exacta de `v0.21.0-Beta.html`. Manifest y service worker usan la misma versión; `icons/` contiene los recursos de instalación. El HTML es autocontenido para los cálculos locales.
 
-- `index.html`: entrada del sitio y copia exacta de la versión activa.
-- `v0.18.0-Beta.html`: candidata fija de la versión activa.
-- `manifest-v0.18.0-beta.webmanifest`: manifiesto PWA activo.
-- `sw-v0.18.0-beta.js`: service worker activo.
-- `icons/`: iconos requeridos por la PWA.
-- `.nojekyll`, `README.md` y `LICENSE`.
-- `docs/`: documentación de publicación.
+La nueva versión reorganiza las herramientas en cinco áreas y unifica los iconos; mantiene los cálculos y datos guardados. El código fuente, las pruebas y la auditoría se conservan en el repositorio privado.
 
-Los artefactos de versiones anteriores permanecen disponibles como historial recuperable. No deben combinarse archivos de versiones distintas: una reversión debe usar un conjunto coherente de HTML, manifiesto y service worker.
+Las versiones anteriores permanecen disponibles. La entrada anterior está respaldada en `archive/backups/index-before-v0.21.0-Beta.html`. `preview-v0210/` conserva la revisión de esta entrega, incluido un visor de anchos de pantalla.
 
-Consulta `docs/DEPLOYMENT.md` antes de publicar o revertir una versión.
-
-## Licencia
-
-Consulta `LICENSE`.
+Consulta `docs/DEPLOYMENT.md` para publicación y reversión. Consulta `LICENSE` para la licencia.
