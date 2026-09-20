@@ -3476,6 +3476,11 @@ body.departing #horizonte .cinematic-stage{
   transition:transform 1.3s cubic-bezier(.72,0,.2,1),filter 1s;
 }
 body.departing{overflow:hidden}
+.route-jump,
+.route-jump body{
+  scroll-behavior:auto!important;
+  overflow-anchor:none!important;
+}
 @keyframes cinematicDown{0%,100%{transform:translateY(-3px)}50%{transform:translateY(5px)}}
 @keyframes cinematicGrain{0%{transform:translate(0)}25%{transform:translate(2%,-3%)}50%{transform:translate(-3%,2%)}75%{transform:translate(3%,4%)}100%{transform:translate(-2%,-2%)}}
 @keyframes cinematicParticleDrift{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-2.5%,4%,0) scale(1.08)}100%{transform:translate3d(-5%,8%,0) scale(1.16)}}
@@ -70711,17 +70716,30 @@ function setupLandingExperience(){'use strict';
     transitionRunning=false;
     clearTimeout(transitionTimer);
     transitionTimer=0;
+    const root=document.documentElement;
+    root.classList.add('route-jump');
+    if(transitionOrigin&&typeof transitionOrigin.blur==='function') transitionOrigin.blur();
     document.body.classList.remove('departing');
     transitionStatus.hidden=true;
     stage.inert=false;
     navigation.inert=false;
     transitionOrigin=null;
+    window.scrollTo(0,0);
     showRoute('panel',{focus:false});
-    window.scrollTo({top:0,behavior:'auto'});
-    requestAnimationFrame(function(){
-      window.scrollTo({top:0,behavior:'auto'});
+    let settleFrames=0;
+    function settleAtTop(){
+      document.documentElement.scrollTop=0;
+      document.body.scrollTop=0;
+      window.scrollTo(0,0);
+      settleFrames+=1;
+      if(settleFrames<4){
+        requestAnimationFrame(settleAtTop);
+        return;
+      }
       $('mainContent').focus({preventScroll:true});
-    });
+      window.setTimeout(function(){ root.classList.remove('route-jump'); },80);
+    }
+    requestAnimationFrame(settleAtTop);
   }
 
   function depart(event){
