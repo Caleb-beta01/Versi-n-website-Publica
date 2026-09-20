@@ -70716,8 +70716,12 @@ function setupLandingExperience(){'use strict';
     stage.inert=false;
     navigation.inert=false;
     transitionOrigin=null;
-    showRoute('panel');
+    showRoute('panel',{focus:false});
     window.scrollTo({top:0,behavior:'auto'});
+    requestAnimationFrame(function(){
+      window.scrollTo({top:0,behavior:'auto'});
+      $('mainContent').focus({preventScroll:true});
+    });
   }
 
   function depart(event){
