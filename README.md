@@ -1,19 +1,19 @@
-# Calculadora de Inflación
+# Inflation Insights — sitio público
 
-Repositorio público y desplegable de Inflation Insights.
+Repositorio de despliegue de la versión pública activa.
 
-- Versión activa: **v0.21.0-Beta**
-- [Abrir aplicación](https://caleb-beta01.github.io/Versi-n-website-Publica/)
-- [HTML de la versión](v0.21.0-Beta.html)
-- [QA y limitaciones](docs/qa/v0.21.0-Beta.md)
-- Desarrollo: repositorio privado `Caleb-beta01/Calculadora-de-Inflaci-n-app`, informe #65 y PR #66.
+## Versión publicada
 
-## Producción
+`v0.21.0-Beta`
 
-`index.html` es una copia exacta de `v0.21.0-Beta.html`. Manifest y service worker usan la misma versión; `icons/` contiene los recursos de instalación. El HTML es autocontenido para los cálculos locales.
+Este repositorio contiene únicamente los archivos necesarios para servir la versión actual mediante GitHub Pages. El desarrollo, QA, documentación interna, backups y versiones históricas se conservan en el repositorio privado de desarrollo y en el historial de Git.
 
-La nueva versión reorganiza las herramientas en cinco áreas y unifica los iconos; mantiene los cálculos y datos guardados. El código fuente, las pruebas y la auditoría se conservan en el repositorio privado.
+## Archivos de despliegue
 
-Las versiones anteriores permanecen disponibles. La entrada anterior está respaldada en `archive/backups/index-before-v0.21.0-Beta.html`. `preview-v0210/` conserva la revisión de esta entrega, incluido un visor de anchos de pantalla.
+- `index.html`: entrada pública activa.
+- `v0.21.0-Beta.html`: artefacto identificable de la versión publicada.
+- `manifest-v0.21.0-beta.webmanifest`: manifiesto PWA actual.
+- `sw-v0.21.0-beta.js`: service worker actual.
+- `icons/`: iconos requeridos por la PWA.
 
-Consulta `docs/DEPLOYMENT.md` para publicación y reversión. Consulta `LICENSE` para la licencia.
+Al publicar una nueva versión, los artefactos de la versión anterior deben retirarse de la rama activa en vez de acumularse aquí.
