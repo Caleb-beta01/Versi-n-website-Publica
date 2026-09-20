@@ -1,11 +1,11 @@
 {
-  "id": "./v0.21.0-Beta.html",
+  "id": "./v0.22.0-Beta.html",
   "name": "Inflation Insights",
   "short_name": "Inflation Insights",
-  "description": "Calculadora de inflación, análisis de negocios y decisiones financieras. Horizonte.",
+  "description": "Calculadora de inflación, análisis de negocios y decisiones financieras. Experiencia cinematográfica.",
   "lang": "es",
   "dir": "ltr",
-  "start_url": "./index.html?source=pwa&version=0.21.0",
+  "start_url": "./index.html?source=pwa&version=0.22.0",
   "scope": "./",
   "display": "standalone",
   "display_override": [
@@ -14,8 +14,8 @@
     "minimal-ui"
   ],
   "orientation": "any",
-  "background_color": "#060915",
-  "theme_color": "#060915",
+  "background_color": "#02050a",
+  "theme_color": "#02050a",
   "categories": [
     "finance",
     "business",
@@ -42,6 +42,3 @@
     }
   ]
 }
-
-
-

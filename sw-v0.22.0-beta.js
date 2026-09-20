@@ -2,13 +2,13 @@
 
 // Scope isolates a review installation from the production application cache.
 const CACHE_PREFIX = 'inflation-insights-' + new URL(self.registration.scope).pathname;
-const STATIC_CACHE = CACHE_PREFIX + 'static-v0.21.0-beta-1';
-const RELEASE_URL = './v0.21.0-Beta.html';
+const STATIC_CACHE = CACHE_PREFIX + 'static-v0.22.0-beta-1';
+const RELEASE_URL = './v0.22.0-Beta.html';
 const APP_SHELL = [
   './',
   './index.html',
   RELEASE_URL,
-  './manifest-v0.21.0-beta.webmanifest',
+  './manifest-v0.22.0-beta.webmanifest',
   './icons/inflation-insights-192.svg',
   './icons/inflation-insights-192.png',
   './icons/inflation-insights-512.png'
@@ -51,7 +51,7 @@ async function navigationResponse(request){
     const response=await fetch(request,{cache:'no-store'});
     if(response.ok){
       const url=new URL(request.url);
-      if(url.origin === self.location.origin && /(?:index\.html|v0\.21\.0-Beta\.html)$/.test(url.pathname)){
+      if(url.origin === self.location.origin && /(?:index\.html|v0\.22\.0-Beta\.html)$/.test(url.pathname)){
         const cache=await caches.open(STATIC_CACHE);
         await cache.put(url.pathname.endsWith('index.html') ? './index.html' : RELEASE_URL,response.clone());
       }
@@ -91,9 +91,6 @@ self.addEventListener('fetch',function(event){
 self.addEventListener('message',function(event){
   if(event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting();
   if(event.data && event.data.type === 'GET_VERSION' && event.source){
-    event.source.postMessage({type:'VERSION',version:'v0.21.0-Beta',cache:STATIC_CACHE});
+    event.source.postMessage({type:'VERSION',version:'v0.22.0-Beta',cache:STATIC_CACHE});
   }
 });
-
-
-
