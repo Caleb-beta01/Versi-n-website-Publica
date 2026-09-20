@@ -2,7 +2,7 @@
 
 // Scope isolates a review installation from the production application cache.
 const CACHE_PREFIX = 'inflation-insights-' + new URL(self.registration.scope).pathname;
-const STATIC_CACHE = CACHE_PREFIX + 'static-v0.22.0-beta-1';
+const STATIC_CACHE = CACHE_PREFIX + 'static-v0.22.0-beta-2';
 const RELEASE_URL = './v0.22.0-Beta.html';
 const APP_SHELL = [
   './',
