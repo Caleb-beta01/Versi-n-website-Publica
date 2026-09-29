@@ -4,16 +4,16 @@ Repositorio de despliegue de la versión pública activa.
 
 ## Versión publicada
 
-`v0.22.0-Beta`
+`v0.23.0-Beta`
 
-Este repositorio contiene únicamente los archivos necesarios para servir la versión actual mediante GitHub Pages. El desarrollo, QA, documentación interna, backups y versiones históricas se conservan en el repositorio privado de desarrollo y en el historial de Git.
+La versión pública actual consolida Negocios, sincronización y el motor universal de exportación, manteniendo el modo anónimo y la interfaz de v0.22.0-Beta.
 
 ## Archivos de despliegue
 
-- `index.html`: entrada pública activa.
-- `v0.22.0-Beta.html`: artefacto identificable de la versión publicada.
-- `manifest-v0.22.0-beta.webmanifest`: manifiesto PWA actual.
-- `sw-v0.22.0-beta.js`: service worker actual.
+- `index.html`: entrada pública activa; coincide con el HTML de v0.23.0-Beta.
+- `v0.23.0-Beta.html`: artefacto identificable de la versión publicada.
+- `manifest-v0.23.0-beta.webmanifest`: manifiesto PWA de la versión.
+- `sw-v0.23.0-beta.js`: service worker de la versión.
 - `icons/`: iconos requeridos por la PWA.
 
-Al publicar una nueva versión, los artefactos de la versión anterior deben retirarse de la rama activa en vez de acumularse aquí.
+La referencia de v0.22.0-Beta se conserva en `archive/` para recuperación histórica.
