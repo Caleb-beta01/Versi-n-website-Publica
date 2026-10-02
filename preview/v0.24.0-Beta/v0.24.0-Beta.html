@@ -6920,13 +6920,13 @@ THE SOFTWARE.
       <button class="icon-button" type="button" data-close-dialog="betaWelcomeDialog" aria-label="Cerrar novedades">×</button>
     </div>
     <div class="dialog-body dialog-stack">
-      <p>Negocios, sincronización y exportaciones avanzan juntos. Tus datos y la identidad cinematográfica se conservan.</p>
+      <p>Inflation Insights ahora es Varia. Una identidad visual común para tus herramientas, con tus proyectos e historial conservados.</p>
       <div class="dialog-callout">
-        <strong>Más claridad en tus operaciones</strong>
+        <strong>Una identidad para todo tu espacio</strong>
         <ul>
-          <li>indicadores configurables, pedidos trazables y conciliación del inventario;</li>
-          <li>cambios pendientes y conflictos visibles, con recuperación de la sincronización;</li>
-          <li>PDF, Excel y HTML renovados, además de CSV, JSON y PNG.</li>
+          <li>nuevo logo geométrico, nombre e iconos de instalación;</li>
+          <li>azul profundo y dorado en navegación, formularios y resultados;</li>
+          <li>presentación, diálogos y controles más coherentes, con los cálculos y funciones existentes.</li>
         </ul>
       </div>
       <div class="auth-actions">
@@ -62277,7 +62277,7 @@ const APP_VERSION = 'v0.24.0-Beta';
       CA:Object.freeze({name:'Canadá',mark:'CA',index:'CPI',provider:'OECD Data Explorer',source:'Statistics Canada',kind:'oecd-index',flow:'g20',code:'CAN'}),
       GB:Object.freeze({name:'Reino Unido',mark:'GB',index:'CPI',provider:'OECD Data Explorer',source:'ONS',kind:'oecd-index',flow:'coicop1999',code:'GBR'})
     });
-    const CHART_COLORS = Object.freeze(['#ff6900','#1257d6','#007a46','#7d34d1','#c81743','#0a7d8c','#8c5a00']);
+    const CHART_COLORS = Object.freeze(['#dfbd78','#1257d6','#007a46','#7d34d1','#c81743','#0a7d8c','#8c5a00']);
     const CONTRACT_INDICES = Object.freeze({
       '433':Object.freeze({name:'IPCA',source:'IBGE · Banco Central do Brasil',series:'433'}),
       '188':Object.freeze({name:'INPC',source:'IBGE · Banco Central do Brasil',series:'188'}),
@@ -62420,11 +62420,11 @@ const inflationEngine = Object.freeze({
       }
     });
     const INVESTMENT_SCENARIOS = Object.freeze({
-      pessimistic:Object.freeze({name:'Pesimista',color:'#ff7182',sales:-25,price:-8,costs:18,inflation:4,growth:-3,waste:7,reinvestment:-10}),
-      conservative:Object.freeze({name:'Conservador',color:'#ff9d44',sales:-10,price:-3,costs:8,inflation:2,growth:-1,waste:3,reinvestment:-5}),
-      base:Object.freeze({name:'Base',color:'#55a8ff',sales:0,price:0,costs:0,inflation:0,growth:0,waste:0,reinvestment:0}),
-      optimistic:Object.freeze({name:'Optimista',color:'#4ade80',sales:20,price:5,costs:-8,inflation:-1,growth:2,waste:-2,reinvestment:10}),
-      custom:Object.freeze({name:'Personalizado',color:'#c084fc',sales:0,price:0,costs:0,inflation:0,growth:0,waste:0,reinvestment:0})
+      pessimistic:Object.freeze({name:'Pesimista',color:'#ffabb6',sales:-25,price:-8,costs:18,inflation:4,growth:-3,waste:7,reinvestment:-10}),
+      conservative:Object.freeze({name:'Conservador',color:'#e2ab73',sales:-10,price:-3,costs:8,inflation:2,growth:-1,waste:3,reinvestment:-5}),
+      base:Object.freeze({name:'Base',color:'#89b9f2',sales:0,price:0,costs:0,inflation:0,growth:0,waste:0,reinvestment:0}),
+      optimistic:Object.freeze({name:'Optimista',color:'#9ed8b5',sales:20,price:5,costs:-8,inflation:-1,growth:2,waste:-2,reinvestment:10}),
+      custom:Object.freeze({name:'Personalizado',color:'#b7a5ec',sales:0,price:0,costs:0,inflation:0,growth:0,waste:0,reinvestment:0})
     });
     function createInvestmentEngine(){
       return Object.freeze({
@@ -65267,10 +65267,10 @@ function calculateInflation(p0,p1,months){
           '<title id="chartTitle">Evolución estimada del precio</title>' +
           '<desc id="chartDesc">' + escapeXml(indexMode ? 'Comparación mediante índice base 100 porque los escenarios usan monedas diferentes.' : 'Trayectoria compuesta con valores en ' + normalizedA.currency + '.') + '</desc>' +
           grid +
-          '<path d="' + pathFor(pointsA) + '" fill="none" stroke="#ff6900" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter"/>' +
-          '<circle cx="' + x(pointsA.length-1,pointsA.length) + '" cy="' + y(pointsA.at(-1)) + '" r="6" fill="#ff6900" stroke="#080808" stroke-width="2"><title>' + escapeXml(labelA + ': ' + (indexMode ? 'índice ' + formatNumber(pointsA.at(-1),2,2) : formatCurrency(pointsA.at(-1),normalizedA.currency))) + '</title></circle>' +
+          '<path d="' + pathFor(pointsA) + '" fill="none" stroke="#dfbd78" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter"/>' +
+          '<circle cx="' + x(pointsA.length-1,pointsA.length) + '" cy="' + y(pointsA.at(-1)) + '" r="6" fill="#dfbd78" stroke="#080808" stroke-width="2"><title>' + escapeXml(labelA + ': ' + (indexMode ? 'índice ' + formatNumber(pointsA.at(-1),2,2) : formatCurrency(pointsA.at(-1),normalizedA.currency))) + '</title></circle>' +
           bMarkup +
-          '<circle cx="70" cy="16" r="5" fill="#ff6900" stroke="#080808" stroke-width="1.5"/><text x="82" y="20" fill="#3d3d3d" font-size="12">' + escapeXml(labelA) + '</text>' +
+          '<circle cx="70" cy="16" r="5" fill="#dfbd78" stroke="#080808" stroke-width="1.5"/><text x="82" y="20" fill="#3d3d3d" font-size="12">' + escapeXml(labelA) + '</text>' +
           legendB +
           (indexMode ? '<text x="' + (width-pad.right) + '" y="20" text-anchor="end" fill="#7a2f00" font-size="11" font-weight="800">Índice base 100</text>' : '') +
           '<text x="' + pad.left + '" y="' + (height-12) + '" fill="#3d3d3d" font-size="11">Inicio</text>' +
@@ -66118,7 +66118,7 @@ function configureSalaryReference(options){
         const ratio = result.offered / previous;
         return {
           label:result.label + ' — ' + bundle.inputs.currency,
-          color:['#ff6900','#c14800','#7a3e00'][index],
+          color:['#dfbd78','#c14800','#7a3e00'][index],
           points:Array.from({length:steps + 1},function(_,pointIndex){
             return previous * Math.pow(ratio,pointIndex/steps);
           })
@@ -67037,8 +67037,8 @@ function calculatePersonalIndex(items){
     function renderPersonalCostChart(bundle){
       const values = [
         {label:'Anterior',code:'ANT',value:bundle.metrics.previousTotal,color:'#080808'},
-        {label:'Actual',code:'ACT',value:bundle.metrics.currentTotal,color:'#ff6900'},
-        {label:'Referencia',code:'REF',value:bundle.comparison.expectedCost,color:'#ffd400'}
+        {label:'Actual',code:'ACT',value:bundle.metrics.currentTotal,color:'#dfbd78'},
+        {label:'Referencia',code:'REF',value:bundle.comparison.expectedCost,color:'#dfbd78'}
       ];
       const max = Math.max.apply(null,values.map(function(item){ return item.value; }).concat([1]));
       const baseY = 236;
@@ -67065,7 +67065,7 @@ function calculatePersonalIndex(items){
         const y = 36+index*rowHeight;
         const barWidth = Math.max(item.value === 0 ? 1 : 3,Math.abs(item.value)/maxAbs*maxWidth);
         const x = item.value >= 0 ? baseX : baseX-barWidth;
-        const color = item.value < 0 ? '#080808' : item.value > 0 ? '#ff6900' : '#ffd400';
+        const color = item.value < 0 ? '#080808' : item.value > 0 ? '#dfbd78' : '#dfbd78';
         const marker = item.value < 0 ? '▼' : item.value > 0 ? '▲' : '•';
         return '<g><text x="12" y="' + (y+5) + '" fill="#080808" font-size="12">' + escapeXml(item.label.slice(0,30)) + '</text>' +
           '<rect x="' + x + '" y="' + (y-12) + '" width="' + barWidth + '" height="22" fill="' + color + '" stroke="#080808" stroke-width="2"/>' +
@@ -67114,16 +67114,16 @@ function calculatePersonalIndex(items){
         context.fillStyle = '#f3ede2';
         context.fillRect(0,0,canvas.width,canvas.height);
         context.fillStyle='#101827'; context.fillRect(0,0,canvas.width,230);
-        context.fillStyle='#ffd400'; context.fillRect(0,0,34,230);
-        context.fillStyle='#ff6900'; context.fillRect(0,214,canvas.width,16);
-        context.fillStyle='#ffd400'; context.font='900 22px system-ui, sans-serif';
+        context.fillStyle='#dfbd78'; context.fillRect(0,0,34,230);
+        context.fillStyle='#dfbd78'; context.fillRect(0,214,canvas.width,16);
+        context.fillStyle='#dfbd78'; context.font='900 22px system-ui, sans-serif';
         context.fillText('VARIA · '+APP_VERSION,80,62);
         context.fillStyle='#ffffff'; context.font='900 52px system-ui, sans-serif';
         context.fillText(title,80,128);
         context.fillStyle='#dfe6ef'; context.font='500 22px system-ui, sans-serif';
         context.fillText(bundle ? bundle.meta.name+' · '+bundle.meta.startDate+' a '+bundle.meta.endDate : 'Análisis generado localmente',80,172);
         const cards=[
-          {label:'INFLACIÓN PERSONAL',value:bundle ? formatPercent(bundle.metrics.inflation) : '—',fill:'#ffd400'},
+          {label:'INFLACIÓN PERSONAL',value:bundle ? formatPercent(bundle.metrics.inflation) : '—',fill:'#dfbd78'},
           {label:'REFERENCIA EQUIVALENTE',value:bundle ? formatPercent(bundle.reference.normalizedRate) : '—',fill:'#fff8e8'},
           {label:'DIFERENCIA',value:bundle ? formatSigned(bundle.comparison.differencePp*100,' p.p.') : '—',fill:'#ffe3c2'}
         ];
@@ -67655,7 +67655,7 @@ function calculatePersonalIndex(items){
       const panel = $('debugPanel');
       panel.hidden = false;
       panel.textContent = tests.map(function(test){ return (test.ok ? 'Correcto: ' : 'Error: ') + test.name; }).join('\n');
-      if(tests.some(function(test){ return !test.ok; })) panel.style.borderColor = '#ff7182';
+      if(tests.some(function(test){ return !test.ok; })) panel.style.borderColor = '#ffabb6';
     }
 
 /* Source: js/11-reference-tools.js */
@@ -67910,12 +67910,12 @@ function isMonthKey(value){ return /^\d{4}-(0[1-9]|1[0-2])$/.test(String(value |
     function renderInternationalCharts(result,analysis){
       const monthly=analysis.points.map(function(point){ return {label:point.period,value:point.rate}; });
       $('internationalMonthlyChart').innerHTML=lineChartSvg([
-        {name:'Variación mensual',color:'#ff6900',values:monthly},
+        {name:'Variación mensual',color:'#dfbd78',values:monthly},
         {name:'Tendencia 3 meses',color:'#1257d6',values:movingAveragePoints(analysis.points,3)}
       ],{title:'Variación mensual y tendencia',description:'Tasa mensual oficial y promedio móvil de tres meses',valueSuffix:' %',zeroLine:true});
       const cumulative=analysis.points.map(function(point){ return {label:point.period,value:point.accumulated*100}; });
       const base=analysis.points.map(function(point){ return {label:point.period,value:point.base100}; });
-      $('internationalIndexChart').innerHTML='<div class="chart-stack"><div><h4>Inflación acumulada</h4>'+lineChartSvg([{color:'#ff6900',values:cumulative}],{title:'Inflación acumulada',description:'Variación compuesta desde el inicio seleccionado',valueSuffix:' %',zeroLine:true,height:220})+'</div><div><h4>Índice base 100</h4>'+lineChartSvg([{color:'#007a46',values:base}],{title:'Índice base 100',description:'Evolución normalizada con el primer mes igual a cien',height:220})+'</div></div>';
+      $('internationalIndexChart').innerHTML='<div class="chart-stack"><div><h4>Inflación acumulada</h4>'+lineChartSvg([{color:'#dfbd78',values:cumulative}],{title:'Inflación acumulada',description:'Variación compuesta desde el inicio seleccionado',valueSuffix:' %',zeroLine:true,height:220})+'</div><div><h4>Índice base 100</h4>'+lineChartSvg([{color:'#007a46',values:base}],{title:'Índice base 100',description:'Evolución normalizada con el primer mes igual a cien',height:220})+'</div></div>';
     }
 
     function renderInternationalResult(result){
@@ -68242,7 +68242,7 @@ function isMonthKey(value){ return /^\d{4}-(0[1-9]|1[0-2])$/.test(String(value |
       $('advancedTableBody').innerHTML=result.rows.map(function(row){ return '<tr><td>'+escapeXml(row.label)+'</td><td>'+escapeXml(formatNumber(row.rate,2,4))+' %</td><td>'+escapeXml(formatPercent(row.accumulated,4))+'</td><td>'+escapeXml(formatCurrency(row.value,result.currency))+'</td><td>'+escapeXml(formatNumber(row.base100,2,4))+'</td></tr>'; }).join('');
       const valueSeries=result.rows.map(function(row){ return {labelText:row.label,value:row.value}; });
       const baseSeries=result.rows.map(function(row){ return {labelText:row.label,value:row.base100}; });
-      $('advancedChart').innerHTML='<div class="chart-stack"><div><h4>Valor resultante</h4>'+lineChartSvg([{color:'#ff6900',values:valueSeries}],{title:'Valor por período',description:'Evolución compuesta del valor inicial',height:220})+'</div><div><h4>Índice base 100</h4>'+lineChartSvg([{color:'#007a46',values:baseSeries}],{title:'Índice base 100',description:'Evolución del índice compuesto',height:220})+'</div></div>';
+      $('advancedChart').innerHTML='<div class="chart-stack"><div><h4>Valor resultante</h4>'+lineChartSvg([{color:'#dfbd78',values:valueSeries}],{title:'Valor por período',description:'Evolución compuesta del valor inicial',height:220})+'</div><div><h4>Índice base 100</h4>'+lineChartSvg([{color:'#007a46',values:baseSeries}],{title:'Índice base 100',description:'Evolución del índice compuesto',height:220})+'</div></div>';
       $('exportAdvancedCsvButton').disabled=false; $('exportAdvancedJsonButton').disabled=false;
       setNotice($('advancedNotice'),'Cálculo completado con precisión completa; el redondeo se aplica solo al mostrar.','success');
     }
@@ -68614,7 +68614,7 @@ function isMonthKey(value){ return /^\d{4}-(0[1-9]|1[0-2])$/.test(String(value |
         $('trackerIpcaComparison').textContent=analysis.ipca == null ? 'Sin intervalo' : formatSigned((analysis.unitChange-analysis.ipca)*100,' p.p.');
         $('trackerIpcaDetail').textContent=analysis.ipca == null ? 'Añade otra fecha para comparar.' : 'Precio unitario '+signedPercent(analysis.unitChange)+' frente a IPCA actual normalizado '+signedPercent(analysis.ipca)+'. Referencia orientativa, no serie histórica.';
         const values=records.map(function(record){ return {labelText:record.date,value:unitPrice(record.price,record.quantity,record.unit)}; });
-        $('trackerChart').innerHTML=lineChartSvg([{name:'Precio por '+analysis.base,color:'#ff6900',values:values}],{title:'Precio unitario histórico',description:'Evolución por '+analysis.base+' de '+records[0].name+' en '+records[0].currency,valueSuffix:' '+records[0].currency,height:260});
+        $('trackerChart').innerHTML=lineChartSvg([{name:'Precio por '+analysis.base,color:'#dfbd78',values:values}],{title:'Precio unitario histórico',description:'Evolución por '+analysis.base+' de '+records[0].name+' en '+records[0].currency,valueSuffix:' '+records[0].currency,height:260});
       }
       $('trackerTableBody').innerHTML=records.map(function(record){
         return '<tr><td>'+escapeXml(record.date)+'</td><td>'+escapeXml(formatCurrency(record.price,record.currency))+'</td><td>'+escapeXml(record.currency)+'</td><td>'+escapeXml(formatQuantity(record.quantity,record.unit))+'</td><td>'+escapeXml(formatUnitPrice(unitPrice(record.price,record.quantity,record.unit),record.unit,record.currency))+'</td><td>'+escapeXml(record.store || '—')+'</td><td><button class="button danger small" type="button" data-delete-product-record="'+escapeXml(record.id)+'">Eliminar</button></td></tr>';
@@ -69135,8 +69135,8 @@ function isMonthKey(value){ return /^\d{4}-(0[1-9]|1[0-2])$/.test(String(value |
       }).join('');
       const path=clean.map(function(point,index){ return (index ? 'L' : 'M')+px(index).toFixed(2)+' '+py(point.value).toFixed(2); }).join(' ');
       const first=clean[0],last=clean.at(-1);
-      return grid+'<path d="'+path+'" fill="none" stroke="#ff6900" stroke-width="9" stroke-linecap="square" stroke-linejoin="miter"/>'+
-        '<circle cx="'+px(0).toFixed(2)+'" cy="'+py(first.value).toFixed(2)+'" r="9" fill="#080808"/><circle cx="'+px(clean.length-1).toFixed(2)+'" cy="'+py(last.value).toFixed(2)+'" r="11" fill="#ff6900" stroke="#080808" stroke-width="4"/>'+
+      return grid+'<path d="'+path+'" fill="none" stroke="#dfbd78" stroke-width="9" stroke-linecap="square" stroke-linejoin="miter"/>'+
+        '<circle cx="'+px(0).toFixed(2)+'" cy="'+py(first.value).toFixed(2)+'" r="9" fill="#080808"/><circle cx="'+px(clean.length-1).toFixed(2)+'" cy="'+py(last.value).toFixed(2)+'" r="11" fill="#dfbd78" stroke="#080808" stroke-width="4"/>'+
         '<text x="'+x+'" y="'+(y+height+34)+'" font-size="19" font-weight="800">'+escapeXml(first.label || 'Inicio')+'</text><text x="'+(x+width)+'" y="'+(y+height+34)+'" text-anchor="end" font-size="19" font-weight="800">'+escapeXml(last.label || 'Final')+'</text>'+
         '<text x="'+x+'" y="'+(y-20)+'" font-size="21" font-weight="900">'+escapeXml(label || 'Evolución')+'</text>';
     }
@@ -69157,7 +69157,7 @@ function isMonthKey(value){ return /^\d{4}-(0[1-9]|1[0-2])$/.test(String(value |
       const dimensions=ratio === 'wide' ? [1600,900] : ratio === 'square' ? [1080,1080] : ratio === 'a4' ? [1240,1754] : [1400,1050];
       const width=dimensions[0],height=dimensions[1],margin=Math.round(width*.06);
       const includeResults=['results','combined','summary'].includes(content),includeChart=['chart','combined','summary'].includes(content);
-      let svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+width+' '+height+'" role="img" aria-label="'+escapeXml(data.title)+'"><rect width="'+width+'" height="'+height+'" fill="#fffdf2"/><rect width="'+width+'" height="28" fill="#ff6900"/>';
+      let svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+width+' '+height+'" role="img" aria-label="'+escapeXml(data.title)+'"><rect width="'+width+'" height="'+height+'" fill="#fffdf2"/><rect width="'+width+'" height="28" fill="#dfbd78"/>';
       svg+='<text x="'+margin+'" y="92" font-family="Arial, sans-serif" font-size="'+Math.round(width*.038)+'" font-weight="900" fill="#080808">'+escapeXml(data.title)+'</text>';
       svg+='<text x="'+margin+'" y="132" font-family="Arial, sans-serif" font-size="'+Math.round(width*.015)+'" font-weight="700" fill="#4b4b4b">'+escapeXml(data.subtitle)+'</text>';
       svg+='<g font-family="Arial, sans-serif">';
@@ -69242,7 +69242,7 @@ function reportSection(title,lines){ return {title:title,lines:(lines || []).map
       if(!$('reportIncludeCharts').checked) return [];
       const charts=[];
       if(selected.includes('calculator') && state.result && state.result.resultA){
-        const input=state.result.inputs,series=[{name:'Escenario A',color:'#ff6900',values:state.result.resultA.points.map(function(value,index,points){ return {label:index === 0 ? 'Inicio' : index === points.length-1 ? 'Final' : String(index),value:value}; })}];
+        const input=state.result.inputs,series=[{name:'Escenario A',color:'#dfbd78',values:state.result.resultA.points.map(function(value,index,points){ return {label:index === 0 ? 'Inicio' : index === points.length-1 ? 'Final' : String(index),value:value}; })}];
         if(state.result.resultB) series.push({name:'Escenario B',color:'#101827',values:state.result.resultB.points.map(function(value,index,points){ return {label:index === 0 ? 'Inicio' : index === points.length-1 ? 'Final' : String(index),value:value}; })});
         charts.push(reportChart('Evolución del valor calculado',series,' '+input.c1a));
       }
@@ -69252,11 +69252,11 @@ function reportSection(title,lines){ return {title:title,lines:(lines || []).map
       }
       if(selected.includes('shrink') && state.shrinkResult){
         const item=state.shrinkResult;
-        charts.push(reportChart('Precio real por '+item.base,[{name:'Precio unitario',color:'#ff6900',values:[{label:'Anterior',value:item.oldUnitPrice},{label:'Actual',value:item.newUnitPrice}]}],' BRL'));
+        charts.push(reportChart('Precio real por '+item.base,[{name:'Precio unitario',color:'#dfbd78',values:[{label:'Anterior',value:item.oldUnitPrice},{label:'Actual',value:item.newUnitPrice}]}],' BRL'));
       }
       if(selected.includes('unit') && state.unitCompareResult){
         const item=state.unitCompareResult;
-        charts.push(reportChart('Comparación de precio por '+item.base,[{name:'Precio unitario',color:'#ff6900',values:[{label:item.a.name,value:item.a.unitPrice},{label:item.b.name,value:item.b.unitPrice}]}],' BRL'));
+        charts.push(reportChart('Comparación de precio por '+item.base,[{name:'Precio unitario',color:'#dfbd78',values:[{label:item.a.name,value:item.a.unitPrice},{label:item.b.name,value:item.b.unitPrice}]}],' BRL'));
       }
       if(selected.includes('goals') && state.goalResult){
         const item=state.goalResult;
@@ -69264,11 +69264,11 @@ function reportSection(title,lines){ return {title:title,lines:(lines || []).map
       }
       if(selected.includes('personal') && state.personalResult){
         const item=state.personalResult;
-        charts.push(reportChart('Costo de vida personal',[{name:'Costo',color:'#ff6900',values:[{label:'Anterior',value:item.metrics.previousTotal},{label:'Referencia',value:item.comparison.expectedCost},{label:'Actual',value:item.metrics.currentTotal}]}],' '+item.meta.currency));
+        charts.push(reportChart('Costo de vida personal',[{name:'Costo',color:'#dfbd78',values:[{label:'Anterior',value:item.metrics.previousTotal},{label:'Referencia',value:item.comparison.expectedCost},{label:'Actual',value:item.metrics.currentTotal}]}],' '+item.meta.currency));
       }
       if(selected.includes('international') && state.internationalResult && state.internationalResult.analysis){
         const points=state.internationalResult.analysis.points;
-        charts.push(reportChart('Inflación acumulada · '+state.internationalResult.economy,[{name:state.internationalResult.indexName,color:'#ff6900',values:points.map(function(point){ return {label:formatMonthLabel(point.period),value:point.accumulated*100}; })}],'%'));
+        charts.push(reportChart('Inflación acumulada · '+state.internationalResult.economy,[{name:state.internationalResult.indexName,color:'#dfbd78',values:points.map(function(point){ return {label:formatMonthLabel(point.period),value:point.accumulated*100}; })}],'%'));
       }
       if(selected.includes('comparison') && state.comparisonResult){
         charts.push(reportChart('Comparación internacional',state.comparisonResult.series.map(function(item,index){ return {name:item.economy,color:CHART_COLORS[index],values:item.analysis.points.map(function(point){ return {label:formatMonthLabel(point.period),value:point.accumulated*100}; })}; }),'%'));
@@ -69281,7 +69281,7 @@ function reportSection(title,lines){ return {title:title,lines:(lines || []).map
       }
       if(selected.includes('products')){
         const records=recordsForProduct(state.selectedProductKey),analysis=productAnalysis(records);
-        if(analysis && analysis.compatible) charts.push(reportChart('Precio unitario · '+records[0].name,[{name:'BRL por '+analysis.base,color:'#ff6900',values:records.map(function(record){ return {label:record.date,value:unitPrice(record.price,record.quantity,record.unit)}; })}],' BRL'));
+        if(analysis && analysis.compatible) charts.push(reportChart('Precio unitario · '+records[0].name,[{name:'BRL por '+analysis.base,color:'#dfbd78',values:records.map(function(record){ return {label:record.date,value:unitPrice(record.price,record.quantity,record.unit)}; })}],' BRL'));
       }
       if(selected.includes('contract') && state.contractResult){
         const contractReport=contractProfessionalReport();
@@ -69293,15 +69293,15 @@ function reportSection(title,lines){ return {title:title,lines:(lines || []).map
       }
       if(selected.includes('budget') && state.budgetResult){
         const item=state.budgetResult;
-        charts.push(reportChart('Presupuesto actual y proyectado',[{name:'Gastos',color:'#ff9d44',values:[{label:'Actual',value:item.currentTotal},{label:'Proyectado',value:item.futureTotal}]},{name:'Ahorro disponible',color:'#55f5e6',values:[{label:'Actual',value:item.currentSaving},{label:'Proyectado',value:item.futureSaving}]}],' '+item.input.currency));
+        charts.push(reportChart('Presupuesto actual y proyectado',[{name:'Gastos',color:'#e2ab73',values:[{label:'Actual',value:item.currentTotal},{label:'Proyectado',value:item.futureTotal}]},{name:'Ahorro disponible',color:'#8fd8d0',values:[{label:'Actual',value:item.currentSaving},{label:'Proyectado',value:item.futureSaving}]}],' '+item.input.currency));
       }
       if(selected.includes('time-money') && state.timeMoneyResult && state.timeMoneyResult.selection){
         const item=state.timeMoneyResult,base=item.selection.first.index;
-        charts.push(reportChart('Índice y poder adquisitivo',[{name:'Índice base 100',color:'#ffd400',values:item.selection.points.map(function(point){ return {label:point.period,value:point.index/base*100}; })},{name:'Poder adquisitivo',color:'#55f5e6',values:item.selection.points.map(function(point){ return {label:point.period,value:base/point.index*100}; })}],''));
+        charts.push(reportChart('Índice y poder adquisitivo',[{name:'Índice base 100',color:'#dfbd78',values:item.selection.points.map(function(point){ return {label:point.period,value:point.index/base*100}; })},{name:'Poder adquisitivo',color:'#8fd8d0',values:item.selection.points.map(function(point){ return {label:point.period,value:base/point.index*100}; })}],''));
       }
       if(selected.includes('real-return') && state.realReturnResult){
         const item=state.realReturnResult;
-        charts.push(reportChart('Capital nominal y capital real',[{name:'Capital',color:'#ffd400',values:[{label:'Inicial',value:item.initial},{label:'Final nominal',value:item.final}]},{name:'Poder adquisitivo',color:'#55f5e6',values:[{label:'Inicial',value:item.initial},{label:'Final real',value:item.adjusted}]}],' '+item.currency));
+        charts.push(reportChart('Capital nominal y capital real',[{name:'Capital',color:'#dfbd78',values:[{label:'Inicial',value:item.initial},{label:'Final nominal',value:item.final}]},{name:'Poder adquisitivo',color:'#8fd8d0',values:[{label:'Inicial',value:item.initial},{label:'Final real',value:item.adjusted}]}],' '+item.currency));
       }
       if(selected.includes('expenses')){
         state.expenses.slice(0,4).forEach(function(item,index){
@@ -69310,18 +69310,18 @@ function reportSection(title,lines){ return {title:title,lines:(lines || []).map
         });
       }
       if(selected.includes('anomaly') && state.anomalyResult){
-        charts.push(reportChart('Historial analizado',[{name:'Precio',color:'#ff6900',values:state.anomalyResult.history.map(function(point){ return {label:point.date,value:point.price}; })}],' '));
+        charts.push(reportChart('Historial analizado',[{name:'Precio',color:'#dfbd78',values:state.anomalyResult.history.map(function(point){ return {label:point.date,value:point.price}; })}],' '));
       }
       if(selected.includes('education')){
         const amount=parseLocalized($('educationAmount').value),rate=Number($('educationRate').value)/100,years=Number($('educationYears').value);
         if(Number.isFinite(amount) && amount > 0 && Number.isFinite(rate) && Number.isFinite(years)){
           const item=educationEngine.simulate(amount,rate,years);
-          charts.push(reportChart('Experimento de inflación',[{name:'Costo',color:'#ffd400',values:[{label:'Hoy',value:amount},{label:'Futuro',value:item.futureCost}]},{name:'Poder adquisitivo',color:'#55f5e6',values:[{label:'Hoy',value:amount},{label:'Futuro',value:item.purchasingAmount}]}],' BRL'));
+          charts.push(reportChart('Experimento de inflación',[{name:'Costo',color:'#dfbd78',values:[{label:'Hoy',value:amount},{label:'Futuro',value:item.futureCost}]},{name:'Poder adquisitivo',color:'#8fd8d0',values:[{label:'Hoy',value:amount},{label:'Futuro',value:item.purchasingAmount}]}],' BRL'));
         }
       }
       if(selected.includes('widgets') && state.widgetConfig){
         const config=state.widgetConfig,result=widgetCalculation(config,config.a,config.b,config.c);
-        if(result.valid) charts.push(reportChart('Valores predeterminados del widget',[{name:'Entradas',color:'#55a8ff',values:[{label:'A',value:config.a},{label:'B',value:config.b},{label:'C',value:config.c}]}],''));
+        if(result.valid) charts.push(reportChart('Valores predeterminados del widget',[{name:'Entradas',color:'#89b9f2',values:[{label:'A',value:config.a},{label:'B',value:config.b},{label:'C',value:config.c}]}],''));
       }
       return charts.filter(Boolean);
     }
@@ -69460,7 +69460,7 @@ function reportSection(title,lines){ return {title:title,lines:(lines || []).map
       const lines=resultPlainText().split('\n').slice(1);
       const chartSeries=[{
         name:'Escenario A · '+input.c1a,
-        color:'#ff6900',
+        color:'#dfbd78',
         values:bundle.resultA.points.map(function(value,index,points){ return {label:index === 0 ? 'Inicio' : index === points.length-1 ? 'Final' : String(index),value:value}; })
       }];
       if(bundle.resultB) chartSeries.push({
@@ -69489,7 +69489,7 @@ function reportSection(title,lines){ return {title:title,lines:(lines || []).map
         values:Array.from({length:steps+1},function(_,index){ return {label:index === 0 ? 'Inicio' : index === steps ? 'Final' : String(index),value:input.previous*Math.pow(inflationRatio,index/steps)}; })
       }].concat(bundle.results.map(function(result,index){
         const ratio=result.offered/input.previous;
-        return {name:result.label,color:['#ff6900','#c14800','#7a3e00'][index] || '#ff6900',values:Array.from({length:steps+1},function(_,pointIndex){ return {label:pointIndex === 0 ? 'Inicio' : pointIndex === steps ? 'Final' : String(pointIndex),value:input.previous*Math.pow(ratio,pointIndex/steps)}; })};
+        return {name:result.label,color:['#dfbd78','#c14800','#7a3e00'][index] || '#dfbd78',values:Array.from({length:steps+1},function(_,pointIndex){ return {label:pointIndex === 0 ? 'Inicio' : pointIndex === steps ? 'Final' : String(pointIndex),value:input.previous*Math.pow(ratio,pointIndex/steps)}; })};
       }));
       return {
         appVersion:APP_VERSION,
@@ -69509,7 +69509,7 @@ function reportSection(title,lines){ return {title:title,lines:(lines || []).map
       if(state.contractComparison && state.contractComparison.rows && state.contractComparison.rows.length){
         sections.push(reportSection('Comparación de índices',state.contractComparison.rows.map(function(row){ return row.name+': '+formatPercent(row.rate,4)+' · '+formatCurrency(row.finalValue,state.contractComparison.currency); })));
         charts.push(reportChart('Valor final por índice',state.contractComparison.rows.map(function(row,index){ return {name:row.name,color:CHART_COLORS[index],values:[{label:'Original',value:state.contractComparison.original},{label:'Final',value:row.finalValue}]}; }),' '+state.contractComparison.currency));
-      }else charts.push(reportChart('Valor original y valor reajustado',[{name:result.indexName,color:'#ff6900',values:[{label:'Original',value:result.original},{label:'Reajustado',value:result.finalValue}]}],' '+result.currency));
+      }else charts.push(reportChart('Valor original y valor reajustado',[{name:result.indexName,color:'#dfbd78',values:[{label:'Original',value:result.original},{label:'Reajustado',value:result.finalValue}]}],' '+result.currency));
       return {
         appVersion:APP_VERSION,
         title:'Comprobante profesional de reajuste',
@@ -69632,29 +69632,29 @@ const UNIVERSAL_EXPORT_MODULES=Object.freeze({
         const report=calculatorProfessionalReport(); (report && report.charts || []).forEach(function(chart){ charts.push(chart); });
       }else if(key === 'presupuesto' && state.budgetResult){
         const item=state.budgetResult;
-        charts.push(reportChart('Proyección del presupuesto',[{name:'Gastos',color:'#ff9d44',values:item.projection.map(function(point){ return {label:formatNumber(point.months,0,2)+' meses',value:point.total}; })},{name:'Ahorro',color:'#55f5e6',values:item.projection.map(function(point){ return {label:formatNumber(point.months,0,2)+' meses',value:point.saving}; })}],' '+item.input.currency));
+        charts.push(reportChart('Proyección del presupuesto',[{name:'Gastos',color:'#e2ab73',values:item.projection.map(function(point){ return {label:formatNumber(point.months,0,2)+' meses',value:point.total}; })},{name:'Ahorro',color:'#8fd8d0',values:item.projection.map(function(point){ return {label:formatNumber(point.months,0,2)+' meses',value:point.saving}; })}],' '+item.input.currency));
       }else if(key === 'tiempo-dinero' && state.timeMoneyResult && state.timeMoneyResult.selection){
         const item=state.timeMoneyResult,base=item.selection.first.index;
-        charts.push(reportChart('Índice y poder adquisitivo',[{name:'Índice base 100',color:'#ffd400',values:item.selection.points.map(function(point){ return {label:point.period,value:point.index/base*100}; })},{name:'Poder adquisitivo',color:'#55f5e6',values:item.selection.points.map(function(point){ return {label:point.period,value:base/point.index*100}; })}],''));
+        charts.push(reportChart('Índice y poder adquisitivo',[{name:'Índice base 100',color:'#dfbd78',values:item.selection.points.map(function(point){ return {label:point.period,value:point.index/base*100}; })},{name:'Poder adquisitivo',color:'#8fd8d0',values:item.selection.points.map(function(point){ return {label:point.period,value:base/point.index*100}; })}],''));
       }else if(key === 'rendimiento-real' && state.realReturnResult){
         const item=state.realReturnResult;
-        charts.push(reportChart('Capital nominal y real',[{name:'Nominal',color:'#ffd400',values:[{label:'Inicial',value:item.initial},{label:'Final',value:item.final}]},{name:'Real',color:'#55f5e6',values:[{label:'Inicial',value:item.initial},{label:'Ajustado',value:item.adjusted}]}],' '+item.currency));
+        charts.push(reportChart('Capital nominal y real',[{name:'Nominal',color:'#dfbd78',values:[{label:'Inicial',value:item.initial},{label:'Final',value:item.final}]},{name:'Real',color:'#8fd8d0',values:[{label:'Inicial',value:item.initial},{label:'Ajustado',value:item.adjusted}]}],' '+item.currency));
       }else if(key === 'suscripciones'){
         state.expenses.slice(0,6).forEach(function(item,index){ const history=expenseTracker.sortedHistory(item); if(history.length) charts.push(reportChart('Evolución de '+item.name,[{name:item.name,color:CHART_COLORS[index%CHART_COLORS.length],values:history.map(function(point){ return {label:point.date,value:point.price}; })}],' '+item.currency)); });
       }else if(key === 'anomalias' && state.anomalyResult){
-        charts.push(reportChart('Historial analizado',[{name:'Precio',color:'#ff6900',values:state.anomalyResult.history.map(function(point){ return {label:point.date,value:point.price}; })}],' '));
+        charts.push(reportChart('Historial analizado',[{name:'Precio',color:'#dfbd78',values:state.anomalyResult.history.map(function(point){ return {label:point.date,value:point.price}; })}],' '));
       }else if(key === 'educacion'){
         const payload=universalExportStatePayload(key),item=payload.result;
-        if(item) charts.push(reportChart('Experimento de inflación',[{name:'Costo',color:'#ffd400',values:[{label:'Hoy',value:payload.amount},{label:'Futuro',value:item.futureCost}]},{name:'Poder adquisitivo',color:'#55f5e6',values:[{label:'Hoy',value:payload.amount},{label:'Futuro',value:item.purchasingAmount}]}],' BRL'));
+        if(item) charts.push(reportChart('Experimento de inflación',[{name:'Costo',color:'#dfbd78',values:[{label:'Hoy',value:payload.amount},{label:'Futuro',value:item.futureCost}]},{name:'Poder adquisitivo',color:'#8fd8d0',values:[{label:'Hoy',value:payload.amount},{label:'Futuro',value:item.purchasingAmount}]}],' BRL'));
       }else if(key === 'widgets' && state.widgetConfig){
-        charts.push(reportChart('Valores del widget',[{name:'Entradas',color:'#55a8ff',values:[{label:'A',value:state.widgetConfig.a},{label:'B',value:state.widgetConfig.b},{label:'C',value:state.widgetConfig.c}]}],''));
+        charts.push(reportChart('Valores del widget',[{name:'Entradas',color:'#89b9f2',values:[{label:'A',value:state.widgetConfig.a},{label:'B',value:state.widgetConfig.b},{label:'C',value:state.widgetConfig.c}]}],''));
       }else if(key === 'precios'){
         ['shrink','unit','goals','personal','products'].forEach(function(source){ collectReportCharts([source]).forEach(function(chart){ charts.push(chart); }); });
       }else if(key === 'salario'){
         const report=salaryProfessionalReport(); (report && report.charts || []).forEach(function(chart){ charts.push(chart); });
       }else if(key === 'tipo-cambio'){
         const records=Object.keys(state.quotes.records || {}).map(function(code){ return {label:code,value:Number(state.quotes.records[code] && state.quotes.records[code].rate)}; }).filter(function(point){ return Number.isFinite(point.value); });
-        if(records.length) charts.push(reportChart('Cotizaciones frente a BRL',[{name:'Cotización',color:'#55a8ff',values:records}],' BRL'));
+        if(records.length) charts.push(reportChart('Cotizaciones frente a BRL',[{name:'Cotización',color:'#89b9f2',values:records}],' BRL'));
       }else if(key === 'datos'){
         collectReportCharts(['international','comparison']).forEach(function(chart){ charts.push(chart); });
       }else if(key === 'reajustes'){
@@ -69668,7 +69668,7 @@ const UNIVERSAL_EXPORT_MODULES=Object.freeze({
         (report && report.charts || []).forEach(function(chart){ charts.push(chart); });
         if(state.monteCarloResult && state.monteCarloResult.percentiles){
           const p=state.monteCarloResult.percentiles;
-          charts.push(reportChart('Distribución Monte Carlo',[{name:'Beneficio',color:'#c084fc',values:[
+          charts.push(reportChart('Distribución Monte Carlo',[{name:'Beneficio',color:'#b7a5ec',values:[
             {label:'P5',value:p.p5},{label:'P10',value:p.p10},{label:'P25',value:p.p25},{label:'P50',value:p.p50},{label:'P75',value:p.p75},{label:'P90',value:p.p90},{label:'P95',value:p.p95}
           ]}],' '+state.investmentResult.input.currencyMeta.code));
         }
@@ -69886,7 +69886,7 @@ const UNIVERSAL_EXPORT_MODULES=Object.freeze({
       const methodology=options.includeMethodology === false ? '' : '<section class="note"><h2>Metodología</h2><p>'+escapeXml(snapshot.methodology)+'</p></section>';
       const sources=options.includeSources === false ? '' : '<section class="note"><h2>Fuentes</h2><ul>'+snapshot.sources.map(function(source){ return '<li>'+escapeXml(source)+'</li>'; }).join('')+'</ul></section>';
       const date=options.includeDate === false ? '' : '<p>Generado '+escapeXml(formatDateTime(snapshot.createdAt))+' · '+escapeXml(APP_VERSION)+'</p>';
-      const styles=':root{color-scheme:dark;--yellow:#ffd400;--cyan:#55f5e6;--ink:#08090d}*{box-sizing:border-box}body{margin:0;min-width:280px;padding:clamp(12px,3vw,32px);color:#f7f7fb;background:#08090d;font-family:Inter,system-ui,sans-serif;line-height:1.5}header,main{width:min(1180px,100%);margin:auto}header{padding:clamp(20px,4vw,42px);border:3px solid var(--yellow);background:#10131b;box-shadow:10px 10px 0 #000}h1{margin:4px 0;font-size:clamp(2rem,6vw,4.4rem);line-height:.95}h2{margin:0 0 14px}.eyebrow{color:var(--yellow);font-weight:900;text-transform:uppercase;letter-spacing:.12em}.help{padding:12px;border-left:6px solid var(--cyan);background:#171b24}.detail{position:sticky;z-index:5;top:8px;margin:18px 0;padding:12px 15px;border:2px solid var(--cyan);background:#10131b}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}.metrics article,.note,.table-card,.chart-card{margin:18px 0;padding:18px;border:2px solid #363b46;background:#11141c}.metrics span{display:block;color:#b9bec9;font-weight:800}.metrics strong{display:block;margin-top:8px;color:var(--yellow);font-size:clamp(1.1rem,3vw,1.8rem)}.chart-controls{display:flex;flex-wrap:wrap;gap:8px}.chart-controls label{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #555;background:#171b24;cursor:pointer;font-weight:800}.chart-controls span{width:13px;height:13px;background:var(--series)}svg{display:block;width:100%;min-width:620px;height:auto;margin-top:12px;background:#08090d}.chart-card{overflow:auto}.grid line{stroke:#303541}.grid text{fill:#9ea5b2;font:12px system-ui}[data-export-series-group] polyline{fill:none;stroke:var(--series);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1800;stroke-dashoffset:1800;animation:draw 1.15s ease forwards}[data-export-point]{fill:var(--series);stroke:#08090d;stroke-width:3;cursor:pointer;animation:point .4s ease backwards}[data-export-point]:hover,[data-export-point]:focus{stroke:#fff;stroke-width:5;outline:none;filter:drop-shadow(0 0 7px var(--series))}@keyframes draw{to{stroke-dashoffset:0}}@keyframes point{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}.table-card>div{overflow:auto}table{width:100%;border-collapse:collapse}th,td{padding:9px;border:1px solid #404550;text-align:left;white-space:nowrap}th{color:#111;background:var(--yellow)}.note ul{padding-left:22px}:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}@media(max-width:760px){.metrics{grid-template-columns:1fr}body{padding:10px}header{box-shadow:5px 5px 0 #000}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}';
+      const styles=':root{color-scheme:dark;--yellow:#dfbd78;--cyan:#8fd8d0;--ink:#08090d}*{box-sizing:border-box}body{margin:0;min-width:280px;padding:clamp(12px,3vw,32px);color:#f7f7fb;background:#08090d;font-family:Inter,system-ui,sans-serif;line-height:1.5}header,main{width:min(1180px,100%);margin:auto}header{padding:clamp(20px,4vw,42px);border:3px solid var(--yellow);background:#10131b;box-shadow:10px 10px 0 #000}h1{margin:4px 0;font-size:clamp(2rem,6vw,4.4rem);line-height:.95}h2{margin:0 0 14px}.eyebrow{color:var(--yellow);font-weight:900;text-transform:uppercase;letter-spacing:.12em}.help{padding:12px;border-left:6px solid var(--cyan);background:#171b24}.detail{position:sticky;z-index:5;top:8px;margin:18px 0;padding:12px 15px;border:2px solid var(--cyan);background:#10131b}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}.metrics article,.note,.table-card,.chart-card{margin:18px 0;padding:18px;border:2px solid #363b46;background:#11141c}.metrics span{display:block;color:#b9bec9;font-weight:800}.metrics strong{display:block;margin-top:8px;color:var(--yellow);font-size:clamp(1.1rem,3vw,1.8rem)}.chart-controls{display:flex;flex-wrap:wrap;gap:8px}.chart-controls label{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #555;background:#171b24;cursor:pointer;font-weight:800}.chart-controls span{width:13px;height:13px;background:var(--series)}svg{display:block;width:100%;min-width:620px;height:auto;margin-top:12px;background:#08090d}.chart-card{overflow:auto}.grid line{stroke:#303541}.grid text{fill:#9ea5b2;font:12px system-ui}[data-export-series-group] polyline{fill:none;stroke:var(--series);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1800;stroke-dashoffset:1800;animation:draw 1.15s ease forwards}[data-export-point]{fill:var(--series);stroke:#08090d;stroke-width:3;cursor:pointer;animation:point .4s ease backwards}[data-export-point]:hover,[data-export-point]:focus{stroke:#fff;stroke-width:5;outline:none;filter:drop-shadow(0 0 7px var(--series))}@keyframes draw{to{stroke-dashoffset:0}}@keyframes point{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}.table-card>div{overflow:auto}table{width:100%;border-collapse:collapse}th,td{padding:9px;border:1px solid #404550;text-align:left;white-space:nowrap}th{color:#111;background:var(--yellow)}.note ul{padding-left:22px}:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}@media(max-width:760px){.metrics{grid-template-columns:1fr}body{padding:10px}header{box-shadow:5px 5px 0 #000}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}';
       const script="(function(){const detail=document.querySelector('[data-export-detail]');function point(target){if(!target)return;detail.textContent=target.dataset.label||target.getAttribute('aria-label');}document.addEventListener('pointerover',function(event){point(event.target.closest&&event.target.closest('[data-export-point]'));});document.addEventListener('focusin',function(event){point(event.target.closest&&event.target.closest('[data-export-point]'));});document.addEventListener('click',function(event){point(event.target.closest&&event.target.closest('[data-export-point]'));});document.addEventListener('keydown',function(event){const target=event.target.closest&&event.target.closest('[data-export-point]');if(target&&(event.key==='Enter'||event.key===' ')){event.preventDefault();point(target);}});document.addEventListener('change',function(event){const input=event.target.closest&&event.target.closest('[data-export-series]');if(!input)return;document.querySelectorAll('[data-export-series-group=\"'+input.dataset.exportSeries+'\"]').forEach(function(group){group.style.display=input.checked?'':'none';});detail.textContent=input.checked?'Serie mostrada.':'Serie oculta.';});})();";
       const html='<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><title>'+escapeXml(snapshot.title)+' · Varia</title><style>'+styles+'</style></head><body><header><p class="eyebrow">Varia</p><h1>'+escapeXml(snapshot.title)+'</h1>'+date+'<p class="help">Archivo autocontenido: funciona sin internet. Usa ratón, pantalla táctil o Tab para explorar los puntos y las casillas para mostrar u ocultar series.</p></header><main>'+metrics+'<div class="detail" data-export-detail role="status" aria-live="polite">Selecciona un punto para leer su valor.</div>'+chartMarkup+tables+methodology+sources+'</main><scr'+'ipt>'+script+';('+exportedReportControls.toString()+')('+JSON.stringify(snapshot.module==='negocios'?{scenarios:snapshot.data.scenarios}:{}).replace(/</g,'\\u003c')+');'+'</scr'+'ipt></body></html>';
       downloadBlob(universalExportFilename(snapshot,'html','interactivo'),html,'text/html;charset=utf-8');
@@ -69894,16 +69894,16 @@ const UNIVERSAL_EXPORT_MODULES=Object.freeze({
 
     function universalPngSvg(snapshot,chart){
       const width=1400,height=900,pad=86;
-      let markup='<svg xmlns="http://www.w3.org/2000/svg" width="'+width+'" height="'+height+'" viewBox="0 0 '+width+' '+height+'"><rect width="100%" height="100%" fill="#08090d"/><rect x="28" y="28" width="1344" height="844" fill="none" stroke="#ffd400" stroke-width="6"/><text x="'+pad+'" y="105" fill="#ffd400" font-family="system-ui" font-size="24" font-weight="900">VARIA · '+escapeXml(APP_VERSION)+'</text><text x="'+pad+'" y="168" fill="#ffffff" font-family="system-ui" font-size="48" font-weight="900">'+escapeXml(snapshot.title.slice(0,44))+'</text>';
+      let markup='<svg xmlns="http://www.w3.org/2000/svg" width="'+width+'" height="'+height+'" viewBox="0 0 '+width+' '+height+'"><rect width="100%" height="100%" fill="#08090d"/><rect x="28" y="28" width="1344" height="844" fill="none" stroke="#dfbd78" stroke-width="6"/><text x="'+pad+'" y="105" fill="#dfbd78" font-family="system-ui" font-size="24" font-weight="900">VARIA · '+escapeXml(APP_VERSION)+'</text><text x="'+pad+'" y="168" fill="#ffffff" font-family="system-ui" font-size="48" font-weight="900">'+escapeXml(snapshot.title.slice(0,44))+'</text>';
       if(chart && chart.series.length){
         const series=chart.series.slice(0,6),values=series.reduce(function(list,item){ return list.concat(item.values.map(function(point){ return point.value; })); },[]); let min=Math.min.apply(null,values),max=Math.max.apply(null,values); if(min === max){ min-=1;max+=1; }
         const left=150,top=250,chartWidth=1100,chartHeight=480,maxPoints=Math.max.apply(null,series.map(function(item){ return item.values.length; })),x=function(index){ return left+chartWidth*(maxPoints <= 1 ? .5 : index/(maxPoints-1)); },y=function(value){ return top+chartHeight-(value-min)/(max-min)*chartHeight; };
-        markup+='<text x="'+pad+'" y="225" fill="#55f5e6" font-family="system-ui" font-size="28" font-weight="800">'+escapeXml(chart.title.slice(0,64))+'</text>';
+        markup+='<text x="'+pad+'" y="225" fill="#8fd8d0" font-family="system-ui" font-size="28" font-weight="800">'+escapeXml(chart.title.slice(0,64))+'</text>';
         [0,.25,.5,.75,1].forEach(function(position){ const py=top+chartHeight*position,value=max-(max-min)*position; markup+='<line x1="'+left+'" y1="'+py+'" x2="'+(left+chartWidth)+'" y2="'+py+'" stroke="#303541" stroke-width="2"/><text x="'+(left-16)+'" y="'+(py+7)+'" text-anchor="end" fill="#b8bdc8" font-family="system-ui" font-size="19">'+escapeXml(formatNumber(value,0,2))+'</text>'; });
         series.forEach(function(item,seriesIndex){ const points=item.values.map(function(point,index){ return x(index)+','+y(point.value); }).join(' '); markup+='<polyline points="'+points+'" fill="none" stroke="'+escapeXml(item.color)+'" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>'; item.values.forEach(function(point,index){ markup+='<circle cx="'+x(index)+'" cy="'+y(point.value)+'" r="9" fill="'+escapeXml(item.color)+'" stroke="#08090d" stroke-width="4"/>'; }); const legendX=pad+(seriesIndex%3)*405,legendY=790+Math.floor(seriesIndex/3)*34; markup+='<rect x="'+legendX+'" y="'+(legendY-18)+'" width="20" height="20" fill="'+escapeXml(item.color)+'"/><text x="'+(legendX+31)+'" y="'+legendY+'" fill="#fff" font-family="system-ui" font-size="19" font-weight="800">'+escapeXml(item.name.slice(0,30))+'</text>'; });
       }else{
         const metrics=(snapshot.metrics.length ? snapshot.metrics : [{label:'Registros capturados',value:String(snapshot.records.length)}]).slice(0,8);
-        metrics.forEach(function(item,index){ const column=index%2,row=Math.floor(index/2),x=pad+column*620,y=240+row*130; markup+='<rect x="'+x+'" y="'+y+'" width="565" height="104" fill="#11141c" stroke="#404550" stroke-width="3"/><text x="'+(x+22)+'" y="'+(y+34)+'" fill="#b8bdc8" font-family="system-ui" font-size="18" font-weight="800">'+escapeXml(item.label.slice(0,42))+'</text><text x="'+(x+22)+'" y="'+(y+78)+'" fill="#ffd400" font-family="system-ui" font-size="30" font-weight="900">'+escapeXml(item.value.slice(0,32))+'</text>'; });
+        metrics.forEach(function(item,index){ const column=index%2,row=Math.floor(index/2),x=pad+column*620,y=240+row*130; markup+='<rect x="'+x+'" y="'+y+'" width="565" height="104" fill="#11141c" stroke="#404550" stroke-width="3"/><text x="'+(x+22)+'" y="'+(y+34)+'" fill="#b8bdc8" font-family="system-ui" font-size="18" font-weight="800">'+escapeXml(item.label.slice(0,42))+'</text><text x="'+(x+22)+'" y="'+(y+78)+'" fill="#dfbd78" font-family="system-ui" font-size="30" font-weight="900">'+escapeXml(item.value.slice(0,32))+'</text>'; });
       }
       markup+='<text x="'+pad+'" y="848" fill="#aeb3bf" font-family="system-ui" font-size="18">Generado localmente · '+escapeXml(formatDateTime(snapshot.createdAt))+'</text></svg>';
       return markup;
@@ -70932,8 +70932,8 @@ function readBudgetDraft(){
       const indexValues=selected.map(function(point){ return {label:point.period,value:point.index/baseIndex*100}; });
       const powerValues=selected.map(function(point){ return {label:point.period,value:baseIndex/point.index*100}; });
       $('timeMoneyChart').innerHTML=lineChartSvg([
-        {name:'Índice base 100',color:'#ffd400',values:indexValues},
-        {name:'Poder adquisitivo',color:'#55f5e6',values:powerValues}
+        {name:'Índice base 100',color:'#dfbd78',values:indexValues},
+        {name:'Poder adquisitivo',color:'#8fd8d0',values:powerValues}
       ],{title:'Índice y poder adquisitivo',description:'Índice oficial base cien y poder adquisitivo recíproco durante el intervalo',valueSuffix:'',zeroLine:false,height:250});
       const economy=ECONOMIES[result.input.economy];
       $('timeMoneySourceBadge').textContent=/cache/.test(result.series.mode) ? 'Copia local' : 'Datos oficiales';
@@ -71016,7 +71016,7 @@ function readBudgetDraft(){
       }
       $('expenseChartPanel').hidden=false;
       $('expenseChartTitle').textContent='Evolución de '+item.name;
-      $('expenseChart').innerHTML=lineChartSvg([{name:item.name,color:'#ffd400',values:metrics.history.map(function(point){ return {label:point.date.slice(0,7),labelText:new Date(point.date+'T00:00:00').toLocaleDateString('es'),value:Number(point.price)}; })}],{title:'Historial de '+item.name,description:'Precios guardados por fecha en '+item.currency,valueSuffix:'',height:240});
+      $('expenseChart').innerHTML=lineChartSvg([{name:item.name,color:'#dfbd78',values:metrics.history.map(function(point){ return {label:point.date.slice(0,7),labelText:new Date(point.date+'T00:00:00').toLocaleDateString('es'),value:Number(point.price)}; })}],{title:'Historial de '+item.name,description:'Precios guardados por fecha en '+item.currency,valueSuffix:'',height:240});
     }
 
     function renderExpenses(){
@@ -72023,7 +72023,7 @@ function defaultInvestmentCosts(){
     function investmentCustomAdjustments(){
       const read=function(id){ const value=parseLocalized($(id).value); return Number.isFinite(value) ? value : 0; };
       const clamp=function(value,min,max){ return Math.max(min,Math.min(max,value)); };
-      return {name:'Personalizado',color:'#c084fc',sales:clamp(read('investmentCustomSales'),-100,10000),price:clamp(read('investmentCustomPrice'),-100,10000),costs:clamp(read('investmentCustomCosts'),-100,10000),inflation:clamp(read('investmentCustomInflation'),-100,10000),growth:clamp(read('investmentCustomGrowth'),-100,100),waste:clamp(read('investmentCustomWaste'),-100,100),reinvestment:clamp(read('investmentCustomReinvestment'),-100,100)};
+      return {name:'Personalizado',color:'#b7a5ec',sales:clamp(read('investmentCustomSales'),-100,10000),price:clamp(read('investmentCustomPrice'),-100,10000),costs:clamp(read('investmentCustomCosts'),-100,10000),inflation:clamp(read('investmentCustomInflation'),-100,10000),growth:clamp(read('investmentCustomGrowth'),-100,100),waste:clamp(read('investmentCustomWaste'),-100,100),reinvestment:clamp(read('investmentCustomReinvestment'),-100,100)};
     }
 
     function calculateInvestmentScenarios(input){
@@ -72274,7 +72274,7 @@ function defaultInvestmentCosts(){
       for(let index=0;index<count;index+=1){ if(index%labelEvery===0 || index===count-1) svg+='<text x="'+x(index)+'" y="'+(height-22)+'" text-anchor="middle">M'+(index+1)+'</text>'; }
       if(opts.payback != null && Number.isFinite(opts.payback) && opts.payback > 0 && opts.payback <= count){
         const px=left+(opts.payback-1)*plotWidth/Math.max(1,count-1);
-        svg+='<line x1="'+px+'" y1="'+top+'" x2="'+px+'" y2="'+(height-bottom)+'" stroke="#ffd400" stroke-width="3" stroke-dasharray="7 6"/><text x="'+Math.min(width-right-5,px+7)+'" y="'+(top+15)+'">Payback '+escapeXml(formatNumber(opts.payback,1,1))+'</text>';
+        svg+='<line x1="'+px+'" y1="'+top+'" x2="'+px+'" y2="'+(height-bottom)+'" stroke="#dfbd78" stroke-width="3" stroke-dasharray="7 6"/><text x="'+Math.min(width-right-5,px+7)+'" y="'+(top+15)+'">Payback '+escapeXml(formatNumber(opts.payback,1,1))+'</text>';
       }
       drawable.forEach(function(item,seriesIndex){
         const seriesId=chartKey+':'+item.key,seriesHidden=state.investmentChartVisibility[seriesId] === false;
@@ -72338,41 +72338,41 @@ function defaultInvestmentCosts(){
       const rows=visibleInvestmentRows(result),points=function(field,detail){ return rows.map(function(row){ return {label:'Mes '+row.month,value:row[field],detail:detail ? detail(row) : ''}; }); };
       const operationDetail=function(row){ return 'Ingresos '+formatInvestmentMoney(row.revenue,result.input.currencyMeta)+', gastos '+formatInvestmentMoney(row.totalExpenses,result.input.currencyMeta)+', beneficio '+formatInvestmentMoney(row.netProfit,result.input.currencyMeta); };
       renderInvestmentLineChart('investmentCapitalChart','capital',[
-        {key:'business',name:'Capital empresarial',color:'#55f5e6',values:points('businessCapital',operationDetail)},
-        {key:'profit',name:'Beneficio acumulado',color:'#ffd400',values:points('cumulativeNet',operationDetail)},
-        {key:'cash',name:'Caja disponible',color:'#55a8ff',values:points('cash',operationDetail)}
+        {key:'business',name:'Capital empresarial',color:'#8fd8d0',values:points('businessCapital',operationDetail)},
+        {key:'profit',name:'Beneficio acumulado',color:'#dfbd78',values:points('cumulativeNet',operationDetail)},
+        {key:'cash',name:'Caja disponible',color:'#89b9f2',values:points('cash',operationDetail)}
       ],{title:'Capital acumulado',description:'Capital, beneficio acumulado y caja por mes.',includeZero:true});
       renderInvestmentLineChart('investmentOperationChart','operation',[
-        {key:'revenue',name:'Ingresos',color:'#55f5e6',values:points('revenue',operationDetail)},
-        {key:'expenses',name:'Gastos',color:'#ff9d44',values:points('totalExpenses',operationDetail)},
-        {key:'net',name:'Beneficio',color:'#ffd400',values:points('netProfit',operationDetail)}
+        {key:'revenue',name:'Ingresos',color:'#8fd8d0',values:points('revenue',operationDetail)},
+        {key:'expenses',name:'Gastos',color:'#e2ab73',values:points('totalExpenses',operationDetail)},
+        {key:'net',name:'Beneficio',color:'#dfbd78',values:points('netProfit',operationDetail)}
       ],{title:'Ingresos, gastos y beneficio',includeZero:true});
       renderInvestmentLineChart('investmentCashChart','cash',[
-        {key:'operating',name:'Flujo operativo',color:'#55f5e6',values:points('operatingCashFlow',operationDetail)},
-        {key:'investment',name:'Reinversión',color:'#c084fc',values:rows.map(function(row){ return {label:'Mes '+row.month,value:row.investmentCashFlow,detail:operationDetail(row)}; })},
-        {key:'net',name:'Flujo neto',color:'#ffd400',values:points('netCashFlow',operationDetail)}
+        {key:'operating',name:'Flujo operativo',color:'#8fd8d0',values:points('operatingCashFlow',operationDetail)},
+        {key:'investment',name:'Reinversión',color:'#b7a5ec',values:rows.map(function(row){ return {label:'Mes '+row.month,value:row.investmentCashFlow,detail:operationDetail(row)}; })},
+        {key:'net',name:'Flujo neto',color:'#dfbd78',values:points('netCashFlow',operationDetail)}
       ],{title:'Flujo de caja',includeZero:true});
       renderInvestmentLineChart('investmentRoiChart','roi',[
-        {key:'roi',name:'ROI acumulado',color:'#ffd400',values:rows.map(function(row){ return {label:'Mes '+row.month,value:row.roiAccumulated == null ? 0 : row.roiAccumulated,detail:operationDetail(row)}; })}
+        {key:'roi',name:'ROI acumulado',color:'#dfbd78',values:rows.map(function(row){ return {label:'Mes '+row.month,value:row.roiAccumulated == null ? 0 : row.roiAccumulated,detail:operationDetail(row)}; })}
       ],{title:'ROI acumulado',percent:true,includeZero:true,payback:result.payback});
       const first=result.first,input=result.input,waste=1+input.wasteRate/100;
       const expenseItems=[
-        {key:'direct',name:input.costMode === 'detailed' ? 'Ingredientes o materiales' : 'Costo directo por venta',value:input.variableCost*input.units*waste,color:'#ff6900'},
-        {key:'fixed',name:'Costos fijos',value:input.fixedCosts,color:'#55a8ff'},
-        {key:'operation',name:'Operación',value:input.operatingExpenses,color:'#55f5e6'}
+        {key:'direct',name:input.costMode === 'detailed' ? 'Ingredientes o materiales' : 'Costo directo por venta',value:input.variableCost*input.units*waste,color:'#dfbd78'},
+        {key:'fixed',name:'Costos fijos',value:input.fixedCosts,color:'#89b9f2'},
+        {key:'operation',name:'Operación',value:input.operatingExpenses,color:'#8fd8d0'}
       ].concat(input.costs.map(function(cost,index){ return {key:'extra-'+String(cost.id || index),name:cost.name,value:cost.type === 'variable' ? cost.amount*input.units*waste : cost.amount,color:CHART_COLORS[(index+3)%CHART_COLORS.length]}; })).concat([
-        {key:'taxes',name:'Impuestos',value:first.taxes,color:'#c084fc'},{key:'payments',name:'Pagos',value:first.payments,color:'#ffd400'},{key:'debts',name:'Deudas',value:first.debts,color:'#ff7182'}
+        {key:'taxes',name:'Impuestos',value:first.taxes,color:'#b7a5ec'},{key:'payments',name:'Pagos',value:first.payments,color:'#dfbd78'},{key:'debts',name:'Deudas',value:first.debts,color:'#ffabb6'}
       ]).filter(function(item){ return item.value > 0; });
       const effectiveSalesFactor=Math.max(0,1-input.missedSalesRate/100),productItems=input.products.map(function(product,index){
         return {key:'product-'+String(product.id || index),name:product.name,value:product.price*product.monthlyUnits*effectiveSalesFactor,color:CHART_COLORS[index%CHART_COLORS.length]};
       });
       renderInvestmentPieChart('investmentExpenseChart','expenses',expenseItems,{title:'Distribución de gastos del primer mes'});
       renderInvestmentPieChart('investmentProductPieChart','products',productItems,{title:'Ventas por producto o servicio',empty:'Añade ventas a uno o varios productos o servicios para ver su distribución.'});
-      renderInvestmentLineChart('investmentProfitChart','profit',[{key:'net',name:'Beneficio / pérdida',color:'#ffd400',values:points('netProfit',operationDetail)}],{title:'Beneficio y pérdidas',includeZero:true});
+      renderInvestmentLineChart('investmentProfitChart','profit',[{key:'net',name:'Beneficio / pérdida',color:'#dfbd78',values:points('netProfit',operationDetail)}],{title:'Beneficio y pérdidas',includeZero:true});
       renderInvestmentLineChart('investmentReinvestmentChart','reinvestment',[
-        {key:'retained',name:'Capital retenido',color:'#55f5e6',values:points('retainedCapital',operationDetail)},
-        {key:'available',name:'Beneficio disponible acumulado',color:'#ffd400',values:points('cumulativeAvailable',operationDetail)},
-        {key:'reinvested',name:'Reinversión acumulada',color:'#c084fc',values:points('cumulativeReinvestment',operationDetail)}
+        {key:'retained',name:'Capital retenido',color:'#8fd8d0',values:points('retainedCapital',operationDetail)},
+        {key:'available',name:'Beneficio disponible acumulado',color:'#dfbd78',values:points('cumulativeAvailable',operationDetail)},
+        {key:'reinvested',name:'Reinversión acumulada',color:'#b7a5ec',values:points('cumulativeReinvestment',operationDetail)}
       ],{title:'Reinversión y beneficio disponible',includeZero:true});
       renderInvestmentLineChart('investmentScenarioChart','scenarios',state.investmentScenarios.map(function(scenario){
         return {key:scenario.key,name:scenario.name,color:scenario.color,values:scenario.result.rows.slice(0,rows.length).map(function(row){ return {label:'Mes '+row.month,value:row.businessCapital,detail:'Beneficio '+formatInvestmentMoney(row.netProfit,result.input.currencyMeta)+', riesgo '+investmentRiskCopy(scenario.result.riskState)}; })};
@@ -72530,8 +72530,8 @@ function exportInvestmentCsv(){
           ],rows:state.investmentScenarios.map(function(item){ return {name:item.name,annualProfit:formatInvestmentMoney(item.result.annualProfit,m),roi:item.result.annualRoi == null ? 'No aplica' : formatPercent(item.result.annualRoi,2),npv:formatInvestmentMoney(item.result.npv,m),payback:formatInvestmentPayback(item.result.payback,i.initialInvestment),risk:investmentRiskCopy(item.result.riskState)}; })}
         ],
         charts:[
-          reportChart('Ingresos, gastos y beneficio',[{name:'Ingresos',color:'#55f5e6',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.revenue}; })},{name:'Gastos',color:'#ff9d44',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.totalExpenses}; })},{name:'Beneficio',color:'#ffd400',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.netProfit}; })}],' '+m.code),
-          reportChart('Capital empresarial',[{name:'Capital',color:'#55f5e6',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.businessCapital}; })},{name:'Caja',color:'#55a8ff',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.cash}; })}],' '+m.code)
+          reportChart('Ingresos, gastos y beneficio',[{name:'Ingresos',color:'#8fd8d0',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.revenue}; })},{name:'Gastos',color:'#e2ab73',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.totalExpenses}; })},{name:'Beneficio',color:'#dfbd78',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.netProfit}; })}],' '+m.code),
+          reportChart('Capital empresarial',[{name:'Capital',color:'#8fd8d0',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.businessCapital}; })},{name:'Caja',color:'#89b9f2',values:r.rows.map(function(row){ return {label:'M'+row.month,value:row.cash}; })}],' '+m.code)
         ],design:{style:'contrast',density:'comfortable',cover:true,summary:true}
       };
     }
@@ -72792,7 +72792,7 @@ function exportInvestmentCsv(){
       const bins=result.histogram || [],max=Math.max.apply(null,bins.map(function(bin){ return bin.count; }).concat([1]));
       $('monteCarloHistogram').innerHTML=bins.map(function(bin,index){
         const middle=(bin.min+bin.max)/2,label=formatInvestmentCompact(middle,meta),detail='De '+formatInvestmentMoney(bin.min,meta)+' a '+formatInvestmentMoney(bin.max,meta)+' · '+formatNumber(bin.count,0,0)+' escenarios · '+formatPercent(bin.probability,2);
-        return '<button class="monte-histogram-bin" type="button" style="--hist-height:'+formatNumber(bin.count/max*100,2,2)+'%;--hist-color:'+(middle < 0 ? '#ff7182' : '#4ade80')+';--hist-delay:'+(index*25)+'ms" data-monte-histogram-index="'+index+'" data-short-label="'+escapeXml(index%3===0 ? label : '')+'" aria-pressed="false" aria-label="'+escapeXml(detail)+'"></button>';
+        return '<button class="monte-histogram-bin" type="button" style="--hist-height:'+formatNumber(bin.count/max*100,2,2)+'%;--hist-color:'+(middle < 0 ? '#ffabb6' : '#9ed8b5')+';--hist-delay:'+(index*25)+'ms" data-monte-histogram-index="'+index+'" data-short-label="'+escapeXml(index%3===0 ? label : '')+'" aria-pressed="false" aria-label="'+escapeXml(detail)+'"></button>';
       }).join('');
     }
 
@@ -72817,9 +72817,9 @@ function exportInvestmentCsv(){
       $('monteCarloPercentileRow').innerHTML='<td>Beneficio</td>'+['p5','p10','p25','p50','p75','p90','p95'].map(function(key){ return '<td>'+escapeXml(formatInvestmentMoney(p[key],meta))+'</td>'; }).join('');
       renderMonteCarloHistogram(result,meta);
       $('monteCarloProbabilityChart').innerHTML=[
-        {name:'Beneficio',value:result.profitProbability,color:'#4ade80'},
-        {name:'Pérdida',value:result.lossProbability,color:'#ff7182'},
-        {name:'Equilibrio',value:Math.max(0,1-result.profitProbability-result.lossProbability),color:'#ffd400'}
+        {name:'Beneficio',value:result.profitProbability,color:'#9ed8b5'},
+        {name:'Pérdida',value:result.lossProbability,color:'#ffabb6'},
+        {name:'Equilibrio',value:Math.max(0,1-result.profitProbability-result.lossProbability),color:'#dfbd78'}
       ].map(function(item){ return '<button class="monte-probability-row" type="button" data-monte-probability="'+escapeXml(item.name)+'" aria-label="'+escapeXml(item.name+' '+formatPercent(item.value,1))+'"><strong>'+escapeXml(item.name)+'</strong><span class="monte-probability-track"><span class="monte-probability-fill" style="--value:'+formatNumber(item.value*100,2,2)+'%;--bar-color:'+item.color+'"></span></span><b>'+escapeXml(formatPercent(item.value,1))+'</b></button>'; }).join('');
       const names={sales:'Ventas',price:'Precios',costs:'Costos operativos',inflation:'Inflación',growth:'Crecimiento',reinvestment:'Reinversión',financing:'Financiación'};
       $('monteCarloFactors').innerHTML=result.influence.map(function(item,index){ return '<div class="monte-factor-row"><strong>'+escapeXml(names[item.key] || item.key)+'</strong><span class="monte-factor-track"><span class="monte-factor-fill" style="--value:'+formatNumber(item.importance*100,2,2)+'%;--bar-color:'+CHART_COLORS[index%CHART_COLORS.length]+'"></span></span><b>'+escapeXml(formatPercent(item.importance,1))+'</b></div>'; }).join('');
@@ -72967,8 +72967,8 @@ const businessLoanEngine=Object.freeze({
         return '<tr data-business-loan-row="'+(row.installment-1)+'" tabindex="0" aria-label="'+escapeXml(detail)+'"><td>'+row.installment+'</td><td>Mes '+escapeXml(formatNumber(row.month,0,2))+'</td><td>'+escapeXml(formatInvestmentMoney(row.payment,meta))+'</td><td>'+escapeXml(formatInvestmentMoney(row.interest,meta))+'</td><td>'+escapeXml(formatInvestmentMoney(row.principal,meta))+'</td><td>'+escapeXml(formatInvestmentMoney(row.balance,meta))+'</td></tr>';
       }).join('');
       renderInvestmentLineChart('businessLoanChart','business-loan',[
-        {key:'balance',name:'Saldo',color:'#ff7182',values:result.schedule.map(function(row){ return {label:'Cuota '+row.installment,value:row.balance,detail:'Pago '+formatInvestmentMoney(row.payment,meta)}; })},
-        {key:'interest',name:'Interés acumulado',color:'#ffd400',values:result.schedule.map(function(row){ return {label:'Cuota '+row.installment,value:row.cumulativeInterest,detail:'Interés de la cuota '+formatInvestmentMoney(row.interest,meta)}; })}
+        {key:'balance',name:'Saldo',color:'#ffabb6',values:result.schedule.map(function(row){ return {label:'Cuota '+row.installment,value:row.balance,detail:'Pago '+formatInvestmentMoney(row.payment,meta)}; })},
+        {key:'interest',name:'Interés acumulado',color:'#dfbd78',values:result.schedule.map(function(row){ return {label:'Cuota '+row.installment,value:row.cumulativeInterest,detail:'Interés de la cuota '+formatInvestmentMoney(row.interest,meta)}; })}
       ],{title:'Evolución de la deuda',description:'Saldo pendiente e intereses acumulados por cuota.',includeZero:true,currencyMeta:meta});
       $('businessLoanApplyButton').disabled=false;
       renderBusinessKpis();
@@ -73034,7 +73034,7 @@ const businessLoanEngine=Object.freeze({
     function renderSeasonalityProfile(){
       try{
         const factors=readSeasonalityInput(),names=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-        renderInvestmentBarChart('seasonalityChart','seasonality',factors.map(function(value,index){ return {name:names[index],value:value,color:value < 1 ? '#ff9d44' : value > 1 ? '#4ade80' : '#55a8ff',detail:'Factor de ventas'}; }),{title:'Factores mensuales de estacionalidad',percent:true});
+        renderInvestmentBarChart('seasonalityChart','seasonality',factors.map(function(value,index){ return {name:names[index],value:value,color:value < 1 ? '#e2ab73' : value > 1 ? '#9ed8b5' : '#89b9f2',detail:'Factor de ventas'}; }),{title:'Factores mensuales de estacionalidad',percent:true});
         setFeatureStatus('seasonalityNotice','Perfil válido. Estos factores ya forman parte de la proyección normal y de Monte Carlo.','success');
       }catch(error){
         $('seasonalityChart').innerHTML='<div class="investment-empty">Corrige los factores para ver el gráfico.</div>';
@@ -73102,7 +73102,7 @@ const businessLoanEngine=Object.freeze({
         const values=Array.from({length:horizon+1},function(_,month){
           return {label:month===0?'Hoy':'Mes '+month,value:assets.reduce(function(sum,asset){ return sum+Math.max(asset.residual,asset.current-asset.monthlyDepreciation*month); },0),detail:'Valor contable lineal agregado'};
         });
-        renderInvestmentLineChart('businessAssetChart','business-assets',[{key:'value',name:'Valor de activos',color:'#55f5e6',values:values}],{title:'Valor proyectado de activos',includeZero:true,currencyMeta:meta});
+        renderInvestmentLineChart('businessAssetChart','business-assets',[{key:'value',name:'Valor de activos',color:'#8fd8d0',values:values}],{title:'Valor proyectado de activos',includeZero:true,currencyMeta:meta});
         if(!opts.silent) setFeatureStatus('businessAssetNotice',assets.length+' activo'+(assets.length===1?'':'s')+' calculado'+(assets.length===1?'':'s')+' con depreciación lineal.','success');
         renderBusinessKpis();
         return result;
@@ -73148,8 +73148,8 @@ const businessLoanEngine=Object.freeze({
         setInvestmentMetric('inventoryUnitsAvailable',formatNumber(result.finalStock,0,2),result.finalStock>=input.minimum?'positive':'warning');
         setInvestmentMetric('inventoryReorders',formatNumber(result.reorders,0,0),result.lostSales>0?'warning':'positive');
         renderInvestmentLineChart('inventoryChart','inventory',[
-          {key:'stock',name:'Stock final',color:'#55f5e6',values:rows.map(function(row){ return {label:'Mes '+row.month,value:row.closing,detail:'Vendidas '+formatNumber(row.sold,0,2)+', repuestas '+formatNumber(row.ordered,0,2)}; })},
-          {key:'minimum',name:'Stock mínimo',color:'#ffd400',values:rows.map(function(row){ return {label:'Mes '+row.month,value:input.minimum,detail:'Umbral mínimo'}; })}
+          {key:'stock',name:'Stock final',color:'#8fd8d0',values:rows.map(function(row){ return {label:'Mes '+row.month,value:row.closing,detail:'Vendidas '+formatNumber(row.sold,0,2)+', repuestas '+formatNumber(row.ordered,0,2)}; })},
+          {key:'minimum',name:'Stock mínimo',color:'#dfbd78',values:rows.map(function(row){ return {label:'Mes '+row.month,value:input.minimum,detail:'Umbral mínimo'}; })}
         ],{title:'Evolución del inventario',includeZero:true,percent:false,currencyMeta:{custom:true,symbol:'u.',position:'after',decimals:0}});
         if(!opts.silent) setFeatureStatus('inventoryNotice','Plan generado con '+formatNumber(reorders,0,0)+' reposiciones y '+formatNumber(lostSales,0,2)+' ventas no atendidas.','success');
         renderBusinessKpis();
@@ -73201,23 +73201,23 @@ const businessLoanEngine=Object.freeze({
       const meta=result.input.currencyMeta,mc=state.monteCarloResult,loan=state.businessLoanResult,inventory=state.inventoryResult,assets=state.businessAssetResult,goal=state.businessGoalResult;
       const risk=mc ? monteCarloRisk(mc.lossProbability).title : investmentRiskCopy(result.riskState);
       const items=[
-        ['Ingresos',formatInvestmentMoney(result.first.revenue,meta),'Primer mes','#55f5e6'],
-        ['Gastos',formatInvestmentMoney(result.first.totalExpenses,meta),'Primer mes','#ff9d44'],
-        ['Beneficio bruto',formatInvestmentMoney(result.first.grossProfit,meta),'Primer mes','#55a8ff'],
-        ['Beneficio neto',formatInvestmentMoney(result.first.netProfit,meta),'Primer mes',result.first.netProfit>=0?'#4ade80':'#ff7182'],
-        ['Margen',result.margin==null?'No aplica':formatPercent(result.margin,2),'Neto sobre ingresos','#ffd400'],
-        ['ROI',result.annualRoi==null?'No aplica':formatPercent(result.annualRoi,2),'Anual estimado','#c084fc'],
-        ['VAN',formatInvestmentMoney(result.npv,meta),'Tasa '+formatNumber(result.input.discountRate,0,1)+' %','#55f5e6'],
-        ['TIR',result.irrAnnual==null?'No calculable':formatPercent(result.irrAnnual,2),'Anual','#ffd400'],
-        ['Payback',formatInvestmentPayback(result.payback,result.input.initialInvestment),'Recuperación','#4ade80'],
-        ['Flujo de caja',formatInvestmentMoney(result.rows.at(-1).cash,meta),'Saldo final','#55a8ff'],
-        ['Deuda',loan?formatInvestmentMoney(loan.outstanding,loan.input.currencyMeta):formatInvestmentMoney(result.first.debts,meta),'Saldo calculado','#ff7182'],
-        ['Crecimiento',formatNumber(result.input.growthRate,0,2)+' %','Mensual','#55f5e6'],
-        ['Capital invertido',formatInvestmentMoney(result.input.initialInvestment,meta),'Inicial','#ffd400'],
-        ['Nivel de riesgo',risk,mc?formatPercent(mc.lossProbability,1)+' pérdida':'Determinista','#ff9d44'],
-        ['Inventario',inventory?formatNumber(inventory.finalStock,0,2)+' u.':'Sin plan','Saldo final','#55a8ff'],
-        ['Activos',assets?formatInvestmentMoney(assets.current,meta):'Sin activos','Valor actual','#c084fc'],
-        ['Meta',goal?formatNumber(goal.progress,1,1)+' %':'Sin meta','Progreso','#4ade80']
+        ['Ingresos',formatInvestmentMoney(result.first.revenue,meta),'Primer mes','#8fd8d0'],
+        ['Gastos',formatInvestmentMoney(result.first.totalExpenses,meta),'Primer mes','#e2ab73'],
+        ['Beneficio bruto',formatInvestmentMoney(result.first.grossProfit,meta),'Primer mes','#89b9f2'],
+        ['Beneficio neto',formatInvestmentMoney(result.first.netProfit,meta),'Primer mes',result.first.netProfit>=0?'#9ed8b5':'#ffabb6'],
+        ['Margen',result.margin==null?'No aplica':formatPercent(result.margin,2),'Neto sobre ingresos','#dfbd78'],
+        ['ROI',result.annualRoi==null?'No aplica':formatPercent(result.annualRoi,2),'Anual estimado','#b7a5ec'],
+        ['VAN',formatInvestmentMoney(result.npv,meta),'Tasa '+formatNumber(result.input.discountRate,0,1)+' %','#8fd8d0'],
+        ['TIR',result.irrAnnual==null?'No calculable':formatPercent(result.irrAnnual,2),'Anual','#dfbd78'],
+        ['Payback',formatInvestmentPayback(result.payback,result.input.initialInvestment),'Recuperación','#9ed8b5'],
+        ['Flujo de caja',formatInvestmentMoney(result.rows.at(-1).cash,meta),'Saldo final','#89b9f2'],
+        ['Deuda',loan?formatInvestmentMoney(loan.outstanding,loan.input.currencyMeta):formatInvestmentMoney(result.first.debts,meta),'Saldo calculado','#ffabb6'],
+        ['Crecimiento',formatNumber(result.input.growthRate,0,2)+' %','Mensual','#8fd8d0'],
+        ['Capital invertido',formatInvestmentMoney(result.input.initialInvestment,meta),'Inicial','#dfbd78'],
+        ['Nivel de riesgo',risk,mc?formatPercent(mc.lossProbability,1)+' pérdida':'Determinista','#e2ab73'],
+        ['Inventario',inventory?formatNumber(inventory.finalStock,0,2)+' u.':'Sin plan','Saldo final','#89b9f2'],
+        ['Activos',assets?formatInvestmentMoney(assets.current,meta):'Sin activos','Valor actual','#b7a5ec'],
+        ['Meta',goal?formatNumber(goal.progress,1,1)+' %':'Sin meta','Progreso','#9ed8b5']
       ];
       container.innerHTML=items.map(function(item){ return '<article class="business-kpi" style="--kpi-color:'+item[3]+'"><span>'+escapeXml(item[0])+'</span><strong>'+escapeXml(item[1])+'</strong><small>'+escapeXml(item[2])+'</small></article>'; }).join('');
     }
@@ -73233,18 +73233,18 @@ const businessLoanEngine=Object.freeze({
     
 /* Source: js/decisions.js */
 const DECISION_WIDGET_DEFINITIONS=Object.freeze([
-      Object.freeze({key:'inflation',title:'Inflación acumulada',color:'#ff9d44'}),
-      Object.freeze({key:'purchasing',title:'Poder adquisitivo',color:'#ffd400'}),
-      Object.freeze({key:'roi',title:'ROI de inversiones',color:'#c084fc'}),
-      Object.freeze({key:'cash',title:'Caja disponible',color:'#55a8ff'}),
-      Object.freeze({key:'expenses',title:'Gastos mensuales',color:'#ff7182'}),
-      Object.freeze({key:'subscriptions',title:'Suscripciones',color:'#ff9d44'}),
-      Object.freeze({key:'capital',title:'Capital invertido',color:'#ffd400'}),
-      Object.freeze({key:'break_even',title:'Punto de equilibrio',color:'#55f5e6'}),
-      Object.freeze({key:'npv',title:'VAN',color:'#4ade80'}),
-      Object.freeze({key:'irr',title:'TIR',color:'#c084fc'}),
-      Object.freeze({key:'profit',title:'Beneficio estimado',color:'#4ade80'}),
-      Object.freeze({key:'risk',title:'Riesgo financiero',color:'#ff7182'})
+      Object.freeze({key:'inflation',title:'Inflación acumulada',color:'#e2ab73'}),
+      Object.freeze({key:'purchasing',title:'Poder adquisitivo',color:'#dfbd78'}),
+      Object.freeze({key:'roi',title:'ROI de inversiones',color:'#b7a5ec'}),
+      Object.freeze({key:'cash',title:'Caja disponible',color:'#89b9f2'}),
+      Object.freeze({key:'expenses',title:'Gastos mensuales',color:'#ffabb6'}),
+      Object.freeze({key:'subscriptions',title:'Suscripciones',color:'#e2ab73'}),
+      Object.freeze({key:'capital',title:'Capital invertido',color:'#dfbd78'}),
+      Object.freeze({key:'break_even',title:'Punto de equilibrio',color:'#8fd8d0'}),
+      Object.freeze({key:'npv',title:'VAN',color:'#9ed8b5'}),
+      Object.freeze({key:'irr',title:'TIR',color:'#b7a5ec'}),
+      Object.freeze({key:'profit',title:'Beneficio estimado',color:'#9ed8b5'}),
+      Object.freeze({key:'risk',title:'Riesgo financiero',color:'#ffabb6'})
     ]);
     const DECISION_WIDGET_KEYS=Object.freeze(DECISION_WIDGET_DEFINITIONS.map(function(item){ return item.key; }));
     const DECISION_TAB_KEYS=Object.freeze(['overview','dashboard','goals','scenarios','portfolio','calendar','alerts']);
@@ -73520,7 +73520,7 @@ const DECISION_WIDGET_DEFINITIONS=Object.freeze([
       const output=$('decisionGoalOutput'),container=$('decisionGoalRecommendations'),result=state.investmentResult;
       output.hidden=false;
       if(calculation.reached){
-        container.innerHTML='<article class="decision-recommendation" style="border-top-color:#4ade80"><b>Objetivo ya alcanzado</b><strong>'+escapeXml(decisionFormatGoalValue(calculation.metric,calculation.baseValue,result))+'</strong><p>El valor actual ya cumple la meta indicada. Puedes guardarla para vigilar que se mantenga.</p></article>';
+        container.innerHTML='<article class="decision-recommendation" style="border-top-color:#9ed8b5"><b>Objetivo ya alcanzado</b><strong>'+escapeXml(decisionFormatGoalValue(calculation.metric,calculation.baseValue,result))+'</strong><p>El valor actual ya cumple la meta indicada. Puedes guardarla para vigilar que se mantenga.</p></article>';
         setDecisionNotice('decisionGoalNotice','La meta ya se cumple con la configuración actual.','success');
       }else if(!calculation.recommendations.length){
         container.innerHTML='<div class="decision-empty">No se encontró una alternativa dentro de los límites: precio +300 %, ventas +500 % o costos −95 %. Revisa la meta o cambia más de una variable.</div>';
@@ -73638,7 +73638,7 @@ const DECISION_WIDGET_DEFINITIONS=Object.freeze([
       }).join('');
       const valid=evaluations.filter(function(item){ return item.result; }),max=Math.max.apply(null,valid.map(function(item){ return Math.abs(item.result.annualProfit); }).concat([1]));
       $('decisionScenarioChart').innerHTML=valid.map(function(item){
-        const profit=item.result.annualProfit,width=Math.max(1,Math.abs(profit)/max*100),color=profit<0?'#ff7182':decisionScenarioState(item.result)==='attention'?'#ffd400':'#4ade80';
+        const profit=item.result.annualProfit,width=Math.max(1,Math.abs(profit)/max*100),color=profit<0?'#ffabb6':decisionScenarioState(item.result)==='attention'?'#dfbd78':'#9ed8b5';
         return '<div class="decision-comparison-row"><span>'+escapeXml(item.node.name)+'</span><div class="decision-comparison-track"><div class="decision-comparison-fill" style="--bar-width:'+width.toFixed(2)+'%;--bar-color:'+color+'"></div></div><strong>'+escapeXml(formatInvestmentMoney(profit,item.result.input.currencyMeta))+'</strong></div>';
       }).join('');
     }
@@ -73704,7 +73704,7 @@ const DECISION_WIDGET_DEFINITIONS=Object.freeze([
       $('decisionPortfolioDiversification').textContent=formatNumber(summary.diversification,0,0)+'/100';
       $('decisionPortfolioConcentration').textContent='Concentración mayor: '+formatPercent(summary.concentration,1);
       $('decisionPortfolioFlow').textContent=formatInvestmentMoney(summary.annualFlow,meta);
-      const colors=['#ffd400','#55f5e6','#ff6900','#c084fc','#4ade80','#55a8ff','#ff7182','#ff9d44','#76d7ff','#d6ff6b','#eb7dff','#80f0b2'];
+      const colors=['#dfbd78','#8fd8d0','#dfbd78','#b7a5ec','#9ed8b5','#89b9f2','#ffabb6','#e2ab73','#76d7ff','#d6ff6b','#eb7dff','#80f0b2'];
       if(summary.items.length){
         let start=0;const segments=[];
         summary.weights.forEach(function(weight,index){ const end=start+weight*100; segments.push(colors[index%colors.length]+' '+start.toFixed(3)+'% '+end.toFixed(3)+'%'); start=end; });
@@ -73740,14 +73740,14 @@ const DECISION_WIDGET_DEFINITIONS=Object.freeze([
     }
 
     const DECISION_EVENT_TYPES=Object.freeze({
-      income:Object.freeze({label:'Ingreso previsto',color:'#4ade80',direction:1}),
-      payment:Object.freeze({label:'Pago',color:'#ff7182',direction:-1}),
-      loan:Object.freeze({label:'Préstamo',color:'#55a8ff',direction:1}),
-      rent:Object.freeze({label:'Alquiler',color:'#ff9d44',direction:-1}),
-      tax:Object.freeze({label:'Impuesto',color:'#ffd400',direction:-1}),
-      supplier:Object.freeze({label:'Proveedor',color:'#ff6900',direction:-1}),
-      subscription:Object.freeze({label:'Suscripción',color:'#c084fc',direction:-1}),
-      sale:Object.freeze({label:'Venta',color:'#55f5e6',direction:1}),
+      income:Object.freeze({label:'Ingreso previsto',color:'#9ed8b5',direction:1}),
+      payment:Object.freeze({label:'Pago',color:'#ffabb6',direction:-1}),
+      loan:Object.freeze({label:'Préstamo',color:'#89b9f2',direction:1}),
+      rent:Object.freeze({label:'Alquiler',color:'#e2ab73',direction:-1}),
+      tax:Object.freeze({label:'Impuesto',color:'#dfbd78',direction:-1}),
+      supplier:Object.freeze({label:'Proveedor',color:'#dfbd78',direction:-1}),
+      subscription:Object.freeze({label:'Suscripción',color:'#b7a5ec',direction:-1}),
+      sale:Object.freeze({label:'Venta',color:'#8fd8d0',direction:1}),
       investment:Object.freeze({label:'Inversión',color:'#76d7ff',direction:-1}),
       contract:Object.freeze({label:'Contrato',color:'#d6ff6b',direction:-1})
     });
@@ -75735,7 +75735,7 @@ const BusinessWorkspace = (() => {
     }));
   }
   function renderGoals(b){
-    const m=model();return '<section class="bw-card"><h2>Goal Engine 2.0</h2><p>Calcula alternativas para una meta de beneficio. Cada alternativa mantiene las demás variables del primer mes; no deben sumarse entre sí. El capital mínimo cubre un mes de operación.</p><form data-bw-form="goal" class="bw-form">'+textInput('bwGoalName','Nombre de la meta')+input('bwGoalTarget','Beneficio objetivo','',.01)+input('bwGoalMonths','Plazo en meses',12,1,60,'1')+'<div class="bw-actions"><button type="submit" class="button primary">Añadir meta</button></div></form>'+b.businessGoals.map(g=>{const r=BusinessFinance.goal(g.target,g.months,m);return '<article class="bw-card"><h3>'+esc(g.name)+'</h3><p>Meta: '+money(g.target)+' en '+g.months+' meses.</p>'+(r?table(['Objetivo derivado','Resultado'],[['Ventas totales necesarias',money(r.sales)],['Ventas mensuales',money(r.monthly)],['Unidades mensuales',String(r.units)],['Precio medio con volumen actual',money(r.price)],['Margen con ingresos actuales',pct(r.margin)],['Costos máximos mensuales',money(r.maxCosts)],['Capital adicional mínimo',money(r.capital)]]):'<p>Necesitas productos con ventas y contribución positiva para calcular las alternativas.</p>')+'</article>';}).join('')+'</section>';
+    const m=model();return '<section class="bw-card"><h2>Motor de metas</h2><p>Calcula alternativas para una meta de beneficio. Cada alternativa mantiene las demás variables del primer mes; no deben sumarse entre sí. El capital mínimo cubre un mes de operación.</p><form data-bw-form="goal" class="bw-form">'+textInput('bwGoalName','Nombre de la meta')+input('bwGoalTarget','Beneficio objetivo','',.01)+input('bwGoalMonths','Plazo en meses',12,1,60,'1')+'<div class="bw-actions"><button type="submit" class="button primary">Añadir meta</button></div></form>'+b.businessGoals.map(g=>{const r=BusinessFinance.goal(g.target,g.months,m);return '<article class="bw-card"><h3>'+esc(g.name)+'</h3><p>Meta: '+money(g.target)+' en '+g.months+' meses.</p>'+(r?table(['Objetivo derivado','Resultado'],[['Ventas totales necesarias',money(r.sales)],['Ventas mensuales',money(r.monthly)],['Unidades mensuales',String(r.units)],['Precio medio con volumen actual',money(r.price)],['Margen con ingresos actuales',pct(r.margin)],['Costos máximos mensuales',money(r.maxCosts)],['Capital adicional mínimo',money(r.capital)]]):'<p>Necesitas productos con ventas y contribución positiva para calcular las alternativas.</p>')+'</article>';}).join('')+'</section>';
   }
   function renderScenarios(b){
     const s=b.businessScenarios.find(x=>x.id==='custom')||{id:'custom',name:'Personalizado'};
@@ -75749,8 +75749,8 @@ const BusinessWorkspace = (() => {
   function chartControls(){return '<div class="bw-toolbar">'+input('bwChartStart','Desde el mes',chartStart,1,60,'1')+input('bwChartEnd','Hasta el mes',chartEnd,1,60,'1')+input('bwChartTarget','Línea objetivo de caja',chartTarget,-1e12)+textInput('bwChartNote','Anotación del gráfico',chartNote,120)+button('Aplicar período y anotación','chart-range')+button('Exportar gráfico PNG 4K','chart-png')+'</div>';}
   function lineChart(rows,key,title,additional=[]){
     const selected=rows.filter(r=>r.month>=chartStart&&r.month<=chartEnd);if(!selected.length)return '<p>Este período queda fuera del horizonte del plan.</p>';
-    const series=[{name:title,rows:selected,key,color:'#ffd400'},...additional];
-    if(key==='cash')series.push({name:'Flujo mensual',rows:selected,key:'flow',color:'#6adbd2'});
+    const series=[{name:title,rows:selected,key,color:'#dfbd78'},...additional];
+    if(key==='cash')series.push({name:'Flujo mensual',rows:selected,key:'flow',color:'#8fd8d0'});
     const values=series.flatMap(s=>s.rows.map(r=>r[s.key||key])),lo=Math.min(0,chartTarget,...values),hi=Math.max(1,chartTarget,...values),span=hi-lo||1;
     const x=(m)=>65+(m-selected[0].month)/Math.max(1,selected.at(-1).month-selected[0].month)*850,y=v=>300-(v-lo)/span*245;
     let svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 370" role="img" aria-label="'+esc(title)+'"><rect width="960" height="370" fill="#13141c"/><text x="65" y="24" fill="#fff">'+esc(title)+' · '+esc(current()?.currency||'')+'</text>';
@@ -75763,21 +75763,21 @@ const BusinessWorkspace = (() => {
   }
   function scenarioChart(series){
     if(!series.length)return '';
-    const colors=['#ffd400','#87e6ad','#ff9f9f','#a8afff'];
+    const colors=['#dfbd78','#87e6ad','#ff9f9f','#a8afff'];
     return lineChart(series[0].rows,'cash','Caja · escenarios',series.slice(1).map((s,i)=>({name:s.name,rows:s.rows,key:'cash',color:colors[i+1]})))+'<p class="bw-help">La separación entre escenarios muestra un intervalo de hipótesis, no una probabilidad estadística. Simulación probabilística disponible en Inversiones → Riesgo.</p>';
   }
   function waterfall(a){
     const items=[['Ingresos',a.revenue],['Costo ventas',-a.cogs],['Gastos',-a.expense],['Intereses',-a.interest],['Impuestos',-a.taxes],['Beneficio',a.net]];
     let acc=0;const bars=items.map(([label,v],i)=>{const from=i===5?0:acc,to=i===5?v:acc+v;acc=to;return {label,v,from,to};});
     const lo=Math.min(0,...bars.map(b=>b.to)),hi=Math.max(1,...bars.map(b=>b.to)),y=v=>290-(v-lo)/(hi-lo)*220;
-    return '<section class="bw-card bw-chart"><h3>Estado de resultados · Waterfall</h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" role="img" aria-label="Puente de ingresos a beneficio">'+bars.map((b,i)=>'<rect tabindex="0" x="'+(40+i*152)+'" y="'+Math.min(y(b.from),y(b.to))+'" width="105" height="'+Math.max(2,Math.abs(y(b.from)-y(b.to)))+'" fill="'+(b.v>=0?'#ffd400':'#ee8e97')+'" data-tip="'+esc(b.label+': '+money(b.v))+'"><title>'+esc(b.label+': '+money(b.v))+'</title></rect><text x="'+(40+i*152)+'" y="315">'+b.label+'</text>').join('')+'</svg><p class="bw-tip" aria-live="polite">Cada barra explica un paso del beneficio.</p></section>';
+    return '<section class="bw-card bw-chart"><h3>Estado de resultados · Waterfall</h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" role="img" aria-label="Puente de ingresos a beneficio">'+bars.map((b,i)=>'<rect tabindex="0" x="'+(40+i*152)+'" y="'+Math.min(y(b.from),y(b.to))+'" width="105" height="'+Math.max(2,Math.abs(y(b.from)-y(b.to)))+'" fill="'+(b.v>=0?'#dfbd78':'#ee8e97')+'" data-tip="'+esc(b.label+': '+money(b.v))+'"><title>'+esc(b.label+': '+money(b.v))+'</title></rect><text x="'+(40+i*152)+'" y="315">'+b.label+'</text>').join('')+'</svg><p class="bw-tip" aria-live="polite">Cada barra explica un paso del beneficio.</p></section>';
   }
   function sankey(a){
     const outputs=[['Costo ventas',a.cogs],['Gastos',a.expense],['Intereses',a.interest],['Impuestos',a.taxes],['Beneficio',Math.max(0,a.net)]];
     const input=Math.max(a.revenue,outputs.reduce((s,x)=>s+x[1],0),1);
     let cursor=50;
-    const links=outputs.map(([name,v],i)=>{const width=Math.max(v/input*205,v>0?1:0),sy=cursor+width/2,ty=45+i*55;cursor+=width;return '<path tabindex="0" d="M190 '+sy+' C420 '+sy+' 460 '+ty+' 690 '+ty+'" fill="none" stroke="'+['#84bedf','#b397ed','#ef9ca5','#e7ad75','#ffd400'][i]+'" stroke-opacity=".55" stroke-width="'+width+'" data-tip="'+esc(name+': '+money(v))+'"><title>'+esc(name+': '+money(v))+'</title></path><text x="705" y="'+(ty+4)+'">'+name+'</text>';}).join('');
-    return '<section class="bw-card bw-chart"><h3>Destino de los ingresos · Sankey</h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" role="img" aria-label="Distribución de ingresos y financiación del déficit"><text x="10" y="30">Ingresos'+(a.net<0?' + déficit':'')+'</text><rect x="170" y="50" width="20" height="205" fill="#ffd400"/>'+links+'</svg><p class="bw-tip" aria-live="polite">'+(a.net<0?'Déficit necesario: '+money(-a.net):'Las salidas suman los ingresos.')+'</p></section>';
+    const links=outputs.map(([name,v],i)=>{const width=Math.max(v/input*205,v>0?1:0),sy=cursor+width/2,ty=45+i*55;cursor+=width;return '<path tabindex="0" d="M190 '+sy+' C420 '+sy+' 460 '+ty+' 690 '+ty+'" fill="none" stroke="'+['#84bedf','#b397ed','#ef9ca5','#e7ad75','#dfbd78'][i]+'" stroke-opacity=".55" stroke-width="'+width+'" data-tip="'+esc(name+': '+money(v))+'"><title>'+esc(name+': '+money(v))+'</title></path><text x="705" y="'+(ty+4)+'">'+name+'</text>';}).join('');
+    return '<section class="bw-card bw-chart"><h3>Destino de los ingresos · Sankey</h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" role="img" aria-label="Distribución de ingresos y financiación del déficit"><text x="10" y="30">Ingresos'+(a.net<0?' + déficit':'')+'</text><rect x="170" y="50" width="20" height="205" fill="#dfbd78"/>'+links+'</svg><p class="bw-tip" aria-live="polite">'+(a.net<0?'Déficit necesario: '+money(-a.net):'Las salidas suman los ingresos.')+'</p></section>';
   }
   function renderReports(b){
     const m=model(),a=BusinessFinance.actual(b.transactions),sum=k=>m.rows.reduce((s,r)=>s+r[k],0),forecast=Object.fromEntries(['revenue','cogs','gross','expense','operating','interest','taxes','net'].map(k=>[k,sum(k)]));
@@ -76138,7 +76138,7 @@ function businessExportSnapshot(){
   table('Presupuesto',['Mes','Ventas plan','Ventas reales','Gastos plan','Gastos reales','Beneficio plan','Beneficio real','Caja plan','Caja real'],b.businessBudgets.map(p=>{const r=BusinessFinance.actual(b.transactions.filter(t=>t.date.startsWith(p.month)));return [p.month,p.sales,r.revenue,p.expenses,r.cogs+r.expense+r.interest+r.taxes,p.sales-p.expenses,r.net,p.cash??'',b.financialPlan.cash+BusinessFinance.actual(b.transactions.filter(t=>t.date.slice(0,7)<=p.month)).cash];}));
   table('Proyección',['Mes','Ingresos','Costos','Gastos','Beneficio','Caja'],data.projection.rows.map(r=>[r.month,r.revenue,r.cogs,r.expense,r.net,r.cash]));
   table('Escenarios',['Escenario','Ingresos','Beneficio','Caja final'],data.scenarios.map(s=>[s.name,s.result.revenue,s.result.net,s.result.cash]));
-  const charts=[reportChart('Proyección financiera',[{name:'Ingresos',color:'#55a8ff',values:data.projection.rows.map(r=>({label:String(r.month),value:r.revenue}))},{name:'Beneficio',color:'#55f5e6',values:data.projection.rows.map(r=>({label:String(r.month),value:r.net}))},{name:'Caja',color:'#ffd400',values:data.projection.rows.map(r=>({label:String(r.month),value:r.cash}))}],' '+b.currency)].filter(Boolean);
+  const charts=[reportChart('Proyección financiera',[{name:'Ingresos',color:'#89b9f2',values:data.projection.rows.map(r=>({label:String(r.month),value:r.revenue}))},{name:'Beneficio',color:'#8fd8d0',values:data.projection.rows.map(r=>({label:String(r.month),value:r.net}))},{name:'Caja',color:'#dfbd78',values:data.projection.rows.map(r=>({label:String(r.month),value:r.cash}))}],' '+b.currency)].filter(Boolean);
   const metrics=[['Ingresos',a.revenue],['Beneficio',a.net],['Caja',b.financialPlan.cash+a.cash]].map(([label,n])=>({label,value:formatCurrency(n,b.currency),number:n}));
   const records=[];tables.forEach(t=>t.rows.forEach((row,i)=>row.forEach((value,j)=>records.push({section:t.title,row:i+1,field:t.headers[j],value,number:typeof value==='number'?value:null}))));
   return {schemaVersion:APP_META.schemaVersion,type:'universal-module-export',appVersion:APP_META.version,module:'negocios',title:'Informe empresarial · '+b.name,slug:'negocios',createdAt:nowIso(),methodology:UNIVERSAL_EXPORT_MODULES.negocios.methodology,fields:[{label:'Moneda',value:b.currency}],metrics,tables,charts,records,sources:['Registros del negocio introducidos por el usuario; cálculo local.'],data};
