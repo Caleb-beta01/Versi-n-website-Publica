@@ -1,5 +1,5 @@
 {
-  "releaseSha256": "91610a280ad2816ddfc160387d93b4d358fb7fcfe3c8939757c9987a60e7b6fd",
+  "releaseSha256": "21ed596830406c8f55fa0233be4212842a6922dcfa17864b418f9fb2b56ac789",
   "ids": [
     "aboutAppChannel",
     "aboutAppTitle",
@@ -892,7 +892,7 @@
     "labResultsTitle",
     "labTitle",
     "lastSyncTime",
-    "lead-91abcf3c-475a-48a0-a39e-f45c244e2c51",
+    "lead-ad717ca3-ba1d-48d7-a579-10b251944cc7",
     "light-trails",
     "loadAdvancedExampleButton",
     "loadInternationalButton",
@@ -922,7 +922,7 @@
     "migrateSyncButton",
     "migrationDialog",
     "migrationTitle",
-    "min-91abcf3c-475a-48a0-a39e-f45c244e2c51",
+    "min-ad717ca3-ba1d-48d7-a579-10b251944cc7",
     "mixedCurrencyWarning",
     "modifyButton",
     "monteCarloAdvancedControls",
@@ -1347,7 +1347,7 @@
     "syncNowSecondaryButton",
     "syncPill",
     "syncStatusText",
-    "target-91abcf3c-475a-48a0-a39e-f45c244e2c51",
+    "target-ad717ca3-ba1d-48d7-a579-10b251944cc7",
     "timeError",
     "timeHelp",
     "timeMoneyAmount",
