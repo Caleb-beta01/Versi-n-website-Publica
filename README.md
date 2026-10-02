@@ -1,19 +1,9 @@
-# Inflation Insights — sitio público
+# Varia — sitio público
 
-Repositorio de despliegue de la versión pública activa.
+Aplicación de inflación, precios y herramientas económicas. Versión activa: **v0.24.0-Beta**.
 
-## Versión publicada
+[Abre Varia](https://caleb-beta01.github.io/Versi-n-website-Publica/).
 
-`v0.23.0-Beta`
+`index.html` coincide con `v0.24.0-Beta.html`. El manifiesto, service worker, favicon e iconos asociados conservan la PWA y el modo local.
 
-La versión pública actual consolida Negocios, sincronización y el motor universal de exportación, manteniendo el modo anónimo y la interfaz de v0.22.0-Beta.
-
-## Archivos de despliegue
-
-- `index.html`: entrada pública activa; coincide con el HTML de v0.23.0-Beta.
-- `v0.23.0-Beta.html`: artefacto identificable de la versión publicada.
-- `manifest-v0.23.0-beta.webmanifest`: manifiesto PWA de la versión.
-- `sw-v0.23.0-beta.js`: service worker de la versión.
-- `icons/`: iconos requeridos por la PWA.
-
-La referencia de v0.22.0-Beta se conserva en `archive/` para recuperación histórica.
+La entrega renueva la identidad y la presentación sobre v0.23.0-Beta. Los motores y datos conservan sus cálculos y formatos. [Cambios y validación](docs/releases/v0.24.0-Beta.md).

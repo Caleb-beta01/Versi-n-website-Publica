@@ -1,0 +1,32 @@
+{
+  "sourceSha256": "1b3e954a4ede8f528627c0d7e2545016fbdb32bb2bfb24398cda8bba62d1c03b",
+  "originalDimensions": [
+    1448,
+    1086
+  ],
+  "cropBox": [
+    70,
+    334,
+    1397,
+    750
+  ],
+  "horizontalDimensions": [
+    1327,
+    416
+  ],
+  "symbolDimensions": [
+    570,
+    420
+  ],
+  "horizontalPixelsEqualSourceCrop": true,
+  "visibleCopies": 1,
+  "ratio": 3.1899038461538463,
+  "method": "Original PNG; lossless crop and aspect-preserving display. Icons extracted from source, not redrawn.",
+  "transparentLogoContainer": true,
+  "removedTopEnterButton": true,
+  "retainedExploreCTA": true,
+  "darkVariantAlphaMatchesOriginal": true,
+  "darkVariantSymbolPixelsMatchOriginal": true,
+  "darkVariantWordmarkColor": "#f4f7fc",
+  "darkVariantNote": "Only wordmark RGB adapted for contrast; alpha, contours and symbol colors preserved."
+}

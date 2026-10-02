@@ -1,0 +1,24 @@
+{
+  "sourceSHA256": "4c4280c7d23dd9f086ab966b225e958a1131d29707810d460d93c706dc7a5cd9",
+  "originalSymbolUsed": true,
+  "transparentPngSizes": [
+    32,
+    64,
+    180,
+    192,
+    512
+  ],
+  "iconCornersAlpha": {
+    "32": 0,
+    "64": 0,
+    "180": 0,
+    "192": 0,
+    "512": 0
+  },
+  "externalIconReferences": true,
+  "htmlApplicationScriptUnchanged": true,
+  "applicationSHA256": "b3e1170074b28470eb432ab6ed99e4e254c20f442fdba42ec1a4187e110a7b33",
+  "releaseSHA256": "83db57c0332a7f7604e502b2c3b2bd2a12989ff5fd3e11b80552947e3e02baf5",
+  "cacheRevision": "branding-r2",
+  "additionalApplicationChange": "Presentation only: audit headings no longer include their ordinal prefix; formulas and copied audit content unchanged."
+}
