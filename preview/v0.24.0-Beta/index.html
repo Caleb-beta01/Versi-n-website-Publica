@@ -4046,6 +4046,10 @@ body .footer-brand strong{letter-spacing:.16em;color:var(--gold)!important}
 @media(max-width:380px){#horizonte .varia-logo{width:154px!important}}
 @media(forced-colors:active){#horizonte .varia-logo{forced-color-adjust:none}.header-inner .varia-name{color:CanvasText!important}}
 
+
+/* Copyright must remain readable on the dark application footer. */
+.app-footer .footer-brand span{color:var(--muted)!important}
+@media(forced-colors:active){.app-footer .footer-brand span{color:CanvasText!important}}
 </style>
 </head>
 <body data-route="inicio">
@@ -70616,7 +70620,7 @@ function openAudit(title,steps,meta){
   const safeSteps=Array.isArray(steps) ? steps : [];
   $('auditDialogTitle').textContent=title || 'Ver cálculo';
   $('auditContent').innerHTML=safeSteps.map(function(step,index){
-    return '<section class="audit-step"><h4>'+(index+1)+'. '+escapeXml(step.title)+'</h4><p>'+escapeXml(step.body)+'</p>'+(step.formula ? '<code>'+escapeXml(step.formula)+'</code>' : '')+'</section>';
+    return '<section class="audit-step"><h4>'+escapeXml(step.title)+'</h4><p>'+escapeXml(step.body)+'</p>'+(step.formula ? '<code>'+escapeXml(step.formula)+'</code>' : '')+'</section>';
   }).join('');
   const safeMeta=Array.isArray(meta) ? meta : [];
   $('auditMeta').innerHTML=safeMeta.map(function(item){ return '<span>'+escapeXml(item)+'</span>'; }).join('');
