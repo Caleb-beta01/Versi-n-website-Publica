@@ -51,7 +51,7 @@ async function navigationResponse(request){
     const response=await fetch(request,{cache:'no-store'});
     if(response.ok){
       const url=new URL(request.url);
-      if(url.origin === self.location.origin && /(?:index\.html|v0\.23\.0\-Beta\.html)$/.test(url.pathname)){
+      if(url.origin === self.location.origin && /(?:index\.html|v0\.24\.0\-Beta\.html)$/.test(url.pathname)){
         const cache=await caches.open(STATIC_CACHE);
         await cache.put(url.pathname.endsWith('index.html') ? './index.html' : RELEASE_URL,response.clone());
       }

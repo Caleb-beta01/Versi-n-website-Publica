@@ -1,5 +1,5 @@
 {
-  "id": "./v0.24.0-Beta.html",
+  "id": "./v0.23.0-Beta.html",
   "name": "Varia",
   "short_name": "Varia",
   "description": "Calculadora de inflación, análisis de negocios y decisiones financieras. Experiencia cinematográfica.",
@@ -14,8 +14,8 @@
     "minimal-ui"
   ],
   "orientation": "any",
-  "background_color": "#02050a",
-  "theme_color": "#02050a",
+  "background_color": "#08182c",
+  "theme_color": "#08182c",
   "categories": [
     "finance",
     "business",
