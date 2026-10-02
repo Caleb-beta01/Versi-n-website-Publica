@@ -1,0 +1,23 @@
+{
+  "sourceSHA256": "4c4280c7d23dd9f086ab966b225e958a1131d29707810d460d93c706dc7a5cd9",
+  "originalSymbolUsed": true,
+  "transparentPngSizes": [
+    32,
+    64,
+    180,
+    192,
+    512
+  ],
+  "iconCornersAlpha": {
+    "32": 0,
+    "64": 0,
+    "180": 0,
+    "192": 0,
+    "512": 0
+  },
+  "externalIconReferences": true,
+  "htmlApplicationScriptUnchanged": true,
+  "applicationSHA256": "86748c4192a034869cffbad1f30fa82c0c60471853fe0e59c91164e62768f018",
+  "releaseSHA256": "0296ba4839fd29e4bf605c7ff5605f180a909048a7451bf8f791e4cc96433d9c",
+  "cacheRevision": "branding-r2"
+}

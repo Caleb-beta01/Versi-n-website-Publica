@@ -2,7 +2,7 @@
 
 // Scope isolates a review installation from the production application cache.
 const CACHE_PREFIX = 'inflation-insights-' + new URL(self.registration.scope).pathname;
-const STATIC_CACHE = CACHE_PREFIX + 'static-v0.24.0-beta';
+const STATIC_CACHE = CACHE_PREFIX + 'static-v0.24.0-beta-branding-r2';
 const RELEASE_URL = './v0.24.0-Beta.html';
 const APP_SHELL = [
   './',
@@ -11,7 +11,14 @@ const APP_SHELL = [
   './manifest-v0.24.0-beta.webmanifest',
   './icons/varia.svg',
   './icons/varia-192.png',
-  './icons/varia-512.png'
+  './icons/varia-512.png',
+  './icons/varia-32.png',
+  './icons/varia-180.png',
+  './icons/varia-maskable-192.png',
+  './icons/varia-maskable-512.png',
+  './favicon.ico',
+  './favicon.png',
+  './apple-touch-icon.png'
 ];
 
 self.addEventListener('install',function(event){
