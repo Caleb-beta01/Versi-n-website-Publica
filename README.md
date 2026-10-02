@@ -1,13 +1,9 @@
 # Varia — sitio público
 
-Aplicación de inflación, análisis y negocios. La actualización v0.24.0-Beta introduce el nombre y logo Varia y un sistema visual común, preservando las herramientas y datos de v0.23.0-Beta.
+Aplicación de inflación, precios y herramientas económicas. Versión activa: **v0.24.0-Beta**.
 
-Esta rama prepara la entrega; producción sigue en v0.23.0-Beta hasta su integración autorizada.
+[Abre Varia](https://caleb-beta01.github.io/Versi-n-website-Publica/).
 
-- `index.html` y `v0.24.0-Beta.html`: HTML de la entrega preparada.
-- `manifest-v0.24.0-beta.webmanifest` y `sw-v0.24.0-beta.js`: instalación y recursos offline.
-- `icons/` y `docs/assets/branding/`: símbolos y variantes de Varia.
-- [Cambios, QA y pendientes](docs/releases/v0.24.0-Beta.md).
-- [Evidencia de pruebas DOM](docs/qa/v0.24.0-Beta-runtime.json).
+`index.html` coincide con `v0.24.0-Beta.html`. El manifiesto, service worker, favicon e iconos asociados conservan la PWA y el modo local.
 
-Las versiones y activos anteriores se conservan para compatibilidad y recuperación.
+La entrega renueva la identidad y la presentación sobre v0.23.0-Beta. Los motores y datos conservan sus cálculos y formatos. [Cambios y validación](docs/releases/v0.24.0-Beta.md).

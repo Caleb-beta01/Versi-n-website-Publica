@@ -17,7 +17,8 @@
   },
   "externalIconReferences": true,
   "htmlApplicationScriptUnchanged": true,
-  "applicationSHA256": "86748c4192a034869cffbad1f30fa82c0c60471853fe0e59c91164e62768f018",
-  "releaseSHA256": "0296ba4839fd29e4bf605c7ff5605f180a909048a7451bf8f791e4cc96433d9c",
-  "cacheRevision": "branding-r2"
+  "applicationSHA256": "b3e1170074b28470eb432ab6ed99e4e254c20f442fdba42ec1a4187e110a7b33",
+  "releaseSHA256": "83db57c0332a7f7604e502b2c3b2bd2a12989ff5fd3e11b80552947e3e02baf5",
+  "cacheRevision": "branding-r2",
+  "additionalApplicationChange": "Presentation only: audit headings no longer include their ordinal prefix; formulas and copied audit content unchanged."
 }

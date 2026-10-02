@@ -1,0 +1,14 @@
+{
+  "workerSha256": "d54d9da4104834bae84616b68fbfe4eaef16d0f3beafee33e7a9672fb7325d72",
+  "checks": [
+    "Install precaches every real release resource",
+    "Production activation preserves the preview installation cache",
+    "Offline navigation and direct release URLs return the complete Varia application",
+    "PWA manifest, icons and favicon remain available offline",
+    "Remote account/data requests are not replaced by cached application HTML",
+    "Remote data requests use the network",
+    "Installation identity preserved; all manifest icons exist"
+  ],
+  "errors": [],
+  "method": "Executed real worker source in a service-worker API harness with network available/unavailable; no claim of a native phone installation"
+}

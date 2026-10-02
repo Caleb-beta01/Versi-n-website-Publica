@@ -1,0 +1,120 @@
+{
+  "release": "v0.24.0-Beta",
+  "releaseSha256": "83db57c0332a7f7604e502b2c3b2bd2a12989ff5fd3e11b80552947e3e02baf5",
+  "observations": [
+    {
+      "label": "320 × 740, panel",
+      "bodyBackground": "rgba(0, 0, 0, 0)",
+      "brokenLabels": 0,
+      "clientWidth": 305,
+      "footerColor": "rgb(129, 151, 170)",
+      "footerTextColor": "rgb(66, 66, 66)",
+      "menuHeight": 44,
+      "menuWidth": 44,
+      "route": "panel",
+      "scrollWidth": 305
+    },
+    {
+      "label": "320 × 740, calculadora",
+      "bodyBackground": "rgba(0, 0, 0, 0)",
+      "brokenLabels": 0,
+      "clientWidth": 305,
+      "footerColor": "rgb(129, 151, 170)",
+      "footerTextColor": "rgb(66, 66, 66)",
+      "menuHeight": 44,
+      "menuWidth": 44,
+      "route": "calculadora",
+      "scrollWidth": 305
+    },
+    {
+      "label": "320 × 740, resultados 100→121",
+      "bodyBackground": "rgba(0, 0, 0, 0)",
+      "brokenLabels": 0,
+      "clientWidth": 305,
+      "footerColor": "rgb(129, 151, 170)",
+      "footerTextColor": "rgb(66, 66, 66)",
+      "menuHeight": 44,
+      "menuWidth": 44,
+      "route": "calculadora",
+      "scrollWidth": 305
+    },
+    {
+      "label": "844 × 390, horizontal",
+      "bodyBackground": "rgba(0, 0, 0, 0)",
+      "brokenLabels": 0,
+      "clientWidth": 829,
+      "footerColor": "rgb(129, 151, 170)",
+      "footerTextColor": "rgb(66, 66, 66)",
+      "menuHeight": 44,
+      "menuWidth": 44,
+      "route": "calculadora",
+      "scrollWidth": 829
+    },
+    {
+      "label": "768 × 1024, tableta",
+      "bodyBackground": "rgba(0, 0, 0, 0)",
+      "brokenLabels": 0,
+      "clientWidth": 753,
+      "footerColor": "rgb(129, 151, 170)",
+      "footerTextColor": "rgb(66, 66, 66)",
+      "menuHeight": 44,
+      "menuWidth": 44,
+      "route": "panel",
+      "scrollWidth": 753
+    },
+    {
+      "label": "200 % visual, reflow 674 × 468",
+      "bodyBackground": "rgba(0, 0, 0, 0)",
+      "brokenLabels": 0,
+      "clientWidth": 666,
+      "footerColor": "rgb(129, 151, 170)",
+      "footerTextColor": "rgb(188, 202, 221)",
+      "menuHeight": 44,
+      "menuWidth": 44,
+      "route": "calculadora",
+      "scrollWidth": 666
+    },
+    {
+      "label": "320 × 740, entrega final",
+      "bodyBackground": "rgba(0, 0, 0, 0)",
+      "brokenLabels": 0,
+      "clientWidth": 305,
+      "footerColor": "rgb(129, 151, 170)",
+      "footerTextColor": "rgb(188, 202, 221)",
+      "menuHeight": 44,
+      "menuWidth": 44,
+      "route": "panel",
+      "scrollWidth": 305
+    }
+  ],
+  "desktop": {
+    "clientWidth": 1348,
+    "scrollWidth": 1348,
+    "footerTextColor": "rgb(188, 202, 221)"
+  },
+  "keyboard": {
+    "skipLinkOutline": "3px solid rgb(223, 189, 120)",
+    "auditEscapeRestoresFocus": "openCalculatorAuditButton"
+  },
+  "auditHeadings": [
+    "Datos utilizados",
+    "Conversión de moneda",
+    "Factor de variación",
+    "Inflación total",
+    "Tasas equivalentes",
+    "Poder adquisitivo",
+    "Redondeo"
+  ],
+  "calculation": {
+    "initial": 100,
+    "final": 121,
+    "months": 24,
+    "total": "21,00 %",
+    "annualized": "10,00 %"
+  },
+  "method": "Chrome: escritorio real; móvil, tableta y paisaje mediante iframe con viewport CSS; ampliación visual por CSS zoom=2 y reflujo a 674 px. Los primeros registros detectan el contraste anterior; los registros entrega final verifican su corrección.",
+  "limits": [
+    "Sin prueba de instalación nativa en un teléfono",
+    "Sin repetir flujos reales de cuentas ni sincronización remota"
+  ]
+}
