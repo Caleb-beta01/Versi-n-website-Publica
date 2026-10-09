@@ -5,10 +5,10 @@
 
 # Varia
 
-Repositorio del sitio público de Varia: inflación, precios y herramientas económicas. Versión activa: **v0.24.0-Beta**.
+Inflación, precios y herramientas económicas. Versión activa: **v0.25.0-Beta**.
 
 [Abre Varia](https://caleb-beta01.github.io/Versi-n-website-Publica/).
 
-`index.html` coincide con `v0.24.0-Beta.html`. El manifiesto, service worker, favicon e iconos asociados conservan la PWA y el modo local.
+La entrada web carga recursos separados y conserva el modo local y la PWA. [Descarga el HTML completo](v0.25.0-Beta.html) para guardar una copia autónoma.
 
-La entrega renueva la identidad y la presentación sobre v0.23.0-Beta. Los motores y datos conservan sus cálculos y formatos. [Cambios y validación](docs/releases/v0.24.0-Beta.md).
+Esta Beta corrige botones y navegación móvil, refuerza la validación de entradas e incorpora respaldo completo con restauración y opción de deshacer. Las herramientas siguen siendo gratuitas. [Cambios y validación](docs/releases/v0.25.0-Beta.md).
